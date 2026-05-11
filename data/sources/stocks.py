@@ -44,6 +44,11 @@ def get_ticker_list(market: str) -> pd.DataFrame:
     return df
 
 
+FETCH_TIMEOUT_SEC = 20
+MAX_RETRIES = 2
+RETRY_BACKOFF_SEC = 1.5
+
+
 def fetch_one(symbol: str, start: str = DEFAULT_START) -> pd.DataFrame:
     df = fdr.DataReader(symbol, start)
     if df is None or df.empty:
@@ -56,20 +61,38 @@ def cache_path(market: str, symbol: str) -> Path:
     return MARKET_DIR[market] / f"{symbol}.parquet"
 
 
+def _fetch_with_timeout(symbol: str) -> pd.DataFrame:
+    """Run fetch_one in a sub-thread so we can enforce a per-call timeout.
+    Necessary because FDR's underlying requests can hang indefinitely under rate limit."""
+    from concurrent.futures import ThreadPoolExecutor as _TPE, TimeoutError as _TO
+    with _TPE(max_workers=1) as ex:
+        fut = ex.submit(fetch_one, symbol)
+        try:
+            return fut.result(timeout=FETCH_TIMEOUT_SEC)
+        except _TO:
+            fut.cancel()
+            raise TimeoutError(f"fetch_one({symbol}) > {FETCH_TIMEOUT_SEC}s")
+
+
 def fetch_and_save(market: str, symbol: str, refresh: bool) -> Tuple[str, int, str]:
     """Returns (symbol, rows, status)."""
     path = cache_path(market, symbol)
     if path.exists() and not refresh:
         return symbol, -1, "skip"
-    try:
-        df = fetch_one(symbol)
-        if df.empty:
-            return symbol, 0, "empty"
-        path.parent.mkdir(parents=True, exist_ok=True)
-        df.to_parquet(path, compression="snappy")
-        return symbol, len(df), "ok"
-    except Exception as e:
-        return symbol, 0, f"err:{type(e).__name__}:{e}"[:200]
+    last_err = None
+    for attempt in range(MAX_RETRIES + 1):
+        try:
+            df = _fetch_with_timeout(symbol)
+            if df.empty:
+                return symbol, 0, "empty"
+            path.parent.mkdir(parents=True, exist_ok=True)
+            df.to_parquet(path, compression="snappy")
+            return symbol, len(df), "ok"
+        except Exception as e:
+            last_err = e
+            if attempt < MAX_RETRIES:
+                time.sleep(RETRY_BACKOFF_SEC * (attempt + 1))
+    return symbol, 0, f"err:{type(last_err).__name__}:{last_err}"[:200]
 
 
 def run_market(market: str, workers: int, refresh: bool) -> dict:
