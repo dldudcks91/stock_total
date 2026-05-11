@@ -1,0 +1,28 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Data (캐시 및 런 결과는 git에 안 올림)
+data/cache/
+data/*.parquet
+data/*.csv
+backtest/runs/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+*.key
+
+# Claude local overrides
+.claude/settings.local.json

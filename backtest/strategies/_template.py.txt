@@ -1,0 +1,38 @@
+"""{{DESCRIPTION}}
+
+Strategy module contract:
+- df columns are ``timestamp, open, high, low, close, volume, amount`` and
+  rows are guaranteed to be sorted by ``timestamp`` ascending.
+- Use vectorized pandas/numpy ops; ``rolling`` / ``ewm`` results at index t
+  only reflect data up to and including bar t, so they are look-ahead safe.
+- Expose every tunable knob through ``DEFAULT_PARAMS`` so callers can override.
+- Return raw signals only; the engine applies the t -> t+1 execution shift,
+  so do NOT call ``shift`` / ``ffill`` here.
+"""
+from __future__ import annotations
+
+import numpy as np
+import pandas as pd
+
+NAME = "{{NAME}}"
+
+DEFAULT_PARAMS = {
+    "window": 14,
+}
+
+
+def signal(df: pd.DataFrame, params: dict) -> pd.Series:
+    """Return a pd.Series of int8 in {-1, 0, 1}, aligned to ``df.index``."""
+    window = int(params.get("window", DEFAULT_PARAMS["window"]))
+    if window <= 0:
+        raise ValueError(f"window must be > 0, got {window}")
+
+    close = df["close"].astype("float64")
+    # Example indicator: simple moving average (look-ahead safe).
+    sma = close.rolling(window, min_periods=window).mean()
+
+    sig = pd.Series(0, index=df.index, dtype="int8")
+    sig = sig.where(~(close > sma), 1)
+    sig = sig.where(~(close < sma), -1)
+    sig = sig.fillna(0).astype("int8")
+    return sig
