@@ -12,7 +12,7 @@ from typing import Dict, List, Optional
 
 import pandas as pd
 
-CLASSIFICATION_PATH = Path(__file__).parent / "cache" / "classification.parquet"
+CLASSIFICATION_PATH = Path(__file__).parent / "cache" / "crypto" / "classification.parquet"
 
 VALID_TIERS = ("trend", "follower", "whale", "junk")
 

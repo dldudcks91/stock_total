@@ -5,9 +5,9 @@ Bitget v2 REST 직접 호출 (ccxt 미사용).
 - 캔들 조회:  GET /api/v2/mix/market/history-candles
 
 CLI:
-    python -m data.fetch_bitget                      # 전 종목 (증분)
-    python -m data.fetch_bitget --symbol BTCUSDT
-    python -m data.fetch_bitget --since 2020-01-01   # 처음부터
+    python -m data.sources.bitget                    # 전 종목 (증분)
+    python -m data.sources.bitget --symbol BTCUSDT
+    python -m data.sources.bitget --since 2020-01-01 # 처음부터
 """
 
 from __future__ import annotations
@@ -22,7 +22,7 @@ import aiohttp
 import pandas as pd
 import requests
 
-CACHE_DIR = Path(__file__).parent / "cache"
+CACHE_DIR = Path(__file__).resolve().parents[2] / "data" / "cache" / "crypto"
 BASE = "https://api.bitget.com/api/v2/mix/market"
 TICKERS_URL = f"{BASE}/tickers"
 CANDLES_URL = f"{BASE}/history-candles"
