@@ -117,6 +117,7 @@ US 티커: 영문 대문자.
 | `new-strategy` | 백테스트 | 전략 파일 템플릿 생성 |
 | `run-backtest` | 백테스트 | 단일 전략 단일 심볼 실행 |
 | `compare-runs` | 백테스트 | 두 런 메트릭 비교 |
+| `plot-chart` | 전 자산 | Bitget 스타일 캔들+MA+거래량+RSI Plotly 차트 |
 | `launch-dashboard` | UI | Streamlit 실행 |
 
 ### 현재 Agent 목록 (`.claude/agents/`)
@@ -134,4 +135,4 @@ US 티커: 영문 대문자.
 - **KR 주식**: `from research.collect import load_daily, fetch_daily` 또는 직접 `data/cache/kr/{ticker}.parquet` parquet read.
 - **US 주식**: `data/cache/us/{ticker}.parquet` 직접 read 또는 추후 공통 loader 추가.
 
-자산을 가로지르는 추상 loader는 현재 없음 — 필요해지면 `data/loader.py` 추가 검토.
+자산을 가로지르는 추상 loader: `data.loader.load_ohlcv(asset, symbol, interval)` 사용 가능 (crypto: 1h/4h/1d/1w, kr/us: 1d/1w).
