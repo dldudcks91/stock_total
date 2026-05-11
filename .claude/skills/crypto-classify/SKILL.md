@@ -1,11 +1,11 @@
 ---
-name: classify-coins
-description: BTC를 벤치마크로 두고 캐시의 모든 코인을 4그룹(trend / follower / whale / junk)으로 분류한다. 내부적으로 7-way 룰+kmeans 결과(tier_detail)도 함께 저장. 트리거 `/classify-coins`. 인자가 없으면 기본값(--start 2023-01-01 --end 2025-12-31 --method both)으로 실행하고 `data/cache/classification.parquet`에 저장. 분기마다 또는 신규 심볼이 다수 추가되었을 때 재실행 권장.
+name: crypto-classify
+description: BTC를 벤치마크로 두고 캐시의 모든 코인을 4그룹(trend / follower / whale / junk)으로 분류한다. 내부적으로 7-way 룰+kmeans 결과(tier_detail)도 함께 저장. 트리거 `/crypto-classify`. 인자가 없으면 기본값(--start 2023-01-01 --end 2025-12-31 --method both)으로 실행하고 `data/cache/crypto/classification.parquet`에 저장. 분기마다 또는 신규 심볼이 다수 추가되었을 때 재실행 권장.
 ---
 
-# /classify-coins
+# /crypto-classify
 
-캐시(`data/cache/bitget_*_1h.parquet`)의 모든 심볼에 대해 일봉 기준 6개 메트릭을 계산하고 두 가지 방식(rules / kmeans)으로 분류한다.
+캐시(`data/cache/crypto/bitget_*_1h.parquet`)의 모든 심볼에 대해 일봉 기준 6개 메트릭을 계산하고 두 가지 방식(rules / kmeans)으로 분류한다.
 
 ## 실행
 
@@ -22,13 +22,13 @@ python -m data.classification \
   --start 2023-01-01 --end 2025-12-31 \
   --method both \                # rules | kmeans | both (기본 both)
   --btc-symbol BTCUSDT \
-  --out data/cache/classification.parquet \
+  --out data/cache/crypto/classification.parquet \
   [--symbol BTCUSDT --symbol ETHUSDT]   # 명시 심볼 (반복) — 미지정 시 캐시 전체
 ```
 
 성공 시 stdout에 `saved: ... (N symbols)` 와 `tier_final` 분포가 출력된다. 캐시가 비어있거나 BTCUSDT가 없으면 친절한 안내와 함께 종료 코드 2.
 
-## 산출물 (`data/cache/classification.parquet`)
+## 산출물 (`data/cache/crypto/classification.parquet`)
 
 컬럼: `symbol, tier_final, tier_detail, tier_rule, tier_kmeans, r2_btc, beta_btc, hurst, kurtosis, kurt_trimmed, pump_count_per_year, pump_recurrence, realized_vol_annual, volume_score_3y, listing_days, last_price, max_drawdown_3y, classified_at, n_obs`
 

@@ -7,7 +7,7 @@ BTC를 벤치마크로 두고, 캐시에 있는 모든 심볼에 대해 6개 메
     python -m data.classification --start 2023-01-01 --end 2025-12-31
 
 산출:
-    data/cache/classification.parquet
+    data/cache/crypto/classification.parquet
 """
 from __future__ import annotations
 
@@ -21,7 +21,7 @@ from typing import Iterable
 import numpy as np
 import pandas as pd
 
-CACHE_DIR = Path(__file__).parent / "cache"
+CACHE_DIR = Path(__file__).parent / "cache" / "crypto"
 DEFAULT_OUT = CACHE_DIR / "classification.parquet"
 
 OHLCV_AGG = {

@@ -11,7 +11,7 @@ from pathlib import Path
 
 import pandas as pd
 
-CACHE_DIR = Path(__file__).parent / "cache"
+CACHE_DIR = Path(__file__).parent / "cache" / "crypto"
 
 RULE = {
     "1h": None,

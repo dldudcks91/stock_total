@@ -12,6 +12,12 @@ data/*.parquet
 data/*.csv
 backtest/runs/
 
+# Research artifacts (PDF/JSON 캐시·생성된 마크다운 리포트)
+research/cache/
+research/reports/
+research/analysis/
+research/_stock_research_CLAUDE.md.bak
+
 # IDE
 .vscode/
 .idea/
@@ -26,3 +32,4 @@ Thumbs.db
 
 # Claude local overrides
 .claude/settings.local.json
+.claude/scheduled_tasks.lock
