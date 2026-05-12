@@ -26,6 +26,7 @@ from dashboards._lib import (
     fmt_pct,
     fmt_float,
     fmt_int,
+    render_fetch_log_sidebar,
 )
 from dashboards._cache import load_config, load_metrics, load_equity, load_trades
 
@@ -190,6 +191,7 @@ def main() -> None:
         page_icon="📈",
         layout="wide",
     )
+    render_fetch_log_sidebar(st)
     st.title("Backtest 단일 런 뷰어")
 
     runs = list_runs()

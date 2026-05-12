@@ -29,6 +29,7 @@ if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
 from data.loader import load_ohlcv  # noqa: E402
+from dashboards._lib import render_fetch_log_sidebar  # noqa: E402
 from dashboards._stock_grid import (  # noqa: E402
     DEFAULT_WINDOW,
     PERIODS_D,
@@ -188,6 +189,7 @@ def main() -> None:
     import streamlit as st
 
     st.set_page_config(page_title="NASDAQ", page_icon="🇺🇸", layout="wide")
+    render_fetch_log_sidebar(st)
     st.markdown(STOCK_PAGE_CSS, unsafe_allow_html=True)
 
     sort_options = list(COLUMN_LABELS.keys())
@@ -336,7 +338,7 @@ def main() -> None:
         if not _HAS_LWC:
             st.warning(
                 "`streamlit-lightweight-charts` 미설치 — "
-                "`pip install streamlit-lightweight-charts`"
+                "`.venv/Scripts/python.exe -m pip install streamlit-lightweight-charts`"
             )
             return
         render_tv_chart_stock(

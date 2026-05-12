@@ -20,9 +20,9 @@ NASDAQ 일봉 데이터 다운로드 워크플로우. **현재는 FinanceDataRea
 ### 전체 NASDAQ 일괄
 
 ```bash
-python -m data.sources.stocks --market NASDAQ                # 증분
-python -m data.sources.stocks --market NASDAQ --refresh      # 캐시 무시 재다운
-python -m data.sources.stocks --market ALL                   # KOSPI+NASDAQ
+.venv/Scripts/python.exe -m data.sources.stocks --market NASDAQ                # 증분
+.venv/Scripts/python.exe -m data.sources.stocks --market NASDAQ --refresh      # 캐시 무시 재다운
+.venv/Scripts/python.exe -m data.sources.stocks --market ALL                   # KOSPI+NASDAQ
 ```
 
 ### 단일 종목

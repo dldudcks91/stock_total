@@ -23,6 +23,7 @@ from dashboards._lib import (
     load_config,
     load_metrics,
     fmt_metric,
+    render_fetch_log_sidebar,
 )
 
 
@@ -38,6 +39,7 @@ def main() -> None:
     st.caption(
         "왼쪽 사이드바에서 페이지를 선택하세요 — Backtest / Compare / Realtime."
     )
+    render_fetch_log_sidebar(st)
 
     runs = list_runs()
     st.markdown("### 런 인벤토리")

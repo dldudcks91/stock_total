@@ -10,12 +10,20 @@ from __future__ import annotations
 
 def main() -> None:
     import streamlit as st
+    import sys
+    from pathlib import Path
+
+    _ROOT = Path(__file__).resolve().parents[2]
+    if str(_ROOT) not in sys.path:
+        sys.path.insert(0, str(_ROOT))
+    from dashboards._lib import render_fetch_log_sidebar
 
     st.set_page_config(
         page_title="Realtime — Crypto",
         page_icon="🛰️",
         layout="wide",
     )
+    render_fetch_log_sidebar(st)
     st.title("Realtime Dashboard")
     st.info("Coming soon — 실시간 수집기 DB 연결 후 구현")
     st.caption(

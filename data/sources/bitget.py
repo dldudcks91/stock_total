@@ -28,6 +28,8 @@ import aiohttp
 import pandas as pd
 import requests
 
+from data import fetch_log
+
 CACHE_DIR = Path(__file__).resolve().parents[2] / "data" / "cache" / "crypto"
 BASE = "https://api.bitget.com/api/v2/mix/market"
 TICKERS_URL = f"{BASE}/tickers"
@@ -220,6 +222,8 @@ async def fetch_all(gran: str, force_since_ms: Optional[int]) -> None:
             )
             if i + CONCURRENCY < len(symbols):
                 await asyncio.sleep(BATCH_SLEEP_SEC)
+
+    fetch_log.mark(f"crypto_{gran}", n_symbols=len(symbols))
 
 
 # ──────────────────────────── 유틸 ────────────────────────────

@@ -17,7 +17,7 @@ Streamlit 멀티페이지 대시보드를 실행하는 스킬.
 ## 실행 명령
 
 ```bash
-streamlit run dashboards/app.py
+.venv/Scripts/streamlit.exe run dashboards/app.py
 ```
 
 ## 페이지 구성
@@ -64,13 +64,13 @@ streamlit run dashboards/app.py
 
 ## 포트 / 접속
 
-- 기본 포트: **8501**
-- 같은 포트가 사용 중이면 다음 빈 포트(8502, …)로 자동
-- 접속: `http://localhost:8501`
+- 기본 포트: **8503** (`.streamlit/config.toml` 의 `[server] port` 로 고정)
+- 같은 포트가 사용 중이면 다음 빈 포트(8504, …)로 자동
+- 접속: `http://localhost:8503`
 - 다른 포트로 띄우고 싶으면:
 
   ```bash
-  streamlit run dashboards/app.py --server.port 8600
+  .venv/Scripts/streamlit.exe run dashboards/app.py --server.port 8600
   ```
 
 ## 종료

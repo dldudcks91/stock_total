@@ -31,7 +31,7 @@ data/
 
 backtest/
 ├── engine/          # 시그널 → 체결 → 포지션 → 성과
-├── strategies/      # 한 파일 = 한 전략
+├── strategies/      # 한 파일 = 한 전략 (전략별 .md 리포트 동거)
 └── runs/            # 런 결과 (런별 디렉터리)
 
 research/            # KR 종목 리서치 (옛 stock_research 흡수)
@@ -74,6 +74,17 @@ KR 티커: 6자리 문자열 (앞자리 0 유지).
 US 티커: 영문 대문자.
 
 > 두 스키마가 다르므로 자산을 가로지르는 코드는 정규화 후 사용.
+
+## Python 환경 (venv 필수)
+
+이 프로젝트의 **모든 파이썬 실행은 프로젝트 루트의 `.venv` 를 경유**한다. 시스템(anaconda/global) 파이썬으로 실행 금지 — 의존성 격리와 재현성을 위해.
+
+- 인터프리터: `.venv/Scripts/python.exe` (Windows) / `.venv/bin/python` (POSIX)
+- streamlit / pip 등 entry-point: `.venv/Scripts/streamlit.exe`, `.venv/Scripts/pip.exe`
+- venv 가 없으면 먼저 생성: `python -m venv .venv && .venv/Scripts/python.exe -m pip install -r requirements.txt`
+- 모든 SKILL.md 와 docs 의 예시 명령은 `.venv/Scripts/python.exe -m ...` 형태로 작성.
+- Claude 가 Bash 로 파이썬을 호출할 때도 반드시 `.venv/Scripts/python.exe` 사용 (그냥 `python` 금지).
+- VSCode 는 `.vscode/settings.json` 으로 인터프리터·통합 터미널이 자동 venv. 다른 IDE 사용 시 동일하게 설정.
 
 ## 시간 표준
 
@@ -124,6 +135,15 @@ US 티커: 영문 대문자.
 | `compare-runs` | 백테스트 | 두 런 메트릭 비교 |
 | `plot-chart` | 전 자산 | Bitget 스타일 캔들+MA+거래량+RSI Plotly 차트 |
 | `launch-dashboard` | UI | Streamlit 실행 |
+
+### 현재 전략 목록 (`backtest/strategies/`)
+
+| 전략 | 라벨 | 자산 | 용도 | 비고 |
+|---|---|---|---|---|
+| `quiet_bottom` | **조용한 바닥** | KR / US | 추천 시그널 (자동매매 X) | 1차 구현 — 6 조건 (close>MA20, slope/accel 양, avg_dd_104w≤-0.45, path_R²_52w≤0.50, ret_4w≤+60%). 자세히: [QUIET_BOTTOM.md](backtest/strategies/QUIET_BOTTOM.md) |
+| `clean_dive_turn` | — | — | deprecated alias of `quiet_bottom` | 호환 유지용 |
+| `ma_slope_turn_up` | — | 전 자산 | 슬로프 양 전환 진입 (실험) | quiet_bottom의 전신 |
+| `weekly_trend` / `sma_cross` / `breakout_start` / ... | — | 크립토 위주 | 단순 추세/돌파 베이스라인 | |
 
 ### 현재 Agent 목록 (`.claude/agents/`)
 

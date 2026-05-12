@@ -12,13 +12,13 @@ description: BTC를 벤치마크로 두고 캐시의 모든 코인을 4그룹(tr
 기본 실행:
 
 ```bash
-python -m data.classification
+.venv/Scripts/python.exe -m data.classification
 ```
 
 옵션:
 
 ```bash
-python -m data.classification \
+.venv/Scripts/python.exe -m data.classification \
   --start 2023-01-01 --end 2025-12-31 \
   --method both \                # rules | kmeans | both (기본 both)
   --btc-symbol BTCUSDT \

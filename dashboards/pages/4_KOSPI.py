@@ -28,6 +28,7 @@ if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
 from data.loader import load_ohlcv  # noqa: E402
+from dashboards._lib import render_fetch_log_sidebar  # noqa: E402
 from dashboards._stock_grid import (  # noqa: E402
     DEFAULT_WINDOW,
     PERIODS_D,
@@ -64,12 +65,12 @@ USER_AGENT = (
 COLUMN_LABELS: dict[str, str] = {
     "itemCode": "Code",
     "stockName": "Name",
-    "closePrice": "Last",
-    "fluctuationsRatio": "Change %",
+    "closePrice": "Price",
+    "fluctuationsRatio": "Change",
     "accumulatedTradingValue": "거래대금 (KRW)",
     "marketValue": "시총 (KRW)",
     "accumulatedTradingVolume": "Volume",
-    **{f"pct_{n}d": f"{n}d %" for n in PERIODS_D},
+    **{f"pct_{n}d": f"{n}d" for n in PERIODS_D},
 }
 
 
@@ -171,6 +172,7 @@ def main() -> None:
     import streamlit as st
 
     st.set_page_config(page_title="KOSPI", page_icon="🇰🇷", layout="wide")
+    render_fetch_log_sidebar(st)
     st.markdown(STOCK_PAGE_CSS, unsafe_allow_html=True)
 
     sort_options = list(COLUMN_LABELS.keys())
@@ -297,7 +299,7 @@ def main() -> None:
         if not _HAS_LWC:
             st.warning(
                 "`streamlit-lightweight-charts` 미설치 — "
-                "`pip install streamlit-lightweight-charts`"
+                "`.venv/Scripts/python.exe -m pip install streamlit-lightweight-charts`"
             )
             return
         render_tv_chart_stock(
@@ -322,7 +324,7 @@ def main() -> None:
         with f2:
             top_n = st.number_input(
                 "Top N (0 = all)",
-                min_value=0, max_value=2000, value=100, step=50,
+                min_value=0, max_value=2000, value=0, step=50,
                 key="kospi_topn",
             )
         with f3:
@@ -405,9 +407,12 @@ def main() -> None:
             df, window_label, selected_symbol,
             symbol_col="itemCode", symbol_header="Code",
             name_col="stockName", name_header="Name",
-            price_col="closePrice", price_format="int",
+            price_col="closePrice", price_header="Price", price_format="int",
             volume_col="accumulatedTradingValue", volume_header="거래대금",
+            volume_format="millions",
             market_cap_col="marketValue", market_cap_header="시총",
+            market_cap_format="millions",
+            pct_header_suffix="",
         )
         grid_key = f"kospi_grid::{top_n}::{search}::{sort_col_key}"
         grid_resp = AgGrid(

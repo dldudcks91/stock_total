@@ -20,9 +20,9 @@ KOSPI 일봉 데이터 다운로드 워크플로우.
 ### 1. 전체 KOSPI 일괄 다운로드 (대량 캐시 빌드)
 
 ```bash
-python -m data.sources.stocks --market KOSPI                # 증분
-python -m data.sources.stocks --market KOSPI --refresh      # 캐시 무시 재다운
-python -m data.sources.stocks --market KOSPI --workers 30   # 동시 요청 조정
+.venv/Scripts/python.exe -m data.sources.stocks --market KOSPI                # 증분
+.venv/Scripts/python.exe -m data.sources.stocks --market KOSPI --refresh      # 캐시 무시 재다운
+.venv/Scripts/python.exe -m data.sources.stocks --market KOSPI --workers 30   # 동시 요청 조정
 ```
 
 ThreadPoolExecutor 병렬, tqdm 진행률 표시. 출력: `data/cache/kr/_listing.csv`(종목 리스트), `_errors.csv`(실패 종목).

@@ -61,7 +61,7 @@ fig = plot_ohlcv(
 ## Streamlit 페이지 사용
 
 ```bash
-streamlit run dashboards/app.py
+.venv/Scripts/streamlit.exe run dashboards/app.py
 # → 사이드바 "📈 Chart" 페이지 진입
 # → 자산(crypto/kr/us) · 심볼 · 인터벌 · MA · RSI 선택
 ```

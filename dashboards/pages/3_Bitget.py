@@ -25,6 +25,7 @@ if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
 from data.loader import load_ohlcv  # noqa: E402
+from dashboards._lib import render_fetch_log_sidebar  # noqa: E402
 
 # Bitget/TradingView-style chart: use TradingView's lightweight-charts via
 # the Streamlit wrapper. Falls back to plotly if the package isn't installed.
@@ -41,6 +42,7 @@ from st_aggrid import AgGrid, GridOptionsBuilder, JsCode, GridUpdateMode  # noqa
 
 BITGET_TICKERS_URL = "https://api.bitget.com/api/v2/mix/market/tickers"
 BITGET_CANDLES_URL = "https://api.bitget.com/api/v2/mix/market/candles"
+COINGECKO_MARKETS_URL = "https://api.coingecko.com/api/v3/coins/markets"
 PRODUCT_TYPE = "USDT-FUTURES"
 CANDLE_FETCH_CAP = 1000         # safety cap; above this we skip period % compute
 CANDLE_CONCURRENCY = 5          # per project memory: keep ≤ 5
@@ -60,23 +62,24 @@ COLUMN_LABELS: dict[str, str] = {
     "symbol": "Symbol",
     "markPrice": "Mark",
     "lastPr": "Last",
-    "pct_1h": "1h %",
-    "pct_4h": "4h %",
-    "change24h": "24h %",
-    "changeUtc24h": "24h % (UTC)",
-    "pct_3d": "3d %",
-    "pct_7d": "7d %",
-    "pct_14d": "14d %",
-    "pct_28d": "28d %",
-    "pct_off_high24h": "24h High Δ%",
-    "pct_off_low24h": "24h Low Δ%",
-    "pct_ma10": "MA10 Δ%",
-    "pct_ma20": "MA20 Δ%",
+    "pct_1h": "1h",
+    "pct_4h": "4h",
+    "change24h": "24h",
+    "changeUtc24h": "24h (UTC)",
+    "pct_3d": "3d",
+    "pct_7d": "7d",
+    "pct_14d": "14d",
+    "pct_28d": "28d",
+    "pct_off_high24h": "24h High Δ",
+    "pct_off_low24h": "24h Low Δ",
+    "pct_ma10": "MA10 Δ",
+    "pct_ma20": "MA20 Δ",
     "high24h": "24h High",
     "low24h": "24h Low",
     "open24h": "24h Open",
     "openUtc": "Open (UTC)",
     "quoteVolume": "거래대금 (USDT)",
+    "marketCap": "시가총액",
     "baseVolume": "Base Vol",
     "usdtVolume": "USDT Vol",
     "fundingRate": "Funding",
@@ -142,6 +145,70 @@ def fetch_tickers(timeout: float = 10.0) -> pd.DataFrame:
 
 
 # ---------------------------------------------------------------------------
+# Market-cap snapshot (CoinGecko)
+# ---------------------------------------------------------------------------
+
+def fetch_market_caps(pages: int = 2, per_page: int = 250, timeout: float = 10.0) -> dict[str, float]:
+    """Top N coins by market cap from CoinGecko → ``{SYMBOL_UPPER: market_cap_usd}``.
+
+    First-seen wins (list is already mcap-desc), so collisions like LUNA /
+    LUNC resolve to the higher-cap ticker. Empty dict on failure — caller
+    treats missing symbols as NULL market cap.
+    """
+    caps: dict[str, float] = {}
+    for page in range(1, pages + 1):
+        try:
+            resp = requests.get(
+                COINGECKO_MARKETS_URL,
+                params={
+                    "vs_currency": "usd",
+                    "order": "market_cap_desc",
+                    "per_page": per_page,
+                    "page": page,
+                    "sparkline": "false",
+                },
+                timeout=timeout,
+            )
+            resp.raise_for_status()
+            for row in resp.json() or []:
+                sym = (row.get("symbol") or "").upper()
+                mc = row.get("market_cap")
+                if sym and mc and sym not in caps:
+                    caps[sym] = float(mc)
+        except Exception:
+            break
+    return caps
+
+
+def _bitget_to_base(symbol: str) -> Optional[str]:
+    """``BTCUSDT`` → ``BTC``, ``1000PEPEUSDT`` → ``PEPE``, ``USDCUSDT`` → ``USDC``.
+
+    Returns ``None`` for non-USDT-quoted symbols (shouldn't happen on the
+    USDT-M endpoint, but cheap safety).
+    """
+    s = symbol.upper()
+    if not s.endswith("USDT"):
+        return None
+    base = s[:-4]
+    if base.startswith("1000") and len(base) > 4:
+        base = base[4:]
+    return base or None
+
+
+def attach_market_cap(df: pd.DataFrame, caps: dict[str, float]) -> pd.DataFrame:
+    """Add a ``marketCap`` column to ``df`` by mapping Bitget symbol → base coin."""
+    if df.empty or not caps:
+        df = df.copy()
+        df["marketCap"] = pd.Series([None] * len(df), dtype="float64")
+        return df
+    df = df.copy()
+    df["marketCap"] = (
+        df["symbol"].astype(str).map(_bitget_to_base).map(caps).astype("float64")
+    )
+    return df
+
+
+# ---------------------------------------------------------------------------
 # Candle batch fetch (for period % changes + MA distance + Window High/Low)
 # ---------------------------------------------------------------------------
 
@@ -197,30 +264,55 @@ def fetch_candles_batch(
 def _load_cache_tails(
     symbol: str, gran: str, n: int,
 ) -> Optional[dict[str, np.ndarray]]:
-    """Read the last ``n`` rows of (close, high, low) from a cached crypto parquet.
+    """Read the last ``n`` rows of (timestamp, close, high, low) from a cached crypto parquet.
 
-    Returns ``None`` on miss / error. Arrays are float64, oldest→newest, and may
-    be shorter than ``n`` if the cache has fewer rows. ``n`` only bounds how
-    much we *materialize* — the parquet read still touches the whole column
-    (parquet row-group filtering on offset isn't reliable across writers), but
-    converting just the tail to numpy avoids the python-list round-trip that
-    used to dominate.
+    Returns ``None`` on miss / error. Arrays are oldest→newest. ``timestamp``
+    is int64 UTC ms (matches the on-disk schema); ``close/high/low`` are
+    float64. May be shorter than ``n`` if the cache has fewer rows.
     """
     path = _ROOT / "data" / "cache" / "crypto" / gran / f"{symbol}.parquet"
     if not path.exists():
         return None
     try:
-        df = pd.read_parquet(path, columns=["close", "high", "low"])
+        df = pd.read_parquet(path, columns=["timestamp", "close", "high", "low"])
     except Exception:
         return None
     if df.empty:
         return None
     tail = df.tail(n) if n and n < len(df) else df
     return {
+        "timestamp": tail["timestamp"].to_numpy(dtype=np.int64, copy=False),
         "close": tail["close"].to_numpy(dtype=np.float64, copy=False),
         "high": tail["high"].to_numpy(dtype=np.float64, copy=False),
         "low": tail["low"].to_numpy(dtype=np.float64, copy=False),
     }
+
+
+HOUR_MS = 3_600_000
+DAY_MS = 86_400_000
+
+
+def _close_at_or_before(
+    ts: np.ndarray, closes: np.ndarray, target_ms: int, tol_ms: int,
+) -> Optional[float]:
+    """Return close of the bar whose timestamp is ≤ target_ms, within tolerance.
+
+    Used for wall-clock-anchored lookups: ``target_ms`` is the wall-clock
+    instant we want a price for, and the bar at-or-before it must be no more
+    than ``tol_ms`` (typically 1 bar interval) older — otherwise the cache
+    doesn't actually cover that point in time and we return ``None``.
+    """
+    if ts.size == 0:
+        return None
+    idx = int(np.searchsorted(ts, target_ms, side="right")) - 1
+    if idx < 0:
+        return None
+    if target_ms - int(ts[idx]) > tol_ms:
+        return None
+    val = float(closes[idx])
+    if not np.isfinite(val):
+        return None
+    return val
 
 
 def _parse_window_label(label: str) -> tuple[int, str]:
@@ -241,17 +333,26 @@ def compute_from_cache(
     periods_d: list[int] = PERIODS_D,
     ma_periods: tuple[int, int] = MA_PERIODS,
     cache_loader=_load_cache_tails,
+    now_ms: Optional[int] = None,
 ) -> pd.DataFrame:
-    """Single-pass cache reader → period %, plus *all-windows* H/L Δ% & MA Δ%.
+    """Wall-clock-anchored cache reader → period %, *all-windows* H/L Δ% & MA Δ%.
 
-    Each symbol's 1H and 1D parquet is read ONCE. From that single numpy
-    array we derive results for every window in ``windows`` simultaneously,
-    and the wide df returned has window-suffixed columns like
-    ``pct_ma10__24h`` / ``pct_off_high__7d``.
+    Each symbol's 1H and 1D parquet is read ONCE. Every derived metric is
+    anchored to ``now_ms`` (defaults to wall-clock now), NOT the last bar in
+    the cache — so a stale cache yields ``None`` for the affected metric
+    instead of silently mislabeling (e.g. a "1h%" computed against a 6-hour-
+    old bar).
 
-    The client (AgGrid) picks which suffix to display based on the active
-    window toggle — so changing the window incurs **no recompute**, only a
-    column-visibility flip on the browser side.
+    Anchoring rules (a bar's CLOSE represents the price at ``ts + interval``,
+    so to read "price at time T" we look up the bar with ``ts ≤ T − interval``):
+      * ``pct_{n}h`` — close of bar with ``ts ≤ now − (n+1)·1h``, tol 1h.
+      * ``pct_{n}d`` — close of bar with ``ts ≤ now − (n+1)·1d``, tol 1d.
+      * Window H/L  — bars in ``(now − stride·bar, now]``. Gated on freshness:
+                      latest cached bar must be within ``2·bar`` of now.
+      * MA          — same freshness gate, then for k=0..max_ma−1 read close
+                      at ``now − k·stride·bar − bar_ms`` (tol = bar_ms). Missing
+                      sample short-circuits → partial sample, possibly yielding
+                      None for short/long if not enough samples accumulated.
 
     Columns produced (in order):
         symbol,
@@ -262,6 +363,10 @@ def compute_from_cache(
             high__{w}, low__{w},
             pct_off_high__{w}, pct_off_low__{w}
     """
+    import time as _time
+    if now_ms is None:
+        now_ms = int(_time.time() * 1000)
+
     short, long_ = ma_periods
     max_ma = max(short, long_)
 
@@ -269,12 +374,12 @@ def compute_from_cache(
     # parsed_windows: list of (label, stride, gran)
 
     # How many tail bars do we need from each granularity?
-    # For window with stride s on granularity g we need max(s+1, max_ma*s+1)
-    # bars to cover both window H/L and stride-sampled MA.
-    need_h = max(periods_h) + 1
-    need_d = max(periods_d) + 1
+    # +2 over the strict requirement to leave headroom for the at-or-before
+    # lookup landing on a slightly older bar than the most recent.
+    need_h = max(periods_h) + 2
+    need_d = max(periods_d) + 2
     for (_, stride, gran) in parsed_windows:
-        req = max(stride + 1, max_ma * stride + 1)
+        req = max(stride + 2, max_ma * stride + 2)
         if gran == "1h":
             need_h = max(need_h, req)
         else:
@@ -309,34 +414,46 @@ def compute_from_cache(
         arrs_h = cache_loader(sym, "1h", need_h)
         arrs_d = cache_loader(sym, "1d", need_d)
 
-        # ── Fixed period % (1H, 1D) ──
+        # ── Wall-clock anchored period % (1H, 1D) ──
+        # Offset by one bar interval so we look up by bar-OPEN ts, while the
+        # comparison is against the bar's CLOSE = price at (ts + interval).
         if arrs_h is not None and arrs_h["close"].size:
-            closes = arrs_h["close"]
+            ts_h, cl_h = arrs_h["timestamp"], arrs_h["close"]
             for n, key in zip(periods_h, pct_keys_h):
-                if closes.size > n:
-                    prev = closes[-(n + 1)]
-                    if prev:
-                        row[key] = (cur - prev) / prev
+                prev = _close_at_or_before(ts_h, cl_h, now_ms - (n + 1) * HOUR_MS, HOUR_MS)
+                if prev:
+                    row[key] = (cur - prev) / prev
         if arrs_d is not None and arrs_d["close"].size:
-            closes = arrs_d["close"]
+            ts_d, cl_d = arrs_d["timestamp"], arrs_d["close"]
             for n, key in zip(periods_d, pct_keys_d):
-                if closes.size > n:
-                    prev = closes[-(n + 1)]
-                    if prev:
-                        row[key] = (cur - prev) / prev
+                prev = _close_at_or_before(ts_d, cl_d, now_ms - (n + 1) * DAY_MS, DAY_MS)
+                if prev:
+                    row[key] = (cur - prev) / prev
 
-        # ── Per-window MA + H/L (all windows from same arrays) ──
+        # ── Per-window MA + H/L (wall-clock anchored, freshness-gated) ──
         for (label, stride, gran) in parsed_windows:
             arrs = arrs_h if gran == "1h" else arrs_d
-            if arrs is None or arrs["close"].size < 1:
+            bar_ms = HOUR_MS if gran == "1h" else DAY_MS
+            if arrs is None or arrs["close"].size == 0:
                 continue
+            ts = arrs["timestamp"]
             closes = arrs["close"]
             highs = arrs["high"]
             lows = arrs["low"]
 
-            if highs.size >= stride:
-                hi = float(highs[-stride:].max())
-                lo = float(lows[-stride:].min())
+            # Freshness gate: latest cached bar must cover roughly "now",
+            # else this window is meaningless → leave NULL.
+            if now_ms - int(ts[-1]) > 2 * bar_ms:
+                continue
+
+            # Window H/L over wall-clock interval. We include any bar whose
+            # span [ts, ts+bar) overlaps the window — i.e. ts > now − (stride+1)·bar
+            # — so that at "now=14:37, stride=1h" the bar at ts=13:00 (covering
+            # 13:00–14:00) still qualifies as part of "the last hour".
+            mask = ts > now_ms - (stride + 1) * bar_ms
+            if mask.any():
+                hi = float(highs[mask].max())
+                lo = float(lows[mask].min())
                 row[f"high__{label}"] = hi
                 row[f"low__{label}"] = lo
                 if hi:
@@ -344,17 +461,22 @@ def compute_from_cache(
                 if lo:
                     row[f"pct_off_low__{label}"] = (cur - lo) / lo
 
-            # MA via stride sampling.
-            n_closed = closes.size
-            idx = n_closed - 1 - np.arange(max_ma) * stride
-            valid = idx >= 0
-            sampled = closes[idx[valid]] if valid.any() else np.array([], dtype=np.float64)
-            if sampled.size >= short:
-                ma_s = sampled[:short].mean()
+            # MA via stride sampling anchored at now. Same +1 bar offset as
+            # period %: we want close ≈ price at (now − k·stride·bar), which
+            # is the close of bar with ts ≤ (now − k·stride·bar − bar_ms).
+            sampled: list[float] = []
+            for k in range(max_ma):
+                target = now_ms - k * stride * bar_ms - bar_ms
+                val = _close_at_or_before(ts, closes, target, bar_ms)
+                if val is None:
+                    break
+                sampled.append(val)
+            if len(sampled) >= short:
+                ma_s = sum(sampled[:short]) / short
                 if ma_s:
                     row[f"pct_ma{short}__{label}"] = (cur - ma_s) / ma_s
-            if sampled.size >= long_:
-                ma_l = sampled[:long_].mean()
+            if len(sampled) >= long_:
+                ma_l = sum(sampled[:long_]) / long_
                 if ma_l:
                     row[f"pct_ma{long_}__{label}"] = (cur - ma_l) / ma_l
 
@@ -410,6 +532,20 @@ function(params) {
 }
 """)
 
+# Market cap (USD): compact "$1.62T / $34.7B / $912M".
+JS_FMT_MCAP = JsCode("""
+function(params) {
+  const v = params.value;
+  if (v == null || Number.isNaN(v)) return '—';
+  const abs = Math.abs(v);
+  if (abs >= 1e12) return '$' + (v / 1e12).toFixed(2) + 'T';
+  if (abs >= 1e9)  return '$' + (v / 1e9 ).toFixed(2) + 'B';
+  if (abs >= 1e6)  return '$' + (v / 1e6 ).toFixed(1) + 'M';
+  if (abs >= 1e3)  return '$' + (v / 1e3 ).toFixed(1) + 'K';
+  return '$' + v.toFixed(0);
+}
+""")
+
 
 def _js_window_value_getter(field_prefix: str, window_label: str) -> JsCode:
     """Build a JS valueGetter that returns row[`{prefix}__{window}`].
@@ -450,7 +586,7 @@ def build_grid_options(
 
     VISIBLE_ORDER = [
         "symbol",
-        "markPrice", "quoteVolume", "fundingRate",
+        "markPrice", "quoteVolume", "marketCap", "fundingRate",
         "pct_1h", "pct_4h", "change24h",
         "pct_3d", "pct_7d", "pct_14d", "pct_28d",
         SHORT_KEY, LONG_KEY, HIGH_KEY, LOW_KEY,
@@ -482,17 +618,21 @@ def build_grid_options(
         checkboxSelection=True, headerCheckboxSelection=False,
     )
 
-    # ── Mark / 거래대금 / Funding ──
+    # ── Mark / 거래대금 / 시가총액 / Funding ──
     gob.configure_column(
         "markPrice", headerName="Mark", width=95,
         valueFormatter=JS_FMT_PRICE, type=["numericColumn"],
     )
     gob.configure_column(
-        "quoteVolume", headerName="거래대금", width=110,
+        "quoteVolume", headerName="거래대금", width=115,
         valueFormatter=JS_FMT_INT, type=["numericColumn"],
     )
     gob.configure_column(
-        "fundingRate", headerName="Funding", width=75,
+        "marketCap", headerName="시가총액", width=90,
+        valueFormatter=JS_FMT_MCAP, type=["numericColumn"],
+    )
+    gob.configure_column(
+        "fundingRate", headerName="Funding", width=62,
         valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
         type=["numericColumn"],
     )
@@ -500,43 +640,43 @@ def build_grid_options(
     # ── Fixed period % columns ──
     for n in PERIODS_H:
         gob.configure_column(
-            f"pct_{n}h", headerName=f"{n}h%", width=68,
+            f"pct_{n}h", headerName=f"{n}h", width=56,
             valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
             type=["numericColumn"],
         )
     gob.configure_column(
-        "change24h", headerName="24h%", width=68,
+        "change24h", headerName="24h", width=56,
         valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
         type=["numericColumn"],
     )
     for n in PERIODS_D:
         gob.configure_column(
-            f"pct_{n}d", headerName=f"{n}d%", width=68,
+            f"pct_{n}d", headerName=f"{n}d", width=56,
             valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
             type=["numericColumn"],
         )
 
     # ── Window-dependent (valueGetter reads `__{window}` from row data) ──
     gob.configure_column(
-        SHORT_KEY, headerName=f"MA{short_ma}", width=72,
+        SHORT_KEY, headerName=f"MA{short_ma}", width=60,
         valueGetter=_js_window_value_getter(f"pct_ma{short_ma}", window_label),
         valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
         type=["numericColumn"],
     )
     gob.configure_column(
-        LONG_KEY, headerName=f"MA{long_ma}", width=72,
+        LONG_KEY, headerName=f"MA{long_ma}", width=60,
         valueGetter=_js_window_value_getter(f"pct_ma{long_ma}", window_label),
         valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
         type=["numericColumn"],
     )
     gob.configure_column(
-        HIGH_KEY, headerName="High%", width=72,
+        HIGH_KEY, headerName="High", width=58,
         valueGetter=_js_window_value_getter("pct_off_high", window_label),
         valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
         type=["numericColumn"],
     )
     gob.configure_column(
-        LOW_KEY, headerName="Low%", width=72,
+        LOW_KEY, headerName="Low", width=58,
         valueGetter=_js_window_value_getter("pct_off_low", window_label),
         valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
         type=["numericColumn"],
@@ -631,6 +771,9 @@ def main() -> None:
             disabled=fetch_running,
             help="Bitget USDT-M 전 종목 1D + 1H OHLCV 를 data/cache/crypto/ 로 증분 다운로드. 백그라운드 실행.",
         )
+
+        # 최근 내려받은 데이터 — 펼친 상태로 사이드바에 상시 노출.
+        render_fetch_log_sidebar(st, embedded=True)
 
     if manual:
         st.cache_data.clear()
@@ -735,6 +878,12 @@ def main() -> None:
     def _cached_fetch() -> pd.DataFrame:
         return fetch_tickers()
 
+    @st.cache_data(ttl=600, show_spinner=False)
+    def _cached_market_caps() -> dict[str, float]:
+        # CoinGecko has a free-tier rate limit (~30/min) — 10 min TTL keeps us
+        # well under it even with multiple page reloads.
+        return fetch_market_caps()
+
     @st.cache_data(ttl=300, show_spinner=False)
     def _cached_cache_tails(symbol: str, gran: str, n: int):
         # Single source of truth for period %, window H/L, MA Δ%.
@@ -801,7 +950,8 @@ def main() -> None:
             fig = plot_ohlcv(
                 cdf,
                 title=f"{symbol} · {chart_iv.upper()} · {len(cdf):,}봉",
-                ma_periods=(7, 25, 99), show_volume=True, height=420,
+                ma_periods=(10, 20, 50), vwma_periods=(100,),
+                show_volume=True, height=420,
             )
             st.plotly_chart(fig, use_container_width=True,
                             config={"displayModeBar": False, "scrollZoom": True})
@@ -950,6 +1100,10 @@ def main() -> None:
             st.error(f"Bitget API 실패: {e}")
             return
 
+        # Market cap snapshot — single CoinGecko call, cached 10min. Failures
+        # leave marketCap as NULL, so the rest of the page still works.
+        df = attach_market_cap(df, _cached_market_caps())
+
         # Filter bar — sits right above the table, inside the fragment so
         # changing filters only re-runs the fragment (sidebar etc. stable).
         f1, f2, f3, f4 = st.columns([3, 1, 2, 3])
@@ -958,7 +1112,7 @@ def main() -> None:
         with f2:
             top_n = st.number_input(
                 "Top N (0 = all)",
-                min_value=0, max_value=2000, value=50, step=10,
+                min_value=0, max_value=2000, value=0, step=10,
                 key="flt_topn",
             )
         with f3:

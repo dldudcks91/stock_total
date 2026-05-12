@@ -15,6 +15,7 @@ import pandas as pd
 import streamlit as st
 
 from data.loader import list_symbols, load_ohlcv
+from dashboards._lib import render_fetch_log_sidebar
 from dashboards.charts import plot_ohlcv
 
 ASSET_LABELS = {"crypto": "🪙 Crypto (Bitget)", "kr": "🇰🇷 KOSPI", "us": "🇺🇸 NASDAQ"}
@@ -24,9 +25,11 @@ INTERVAL_OPTIONS = {
     "kr": ["1d", "1w"],
     "us": ["1d", "1w"],
 }
-MA_PRESET = [5, 7, 10, 20, 25, 60, 99, 120, 240]
+MA_PRESET = [5, 7, 10, 20, 25, 50, 60, 99, 120, 240]
+VWMA_PRESET = [20, 50, 100, 200]
 
 st.set_page_config(page_title="Chart", page_icon="📈", layout="wide")
+render_fetch_log_sidebar(st)
 st.title("📈 Chart")
 
 
@@ -68,7 +71,8 @@ with st.sidebar:
 
     st.markdown("---")
     st.header("Indicators")
-    ma_choice = st.multiselect("이동평균", options=MA_PRESET, default=[7, 25, 99])
+    ma_choice = st.multiselect("이동평균 (SMA)", options=MA_PRESET, default=[10, 20, 50])
+    vwma_choice = st.multiselect("거래량가중 이동평균 (VWMA)", options=VWMA_PRESET, default=[100])
     show_volume = st.toggle("거래량", value=True)
     show_rsi = st.toggle("RSI(14)", value=False)
 
@@ -119,6 +123,7 @@ fig = plot_ohlcv(
     df_view,
     title=f"{symbol} · {interval.upper()} · {ASSET_LABELS[asset]}",
     ma_periods=tuple(sorted(ma_choice)) if ma_choice else (),
+    vwma_periods=tuple(sorted(vwma_choice)) if vwma_choice else (),
     show_volume=show_volume,
     show_rsi=show_rsi,
     height=760 + (120 if show_rsi else 0),

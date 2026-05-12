@@ -24,7 +24,9 @@ KST = "Asia/Seoul"
 # Bitget 팔레트
 COLOR_UP = "#1FCC81"
 COLOR_DOWN = "#F6465D"
-MA_COLORS = ("#F0B90B", "#9B70F6", "#5CC8FA", "#FF8A65", "#42A5F5")
+MA_COLOR_BY_PERIOD = {10: "#F0B90B", 20: "#F6465D", 50: "#1E88E5"}
+MA_COLORS_FALLBACK = ("#9B70F6", "#5CC8FA", "#FF8A65", "#42A5F5")
+VWMA_COLOR = "#000000"
 BG = "#ffffff"
 GRID = "rgba(0,0,0,0.08)"
 TEXT = "#1a1a1a"
@@ -63,7 +65,8 @@ def plot_ohlcv(
     df: pd.DataFrame,
     *,
     title: str = "",
-    ma_periods: Sequence[int] = (7, 25, 99),
+    ma_periods: Sequence[int] = (10, 20, 50),
+    vwma_periods: Sequence[int] = (100,),
     show_volume: bool = True,
     show_rsi: bool = False,
     rsi_period: int = 14,
@@ -77,7 +80,8 @@ def plot_ohlcv(
     ----------
     df : OHLCV DataFrame. crypto(소문자+timestamp ms) / FDR 주식(대문자+DatetimeIndex) 모두 OK.
     title : 차트 제목.
-    ma_periods : 가격 패널에 오버레이할 이동평균 주기. Bitget 기본 (7, 25, 99).
+    ma_periods : 단순 이동평균(SMA) 주기. 기본 (10, 20, 50).
+    vwma_periods : 거래량가중 이동평균(VWMA) 주기. 기본 (100,).
     show_volume : 가격 패널 아래에 거래량 막대 서브플롯.
     show_rsi : 맨 아래 RSI 서브플롯 (rsi_period 기본 14).
     height : Figure 높이(px).
@@ -88,6 +92,11 @@ def plot_ohlcv(
 
     for p in ma_periods:
         d[f"ma{p}"] = d["close"].rolling(p).mean()
+
+    for p in vwma_periods:
+        pv = (d["close"] * d["volume"]).rolling(p).sum()
+        vv = d["volume"].rolling(p).sum().replace(0, pd.NA)
+        d[f"vwma{p}"] = pv / vv
 
     if show_rsi:
         delta = d["close"].diff()
@@ -118,13 +127,31 @@ def plot_ohlcv(
     )
 
     # --- MA overlays ---
-    for i, p in enumerate(ma_periods):
+    fallback_idx = 0
+    for p in ma_periods:
+        if p in MA_COLOR_BY_PERIOD:
+            color = MA_COLOR_BY_PERIOD[p]
+        else:
+            color = MA_COLORS_FALLBACK[fallback_idx % len(MA_COLORS_FALLBACK)]
+            fallback_idx += 1
         fig.add_trace(
             go.Scatter(
                 x=d["dt"], y=d[f"ma{p}"], mode="lines",
                 name=f"MA{p}",
-                line=dict(width=1.2, color=MA_COLORS[i % len(MA_COLORS)]),
+                line=dict(width=1.2, color=color),
                 hovertemplate=f"MA{p}: %{{y:.4f}}<extra></extra>",
+            ),
+            row=1, col=1,
+        )
+
+    # --- VWMA overlays ---
+    for p in vwma_periods:
+        fig.add_trace(
+            go.Scatter(
+                x=d["dt"], y=d[f"vwma{p}"], mode="lines",
+                name=f"VWMA{p}",
+                line=dict(width=1.6, color=VWMA_COLOR, dash="solid"),
+                hovertemplate=f"VWMA{p}: %{{y:.4f}}<extra></extra>",
             ),
             row=1, col=1,
         )

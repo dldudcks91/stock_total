@@ -31,6 +31,7 @@ from dashboards._lib import (
     METRIC_KEYS,
     PCT_METRICS,
     INT_METRICS,
+    render_fetch_log_sidebar,
 )
 from dashboards._cache import load_config, load_metrics, load_equity
 
@@ -186,6 +187,7 @@ def main() -> None:
         page_icon="🔀",
         layout="wide",
     )
+    render_fetch_log_sidebar(st)
     st.title("멀티 런 비교")
 
     runs = list_runs()

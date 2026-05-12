@@ -23,13 +23,13 @@ description: 두 백테스트 런 디렉터리의 metrics.json, config.yaml, equ
 
 ```bash
 # 디렉터리 이름만 (backtest/runs/ 아래에서 검색)
-python -m backtest.compare 20260510-120000_sma_cross_BTCUSDT 20260510-130000_sma_cross_BTCUSDT
+.venv/Scripts/python.exe -m backtest.compare 20260510-120000_sma_cross_BTCUSDT 20260510-130000_sma_cross_BTCUSDT
 
 # 경로 직접
-python -m backtest.compare ./backtest/runs/20260510-120000_sma_cross_BTCUSDT D:/snapshots/run_x
+.venv/Scripts/python.exe -m backtest.compare ./backtest/runs/20260510-120000_sma_cross_BTCUSDT D:/snapshots/run_x
 
 # CSV 동시 저장
-python -m backtest.compare RUN_A RUN_B --csv compare.csv
+.venv/Scripts/python.exe -m backtest.compare RUN_A RUN_B --csv compare.csv
 ```
 
 ## 옵션

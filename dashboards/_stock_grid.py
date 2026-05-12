@@ -222,6 +222,15 @@ function(params) {
 }
 """)
 
+# Value / market cap in millions, e.g. KRW: 600,000,000,000,000 → "600,000,000M".
+JS_FMT_MILLIONS = JsCode("""
+function(params) {
+  const v = params.value;
+  if (v == null || Number.isNaN(v)) return '—';
+  return Math.round(v / 1e6).toLocaleString('en-US') + 'M';
+}
+""")
+
 
 def js_window_value_getter(field_prefix: str, window_label: str) -> JsCode:
     """JsCode that returns ``row[`{prefix}__{window}`]`` — lets window-toggle
@@ -245,11 +254,15 @@ def build_stock_grid_options(
     name_col: Optional[str],         # "stockName" / "stockNameEng"; None to omit
     name_header: str = "Name",
     price_col: str = "closePrice",
+    price_header: str = "Last",
     price_format: str = "int",       # "int" (KRW) or "dec" (USD)
     volume_col: Optional[str] = "accumulatedTradingValue",
     volume_header: str = "거래대금",
+    volume_format: str = "int",      # "int" or "millions" (e.g. KRW values)
     market_cap_col: Optional[str] = "marketValue",
     market_cap_header: str = "시총",
+    market_cap_format: str = "int",  # "int" or "millions"
+    pct_header_suffix: str = "%",    # appended to period / High / Low headers
     short_ma: int = MA_PERIODS[0],
     long_ma: int = MA_PERIODS[1],
     periods_d: list[int] = PERIODS_D,
@@ -306,25 +319,29 @@ def build_stock_grid_options(
 
     price_fmt = JS_FMT_PRICE_INT if price_format == "int" else JS_FMT_PRICE_DEC
     gob.configure_column(
-        price_col, headerName="Last", width=95,
+        price_col, headerName=price_header, width=95,
         valueFormatter=price_fmt, type=["numericColumn"],
     )
 
+    vol_fmt = JS_FMT_MILLIONS if volume_format == "millions" else JS_FMT_INT
+    mcap_fmt = JS_FMT_MILLIONS if market_cap_format == "millions" else JS_FMT_INT
+    vol_width = 130 if volume_format == "millions" else 120
+    mcap_width = 130 if market_cap_format == "millions" else 120
     if volume_col:
         gob.configure_column(
-            volume_col, headerName=volume_header, width=120,
-            valueFormatter=JS_FMT_INT, type=["numericColumn"],
+            volume_col, headerName=volume_header, width=vol_width,
+            valueFormatter=vol_fmt, type=["numericColumn"],
         )
     if market_cap_col:
         gob.configure_column(
-            market_cap_col, headerName=market_cap_header, width=120,
-            valueFormatter=JS_FMT_INT, type=["numericColumn"],
+            market_cap_col, headerName=market_cap_header, width=mcap_width,
+            valueFormatter=mcap_fmt, type=["numericColumn"],
         )
 
     # ── Fixed period % columns ──
     for n in periods_d:
         gob.configure_column(
-            f"pct_{n}d", headerName=f"{n}d%", width=68,
+            f"pct_{n}d", headerName=f"{n}d{pct_header_suffix}", width=68,
             valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
             type=["numericColumn"],
         )
@@ -343,13 +360,13 @@ def build_stock_grid_options(
         type=["numericColumn"],
     )
     gob.configure_column(
-        HIGH_KEY, headerName="High%", width=72,
+        HIGH_KEY, headerName=f"High{pct_header_suffix}", width=72,
         valueGetter=js_window_value_getter("pct_off_high", window_label),
         valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
         type=["numericColumn"],
     )
     gob.configure_column(
-        LOW_KEY, headerName="Low%", width=72,
+        LOW_KEY, headerName=f"Low{pct_header_suffix}", width=72,
         valueGetter=js_window_value_getter("pct_off_low", window_label),
         valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
         type=["numericColumn"],

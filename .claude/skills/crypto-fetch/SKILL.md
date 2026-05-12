@@ -19,16 +19,16 @@ Bitget 선물 과거 데이터 다운로드 워크플로우.
 
 ```bash
 # 전 종목 1H, 증분 (각 심볼 캐시의 마지막 시점부터 이어 받음)
-python -m data.sources.bitget
+.venv/Scripts/python.exe -m data.sources.bitget
 
 # 전 종목 1D
-python -m data.sources.bitget --granularity 1d
+.venv/Scripts/python.exe -m data.sources.bitget --granularity 1d
 
 # 단일 심볼
-python -m data.sources.bitget --symbol BTCUSDT --granularity 1d
+.venv/Scripts/python.exe -m data.sources.bitget --symbol BTCUSDT --granularity 1d
 
 # 처음부터 다시 (캐시 무시, 지정 일자부터)
-python -m data.sources.bitget --granularity 1d --since 2017-01-01
+.venv/Scripts/python.exe -m data.sources.bitget --granularity 1d --since 2017-01-01
 ```
 
 ## 다운로드 동작

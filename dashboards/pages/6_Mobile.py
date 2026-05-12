@@ -21,6 +21,8 @@ _ROOT = Path(__file__).resolve().parents[2]
 if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
+from dashboards._lib import render_fetch_log_sidebar  # noqa: E402
+
 BITGET_TICKERS_URL = "https://api.bitget.com/api/v2/mix/market/tickers"
 PRODUCT_TYPE = "USDT-FUTURES"
 
@@ -204,6 +206,7 @@ def main() -> None:
         page_icon="📱",
         layout="centered",
     )
+    render_fetch_log_sidebar(st)
     st.markdown("### 📱 Live Tickers")
 
     with st.sidebar:

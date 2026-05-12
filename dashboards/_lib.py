@@ -244,3 +244,71 @@ def fmt_metric(key: str, value: Any) -> str:
     if key in INT_METRICS:
         return fmt_int(value)
     return fmt_float(value, 3)
+
+
+# ---------------------------------------------------------------------------
+# Sidebar: last-fetch ledger
+# ---------------------------------------------------------------------------
+
+def _fmt_age(updated_at: str) -> str:
+    """ISO 시각을 'N분/시간/일 전' 짧은 표기로."""
+    try:
+        ts = pd.Timestamp(updated_at)
+        if ts.tzinfo is None:
+            ts = ts.tz_localize("Asia/Seoul")
+        now = pd.Timestamp.now(tz="Asia/Seoul")
+        delta_sec = (now - ts).total_seconds()
+    except Exception:
+        return ""
+    if delta_sec < 0:
+        return "방금"
+    if delta_sec < 60:
+        return f"{int(delta_sec)}초 전"
+    if delta_sec < 3600:
+        return f"{int(delta_sec // 60)}분 전"
+    if delta_sec < 86400:
+        return f"{int(delta_sec // 3600)}시간 전"
+    return f"{int(delta_sec // 86400)}일 전"
+
+
+def render_fetch_log_sidebar(st, *, embedded: bool = False) -> None:
+    """사이드바에 '최근 내려받은 데이터' 블록을 그림.
+
+    - ``embedded=False`` (기본): 사이드바 상단에 접힌 expander 로. 호출자가
+      ``with st.sidebar:`` 블록 밖에서 부를 때 사용.
+    - ``embedded=True``: expander 없이 평탄하게(=항상 펼친 상태) 그림. 호출자가
+      이미 ``with st.sidebar:`` 안에 있을 때(또는 사이드바의 특정 위치에 끼워
+      넣고 싶을 때) 사용.
+    """
+    from data import fetch_log
+
+    log = fetch_log.read()
+
+    def _section(title: str, keys: tuple) -> None:
+        st.markdown(f"**{title}**")
+        rendered = False
+        for k in keys:
+            e = log.get(k)
+            if not e:
+                continue
+            rendered = True
+            label = fetch_log.KEY_LABELS.get(k, k)
+            ts = e.get("updated_at", "")
+            age = _fmt_age(ts)
+            n = e.get("n_symbols")
+            meta = f" · {n}종목" if n else ""
+            # 시각의 시:분만 짧게 표시.
+            short_ts = ts.split("T", 1)[1][:5] if "T" in ts else ts
+            date_part = ts.split("T", 1)[0] if "T" in ts else ""
+            st.caption(f"{label}: {date_part} {short_ts} ({age}){meta}")
+        if not rendered:
+            st.caption("_기록 없음_")
+
+    if embedded:
+        st.markdown("**📥 최근 내려받은 데이터**")
+        _section("현재 가격 데이터", fetch_log.CURRENT_PRICE_KEYS)
+        _section("1d 데이터", fetch_log.DAILY_KEYS)
+    else:
+        with st.sidebar.expander("📥 최근 내려받은 데이터", expanded=False):
+            _section("현재 가격 데이터", fetch_log.CURRENT_PRICE_KEYS)
+            _section("1d 데이터", fetch_log.DAILY_KEYS)
