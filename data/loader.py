@@ -4,7 +4,7 @@
 캐시를 읽도록 하는 얇은 어댑터 레이어.
 
 규약:
-  crypto → data/cache/crypto/bitget_{SYMBOL}_1h.parquet, 1h/4h/1d/1w (resample)
+  crypto → data/cache/crypto/{1h,1d}/{SYMBOL}.parquet, 1h/4h/1d/1w (resample)
   kr     → data/cache/kr/{6자리}.parquet, 1d (1w resample 지원)
   us     → data/cache/us/{TICKER}.parquet, 1d (1w resample 지원)
 
@@ -23,7 +23,7 @@ Asset = Literal["crypto", "kr", "us"]
 
 CACHE_ROOT = Path(__file__).resolve().parent / "cache"
 
-CRYPTO_INTERVALS = ("1h", "4h", "1d", "1w")
+CRYPTO_INTERVALS = ("1h", "4h", "1d", "1w", "1M")
 STOCK_INTERVALS = ("1d", "1w")
 
 _WEEKLY_AGG = {"Open": "first", "High": "max", "Low": "min", "Close": "last", "Volume": "sum"}
@@ -37,7 +37,8 @@ def load_ohlcv(asset: Asset, symbol: str, interval: str = "1d") -> pd.DataFrame:
     FileNotFoundError : 캐시 파일이 없을 때
     ValueError        : 지원 안 되는 (asset, interval) 조합
     """
-    interval = interval.lower()
+    # Convention: 1h/4h/1d/1w lowercase, 1M uppercase (M = month, m = minute).
+    interval = interval if interval.endswith("M") else interval.lower()
 
     if asset == "crypto":
         if interval not in CRYPTO_INTERVALS:
@@ -62,8 +63,9 @@ def load_ohlcv(asset: Asset, symbol: str, interval: str = "1d") -> pd.DataFrame:
 def list_symbols(asset: Asset) -> list[str]:
     """캐시에 존재하는 심볼 리스트 (정렬됨)."""
     if asset == "crypto":
-        files = sorted((CACHE_ROOT / "crypto").glob("bitget_*_1h.parquet"))
-        return [f.stem.replace("bitget_", "").replace("_1h", "") for f in files]
+        # 1h 캐시를 정본 — 1d 만 있는 심볼은 list_symbols 에서 제외 (의도된 동작)
+        files = sorted((CACHE_ROOT / "crypto" / "1h").glob("*.parquet"))
+        return [f.stem for f in files]
     if asset in ("kr", "us"):
         files = sorted((CACHE_ROOT / asset).glob("*.parquet"))
         return [f.stem for f in files if not f.stem.startswith("_")]

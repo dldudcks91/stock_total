@@ -5,7 +5,7 @@ description: BTC를 벤치마크로 두고 캐시의 모든 코인을 4그룹(tr
 
 # /crypto-classify
 
-캐시(`data/cache/crypto/bitget_*_1h.parquet`)의 모든 심볼에 대해 일봉 기준 6개 메트릭을 계산하고 두 가지 방식(rules / kmeans)으로 분류한다.
+캐시(`data/cache/crypto/1h/{SYMBOL}.parquet`)의 모든 심볼에 대해 일봉 기준 6개 메트릭을 계산하고 두 가지 방식(rules / kmeans)으로 분류한다.
 
 ## 실행
 

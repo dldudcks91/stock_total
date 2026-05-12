@@ -23,7 +23,7 @@ from scripts.spring_scan import (  # noqa: E402
     list_symbols,
 )
 
-CACHE_DIR = ROOT / "data" / "cache"
+CACHE_DIR = ROOT / "data" / "cache" / "crypto"
 CLASSIFICATION_PATH = CACHE_DIR / "classification.parquet"
 
 # 스윕할 조합 (alpha, vol_mult, wick_ratio, ft_atr)

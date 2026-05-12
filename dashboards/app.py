@@ -78,8 +78,11 @@ def main() -> None:
     st.markdown(
         "- **Backtest** — 단일 런 상세 뷰어\n"
         "- **Compare** — 여러 런을 골라 메트릭/equity 비교\n"
-        "- **Tickers** — Bitget USDT-M 전 종목 라이브 표 (REST 직접 폴링)\n"
+        "- **Bitget** — Bitget USDT-M 전 종목 라이브 표 (REST 직접 폴링)\n"
+        "- **KOSPI** — 시총 상위 KOSPI 종목 라이브 표 (Naver 비공식)\n"
+        "- **NASDAQ** — 캐시된 NASDAQ 심볼 라이브 표 (Naver 비공식)\n"
         "- **Mobile** — 모바일 친화 카드 리스트 (Bitget 앱 스타일)\n"
+        "- **Chart** — 임의 심볼 캔들 차트 (crypto/KR/US)\n"
         "- **Realtime** — 실시간 수집기 DB (Coming soon)"
     )
 

@@ -126,6 +126,6 @@ def list_by_tier(tier: str) -> list[str]:
 ## 관련 파일
 
 - 분류 모듈: [`data/classification.py`](../data/classification.py)
-- 산출물: `data/cache/classification.parquet`
-- 스킬: [`/classify-coins`](../.claude/skills/classify-coins/SKILL.md)
-- 베이스 데이터: `data/cache/bitget_*_1h.parquet`
+- 산출물: `data/cache/crypto/classification.parquet`
+- 스킬: [`/crypto-classify`](../.claude/skills/crypto-classify/SKILL.md)
+- 베이스 데이터: `data/cache/crypto/1h/{SYMBOL}.parquet`

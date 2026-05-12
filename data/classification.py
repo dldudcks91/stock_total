@@ -22,6 +22,7 @@ import numpy as np
 import pandas as pd
 
 CACHE_DIR = Path(__file__).parent / "cache" / "crypto"
+OHLCV_DIR = CACHE_DIR / "1h"  # 일봉으로 리샘플하지만 6개 메트릭에 시간내 변동이 필요해 1h raw 사용
 DEFAULT_OUT = CACHE_DIR / "classification.parquet"
 
 OHLCV_AGG = {
@@ -38,30 +39,22 @@ OHLCV_AGG = {
 # Data loading
 # ---------------------------------------------------------------------------
 def _cache_path(symbol: str) -> Path:
-    return CACHE_DIR / f"bitget_{symbol}_1h.parquet"
+    return OHLCV_DIR / f"{symbol}.parquet"
 
 
-def discover_symbols(cache_dir: Path = CACHE_DIR) -> list[str]:
-    """캐시 디렉터리에서 사용 가능한 심볼 목록 추출."""
+def discover_symbols(cache_dir: Path = OHLCV_DIR) -> list[str]:
+    """1h 캐시 디렉터리에서 사용 가능한 심볼 목록 추출."""
     if not cache_dir.exists():
         return []
-    out = []
-    for p in sorted(cache_dir.glob("bitget_*_1h.parquet")):
-        name = p.stem  # bitget_BTCUSDT_1h
-        if not name.startswith("bitget_") or not name.endswith("_1h"):
-            continue
-        sym = name[len("bitget_"):-len("_1h")]
-        if sym:
-            out.append(sym)
-    return out
+    return [p.stem for p in sorted(cache_dir.glob("*.parquet"))]
 
 
-def load_daily(symbol: str, cache_dir: Path = CACHE_DIR) -> pd.DataFrame:
+def load_daily(symbol: str, cache_dir: Path = OHLCV_DIR) -> pd.DataFrame:
     """1h 캐시를 직접 읽어 일봉으로 리샘플 (resample.py의 timestamp 버그 회피).
 
     반환: DatetimeIndex, columns = open/high/low/close/volume/amount
     """
-    path = cache_dir / f"bitget_{symbol}_1h.parquet"
+    path = cache_dir / f"{symbol}.parquet"
     df = pd.read_parquet(path)
     if df.empty:
         return pd.DataFrame(columns=list(OHLCV_AGG.keys())).astype(float)
@@ -586,7 +579,7 @@ def build_features(
     btc_symbol: str = "BTCUSDT",
     start: str | None = None,
     end: str | None = None,
-    cache_dir: Path = CACHE_DIR,
+    cache_dir: Path = OHLCV_DIR,
     verbose: bool = False,
     daily_loader=None,
 ) -> pd.DataFrame:
@@ -640,7 +633,7 @@ def classify(
     start: str | None = "2023-01-01",
     end: str | None = "2025-12-31",
     method: str = "both",
-    cache_dir: Path = CACHE_DIR,
+    cache_dir: Path = OHLCV_DIR,
     out_path: Path | None = DEFAULT_OUT,
     verbose: bool = False,
     daily_loader=None,

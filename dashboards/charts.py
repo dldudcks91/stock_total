@@ -25,9 +25,9 @@ KST = "Asia/Seoul"
 COLOR_UP = "#1FCC81"
 COLOR_DOWN = "#F6465D"
 MA_COLORS = ("#F0B90B", "#9B70F6", "#5CC8FA", "#FF8A65", "#42A5F5")
-BG = "#0B0E11"
-GRID = "rgba(255,255,255,0.05)"
-TEXT = "#EAECEF"
+BG = "#ffffff"
+GRID = "rgba(0,0,0,0.08)"
+TEXT = "#1a1a1a"
 
 
 def _normalize(df: pd.DataFrame) -> pd.DataFrame:

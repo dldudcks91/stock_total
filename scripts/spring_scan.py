@@ -39,8 +39,8 @@ sys.path.insert(0, str(ROOT))
 
 from data.resample import load  # noqa: E402
 
-CACHE_DIR = ROOT / "data" / "cache"
-CLASSIFICATION_PATH = CACHE_DIR / "classification.parquet"
+CACHE_DIR = ROOT / "data" / "cache" / "crypto" / "1h"
+CLASSIFICATION_PATH = ROOT / "data" / "cache" / "crypto" / "classification.parquet"
 
 FORWARD_HORIZONS = [6, 12, 24, 48]  # 4H 봉 단위 → 24h / 48h / 96h / 192h
 
@@ -191,8 +191,8 @@ def detect_springs(
 
 
 def list_symbols() -> list[str]:
-    files = sorted(CACHE_DIR.glob("bitget_*_1h.parquet"))
-    return [f.stem.replace("bitget_", "").replace("_1h", "") for f in files]
+    files = sorted(CACHE_DIR.glob("*.parquet"))
+    return [f.stem for f in files]
 
 
 def main():

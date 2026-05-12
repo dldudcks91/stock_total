@@ -18,10 +18,6 @@ if str(_ROOT) not in sys.path:
 
 from dashboards._lib import (
     list_runs,
-    load_config,
-    load_metrics,
-    load_equity,
-    load_trades,
     compute_drawdown,
     to_utc_datetime,
     to_kst,
@@ -31,6 +27,7 @@ from dashboards._lib import (
     fmt_float,
     fmt_int,
 )
+from dashboards._cache import load_config, load_metrics, load_equity, load_trades
 
 
 def render_metric_cards(st, metrics: dict[str, Any]) -> None:

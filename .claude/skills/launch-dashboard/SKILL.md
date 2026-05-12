@@ -27,7 +27,11 @@ streamlit run dashboards/app.py
 | Home | `dashboards/app.py` | 런 인벤토리 + 최근 10개 런 요약 |
 | Backtest | `dashboards/pages/1_Backtest.py` | 단일 런 뷰어 (메트릭, equity, drawdown, position 분포, trades) |
 | Compare | `dashboards/pages/2_Compare.py` | 2개 이상 런 비교 (메트릭 표 + delta, equity overlay, drawdown overlay, config diff) |
-| Tickers | `dashboards/pages/3_Tickers.py` | Bitget USDT-M 전 종목 라이브 시세 표 (REST `/api/v2/mix/market/tickers` 직접 폴링) |
+| Bitget | `dashboards/pages/3_Bitget.py` | Bitget USDT-M 전 종목 라이브 시세 표 (REST `/api/v2/mix/market/tickers` 직접 폴링) |
+| KOSPI | `dashboards/pages/4_KOSPI.py` | 시총 상위 KOSPI 종목 라이브 표 (Naver 비공식 `m.stock.naver.com/api/stocks/marketValue/KOSPI`) |
+| NASDAQ | `dashboards/pages/5_NASDAQ.py` | 캐시된 NASDAQ 심볼 병렬 라이브 표 (Naver 비공식 per-symbol) |
+| Mobile | `dashboards/pages/6_Mobile.py` | 모바일 친화 카드 리스트 (Bitget 앱 스타일) |
+| Chart | `dashboards/pages/7_Chart.py` | 임의 심볼 캔들 차트 (crypto/KR/US) |
 | Realtime | `dashboards/pages/9_Realtime.py` | 외부 수집기 DB 연동 예정 (현재 스텁) |
 
 공통 헬퍼는 `dashboards/_lib.py` 에 있음 (IO, drawdown, 시간대 변환, config diff 등).
@@ -39,13 +43,13 @@ streamlit run dashboards/app.py
 - Equity + Drawdown 서브플롯
 - Position time distribution + 최근 100건 trades 테이블
 
-## Tickers 페이지
+## Bitget 페이지
 
 - 데이터 소스: 공개 REST `https://api.bitget.com/api/v2/mix/market/tickers?productType=USDT-FUTURES`
-- 사이드바: Auto-refresh 토글 + 주기(5/10/30/60s), 수동 Refresh, symbol 검색, Top N, 정렬 컬럼/방향, 표시 컬럼 multiselect
+- 사이드바: Auto-refresh 토글 + 주기(5/10/30/60s), 수동 Refresh, "Bitget 데이터 받기"(1H+1D 백그라운드 fetch), symbol 검색, Top N, 정렬 컬럼/방향, 표시 컬럼 multiselect
 - 표 컬럼(기본): Symbol, Mark, 24h %, 24h High/Low, Quote Vol(USDT), Funding, Open Interest
 - 24h % / Funding 은 부호에 따라 녹/적 색상
-- 자동 새로고침은 `streamlit-autorefresh` 패키지 필요 (없으면 수동만)
+- 자동 새로고침은 `st.fragment(run_every=...)` 빌트인 사용 — 별도 패키지 불필요
 - 수집기 DB 와 분리되어 있으므로 collector 가 안 도는 환경에서도 동작
 
 ## Compare 페이지

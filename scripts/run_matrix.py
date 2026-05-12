@@ -52,11 +52,11 @@ STRATEGIES = {
     },
 }
 
-CACHE_DIR = Path(__file__).resolve().parents[1] / "data" / "cache"
+CACHE_DIR = Path(__file__).resolve().parents[1] / "data" / "cache" / "crypto" / "1h"
 
 
 def _has_cache(symbol: str) -> bool:
-    return (CACHE_DIR / f"bitget_{symbol}_1h.parquet").exists()
+    return (CACHE_DIR / f"{symbol}.parquet").exists()
 
 
 def run_matrix(

@@ -109,21 +109,22 @@ def color_for(value: float) -> str:
 # Card rendering
 # ---------------------------------------------------------------------------
 
-def card_html(row: pd.Series) -> str:
-    symbol = str(row.get("symbol", "?"))
-    price = fmt_price(row.get("markPrice"))
-    chg = row.get("change24h")
+def _card_html_fields(
+    symbol: str, mark_price: Any, change24h: Any,
+    quote_volume: Any, funding_rate: Any,
+) -> str:
+    """Inner card builder — takes raw scalars so the caller can iterate fast."""
+    price = fmt_price(mark_price)
     try:
-        chg_f = float(chg)
+        chg_f = float(change24h)
     except (TypeError, ValueError):
         chg_f = 0.0
     chg_str = "—" if pd.isna(chg_f) else f"{'+' if chg_f >= 0 else ''}{chg_f*100:.2f}%"
     chg_color = color_for(chg_f if not pd.isna(chg_f) else 0)
 
-    qv = fmt_compact_usd(row.get("quoteVolume"))
-    fr = row.get("fundingRate")
+    qv = fmt_compact_usd(quote_volume)
     try:
-        fr_f = float(fr)
+        fr_f = float(funding_rate)
     except (TypeError, ValueError):
         fr_f = 0.0
     fr_str = "—" if pd.isna(fr_f) else f"{'+' if fr_f >= 0 else ''}{fr_f*100:.3f}%"
@@ -153,11 +154,27 @@ def card_html(row: pd.Series) -> str:
     )
 
 
+def card_html(row: pd.Series) -> str:
+    """Backward-compat wrapper — accepts a row Series."""
+    return _card_html_fields(
+        str(row.get("symbol", "?")), row.get("markPrice"),
+        row.get("change24h"), row.get("quoteVolume"), row.get("fundingRate"),
+    )
+
+
 def render_card_list(st, df: pd.DataFrame, n: int) -> None:
     if df.empty:
         st.info("결과 없음")
         return
-    cards = "".join(card_html(row) for _, row in df.head(n).iterrows())
+    head = df.head(n)
+    # itertuples is ~10x faster than iterrows + Series.get for large n; we read
+    # only the columns we need, falling back to None when absent.
+    cols = ["symbol", "markPrice", "change24h", "quoteVolume", "fundingRate"]
+    sub = head.reindex(columns=cols)
+    cards = "".join(
+        _card_html_fields(str(s) if s is not None else "?", m, c, q, f)
+        for s, m, c, q, f in sub.itertuples(index=False, name=None)
+    )
     container = (
         '<div style="border:1px solid rgba(120,120,120,0.18); '
         'border-radius:8px; overflow:hidden; margin-top:8px;">'
@@ -191,7 +208,7 @@ def main() -> None:
 
     with st.sidebar:
         st.header("Refresh")
-        auto = st.toggle("Auto-refresh", value=True)
+        auto = st.toggle("Auto-refresh", value=False)
         interval = st.select_slider("Interval (s)", options=[5, 10, 30, 60], value=10)
         if st.button("Refresh now", use_container_width=True):
             st.cache_data.clear()

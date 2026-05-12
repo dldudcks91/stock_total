@@ -6,7 +6,7 @@
 
 ## 구성 요약
 
-- **데이터 수집** — Bitget(crypto 1H), FinanceDataReader(KR/US 1D), 한경 컨센서스(KR 정성), DART(KR 펀더멘털)
+- **데이터 수집** — Bitget(crypto 1H/1D), FinanceDataReader(KR/US 1D), 한경 컨센서스(KR 정성), DART(KR 펀더멘털)
 - **백테스트** — 벡터화 엔진, 자산 무관 (현 단계는 crypto 위주, 주식은 단계적 확장)
 - **리서치 리포트** — KR 종목 종합 리서치 (정량+정성 통합 마크다운 리포트)
 - **대시보드** — Streamlit 멀티페이지
@@ -16,13 +16,16 @@
 ```
 data/
 ├── sources/         # 데이터 fetcher
-│   ├── bitget.py    # Bitget USDT-M 1H (async REST)
+│   ├── bitget.py    # Bitget USDT-M 1H/1D (async REST, --granularity)
 │   └── stocks.py    # FDR 기반 KR(KOSPI) / US(NASDAQ) 1D
 ├── cache/
-│   ├── crypto/      # bitget_{SYMBOL}_1h.parquet
+│   ├── crypto/
+│   │   ├── 1h/{SYMBOL}.parquet
+│   │   ├── 1d/{SYMBOL}.parquet
+│   │   └── classification.parquet
 │   ├── kr/          # {6자리코드}.parquet
 │   └── us/          # {TICKER}.parquet
-├── resample.py      # crypto 1H → 4H/1D/1W (메모리 상)
+├── resample.py      # 1h/1d 캐시 우선, 4h/1w/1M는 메모리 리샘플
 ├── classification.py # 크립토 4그룹 분류
 └── universe.py      # 분류 결과에서 그룹별 심볼 추출
 
@@ -59,8 +62,10 @@ scripts/             # 배치 실행 스크립트
 
 ## 데이터 스키마
 
-### Crypto (Bitget 1H)
+### Crypto (Bitget 1H/1D)
 컬럼: `timestamp`(UTC ms), `open, high, low, close, volume`(코인 수량), `amount`(거래대금 USDT). 소문자.
+캐시 파일: `data/cache/crypto/1h/{SYMBOL}.parquet`, `data/cache/crypto/1d/{SYMBOL}.parquet`.
+4h/1w/1M는 `data.resample.load`가 메모리 리샘플로 생성 (1w/1M는 1d 캐시 우선).
 심볼 포맷: Bitget 원본 (`BTCUSDT`, 슬래시·콜론 없음).
 
 ### KR/US (FDR 1D)
@@ -109,7 +114,7 @@ US 티커: 영문 대문자.
 
 | skill | 자산 | 역할 |
 |---|---|---|
-| `crypto-fetch` | crypto | Bitget 1H OHLCV 다운로드 |
+| `crypto-fetch` | crypto | Bitget 1H/1D OHLCV 다운로드 (`--granularity`) |
 | `crypto-classify` | crypto | BTC 벤치마크 4그룹 분류 |
 | `kr-fetch` | KR | FDR로 KOSPI 일봉 다운로드 |
 | `us-fetch` | US | FDR로 NASDAQ 일봉 다운로드 |

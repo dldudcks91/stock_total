@@ -21,9 +21,6 @@ if str(_ROOT) not in sys.path:
 
 from dashboards._lib import (
     list_runs,
-    load_config,
-    load_metrics,
-    load_equity,
     compute_drawdown,
     to_utc_datetime,
     to_kst,
@@ -35,6 +32,7 @@ from dashboards._lib import (
     PCT_METRICS,
     INT_METRICS,
 )
+from dashboards._cache import load_config, load_metrics, load_equity
 
 
 # ---------------------------------------------------------------------------
@@ -84,27 +82,38 @@ def render_metrics_section(st, runs_metrics: dict[str, dict[str, Any]]) -> None:
         st.dataframe(delta_df, use_container_width=True)
 
 
+def _prepare_runs(
+    runs_equity: dict[str, pd.DataFrame], use_kst: bool,
+) -> list[tuple[str, pd.Series, pd.Series, pd.Series]]:
+    """One-pass conversion: returns (label, x, equity, drawdown) per non-empty run."""
+    out = []
+    for label, eq in runs_equity.items():
+        if eq.empty:
+            continue
+        dt_utc = to_utc_datetime(eq["timestamp"])
+        x = to_kst(dt_utc) if use_kst else dt_utc
+        equity = eq["equity"].astype(float)
+        dd = compute_drawdown(equity)
+        out.append((label, x, equity, dd))
+    return out
+
+
 def render_equity_overlay(
     st,
-    runs_equity: dict[str, pd.DataFrame],
+    prepared: list[tuple[str, pd.Series, pd.Series, pd.Series]],
     use_kst: bool,
     normalize: bool,
 ) -> None:
     import plotly.graph_objects as go
 
-    if not runs_equity:
+    if not prepared:
         st.info("equity 데이터가 없습니다.")
         return
 
     fig = go.Figure()
     palette = ["#2E86AB", "#E63946", "#2A9D8F", "#F4A261", "#8338EC", "#264653"]
-    for i, (label, eq) in enumerate(runs_equity.items()):
-        if eq.empty:
-            continue
-        e = eq.copy()
-        dt_utc = to_utc_datetime(e["timestamp"])
-        x = to_kst(dt_utc) if use_kst else dt_utc
-        y = e["equity"].astype(float)
+    for i, (label, x, equity, _dd) in enumerate(prepared):
+        y = equity
         if normalize and len(y) > 0 and float(y.iloc[0]) != 0:
             y = y / float(y.iloc[0])
         fig.add_trace(go.Scatter(
@@ -128,23 +137,17 @@ def render_equity_overlay(
 
 def render_drawdown_overlay(
     st,
-    runs_equity: dict[str, pd.DataFrame],
+    prepared: list[tuple[str, pd.Series, pd.Series, pd.Series]],
     use_kst: bool,
 ) -> None:
     import plotly.graph_objects as go
 
-    if not runs_equity:
+    if not prepared:
         return
 
     fig = go.Figure()
     palette = ["#2E86AB", "#E63946", "#2A9D8F", "#F4A261", "#8338EC", "#264653"]
-    for i, (label, eq) in enumerate(runs_equity.items()):
-        if eq.empty:
-            continue
-        e = eq.copy()
-        dt_utc = to_utc_datetime(e["timestamp"])
-        x = to_kst(dt_utc) if use_kst else dt_utc
-        dd = compute_drawdown(e["equity"])
+    for i, (label, x, _equity, dd) in enumerate(prepared):
         fig.add_trace(go.Scatter(
             x=x, y=dd, name=label, mode="lines",
             line=dict(width=1.4, color=palette[i % len(palette)]),
@@ -229,13 +232,15 @@ def main() -> None:
     st.subheader("Metrics")
     render_metrics_section(st, runs_metrics)
 
+    prepared = _prepare_runs(runs_equity, use_kst)
+
     st.markdown("---")
     st.subheader("Equity Overlay")
-    render_equity_overlay(st, runs_equity, use_kst, normalize)
+    render_equity_overlay(st, prepared, use_kst, normalize)
 
     st.markdown("---")
     st.subheader("Drawdown Overlay")
-    render_drawdown_overlay(st, runs_equity, use_kst)
+    render_drawdown_overlay(st, prepared, use_kst)
 
     st.markdown("---")
     st.subheader("Config Diff (다른 키만)")
