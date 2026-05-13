@@ -1,12 +1,11 @@
 """Live ticker table for all Bitget USDT-M futures symbols.
 
-Polls `https://api.bitget.com/api/v2/mix/market/tickers?productType=USDT-FUTURES`
-directly (same endpoint the upbit_project/bitget collector uses) and renders the
-result as a sortable / filterable table with auto-refresh.
-
-This page does NOT touch the realtime collector DB — it pulls fresh data from
-the public REST endpoint each refresh. When the collector DB connection lands,
-the dedicated `9_Realtime` page will read from it instead.
+Reads a persisted snapshot at ``data/cache/crypto/_live_snapshot.parquet``
+on render — never auto-fetches. The sidebar "라이브 가격 갱신" button kicks
+off a background subprocess (``python -m data.sources.bitget_live``) that
+fetches Bitget tickers + CoinGecko market caps and merges them into the
+snapshot, then atomically replaces the file. The next page rerun reads the
+new snapshot.
 """
 from __future__ import annotations
 
@@ -17,7 +16,6 @@ from typing import Any, Optional
 
 import numpy as np
 import pandas as pd
-import requests
 
 # allow `from dashboards.charts import ...` regardless of cwd
 _ROOT = Path(__file__).resolve().parents[2]
@@ -25,6 +23,7 @@ if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
 from data.loader import load_ohlcv  # noqa: E402
+from data.sources.bitget_live import SNAPSHOT_PATH, load_snapshot  # noqa: E402
 from dashboards._lib import render_fetch_log_sidebar  # noqa: E402
 
 # Bitget/TradingView-style chart: use TradingView's lightweight-charts via
@@ -40,21 +39,45 @@ except ImportError:  # pragma: no cover
 # — no streamlit rerun on each interaction. Required at import time.
 from st_aggrid import AgGrid, GridOptionsBuilder, JsCode, GridUpdateMode  # noqa: E402
 
-BITGET_TICKERS_URL = "https://api.bitget.com/api/v2/mix/market/tickers"
 BITGET_CANDLES_URL = "https://api.bitget.com/api/v2/mix/market/candles"
-COINGECKO_MARKETS_URL = "https://api.coingecko.com/api/v3/coins/markets"
 PRODUCT_TYPE = "USDT-FUTURES"
 CANDLE_FETCH_CAP = 1000         # safety cap; above this we skip period % compute
 CANDLE_CONCURRENCY = 5          # per project memory: keep ≤ 5
-PERIODS_H: list[int] = [1, 4]            # hourly windows (1H candles)
-PERIODS_D: list[int] = [3, 7, 14, 28]    # daily windows (1D candles)
-MA_PERIODS: tuple[int, int] = (10, 20)   # short / long MA for MA-distance columns
-# Unified window selector: hourly (1H candles) + daily (1D candles) windows.
-# Drives Window High/Low Δ% (MA-distance columns use fixed periods).
-WHIPSAW_WINDOW_OPTIONS: list[str] = ["1h", "4h", "12h", "24h", "7d", "14d", "28d"]
-DEFAULT_WHIPSAW_WINDOW = "24h"
-HOURLY_CANDLE_LIMIT = 30   # ≥ MA20+1, max hourly window+2 (24+2=26), max PERIODS_H+1
-DAILY_CANDLE_LIMIT = 35    # ≥ MA20+1, max daily window+2 (28+2=30), max PERIODS_D+1
+PERIODS_H: list[int] = [1, 4]            # hourly periods (fixed columns)
+PERIODS_D: list[int] = [3, 7, 14, 28]    # daily periods (fixed columns)
+MA_PERIODS: tuple[int, int] = (10, 20)   # short / long MA for MA Δ% columns
+
+# MA Interval — bar size for MA10/MA20 columns. Mirrors KOSPI/NASDAQ pages'
+# MA_INTERVAL split, extended with hourly granularity since the crypto cache
+# carries 1H bars. ("1h" / "4h" stride-sample the 1H cache; "1d" / "1w" use
+# the 1D cache.)
+MA_INTERVAL_OPTIONS_CRYPTO: list[str] = ["1h", "4h", "1d", "1w"]
+DEFAULT_MA_INTERVAL_CRYPTO: str = "1d"
+
+# HL Lookback — calendar window for max(High) / min(Low) Δ%. "24h" reads
+# from the 1H cache; everything else uses the 1D cache.
+HL_LOOKBACK_OPTIONS_CRYPTO: list[str] = ["24h", "7d", "28d", "90d", "1y"]
+DEFAULT_HL_LOOKBACK_CRYPTO: str = "28d"
+
+# (granularity, stride): "1w" stride=7 on the 1D cache.
+MA_INTERVAL_SPECS: dict[str, tuple[str, int]] = {
+    "1h": ("1h", 1),
+    "4h": ("1h", 4),
+    "1d": ("1d", 1),
+    "1w": ("1d", 7),
+}
+
+# (granularity, num_bars): "24h" = 24 bars of 1H cache; "1y" = 365 bars of 1D.
+HL_LOOKBACK_SPECS: dict[str, tuple[str, int]] = {
+    "24h": ("1h", 24),
+    "7d": ("1d", 7),
+    "28d": ("1d", 28),
+    "90d": ("1d", 90),
+    "1y": ("1d", 365),
+}
+
+HOURLY_CANDLE_LIMIT = 30   # ≥ MA20·stride for hourly MA + 24h lookback + PERIODS_H
+DAILY_CANDLE_LIMIT = 380   # ≥ 1y lookback (365) + 20·7 (1w MA20) — pick the max
 
 
 # Friendly column labels + display order.
@@ -113,99 +136,15 @@ def _save_notes(notes: dict) -> None:
     )
 
 
-NUMERIC_COLS = [
-    "lastPr", "askPr", "bidPr", "bidSz", "askSz",
-    "high24h", "low24h", "ts", "change24h", "baseVolume",
-    "quoteVolume", "usdtVolume", "openUtc", "changeUtc24h",
-    "indexPrice", "fundingRate", "holdingAmount",
-    "open24h", "markPrice",
-]
-
-# ---------------------------------------------------------------------------
-# Fetching
-# ---------------------------------------------------------------------------
-
-def fetch_tickers(timeout: float = 10.0) -> pd.DataFrame:
-    """Fetch the full USDT-M futures ticker snapshot. Raises on API error."""
-    resp = requests.get(
-        BITGET_TICKERS_URL,
-        params={"productType": PRODUCT_TYPE},
-        timeout=timeout,
-    )
-    resp.raise_for_status()
-    payload = resp.json()
-    if payload.get("msg") != "success":
-        raise RuntimeError(f"Bitget API error: code={payload.get('code')} msg={payload.get('msg')}")
-    rows = payload.get("data", [])
-    df = pd.DataFrame(rows)
-    for col in NUMERIC_COLS:
-        if col in df.columns:
-            df[col] = pd.to_numeric(df[col], errors="coerce")
-    return df
-
-
-# ---------------------------------------------------------------------------
-# Market-cap snapshot (CoinGecko)
-# ---------------------------------------------------------------------------
-
-def fetch_market_caps(pages: int = 2, per_page: int = 250, timeout: float = 10.0) -> dict[str, float]:
-    """Top N coins by market cap from CoinGecko → ``{SYMBOL_UPPER: market_cap_usd}``.
-
-    First-seen wins (list is already mcap-desc), so collisions like LUNA /
-    LUNC resolve to the higher-cap ticker. Empty dict on failure — caller
-    treats missing symbols as NULL market cap.
-    """
-    caps: dict[str, float] = {}
-    for page in range(1, pages + 1):
-        try:
-            resp = requests.get(
-                COINGECKO_MARKETS_URL,
-                params={
-                    "vs_currency": "usd",
-                    "order": "market_cap_desc",
-                    "per_page": per_page,
-                    "page": page,
-                    "sparkline": "false",
-                },
-                timeout=timeout,
-            )
-            resp.raise_for_status()
-            for row in resp.json() or []:
-                sym = (row.get("symbol") or "").upper()
-                mc = row.get("market_cap")
-                if sym and mc and sym not in caps:
-                    caps[sym] = float(mc)
-        except Exception:
-            break
-    return caps
-
-
-def _bitget_to_base(symbol: str) -> Optional[str]:
-    """``BTCUSDT`` → ``BTC``, ``1000PEPEUSDT`` → ``PEPE``, ``USDCUSDT`` → ``USDC``.
-
-    Returns ``None`` for non-USDT-quoted symbols (shouldn't happen on the
-    USDT-M endpoint, but cheap safety).
-    """
-    s = symbol.upper()
-    if not s.endswith("USDT"):
-        return None
-    base = s[:-4]
-    if base.startswith("1000") and len(base) > 4:
-        base = base[4:]
-    return base or None
-
-
-def attach_market_cap(df: pd.DataFrame, caps: dict[str, float]) -> pd.DataFrame:
-    """Add a ``marketCap`` column to ``df`` by mapping Bitget symbol → base coin."""
-    if df.empty or not caps:
-        df = df.copy()
-        df["marketCap"] = pd.Series([None] * len(df), dtype="float64")
-        return df
-    df = df.copy()
-    df["marketCap"] = (
-        df["symbol"].astype(str).map(_bitget_to_base).map(caps).astype("float64")
-    )
-    return df
+def _humanize_ago(delta: pd.Timedelta) -> str:
+    s = int(delta.total_seconds())
+    if s < 60:
+        return f"{s}s"
+    if s < 3600:
+        return f"{s // 60}m"
+    if s < 86400:
+        return f"{s // 3600}h"
+    return f"{s // 86400}d"
 
 
 # ---------------------------------------------------------------------------
@@ -315,53 +254,44 @@ def _close_at_or_before(
     return val
 
 
-def _parse_window_label(label: str) -> tuple[int, str]:
-    """``"4h"`` → ``(4, "1h")``, ``"14d"`` → ``(14, "1d")``."""
-    if label.endswith("h"):
-        return int(label[:-1]), "1h"
-    if label.endswith("d"):
-        return int(label[:-1]), "1d"
-    raise ValueError(f"unknown window: {label!r}")
-
-
 def compute_from_cache(
     current_prices: dict[str, float],
     symbols: list[str],
-    windows: list[str] = WHIPSAW_WINDOW_OPTIONS,
     *,
+    ma_intervals: list[str] = MA_INTERVAL_OPTIONS_CRYPTO,
+    hl_lookbacks: list[str] = HL_LOOKBACK_OPTIONS_CRYPTO,
     periods_h: list[int] = PERIODS_H,
     periods_d: list[int] = PERIODS_D,
     ma_periods: tuple[int, int] = MA_PERIODS,
     cache_loader=_load_cache_tails,
     now_ms: Optional[int] = None,
 ) -> pd.DataFrame:
-    """Wall-clock-anchored cache reader → period %, *all-windows* H/L Δ% & MA Δ%.
+    """Wall-clock-anchored cache reader → period %, MA × MA Interval, H/L × HL Lookback.
+
+    Mirrors the KOSPI/NASDAQ ``_stock_grid.compute_from_cache`` two-axis model
+    (MA Interval, HL Lookback) but anchored to wall-clock now and granularity-
+    aware so 1H and 1D crypto caches can both feed the same row.
 
     Each symbol's 1H and 1D parquet is read ONCE. Every derived metric is
-    anchored to ``now_ms`` (defaults to wall-clock now), NOT the last bar in
-    the cache — so a stale cache yields ``None`` for the affected metric
-    instead of silently mislabeling (e.g. a "1h%" computed against a 6-hour-
-    old bar).
+    anchored to ``now_ms``, NOT the last bar in the cache — so a stale cache
+    yields ``None`` instead of silently mislabeling.
 
     Anchoring rules (a bar's CLOSE represents the price at ``ts + interval``,
     so to read "price at time T" we look up the bar with ``ts ≤ T − interval``):
       * ``pct_{n}h`` — close of bar with ``ts ≤ now − (n+1)·1h``, tol 1h.
       * ``pct_{n}d`` — close of bar with ``ts ≤ now − (n+1)·1d``, tol 1d.
-      * Window H/L  — bars in ``(now − stride·bar, now]``. Gated on freshness:
-                      latest cached bar must be within ``2·bar`` of now.
-      * MA          — same freshness gate, then for k=0..max_ma−1 read close
-                      at ``now − k·stride·bar − bar_ms`` (tol = bar_ms). Missing
-                      sample short-circuits → partial sample, possibly yielding
-                      None for short/long if not enough samples accumulated.
+      * MA per MA Interval iv ∈ MA_INTERVAL_SPECS — stride-sampled SMA anchored
+        at now, on the matching granularity cache. Freshness-gated.
+      * HL per HL Lookback lb ∈ HL_LOOKBACK_SPECS — bars in
+        ``(now − num_bars·bar, now]`` on the matching granularity cache.
+        Freshness-gated.
 
-    Columns produced (in order):
+    Columns produced:
         symbol,
-        pct_{n}h  for n in periods_h,           # fixed (1H granularity)
-        pct_{n}d  for n in periods_d,           # fixed (1D granularity)
-        for each window w in `windows`:
-            pct_ma{short}__{w}, pct_ma{long}__{w},
-            high__{w}, low__{w},
-            pct_off_high__{w}, pct_off_low__{w}
+        pct_{n}h, pct_{n}d (fixed),
+        per ma_interval iv:  pct_ma{short}__{iv}, pct_ma{long}__{iv}
+        per hl_lookback lb:  high__{lb}, low__{lb},
+                             pct_off_high__{lb}, pct_off_low__{lb}
     """
     import time as _time
     if now_ms is None:
@@ -370,16 +300,26 @@ def compute_from_cache(
     short, long_ = ma_periods
     max_ma = max(short, long_)
 
-    parsed_windows = [(w, *_parse_window_label(w)) for w in windows]
-    # parsed_windows: list of (label, stride, gran)
+    # Parse specs upfront — bail on unknown labels rather than emit silently
+    # wrong columns.
+    parsed_ma = [(iv, *MA_INTERVAL_SPECS[iv]) for iv in ma_intervals]
+    # parsed_ma: list of (label, gran, stride)
+    parsed_hl = [(lb, *HL_LOOKBACK_SPECS[lb]) for lb in hl_lookbacks]
+    # parsed_hl: list of (label, gran, num_bars)
 
     # How many tail bars do we need from each granularity?
-    # +2 over the strict requirement to leave headroom for the at-or-before
+    # +2 over the strict requirement leaves headroom for the at-or-before
     # lookup landing on a slightly older bar than the most recent.
     need_h = max(periods_h) + 2
     need_d = max(periods_d) + 2
-    for (_, stride, gran) in parsed_windows:
-        req = max(stride + 2, max_ma * stride + 2)
+    for (_, gran, stride) in parsed_ma:
+        req = max_ma * stride + 2
+        if gran == "1h":
+            need_h = max(need_h, req)
+        else:
+            need_d = max(need_d, req)
+    for (_, gran, num_bars) in parsed_hl:
+        req = num_bars + 2
         if gran == "1h":
             need_h = max(need_h, req)
         else:
@@ -389,17 +329,16 @@ def compute_from_cache(
     pct_keys_d = [f"pct_{n}d" for n in periods_d]
 
     # Pre-compute output column names so every row dict has the same shape.
-    win_cols = []
-    for (label, _, _) in parsed_windows:
-        win_cols.extend([
-            f"pct_ma{short}__{label}",
-            f"pct_ma{long_}__{label}",
-            f"high__{label}",
-            f"low__{label}",
-            f"pct_off_high__{label}",
-            f"pct_off_low__{label}",
+    ma_cols: list[str] = []
+    for (label, _, _) in parsed_ma:
+        ma_cols.extend([f"pct_ma{short}__{label}", f"pct_ma{long_}__{label}"])
+    hl_cols: list[str] = []
+    for (label, _, _) in parsed_hl:
+        hl_cols.extend([
+            f"high__{label}", f"low__{label}",
+            f"pct_off_high__{label}", f"pct_off_low__{label}",
         ])
-    none_cols = pct_keys_h + pct_keys_d + win_cols
+    none_cols = pct_keys_h + pct_keys_d + ma_cols + hl_cols
 
     rows = []
     for sym in symbols:
@@ -415,8 +354,6 @@ def compute_from_cache(
         arrs_d = cache_loader(sym, "1d", need_d)
 
         # ── Wall-clock anchored period % (1H, 1D) ──
-        # Offset by one bar interval so we look up by bar-OPEN ts, while the
-        # comparison is against the bar's CLOSE = price at (ts + interval).
         if arrs_h is not None and arrs_h["close"].size:
             ts_h, cl_h = arrs_h["timestamp"], arrs_h["close"]
             for n, key in zip(periods_h, pct_keys_h):
@@ -430,40 +367,16 @@ def compute_from_cache(
                 if prev:
                     row[key] = (cur - prev) / prev
 
-        # ── Per-window MA + H/L (wall-clock anchored, freshness-gated) ──
-        for (label, stride, gran) in parsed_windows:
+        # ── MA per MA Interval (wall-clock anchored, freshness-gated) ──
+        for (label, gran, stride) in parsed_ma:
             arrs = arrs_h if gran == "1h" else arrs_d
             bar_ms = HOUR_MS if gran == "1h" else DAY_MS
             if arrs is None or arrs["close"].size == 0:
                 continue
             ts = arrs["timestamp"]
             closes = arrs["close"]
-            highs = arrs["high"]
-            lows = arrs["low"]
-
-            # Freshness gate: latest cached bar must cover roughly "now",
-            # else this window is meaningless → leave NULL.
             if now_ms - int(ts[-1]) > 2 * bar_ms:
                 continue
-
-            # Window H/L over wall-clock interval. We include any bar whose
-            # span [ts, ts+bar) overlaps the window — i.e. ts > now − (stride+1)·bar
-            # — so that at "now=14:37, stride=1h" the bar at ts=13:00 (covering
-            # 13:00–14:00) still qualifies as part of "the last hour".
-            mask = ts > now_ms - (stride + 1) * bar_ms
-            if mask.any():
-                hi = float(highs[mask].max())
-                lo = float(lows[mask].min())
-                row[f"high__{label}"] = hi
-                row[f"low__{label}"] = lo
-                if hi:
-                    row[f"pct_off_high__{label}"] = (cur - hi) / hi
-                if lo:
-                    row[f"pct_off_low__{label}"] = (cur - lo) / lo
-
-            # MA via stride sampling anchored at now. Same +1 bar offset as
-            # period %: we want close ≈ price at (now − k·stride·bar), which
-            # is the close of bar with ts ≤ (now − k·stride·bar − bar_ms).
             sampled: list[float] = []
             for k in range(max_ma):
                 target = now_ms - k * stride * bar_ms - bar_ms
@@ -479,6 +392,31 @@ def compute_from_cache(
                 ma_l = sum(sampled[:long_]) / long_
                 if ma_l:
                     row[f"pct_ma{long_}__{label}"] = (cur - ma_l) / ma_l
+
+        # ── HL per HL Lookback (wall-clock anchored, freshness-gated) ──
+        for (label, gran, num_bars) in parsed_hl:
+            arrs = arrs_h if gran == "1h" else arrs_d
+            bar_ms = HOUR_MS if gran == "1h" else DAY_MS
+            if arrs is None or arrs["close"].size == 0:
+                continue
+            ts = arrs["timestamp"]
+            highs = arrs["high"]
+            lows = arrs["low"]
+            if now_ms - int(ts[-1]) > 2 * bar_ms:
+                continue
+            # Include bars whose span [ts, ts+bar) overlaps the lookback window
+            # — same +1 offset as before so a partial current bar still counts.
+            mask = ts > now_ms - (num_bars + 1) * bar_ms
+            if not mask.any():
+                continue
+            hi = float(highs[mask].max())
+            lo = float(lows[mask].min())
+            row[f"high__{label}"] = hi
+            row[f"low__{label}"] = lo
+            if hi:
+                row[f"pct_off_high__{label}"] = (cur - hi) / hi
+            if lo:
+                row[f"pct_off_low__{label}"] = (cur - lo) / lo
 
         rows.append(row)
     return pd.DataFrame(rows)
@@ -561,7 +499,8 @@ def _js_window_value_getter(field_prefix: str, window_label: str) -> JsCode:
 
 def build_grid_options(
     df: pd.DataFrame,
-    window_label: str,
+    ma_interval: str,
+    hl_lookback: str,
     selected_symbol: Optional[str],
     *,
     short_ma: int = MA_PERIODS[0],
@@ -572,12 +511,14 @@ def build_grid_options(
     Column order (left → right, displayed):
         ▸ checkbox + Symbol (pinned), Mark, 거래대금, Funding,
         1h%, 4h%, 24h%, 3d%, 7d%, 14d%, 28d%,
-        MA10, MA20, High%, Low%   (window-dependent valueGetter),
+        MA10 (ma_interval), MA20 (ma_interval),
+        High% (hl_lookback), Low% (hl_lookback),
         메모
 
-    All other columns from the ticker API + raw per-window backing fields
-    are hidden. Returns the df in the visible column order (plus hidden
-    cols at the end) so AgGrid's columnDefs follows the same order.
+    ``ma_interval`` ∈ MA_INTERVAL_OPTIONS_CRYPTO selects which __{iv}
+    suffix the MA columns read; ``hl_lookback`` ∈ HL_LOOKBACK_OPTIONS_CRYPTO
+    selects the suffix for the H/L columns. Toggling flips values purely
+    client-side via JsCode valueGetter — no server recompute.
     """
     SHORT_KEY = f"_ma{short_ma}"
     LONG_KEY = f"_ma{long_ma}"
@@ -656,28 +597,29 @@ def build_grid_options(
             type=["numericColumn"],
         )
 
-    # ── Window-dependent (valueGetter reads `__{window}` from row data) ──
+    # ── MA columns (valueGetter reads `__{ma_interval}` from row data) ──
     gob.configure_column(
         SHORT_KEY, headerName=f"MA{short_ma}", width=60,
-        valueGetter=_js_window_value_getter(f"pct_ma{short_ma}", window_label),
+        valueGetter=_js_window_value_getter(f"pct_ma{short_ma}", ma_interval),
         valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
         type=["numericColumn"],
     )
     gob.configure_column(
         LONG_KEY, headerName=f"MA{long_ma}", width=60,
-        valueGetter=_js_window_value_getter(f"pct_ma{long_ma}", window_label),
+        valueGetter=_js_window_value_getter(f"pct_ma{long_ma}", ma_interval),
         valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
         type=["numericColumn"],
     )
+    # ── HL columns (valueGetter reads `__{hl_lookback}` from row data) ──
     gob.configure_column(
         HIGH_KEY, headerName="High", width=58,
-        valueGetter=_js_window_value_getter("pct_off_high", window_label),
+        valueGetter=_js_window_value_getter("pct_off_high", hl_lookback),
         valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
         type=["numericColumn"],
     )
     gob.configure_column(
         LOW_KEY, headerName="Low", width=58,
-        valueGetter=_js_window_value_getter("pct_off_low", window_label),
+        valueGetter=_js_window_value_getter("pct_off_low", hl_lookback),
         valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
         type=["numericColumn"],
     )
@@ -733,7 +675,12 @@ _BITGET_PAGE_CSS = """
   min-height: 0 !important;
   line-height: 1.4 !important;
 }
-
+/* Nudge dialog X button — small offset from default */
+div[role="dialog"] button[aria-label="Close"],
+[data-testid="stDialog"] button[aria-label="Close"] {
+  top: 0.4rem !important;
+  margin-top: -2px !important;
+}
 </style>
 """
 
@@ -753,15 +700,30 @@ def main() -> None:
     sort_default = "quoteVolume"
 
     with st.sidebar:
-        st.header("Refresh")
-        auto = st.toggle("Auto-refresh", value=False)
-        interval = st.select_slider(
-            "Interval (sec)",
-            options=[5, 10, 30, 60],
-            value=10,
-        )
-        manual = st.button("Refresh now", use_container_width=True)
+        st.header("Snapshot")
 
+        if SNAPSHOT_PATH.exists():
+            _mtime = pd.Timestamp.fromtimestamp(
+                SNAPSHOT_PATH.stat().st_mtime, tz="Asia/Seoul",
+            )
+            _ago = pd.Timestamp.now(tz="Asia/Seoul") - _mtime
+            st.caption(
+                f"📡 스냅샷 {_mtime.strftime('%H:%M:%S')} · {_humanize_ago(_ago)} ago"
+            )
+        else:
+            st.caption("📡 스냅샷 없음 — 아래 버튼으로 최초 받기")
+
+        live_proc = st.session_state.get("bitget_live_proc")
+        live_running = live_proc is not None and live_proc.poll() is None
+        live_btn = st.button(
+            "라이브 가격 갱신" if not live_running else "Fetching… (background)",
+            use_container_width=True,
+            key="bitget_live_btn",
+            disabled=live_running,
+            help="Bitget 티커 + CoinGecko 시총을 받아 _live_snapshot.parquet 에 머지. 백그라운드.",
+        )
+
+        st.markdown("---")
         fetch_proc = st.session_state.get("bitget_fetch_proc")
         fetch_running = fetch_proc is not None and fetch_proc.poll() is None
         fetch_btn = st.button(
@@ -775,10 +737,53 @@ def main() -> None:
         # 최근 내려받은 데이터 — 펼친 상태로 사이드바에 상시 노출.
         render_fetch_log_sidebar(st, embedded=True)
 
-    if manual:
-        st.cache_data.clear()
-
     _fetch_log = _ROOT / "data" / "cache" / "crypto" / "_fetch.log"
+    _live_log = _ROOT / "data" / "cache" / "crypto" / "_live_fetch.log"
+
+    if live_btn and not live_running:
+        import subprocess
+        _live_log.parent.mkdir(parents=True, exist_ok=True)
+        log_handle = open(_live_log, "w", encoding="utf-8", buffering=1)
+        new_proc = subprocess.Popen(
+            [sys.executable, "-m", "data.sources.bitget_live"],
+            cwd=str(_ROOT),
+            stdout=log_handle,
+            stderr=subprocess.STDOUT,
+        )
+        st.session_state["bitget_live_proc"] = new_proc
+        st.session_state["bitget_live_started"] = pd.Timestamp.now(tz="Asia/Seoul").isoformat(timespec="seconds")
+        st.session_state["bitget_live_finalized"] = False
+        st.rerun()
+
+    with st.sidebar:
+        if live_running or live_proc is not None:
+            try:
+                live_log_text = _live_log.read_text(encoding="utf-8", errors="replace")
+            except FileNotFoundError:
+                live_log_text = ""
+            live_tail = live_log_text.splitlines()[-8:]
+        if live_running:
+            st.info(
+                f"⏳ 라이브 fetch 진행 중 (시작 {st.session_state.get('bitget_live_started','?')})"
+            )
+            if live_tail:
+                st.code("\n".join(live_tail))
+            if st.button("🔄 상태 갱신", use_container_width=True, key="bitget_live_refresh"):
+                st.rerun()
+        elif live_proc is not None:
+            rc = live_proc.returncode
+            if not st.session_state.get("bitget_live_finalized"):
+                st.session_state["bitget_live_finalized"] = True
+            if rc == 0:
+                st.success("✅ 라이브 fetch 완료")
+            else:
+                st.error(f"❌ 라이브 fetch 실패 (rc={rc})")
+            if live_tail:
+                st.code("\n".join(live_tail))
+            if st.button("Dismiss", use_container_width=True, key="bitget_live_dismiss"):
+                st.session_state["bitget_live_proc"] = None
+                st.session_state["bitget_live_finalized"] = False
+                st.rerun()
 
     if fetch_btn and not fetch_running:
         import subprocess
@@ -874,16 +879,6 @@ def main() -> None:
                 st.session_state["bitget_fetch_finalized"] = False
                 st.rerun()
 
-    @st.cache_data(ttl=3, show_spinner=False)
-    def _cached_fetch() -> pd.DataFrame:
-        return fetch_tickers()
-
-    @st.cache_data(ttl=600, show_spinner=False)
-    def _cached_market_caps() -> dict[str, float]:
-        # CoinGecko has a free-tier rate limit (~30/min) — 10 min TTL keeps us
-        # well under it even with multiple page reloads.
-        return fetch_market_caps()
-
     @st.cache_data(ttl=300, show_spinner=False)
     def _cached_cache_tails(symbol: str, gran: str, n: int):
         # Single source of truth for period %, window H/L, MA Δ%.
@@ -916,15 +911,23 @@ def main() -> None:
 
     def _render_inline_chart(symbol: str) -> None:
         # Dialog has its own close (Esc / outside-click / built-in X), so we
-        # only need the interval toggle here.
-        with st.container(key="chart_iv_picker"):
-            chart_iv = st.segmented_control(
-                "Interval",
-                options=["1d", "1w", "1M"],
-                default="1w",
-                key="chart_iv",
-                label_visibility="collapsed",
+        # only need the symbol name + interval toggle here.
+        col_left, _spacer = st.columns([2, 3], vertical_alignment="center")
+        with col_left:
+            st.markdown(
+                f"<div style='text-align:left; font-size:17px; font-weight:600; "
+                f"padding-top:0px; margin-top:-6px; line-height:28px; white-space:nowrap; "
+                f"overflow:hidden; text-overflow:ellipsis;'>{symbol}</div>",
+                unsafe_allow_html=True,
             )
+            with st.container(key="chart_iv_picker"):
+                chart_iv = st.segmented_control(
+                    "Interval",
+                    options=["1d", "1w", "1M"],
+                    default="1w",
+                    key="chart_iv",
+                    label_visibility="collapsed",
+                )
         if not chart_iv:
             chart_iv = "1w"
 
@@ -961,7 +964,44 @@ def main() -> None:
         d = cdf.copy()
         # crypto cache: timestamp(UTC ms). lightweight-charts expects unix seconds.
         d["t"] = (pd.to_numeric(d["timestamp"]) // 1000).astype("int64")
-        d = d.sort_values("t").drop_duplicates(subset="t", keep="last")
+        d = d.sort_values("t").drop_duplicates(subset="t", keep="last").reset_index(drop=True)
+
+        # Standard exchange-style visible bar count per interval. Indicators
+        # below compute on the FULL series first, then we slice — so MAs/RSI
+        # in the visible window already include "warmup" values.
+        VISIBLE_BARS = {"1d": 150, "1w": 100, "1M": 60}.get(interval, 150)
+
+        # (period, color, label, kind)  kind: "sma" | "vwma"
+        ma_specs = [
+            (10, "#F0B90B", "MA10", "sma"),    # 노란색
+            (20, "#F6465D", "MA20", "sma"),    # 빨간색
+            (50, "#1565C0", "MA50", "sma"),    # 진한 파란색
+            (100, "#000000", "VWMA100", "vwma"),  # 검정색 (거래량 가중)
+        ]
+        ma_full: dict[str, pd.Series] = {}
+        for period, _color, label, kind in ma_specs:
+            if kind == "vwma":
+                pv = d["close"] * d["volume"]
+                num = pv.rolling(period).sum()
+                den = d["volume"].rolling(period).sum()
+                ma_full[label] = num / den.where(den != 0)
+            else:
+                ma_full[label] = d["close"].rolling(period).mean()
+
+        # RSI(14) — Wilder's smoothing via EWM(alpha=1/14).
+        delta = d["close"].diff()
+        gain = delta.clip(lower=0)
+        loss = -delta.clip(upper=0)
+        avg_gain = gain.ewm(alpha=1 / 14, adjust=False).mean()
+        avg_loss = loss.ewm(alpha=1 / 14, adjust=False).mean()
+        rs = avg_gain / avg_loss.where(avg_loss != 0)
+        rsi_full = 100 - (100 / (1 + rs))
+
+        # Slice to visible window after indicator computation.
+        d = d.tail(VISIBLE_BARS).reset_index(drop=True)
+        ma_full = {label: s.tail(VISIBLE_BARS).reset_index(drop=True)
+                   for label, s in ma_full.items()}
+        rsi_full = rsi_full.tail(VISIBLE_BARS).reset_index(drop=True)
 
         candles = [
             {"time": int(t), "open": float(o), "high": float(h),
@@ -977,22 +1017,9 @@ def main() -> None:
             for t, v, o, c in zip(d["t"], d["volume"], d["open"], d["close"])
         ]
 
-        # (period, color, label, kind)  kind: "sma" | "vwma"
-        ma_specs = [
-            (10, "#F0B90B", "MA10", "sma"),    # 노란색
-            (20, "#F6465D", "MA20", "red"),    # 빨간색
-            (50, "#1565C0", "MA50", "sma"),    # 진한 파란색
-            (100, "#000000", "VWMA100", "vwma"),  # 검정색 (거래량 가중)
-        ]
         ma_series = []
         for period, color, label, kind in ma_specs:
-            if kind == "vwma":
-                pv = d["close"] * d["volume"]
-                num = pv.rolling(period).sum()
-                den = d["volume"].rolling(period).sum()
-                ma = num / den.where(den != 0)
-            else:
-                ma = d["close"].rolling(period).mean()
+            ma = ma_full[label]
             line_data = [
                 {"time": int(t), "value": float(v)}
                 for t, v in zip(d["t"], ma) if pd.notna(v)
@@ -1012,8 +1039,23 @@ def main() -> None:
                 },
             })
 
+        rsi_line = [
+            {"time": int(t), "value": float(v)}
+            for t, v in zip(d["t"], rsi_full) if pd.notna(v)
+        ]
+        rsi_30 = (
+            [{"time": int(d["t"].iloc[0]), "value": 30.0},
+             {"time": int(d["t"].iloc[-1]), "value": 30.0}]
+            if len(d) else []
+        )
+        rsi_70 = (
+            [{"time": int(d["t"].iloc[0]), "value": 70.0},
+             {"time": int(d["t"].iloc[-1]), "value": 70.0}]
+            if len(d) else []
+        )
+
         chart_options = {
-            "height": 520,
+            "height": 620,
             "layout": {
                 "background": {"type": "solid", "color": "#ffffff"},
                 "textColor": "#1a1a1a",
@@ -1025,14 +1067,13 @@ def main() -> None:
             },
             "rightPriceScale": {
                 "borderColor": "rgba(0,0,0,0.15)",
-                "scaleMargins": {"top": 0.05, "bottom": 0.25},
+                "scaleMargins": {"top": 0.05, "bottom": 0.40},
             },
             "timeScale": {
                 "borderColor": "rgba(0,0,0,0.15)",
                 "timeVisible": interval in ("1h", "4h"),
                 "secondsVisible": False,
                 "rightOffset": 6,
-                "barSpacing": 6,
             },
             "crosshair": {"mode": 1},
             "watermark": {
@@ -1066,7 +1107,43 @@ def main() -> None:
                     "priceLineVisible": False,
                 },
                 "priceScale": {
-                    "scaleMargins": {"top": 0.78, "bottom": 0},
+                    "scaleMargins": {"top": 0.62, "bottom": 0.22},
+                },
+            },
+            {
+                "type": "Line",
+                "data": rsi_line,
+                "options": {
+                    "color": "#7E57C2", "lineWidth": 1,
+                    "priceScaleId": "rsi",
+                    "priceLineVisible": False, "lastValueVisible": False,
+                    "crosshairMarkerVisible": False, "title": "RSI14",
+                },
+                "priceScale": {
+                    "scaleMargins": {"top": 0.82, "bottom": 0},
+                    "autoScale": False,
+                },
+            },
+            {
+                "type": "Line",
+                "data": rsi_30,
+                "options": {
+                    "color": "rgba(38, 166, 154, 0.45)", "lineWidth": 1,
+                    "lineStyle": 2,
+                    "priceScaleId": "rsi",
+                    "priceLineVisible": False, "lastValueVisible": False,
+                    "crosshairMarkerVisible": False,
+                },
+            },
+            {
+                "type": "Line",
+                "data": rsi_70,
+                "options": {
+                    "color": "rgba(239, 83, 80, 0.45)", "lineWidth": 1,
+                    "lineStyle": 2,
+                    "priceScaleId": "rsi",
+                    "priceLineVisible": False, "lastValueVisible": False,
+                    "crosshairMarkerVisible": False,
                 },
             },
         ]
@@ -1088,25 +1165,42 @@ def main() -> None:
             return
         _render_inline_chart(sym)
 
-    # The data section runs inside an st.fragment so that auto-refresh ticks
-    # only re-render this block — sidebar / title stay put, no full-page flash.
-    run_every = interval if auto else None
-
-    @st.fragment(run_every=run_every)
+    @st.fragment
     def render_data_section() -> None:
-        try:
-            df = _cached_fetch()
-        except Exception as e:
-            st.error(f"Bitget API 실패: {e}")
+        df = load_snapshot()
+        if df is None or df.empty:
+            st.info(
+                "📡 라이브 스냅샷 없음 — 사이드바 `라이브 가격 갱신` 으로 먼저 받아주세요. "
+                "Bitget 티커는 bulk endpoint라 1~2초면 완료."
+            )
             return
 
-        # Market cap snapshot — single CoinGecko call, cached 10min. Failures
-        # leave marketCap as NULL, so the rest of the page still works.
-        df = attach_market_cap(df, _cached_market_caps())
+        stale_caption: Optional[str]
+        if "fetched_at" in df.columns:
+            fetched_ts = pd.to_datetime(df["fetched_at"], errors="coerce", utc=False)
+            latest = fetched_ts.max()
+            if pd.notna(latest):
+                latest_kst = (
+                    latest.tz_convert("Asia/Seoul")
+                    if latest.tzinfo is not None else latest
+                )
+                ago = pd.Timestamp.now(tz="Asia/Seoul") - latest_kst
+                fresh_count = int((fetched_ts == latest).sum())
+                stale_caption = (
+                    f"📡 시세 {latest_kst.strftime('%H:%M:%S')} · "
+                    f"{_humanize_ago(ago)} ago · "
+                    f"{fresh_count}/{len(df)} freshly updated"
+                )
+            else:
+                stale_caption = f"📡 시세 (timestamp unknown) · {len(df)} rows"
+        else:
+            stale_caption = f"📡 시세 (no timestamp) · {len(df)} rows"
+        st.caption(stale_caption)
 
         # Filter bar — sits right above the table, inside the fragment so
         # changing filters only re-runs the fragment (sidebar etc. stable).
-        f1, f2, f3, f4 = st.columns([3, 1, 2, 3])
+        # Mirrors KOSPI/NASDAQ: 5 columns with MA Interval + HL Lookback split.
+        f1, f2, f3, f4, f5 = st.columns([3, 1, 2, 2, 3])
         with f1:
             search = st.text_input("Symbol contains", value="", key="flt_search").strip()
         with f2:
@@ -1124,18 +1218,26 @@ def main() -> None:
                 key="flt_sort",
             )
         with f4:
-            window_label = st.segmented_control(
-                "Window",
-                options=WHIPSAW_WINDOW_OPTIONS,
-                default=DEFAULT_WHIPSAW_WINDOW,
-                key="flt_window",
-                help="Window High/Low Δ% 의 기간 + MA10/MA20 의 봉 크기. "
-                     "예) 24h → MA10 = 최근 24h 봉 10개 평균(=10일), "
-                     "14d → MA10 = 14일 봉 10개 평균(=140일). "
-                     "MA 계산은 캐시된 1H/1D parquet 을 stride 샘플링.",
+            ma_interval = st.segmented_control(
+                "MA Interval",
+                options=MA_INTERVAL_OPTIONS_CRYPTO,
+                default=DEFAULT_MA_INTERVAL_CRYPTO,
+                key="flt_ma_interval",
+                help="MA10/MA20 봉 단위. 1h/4h → 1H 캐시, 1d/1w → 1D 캐시 stride 샘플링.",
             )
-            if not window_label:
-                window_label = DEFAULT_WHIPSAW_WINDOW
+            if not ma_interval:
+                ma_interval = DEFAULT_MA_INTERVAL_CRYPTO
+        with f5:
+            hl_lookback = st.segmented_control(
+                "HL Lookback",
+                options=HL_LOOKBACK_OPTIONS_CRYPTO,
+                default=DEFAULT_HL_LOOKBACK_CRYPTO,
+                key="flt_hl_lookback",
+                help="High/Low Δ% 기간 (wall-clock anchored). "
+                     "24h → 1H 캐시 24봉, 그 외 → 1D 캐시.",
+            )
+            if not hl_lookback:
+                hl_lookback = DEFAULT_HL_LOOKBACK_CRYPTO
 
         # apply filter (always descending — Top N + sort-by-volume etc.)
         if search:
@@ -1201,7 +1303,9 @@ def main() -> None:
             selected_symbol = None
 
         # ── AgGrid render ──
-        df_grid, grid_options = build_grid_options(df, window_label, selected_symbol)
+        df_grid, grid_options = build_grid_options(
+            df, ma_interval, hl_lookback, selected_symbol,
+        )
         # Re-key the grid only when the row set/order *meaningfully* changes
         # (top_n / search / sort key). Same key across reruns lets AgGrid
         # preserve scroll position and column resize.

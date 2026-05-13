@@ -20,32 +20,41 @@ import pandas as pd
 from st_aggrid import GridOptionsBuilder, JsCode
 
 # ---------------------------------------------------------------------------
-# Constants — shared period / window choices for all stock pages
+# Constants — shared period / interval / lookback choices for all stock pages
 # ---------------------------------------------------------------------------
 
 # Fixed period % columns (always shown). Daily-only since stock caches are 1D.
 PERIODS_D: list[int] = [1, 3, 7, 14, 28, 56, 140]
 
-# Selectable window — drives MA10/MA20 Δ% + Window High/Low Δ%.
-# Smaller windows are skipped because MA10/20 of 1d stride is already shown
-# in conventional MA lines on the chart; Bitget's window concept here means
-# the *stride* between MA samples (so "28d" → MA10 = average of every 28th close).
-WINDOW_OPTIONS: list[str] = ["7d", "14d", "28d", "56d", "140d"]
-DEFAULT_WINDOW: str = "28d"
+# MA Interval — drives MA10/MA20 columns. Matches the chart's interval picker
+# (1d/1w/1M) so the dashboard's MA value equals the exchange-standard MA line
+# on a daily/weekly/monthly candle chart.
+MA_INTERVAL_OPTIONS: list[str] = ["1d", "1w", "1M"]
+DEFAULT_MA_INTERVAL: str = "1w"
+
+# HL Lookback — drives Window High/Low Δ%. Calendar-day window over which we
+# take max(High) / min(Low). Independent of the MA interval.
+HL_LOOKBACK_OPTIONS: list[str] = ["7d", "28d", "90d", "1y", "5y"]
+DEFAULT_HL_LOOKBACK: str = "1y"
 
 MA_PERIODS: tuple[int, int] = (10, 20)
+
+# Tail size handed to the cache loader. 5y (≈ 1260 trading days) covers the
+# longest HL lookback; 20 monthly bars (≈ 440 trading days) for 1M MA20 fits
+# comfortably under this.
+CACHE_TAIL_N: int = 1500
 
 
 # ---------------------------------------------------------------------------
 # Cache loader (capitalized OHLC — KR/US schema)
 # ---------------------------------------------------------------------------
 
-def load_cache_tails(path: Path, n: int) -> Optional[dict[str, np.ndarray]]:
+def load_cache_tails(path: Path, n: int) -> Optional[pd.DataFrame]:
     """Read the last ``n`` rows of (Close, High, Low) from a stock parquet.
 
-    Returns float64 numpy arrays (oldest→newest) or ``None`` on miss/empty.
-    Reads the whole column (parquet offset filtering isn't reliable) but only
-    materializes the tail into Python.
+    Returns a DataFrame indexed by date (oldest→newest) or ``None`` on
+    miss/empty. The DatetimeIndex is required by ``compute_from_cache`` for
+    weekly/monthly resampling and calendar-based lookback windows.
     """
     if not path.exists():
         return None
@@ -55,68 +64,62 @@ def load_cache_tails(path: Path, n: int) -> Optional[dict[str, np.ndarray]]:
         return None
     if df.empty:
         return None
-    tail = df.tail(n) if n and n < len(df) else df
-    return {
-        "close": tail["Close"].to_numpy(dtype=np.float64, copy=False),
-        "high": tail["High"].to_numpy(dtype=np.float64, copy=False),
-        "low": tail["Low"].to_numpy(dtype=np.float64, copy=False),
-    }
+    return df.tail(n) if n and n < len(df) else df
 
 
-def _parse_window_label(label: str) -> int:
-    """``"28d"`` → ``28``. Stock caches are daily-only so granularity is fixed."""
-    if not label.endswith("d"):
-        raise ValueError(f"stock window must end in 'd': {label!r}")
-    return int(label[:-1])
+def _lookback_to_days(label: str) -> int:
+    """``"7d"`` → ``7``, ``"1y"`` → ``365``. Calendar days, not trading days."""
+    if label.endswith("d"):
+        return int(label[:-1])
+    if label.endswith("y"):
+        return int(label[:-1]) * 365
+    raise ValueError(f"unknown HL lookback label: {label!r}")
 
 
 # ---------------------------------------------------------------------------
-# Single-pass compute: fixed period % + per-window MA / H-L Δ%
+# Single-pass compute: fixed period % + per-interval MA + per-lookback H/L Δ%
 # ---------------------------------------------------------------------------
 
 def compute_from_cache(
     current_prices: dict[str, float],
     symbols: list[str],
-    cache_loader: Callable[[str, int], Optional[dict[str, np.ndarray]]],
+    cache_loader: Callable[[str, int], Optional[pd.DataFrame]],
     *,
-    windows: list[str] = WINDOW_OPTIONS,
+    ma_intervals: list[str] = MA_INTERVAL_OPTIONS,
+    hl_lookbacks: list[str] = HL_LOOKBACK_OPTIONS,
     periods_d: list[int] = PERIODS_D,
     ma_periods: tuple[int, int] = MA_PERIODS,
 ) -> pd.DataFrame:
-    """Bitget-style all-windows compute for stock caches.
+    """All-permutations compute for stock caches (MA × Interval, HL × Lookback).
 
     Each symbol's parquet is read ONCE (via ``cache_loader``). From that single
-    array we derive:
+    DataFrame we derive:
       - fixed period %: ``pct_{n}d`` for each n in ``periods_d``
-      - per window w in ``windows``:
-          ``pct_ma{short}__{w}``, ``pct_ma{long}__{w}``,
-          ``high__{w}``, ``low__{w}``,
-          ``pct_off_high__{w}``, ``pct_off_low__{w}``
+      - per MA interval iv in ``ma_intervals`` (1d/1w/1M):
+          ``pct_ma{short}__{iv}``, ``pct_ma{long}__{iv}``
+        MA = SMA of last ``N`` closes on bars resampled to ``iv`` — matches the
+        exchange-standard MA line on a daily/weekly/monthly candle chart.
+      - per HL lookback lb in ``hl_lookbacks`` (7d/28d/90d/1y/5y):
+          ``high__{lb}``, ``low__{lb}``,
+          ``pct_off_high__{lb}``, ``pct_off_low__{lb}``
+        Calendar-day max(High) / min(Low) anchored at the cache's last index.
 
-    The grid switches the *displayed* window purely client-side via JsCode
-    valueGetter — no server recompute when the user toggles window.
+    The grid switches the *displayed* combination purely client-side via JsCode
+    valueGetter — no server recompute when the user toggles interval/lookback.
     """
     short, long_ = ma_periods
-    max_ma = max(short, long_)
-    parsed = [(w, _parse_window_label(w)) for w in windows]
-
-    # How many tail rows do we need?
-    need = max(periods_d) + 1
-    for _label, stride in parsed:
-        need = max(need, stride + 1, max_ma * stride + 1)
 
     pct_keys_d = [f"pct_{n}d" for n in periods_d]
-    win_cols: list[str] = []
-    for label, _stride in parsed:
-        win_cols.extend([
-            f"pct_ma{short}__{label}",
-            f"pct_ma{long_}__{label}",
-            f"high__{label}",
-            f"low__{label}",
-            f"pct_off_high__{label}",
-            f"pct_off_low__{label}",
+    ma_cols: list[str] = []
+    for iv in ma_intervals:
+        ma_cols.extend([f"pct_ma{short}__{iv}", f"pct_ma{long_}__{iv}"])
+    hl_cols: list[str] = []
+    for lb in hl_lookbacks:
+        hl_cols.extend([
+            f"high__{lb}", f"low__{lb}",
+            f"pct_off_high__{lb}", f"pct_off_low__{lb}",
         ])
-    none_cols = pct_keys_d + win_cols
+    none_cols = pct_keys_d + ma_cols + hl_cols
 
     rows: list[dict[str, Any]] = []
     for sym in symbols:
@@ -128,14 +131,12 @@ def compute_from_cache(
             rows.append(row)
             continue
 
-        arrs = cache_loader(sym, need)
-        if arrs is None or arrs["close"].size == 0:
+        df = cache_loader(sym, CACHE_TAIL_N)
+        if df is None or df.empty:
             rows.append(row)
             continue
 
-        closes = arrs["close"]
-        highs = arrs["high"]
-        lows = arrs["low"]
+        closes = df["Close"].to_numpy(dtype=np.float64, copy=False)
 
         # ── Fixed period % ──
         for n, key in zip(periods_d, pct_keys_d):
@@ -144,30 +145,44 @@ def compute_from_cache(
                 if prev:
                     row[key] = (cur - prev) / prev
 
-        # ── Per-window MA + H/L (all windows from same array) ──
-        for label, stride in parsed:
-            if highs.size >= stride:
-                hi = float(highs[-stride:].max())
-                lo = float(lows[-stride:].min())
-                row[f"high__{label}"] = hi
-                row[f"low__{label}"] = lo
-                if hi:
-                    row[f"pct_off_high__{label}"] = (cur - hi) / hi
-                if lo:
-                    row[f"pct_off_low__{label}"] = (cur - lo) / lo
-
-            n_closed = closes.size
-            idx = n_closed - 1 - np.arange(max_ma) * stride
-            valid = idx >= 0
-            sampled = closes[idx[valid]] if valid.any() else np.array([], dtype=np.float64)
-            if sampled.size >= short:
-                ma_s = sampled[:short].mean()
+        # ── Per-interval MA (exchange-standard SMA on resampled bars) ──
+        for iv in ma_intervals:
+            if iv == "1d":
+                bar_close = closes
+            elif iv == "1w":
+                bar_close = df["Close"].resample("W-FRI").last().dropna().to_numpy(
+                    dtype=np.float64, copy=False,
+                )
+            elif iv == "1M":
+                bar_close = df["Close"].resample("ME").last().dropna().to_numpy(
+                    dtype=np.float64, copy=False,
+                )
+            else:
+                continue
+            if bar_close.size >= short:
+                ma_s = bar_close[-short:].mean()
                 if ma_s:
-                    row[f"pct_ma{short}__{label}"] = (cur - ma_s) / ma_s
-            if sampled.size >= long_:
-                ma_l = sampled[:long_].mean()
+                    row[f"pct_ma{short}__{iv}"] = (cur - ma_s) / ma_s
+            if bar_close.size >= long_:
+                ma_l = bar_close[-long_:].mean()
                 if ma_l:
-                    row[f"pct_ma{long_}__{label}"] = (cur - ma_l) / ma_l
+                    row[f"pct_ma{long_}__{iv}"] = (cur - ma_l) / ma_l
+
+        # ── Per-lookback High/Low (calendar days from cache's last index) ──
+        last_ts = df.index[-1]
+        for lb in hl_lookbacks:
+            cutoff = last_ts - pd.Timedelta(days=_lookback_to_days(lb))
+            mask = df.index >= cutoff
+            if not mask.any():
+                continue
+            hi = float(df.loc[mask, "High"].max())
+            lo = float(df.loc[mask, "Low"].min())
+            row[f"high__{lb}"] = hi
+            row[f"low__{lb}"] = lo
+            if hi:
+                row[f"pct_off_high__{lb}"] = (cur - hi) / hi
+            if lo:
+                row[f"pct_off_low__{lb}"] = (cur - lo) / lo
 
         rows.append(row)
     return pd.DataFrame(rows)
@@ -246,7 +261,8 @@ def js_window_value_getter(field_prefix: str, window_label: str) -> JsCode:
 
 def build_stock_grid_options(
     df: pd.DataFrame,
-    window_label: str,
+    ma_interval: str,
+    hl_lookback: str,
     selected_symbol: Optional[str],
     *,
     symbol_col: str,                 # e.g. "itemCode" or "symbolCode"
@@ -272,8 +288,14 @@ def build_stock_grid_options(
     Visible column order (left → right):
         ▸ Symbol (pinned + checkbox), Name, Last, 거래대금, 시총,
           1d%, 3d%, 7d%, 14d%, 28d%, 56d%, 140d%,
-          MA10 Δ%, MA20 Δ%, High Δ%, Low Δ%,
+          MA10 Δ% (ma_interval), MA20 Δ% (ma_interval),
+          High Δ% (hl_lookback), Low Δ% (hl_lookback),
           메모
+
+    ``ma_interval`` ∈ {1d, 1w, 1M} selects which resampled bar the MA columns
+    read from; ``hl_lookback`` ∈ {7d, 28d, 90d, 1y, 5y} selects the calendar
+    window for the High/Low columns. Both flip values purely client-side via
+    JsCode valueGetter — no server recompute.
     """
     SHORT_KEY = f"_ma{short_ma}"
     LONG_KEY = f"_ma{long_ma}"
@@ -346,28 +368,29 @@ def build_stock_grid_options(
             type=["numericColumn"],
         )
 
-    # ── Window-dependent (valueGetter reads `__{window}` from row data) ──
+    # ── MA columns (valueGetter reads `__{ma_interval}` from row data) ──
     gob.configure_column(
         SHORT_KEY, headerName=f"MA{short_ma}", width=72,
-        valueGetter=js_window_value_getter(f"pct_ma{short_ma}", window_label),
+        valueGetter=js_window_value_getter(f"pct_ma{short_ma}", ma_interval),
         valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
         type=["numericColumn"],
     )
     gob.configure_column(
         LONG_KEY, headerName=f"MA{long_ma}", width=72,
-        valueGetter=js_window_value_getter(f"pct_ma{long_ma}", window_label),
+        valueGetter=js_window_value_getter(f"pct_ma{long_ma}", ma_interval),
         valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
         type=["numericColumn"],
     )
+    # ── HL columns (valueGetter reads `__{hl_lookback}` from row data) ──
     gob.configure_column(
         HIGH_KEY, headerName=f"High{pct_header_suffix}", width=72,
-        valueGetter=js_window_value_getter("pct_off_high", window_label),
+        valueGetter=js_window_value_getter("pct_off_high", hl_lookback),
         valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
         type=["numericColumn"],
     )
     gob.configure_column(
         LOW_KEY, headerName=f"Low{pct_header_suffix}", width=72,
-        valueGetter=js_window_value_getter("pct_off_low", window_label),
+        valueGetter=js_window_value_getter("pct_off_low", hl_lookback),
         valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
         type=["numericColumn"],
     )
@@ -426,8 +449,13 @@ def render_tv_chart_stock(
     """
     from streamlit_lightweight_charts import renderLightweightCharts  # type: ignore
 
-    d_full = cdf.copy().sort_index()
-    TAIL_N = {"1d": 200, "1w": 120, "1M": 60}.get(interval, 200)
+    d = cdf.copy().sort_index()
+
+    # Standard exchange-style visible bar count per interval. We slice the
+    # data to this tail length AFTER computing MAs/RSI on full history, so
+    # the indicators in the visible window already include "warmup" values
+    # from older bars.
+    VISIBLE_BARS = {"1d": 150, "1w": 100, "1M": 60}.get(interval, 150)
 
     ma_specs = [
         (10, "#F0B90B", "MA10", "sma"),
@@ -438,14 +466,27 @@ def render_tv_chart_stock(
     ma_full: dict[str, pd.Series] = {}
     for period, _color, label, kind in ma_specs:
         if kind == "vwma":
-            pv = d_full["Close"] * d_full["Volume"]
+            pv = d["Close"] * d["Volume"]
             num = pv.rolling(period).sum()
-            den = d_full["Volume"].rolling(period).sum()
+            den = d["Volume"].rolling(period).sum()
             ma_full[label] = num / den.where(den != 0)
         else:
-            ma_full[label] = d_full["Close"].rolling(period).mean()
+            ma_full[label] = d["Close"].rolling(period).mean()
 
-    d = d_full.tail(TAIL_N)
+    # RSI(14) — Wilder's smoothing via EWM(alpha=1/14).
+    delta = d["Close"].diff()
+    gain = delta.clip(lower=0)
+    loss = -delta.clip(upper=0)
+    avg_gain = gain.ewm(alpha=1 / 14, adjust=False).mean()
+    avg_loss = loss.ewm(alpha=1 / 14, adjust=False).mean()
+    rs = avg_gain / avg_loss.where(avg_loss != 0)
+    rsi_full = 100 - (100 / (1 + rs))
+
+    # Slice everything to the visible window (indicators already have warmup).
+    d = d.tail(VISIBLE_BARS)
+    ma_full = {label: s.reindex(d.index) for label, s in ma_full.items()}
+    rsi_full = rsi_full.reindex(d.index)
+
     idx = pd.DatetimeIndex(d.index)
     t = (idx.tz_localize("UTC").astype("int64") // 10**9).astype("int64")
 
@@ -465,7 +506,7 @@ def render_tv_chart_stock(
 
     ma_series = []
     for period, color, label, kind in ma_specs:
-        ma = ma_full[label].reindex(d.index)
+        ma = ma_full[label]
         line_data = [
             {"time": int(ti), "value": float(v)}
             for ti, v in zip(t, ma) if pd.notna(v)
@@ -482,8 +523,24 @@ def render_tv_chart_stock(
             },
         })
 
+    rsi_line = [
+        {"time": int(ti), "value": float(v)}
+        for ti, v in zip(t, rsi_full) if pd.notna(v)
+    ]
+    # 30 / 70 reference lines — flat 2-point lines spanning the visible range.
+    rsi_30 = (
+        [{"time": int(t[0]), "value": 30.0},
+         {"time": int(t[-1]), "value": 30.0}]
+        if len(t) else []
+    )
+    rsi_70 = (
+        [{"time": int(t[0]), "value": 70.0},
+         {"time": int(t[-1]), "value": 70.0}]
+        if len(t) else []
+    )
+
     chart_options = {
-        "height": 520,
+        "height": 620,
         "layout": {
             "background": {"type": "solid", "color": "#ffffff"},
             "textColor": "#1a1a1a",
@@ -495,12 +552,12 @@ def render_tv_chart_stock(
         },
         "rightPriceScale": {
             "borderColor": "rgba(0,0,0,0.15)",
-            "scaleMargins": {"top": 0.05, "bottom": 0.25},
+            "scaleMargins": {"top": 0.05, "bottom": 0.40},
         },
         "timeScale": {
             "borderColor": "rgba(0,0,0,0.15)",
             "timeVisible": False, "secondsVisible": False,
-            "rightOffset": 6, "barSpacing": 6,
+            "rightOffset": 6,
         },
         "crosshair": {"mode": 1},
         "watermark": {
@@ -532,7 +589,43 @@ def render_tv_chart_stock(
                 "lastValueVisible": False,
                 "priceLineVisible": False,
             },
-            "priceScale": {"scaleMargins": {"top": 0.78, "bottom": 0}},
+            "priceScale": {"scaleMargins": {"top": 0.62, "bottom": 0.22}},
+        },
+        {
+            "type": "Line",
+            "data": rsi_line,
+            "options": {
+                "color": "#7E57C2", "lineWidth": 1,
+                "priceScaleId": "rsi",
+                "priceLineVisible": False, "lastValueVisible": False,
+                "crosshairMarkerVisible": False, "title": "RSI14",
+            },
+            "priceScale": {
+                "scaleMargins": {"top": 0.82, "bottom": 0},
+                "autoScale": False,
+            },
+        },
+        {
+            "type": "Line",
+            "data": rsi_30,
+            "options": {
+                "color": "rgba(38, 166, 154, 0.45)", "lineWidth": 1,
+                "lineStyle": 2,  # dashed
+                "priceScaleId": "rsi",
+                "priceLineVisible": False, "lastValueVisible": False,
+                "crosshairMarkerVisible": False,
+            },
+        },
+        {
+            "type": "Line",
+            "data": rsi_70,
+            "options": {
+                "color": "rgba(239, 83, 80, 0.45)", "lineWidth": 1,
+                "lineStyle": 2,  # dashed
+                "priceScaleId": "rsi",
+                "priceLineVisible": False, "lastValueVisible": False,
+                "crosshairMarkerVisible": False,
+            },
         },
     ]
 
@@ -563,6 +656,48 @@ def save_notes(path: Path, notes: dict) -> None:
     )
 
 
+def render_chart_title(st: Any, title: str) -> None:
+    """Left-aligned title for the chart dialog header row."""
+    st.markdown(
+        f"<div style='text-align:left; font-size:17px; font-weight:600; "
+        f"padding-top:0px; margin-top:-6px; line-height:28px; white-space:nowrap; "
+        f"overflow:hidden; text-overflow:ellipsis;'>{title}</div>",
+        unsafe_allow_html=True,
+    )
+
+
+def render_chart_memo(
+    st: Any,
+    code: str,
+    notes_path: Path,
+    session_key: str,
+    *,
+    placeholder: str = "메모 작성…",
+) -> None:
+    """Memo text_input that persists to ``notes_path`` and the in-session dict.
+
+    Shares the ``session_key`` dict with the grid's 메모 column, so edits made
+    in the chart dialog show up in the grid (and vice versa) and survive page
+    reloads via the JSON file.
+    """
+    notes = st.session_state.setdefault(session_key, load_notes(notes_path))
+    new_val = st.text_input(
+        "메모",
+        value=notes.get(code, ""),
+        key=f"chart_memo_input::{session_key}::{code}",
+        label_visibility="collapsed",
+        placeholder=placeholder,
+    )
+    cur = notes.get(code, "")
+    new = (new_val or "").strip()
+    if new != cur:
+        if new:
+            notes[code] = new
+        else:
+            notes.pop(code, None)
+        save_notes(notes_path, notes)
+
+
 # ---------------------------------------------------------------------------
 # Shared CSS — compact interval picker for the chart dialog
 # ---------------------------------------------------------------------------
@@ -576,6 +711,12 @@ STOCK_PAGE_CSS = """
   font-size: 12px !important;
   min-height: 0 !important;
   line-height: 1.4 !important;
+}
+/* Nudge dialog X button — small offset from default */
+div[role="dialog"] button[aria-label="Close"],
+[data-testid="stDialog"] button[aria-label="Close"] {
+  top: 0.4rem !important;
+  margin-top: -2px !important;
 }
 </style>
 """

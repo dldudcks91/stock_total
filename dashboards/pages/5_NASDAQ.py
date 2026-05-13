@@ -1,26 +1,31 @@
 """Live ticker table for NASDAQ stocks — Bitget-style.
 
-Live prices: Naver Finance unofficial per-symbol endpoint
-``https://api.stock.naver.com/stock/{TICKER}.O/basic`` (fanned out in parallel).
+Live prices come from a persisted snapshot
+(``data/cache/us/_live_snapshot.parquet``). The page reads the snapshot on
+render and never auto-fetches. The sidebar "라이브 가격 갱신" button kicks off
+a background subprocess (``python -m data.sources.naver_us``) that merges
+fresh Naver data into the snapshot (tickers absent from this round retain
+previous values), then atomically replaces the file. The next page rerun
+picks up the new snapshot.
 
-Universe is the set of NASDAQ tickers already cached in ``data/cache/us/*.parquet``
-(see ``us-fetch`` skill). To add a symbol, fetch it once and the page picks it
-up on next refresh.
+Universe (for fallback / count) is the set of tickers already cached in
+``data/cache/us/*.parquet`` (see ``us-fetch`` skill).
 
-Period %, MA Δ%, Window High/Low Δ% come from the local 1D parquet cache.
-Period columns fixed at 1d / 3d / 7d / 14d / 28d / 56d / 140d; window selector
-toggles MA/HL stride purely client-side via JsCode valueGetter.
+Period %, MA Δ%, High/Low Δ% come from the local 1D parquet cache.
+Period columns fixed at 1d / 3d / 7d / 14d / 28d / 56d / 140d. Two independent
+selectors: "MA Interval" (1d/1w/1M) picks the bar unit for MA10/MA20 (matches
+the exchange-standard MA line on the candle chart); "HL Lookback"
+(7d/28d/90d/1y/5y) picks the calendar window for High/Low Δ%. Both flip
+client-side via JsCode valueGetter.
 
-Layout mirrors the Bitget page: AgGrid client-side grid, modal chart dialog,
-persisted ``메모`` column, sidebar "NASDAQ 데이터 받기" background fetch.
+Layout: AgGrid client-side grid, modal chart dialog, persisted ``메모`` column,
+sidebar background-subprocess buttons for snapshot refresh and FDR fetch.
 """
 from __future__ import annotations
 
-import asyncio
-import re
 import sys
 from pathlib import Path
-from typing import Any, Optional
+from typing import Optional
 
 import pandas as pd
 
@@ -29,16 +34,25 @@ if str(_ROOT) not in sys.path:
     sys.path.insert(0, str(_ROOT))
 
 from data.loader import load_ohlcv  # noqa: E402
+from data.sources.naver_us import (  # noqa: E402
+    SNAPSHOT_PATH,
+    discover_universe,
+    load_snapshot,
+)
 from dashboards._lib import render_fetch_log_sidebar  # noqa: E402
 from dashboards._stock_grid import (  # noqa: E402
-    DEFAULT_WINDOW,
+    DEFAULT_HL_LOOKBACK,
+    DEFAULT_MA_INTERVAL,
+    HL_LOOKBACK_OPTIONS,
+    MA_INTERVAL_OPTIONS,
     PERIODS_D,
     STOCK_PAGE_CSS,
-    WINDOW_OPTIONS,
     build_stock_grid_options,
     compute_from_cache,
     load_cache_tails,
     load_notes,
+    render_chart_memo,
+    render_chart_title,
     render_tv_chart_stock,
     save_notes,
 )
@@ -54,13 +68,6 @@ from st_aggrid import AgGrid, GridUpdateMode  # noqa: E402
 US_CACHE_DIR = _ROOT / "data" / "cache" / "us"
 NOTES_PATH = US_CACHE_DIR / "_notes.json"
 
-NAVER_BASIC_URL = "https://api.stock.naver.com/stock/{ticker}.O/basic"
-FETCH_CONCURRENCY = 10
-USER_AGENT = (
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-    "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36"
-)
-
 COLUMN_LABELS: dict[str, str] = {
     "symbolCode": "Symbol",
     "stockNameEng": "Name",
@@ -72,113 +79,15 @@ COLUMN_LABELS: dict[str, str] = {
 }
 
 
-# ---------------------------------------------------------------------------
-# Universe
-# ---------------------------------------------------------------------------
-
-def discover_universe() -> list[str]:
-    """Return cached NASDAQ tickers sorted alphabetically."""
-    if not US_CACHE_DIR.exists():
-        return []
-    return sorted(p.stem for p in US_CACHE_DIR.glob("*.parquet") if not p.stem.startswith("_"))
-
-
-# ---------------------------------------------------------------------------
-# Fetching
-# ---------------------------------------------------------------------------
-
-async def _fetch_one(session, sem, ticker: str) -> tuple[str, Optional[dict[str, Any]]]:
-    import aiohttp
-    url = NAVER_BASIC_URL.format(ticker=ticker)
-    async with sem:
-        try:
-            async with session.get(
-                url,
-                headers={"User-Agent": USER_AGENT, "Referer": "https://m.stock.naver.com/"},
-                timeout=aiohttp.ClientTimeout(total=8),
-            ) as r:
-                if r.status != 200:
-                    return ticker, None
-                return ticker, await r.json()
-        except Exception:
-            return ticker, None
-
-
-async def _fetch_universe_async(tickers: list[str]) -> dict[str, dict[str, Any]]:
-    import aiohttp
-    sem = asyncio.Semaphore(FETCH_CONCURRENCY)
-    async with aiohttp.ClientSession() as session:
-        tasks = [_fetch_one(session, sem, t) for t in tickers]
-        results = await asyncio.gather(*tasks)
-    return {sym: payload for sym, payload in results if payload is not None}
-
-
-def fetch_universe(tickers: list[str]) -> pd.DataFrame:
-    if not tickers:
-        return pd.DataFrame()
-    payloads = asyncio.run(_fetch_universe_async(tickers))
-    rows = [_normalize(sym, p) for sym, p in payloads.items()]
-    return pd.DataFrame(rows)
-
-
-# ---------------------------------------------------------------------------
-# Normalization
-# ---------------------------------------------------------------------------
-
-def _normalize(symbol: str, p: dict[str, Any]) -> dict[str, Any]:
-    totals = {item.get("code"): item.get("value") for item in (p.get("stockItemTotalInfos") or [])}
-    row: dict[str, Any] = {
-        "symbolCode": p.get("symbolCode") or symbol,
-        "stockName": p.get("stockName"),
-        "stockNameEng": p.get("stockNameEng"),
-        "closePrice": _to_float(p.get("closePrice")),
-        "fluctuationsRatio": _to_pct(p.get("fluctuationsRatio")),
-        "accumulatedTradingVolume": _to_float(totals.get("accumulatedTradingVolume")),
-        "marketValueRaw": _parse_market_value_usd(totals.get("marketValue")),
-        "marketStatus": p.get("marketStatus"),
-        "localTradedAt": p.get("localTradedAt"),
-    }
-    direction = (p.get("compareToPreviousPrice") or {}).get("code")
-    if direction in {"4", "5"} and row["fluctuationsRatio"] is not None:
-        row["fluctuationsRatio"] = -abs(row["fluctuationsRatio"])
-    return row
-
-
-def _to_float(x: Any) -> Optional[float]:
-    try:
-        if x is None or x == "" or x == "N/A":
-            return None
-        return float(str(x).replace(",", ""))
-    except (ValueError, TypeError):
-        return None
-
-
-def _to_pct(x: Any) -> Optional[float]:
-    v = _to_float(x)
-    return None if v is None else v / 100.0
-
-
-# Parses Naver-formatted USD market-cap strings like "4조 2,914억 USD".
-# 1조 = 10^12, 1억 = 10^8 (Korean accounting digit-grouping).
-_MV_RE = re.compile(
-    r"(?:(?P<jo>\d+(?:[\d,]*\d)?)\s*조\s*)?"
-    r"(?:(?P<eok>\d+(?:[\d,]*\d)?)\s*억)?",
-)
-
-
-def _parse_market_value_usd(s: Any) -> Optional[float]:
-    if s is None or s == "" or s == "N/A":
-        return None
-    s = str(s).strip()
-    plain = _to_float(s.replace("USD", "").strip())
-    if plain is not None and "조" not in s and "억" not in s:
-        return plain
-    m = _MV_RE.search(s)
-    if not m or not (m.group("jo") or m.group("eok")):
-        return None
-    jo = _to_float(m.group("jo")) or 0.0
-    eok = _to_float(m.group("eok")) or 0.0
-    return jo * 1e12 + eok * 1e8
+def _humanize_ago(delta: pd.Timedelta) -> str:
+    s = int(delta.total_seconds())
+    if s < 60:
+        return f"{s}s"
+    if s < 3600:
+        return f"{s // 60}m"
+    if s < 86400:
+        return f"{s // 3600}h"
+    return f"{s // 86400}d"
 
 
 # ---------------------------------------------------------------------------
@@ -189,7 +98,6 @@ def main() -> None:
     import streamlit as st
 
     st.set_page_config(page_title="NASDAQ", page_icon="🇺🇸", layout="wide")
-    render_fetch_log_sidebar(st)
     st.markdown(STOCK_PAGE_CSS, unsafe_allow_html=True)
 
     sort_options = list(COLUMN_LABELS.keys())
@@ -202,24 +110,30 @@ def main() -> None:
         )
 
     with st.sidebar:
-        st.header("Refresh")
-        auto = st.toggle("Auto-refresh", value=False, key="nas_auto")
-        interval = st.select_slider(
-            "Interval (sec)", options=[15, 30, 60, 120], value=60, key="nas_interval",
-        )
-        manual = st.button("Refresh now", use_container_width=True, key="nas_manual")
-
-        st.markdown("---")
         st.header("Universe")
         st.caption(f"캐시된 NASDAQ 심볼: **{len(universe)}** 개")
-        limit = st.slider(
-            "Fetch limit (alphabetical from cache)",
-            min_value=20,
-            max_value=max(20, min(500, len(universe) or 20)),
-            value=min(100, len(universe) or 20),
-            step=10, key="nas_limit",
-            help="네트워크 라운드트립 비용 ≈ ceil(N / concurrency) × ~0.3s.",
-        ) if universe else 0
+
+        if SNAPSHOT_PATH.exists():
+            _mtime = pd.Timestamp.fromtimestamp(
+                SNAPSHOT_PATH.stat().st_mtime, tz="Asia/Seoul",
+            )
+            _ago = pd.Timestamp.now(tz="Asia/Seoul") - _mtime
+            st.caption(
+                f"📡 스냅샷 {_mtime.strftime('%H:%M:%S')} · {_humanize_ago(_ago)} ago"
+            )
+        else:
+            st.caption("📡 스냅샷 없음 — 아래 버튼으로 최초 받기")
+
+        live_proc = st.session_state.get("nas_live_proc")
+        live_running = live_proc is not None and live_proc.poll() is None
+        live_btn = st.button(
+            "라이브 가격 갱신" if not live_running else "Fetching… (background)",
+            use_container_width=True,
+            key="nas_live_btn",
+            disabled=live_running,
+            help="Naver 비공식 API로 전 종목 라이브 가격을 받아 "
+                 "_live_snapshot.parquet 에 머지 저장. 백그라운드.",
+        )
 
         st.markdown("---")
         fetch_proc = st.session_state.get("nas_fetch_proc")
@@ -232,10 +146,56 @@ def main() -> None:
             help="FDR 로 NASDAQ 전 종목 일봉을 data/cache/us/ 로 증분 다운로드. 백그라운드 실행.",
         )
 
-    if manual:
-        st.cache_data.clear()
+        # 최근 내려받은 데이터 — 데이터 받기 버튼 아래에 상시 노출.
+        render_fetch_log_sidebar(st, embedded=True)
 
     _fetch_log = US_CACHE_DIR / "_fetch.log"
+    _live_log = US_CACHE_DIR / "_live_fetch.log"
+
+    if live_btn and not live_running:
+        import subprocess
+        _live_log.parent.mkdir(parents=True, exist_ok=True)
+        log_handle = open(_live_log, "w", encoding="utf-8", buffering=1)
+        new_proc = subprocess.Popen(
+            [sys.executable, "-m", "data.sources.naver_us"],
+            cwd=str(_ROOT),
+            stdout=log_handle,
+            stderr=subprocess.STDOUT,
+        )
+        st.session_state["nas_live_proc"] = new_proc
+        st.session_state["nas_live_started"] = pd.Timestamp.now(tz="Asia/Seoul").isoformat(timespec="seconds")
+        st.session_state["nas_live_finalized"] = False
+        st.rerun()
+
+    with st.sidebar:
+        if live_running or live_proc is not None:
+            try:
+                log_text = _live_log.read_text(encoding="utf-8", errors="replace")
+            except FileNotFoundError:
+                log_text = ""
+            tail = log_text.splitlines()[-8:]
+        if live_running:
+            st.info(
+                f"⏳ 라이브 fetch 진행 중 (시작 {st.session_state.get('nas_live_started','?')})"
+            )
+            if tail:
+                st.code("\n".join(tail))
+            if st.button("🔄 상태 갱신", use_container_width=True, key="nas_live_refresh"):
+                st.rerun()
+        elif live_proc is not None:
+            rc = live_proc.returncode
+            if not st.session_state.get("nas_live_finalized"):
+                st.session_state["nas_live_finalized"] = True
+            if rc == 0:
+                st.success("✅ 라이브 fetch 완료")
+            else:
+                st.error(f"❌ 라이브 fetch 실패 (rc={rc})")
+            if tail:
+                st.code("\n".join(tail))
+            if st.button("Dismiss", use_container_width=True, key="nas_live_dismiss"):
+                st.session_state["nas_live_proc"] = None
+                st.session_state["nas_live_finalized"] = False
+                st.rerun()
 
     if fetch_btn and not fetch_running:
         import subprocess
@@ -285,10 +245,6 @@ def main() -> None:
     if not universe:
         return
 
-    @st.cache_data(ttl=60, show_spinner=False)
-    def _cached_universe(tickers_tuple: tuple[str, ...]) -> pd.DataFrame:
-        return fetch_universe(list(tickers_tuple))
-
     @st.cache_data(ttl=300, show_spinner=False)
     def _cached_cache_tails(ticker: str, n: int):
         return load_cache_tails(US_CACHE_DIR / f"{ticker}.parquet", n)
@@ -314,14 +270,19 @@ def main() -> None:
         return load_ohlcv("us", symbol, iv)
 
     def _render_inline_chart(symbol: str, name: str) -> None:
-        with st.container(key="stock_chart_iv_picker"):
-            chart_iv = st.segmented_control(
-                "Interval",
-                options=["1d", "1w", "1M"],
-                default="1w",
-                key="nas_chart_iv",
-                label_visibility="collapsed",
-            )
+        col_left, col_memo = st.columns([2, 3], vertical_alignment="center")
+        with col_left:
+            render_chart_title(st, f"{name} · {symbol}")
+            with st.container(key="stock_chart_iv_picker"):
+                chart_iv = st.segmented_control(
+                    "Interval",
+                    options=["1d", "1w", "1M"],
+                    default="1w",
+                    key="nas_chart_iv",
+                    label_visibility="collapsed",
+                )
+        with col_memo:
+            render_chart_memo(st, symbol, NOTES_PATH, "nas_notes")
         if not chart_iv:
             chart_iv = "1w"
         try:
@@ -353,17 +314,45 @@ def main() -> None:
         name = st.session_state.get("nas_sel_name") or sym
         _render_inline_chart(sym, name)
 
-    run_every = interval if auto else None
-
-    @st.fragment(run_every=run_every)
+    @st.fragment
     def render_data_section() -> None:
-        f1, f2, f3, f4 = st.columns([3, 1, 2, 3])
+        df = load_snapshot()
+        if df is None or df.empty:
+            st.info(
+                "📡 라이브 스냅샷 없음 — 사이드바 `라이브 가격 갱신` 으로 먼저 받아주세요. "
+                "초회 fetch는 3800종목 기준 ~2분 소요."
+            )
+            return
+
+        stale_caption: Optional[str]
+        if "fetched_at" in df.columns:
+            fetched_ts = pd.to_datetime(df["fetched_at"], errors="coerce", utc=False)
+            latest = fetched_ts.max()
+            if pd.notna(latest):
+                latest_kst = (
+                    latest.tz_convert("Asia/Seoul")
+                    if latest.tzinfo is not None else latest
+                )
+                ago = pd.Timestamp.now(tz="Asia/Seoul") - latest_kst
+                fresh_count = int((fetched_ts == latest).sum())
+                stale_caption = (
+                    f"📡 시세 {latest_kst.strftime('%H:%M:%S')} · "
+                    f"{_humanize_ago(ago)} ago · "
+                    f"{fresh_count}/{len(df)} freshly updated"
+                )
+            else:
+                stale_caption = f"📡 시세 (timestamp unknown) · {len(df)} rows"
+        else:
+            stale_caption = f"📡 시세 (no timestamp) · {len(df)} rows"
+        st.caption(stale_caption)
+
+        f1, f2, f3, f4, f5 = st.columns([3, 1, 2, 2, 3])
         with f1:
             search = st.text_input("Symbol / name contains", value="", key="nas_search").strip()
         with f2:
             top_n = st.number_input(
                 "Top N (0 = all)",
-                min_value=0, max_value=2000, value=0, step=50,
+                min_value=0, max_value=5000, value=0, step=50,
                 key="nas_topn",
             )
         with f3:
@@ -375,28 +364,25 @@ def main() -> None:
                 key="nas_sort",
             )
         with f4:
-            window_label = st.segmented_control(
-                "Window",
-                options=WINDOW_OPTIONS,
-                default=DEFAULT_WINDOW,
-                key="nas_window",
-                help="Window High/Low Δ% 기간 + MA10/MA20 봉 stride. "
-                     "예) 28d → MA10 = 28일 봉 10개 평균(=280일).",
+            ma_interval = st.segmented_control(
+                "MA Interval",
+                options=MA_INTERVAL_OPTIONS,
+                default=DEFAULT_MA_INTERVAL,
+                key="nas_ma_interval",
+                help="MA10/MA20 봉 단위. 거래소 표준 — 차트의 1d/1w/1M MA 라인과 동일.",
             )
-            if not window_label:
-                window_label = DEFAULT_WINDOW
-
-        chosen = universe[: int(limit)]
-        try:
-            with st.spinner(f"Naver 시세 fetching ({len(chosen)} symbols, concurrency={FETCH_CONCURRENCY})…"):
-                df = _cached_universe(tuple(chosen))
-        except Exception as e:
-            st.error(f"Naver API 실패: {e}")
-            return
-
-        if df.empty:
-            st.warning("응답이 비어 있습니다. Naver 비공식 엔드포인트가 차단됐을 수 있습니다.")
-            return
+            if not ma_interval:
+                ma_interval = DEFAULT_MA_INTERVAL
+        with f5:
+            hl_lookback = st.segmented_control(
+                "HL Lookback",
+                options=HL_LOOKBACK_OPTIONS,
+                default=DEFAULT_HL_LOOKBACK,
+                key="nas_hl_lookback",
+                help="High/Low Δ% 기간 (캘린더일). 1y = 최근 1년 최고가/최저가 대비.",
+            )
+            if not hl_lookback:
+                hl_lookback = DEFAULT_HL_LOOKBACK
 
         symbols_all = df["symbolCode"].dropna().astype(str).tolist()
         if symbols_all:
@@ -444,14 +430,14 @@ def main() -> None:
             selected_symbol = None
 
         df_grid, grid_options = build_stock_grid_options(
-            df, window_label, selected_symbol,
+            df, ma_interval, hl_lookback, selected_symbol,
             symbol_col="symbolCode", symbol_header="Symbol",
             name_col="stockNameEng", name_header="Name",
             price_col="closePrice", price_format="dec",
             volume_col="accumulatedTradingVolume", volume_header="Volume",
             market_cap_col="marketValueRaw", market_cap_header="시총 (USD)",
         )
-        grid_key = f"nas_grid::{top_n}::{search}::{sort_col_key}::{limit}"
+        grid_key = f"nas_grid::{top_n}::{search}::{sort_col_key}"
         grid_resp = AgGrid(
             df_grid,
             gridOptions=grid_options,
@@ -509,11 +495,14 @@ def main() -> None:
         elif not cur_sel and last_shown is not None:
             st.session_state.pop("_nas_chart_dialog_shown_for", None)
 
-        missing = set(chosen) - set(df["symbolCode"].astype(str).tolist())
-        with st.expander("응답 원본 컬럼 (디버그)"):
+        missing_in_snapshot = set(universe) - set(df["symbolCode"].astype(str).tolist())
+        with st.expander("스냅샷 메타 (디버그)"):
             st.write(sorted(df.columns.tolist()))
-            if missing:
-                st.write(f"응답 없음 ({len(missing)}): ", sorted(missing))
+            if missing_in_snapshot:
+                st.write(
+                    f"universe에 있으나 스냅샷에 없음 ({len(missing_in_snapshot)}): ",
+                    sorted(missing_in_snapshot),
+                )
 
     render_data_section()
 

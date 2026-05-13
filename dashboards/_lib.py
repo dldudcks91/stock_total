@@ -272,43 +272,39 @@ def _fmt_age(updated_at: str) -> str:
 
 
 def render_fetch_log_sidebar(st, *, embedded: bool = False) -> None:
-    """사이드바에 '최근 내려받은 데이터' 블록을 그림.
+    """사이드바에 Bitget / KOSPI / NASDAQ 의 마지막 fetch 시각을 한 줄씩 그린다.
 
-    - ``embedded=False`` (기본): 사이드바 상단에 접힌 expander 로. 호출자가
-      ``with st.sidebar:`` 블록 밖에서 부를 때 사용.
-    - ``embedded=True``: expander 없이 평탄하게(=항상 펼친 상태) 그림. 호출자가
-      이미 ``with st.sidebar:`` 안에 있을 때(또는 사이드바의 특정 위치에 끼워
-      넣고 싶을 때) 사용.
+    - ``embedded=False`` (기본): 호출자가 ``with st.sidebar:`` 밖에서 부를 때.
+    - ``embedded=True``: 호출자가 이미 ``with st.sidebar:`` 안에 있을 때.
     """
     from data import fetch_log
 
     log = fetch_log.read()
 
-    def _section(title: str, keys: tuple) -> None:
-        st.markdown(f"**{title}**")
-        rendered = False
-        for k in keys:
-            e = log.get(k)
-            if not e:
-                continue
-            rendered = True
-            label = fetch_log.KEY_LABELS.get(k, k)
-            ts = e.get("updated_at", "")
-            age = _fmt_age(ts)
-            n = e.get("n_symbols")
-            meta = f" · {n}종목" if n else ""
-            # 시각의 시:분만 짧게 표시.
-            short_ts = ts.split("T", 1)[1][:5] if "T" in ts else ts
-            date_part = ts.split("T", 1)[0] if "T" in ts else ""
-            st.caption(f"{label}: {date_part} {short_ts} ({age}){meta}")
-        if not rendered:
-            st.caption("_기록 없음_")
+    # 자산 → 후보 key 리스트 (가장 최근에 갱신된 key 를 채택).
+    ASSET_KEYS: list[tuple[str, tuple[str, ...]]] = [
+        ("Bitget", ("crypto_1h", "crypto_4h", "crypto_1d", "crypto_1w")),
+        ("KOSPI", ("kr_1d",)),
+        ("NASDAQ", ("us_1d",)),
+    ]
 
-    if embedded:
-        st.markdown("**📥 최근 내려받은 데이터**")
-        _section("현재 가격 데이터", fetch_log.CURRENT_PRICE_KEYS)
-        _section("1d 데이터", fetch_log.DAILY_KEYS)
-    else:
-        with st.sidebar.expander("📥 최근 내려받은 데이터", expanded=False):
-            _section("현재 가격 데이터", fetch_log.CURRENT_PRICE_KEYS)
-            _section("1d 데이터", fetch_log.DAILY_KEYS)
+    def _latest_ts(keys: tuple[str, ...]) -> str:
+        latest = ""
+        for k in keys:
+            e = log.get(k) or {}
+            ts = e.get("updated_at", "")
+            if ts and ts > latest:
+                latest = ts
+        return latest
+
+    target = st if embedded else st.sidebar
+    target.markdown("**📥 마지막 데이터 수신**")
+    for asset, keys in ASSET_KEYS:
+        ts = _latest_ts(keys)
+        if not ts:
+            target.caption(f"{asset}: _기록 없음_")
+            continue
+        date_part = ts.split("T", 1)[0] if "T" in ts else ts
+        short_ts = ts.split("T", 1)[1][:5] if "T" in ts else ""
+        age = _fmt_age(ts)
+        target.caption(f"{asset}: {date_part} {short_ts} ({age})")
