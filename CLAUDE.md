@@ -15,41 +15,71 @@
 
 ```
 data/
-├── sources/         # 데이터 fetcher
-│   ├── bitget.py    # Bitget USDT-M 1H/1D (async REST, --granularity)
-│   └── stocks.py    # FDR 기반 KR(KOSPI) / US(NASDAQ) 1D
+├── sources/             # 데이터 fetcher
+│   ├── bitget.py        # Bitget USDT-M 1H/1D (async REST, --granularity)
+│   ├── bitget_live.py   # Bitget 실시간 스냅샷 (마지막 가격/표 렌더용)
+│   ├── _snapshot.py     # 스냅샷 캐시 헬퍼
+│   ├── stocks.py        # FDR 기반 KR(KOSPI) / US(NASDAQ) 1D
+│   ├── naver_kr.py      # 네이버 금융 KR 실시간 보조 소스
+│   └── naver_us.py      # 네이버 금융 US 실시간 보조 소스
 ├── cache/
 │   ├── crypto/
 │   │   ├── 1h/{SYMBOL}.parquet
 │   │   ├── 1d/{SYMBOL}.parquet
 │   │   └── classification.parquet
-│   ├── kr/          # {6자리코드}.parquet
-│   └── us/          # {TICKER}.parquet
-├── resample.py      # 1h/1d 캐시 우선, 4h/1w/1M는 메모리 리샘플
-├── classification.py # 크립토 4그룹 분류
-└── universe.py      # 분류 결과에서 그룹별 심볼 추출
+│   ├── kr/              # {6자리코드}.parquet
+│   └── us/              # {TICKER}.parquet
+├── loader.py            # 자산·인터벌 무관 load_ohlcv()
+├── resample.py          # 1h/1d 캐시 우선, 4h/1w/1M는 메모리 리샘플
+├── classification.py    # 크립토 4그룹 분류
+├── universe.py          # 분류 결과에서 그룹별 심볼 추출
+└── fetch_log.py         # 마지막 fetch 시점 기록
 
 backtest/
-├── engine/          # 시그널 → 체결 → 포지션 → 성과
-├── strategies/      # 한 파일 = 한 전략 (전략별 .md 리포트 동거)
-└── runs/            # 런 결과 (런별 디렉터리)
+├── engine/              # 시그널 → 체결 → 포지션 → 성과
+├── strategies/          # 한 파일 = 한 전략 (전략별 .md 리포트 동거)
+├── runs/                # 런 결과 (런별 디렉터리, gitignore)
+├── batch_runner.py      # 다중 전략·심볼 일괄 실행
+└── compare.py           # 런 비교 (skill 백엔드)
 
-research/            # KR 종목 리서치 (옛 stock_research 흡수)
-├── collect.py       # FDR 일봉 단일 종목 헬퍼
-├── analyze.py       # 정량 지표 (자산 무관)
-├── broker_report.py # 한경 컨센서스 크롤
-├── pdf_parse.py     # PDF에서 목표주가/투자의견 추출
-├── dart.py          # DART OpenAPI
-├── financials.py    # PDF 추정치 표 파싱
-├── industry.py      # KSIC 업종/피어
-├── report.py        # 종합 리포트 통합 (CLI)
-├── reports/         # 산출 마크다운 리포트
-├── cache/           # 한경 PDF·DART JSON 캐시
-└── analysis/        # 정량 분석 결과 JSON
+research/                # KR 종목 종합 리서치 (옛 stock_research 흡수)
+├── collect.py           # FDR 일봉 단일 종목 헬퍼
+├── analyze.py           # 정량 지표 (자산 무관)
+├── broker_report.py     # 한경 컨센서스 크롤
+├── pdf_parse.py         # PDF에서 목표주가/투자의견 추출
+├── dart.py              # DART OpenAPI
+├── financials.py        # PDF 추정치 표 파싱
+├── industry.py          # KSIC 업종/피어
+├── report.py            # 종합 리포트 통합 (CLI)
+├── reports/             # 산출 마크다운 리포트 (gitignore)
+├── cache/               # 한경 PDF·DART JSON 캐시 (gitignore)
+└── analysis/            # 정량 분석 결과 JSON (gitignore)
 
-dashboards/          # Streamlit
-notebooks/           # 임시 탐색용
-scripts/             # 배치 실행 스크립트
+dashboards/              # Streamlit 멀티페이지
+├── app.py               # 엔트리
+├── charts.py            # 차트 빌더 (Plotly)
+├── _cache.py / _lib.py / _stock_grid.py
+└── pages/
+    ├── 1_Backtest.py    # 단일 런 뷰어
+    ├── 2_Compare.py     # 멀티 런 비교
+    ├── 3_Bitget.py      # 크립토 표
+    ├── 4_KOSPI.py       # KR 표
+    ├── 5_NASDAQ.py      # US 표
+    └── 6_Mobile.py      # 모바일 보기
+
+scripts/                 # 단발/배치 스크립트 (자세히: scripts/README.md)
+├── quiet_bottom/        # quiet_bottom 전략 분석·검증·플롯 (서로 import)
+├── spring/              # spring 패턴 스캔 (실험)
+├── misc/                # 수집·마이그레이션·스모크·벤치 등
+├── out/                 # 결과물 (CSV·PNG·log, git tracked)
+└── README.md
+
+docs/                    # 영구 문서
+├── classification.md    # 크립토 4그룹 분류 규칙
+├── results/             # 분석 결과 artifact (보존용)
+└── reference/           # 외부 자료 정리 (e.g. 단테 검색기)
+
+notebooks/               # 임시 탐색용 (.py 모듈로 옮긴 뒤 비움)
 ```
 
 ## 런 디렉터리 규약 (백테스트)
@@ -141,9 +171,16 @@ US 티커: 영문 대문자.
 | 전략 | 라벨 | 자산 | 용도 | 비고 |
 |---|---|---|---|---|
 | `quiet_bottom` | **조용한 바닥** | KR / US | 추천 시그널 (자동매매 X) | 1차 구현 — 6 조건 (close>MA20, slope/accel 양, avg_dd_104w≤-0.45, path_R²_52w≤0.50, ret_4w≤+60%). 자세히: [QUIET_BOTTOM.md](backtest/strategies/QUIET_BOTTOM.md) |
-| `clean_dive_turn` | — | — | deprecated alias of `quiet_bottom` | 호환 유지용 |
 | `ma_slope_turn_up` | — | 전 자산 | 슬로프 양 전환 진입 (실험) | quiet_bottom의 전신 |
-| `weekly_trend` / `sma_cross` / `breakout_start` / ... | — | 크립토 위주 | 단순 추세/돌파 베이스라인 | |
+| `weekly_trend` | — | 크립토 위주 | 주봉 추세 베이스라인 | |
+| `sma_cross` | — | 크립토 위주 | 골든·데드 크로스 베이스라인 | |
+| `breakout_start` | — | 크립토 위주 | 도네치안 돌파 + 스퀴즈 + 거래량 | |
+| `trend_follow` | — | 크립토 위주 | EMA 정배열 + ADX | |
+| `momentum_roc` | — | 크립토 위주 | ROC 모멘텀 가속 | |
+| `rsi_pullback` | — | 크립토 위주 | EMA100 위 RSI 반등 | |
+| `bb_squeeze` | — | 크립토 위주 | BB 폭 압축 후 상단 돌파 | |
+| `reversal_bottom` | — | 크립토 위주 | 바닥 반전 (실험) | |
+| `pump_continuation` | — | 크립토 위주 | 펌프 후 연속 추세 (실험) | |
 
 ### 현재 Agent 목록 (`.claude/agents/`)
 
