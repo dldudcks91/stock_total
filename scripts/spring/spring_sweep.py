@@ -13,11 +13,11 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from data.resample import load  # noqa: E402
-from scripts.spring_scan import (  # noqa: E402
+from scripts.spring.spring_scan import (  # noqa: E402
     _weekly_sma10_on_4h,
     detect_springs,
     list_symbols,

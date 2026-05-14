@@ -82,5 +82,5 @@ n_points           8760                                 8760                    
 ## 호출 절차 (Claude가 사용자에게 안내할 때)
 
 1. 사용자가 두 런을 명시했는지 확인. 없으면 `ls backtest/runs/` 로 후보 보여주기
-2. `python -m backtest.compare RUN_A RUN_B [--csv ...]` 실행
+2. `.venv/Scripts/python.exe -m backtest.compare RUN_A RUN_B [--csv ...]` 실행
 3. 경고가 떴으면(strategy/symbol/interval 불일치) 사용자에게 의도된 비교인지 한 번 확인

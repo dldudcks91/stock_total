@@ -19,7 +19,7 @@ import pandas as pd
 # 한글 깨짐 방지
 sys.stdout.reconfigure(encoding="utf-8")
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from backtest.strategies import ma_slope_turn_up  # noqa: E402

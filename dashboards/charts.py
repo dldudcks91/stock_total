@@ -31,6 +31,33 @@ BG = "#ffffff"
 GRID = "rgba(0,0,0,0.08)"
 TEXT = "#1a1a1a"
 
+# TradingView 스타일 그리기 도구 (Plotly 모드바 버튼)
+DRAW_BUTTONS = ("drawline", "drawopenpath", "drawrect", "drawcircle", "eraseshape")
+DRAW_LINE_COLOR = "#1E88E5"
+
+
+def plotly_config(
+    *,
+    drawing: bool = True,
+    scroll_zoom: bool = True,
+    display_mode_bar: bool = True,
+    displaylogo: bool = False,
+) -> dict:
+    """`st.plotly_chart(..., config=plotly_config())` 용 설정.
+
+    drawing=True 이면 추세선/박스/원/자유선/지우개 버튼이 모드바에 추가된다.
+    그린 도형은 페이지 새로고침 시 사라진다 (세션 저장은 별도 처리 필요).
+    """
+    cfg: dict = {
+        "scrollZoom": scroll_zoom,
+        "displaylogo": displaylogo,
+        "displayModeBar": display_mode_bar,
+        "modeBarButtonsToRemove": ["lasso2d", "select2d", "autoScale2d"],
+    }
+    if drawing and display_mode_bar:
+        cfg["modeBarButtonsToAdd"] = list(DRAW_BUTTONS)
+    return cfg
+
 
 def _normalize(df: pd.DataFrame) -> pd.DataFrame:
     """입력 DataFrame을 차트 내부 표준(dt KST + 소문자 OHLCV)으로 변환.
@@ -197,6 +224,11 @@ def plot_ohlcv(
         hovermode="x unified",
         xaxis_rangeslider_visible=range_slider,
         dragmode="pan",
+        newshape=dict(
+            line=dict(color=DRAW_LINE_COLOR, width=1.6),
+            fillcolor="rgba(30,136,229,0.10)",
+            opacity=0.9,
+        ),
     )
 
     fig.update_xaxes(showgrid=True, gridcolor=GRID, showline=False, color=TEXT, zeroline=False)

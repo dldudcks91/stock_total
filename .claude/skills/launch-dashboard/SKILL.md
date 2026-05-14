@@ -79,6 +79,8 @@ Streamlit 멀티페이지 대시보드를 실행하는 스킬.
 
 ## 트러블슈팅
 
-- `ModuleNotFoundError: streamlit` → `pip install -r requirements.txt`
-- `No runs yet.` 화면 → 먼저 `python -m backtest.engine.runner …` 로 백테스트 실행
+- `ModuleNotFoundError: streamlit` → `.venv/Scripts/pip.exe install -r requirements.txt`
+- `Invalid frequency: ME` / 캐시 계산 실패 → **anaconda 등 venv 외 python 으로 streamlit 이 떠 있음**.
+  `Get-CimInstance Win32_Process -Filter "Name='python.exe'"` 로 CommandLine 에 `anaconda` 가 들어간 PID 모두 `Stop-Process -Id <PID> -Force` 후 `.venv/Scripts/streamlit.exe` 로 재기동. (pandas 2.2+ 의 `resample("ME")` 가 anaconda 의 옛 pandas 1.5 에선 깨짐.)
+- `No runs yet.` 화면 → 먼저 `.venv/Scripts/python.exe -m backtest.engine.runner …` 로 백테스트 실행
 - 외부 접속이 필요하면 `--server.address 0.0.0.0` 추가

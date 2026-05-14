@@ -1,4 +1,4 @@
-"""clean_dive_turn 검증 — KR/US Sharpe 5.84 / 3.56이 진짜인지.
+"""quiet_bottom 검증 — KR/US Sharpe 5.84 / 3.56이 진짜인지.
 
 4가지 검증:
   1) 시기별 분할 — 2020-22 / 2023-24 / 2025-26 각각 Sharpe
@@ -15,15 +15,15 @@ import numpy as np
 import pandas as pd
 
 sys.stdout.reconfigure(encoding="utf-8")
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from backtest.strategies import clean_dive_turn  # noqa: E402
-from scripts.exit_rule_grid import ExitRule, simulate  # noqa: E402
-from scripts.count_slope_turn_signals import (  # noqa: E402
+from backtest.strategies import quiet_bottom  # noqa: E402
+from scripts.quiet_bottom.exit_rule_grid import ExitRule, simulate  # noqa: E402
+from scripts.quiet_bottom.count_slope_turn_signals import (  # noqa: E402
     load_stock_weekly, KR_DIR, US_DIR,
 )
-from scripts.forward_returns_top200 import (kr_top_universe, us_top_universe)  # noqa: E402
+from scripts.quiet_bottom.forward_returns_top200 import (kr_top_universe, us_top_universe)  # noqa: E402
 
 SINCE_YEARS = 6
 SINCE = pd.Timestamp.utcnow().tz_localize(None).normalize() - pd.DateOffset(years=SINCE_YEARS)
@@ -48,7 +48,7 @@ def collect_trades(files, universe, cost_rt):
             df_w = load_stock_weekly(p)
             if df_w is None or df_w.empty or len(df_w) < 120:
                 continue
-            sig = clean_dive_turn.signal(df_w.reset_index(drop=True), PARAMS)
+            sig = quiet_bottom.signal(df_w.reset_index(drop=True), PARAMS)
             sig.index = df_w.index
             entries = (sig.diff() == 1) & (df_w.index >= SINCE)
             close = df_w["close"].to_numpy()
@@ -103,7 +103,7 @@ def print_stats(s, label):
 
 
 def main():
-    print(f"clean_dive_turn validation — 6y data (since {SINCE.date()})\n")
+    print(f"quiet_bottom validation — 6y data (since {SINCE.date()})\n")
     kr_uni = kr_top_universe()
     us_uni = us_top_universe()
     kr_files = [p for p in sorted(KR_DIR.glob("*.parquet")) if not p.stem.startswith("_")]

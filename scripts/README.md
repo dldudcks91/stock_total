@@ -1,6 +1,6 @@
 # scripts/
 
-일회성 / 분석 / 운영용 스크립트. 모듈로 import 가능 (실행은 `python -m scripts.<group>.<name>`).
+일회성 / 분석 / 운영용 스크립트. 모듈로 import 가능 (실행은 `.venv/Scripts/python.exe -m scripts.<group>.<name>` — 시스템/anaconda python 금지).
 
 ## quiet_bottom/
 

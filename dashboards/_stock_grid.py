@@ -80,6 +80,141 @@ def _lookback_to_days(label: str) -> int:
 # Single-pass compute: fixed period % + per-interval MA + per-lookback H/L Δ%
 # ---------------------------------------------------------------------------
 
+def compute_reference_levels(
+    symbols: list[str],
+    cache_loader: Callable[[str, int], Optional[pd.DataFrame]],
+    *,
+    ma_intervals: list[str] = MA_INTERVAL_OPTIONS,
+    hl_lookbacks: list[str] = HL_LOOKBACK_OPTIONS,
+    periods_d: list[int] = PERIODS_D,
+    ma_periods: tuple[int, int] = MA_PERIODS,
+) -> pd.DataFrame:
+    """Price-independent reference levels for one stock cache pass.
+
+    Returns one row per symbol with columns:
+      - ``prev_{n}d`` for each n in ``periods_d`` — close N trading days ago
+        (used to derive ``pct_{n}d`` later)
+      - ``ma{short|long}__{iv}`` for each iv in ``ma_intervals`` — SMA of last
+        ``short`` / ``long`` closes on bars resampled to iv
+      - ``high__{lb}``, ``low__{lb}`` for each lb in ``hl_lookbacks`` —
+        max(High) / min(Low) in the lb calendar-day window
+
+    Caller pairs this with ``apply_current_prices`` to produce the pct_* cols.
+    Separating the two lets the heavy parquet-read pass be cached without the
+    current-price tuple in the cache key, so live-price refreshes don't
+    invalidate the whole table.
+    """
+    short, long_ = ma_periods
+
+    prev_keys = [f"prev_{n}d" for n in periods_d]
+    ma_cols: list[str] = []
+    for iv in ma_intervals:
+        ma_cols.extend([f"ma{short}__{iv}", f"ma{long_}__{iv}"])
+    hl_cols: list[str] = []
+    for lb in hl_lookbacks:
+        hl_cols.extend([f"high__{lb}", f"low__{lb}"])
+    none_cols = prev_keys + ma_cols + hl_cols
+
+    rows: list[dict[str, Any]] = []
+    for sym in symbols:
+        row: dict[str, Any] = {"symbol": sym}
+        for k in none_cols:
+            row[k] = None
+
+        df = cache_loader(sym, CACHE_TAIL_N)
+        if df is None or df.empty:
+            rows.append(row)
+            continue
+
+        closes = df["Close"].to_numpy(dtype=np.float64, copy=False)
+
+        # ── prev close per fixed period ──
+        for n, key in zip(periods_d, prev_keys):
+            if closes.size > n:
+                prev = float(closes[-(n + 1)])
+                if np.isfinite(prev):
+                    row[key] = prev
+
+        # ── Per-interval MA (exchange-standard SMA on resampled bars) ──
+        for iv in ma_intervals:
+            if iv == "1d":
+                bar_close = closes
+            elif iv == "1w":
+                bar_close = df["Close"].resample("W-FRI").last().dropna().to_numpy(
+                    dtype=np.float64, copy=False,
+                )
+            elif iv == "1M":
+                bar_close = df["Close"].resample("ME").last().dropna().to_numpy(
+                    dtype=np.float64, copy=False,
+                )
+            else:
+                continue
+            if bar_close.size >= short:
+                row[f"ma{short}__{iv}"] = float(bar_close[-short:].mean())
+            if bar_close.size >= long_:
+                row[f"ma{long_}__{iv}"] = float(bar_close[-long_:].mean())
+
+        # ── Per-lookback High/Low (calendar days from cache's last index) ──
+        last_ts = df.index[-1]
+        for lb in hl_lookbacks:
+            cutoff = last_ts - pd.Timedelta(days=_lookback_to_days(lb))
+            mask = df.index >= cutoff
+            if not mask.any():
+                continue
+            row[f"high__{lb}"] = float(df.loc[mask, "High"].max())
+            row[f"low__{lb}"] = float(df.loc[mask, "Low"].min())
+
+        rows.append(row)
+    return pd.DataFrame(rows)
+
+
+def apply_current_prices(
+    refs: pd.DataFrame,
+    current_prices: dict[str, float],
+    *,
+    ma_intervals: list[str] = MA_INTERVAL_OPTIONS,
+    hl_lookbacks: list[str] = HL_LOOKBACK_OPTIONS,
+    periods_d: list[int] = PERIODS_D,
+    ma_periods: tuple[int, int] = MA_PERIODS,
+) -> pd.DataFrame:
+    """Vectorized: ``refs`` (prev/ma/high/low) + current prices → pct_* columns.
+
+    The output schema matches ``compute_from_cache`` exactly:
+      ``pct_{n}d``, ``pct_ma{p}__{iv}``,
+      ``high__{lb}``, ``low__{lb}``, ``pct_off_high__{lb}``, ``pct_off_low__{lb}``.
+
+    This is the cheap per-rerun pass — does not touch parquet, only does a
+    handful of vectorized series ops over the reference DataFrame.
+    """
+    short, long_ = ma_periods
+    out = pd.DataFrame({"symbol": refs["symbol"].astype(str)})
+
+    cur = refs["symbol"].astype(str).map(current_prices).astype(float)
+    cur = cur.where(np.isfinite(cur))
+
+    def _pct(ref_col: str) -> pd.Series:
+        if ref_col not in refs.columns:
+            return pd.Series([None] * len(refs), index=refs.index, dtype="float64")
+        r = pd.to_numeric(refs[ref_col], errors="coerce")
+        r = r.where((r != 0) & np.isfinite(r))
+        return (cur - r) / r
+
+    for n in periods_d:
+        out[f"pct_{n}d"] = _pct(f"prev_{n}d")
+    for iv in ma_intervals:
+        out[f"pct_ma{short}__{iv}"] = _pct(f"ma{short}__{iv}")
+        out[f"pct_ma{long_}__{iv}"] = _pct(f"ma{long_}__{iv}")
+    for lb in hl_lookbacks:
+        hi_col, lo_col = f"high__{lb}", f"low__{lb}"
+        if hi_col in refs.columns:
+            out[hi_col] = refs[hi_col].values
+            out[f"pct_off_high__{lb}"] = _pct(hi_col)
+        if lo_col in refs.columns:
+            out[lo_col] = refs[lo_col].values
+            out[f"pct_off_low__{lb}"] = _pct(lo_col)
+    return out
+
+
 def compute_from_cache(
     current_prices: dict[str, float],
     symbols: list[str],
@@ -246,6 +381,33 @@ function(params) {
 }
 """)
 
+# Recommendation cell — "추격d 95" style label with a score, color by strategy.
+# Falls back to "—" when no active signal at the >=80 threshold.
+JS_FMT_REC = JsCode("""
+function(params) {
+  const d = params.data || {};
+  const label = d.rec_label;
+  const score = d.rec_score;
+  if (!label || score == null || Number.isNaN(score)) return '—';
+  return label + ' ' + Math.round(score);
+}
+""")
+
+JS_STYLE_REC = JsCode("""
+function(params) {
+  const d = params.data || {};
+  const kind = d.rec_kind;
+  if (!kind) return {color: '#888'};
+  // 추격 = 빨강(강한 모멘텀), 눌림 = 주황(관망), 바닥 = 파랑(회복)
+  const palette = {
+    chase:    {color: '#D62828', fontWeight: '700'},
+    pullback: {color: '#F77F00', fontWeight: '700'},
+    quiet:    {color: '#1D4ED8', fontWeight: '700'},
+  };
+  return palette[kind] || {color: '#888'};
+}
+""")
+
 
 def js_window_value_getter(field_prefix: str, window_label: str) -> JsCode:
     """JsCode that returns ``row[`{prefix}__{window}`]`` — lets window-toggle
@@ -301,6 +463,7 @@ def build_stock_grid_options(
     LONG_KEY = f"_ma{long_ma}"
     HIGH_KEY = "_high_pct"
     LOW_KEY = "_low_pct"
+    REC_KEY = "_rec"   # display-only column; reads rec_label/rec_score/rec_kind via JS
 
     visible_order: list[str] = [symbol_col]
     if name_col:
@@ -311,10 +474,10 @@ def build_stock_grid_options(
     if market_cap_col:
         visible_order.append(market_cap_col)
     visible_order.extend(f"pct_{n}d" for n in periods_d)
-    visible_order.extend([SHORT_KEY, LONG_KEY, HIGH_KEY, LOW_KEY, "note"])
+    visible_order.extend([SHORT_KEY, LONG_KEY, HIGH_KEY, LOW_KEY, REC_KEY, "note"])
 
     df_grid = df.copy()
-    for placeholder in (SHORT_KEY, LONG_KEY, HIGH_KEY, LOW_KEY):
+    for placeholder in (SHORT_KEY, LONG_KEY, HIGH_KEY, LOW_KEY, REC_KEY):
         if placeholder not in df_grid.columns:
             df_grid[placeholder] = None
 
@@ -329,19 +492,23 @@ def build_stock_grid_options(
         cellStyle={"display": "flex", "alignItems": "center"},
     )
 
-    # ── Symbol (pinned, checkbox column) ──
+    # All columns use plain ``width`` — column auto-fit is handled at the
+    # AgGrid call site via ``fit_columns_on_grid_load=True``. Since the
+    # grid_key includes ma_interval / hl_lookback, AgGrid remounts on every
+    # interval click and re-runs fit_columns, so the grid always exactly
+    # fills its container width (no horizontal scroll, no trailing gap).
     gob.configure_column(
         symbol_col, headerName=symbol_header, pinned="left",
-        width=110, minWidth=90,
+        width=110, minWidth=70,
         checkboxSelection=True, headerCheckboxSelection=False,
     )
 
     if name_col:
-        gob.configure_column(name_col, headerName=name_header, width=160, minWidth=120)
+        gob.configure_column(name_col, headerName=name_header, width=160, minWidth=80)
 
     price_fmt = JS_FMT_PRICE_INT if price_format == "int" else JS_FMT_PRICE_DEC
     gob.configure_column(
-        price_col, headerName=price_header, width=95,
+        price_col, headerName=price_header, width=95, minWidth=60,
         valueFormatter=price_fmt, type=["numericColumn"],
     )
 
@@ -351,53 +518,62 @@ def build_stock_grid_options(
     mcap_width = 130 if market_cap_format == "millions" else 120
     if volume_col:
         gob.configure_column(
-            volume_col, headerName=volume_header, width=vol_width,
+            volume_col, headerName=volume_header, width=vol_width, minWidth=70,
             valueFormatter=vol_fmt, type=["numericColumn"],
         )
     if market_cap_col:
         gob.configure_column(
-            market_cap_col, headerName=market_cap_header, width=mcap_width,
+            market_cap_col, headerName=market_cap_header, width=mcap_width, minWidth=70,
             valueFormatter=mcap_fmt, type=["numericColumn"],
         )
 
     # ── Fixed period % columns ──
     for n in periods_d:
         gob.configure_column(
-            f"pct_{n}d", headerName=f"{n}d{pct_header_suffix}", width=68,
+            f"pct_{n}d", headerName=f"{n}d{pct_header_suffix}", width=68, minWidth=45,
             valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
             type=["numericColumn"],
         )
 
     # ── MA columns (valueGetter reads `__{ma_interval}` from row data) ──
     gob.configure_column(
-        SHORT_KEY, headerName=f"MA{short_ma}", width=72,
+        SHORT_KEY, headerName=f"MA{short_ma}", width=72, minWidth=50,
         valueGetter=js_window_value_getter(f"pct_ma{short_ma}", ma_interval),
         valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
         type=["numericColumn"],
     )
     gob.configure_column(
-        LONG_KEY, headerName=f"MA{long_ma}", width=72,
+        LONG_KEY, headerName=f"MA{long_ma}", width=72, minWidth=50,
         valueGetter=js_window_value_getter(f"pct_ma{long_ma}", ma_interval),
         valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
         type=["numericColumn"],
     )
     # ── HL columns (valueGetter reads `__{hl_lookback}` from row data) ──
     gob.configure_column(
-        HIGH_KEY, headerName=f"High{pct_header_suffix}", width=72,
+        HIGH_KEY, headerName=f"High{pct_header_suffix}", width=72, minWidth=50,
         valueGetter=js_window_value_getter("pct_off_high", hl_lookback),
         valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
         type=["numericColumn"],
     )
     gob.configure_column(
-        LOW_KEY, headerName=f"Low{pct_header_suffix}", width=72,
+        LOW_KEY, headerName=f"Low{pct_header_suffix}", width=72, minWidth=50,
         valueGetter=js_window_value_getter("pct_off_low", hl_lookback),
         valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
         type=["numericColumn"],
     )
 
-    # ── Memo (editable, wide, last column) ──
+    # ── 추천 (전략 점수, display-only) ──
+    # rec_label / rec_score / rec_kind 컬럼이 row data 에 있어야 표시됨.
+    # 없으면 모든 셀이 "—" 로 렌더링.
     gob.configure_column(
-        "note", headerName="메모", width=220, editable=True,
+        REC_KEY, headerName="추천", width=98, minWidth=70,
+        valueFormatter=JS_FMT_REC, cellStyle=JS_STYLE_REC,
+        tooltipField="rec_detail",
+    )
+
+    # ── Memo (editable, last column) ──
+    gob.configure_column(
+        "note", headerName="메모", width=180, minWidth=100, editable=True,
         cellEditor="agLargeTextCellEditor",
         cellEditorParams={"maxLength": 500, "rows": 3, "cols": 40},
     )
@@ -426,6 +602,18 @@ def build_stock_grid_options(
         "suppressRowClickSelection": True,
         "rowSelection": "single",
         "enableCellTextSelection": True,
+        # Auto-fit columns to grid width on every container resize. Fires
+        # whenever the AgGrid root resizes (window resize, sidebar toggle,
+        # Streamlit dialog open/close that briefly toggles body scrollbar,
+        # fragment reruns, …) — guarantees columns always fill grid width
+        # exactly, no horizontal scroll, no trailing whitespace. Unlike
+        # ``fit_columns_on_grid_load`` which fires only once at mount time.
+        "onGridSizeChanged": JsCode(
+            "function(params){ params.api.sizeColumnsToFit(); }"
+        ),
+        "onFirstDataRendered": JsCode(
+            "function(params){ params.api.sizeColumnsToFit(); }"
+        ),
     })
     return df_grid, opts
 
@@ -717,6 +905,34 @@ div[role="dialog"] button[aria-label="Close"],
 [data-testid="stDialog"] button[aria-label="Close"] {
   top: 0.4rem !important;
   margin-top: -2px !important;
+}
+/* Cap the entire page to viewport width and clip any overflow.
+   Streamlit's wide layout sometimes lets nested blocks push the page
+   wider than the viewport — this forces everything to fit. */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+}
+[data-testid="stAppViewContainer"],
+[data-testid="stMain"],
+.main,
+.main .block-container,
+[data-testid="stMainBlockContainer"] {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+/* AgGrid component container + iframe — never exceed parent width. */
+[data-testid="stCustomComponentV1"],
+[data-testid="element-container"]:has(iframe) {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+[data-testid="stCustomComponentV1"] iframe,
+iframe[title*="aggrid"],
+iframe[title*="st_aggrid"],
+iframe[title*="ag_grid"] {
+  width: 100% !important;
+  max-width: 100% !important;
 }
 </style>
 """

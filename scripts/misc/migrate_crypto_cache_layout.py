@@ -15,7 +15,7 @@ from pathlib import Path
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
-CACHE_DIR = Path(__file__).resolve().parents[1] / "data" / "cache" / "crypto"
+CACHE_DIR = Path(__file__).resolve().parents[2] / "data" / "cache" / "crypto"
 PATTERN = re.compile(r"^bitget_(?P<sym>.+)_(?P<gran>1h|4h|1d|1w|1M)\.parquet$")
 VALID_GRANS = {"1h", "4h", "1d", "1w", "1M"}
 

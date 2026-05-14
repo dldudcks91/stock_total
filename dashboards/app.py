@@ -1,7 +1,8 @@
 """Multi-page Streamlit dashboard entry point.
 
-Run with:
-    streamlit run dashboards/app.py
+Run with (ALWAYS use the project .venv — do NOT use global / anaconda streamlit,
+mismatched pandas versions break resample("ME") and other 2.2+ APIs):
+    .venv/Scripts/streamlit.exe run dashboards/app.py
 
 Pages live in `dashboards/pages/` and are auto-discovered by Streamlit. The
 home page just shows a quick run inventory and routes the user to the relevant

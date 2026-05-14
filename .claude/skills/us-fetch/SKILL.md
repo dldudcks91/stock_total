@@ -46,7 +46,7 @@ df.to_parquet(Path("data/cache/us") / "AAPL.parquet")
 
 ## 호출 절차
 
-1. `python -m data.sources.stocks --market NASDAQ` (긴 시간 소요)
+1. `.venv/Scripts/python.exe -m data.sources.stocks --market NASDAQ` (긴 시간 소요)
 2. 캐시 카운트 확인: `ls data/cache/us | wc -l`
 3. 단일 종목은 `fdr.DataReader(...)` 로 빠르게
 

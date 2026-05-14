@@ -21,8 +21,8 @@ forward return은 **follow-through 봉(i+1) close 대비** +6 / +12 / +24 / +48
 → 진입은 follow-through 봉 종가에서 가능 (look-ahead 없음).
 
 사용:
-    python scripts/spring_scan.py
-    python scripts/spring_scan.py --tier trend --min-events 5
+    .venv/Scripts/python.exe -m scripts.spring.spring_scan
+    .venv/Scripts/python.exe -m scripts.spring.spring_scan --tier trend --min-events 5
 """
 
 from __future__ import annotations
@@ -34,7 +34,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from data.resample import load  # noqa: E402

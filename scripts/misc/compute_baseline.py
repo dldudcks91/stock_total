@@ -17,7 +17,7 @@ import pandas as pd
 from backtest.engine.runner import BARS_PER_YEAR, _parse_ts, _slice_df
 from data.resample import load as load_ohlcv
 
-CACHE_DIR = Path(__file__).resolve().parents[1] / "data" / "cache"
+CACHE_DIR = Path(__file__).resolve().parents[2] / "data" / "cache"
 
 
 def buy_hold(symbol: str, interval: str, start: str, end: str) -> dict:

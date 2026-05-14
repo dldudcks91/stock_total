@@ -61,7 +61,7 @@ krx    = fdr.StockListing("KRX")     # 통합
 
 ## 호출 절차
 
-1. 처음이면 `python -m data.sources.stocks --market KOSPI` 실행 (수 분 소요)
+1. 처음이면 `.venv/Scripts/python.exe -m data.sources.stocks --market KOSPI` 실행 (수 분 소요)
 2. 이후 신규 종목/증분 갱신: 같은 명령 (캐시 있으면 skip)
 3. 단일 종목 빠른 확인은 `research.collect.fetch_daily(...)`
 

@@ -1,59 +1,51 @@
 """Bench: how long does the Bitget table's candle pass take at N=50 vs N=all?
 
-Reuses the page's `fetch_tickers` + `fetch_candles_batch` so the test path
-matches what the dashboard actually does. Streamlit is stubbed out so the
-module can be loaded without launching a server.
+Measures the local-cache compute path (``compute_from_cache``) over a real
+Bitget ticker snapshot so the numbers match what the dashboard actually does.
+Previously this script execed the page module to grab its inner functions;
+since the page was split into ``dashboards/live/`` modules it now imports the
+compute helper directly.
 """
 from __future__ import annotations
 
 import sys
 import time
-import types
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 sys.stdout.reconfigure(encoding="utf-8")
 
-
-def _stub_streamlit() -> None:
-    # Use real streamlit so st_aggrid's declare_component works.
-    class _Any:
-        def __getattr__(self, n):
-            return _Any()
-        def __call__(self, *a, **k):
-            return _Any()
-        def __enter__(self):
-            return self
-        def __exit__(self, *a):
-            return False
-    try:
-        import streamlit_lightweight_charts  # noqa: F401
-    except ImportError:
-        sys.modules["streamlit_lightweight_charts"] = _Any()
-    import streamlit  # noqa: F401
+from dashboards.live._crypto_compute import compute_from_cache  # noqa: E402
+from data.sources.bitget_live import load_snapshot  # noqa: E402
 
 
-def _load_page_module():
-    _stub_streamlit()
-    src = (ROOT / "dashboards" / "pages" / "3_Bitget.py").read_text(encoding="utf-8")
-    # Drop the module-level main() invocation so importing doesn't launch the page.
-    src = src.replace("\nmain()\n", "\n")
-    page_path = ROOT / "dashboards" / "pages" / "3_Bitget.py"
-    ns: dict = {"__name__": "bp_bench", "__file__": str(page_path)}
-    exec(compile(src, str(page_path), "exec"), ns)
-    return ns
+def _load_ticker_snapshot():
+    """Reuse the persisted Bitget snapshot if present; otherwise None.
+
+    The original bench fetched live tickers via the page's ``fetch_tickers``
+    helper, but that lived inside the page module and used aiohttp directly.
+    The persisted snapshot is what the dashboard actually displays, so using
+    it here keeps the bench's symbol/price universe consistent with reality.
+    """
+    df = load_snapshot()
+    if df is None or df.empty:
+        return None
+    return df
 
 
 def main() -> None:
-    ns = _load_page_module()
-    fetch_tickers = ns["fetch_tickers"]
-    compute_from_cache = ns["compute_from_cache"]
-
     t0 = time.perf_counter()
-    df0 = fetch_tickers()
+    df0 = _load_ticker_snapshot()
     t_ticker = time.perf_counter() - t0
-    print(f"ticker snapshot: {t_ticker*1000:6.1f} ms  rows={len(df0)}")
+    if df0 is None:
+        print(
+            "No persisted snapshot at data/cache/crypto/_live_snapshot.parquet — "
+            "run `python -m data.sources.bitget_live` first or open the Live "
+            "dashboard and click '라이브 가격 갱신'."
+        )
+        return
+    print(f"snapshot load: {t_ticker*1000:6.1f} ms  rows={len(df0)}")
 
     df0 = df0.sort_values("quoteVolume", ascending=False, na_position="last").reset_index(drop=True)
     syms_50 = df0["symbol"].head(50).astype(str).tolist()
@@ -66,7 +58,7 @@ def main() -> None:
         timings = []
         for _ in range(repeats):
             t = time.perf_counter()
-            out = compute_from_cache(current_prices, symbols)  # all 7 windows
+            out = compute_from_cache(current_prices, symbols)  # all windows
             overlap = [c for c in out.columns if c != "symbol" and c in sub.columns]
             base = sub.drop(columns=overlap) if overlap else sub
             merged = base.merge(out, on="symbol", how="left")
@@ -93,11 +85,8 @@ def main() -> None:
         f"all→{ra['best']*1000/ra['N']:.2f} ms/sym"
     )
 
-    # Re-rendering on each rerun also includes a ticker fetch (~1s, but 3s cached)
-    # and Styler/data_editor cost which we can't time from python.
-    print("\nReal render = ticker fetch (cache hit ≈0ms / miss ≈ ticker line above)")
-    print("              + compute+merge (above)")
-    print("              + Styler.apply + data_editor render (browser-side, not measured)")
+    print("\nReal render = snapshot load (above) + compute+merge (above)")
+    print("              + AgGrid serialize + browser render (not measured)")
 
 
 if __name__ == "__main__":

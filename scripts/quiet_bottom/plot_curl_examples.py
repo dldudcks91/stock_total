@@ -13,10 +13,10 @@ import matplotlib.pyplot as plt
 import matplotlib.dates as mdates
 
 sys.stdout.reconfigure(encoding="utf-8")
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
-from scripts.count_slope_turn_signals import load_crypto_weekly, load_stock_weekly  # noqa: E402
+from scripts.quiet_bottom.count_slope_turn_signals import load_crypto_weekly, load_stock_weekly  # noqa: E402
 
 # 보여줄 케이스 — (label, asset, file, entry_date)
 CASES = [

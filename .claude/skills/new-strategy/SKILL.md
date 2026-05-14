@@ -48,7 +48,7 @@ description: 새 백테스트 전략 파일을 backtest/strategies/_template.py.
 - 생성된 절대경로
 - 권장 다음 액션:
   ```
-  python -m backtest.engine.runner --strategy <name> --symbol BTCUSDT --interval 1h --start 2024-01-01
+  .venv/Scripts/python.exe -m backtest.engine.runner --strategy <name> --symbol BTCUSDT --interval 1h --start 2024-01-01
   ```
 - 전략 작성 시 주의사항 (간단히):
   - 룩어헤드 금지 — `shift`/`ffill` 직접 호출 X (엔진이 t→t+1 처리)

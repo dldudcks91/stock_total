@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "C:\Users\user\anaconda3\lib\runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "C:\Users\user\anaconda3\lib\runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "C:\Users\user\Desktop\python_text\git\stock_total\.venv\lib\site-packages\streamlit\__main__.py", line 15, in <module>
+    from streamlit.web.cli import main
+  File "C:\Users\user\Desktop\python_text\git\stock_total\.venv\lib\site-packages\streamlit\web\cli.py", line 29, in <module>
+    from streamlit.web import bootstrap
+  File "C:\Users\user\Desktop\python_text\git\stock_total\.venv\lib\site-packages\streamlit\web\bootstrap.py", line 26, in <module>
+    from streamlit.web.server import Server, server_address_is_unix_socket, server_util
+  File "C:\Users\user\Desktop\python_text\git\stock_total\.venv\lib\site-packages\streamlit\web\server\__init__.py", line 15, in <module>
+    from streamlit.web.server.component_request_handler import ComponentRequestHandler
+  File "C:\Users\user\Desktop\python_text\git\stock_total\.venv\lib\site-packages\streamlit\web\server\component_request_handler.py", line 21, in <module>
+    import tornado.web
+  File "C:\Users\user\Desktop\python_text\git\stock_total\.venv\lib\site-packages\tornado\web.py", line 88, in <module>
+    from tornado.httpserver import HTTPServer
+  File "C:\Users\user\Desktop\python_text\git\stock_total\.venv\lib\site-packages\tornado\httpserver.py", line 29, in <module>
+    import ssl
+  File "C:\Users\user\anaconda3\lib\ssl.py", line 99, in <module>
+    import _ssl             # if we can't import it, let the error propagate
+ImportError: DLL load failed while importing _ssl: 지정된 모듈을 찾을 수 없습니다.

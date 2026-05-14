@@ -12,15 +12,15 @@ import pandas as pd
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from backtest.strategies import ma_slope_turn_up  # noqa: E402
-from scripts.count_slope_turn_signals import (  # noqa: E402
+from scripts.quiet_bottom.count_slope_turn_signals import (  # noqa: E402
     load_crypto_weekly, crypto_symbol_from_file,
     CRYPTO_1H_DIR, SINCE,
 )
-from scripts.forward_returns_top200 import crypto_top_universe  # noqa: E402
+from scripts.quiet_bottom.forward_returns_top200 import crypto_top_universe  # noqa: E402
 
 
 def count_signals(files, universe, params: dict) -> tuple[int, int]:
@@ -51,7 +51,7 @@ def main():
     # universe들 비교
     for top_n in [200, 300, 500]:
         # universe 재계산 (TOP_N 임시 변경)
-        import scripts.forward_returns_top200 as ft
+        import scripts.quiet_bottom.forward_returns_top200 as ft
         ft.TOP_N = top_n
         uni = crypto_top_universe()
         files = sorted(CRYPTO_1H_DIR.glob("*.parquet"))

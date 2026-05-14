@@ -112,9 +112,19 @@ US 티커: 영문 대문자.
 - 인터프리터: `.venv/Scripts/python.exe` (Windows) / `.venv/bin/python` (POSIX)
 - streamlit / pip 등 entry-point: `.venv/Scripts/streamlit.exe`, `.venv/Scripts/pip.exe`
 - venv 가 없으면 먼저 생성: `python -m venv .venv && .venv/Scripts/python.exe -m pip install -r requirements.txt`
+  - 이 한 줄의 `python -m venv .venv` 는 **유일하게** 허용되는 비-venv 호출 (venv 가 아직 없으므로 시스템 python 사용). 그 외 모든 곳은 항상 `.venv/Scripts/python.exe`.
 - 모든 SKILL.md 와 docs 의 예시 명령은 `.venv/Scripts/python.exe -m ...` 형태로 작성.
 - Claude 가 Bash 로 파이썬을 호출할 때도 반드시 `.venv/Scripts/python.exe` 사용 (그냥 `python` 금지).
+- **`streamlit run ...` 처럼 entry-point 만 부르는 형태 금지** — PATH 우선순위에 따라 anaconda 의 옛 streamlit (pandas 1.5) 이 잡혀 `Invalid frequency: ME` 같이 깨진다. 항상 `.venv/Scripts/streamlit.exe run ...` 처럼 절대경로로.
 - VSCode 는 `.vscode/settings.json` 으로 인터프리터·통합 터미널이 자동 venv. 다른 IDE 사용 시 동일하게 설정.
+
+### 점검 (의심될 때)
+
+```powershell
+Get-CimInstance Win32_Process -Filter "Name='python.exe'" | Select-Object ProcessId, CommandLine
+```
+
+`CommandLine` 에 `anaconda` 또는 venv 외 경로가 보이면 즉시 `Stop-Process -Id <PID> -Force` 후 `.venv` 로 재기동.
 
 ## 시간 표준
 

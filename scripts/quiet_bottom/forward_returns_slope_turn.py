@@ -15,11 +15,11 @@ import pandas as pd
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 
 from backtest.strategies import ma_slope_turn_up  # noqa: E402
-from scripts.count_slope_turn_signals import (  # noqa: E402
+from scripts.quiet_bottom.count_slope_turn_signals import (  # noqa: E402
     load_crypto_weekly,
     load_stock_weekly,
     crypto_symbol_from_file,

@@ -9,9 +9,9 @@ import matplotlib.dates as mdates
 from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from scripts.count_slope_turn_signals import load_crypto_weekly
+from scripts.quiet_bottom.count_slope_turn_signals import load_crypto_weekly
 
 SYMS = ["PENGUUSDT", "CHZUSDT", "SUNUSDT", "MORPHOUSDT"]
 LOOKBACK_WEEKS = 78   # 직전 1.5년

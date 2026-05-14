@@ -8,9 +8,9 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-from scripts.count_slope_turn_signals import load_stock_weekly, load_crypto_weekly
+from scripts.quiet_bottom.count_slope_turn_signals import load_stock_weekly, load_crypto_weekly
 
 
 def linear_r2(y):

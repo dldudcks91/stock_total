@@ -13,7 +13,7 @@ import FinanceDataReader as fdr
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 US_DIR = ROOT / "data" / "cache" / "us"
 US_DIR.mkdir(parents=True, exist_ok=True)
 
