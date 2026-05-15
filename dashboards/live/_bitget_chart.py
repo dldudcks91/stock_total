@@ -31,7 +31,12 @@ def render_tv_chart(symbol: str, interval: str, cdf: pd.DataFrame) -> None:
     # Standard exchange-style visible bar count per interval. Indicators
     # below compute on the FULL series first, then we slice — so MAs/RSI
     # in the visible window already include "warmup" values.
-    VISIBLE_BARS = {"1d": 150, "1w": 100, "1M": 60}.get(interval, 150)
+    #
+    # We slice (rather than relying on ``timeScale.barSpacing`` for an
+    # initial viewport) because streamlit-lightweight-charts auto-fits
+    # to the full data range on first render and ignores our barSpacing,
+    # which made 1d / 1w / 1M all show the same calendar period.
+    VISIBLE_BARS = {"1d": 150, "1w": 100, "1M": 60, "1h": 150, "4h": 150}.get(interval, 150)
 
     # (period, color, label, kind)  kind: "sma" | "vwma"
     ma_specs = [

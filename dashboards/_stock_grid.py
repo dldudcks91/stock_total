@@ -2,12 +2,35 @@
 
 Encapsulates the parts that are identical between the two stock dashboards:
 - cache tail loader (capitalized OHLC columns)
-- single-pass all-windows compute (returns + MA Δ% + Window H/L Δ%)
+- single-pass all-windows compute, **wall-clock anchored** — prev_Nd, MA,
+  and H/L values are taken relative to *today*, not to the cache's last bar
 - AgGrid JsCode formatters + value getters
 - Bitget/TradingView-style lightweight chart renderer
 
 The two stock pages stay thin: they only own the live-price fetcher (Naver)
 and the page-level layout / filter bar / dialog wiring.
+
+Wall-clock anchoring
+--------------------
+``compute_reference_levels`` takes a ``now_ts`` anchor (default = today
+midnight in local time). Every derived value is computed "as of" that
+timestamp:
+
+  - ``prev_{n}d`` = close of the bar at-or-before ``now_ts - (n+1) days``,
+    within ``tol_days`` tolerance (covers weekends and 명절 휴장 갭). The
+    extra ``+1`` shift avoids returning the same bar that the live price
+    already represents (which would yield ``pct_1d == 0`` whenever the
+    market is closed and Naver's live price equals the cache's last close).
+  - ``ma{p}__{iv}`` = SMA of the last ``p`` resampled-to-iv closes ending
+    at-or-before ``now_ts``.
+  - ``high__{lb}`` / ``low__{lb}`` = max/min over bars in
+    ``[now_ts - lookback, now_ts]``.
+
+This matches the crypto-side anchoring in
+:mod:`dashboards.live._crypto_compute` so KOSPI/NASDAQ/Bitget all share
+the same "today is today" semantics. Before this change, stock refs were
+anchored to the cache's *last bar* — meaning a Friday cache viewed on
+Tuesday would label "1d %" as "Friday vs Thursday" (off by 4 trading days).
 """
 from __future__ import annotations
 
@@ -53,8 +76,9 @@ def load_cache_tails(path: Path, n: int) -> Optional[pd.DataFrame]:
     """Read the last ``n`` rows of (Close, High, Low) from a stock parquet.
 
     Returns a DataFrame indexed by date (oldest→newest) or ``None`` on
-    miss/empty. The DatetimeIndex is required by ``compute_from_cache`` for
-    weekly/monthly resampling and calendar-based lookback windows.
+    miss/empty. The DatetimeIndex is required by
+    ``compute_reference_levels`` for weekly/monthly resampling and
+    calendar-based lookback windows.
     """
     if not path.exists():
         return None
@@ -76,6 +100,37 @@ def _lookback_to_days(label: str) -> int:
     raise ValueError(f"unknown HL lookback label: {label!r}")
 
 
+# Default wall-clock-vs-cache tolerance for stock anchors. Covers normal
+# weekend (2d), long weekend (3d), and most Korean / US single-week holiday
+# stretches. 추석 / 설 연휴 (≈5–7d) and Thanksgiving + weekend (4d) fit.
+# If the cache is older than this from the target date, the value is None
+# rather than mislabeled.
+DEFAULT_TOL_DAYS: int = 7
+
+
+def _close_at_or_before(
+    df: pd.DataFrame, target: pd.Timestamp, tol: pd.Timedelta,
+) -> Optional[float]:
+    """Return ``df['Close']`` for the bar whose index is ≤ ``target``, within ``tol``.
+
+    Used for wall-clock anchored prev-close lookups. If the most recent bar
+    at-or-before ``target`` is older than ``tol``, returns ``None`` — the
+    cache doesn't actually cover that point in time.
+    """
+    if df.empty:
+        return None
+    pos = df.index.searchsorted(target, side="right") - 1
+    if pos < 0:
+        return None
+    found_ts = df.index[pos]
+    if (target - found_ts) > tol:
+        return None
+    val = float(df["Close"].iat[pos])
+    if not np.isfinite(val):
+        return None
+    return val
+
+
 # ---------------------------------------------------------------------------
 # Single-pass compute: fixed period % + per-interval MA + per-lookback H/L Δ%
 # ---------------------------------------------------------------------------
@@ -84,26 +139,36 @@ def compute_reference_levels(
     symbols: list[str],
     cache_loader: Callable[[str, int], Optional[pd.DataFrame]],
     *,
+    now_ts: Optional[pd.Timestamp] = None,
+    tol_days: int = DEFAULT_TOL_DAYS,
     ma_intervals: list[str] = MA_INTERVAL_OPTIONS,
     hl_lookbacks: list[str] = HL_LOOKBACK_OPTIONS,
     periods_d: list[int] = PERIODS_D,
     ma_periods: tuple[int, int] = MA_PERIODS,
 ) -> pd.DataFrame:
-    """Price-independent reference levels for one stock cache pass.
+    """Price-independent reference levels, **wall-clock anchored at ``now_ts``**.
 
-    Returns one row per symbol with columns:
-      - ``prev_{n}d`` for each n in ``periods_d`` — close N trading days ago
-        (used to derive ``pct_{n}d`` later)
-      - ``ma{short|long}__{iv}`` for each iv in ``ma_intervals`` — SMA of last
-        ``short`` / ``long`` closes on bars resampled to iv
-      - ``high__{lb}``, ``low__{lb}`` for each lb in ``hl_lookbacks`` —
-        max(High) / min(Low) in the lb calendar-day window
+    ``now_ts`` defaults to today midnight (naive, local time). All values are
+    computed relative to that anchor — not to the cache's last bar:
 
-    Caller pairs this with ``apply_current_prices`` to produce the pct_* cols.
-    Separating the two lets the heavy parquet-read pass be cached without the
-    current-price tuple in the cache key, so live-price refreshes don't
-    invalidate the whole table.
+      - ``prev_{n}d``: close of the bar at-or-before ``now_ts - n days``,
+        within ``tol_days`` (휴장 갭 허용; over the threshold → None).
+      - ``ma{short|long}__{iv}``: SMA of the last ``short`` / ``long``
+        resampled-to-iv closes ending at-or-before ``now_ts``. Bars
+        strictly after ``now_ts`` are dropped first so future bars (if any)
+        don't leak in.
+      - ``high__{lb}`` / ``low__{lb}``: max(High) / min(Low) over bars in
+        the calendar window ``[now_ts - lookback, now_ts]``.
+
+    Caller pairs the result with ``apply_current_prices`` to derive pct_*
+    columns. Splitting refs (price-independent, heavy) from pct (cheap)
+    lets the heavy pass be cached on disk by
+    :mod:`dashboards._precompute` keyed on ``data_mtime`` + a wall-clock
+    bucket — so live-price refreshes only rerun the cheap pass.
     """
+    if now_ts is None:
+        now_ts = pd.Timestamp.now().normalize()
+    tol = pd.Timedelta(days=tol_days)
     short, long_ = ma_periods
 
     prev_keys = [f"prev_{n}d" for n in periods_d]
@@ -126,19 +191,32 @@ def compute_reference_levels(
             rows.append(row)
             continue
 
-        closes = df["Close"].to_numpy(dtype=np.float64, copy=False)
+        # Drop any forward-looking bars so MA / HL / prev never see the future.
+        df = df.loc[df.index <= now_ts]
+        if df.empty:
+            rows.append(row)
+            continue
 
-        # ── prev close per fixed period ──
+        # ── prev close per fixed period (wall-clock anchored, calendar days) ──
+        # Shift by (n + 1) days, not n, so prev_{n}d never lands on the same
+        # bar as the current price's effective reference. Concrete case: on
+        # 2026-05-15 the KR cache's last bar is 05-14 and Naver's live price
+        # is also 05-14's close (market closed). Target = now - 1d = 05-14
+        # would return that same bar → prev_1d == cur → pct_1d = 0%. Shifting
+        # by (n + 1) drops the target to 05-13, giving the real prior-day
+        # close. Matches the crypto convention in ``_crypto_compute``.
         for n, key in zip(periods_d, prev_keys):
-            if closes.size > n:
-                prev = float(closes[-(n + 1)])
-                if np.isfinite(prev):
-                    row[key] = prev
+            target = now_ts - pd.Timedelta(days=n + 1)
+            prev = _close_at_or_before(df, target, tol)
+            if prev is not None:
+                row[key] = prev
 
-        # ── Per-interval MA (exchange-standard SMA on resampled bars) ──
+        # ── Per-interval MA (SMA on resampled bars up to now_ts) ──
+        # Filter applied above already caps df at now_ts, so resample-then-tail
+        # gives the most recent N bars ending at-or-before now_ts.
         for iv in ma_intervals:
             if iv == "1d":
-                bar_close = closes
+                bar_close = df["Close"].to_numpy(dtype=np.float64, copy=False)
             elif iv == "1w":
                 bar_close = df["Close"].resample("W-FRI").last().dropna().to_numpy(
                     dtype=np.float64, copy=False,
@@ -150,15 +228,18 @@ def compute_reference_levels(
             else:
                 continue
             if bar_close.size >= short:
-                row[f"ma{short}__{iv}"] = float(bar_close[-short:].mean())
+                ma_s = float(bar_close[-short:].mean())
+                if np.isfinite(ma_s):
+                    row[f"ma{short}__{iv}"] = ma_s
             if bar_close.size >= long_:
-                row[f"ma{long_}__{iv}"] = float(bar_close[-long_:].mean())
+                ma_l = float(bar_close[-long_:].mean())
+                if np.isfinite(ma_l):
+                    row[f"ma{long_}__{iv}"] = ma_l
 
-        # ── Per-lookback High/Low (calendar days from cache's last index) ──
-        last_ts = df.index[-1]
+        # ── Per-lookback High/Low (now_ts-anchored calendar window) ──
         for lb in hl_lookbacks:
-            cutoff = last_ts - pd.Timedelta(days=_lookback_to_days(lb))
-            mask = df.index >= cutoff
+            cutoff = now_ts - pd.Timedelta(days=_lookback_to_days(lb))
+            mask = df.index >= cutoff   # df.index already ≤ now_ts from filter above
             if not mask.any():
                 continue
             row[f"high__{lb}"] = float(df.loc[mask, "High"].max())
@@ -179,7 +260,7 @@ def apply_current_prices(
 ) -> pd.DataFrame:
     """Vectorized: ``refs`` (prev/ma/high/low) + current prices → pct_* columns.
 
-    The output schema matches ``compute_from_cache`` exactly:
+    Output columns:
       ``pct_{n}d``, ``pct_ma{p}__{iv}``,
       ``high__{lb}``, ``low__{lb}``, ``pct_off_high__{lb}``, ``pct_off_low__{lb}``.
 
@@ -213,114 +294,6 @@ def apply_current_prices(
             out[lo_col] = refs[lo_col].values
             out[f"pct_off_low__{lb}"] = _pct(lo_col)
     return out
-
-
-def compute_from_cache(
-    current_prices: dict[str, float],
-    symbols: list[str],
-    cache_loader: Callable[[str, int], Optional[pd.DataFrame]],
-    *,
-    ma_intervals: list[str] = MA_INTERVAL_OPTIONS,
-    hl_lookbacks: list[str] = HL_LOOKBACK_OPTIONS,
-    periods_d: list[int] = PERIODS_D,
-    ma_periods: tuple[int, int] = MA_PERIODS,
-) -> pd.DataFrame:
-    """All-permutations compute for stock caches (MA × Interval, HL × Lookback).
-
-    Each symbol's parquet is read ONCE (via ``cache_loader``). From that single
-    DataFrame we derive:
-      - fixed period %: ``pct_{n}d`` for each n in ``periods_d``
-      - per MA interval iv in ``ma_intervals`` (1d/1w/1M):
-          ``pct_ma{short}__{iv}``, ``pct_ma{long}__{iv}``
-        MA = SMA of last ``N`` closes on bars resampled to ``iv`` — matches the
-        exchange-standard MA line on a daily/weekly/monthly candle chart.
-      - per HL lookback lb in ``hl_lookbacks`` (7d/28d/90d/1y/5y):
-          ``high__{lb}``, ``low__{lb}``,
-          ``pct_off_high__{lb}``, ``pct_off_low__{lb}``
-        Calendar-day max(High) / min(Low) anchored at the cache's last index.
-
-    The grid switches the *displayed* combination purely client-side via JsCode
-    valueGetter — no server recompute when the user toggles interval/lookback.
-    """
-    short, long_ = ma_periods
-
-    pct_keys_d = [f"pct_{n}d" for n in periods_d]
-    ma_cols: list[str] = []
-    for iv in ma_intervals:
-        ma_cols.extend([f"pct_ma{short}__{iv}", f"pct_ma{long_}__{iv}"])
-    hl_cols: list[str] = []
-    for lb in hl_lookbacks:
-        hl_cols.extend([
-            f"high__{lb}", f"low__{lb}",
-            f"pct_off_high__{lb}", f"pct_off_low__{lb}",
-        ])
-    none_cols = pct_keys_d + ma_cols + hl_cols
-
-    rows: list[dict[str, Any]] = []
-    for sym in symbols:
-        row: dict[str, Any] = {"symbol": sym}
-        for k in none_cols:
-            row[k] = None
-        cur = current_prices.get(sym)
-        if cur is None or not np.isfinite(cur):
-            rows.append(row)
-            continue
-
-        df = cache_loader(sym, CACHE_TAIL_N)
-        if df is None or df.empty:
-            rows.append(row)
-            continue
-
-        closes = df["Close"].to_numpy(dtype=np.float64, copy=False)
-
-        # ── Fixed period % ──
-        for n, key in zip(periods_d, pct_keys_d):
-            if closes.size > n:
-                prev = float(closes[-(n + 1)])
-                if prev:
-                    row[key] = (cur - prev) / prev
-
-        # ── Per-interval MA (exchange-standard SMA on resampled bars) ──
-        for iv in ma_intervals:
-            if iv == "1d":
-                bar_close = closes
-            elif iv == "1w":
-                bar_close = df["Close"].resample("W-FRI").last().dropna().to_numpy(
-                    dtype=np.float64, copy=False,
-                )
-            elif iv == "1M":
-                bar_close = df["Close"].resample("ME").last().dropna().to_numpy(
-                    dtype=np.float64, copy=False,
-                )
-            else:
-                continue
-            if bar_close.size >= short:
-                ma_s = bar_close[-short:].mean()
-                if ma_s:
-                    row[f"pct_ma{short}__{iv}"] = (cur - ma_s) / ma_s
-            if bar_close.size >= long_:
-                ma_l = bar_close[-long_:].mean()
-                if ma_l:
-                    row[f"pct_ma{long_}__{iv}"] = (cur - ma_l) / ma_l
-
-        # ── Per-lookback High/Low (calendar days from cache's last index) ──
-        last_ts = df.index[-1]
-        for lb in hl_lookbacks:
-            cutoff = last_ts - pd.Timedelta(days=_lookback_to_days(lb))
-            mask = df.index >= cutoff
-            if not mask.any():
-                continue
-            hi = float(df.loc[mask, "High"].max())
-            lo = float(df.loc[mask, "Low"].min())
-            row[f"high__{lb}"] = hi
-            row[f"low__{lb}"] = lo
-            if hi:
-                row[f"pct_off_high__{lb}"] = (cur - hi) / hi
-            if lo:
-                row[f"pct_off_low__{lb}"] = (cur - lo) / lo
-
-        rows.append(row)
-    return pd.DataFrame(rows)
 
 
 # ---------------------------------------------------------------------------
@@ -639,10 +612,14 @@ def render_tv_chart_stock(
 
     d = cdf.copy().sort_index()
 
-    # Standard exchange-style visible bar count per interval. We slice the
-    # data to this tail length AFTER computing MAs/RSI on full history, so
-    # the indicators in the visible window already include "warmup" values
-    # from older bars.
+    # Standard exchange-style visible bar count per interval. Indicators
+    # below compute on the FULL series first, then we slice — so MAs/RSI
+    # in the visible window already include "warmup" values.
+    #
+    # We slice (rather than relying on ``timeScale.barSpacing`` for an
+    # initial viewport) because streamlit-lightweight-charts auto-fits
+    # to the full data range on first render and ignores our barSpacing,
+    # which made 1d / 1w / 1M all show the same calendar period.
     VISIBLE_BARS = {"1d": 150, "1w": 100, "1M": 60}.get(interval, 150)
 
     ma_specs = [
@@ -670,7 +647,7 @@ def render_tv_chart_stock(
     rs = avg_gain / avg_loss.where(avg_loss != 0)
     rsi_full = 100 - (100 / (1 + rs))
 
-    # Slice everything to the visible window (indicators already have warmup).
+    # Slice to visible window after indicator computation.
     d = d.tail(VISIBLE_BARS)
     ma_full = {label: s.reindex(d.index) for label, s in ma_full.items()}
     rsi_full = rsi_full.reindex(d.index)

@@ -3,11 +3,21 @@
 Called from ``dashboards/pages/3_Live.py`` inside ``st.tabs[0]``.
 
 Session state keys (all prefixed ``bitget_``):
-  - ``bitget_live_proc / _started / _finalized`` — live snapshot subprocess
+  - ``bitget_live_proc / _started / _finalized``  — live snapshot subprocess
   - ``bitget_fetch_proc / _started / _finalized`` — OHLCV fetch subprocess
+  - ``bitget_pre_proc / _started / _finalized``   — precompute subprocess
   - ``bitget_notes``       — in-session memo dict (also persisted to disk)
   - ``bitget_sel_symbol``  — currently selected row symbol
   - ``_chart_dialog_shown_for`` — symbol the chart dialog was last opened for
+
+Data flow mirrors KOSPI / NASDAQ:
+
+  1. live snapshot (Bitget ticker bulk endpoint) — fast, every-click
+  2. OHLCV fetch (1d → 1h) — slow, chains into precompute on success
+  3. precompute (dashboards._precompute --asset crypto) — writes
+     ``data/cache/crypto/_refs.parquet`` anchored to the current hour bucket
+  4. dashboard merges (1) snapshot + (3) precomputed refs and applies live
+     mark prices via ``apply_current_prices`` to derive pct columns
 
 CSS lives in :mod:`._bitget_grid` and is injected once per tab render. Re-
 injection is idempotent (Streamlit dedupes by html content) so wrapping it
@@ -25,6 +35,7 @@ import pandas as pd
 
 from data.loader import load_ohlcv
 from data.sources.bitget_live import SNAPSHOT_PATH, load_snapshot
+from dashboards._precompute import load_recs, load_refs, precompute_status
 from dashboards.live._bitget_grid import (
     BITGET_PAGE_CSS,
     COLUMN_LABELS,
@@ -39,16 +50,11 @@ from dashboards.live._common import (
 )
 from dashboards.live._crypto_compute import (
     CANDLE_FETCH_CAP,
-    DAILY_CANDLE_LIMIT,
     DEFAULT_HL_LOOKBACK_CRYPTO,
     DEFAULT_MA_INTERVAL_CRYPTO,
     HL_LOOKBACK_OPTIONS_CRYPTO,
-    HOUR_MS,
-    HOURLY_CANDLE_LIMIT,
     MA_INTERVAL_OPTIONS_CRYPTO,
     apply_current_prices,
-    compute_reference_levels,
-    load_cache_tails,
 )
 
 try:
@@ -63,6 +69,7 @@ _ROOT = Path(__file__).resolve().parents[2]
 _CACHE_DIR = _ROOT / "data" / "cache" / "crypto"
 _FETCH_LOG = _CACHE_DIR / "_fetch.log"
 _LIVE_LOG = _CACHE_DIR / "_live_fetch.log"
+_PRE_LOG = _CACHE_DIR / "_precompute.log"
 _NOTES_PATH = _CACHE_DIR / "_notes.json"
 
 _ALL_SORT_KEYS = list(COLUMN_LABELS.keys())
@@ -85,6 +92,30 @@ def _save_notes(notes: dict) -> None:
     _NOTES_PATH.write_text(
         json.dumps(notes, ensure_ascii=False, indent=2), encoding="utf-8",
     )
+
+
+# ---------------------------------------------------------------------------
+# Precompute caption (mirrors kospi/nasdaq toolbar caption)
+# ---------------------------------------------------------------------------
+
+def _precompute_caption() -> str:
+    """'📊 지표 12:34 · 5m ago · 600종목' for the toolbar caption."""
+    info = precompute_status("crypto")
+    mt = info.get("refs_mtime")
+    if mt is None:
+        return "📊 지표 미계산 — `Bitget 데이터 받기` 시 자동 계산"
+    ts = pd.Timestamp.fromtimestamp(mt, tz="Asia/Seoul")
+    ago = pd.Timestamp.now(tz="Asia/Seoul") - ts
+    secs = int(ago.total_seconds())
+    if secs < 60:
+        ago_s = f"{secs}s"
+    elif secs < 3600:
+        ago_s = f"{secs // 60}m"
+    elif secs < 86400:
+        ago_s = f"{secs // 3600}h"
+    else:
+        ago_s = f"{secs // 86400}d"
+    return f"📊 지표 {ts.strftime('%H:%M:%S')} · {ago_s} ago · {info['n_symbols']}종목"
 
 
 # ---------------------------------------------------------------------------
@@ -131,10 +162,13 @@ def render(st: Any) -> None:
     """
     st.markdown(BITGET_PAGE_CSS, unsafe_allow_html=True)
 
-    # ── Top toolbar: snapshot caption + 2 launch buttons ──
-    bar_caption, bar_live, bar_fetch = st.columns([4, 2, 2])
+    # ── Top toolbar: caption (2 lines) + 2 launch buttons ──
+    # 지표 계산은 `Bitget 데이터 받기` 완료 시 자동 체이닝(아래 on_success_followup).
+    # 강제 재계산이 필요하면 CLI: .venv/Scripts/python.exe -m dashboards._precompute --asset crypto
+    bar_caption, bar_live, bar_fetch = st.columns([3, 2, 2])
     with bar_caption:
         st.caption(snapshot_age_caption(SNAPSHOT_PATH))
+        st.caption(_precompute_caption())
     with bar_live:
         render_subprocess_launcher(
             st,
@@ -162,7 +196,8 @@ def render(st: Any) -> None:
             args=[sys.executable, "-c", fetch_wrapper],
             cwd=_ROOT,
             button_key="bitget_fetch_btn",
-            button_help="Bitget USDT-M 전 종목 1D + 1H OHLCV 를 data/cache/crypto/ 로 증분 다운로드. 백그라운드.",
+            button_help="Bitget USDT-M 전 종목 1D + 1H OHLCV 를 data/cache/crypto/ 로 증분 다운로드. "
+                        "완료 시 지표 계산(_refs.parquet) 자동 체이닝. 백그라운드.",
         )
 
     # ── Status panels (full-width, only visible when a proc is/was running) ──
@@ -174,44 +209,33 @@ def render(st: Any) -> None:
         success_msg="✅ 라이브 fetch 완료",
         error_msg="❌ 라이브 fetch 실패",
     )
+    # Bitget 데이터 받기가 끝나면 자동으로 지표 계산을 이어서 시동 (kospi/nasdaq 와 동일 패턴)
     render_subprocess_status(
         st,
         label="Bitget fetch",
         session_prefix="bitget_fetch",
         log_path=_FETCH_LOG,
-        success_msg="✅ Bitget fetch 완료",
+        success_msg="✅ Bitget fetch 완료 — 지표 자동 계산 시작",
         error_msg="❌ Bitget fetch 실패",
         on_success_clear_cache=True,
         parse_progress=_parse_fetch_progress,
+        on_success_followup=dict(
+            session_prefix="bitget_pre",
+            log_path=_PRE_LOG,
+            args=python_module_args("dashboards._precompute", "--asset", "crypto"),
+            cwd=_ROOT,
+        ),
+    )
+    render_subprocess_status(
+        st,
+        label="지표 계산",
+        session_prefix="bitget_pre",
+        log_path=_PRE_LOG,
+        success_msg="✅ 지표 계산 완료",
+        error_msg="❌ 지표 계산 실패",
     )
 
-    # ── Cached helpers (scoped to this render call so the page module stays
-    #    free of streamlit imports at module-load time) ──
-    @st.cache_data(ttl=300, show_spinner=False)
-    def _cached_cache_tails(symbol: str, gran: str, n: int):
-        # Single source of truth for period %, window H/L, MA Δ%.
-        return load_cache_tails(symbol, gran, n)
-
-    @st.cache_data(ttl=300, show_spinner=False)
-    def _cached_reference_levels(
-        symbols_tuple: tuple,
-        now_bucket_h: int,
-    ) -> pd.DataFrame:
-        """Heavy parquet-read + MA/HL pass — price-independent.
-
-        Cache key uses ``now_bucket_h = now_ms // HOUR_MS`` so the result stays
-        valid for the full wall-clock hour. Live-price refreshes hit this cache;
-        only ``apply_current_prices`` reruns each time.
-        """
-        def _loader(sym: str, gran: str, n: int):
-            limit = HOURLY_CANDLE_LIMIT if gran == "1h" else DAILY_CANDLE_LIMIT
-            return _cached_cache_tails(sym, gran, max(n, limit))
-        return compute_reference_levels(
-            list(symbols_tuple),
-            cache_loader=_loader,
-            now_ms=now_bucket_h * HOUR_MS,
-        )
-
+    # ── Chart cache only — refs are disk-precomputed via dashboards._precompute ──
     @st.cache_data(ttl=300, show_spinner=False)
     def _chart_df_cached(symbol: str, interval: str) -> pd.DataFrame:
         # cache/crypto/{1h,1d}/{SYMBOL}.parquet → 1h/4h/1d/1w (raw or resample)
@@ -341,8 +365,9 @@ def render(st: Any) -> None:
             st.info("필터 조건에 맞는 심볼이 없습니다.")
             return
 
-        # Two-stage compute: cached refs (price-independent, hourly bucketed) +
-        # cheap per-rerun apply that combines refs with live mark prices.
+        # Disk-precomputed refs (anchored to current hour bucket via
+        # dashboards._precompute --asset crypto) + cheap per-rerun apply that
+        # combines refs with live mark prices. Same pattern as kospi/nasdaq.
         visible_symbols = df["symbol"].astype(str).tolist()
         if len(visible_symbols) > CANDLE_FETCH_CAP:
             st.info(
@@ -354,22 +379,34 @@ def render(st: Any) -> None:
                 df["symbol"].astype(str),
                 df.get("markPrice", pd.Series(dtype=float)),
             ))
-            try:
-                import time as _time
-                now_bucket_h = int(_time.time() * 1000) // HOUR_MS
-                with st.spinner(f"캐시 계산 ({len(visible_symbols)} symbols, all windows)…"):
-                    refs = _cached_reference_levels(
-                        tuple(visible_symbols), now_bucket_h,
-                    )
-                derived = apply_current_prices(refs, current_prices)
-                if not derived.empty:
-                    overlap = [c for c in derived.columns
+            refs = load_refs("crypto")
+            if refs is None or refs.empty:
+                st.warning("⚠️ 지표 미계산 — `Bitget 데이터 받기` 버튼을 누르면 fetch 후 자동 계산됩니다.")
+            else:
+                try:
+                    derived = apply_current_prices(refs, current_prices)
+                    if not derived.empty:
+                        overlap = [c for c in derived.columns
+                                   if c != "symbol" and c in df.columns]
+                        if overlap:
+                            df = df.drop(columns=overlap)
+                        df = df.merge(derived, on="symbol", how="left")
+                except Exception as e:
+                    st.warning(f"기간 변화율 계산 실패: {e}")
+
+            # 전략 추천 점수 (precomputed on disk). kospi/nasdaq 와 동일 패턴 —
+            # _recs.parquet 가 비어있으면 "추천" 컬럼은 모두 "—" 로 렌더링됨.
+            recs = load_recs("crypto")
+            if recs is not None and not recs.empty:
+                try:
+                    recs_use = recs.drop(columns=["data_mtime"], errors="ignore")
+                    overlap = [c for c in recs_use.columns
                                if c != "symbol" and c in df.columns]
                     if overlap:
                         df = df.drop(columns=overlap)
-                    df = df.merge(derived, on="symbol", how="left")
-            except Exception as e:
-                st.warning(f"기간 변화율 계산 실패: {e}")
+                    df = df.merge(recs_use, on="symbol", how="left")
+                except Exception as e:
+                    st.warning(f"추천 머지 실패: {e}")
 
         # Per-symbol notes (memo column).
         notes = st.session_state.setdefault("bitget_notes", _load_notes())

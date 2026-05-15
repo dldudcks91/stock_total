@@ -149,14 +149,19 @@ def render_subprocess_status(
     on_success_clear_cache: bool = False,
     parse_progress: Optional[Callable[[str], dict]] = None,
     info_template: str = "⏳ {label} 진행 중 (시작 {started})",
+    on_success_followup: Optional[dict] = None,
+    auto_refresh: str = "2s",
 ) -> None:
     """Render the live status panel for a subprocess started by the launcher.
 
     No-op if the matching ``{session_prefix}_proc`` is absent (i.e. nothing
-    launched in this session). When the proc is running, shows an info box +
-    optional progress bar (via ``parse_progress``) + log tail + a "🔄 상태 갱신"
-    rerun button. When it finishes, shows success/error + log tail + a
-    "Dismiss" button to clear the panel.
+    launched in this session). When the proc is running, the body is wrapped
+    in ``@st.fragment(run_every=auto_refresh)`` so the info box / progress bar
+    / log tail update live without a manual refresh button. When the proc
+    finishes mid-poll, the fragment escalates to ``st.rerun(scope='app')``
+    so the success/error branch (below) fires.
+
+    Pass ``auto_refresh=""`` to disable polling (useful for tests).
 
     On success: optionally clears ``st.cache_data`` once (e.g. after a parquet
     refresh that invalidates the dashboard's cached MA/HL pass).
@@ -170,9 +175,14 @@ def render_subprocess_status(
         return
     running = proc.poll() is None
 
-    _, tail = _read_log_tail(log_path)
-
-    if running:
+    def _render_running_body() -> None:
+        # Re-check proc state inside the (possibly polled) fragment — if it
+        # finished between ticks, escalate to a full app rerun so the done
+        # branch below renders the success/error outcome.
+        cur_proc = st.session_state.get(proc_key)
+        if cur_proc is None or cur_proc.poll() is not None:
+            st.rerun(scope="app")
+            return
         st.info(info_template.format(label=label, started=st.session_state.get(started_key, "?")))
         if parse_progress is not None:
             log_text = log_path.read_text(encoding="utf-8", errors="replace") if log_path.exists() else ""
@@ -188,17 +198,49 @@ def render_subprocess_status(
                 )
             else:
                 st.caption("starting…")
-        if tail:
-            st.code("\n".join(tail))
-        if st.button("🔄 상태 갱신", use_container_width=True, key=f"{session_prefix}_refresh"):
-            st.rerun()
+        _, tail_lines = _read_log_tail(log_path)
+        if tail_lines:
+            st.code("\n".join(tail_lines))
+
+    if running:
+        if auto_refresh:
+            # Poll the running body every ``auto_refresh`` (e.g. "2s") via a
+            # fragment so only this panel reruns, not the whole page.
+            @st.fragment(run_every=auto_refresh)
+            def _poll() -> None:
+                _render_running_body()
+            _poll()
+        else:
+            _render_running_body()
         return
 
     # proc is done — show outcome
+    _, tail = _read_log_tail(log_path)
     rc = proc.returncode
     if not st.session_state.get(finalized_key):
         if rc == 0 and on_success_clear_cache:
             st.cache_data.clear()
+        if rc == 0 and on_success_followup is not None:
+            # Auto-chain another subprocess (e.g. fetch → precompute).
+            # Only fires once per finalize since finalized_key gates it.
+            fu_prefix = on_success_followup["session_prefix"]
+            fu_proc_key = f"{fu_prefix}_proc"
+            fu_started_key = f"{fu_prefix}_started"
+            fu_finalized_key = f"{fu_prefix}_finalized"
+            existing = st.session_state.get(fu_proc_key)
+            if existing is None or existing.poll() is not None:
+                fu_log = on_success_followup["log_path"]
+                fu_log.parent.mkdir(parents=True, exist_ok=True)
+                fu_handle = open(fu_log, "w", encoding="utf-8", buffering=1)
+                fu_new = subprocess.Popen(
+                    on_success_followup["args"],
+                    cwd=str(on_success_followup["cwd"]),
+                    stdout=fu_handle,
+                    stderr=subprocess.STDOUT,
+                )
+                st.session_state[fu_proc_key] = fu_new
+                st.session_state[fu_started_key] = pd.Timestamp.now(tz="Asia/Seoul").isoformat(timespec="seconds")
+                st.session_state[fu_finalized_key] = False
         st.session_state[finalized_key] = True
 
     if rc == 0:

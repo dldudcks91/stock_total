@@ -27,8 +27,8 @@ data/
 │   │   ├── 1h/{SYMBOL}.parquet
 │   │   ├── 1d/{SYMBOL}.parquet
 │   │   └── classification.parquet
-│   ├── kr/              # {6자리코드}.parquet
-│   └── us/              # {TICKER}.parquet
+│   ├── kr/              # {6자리코드}.parquet + _refs.parquet + _recs.parquet
+│   └── us/              # {TICKER}.parquet + _refs.parquet + _recs.parquet
 ├── loader.py            # 자산·인터벌 무관 load_ohlcv()
 ├── resample.py          # 1h/1d 캐시 우선, 4h/1w/1M는 메모리 리샘플
 ├── classification.py    # 크립토 4그룹 분류
@@ -59,6 +59,7 @@ dashboards/              # Streamlit 멀티페이지
 ├── app.py               # 엔트리
 ├── charts.py            # 차트 빌더 (Plotly)
 ├── _cache.py / _lib.py / _stock_grid.py
+├── _precompute.py       # KR/US 지표·추천 디스크 캐시 (refs/recs.parquet writer/reader)
 └── pages/
     ├── 1_Backtest.py    # 단일 런 뷰어
     ├── 2_Compare.py     # 멀티 런 비교
@@ -104,6 +105,26 @@ KR 티커: 6자리 문자열 (앞자리 0 유지).
 US 티커: 영문 대문자.
 
 > 두 스키마가 다르므로 자산을 가로지르는 코드는 정규화 후 사용.
+
+## KR/US 대시보드 데이터 흐름 (3-단)
+
+라이브 탭(`pages/3_Live.py`)의 KOSPI / NASDAQ 표는 **3개 인풋을 머지**한다:
+
+1. **실시간 스냅샷** — `data/cache/{asset}/_live_snapshot.parquet`
+   - Naver 비공식 endpoint (`naver_kr` / `naver_us`)로 가격·거래대금·시총만 1회 fetch
+   - "라이브 가격 갱신" 버튼이 백그라운드 subprocess로 갱신
+2. **지표 (refs/recs)** — `data/cache/{asset}/_refs.parquet`, `_recs.parquet`
+   - **`dashboards/_precompute.py`** 가 일봉 캐시 parquet 들을 읽어 한 번 계산해 저장
+   - refs = 이동평균(MA10/20 × 1d/1w/1M) + 윈도우 High/Low(7d/28d/90d/1y/5y) + prev_Nd
+   - recs = 5 전략(trend_chase d/w, trend_pullback d/w, quiet_bottom w) 점수 최강 1개
+   - 각 행마다 `data_mtime` 컬럼이 있어 **변경된 종목만 증분 재계산**
+   - "지표 계산" 버튼 또는 자동 트리거 (FDR fetch 성공 시 자동 chaining)
+   - CLI: `.venv/Scripts/python.exe -m dashboards._precompute --asset {kr|us} [--force]`
+3. **일봉 OHLCV** — `data/cache/{asset}/{symbol}.parquet`
+   - FDR 로 받은 원본 일봉. 차트(`render_tv_chart_stock`)와 precompute 의 입력
+   - "KOSPI/NASDAQ 데이터 받기" 가 백그라운드 subprocess 로 증분 갱신
+
+대시보드는 (1)+(2)를 cheap merge 하고 라이브 가격을 `apply_current_prices` 로 덧입혀 표시. 무거운 계산은 절대 탭 진입 시점에 일어나지 않는다 — 항상 `_precompute.py` 가 미리 디스크에 써둔다.
 
 ## Python 환경 (venv 필수)
 

@@ -52,6 +52,15 @@ DEFAULT_PARAMS = {
     "amount_pts": 10,
     "amount_lookback": 250,   # 분위 계산 윈도우 (일봉 1년치, 주봉 5년치 ~ expanding)
     "score_threshold": 80,
+    # "상승한지 오래된" 종목 차단 — 추격은 추세의 *초입*만 의미가 있음.
+    # 최근 base_lookback 봉 (오늘 제외) 동안 fresh_big_th 이상 양봉이 max_prior_big_count
+    # 개 초과면, 이미 큰 움직임이 누적돼 있으므로 후보에서 제외.
+    # 추가로, base_lookback 봉 전 가격 대비 어제 종가가 max_prior_extension 이상 올라와
+    # 있으면 (큰 양봉 없이 slow grind 한 경우) 마찬가지로 제외.
+    "base_lookback": 60,
+    "fresh_big_th": 0.05,
+    "max_prior_big_count": 1,
+    "max_prior_extension": 0.30,
 }
 
 
@@ -100,14 +109,31 @@ def score_components(df: pd.DataFrame, params: dict) -> pd.DataFrame:
     # 4) 거래대금 절대 규모 (자산 시계열 내 분위)
     amt = _typical_amount(df)
     lb = int(p["amount_lookback"])
-    # expanding 분위로 룩어헤드 방지
-    amt_pctl = amt.rolling(lb, min_periods=min(60, lb)).apply(
-        lambda x: (x[-1] >= np.quantile(x, p["amount_pctl_min"])) * 1.0,
-        raw=True,
-    )
+    # rolling.quantile 은 C 구현 — apply(lambda) 보다 수십 배 빠름
+    threshold = amt.rolling(lb, min_periods=min(60, lb)).quantile(p["amount_pctl_min"])
+    amt_pctl = (amt >= threshold).astype("float64").where(threshold.notna())
     amount_score = (amt_pctl.fillna(0) * p["amount_pts"]).astype("float64")
 
+    # 5) Fresh 게이트 — 추격은 추세 초입에서만 의미가 있음.
+    # (a) base_lookback 봉 (어제까지) 내 +fresh_big_th 이상 양봉이 max_prior_big_count
+    #     초과면 이미 큰 움직임이 누적돼 있어 "오래된 추세"로 간주.
+    # (b) base_lookback 봉 전 가격 대비 어제 종가가 max_prior_extension 초과면
+    #     큰 양봉이 없었어도 slow grind 로 이미 올라온 상태이므로 제외.
+    # 두 조건 모두 통과해야 fresh = True.
+    base_lb = int(p["base_lookback"])
+    big_move = (ret >= float(p["fresh_big_th"]))
+    prior_big_count = big_move.shift(1).rolling(base_lb, min_periods=1).sum().fillna(0)
+    fresh_a = prior_big_count <= float(p["max_prior_big_count"])
+
+    prior_close = close.shift(1)
+    base_ref = close.shift(base_lb)
+    prior_ext = prior_close / base_ref - 1.0
+    fresh_b = (prior_ext <= float(p["max_prior_extension"])).fillna(False)
+
+    fresh = (fresh_a & fresh_b).fillna(False)
+
     score = (ret_score + vol_score + body_score + amount_score).clip(upper=100)
+    score = score.where(fresh, 0.0)
 
     out = pd.DataFrame({
         "ret_score": ret_score,
@@ -118,6 +144,9 @@ def score_components(df: pd.DataFrame, params: dict) -> pd.DataFrame:
         "ret": ret,
         "volx": volx,
         "body_ratio": body_ratio,
+        "prior_big_count": prior_big_count,
+        "prior_ext": prior_ext,
+        "fresh": fresh.astype(int),
     }, index=df.index)
     return out
 

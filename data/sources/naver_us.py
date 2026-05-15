@@ -198,7 +198,7 @@ def main() -> int:
         return 1
 
     merged = merge_snapshot(df)
-    write_atomic(merged)
+    write_atomic(merged, SNAPSHOT_PATH)
     print(f"[ok] wrote snapshot ({len(merged)} rows) -> {SNAPSHOT_PATH}")
     return 0
 

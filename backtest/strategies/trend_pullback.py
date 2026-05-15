@@ -56,6 +56,13 @@ DEFAULT_PARAMS = {
     "depth_max": -0.05,
     "score_threshold": 80,
     "touch_pad_pct": 0.005,        # MA 근처 인정 padding (low <= MA*(1+pad))
+    # 1차 상승 게이트 — rally_lookback 봉 내 (high/low - 1) >= rally_min_gain 이어야 통과.
+    # 미충족 시 score = 0 (눌림목은 "선행 상승" 없이는 의미 없음).
+    "rally_lookback": 60,
+    "rally_min_gain": 0.30,
+    # "비비적" 게이트 — 현재 close 가 MA10 또는 MA20 에 near_ma_pct 이내로 붙어 있어야
+    # "수렴" 으로 인정. 멀리 떨어진 채 점수가 나오면 (예: 폭등 직후) 의미와 어긋나므로 제외.
+    "near_ma_pct": 0.07,
 }
 
 
@@ -129,7 +136,27 @@ def score_components(df: pd.DataFrame, params: dict) -> pd.DataFrame:
     depth_score = depth_ok.astype(int) * 10
     depth_score = depth_score.astype("float64")
 
+    # 6) 1차 상승 게이트 — 두 조건 모두 충족해야 통과.
+    # (a) rally_lookback 봉 내 충분한 변동 (>= rally_min_gain) — 살아있는 종목
+    # (b) close > close.shift(rally_lookback) — 그 변동이 "상승" 방향
+    #     (단순 range 만 보면 268k→194k→220k 같은 하락 후 단기 반등도 통과)
+    rally_lb = int(p["rally_lookback"])
+    rally_high = high.rolling(rally_lb, min_periods=rally_lb).max()
+    rally_low = low.rolling(rally_lb, min_periods=rally_lb).min()
+    rally_range = (rally_high / rally_low) - 1.0
+    big_range = rally_range >= float(p["rally_min_gain"])
+    is_uptrend = close > close.shift(rally_lb)
+    had_rally = big_range & is_uptrend.fillna(False)
+
+    # 7) "비비적" 게이트 — 현재 close 가 MA10/MA20 중 하나에 near_ma_pct 이내.
+    # close 가 두 MA 보다 멀리 위로 치솟은 경우 (이격 +n%) 수렴이 아니므로 제외.
+    near_pct = float(p["near_ma_pct"])
+    gap10 = (close - ma_f).abs() / close
+    gap20 = (close - ma_s).abs() / close
+    near_ma = (gap10.fillna(np.inf) <= near_pct) | (gap20.fillna(np.inf) <= near_pct)
+
     score = (trend_score + touch_score + decline_score + react_score + depth_score).clip(upper=100)
+    score = score.where(had_rally & near_ma, 0.0)
 
     out = pd.DataFrame({
         "trend_score": trend_score,
@@ -141,6 +168,11 @@ def score_components(df: pd.DataFrame, params: dict) -> pd.DataFrame:
         "avg_ret_lb": avg_ret_lb,
         "drawdown": drawdown,
         "touch_recent": touch_recent.astype(int),
+        "rally_range": rally_range,
+        "had_rally": had_rally.astype(int),
+        "gap10": gap10,
+        "gap20": gap20,
+        "near_ma": near_ma.astype(int),
     }, index=df.index)
     return out
 

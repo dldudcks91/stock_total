@@ -19,6 +19,7 @@ import pandas as pd
 
 from st_aggrid import GridOptionsBuilder, JsCode
 
+from dashboards._stock_grid import JS_FMT_REC, JS_STYLE_REC
 from dashboards.live._crypto_compute import MA_PERIODS, PERIODS_D, PERIODS_H
 
 
@@ -37,7 +38,6 @@ COLUMN_LABELS: dict[str, str] = {
     "pct_3d": "3d",
     "pct_7d": "7d",
     "pct_14d": "14d",
-    "pct_28d": "28d",
     "pct_off_high24h": "24h High Δ",
     "pct_off_low24h": "24h Low Δ",
     "pct_ma10": "MA10 Δ",
@@ -142,10 +142,10 @@ def build_grid_options(
 
     Column order (left → right, displayed):
         ▸ checkbox + Symbol (pinned), Mark, 거래대금, 시총, Funding,
-          1h%, 4h%, 24h%, 3d%, 7d%, 14d%, 28d%,
+          1h%, 4h%, 24h%, 3d%, 7d%, 14d%,
           MA10 (ma_interval), MA20 (ma_interval),
           High% (hl_lookback), Low% (hl_lookback),
-          메모
+          추천, 메모
 
     ``ma_interval`` ∈ ``MA_INTERVAL_OPTIONS_CRYPTO`` selects which __{iv}
     suffix the MA columns read; ``hl_lookback`` ∈ ``HL_LOOKBACK_OPTIONS_CRYPTO``
@@ -156,18 +156,19 @@ def build_grid_options(
     LONG_KEY = f"_ma{long_ma}"
     HIGH_KEY = "_high_pct"
     LOW_KEY = "_low_pct"
+    REC_KEY = "_rec"   # display-only; reads rec_label/rec_score/rec_kind via JS
 
     VISIBLE_ORDER = [
         "symbol",
         "markPrice", "quoteVolume", "marketCap", "fundingRate",
         "pct_1h", "pct_4h", "change24h",
-        "pct_3d", "pct_7d", "pct_14d", "pct_28d",
+        "pct_3d", "pct_7d", "pct_14d",
         SHORT_KEY, LONG_KEY, HIGH_KEY, LOW_KEY,
-        "note",
+        REC_KEY, "note",
     ]
 
     df_grid = df.copy()
-    for placeholder in (SHORT_KEY, LONG_KEY, HIGH_KEY, LOW_KEY):
+    for placeholder in (SHORT_KEY, LONG_KEY, HIGH_KEY, LOW_KEY, REC_KEY):
         if placeholder not in df_grid.columns:
             df_grid[placeholder] = None
 
@@ -254,6 +255,15 @@ def build_grid_options(
         type=["numericColumn"],
     )
 
+    # ── 추천 (전략 점수, display-only) ──
+    # rec_label / rec_score / rec_kind 컬럼이 row data 에 있어야 표시됨.
+    # 크립토는 아직 recs 미계산 → 모든 셀이 "—" 로 렌더링 (자리만 잡아둠).
+    gob.configure_column(
+        REC_KEY, headerName="추천", width=98, minWidth=70,
+        valueFormatter=JS_FMT_REC, cellStyle=JS_STYLE_REC,
+        tooltipField="rec_detail",
+    )
+
     # ── Memo (editable, last column, wider) ──
     gob.configure_column(
         "note", headerName="메모", width=220, editable=True,
@@ -322,12 +332,37 @@ div[role="dialog"] button[aria-label="Close"],
   top: 0.4rem !important;
   margin-top: -2px !important;
 }
-/* AgGrid iframe — keep full width across fragment partial reruns.
-   Without this, clicking MA Interval / HL Lookback shrinks the iframe
-   because the parent block's clientWidth is re-measured mid-reflow. */
-iframe[title*="aggrid"],
-iframe[title*="st_aggrid"] {
+/* Cap the entire page to viewport width and clip any overflow.
+   Streamlit's wide layout sometimes lets nested blocks push the page
+   wider than the viewport — this forces everything to fit. Without
+   these caps, opening the chart dialog can briefly widen the page (body
+   scrollbar removed by the dialog's overflow:hidden), the AgGrid iframe
+   gets re-measured at the wider width, and after the dialog closes the
+   iframe sticks at that width — columns then squeeze to fit the now-
+   narrower visible viewport. */
+html, body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+}
+[data-testid="stAppViewContainer"],
+[data-testid="stMain"],
+.main,
+.main .block-container,
+[data-testid="stMainBlockContainer"] {
+  max-width: 100% !important;
+  overflow-x: hidden !important;
+}
+[data-testid="stCustomComponentV1"],
+[data-testid="element-container"]:has(iframe) {
   width: 100% !important;
+  max-width: 100% !important;
+}
+[data-testid="stCustomComponentV1"] iframe,
+iframe[title*="aggrid"],
+iframe[title*="st_aggrid"],
+iframe[title*="ag_grid"] {
+  width: 100% !important;
+  max-width: 100% !important;
 }
 </style>
 """
