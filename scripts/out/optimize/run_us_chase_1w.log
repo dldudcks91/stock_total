@@ -1,34 +1,0 @@
-  0%|          | 0/3881 [00:00<?, ?it/s]  3%|3         | 120/3881 [00:00<00:06, 566.03it/s]  6%|6         | 240/3881 [00:00<00:05, 644.75it/s]  9%|9         | 360/3881 [00:00<00:05, 674.74it/s] 12%|#2        | 480/3881 [00:00<00:05, 645.85it/s] 15%|#5        | 600/3881 [00:00<00:05, 646.86it/s] 19%|#8        | 720/3881 [00:01<00:04, 657.11it/s] 22%|##1       | 840/3881 [00:01<00:04, 667.40it/s] 25%|##4       | 960/3881 [00:01<00:04, 646.57it/s] 28%|##7       | 1080/3881 [00:01<00:04, 668.64it/s] 31%|###       | 1200/3881 [00:01<00:04, 664.60it/s] 34%|###4      | 1320/3881 [00:01<00:03, 705.96it/s] 37%|###7      | 1440/3881 [00:02<00:03, 699.67it/s] 40%|####      | 1560/3881 [00:02<00:03, 702.78it/s] 43%|####3     | 1680/3881 [00:02<00:02, 766.14it/s] 46%|####6     | 1800/3881 [00:02<00:02, 735.88it/s] 49%|####9     | 1920/3881 [00:02<00:02, 714.86it/s] 53%|#####2    | 2040/3881 [00:02<00:02, 698.43it/s] 56%|#####5    | 2160/3881 [00:03<00:02, 701.89it/s] 59%|#####8    | 2280/3881 [00:03<00:02, 692.12it/s] 62%|######1   | 2400/3881 [00:03<00:01, 761.16it/s] 65%|######4   | 2520/3881 [00:03<00:01, 713.16it/s] 68%|######8   | 2640/3881 [00:03<00:01, 681.86it/s] 71%|#######1  | 2760/3881 [00:04<00:01, 653.98it/s] 74%|#######4  | 2880/3881 [00:04<00:01, 547.82it/s] 77%|#######7  | 3000/3881 [00:04<00:01, 578.77it/s] 80%|########  | 3120/3881 [00:04<00:01, 587.56it/s] 83%|########3 | 3240/3881 [00:04<00:00, 645.64it/s] 87%|########6 | 3360/3881 [00:06<00:02, 244.09it/s] 90%|########9 | 3480/3881 [00:06<00:01, 299.16it/s] 91%|#########1| 3540/3881 [00:06<00:01, 325.99it/s] 94%|#########4| 3660/3881 [00:06<00:00, 415.76it/s] 97%|#########7| 3780/3881 [00:06<00:00, 446.10it/s]100%|##########| 3881/3881 [00:06<00:00, 472.05it/s]100%|##########| 3881/3881 [00:06<00:00, 556.73it/s]
-
-=== US / trend_chase / 1w (universe=300, files=3849, rules=4, thresholds=[60, 70, 75, 80, 85, 90]) ===
-  loaded 50/300 (skipped 1)
-  loaded 100/300 (skipped 1)
-  loaded 150/300 (skipped 1)
-  loaded 200/300 (skipped 2)
-  loaded 250/300 (skipped 3)
-  loaded total: 295 symbols, skipped 4. elapsed 12.1s
-  th=    60 rule=hold_52w_trail20_TP30            n=  45 win=48.9% mean= +5.4% total= +204.6% MDD= -79.1% Sharpe=+0.62 PF= 1.76
-  th=    60 rule=hold_26w_trail15                 n=  45 win=53.3% mean= +4.0% total= +167.9% MDD= -61.5% Sharpe=+0.57 PF= 1.70
-  th=    60 rule=hold_52w_trail15                 n=  45 win=46.7% mean= +3.0% total=  +52.3% MDD= -73.8% Sharpe=+0.42 PF= 1.48
-  th=    60 rule=hold_26w_trail20_TP25            n=  45 win=53.3% mean= +4.0% total= +125.4% MDD= -66.8% Sharpe=+0.52 PF= 1.61
-  th=    70 rule=hold_52w_trail20_TP30            n=  29 win=44.8% mean= +2.6% total=  -24.7% MDD= -71.2% Sharpe=+0.22 PF= 1.28
-  th=    70 rule=hold_26w_trail15                 n=  29 win=48.3% mean= +2.2% total=   -2.0% MDD= -64.3% Sharpe=+0.23 PF= 1.29
-  th=    70 rule=hold_52w_trail15                 n=  29 win=41.4% mean= -1.3% total=  -65.3% MDD= -76.5% Sharpe=-0.15 PF= 0.84
-  th=    70 rule=hold_26w_trail20_TP25            n=  29 win=48.3% mean= +2.2% total=  -14.5% MDD= -61.8% Sharpe=+0.20 PF= 1.26
-  th=    75 rule=hold_52w_trail20_TP30            n=  12 win=50.0% mean= +5.7% total=  +33.4% MDD= -23.5% Sharpe=+0.30 PF= 1.76
-  th=    75 rule=hold_26w_trail15                 n=  12 win=50.0% mean= +1.0% total=   -3.2% MDD= -27.4% Sharpe=+0.09 PF= 1.16
-  th=    75 rule=hold_52w_trail15                 n=  12 win=50.0% mean= -1.8% total=  -28.8% MDD= -32.0% Sharpe=-0.17 PF= 0.74
-  th=    75 rule=hold_26w_trail20_TP25            n=  12 win=50.0% mean= +5.6% total=  +32.9% MDD= -29.6% Sharpe=+0.30 PF= 1.71
-  th=    80 rule=hold_52w_trail20_TP30            n=   7 win=57.1% mean=+15.4% total= +118.1% MDD= -29.0% Sharpe=+0.57 PF= 4.17
-  th=    80 rule=hold_26w_trail15                 n=   7 win=57.1% mean= +6.6% total=  +43.8% MDD= -24.2% Sharpe=+0.43 PF= 2.69
-  th=    80 rule=hold_52w_trail15                 n=   7 win=71.4% mean= +3.2% total=  +16.9% MDD= -24.2% Sharpe=+0.24 PF= 1.87
-  th=    80 rule=hold_26w_trail20_TP25            n=   7 win=57.1% mean=+16.4% total= +136.1% MDD= -29.0% Sharpe=+0.64 PF= 4.52
-  th=    85 rule=hold_52w_trail20_TP30            n=   3 win=100.0% mean=+47.1% total= +215.6% MDD=  +0.0% Sharpe=+3.17 PF=99.99
-  th=    85 rule=hold_26w_trail15                 n=   3 win=100.0% mean=+19.8% total=  +69.2% MDD=  +0.0% Sharpe=+1.15 PF=99.99
-  th=    85 rule=hold_52w_trail15                 n=   3 win=100.0% mean=+15.3% total=  +51.1% MDD=  +0.0% Sharpe=+0.92 PF=99.99
-  th=    85 rule=hold_26w_trail20_TP25            n=   3 win=100.0% mean=+44.4% total= +196.4% MDD=  +0.0% Sharpe=+2.23 PF=99.99
-  th=    90 rule=hold_52w_trail20_TP30            n=   1 win=100.0% mean=+49.4% total=  +49.4% MDD=  +0.0% Sharpe=+0.00 PF=99.99
-  th=    90 rule=hold_26w_trail15                 n=   1 win=100.0% mean= +2.9% total=   +2.9% MDD=  +0.0% Sharpe=+0.00 PF=99.99
-  th=    90 rule=hold_52w_trail15                 n=   1 win=100.0% mean= +2.9% total=   +2.9% MDD=  +0.0% Sharpe=+0.00 PF=99.99
-  th=    90 rule=hold_26w_trail20_TP25            n=   1 win=100.0% mean=+49.4% total=  +49.4% MDD=  +0.0% Sharpe=+0.00 PF=99.99
-  saved: C:\Users\82109\Desktop\LYC\git\stock_total\scripts\out\optimize\us_trend_chase_1w_grid.csv

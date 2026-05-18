@@ -312,7 +312,8 @@ def render(st: Any) -> None:
 
         st.caption(fetched_at_caption(df))
 
-        # Filter bar — 5 cols, mirrors KOSPI/NASDAQ layout.
+        # Filter bar — 5 cols. Signed numeric columns always sort by |value|
+        # (no toggle); see _bitget_grid.JS_ABS_COMPARATOR.
         f1, f2, f3, f4, f5 = st.columns([3, 1, 2, 2, 3])
         with f1:
             search = st.text_input("Symbol contains", value="", key="flt_search").strip()
@@ -422,12 +423,15 @@ def render(st: Any) -> None:
             df, ma_interval, hl_lookback, selected_symbol,
         )
         # Re-key the grid on every visible-state change including MA Interval
-        # and HL Lookback. Without the window keys in the grid_key,
-        # streamlit-aggrid reuses the existing component with cached gridOptions
-        # and the JsCode valueGetter doesn't pick up the new window suffix —
-        # so cells show stale values even though the underlying df_grid carries
-        # the right columns. Matches the stock-side strategy in _stock_grid.py.
-        grid_key = f"bitget_grid::v2::{top_n}::{search}::{sort_col_key}::{ma_interval}::{hl_lookback}"
+        # and HL Lookback. Without these in the grid_key, streamlit-aggrid
+        # reuses the existing component with cached gridOptions and the JsCode
+        # valueGetter doesn't pick up the new state — so cells show stale
+        # values even though df_grid carries the right columns. Matches the
+        # stock-side strategy in _stock_grid.py.
+        grid_key = (
+            f"bitget_grid::v3::{top_n}::{search}::{sort_col_key}"
+            f"::{ma_interval}::{hl_lookback}"
+        )
         grid_resp = AgGrid(
             df_grid,
             gridOptions=grid_options,

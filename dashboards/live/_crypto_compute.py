@@ -31,6 +31,7 @@ with ``scripts/misc/bench_bitget_table.py``.
 """
 from __future__ import annotations
 
+import math
 from pathlib import Path
 from typing import Any, Optional
 
@@ -75,6 +76,14 @@ HL_LOOKBACK_SPECS: dict[str, tuple[str, int]] = {
 
 HOUR_MS = 3_600_000
 DAY_MS = 86_400_000
+
+# Slope lookback: 1 bar back. The most local "current trend" measure —
+# captures the very latest direction change. Mathematically equivalent to
+#   MA[t] − MA[t−1] = (close[t] − close[t−period]) / period
+# i.e. "the bar entering the window vs the bar leaving". Trade-off: most
+# responsive to recent turns (good — that's the point), but inherently
+# noisier than period/2 averaging on short timeframes (1h especially).
+SLOPE_LOOKBACK_BARS: int = 1
 
 # Default cache-tail sizes for the per-symbol loader. ≥ longest derived window.
 HOURLY_CANDLE_LIMIT = 30   # ≥ MA20·stride for hourly MA + 24h lookback + PERIODS_H
@@ -127,6 +136,26 @@ def load_cache_tails(
 # ---------------------------------------------------------------------------
 # Bar-at-or-before lookup
 # ---------------------------------------------------------------------------
+
+def _slope_deg(ma_now: float, ma_back: float, n_bars: int) -> Optional[float]:
+    """MA slope as a signed angle in degrees.
+
+    Treats X-axis 1 bar = Y-axis 1% of MA: "MA up 1% per bar" → 45°,
+    "flat" → 0°, "MA down 1% per bar" → -45°. Real-world MA slopes mostly
+    land in ±30°. The 1:1 X-Y scale makes the angle scale-free across
+    symbols (no chart aspect ratio assumed).
+
+    ``n_bars`` is the bar-count lookback (already stride-aware, in units
+    of the MA's resampled interval — e.g. 5 for MA10/1d means 5 days back,
+    5 for MA10/1w means 5 weeks back).
+    """
+    if ma_back == 0 or n_bars <= 0:
+        return None
+    if not (math.isfinite(ma_now) and math.isfinite(ma_back)):
+        return None
+    per_bar_pct = (ma_now - ma_back) / ma_back * 100.0 / n_bars
+    return math.degrees(math.atan(per_bar_pct))
+
 
 def _close_at_or_before(
     ts: np.ndarray, closes: np.ndarray, target_ms: int, tol_ms: int,
@@ -187,6 +216,11 @@ def compute_reference_levels(
     short, long_ = ma_periods
     max_ma = max(short, long_)
 
+    # Slope needs SLOPE_LOOKBACK_BARS extra bars beyond the MA window to
+    # compare MA[t] vs MA[t-N]. With N=1 this is just +1 bar (MA20 → 21 total).
+    slope_lookback = SLOPE_LOOKBACK_BARS
+    max_samples = max_ma + slope_lookback
+
     parsed_ma = [(iv, *MA_INTERVAL_SPECS[iv]) for iv in ma_intervals]
     parsed_hl = [(lb, *HL_LOOKBACK_SPECS[lb]) for lb in hl_lookbacks]
 
@@ -194,7 +228,7 @@ def compute_reference_levels(
     need_h = max(periods_h) + 2
     need_d = max(periods_d) + 2
     for (_, gran, stride) in parsed_ma:
-        req = max_ma * stride + 2
+        req = max_samples * stride + 2
         if gran == "1h":
             need_h = max(need_h, req)
         else:
@@ -210,12 +244,14 @@ def compute_reference_levels(
     prev_keys_d = [f"prev_{n}d" for n in periods_d]
 
     ma_cols: list[str] = []
+    slope_cols: list[str] = []
     for (label, _, _) in parsed_ma:
         ma_cols.extend([f"ma{short}__{label}", f"ma{long_}__{label}"])
+        slope_cols.extend([f"slope{short}__{label}", f"slope{long_}__{label}"])
     hl_cols: list[str] = []
     for (label, _, _) in parsed_hl:
         hl_cols.extend([f"high__{label}", f"low__{label}"])
-    none_cols = prev_keys_h + prev_keys_d + ma_cols + hl_cols
+    none_cols = prev_keys_h + prev_keys_d + ma_cols + slope_cols + hl_cols
 
     rows = []
     for sym in symbols:
@@ -240,7 +276,10 @@ def compute_reference_levels(
                 if prev:
                     row[key] = prev
 
-        # ── MA per MA Interval (raw average, price-free) ──
+        # ── MA + slope per MA Interval (raw, price-free) ──
+        # sampled[0] = most recent completed bar; subsequent entries step by
+        # `stride` (so 4h-on-1h-cache jumps 4 hours per index). MA[t] uses
+        # bars 0..period-1; MA[t-N] (for slope) uses bars N..N+period-1.
         for (label, gran, stride) in parsed_ma:
             arrs = arrs_h if gran == "1h" else arrs_d
             bar_ms = HOUR_MS if gran == "1h" else DAY_MS
@@ -251,7 +290,7 @@ def compute_reference_levels(
             if now_ms - int(ts[-1]) > 2 * bar_ms:
                 continue
             sampled: list[float] = []
-            for k in range(max_ma):
+            for k in range(max_samples):
                 target = now_ms - k * stride * bar_ms - bar_ms
                 val = _close_at_or_before(ts, closes, target, bar_ms)
                 if val is None:
@@ -261,10 +300,24 @@ def compute_reference_levels(
                 ma_s = sum(sampled[:short]) / short
                 if ma_s:
                     row[f"ma{short}__{label}"] = ma_s
+                    if len(sampled) >= short + slope_lookback:
+                        ma_s_back = sum(
+                            sampled[slope_lookback : slope_lookback + short]
+                        ) / short
+                        row[f"slope{short}__{label}"] = _slope_deg(
+                            ma_s, ma_s_back, slope_lookback,
+                        )
             if len(sampled) >= long_:
                 ma_l = sum(sampled[:long_]) / long_
                 if ma_l:
                     row[f"ma{long_}__{label}"] = ma_l
+                    if len(sampled) >= long_ + slope_lookback:
+                        ma_l_back = sum(
+                            sampled[slope_lookback : slope_lookback + long_]
+                        ) / long_
+                        row[f"slope{long_}__{label}"] = _slope_deg(
+                            ma_l, ma_l_back, slope_lookback,
+                        )
 
         # ── HL per HL Lookback (raw max/min, price-free) ──
         for (label, gran, num_bars) in parsed_hl:
@@ -328,6 +381,12 @@ def apply_current_prices(
     for label in ma_intervals:
         out[f"pct_ma{short}__{label}"] = _pct(f"ma{short}__{label}")
         out[f"pct_ma{long_}__{label}"] = _pct(f"ma{long_}__{label}")
+        # Slope is price-independent; pass through from refs unchanged so it
+        # rides along in the same merged frame the grid reads.
+        for p in (short, long_):
+            slope_col = f"slope{p}__{label}"
+            if slope_col in refs.columns:
+                out[slope_col] = refs[slope_col].values
     for label in hl_lookbacks:
         hi_col, lo_col = f"high__{label}", f"low__{label}"
         if hi_col in refs.columns:

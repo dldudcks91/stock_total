@@ -196,22 +196,15 @@ Get-CimInstance Win32_Process -Filter "Name='python.exe'" | Select-Object Proces
 | `compare-runs` | 백테스트 | 두 런 메트릭 비교 |
 | `plot-chart` | 전 자산 | Bitget 스타일 캔들+MA+거래량+RSI Plotly 차트 |
 | `launch-dashboard` | UI | Streamlit 실행 |
+| `study` | 분석 | scripts/<group>/runs/ 표준 폴더 init/finalize (재현성 보장) |
 
 ### 현재 전략 목록 (`backtest/strategies/`)
 
 | 전략 | 라벨 | 자산 | 용도 | 비고 |
 |---|---|---|---|---|
-| `quiet_bottom` | **조용한 바닥** | KR / US | 추천 시그널 (자동매매 X) | 1차 구현 — 6 조건 (close>MA20, slope/accel 양, avg_dd_104w≤-0.45, path_R²_52w≤0.50, ret_4w≤+60%). 자세히: [QUIET_BOTTOM.md](backtest/strategies/QUIET_BOTTOM.md) |
-| `ma_slope_turn_up` | — | 전 자산 | 슬로프 양 전환 진입 (실험) | quiet_bottom의 전신 |
-| `weekly_trend` | — | 크립토 위주 | 주봉 추세 베이스라인 | |
-| `sma_cross` | — | 크립토 위주 | 골든·데드 크로스 베이스라인 | |
-| `breakout_start` | — | 크립토 위주 | 도네치안 돌파 + 스퀴즈 + 거래량 | |
-| `trend_follow` | — | 크립토 위주 | EMA 정배열 + ADX | |
-| `momentum_roc` | — | 크립토 위주 | ROC 모멘텀 가속 | |
-| `rsi_pullback` | — | 크립토 위주 | EMA100 위 RSI 반등 | |
-| `bb_squeeze` | — | 크립토 위주 | BB 폭 압축 후 상단 돌파 | |
-| `reversal_bottom` | — | 크립토 위주 | 바닥 반전 (실험) | |
-| `pump_continuation` | — | 크립토 위주 | 펌프 후 연속 추세 (실험) | |
+| `trend_pullback` | **수렴** | KR / US / Crypto | 추천 시그널 — 1차 상승 후 MA10/MA20 비비적 (눌림목) | Cycle 5 메인. KR 1d Sharpe 24.8 / US 1d 22.1 / Crypto 1h 3.3 (OOS). 청산: trail 0.25 / TP 0.30~0.35 / hold 252d |
+| `trend_chase` | **추격** | KR / US / Crypto | 추천 시그널 — 장대양봉 + 거래량 폭증 | Cycle 5 보조. KR 1d Sharpe 16.0 / US 1d 10.1 (게이트 `fresh_big_th=0.08`). 청산: trail 0.15~0.20 / TP 0.30 / hold 252d |
+| `quiet_bottom` | **조용한 바닥** | KR / US | 추천 시그널 (자동매매 X) — 1w binary | Cycle 5 보조. KR 1w Sharpe 6.8 / US 1w 6.4 (게이트 `dd_avg_max=-0.40`). 6 조건 (close>MA20, slope/accel 양, avg_dd_104w≤-0.45, path_R²_52w≤0.50, ret_4w≤+60%). 자세히: [QUIET_BOTTOM.md](backtest/strategies/QUIET_BOTTOM.md) |
 
 ### 현재 Agent 목록 (`.claude/agents/`)
 
@@ -221,6 +214,59 @@ Get-CimInstance Win32_Process -Filter "Name='python.exe'" | Select-Object Proces
 | `industry-analysis` | 업황/업계 정성 분석 |
 | `broker-consensus` | 한경 컨센서스 수집·요약 (KR) |
 | `fundamentals-deep` | DART 분기 실적 (KR) |
+
+## 분석 run 폴더 표준 (scripts/<group>/runs/)
+
+scripts/ 안의 자유 분석은 다음 폴더 규약을 따른다 (재현성 보장).
+
+```
+scripts/<group>/                          # 큰 틀 (예: trend_pullback)
+├── *.py                                   # 재사용 가능한 분석 모듈
+├── README.md                              # 그룹 설명 (선택)
+└── runs/                                  # 각 분석 실행 결과 (git tracked)
+    └── {YYYYMMDD-HHMM}_{name}/            # KST 타임스탬프 + snake_case 이름
+        ├── README.md                      # 사람용: 목적·방법·핵심 결과
+        ├── REPRODUCE.md                   # 재현 명령 한 줄
+        ├── config.json                    # 기계용: params + git + data + outputs
+        ├── env.txt                        # python/pandas/git 버전
+        └── output/                        # 산출물 (parquet/csv/png)
+```
+
+### 워크플로우
+
+1. **`/study init <group> <name>`** — 폴더 + 골격 파일들 생성 (git commit/branch/dirty 자동 기록)
+2. 분석 스크립트는 `--config <path/to/config.json>` 또는 `--out-dir <run_dir>` 로 실행. `output/` 에 저장. config.json 의 `params` / `data` / `results_summary` 자동 갱신
+3. **`/study finalize <run_dir>`** — output 스캔 → README 산출물 표 + config.outputs 채움
+
+### 공통 helper
+
+`scripts/_common/run_helper.py`:
+- `parse_args(add_args, defaults, description)` → `(out_dir, params, args)` 반환
+- `update_config(cfg_path, **updates)` → config.json deep-merge
+- `resolve_config_path(args)` → 현재 실행의 config.json 경로
+
+### 분석 모듈 인터페이스
+
+```python
+def main():
+    global IMPULSE_RET_MIN, ...   # 모듈 상수 덮어쓰기용 (있으면)
+    from scripts._common.run_helper import parse_args, update_config, resolve_config_path
+    def add_args(ap):
+        ap.add_argument("--impulse-min", type=float, default=None)
+    out_dir, params, args = parse_args(add_args, {"impulse_min": 0.07}, "...")
+    # ... 분석, out_dir 에 저장
+    cfg_path = resolve_config_path(args)
+    if cfg_path:
+        update_config(cfg_path, params={...}, data={...}, results_summary={...})
+```
+
+### 원칙
+
+- **`scripts/out/` 단일 폴더에 덮어쓰기 금지** — 항상 run 폴더 격리
+- **모든 run 폴더는 git tracked** (`output/*.parquet` 큰 파일이면 gitignore 추가 고려)
+- **`git_dirty=true` 면 finalize 시 경고** — 정확한 재현 보장 X
+- **KST 타임스탬프** (UTC 아님)
+- **분석 history 자동 보존** — 옛 run 폴더는 삭제하지 않음 (참조용)
 
 ## 데이터 접근 컨벤션
 

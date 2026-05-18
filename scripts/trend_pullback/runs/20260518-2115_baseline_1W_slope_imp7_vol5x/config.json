@@ -1,0 +1,73 @@
+{
+  "group": "trend_pullback",
+  "name": "baseline_1W_slope_imp7_vol5x",
+  "created_at": "2026-05-18T21:15:00+09:00",
+  "module": "scripts.trend_pullback.angle_study",
+  "git_commit": "d1ff82d",
+  "git_branch": "main",
+  "git_dirty": true,
+  "params": {
+    "impulse_min": 0.07,
+    "vol_mult_min": 5.0,
+    "touch_pad": 0.005,
+    "gate": "1W_MA20_slope_up",
+    "horizons": [
+      1,
+      6,
+      24,
+      72,
+      168
+    ],
+    "ma_lookahead": {
+      "ma10": 10,
+      "ma20": 20
+    },
+    "wick_bins": [
+      -1e-09,
+      0.01,
+      0.05,
+      "+inf"
+    ],
+    "bars_bins": [
+      [
+        1,
+        3
+      ],
+      [
+        4,
+        6
+      ],
+      [
+        7,
+        10
+      ]
+    ],
+    "angle_quantile_probs": [
+      0.2,
+      0.4,
+      0.6,
+      0.8
+    ]
+  },
+  "data": {
+    "asset": "crypto",
+    "interval": "1h",
+    "cache_dir": "data/cache/crypto/1h",
+    "symbol_count": 553
+  },
+  "outputs": [
+    "output/events.parquet",
+    "output/angle_study_summary.csv"
+  ],
+  "finalized_at": "2026-05-18T21:16:30+09:00",
+  "results_summary": {
+    "n_impulses": 1228,
+    "n_touched_ma10": 1099,
+    "n_touched_ma20": 1096,
+    "n_both": 1015,
+    "n_neither": 48,
+    "full_grid_cells": 48,
+    "touched_ma10": 1099,
+    "untouched_ma10": 129
+  }
+}

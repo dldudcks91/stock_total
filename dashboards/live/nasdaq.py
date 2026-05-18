@@ -1,4 +1,4 @@
-"""NASDAQ tab orchestrator — Naver-US snapshot + stock cache compute + AgGrid + chart.
+"""NASDAQ tab orchestrator — nasdaq_screener snapshot + stock cache compute + AgGrid + chart.
 
 Called from ``dashboards/pages/3_Live.py`` inside ``st.tabs[2]``.
 
@@ -12,7 +12,7 @@ Session state keys (all prefixed ``nas_``):
 
 Stock-side compute lives in :mod:`dashboards._stock_grid` (shared with KOSPI).
 The universe (count for the toolbar) is discovered from the local 1D parquet
-cache directory rather than the Naver API.
+cache directory rather than the screener API.
 """
 from __future__ import annotations
 
@@ -23,7 +23,7 @@ from typing import Any, Optional
 import pandas as pd
 
 from data.loader import load_ohlcv
-from data.sources.naver_us import SNAPSHOT_PATH, discover_universe, load_snapshot
+from data.sources.nasdaq_screener import SNAPSHOT_PATH, discover_universe, load_snapshot
 from dashboards._precompute import load_recs, load_refs, precompute_status
 from dashboards._stock_grid import (
     DEFAULT_HL_LOOKBACK,
@@ -120,10 +120,10 @@ def render(st: Any) -> None:
             label="라이브 가격 갱신",
             session_prefix="nas_live",
             log_path=_LIVE_LOG,
-            args=python_module_args("data.sources.naver_us"),
+            args=python_module_args("data.sources.nasdaq_screener"),
             cwd=_ROOT,
             button_key="nas_live_btn",
-            button_help="Naver 비공식 API로 전 종목 라이브 가격을 받아 머지 저장. 백그라운드.",
+            button_help="api.nasdaq.com screener 한 방 요청으로 전 종목 라이브 가격 갱신 (~2초). 백그라운드.",
         )
     with bar_fetch:
         render_subprocess_launcher(
@@ -234,8 +234,7 @@ def render(st: Any) -> None:
         df = load_snapshot()
         if df is None or df.empty:
             st.info(
-                "📡 라이브 스냅샷 없음 — 위 `라이브 가격 갱신` 으로 먼저 받아주세요. "
-                "초회 fetch는 3800종목 기준 ~2분 소요."
+                "📡 라이브 스냅샷 없음 — 위 `라이브 가격 갱신` 으로 먼저 받아주세요 (~2초)."
             )
             return
 

@@ -1,0 +1,28 @@
+{
+  "group": "ma20w_short",
+  "name": "crypto_baseline",
+  "created_at": "2026-05-18T21:40:45+09:00",
+  "module": "",
+  "git_commit": "d1ff82d",
+  "git_dirty": true,
+  "git_branch": "main",
+  "params": {
+    "rule": "short_when_close_below_MA20_weekly",
+    "asset": "crypto",
+    "interval": "1w",
+    "ma_window": 20,
+    "entry": "close < MA20 (week t close)",
+    "exit_candidates": ["close >= MA20 (week t close)", "fixed_hold_weeks", "trailing_stop", "TP/SL"],
+    "fees_bps": null,
+    "slippage_bps": null
+  },
+  "data": {
+    "asset": "crypto",
+    "interval": "1w",
+    "cache_dir": "data/cache/crypto/1d (resampled to 1w in-memory)",
+    "symbol_count": 553,
+    "data_until": "2026-05-18T17:00:04+09:00"
+  },
+  "results_summary": {},
+  "outputs": []
+}

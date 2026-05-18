@@ -1,311 +1,0 @@
-
-========== Stage A — threshold sweep (19 combos) ==========
-
-[1/19] kr / trend_chase / 1d
-  building universe for kr...
-  universe[kr] = 300 symbols
-  exit: chase_default hold=65 tr=0.2 tp=0.3 cut=0
-  collect_entries[kr/1d/trend_chase]: 948 files, universe=300
-    [kr/1d/trend_chase] 50 done...
-    [kr/1d/trend_chase] 100 done...
-    [kr/1d/trend_chase] 150 done...
-    [kr/1d/trend_chase] 200 done...
-    [kr/1d/trend_chase] 250 done...
-    [kr/1d/trend_chase] processed=298, short=2
-    th= 60.0 chase_default                n=2322 win%= 49.2 mean%= +3.30 total%=+16942233180364390400.0 MDD%= -98.9 Sharpe=+0.39
-    th= 70.0 chase_default                n=1798 win%= 48.6 mean%= +3.59 total%=+60286595822023064.0 MDD%= -98.2 Sharpe=+0.41
-    th= 75.0 chase_default                n=1290 win%= 46.3 mean%= +3.26 total%=+16076682936.8 MDD%= -99.3 Sharpe=+0.37
-    th= 80.0 chase_default                n=1212 win%= 46.9 mean%= +3.45 total%=+46839856558.0 MDD%= -96.7 Sharpe=+0.39
-    th= 85.0 chase_default                n= 804 win%= 46.1 mean%= +3.70 total%=+143759445.6 MDD%= -95.7 Sharpe=+0.41
-    th= 90.0 chase_default                n= 649 win%= 45.8 mean%= +4.05 total%=+62406974.9 MDD%= -94.7 Sharpe=+0.45
-  saved grid_kr_trend_chase_1d_stageA.csv (8.8s)
-
-[2/19] kr / trend_pullback / 1d
-  exit: pullback_default hold=130 tr=0.2 tp=0.3 cut=0
-  collect_entries[kr/1d/trend_pullback]: 948 files, universe=300
-    [kr/1d/trend_pullback] 50 done...
-    [kr/1d/trend_pullback] 100 done...
-    [kr/1d/trend_pullback] 150 done...
-    [kr/1d/trend_pullback] 200 done...
-    [kr/1d/trend_pullback] 250 done...
-    [kr/1d/trend_pullback] processed=298, short=2
-    th= 60.0 pullback_default             n=3512 win%= 49.0 mean%= +7.19 total%=+658721653232510871319258872598335621902666891985736513986599321600.0 MDD%= -97.1 Sharpe=+0.50
-    th= 70.0 pullback_default             n=3363 win%= 49.0 mean%= +7.26 total%=+3119176273268370609747684084918584673402081921933471407409201152.0 MDD%= -97.1 Sharpe=+0.50
-    th= 75.0 pullback_default             n=3186 win%= 49.2 mean%= +6.97 total%=+192968121578824126733012825578198177656242403134130284920832.0 MDD%= -96.3 Sharpe=+0.60
-    th= 80.0 pullback_default             n=2984 win%= 49.3 mean%= +7.02 total%=+157362332839897400681622923030801044862702608783973023744.0 MDD%= -97.7 Sharpe=+0.60
-    th= 85.0 pullback_default             n=2845 win%= 48.7 mean%= +6.97 total%=+133754930563363015286735178568500510562483629197361152.0 MDD%= -98.2 Sharpe=+0.60
-    th= 90.0 pullback_default             n=2486 win%= 48.6 mean%= +7.06 total%=+2246976787006276564796296682172824907808105299968.0 MDD%= -93.6 Sharpe=+0.61
-  saved grid_kr_trend_pullback_1d_stageA.csv (9.8s)
-
-[3/19] kr / trend_chase / 1w
-  exit: chase_default hold=13 tr=0.2 tp=0.3 cut=0
-  collect_entries[kr/1w/trend_chase]: 948 files, universe=300
-    [kr/1w/trend_chase] 50 done...
-    [kr/1w/trend_chase] 100 done...
-    [kr/1w/trend_chase] 150 done...
-    [kr/1w/trend_chase] 200 done...
-    [kr/1w/trend_chase] 250 done...
-    [kr/1w/trend_chase] processed=283, short=17
-    th= 60.0 chase_default                n=1756 win%= 50.2 mean%= +4.96 total%=+3303805276954357204516864.0 MDD%= -97.1 Sharpe=+0.51
-    th= 70.0 chase_default                n=1349 win%= 49.9 mean%= +4.93 total%=+4856013325433199616.0 MDD%= -98.8 Sharpe=+0.50
-    th= 75.0 chase_default                n=1129 win%= 49.2 mean%= +5.30 total%=+179729609155773184.0 MDD%= -99.0 Sharpe=+0.53
-    th= 80.0 chase_default                n= 881 win%= 48.5 mean%= +5.02 total%=+4905553037390.3 MDD%= -98.5 Sharpe=+0.50
-    th= 85.0 chase_default                n= 770 win%= 47.8 mean%= +4.62 total%=+6004759392.2 MDD%= -99.1 Sharpe=+0.45
-    th= 90.0 chase_default                n= 420 win%= 46.4 mean%= +4.99 total%=+2571727.1 MDD%= -97.4 Sharpe=+0.46
-  saved grid_kr_trend_chase_1w_stageA.csv (9.2s)
-
-[4/19] kr / trend_pullback / 1w
-  exit: pullback_default hold=26 tr=0.2 tp=0.3 cut=0
-  collect_entries[kr/1w/trend_pullback]: 948 files, universe=300
-    [kr/1w/trend_pullback] 50 done...
-    [kr/1w/trend_pullback] 100 done...
-    [kr/1w/trend_pullback] 150 done...
-    [kr/1w/trend_pullback] 200 done...
-    [kr/1w/trend_pullback] 250 done...
-    [kr/1w/trend_pullback] processed=283, short=17
-    th= 60.0 pullback_default             n=2330 win%= 55.5 mean%= +9.91 total%=+6654870058963784903809405592140319661518004636510456505499084520423424.0 MDD%= -96.6 Sharpe=+0.69
-    th= 70.0 pullback_default             n=2118 win%= 56.6 mean%= +9.76 total%=+387486152826514956356497348650526485853610045558537401147588608.0 MDD%= -96.9 Sharpe=+0.68
-    th= 75.0 pullback_default             n=1917 win%= 57.2 mean%= +9.79 total%=+1170026511798663621782378939562675356018394796774280658944.0 MDD%= -87.5 Sharpe=+0.68
-    th= 80.0 pullback_default             n=1765 win%= 57.1 mean%=+10.08 total%=+4657320758014838029702917571398124851382131236263690240.0 MDD%= -86.3 Sharpe=+0.70
-    th= 85.0 pullback_default             n=1592 win%= 57.2 mean%=+10.31 total%=+248002444639839133105001429326306638561849620037632.0 MDD%= -87.5 Sharpe=+0.71
-    th= 90.0 pullback_default             n=1310 win%= 58.0 mean%=+10.59 total%=+17400663955497736341373965303064256619479040.0 MDD%= -89.5 Sharpe=+0.73
-  saved grid_kr_trend_pullback_1w_stageA.csv (10.1s)
-
-[5/19] kr / quiet_bottom / 1w
-  exit: quiet_default hold=52 tr=0.2 tp=0.3 cut=0
-  collect_entries[kr/1w/quiet_bottom]: 948 files, universe=300
-    [kr/1w/quiet_bottom] 50 done...
-    [kr/1w/quiet_bottom] 100 done...
-    [kr/1w/quiet_bottom] 150 done...
-    [kr/1w/quiet_bottom] 200 done...
-    [kr/1w/quiet_bottom] 250 done...
-    [kr/1w/quiet_bottom] processed=283, short=17
-    th=100.0 quiet_default                n= 224 win%= 58.5 mean%=+15.65 total%=+6434463687871.2 MDD%= -88.0 Sharpe=+0.85
-  saved grid_kr_quiet_bottom_1w_stageA.csv (11.0s)
-
-[6/19] us / trend_chase / 1d
-  building universe for us...
-  0%|          | 0/3881 [00:00<?, ?it/s]  3%|3         | 120/3881 [00:00<00:04, 764.34it/s]  6%|6         | 240/3881 [00:00<00:04, 750.28it/s]  9%|9         | 360/3881 [00:00<00:04, 735.46it/s] 12%|#2        | 480/3881 [00:00<00:04, 739.33it/s] 15%|#5        | 600/3881 [00:00<00:04, 714.41it/s] 19%|#8        | 720/3881 [00:00<00:03, 791.25it/s] 22%|##1       | 840/3881 [00:01<00:03, 764.32it/s] 25%|##4       | 960/3881 [00:01<00:03, 743.23it/s] 28%|##7       | 1080/3881 [00:01<00:04, 694.12it/s] 31%|###       | 1200/3881 [00:01<00:03, 693.97it/s] 34%|###4      | 1320/3881 [00:01<00:03, 691.42it/s] 37%|###7      | 1440/3881 [00:02<00:03, 692.09it/s] 40%|####      | 1560/3881 [00:02<00:03, 758.90it/s] 43%|####3     | 1680/3881 [00:02<00:03, 731.14it/s] 46%|####6     | 1800/3881 [00:02<00:03, 668.63it/s] 49%|####9     | 1920/3881 [00:02<00:02, 662.52it/s] 53%|#####2    | 2040/3881 [00:02<00:02, 726.61it/s] 56%|#####5    | 2160/3881 [00:03<00:02, 712.54it/s] 59%|#####8    | 2280/3881 [00:03<00:02, 680.25it/s] 62%|######1   | 2400/3881 [00:03<00:02, 654.02it/s] 65%|######4   | 2520/3881 [00:03<00:02, 664.33it/s] 68%|######8   | 2640/3881 [00:03<00:01, 657.34it/s] 71%|#######1  | 2760/3881 [00:03<00:01, 640.07it/s] 74%|#######4  | 2880/3881 [00:04<00:01, 637.47it/s] 77%|#######7  | 3000/3881 [00:04<00:01, 624.76it/s] 80%|########  | 3120/3881 [00:04<00:01, 623.86it/s] 83%|########3 | 3240/3881 [00:04<00:01, 612.75it/s] 87%|########6 | 3360/3881 [00:04<00:00, 614.49it/s] 90%|########9 | 3480/3881 [00:05<00:00, 578.31it/s] 93%|#########2| 3600/3881 [00:05<00:00, 595.98it/s] 96%|#########5| 3720/3881 [00:05<00:00, 604.37it/s] 99%|#########8| 3840/3881 [00:05<00:00, 608.56it/s]100%|##########| 3881/3881 [00:05<00:00, 656.57it/s]
-  universe[us] = 300 symbols
-  exit: chase_default hold=65 tr=0.2 tp=0.3 cut=0
-  collect_entries[us/1d/trend_chase]: 3849 files, universe=300
-    [us/1d/trend_chase] 50 done...
-C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_chase.py:85: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
-  ret = close.pct_change()
-    [us/1d/trend_chase] 100 done...
-    [us/1d/trend_chase] 150 done...
-    [us/1d/trend_chase] 200 done...
-    [us/1d/trend_chase] 250 done...
-C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_chase.py:85: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
-  ret = close.pct_change()
-    [us/1d/trend_chase] processed=295, short=4
-    th= 60.0 chase_default                n=1687 win%= 58.1 mean%= +4.39 total%=+458302733202162993594368.0 MDD%= -80.3 Sharpe=+0.55
-    th= 70.0 chase_default                n=1100 win%= 58.5 mean%= +4.64 total%=+84157902546773216.0 MDD%= -85.3 Sharpe=+0.57
-    th= 75.0 chase_default                n= 685 win%= 60.0 mean%= +5.69 total%=+185667450267977.7 MDD%= -72.0 Sharpe=+0.69
-    th= 80.0 chase_default                n= 594 win%= 58.8 mean%= +5.32 total%=+529302193760.1 MDD%= -80.3 Sharpe=+0.64
-    th= 85.0 chase_default                n= 390 win%= 59.2 mean%= +5.65 total%=+550702589.6 MDD%= -72.7 Sharpe=+0.66
-    th= 90.0 chase_default                n= 205 win%= 60.0 mean%= +4.78 total%=+77960.8 MDD%= -68.9 Sharpe=+0.58
-  saved grid_us_trend_chase_1d_stageA.csv (15.5s)
-
-[7/19] us / trend_pullback / 1d
-  exit: pullback_default hold=130 tr=0.2 tp=0.3 cut=0
-  collect_entries[us/1d/trend_pullback]: 3849 files, universe=300
-    [us/1d/trend_pullback] 50 done...
-C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
-  ret1 = close.pct_change()
-C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
-  is_up = (close > open_) & (close.pct_change() > 0)
-    [us/1d/trend_pullback] 100 done...
-    [us/1d/trend_pullback] 150 done...
-    [us/1d/trend_pullback] 200 done...
-    [us/1d/trend_pullback] 250 done...
-C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
-  ret1 = close.pct_change()
-C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
-  is_up = (close > open_) & (close.pct_change() > 0)
-    [us/1d/trend_pullback] processed=295, short=4
-    th= 60.0 pullback_default             n=3360 win%= 50.4 mean%= +6.77 total%=+1225548361335741656658804295734129196790254537233584357376.0 MDD%= -97.9 Sharpe=+0.55
-    th= 70.0 pullback_default             n=3166 win%= 51.2 mean%= +6.81 total%=+2328286145051152468701998943010447562239008128590938112.0 MDD%= -98.1 Sharpe=+0.56
-    th= 75.0 pullback_default             n=3021 win%= 50.8 mean%= +6.79 total%=+1123608104950665109435994315400356572938194944786432.0 MDD%= -98.8 Sharpe=+0.55
-    th= 80.0 pullback_default             n=2812 win%= 51.3 mean%= +6.85 total%=+6276644490052638029166736426724986296305203544064.0 MDD%= -98.4 Sharpe=+0.56
-    th= 85.0 pullback_default             n=2593 win%= 51.4 mean%= +6.83 total%=+130147153866678921272853876966900686546534400.0 MDD%= -98.5 Sharpe=+0.56
-    th= 90.0 pullback_default             n=2247 win%= 52.4 mean%= +7.27 total%=+41419724603308593592638711095400417265188864.0 MDD%= -97.7 Sharpe=+0.60
-  saved grid_us_trend_pullback_1d_stageA.csv (11.7s)
-
-[8/19] us / trend_chase / 1w
-  exit: chase_default hold=13 tr=0.2 tp=0.3 cut=0
-  collect_entries[us/1w/trend_chase]: 3849 files, universe=300
-    [us/1w/trend_chase] 50 done...
-    [us/1w/trend_chase] 100 done...
-    [us/1w/trend_chase] 150 done...
-    [us/1w/trend_chase] 200 done...
-    [us/1w/trend_chase] 250 done...
-    [us/1w/trend_chase] processed=288, short=11
-    th= 60.0 chase_default                n=1398 win%= 54.4 mean%= +3.88 total%=+300793838275565.2 MDD%= -94.8 Sharpe=+0.43
-    th= 70.0 chase_default                n= 777 win%= 54.2 mean%= +4.07 total%=+1750779073.5 MDD%= -96.2 Sharpe=+0.44
-    th= 75.0 chase_default                n= 583 win%= 53.5 mean%= +4.22 total%=+15542470.7 MDD%= -95.9 Sharpe=+0.43
-    th= 80.0 chase_default                n= 262 win%= 57.6 mean%= +6.15 total%=+1912179.7 MDD%= -77.8 Sharpe=+0.60
-    th= 85.0 chase_default                n= 216 win%= 57.4 mean%= +6.88 total%=+981213.2 MDD%= -80.4 Sharpe=+0.65
-    th= 90.0 chase_default                n=  54 win%= 57.4 mean%= +4.47 total%=   +11.2 MDD%= -78.6 Sharpe=+0.36
-  saved grid_us_trend_chase_1w_stageA.csv (10.3s)
-
-[9/19] us / trend_pullback / 1w
-  exit: pullback_default hold=26 tr=0.2 tp=0.3 cut=0
-  collect_entries[us/1w/trend_pullback]: 3849 files, universe=300
-    [us/1w/trend_pullback] 50 done...
-    [us/1w/trend_pullback] 100 done...
-    [us/1w/trend_pullback] 150 done...
-    [us/1w/trend_pullback] 200 done...
-    [us/1w/trend_pullback] 250 done...
-    [us/1w/trend_pullback] processed=288, short=11
-    th= 60.0 pullback_default             n=2342 win%= 57.8 mean%= +8.79 total%=+292838639097155258849388754786395458647778483253395540934656.0 MDD%= -93.1 Sharpe=+0.62
-    th= 70.0 pullback_default             n=2190 win%= 57.7 mean%= +8.55 total%=+4830549752261372657464494172354037494958791722176348160.0 MDD%= -93.1 Sharpe=+0.60
-    th= 75.0 pullback_default             n=2011 win%= 57.7 mean%= +8.36 total%=+39567474149364259219649256295691250482233842073600.0 MDD%= -94.1 Sharpe=+0.60
-    th= 80.0 pullback_default             n=1827 win%= 56.8 mean%= +7.89 total%=+1978353248955744952416398297912513520467968.0 MDD%= -96.2 Sharpe=+0.58
-    th= 85.0 pullback_default             n=1609 win%= 57.1 mean%= +7.80 total%=+64134931671612760925798060257886339072.0 MDD%= -95.8 Sharpe=+0.58
-    th= 90.0 pullback_default             n=1282 win%= 57.3 mean%= +7.77 total%=+4969309410161699273000047607808.0 MDD%= -89.8 Sharpe=+0.58
-  saved grid_us_trend_pullback_1w_stageA.csv (11.5s)
-
-[10/19] us / quiet_bottom / 1w
-  exit: quiet_default hold=52 tr=0.2 tp=0.3 cut=0
-  collect_entries[us/1w/quiet_bottom]: 3849 files, universe=300
-    [us/1w/quiet_bottom] 50 done...
-    [us/1w/quiet_bottom] 100 done...
-    [us/1w/quiet_bottom] 150 done...
-    [us/1w/quiet_bottom] 200 done...
-    [us/1w/quiet_bottom] 250 done...
-    [us/1w/quiet_bottom] processed=288, short=11
-    th=100.0 quiet_default                n= 153 win%= 53.6 mean%=+13.87 total%=+45714291.4 MDD%= -82.0 Sharpe=+0.77
-  saved grid_us_quiet_bottom_1w_stageA.csv (18.4s)
-
-[11/19] crypto / trend_chase / 1h
-  building universe for crypto...
-  universe[crypto] = 200 symbols
-  exit: chase_default hold=1344 tr=0.15 tp=0.3 cut=0
-  collect_entries[crypto/1h/trend_chase]: 553 files, universe=200
-    [crypto/1h/trend_chase] 50 done...
-    [crypto/1h/trend_chase] 100 done...
-    [crypto/1h/trend_chase] 150 done...
-    [crypto/1h/trend_chase] 200 done...
-    [crypto/1h/trend_chase] processed=200, short=0
-    th= 60.0 chase_default                n= 802 win%= 43.0 mean%= +2.82 total%=+1056803.3 MDD%= -92.8 Sharpe=+0.62
-    th= 70.0 chase_default                n= 693 win%= 41.1 mean%= +2.54 total%=+45497.6 MDD%= -86.8 Sharpe=+0.56
-    th= 75.0 chase_default                n= 574 win%= 41.5 mean%= +2.54 total%=+19309.0 MDD%= -92.3 Sharpe=+0.56
-    th= 80.0 chase_default                n= 524 win%= 41.6 mean%= +2.65 total%=+21175.2 MDD%= -92.4 Sharpe=+0.58
-    th= 85.0 chase_default                n= 397 win%= 40.6 mean%= +2.00 total%=  +709.5 MDD%= -94.2 Sharpe=+0.45
-    th= 90.0 chase_default                n= 327 win%= 43.4 mean%= +2.51 total%= +2503.5 MDD%= -85.9 Sharpe=+0.56
-  saved grid_crypto_trend_chase_1h_stageA.csv (18.2s)
-
-[12/19] crypto / trend_pullback / 1h
-  exit: pullback_default hold=2184 tr=0.15 tp=0.3 cut=0
-  collect_entries[crypto/1h/trend_pullback]: 553 files, universe=200
-    [crypto/1h/trend_pullback] 50 done...
-    [crypto/1h/trend_pullback] 100 done...
-    [crypto/1h/trend_pullback] 150 done...
-    [crypto/1h/trend_pullback] 200 done...
-    [crypto/1h/trend_pullback] processed=200, short=0
-    th= 60.0 pullback_default             n=9783 win%= 34.9 mean%= +0.12 total%=  -100.0 MDD%=-100.0 Sharpe=+0.04
-    th= 70.0 pullback_default             n=9438 win%= 35.1 mean%= +0.13 total%=  -100.0 MDD%=-100.0 Sharpe=+0.04
-    th= 75.0 pullback_default             n=9403 win%= 35.2 mean%= +0.18 total%=  -100.0 MDD%=-100.0 Sharpe=+0.05
-    th= 80.0 pullback_default             n=9223 win%= 35.1 mean%= +0.22 total%=  -100.0 MDD%=-100.0 Sharpe=+0.06
-    th= 85.0 pullback_default             n=8890 win%= 34.9 mean%= +0.25 total%=  -100.0 MDD%=-100.0 Sharpe=+0.07
-    th= 90.0 pullback_default             n=8491 win%= 34.8 mean%= +0.26 total%=  -100.0 MDD%=-100.0 Sharpe=+0.08
-  saved grid_crypto_trend_pullback_1h_stageA.csv (43.8s)
-
-[13/19] crypto / trend_chase / 4h
-  exit: chase_default hold=336 tr=0.15 tp=0.3 cut=0
-  collect_entries[crypto/4h/trend_chase]: 553 files, universe=200
-    [crypto/4h/trend_chase] 50 done...
-    [crypto/4h/trend_chase] 100 done...
-    [crypto/4h/trend_chase] 150 done...
-    [crypto/4h/trend_chase] 200 done...
-    [crypto/4h/trend_chase] processed=200, short=0
-    th= 60.0 chase_default                n=2350 win%= 39.0 mean%= +1.07 total%=  -100.0 MDD%=-100.0 Sharpe=+0.23
-    th= 70.0 chase_default                n=1902 win%= 39.4 mean%= +1.51 total%=  -100.0 MDD%=-100.0 Sharpe=+0.33
-    th= 75.0 chase_default                n=1450 win%= 39.4 mean%= +1.41 total%=  -100.0 MDD%=-100.0 Sharpe=+0.30
-    th= 80.0 chase_default                n=1356 win%= 39.7 mean%= +1.45 total%=  -100.0 MDD%=-100.0 Sharpe=+0.30
-    th= 85.0 chase_default                n= 940 win%= 41.1 mean%= +2.20 total%=   -68.2 MDD%=-100.0 Sharpe=+0.45
-    th= 90.0 chase_default                n= 728 win%= 39.4 mean%= +1.58 total%=   -99.7 MDD%=-100.0 Sharpe=+0.32
-  saved grid_crypto_trend_chase_4h_stageA.csv (8.3s)
-
-[14/19] crypto / trend_pullback / 4h
-  exit: pullback_default hold=546 tr=0.15 tp=0.3 cut=0
-  collect_entries[crypto/4h/trend_pullback]: 553 files, universe=200
-    [crypto/4h/trend_pullback] 50 done...
-    [crypto/4h/trend_pullback] 100 done...
-    [crypto/4h/trend_pullback] 150 done...
-    [crypto/4h/trend_pullback] 200 done...
-    [crypto/4h/trend_pullback] processed=200, short=0
-    th= 60.0 pullback_default             n=6560 win%= 35.8 mean%= +0.02 total%=  -100.0 MDD%=-100.0 Sharpe=+0.00
-    th= 70.0 pullback_default             n=6287 win%= 35.2 mean%= +0.10 total%=  -100.0 MDD%=-100.0 Sharpe=+0.02
-    th= 75.0 pullback_default             n=6037 win%= 35.2 mean%= -0.01 total%=  -100.0 MDD%=-100.0 Sharpe=-0.00
-    th= 80.0 pullback_default             n=5845 win%= 34.9 mean%= -0.05 total%=  -100.0 MDD%=-100.0 Sharpe=-0.01
-    th= 85.0 pullback_default             n=5583 win%= 35.2 mean%= -0.09 total%=  -100.0 MDD%=-100.0 Sharpe=-0.02
-    th= 90.0 pullback_default             n=4982 win%= 35.1 mean%= -0.04 total%=  -100.0 MDD%=-100.0 Sharpe=-0.01
-  saved grid_crypto_trend_pullback_4h_stageA.csv (13.7s)
-
-[15/19] crypto / trend_chase / 1d
-  exit: chase_default hold=40 tr=0.15 tp=0.3 cut=0
-  collect_entries[crypto/1d/trend_chase]: 553 files, universe=200
-    [crypto/1d/trend_chase] 50 done...
-    [crypto/1d/trend_chase] 100 done...
-    [crypto/1d/trend_chase] 150 done...
-    [crypto/1d/trend_chase] processed=199, short=1
-    th= 60.0 chase_default                n= 278 win%= 47.1 mean%= +4.73 total%=+22615.3 MDD%= -89.8 Sharpe=+0.62
-    th= 70.0 chase_default                n= 203 win%= 46.8 mean%= +5.17 total%=+10175.9 MDD%= -78.3 Sharpe=+0.67
-    th= 75.0 chase_default                n= 142 win%= 47.2 mean%= +6.34 total%=+12120.6 MDD%= -73.1 Sharpe=+0.81
-    th= 80.0 chase_default                n= 127 win%= 48.8 mean%= +7.74 total%=+40455.8 MDD%= -73.1 Sharpe=+0.99
-    th= 85.0 chase_default                n=  92 win%= 42.4 mean%= +5.70 total%=  +773.6 MDD%= -73.1 Sharpe=+0.68
-    th= 90.0 chase_default                n=  72 win%= 48.6 mean%= +8.38 total%= +2711.2 MDD%= -64.4 Sharpe=+0.96
-  saved grid_crypto_trend_chase_1d_stageA.csv (3.5s)
-
-[16/19] crypto / trend_pullback / 1d
-  exit: pullback_default hold=65 tr=0.15 tp=0.3 cut=0
-  collect_entries[crypto/1d/trend_pullback]: 553 files, universe=200
-    [crypto/1d/trend_pullback] 50 done...
-    [crypto/1d/trend_pullback] 100 done...
-    [crypto/1d/trend_pullback] 150 done...
-    [crypto/1d/trend_pullback] processed=199, short=1
-    th= 60.0 pullback_default             n=3185 win%= 36.3 mean%= +0.13 total%=  -100.0 MDD%=-100.0 Sharpe=+0.02
-    th= 70.0 pullback_default             n=2821 win%= 36.6 mean%= -0.18 total%=  -100.0 MDD%=-100.0 Sharpe=-0.02
-    th= 75.0 pullback_default             n=2579 win%= 36.1 mean%= -0.19 total%=  -100.0 MDD%=-100.0 Sharpe=-0.02
-    th= 80.0 pullback_default             n=2259 win%= 37.5 mean%= +0.51 total%=  -100.0 MDD%=-100.0 Sharpe=+0.06
-    th= 85.0 pullback_default             n=2035 win%= 37.3 mean%= +0.58 total%=  -100.0 MDD%=-100.0 Sharpe=+0.07
-    th= 90.0 pullback_default             n=1611 win%= 39.4 mean%= +1.15 total%=  -100.0 MDD%=-100.0 Sharpe=+0.14
-  saved grid_crypto_trend_pullback_1d_stageA.csv (4.7s)
-
-[17/19] crypto / trend_chase / 1w
-  exit: chase_default hold=8 tr=0.15 tp=0.3 cut=0
-  collect_entries[crypto/1w/trend_chase]: 553 files, universe=200
-    [crypto/1w/trend_chase] 50 done...
-    [crypto/1w/trend_chase] processed=86, short=114
-    th= 60.0 chase_default                n=  68 win%= 48.5 mean%=+11.09 total%= +4602.0 MDD%= -53.2 Sharpe=+1.01
-    th= 70.0 chase_default                n=  51 win%= 49.0 mean%=+12.29 total%= +2321.6 MDD%= -52.4 Sharpe=+1.07
-    th= 75.0 chase_default                n=  41 win%= 43.9 mean%=+14.02 total%= +1949.5 MDD%= -64.9 Sharpe=+1.14
-    th= 80.0 chase_default                n=  30 win%= 36.7 mean%= +3.83 total%=    -5.6 MDD%= -66.1 Sharpe=+0.41
-    th= 85.0 chase_default                n=  19 win%= 47.4 mean%= +7.58 total%=   +72.2 MDD%= -45.6 Sharpe=+0.74
-    th= 90.0 chase_default                n=  15 win%= 33.3 mean%= -4.87 total%=   -67.9 MDD%= -72.5 Sharpe=-0.68
-  saved grid_crypto_trend_chase_1w_stageA.csv (3.4s)
-
-[18/19] crypto / trend_pullback / 1w
-  exit: pullback_default hold=13 tr=0.15 tp=0.3 cut=0
-  collect_entries[crypto/1w/trend_pullback]: 553 files, universe=200
-    [crypto/1w/trend_pullback] 50 done...
-    [crypto/1w/trend_pullback] processed=86, short=114
-    th= 60.0 pullback_default             n= 270 win%= 30.4 mean%= -2.77 total%=  -100.0 MDD%=-100.0 Sharpe=-0.14
-    th= 70.0 pullback_default             n= 172 win%= 34.3 mean%= +0.14 total%=  -100.0 MDD%=-100.0 Sharpe=+0.01
-    th= 75.0 pullback_default             n= 127 win%= 29.9 mean%= -6.79 total%=  -100.0 MDD%=-100.0 Sharpe=-0.38
-    th= 80.0 pullback_default             n=  74 win%= 28.4 mean%=-10.77 total%=  -100.0 MDD%=-100.0 Sharpe=-0.68
-    th= 85.0 pullback_default             n=  45 win%= 24.4 mean%=-12.53 total%=  -100.0 MDD%=-100.0 Sharpe=-0.78
-    th= 90.0 pullback_default             n=  27 win%= 18.5 mean%=-17.37 total%=   -99.9 MDD%=-100.0 Sharpe=-1.27
-  saved grid_crypto_trend_pullback_1w_stageA.csv (3.6s)
-
-[19/19] crypto / quiet_bottom / 1w
-  exit: quiet_default hold=13 tr=0.15 tp=0.0 cut=1
-  collect_entries[crypto/1w/quiet_bottom]: 553 files, universe=200
-    [crypto/1w/quiet_bottom] 50 done...
-    [crypto/1w/quiet_bottom] processed=86, short=114
-    th=100.0 quiet_default                n=   0 win%=  0.0 mean%= +0.00 total%=    +0.0 MDD%=  +0.0 Sharpe=+0.00
-  saved grid_crypto_quiet_bottom_1w_stageA.csv (3.2s)
-
-stageA_all.csv saved (99 rows)

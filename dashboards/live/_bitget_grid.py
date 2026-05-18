@@ -20,7 +20,7 @@ import pandas as pd
 from st_aggrid import GridOptionsBuilder, JsCode
 
 from dashboards._stock_grid import JS_FMT_REC, JS_STYLE_REC
-from dashboards.live._crypto_compute import MA_PERIODS, PERIODS_D, PERIODS_H
+from dashboards.live._crypto_compute import MA_PERIODS
 
 
 # ---------------------------------------------------------------------------
@@ -31,17 +31,6 @@ COLUMN_LABELS: dict[str, str] = {
     "symbol": "Symbol",
     "markPrice": "Mark",
     "lastPr": "Last",
-    "pct_1h": "1h",
-    "pct_4h": "4h",
-    "change24h": "24h",
-    "changeUtc24h": "24h (UTC)",
-    "pct_3d": "3d",
-    "pct_7d": "7d",
-    "pct_14d": "14d",
-    "pct_off_high24h": "24h High Δ",
-    "pct_off_low24h": "24h Low Δ",
-    "pct_ma10": "MA10 Δ",
-    "pct_ma20": "MA20 Δ",
     "high24h": "24h High",
     "low24h": "24h Low",
     "open24h": "24h Open",
@@ -83,6 +72,17 @@ function(params) {
 }
 """)
 
+# Signed angle in degrees — flat MA = 0°, ±sign carries direction.
+# Source value is already in degrees (see ``_slope_deg`` in _crypto_compute).
+JS_FMT_DEG = JsCode("""
+function(params) {
+  const v = params.value;
+  if (v == null || Number.isNaN(v)) return '—';
+  const sign = v > 0 ? '+' : (v < 0 ? '' : '');
+  return sign + v.toFixed(1) + '°';
+}
+""")
+
 JS_FMT_PRICE = JsCode("""
 function(params) {
   const v = params.value;
@@ -96,6 +96,22 @@ function(params) {
   const v = params.value;
   if (v == null || Number.isNaN(v)) return '—';
   return Math.round(v).toLocaleString('en-US');
+}
+""")
+
+# Custom sort comparator: sort by |value| instead of signed value. Lets
+# the user surface "biggest movers" (positive AND negative) at the top by
+# clicking any signed column header. Nulls/NaN sink to bottom always.
+JS_ABS_COMPARATOR = JsCode("""
+function(valueA, valueB, nodeA, nodeB, isDescending) {
+  const aNull = valueA == null || Number.isNaN(valueA);
+  const bNull = valueB == null || Number.isNaN(valueB);
+  if (aNull && bNull) return 0;
+  if (aNull) return isDescending ? -1 : 1;
+  if (bNull) return isDescending ? 1 : -1;
+  const a = Math.abs(valueA);
+  const b = Math.abs(valueB);
+  return a < b ? -1 : (a > b ? 1 : 0);
 }
 """)
 
@@ -142,18 +158,24 @@ def build_grid_options(
 
     Column order (left → right, displayed):
         ▸ checkbox + Symbol (pinned), Mark, 거래대금, 시총, Funding,
-          1h%, 4h%, 24h%, 3d%, 7d%, 14d%,
-          MA10 (ma_interval), MA20 (ma_interval),
+          MA10갭, MA10∠, MA20갭, MA20∠ (all read ``__{ma_interval}``),
           High% (hl_lookback), Low% (hl_lookback),
           추천, 메모
+
+    Fixed-period % columns (1h/4h/24h/3d/7d/14d) were removed in favor of
+    MA-centric columns: gap % (price vs MA, signed) + slope ° (MA trend
+    angle, signed). Trend angle is price-independent — flat MA = 0° even if
+    price gaps; the two columns answer different questions.
 
     ``ma_interval`` ∈ ``MA_INTERVAL_OPTIONS_CRYPTO`` selects which __{iv}
     suffix the MA columns read; ``hl_lookback`` ∈ ``HL_LOOKBACK_OPTIONS_CRYPTO``
     selects the suffix for the H/L columns. Both flip purely client-side via
     JsCode valueGetter — no server recompute when the user changes window.
     """
-    SHORT_KEY = f"_ma{short_ma}"
-    LONG_KEY = f"_ma{long_ma}"
+    SHORT_KEY = f"_ma{short_ma}"             # MA10 gap %
+    SHORT_SLOPE_KEY = f"_slope{short_ma}"    # MA10 angle (°)
+    LONG_KEY = f"_ma{long_ma}"               # MA20 gap %
+    LONG_SLOPE_KEY = f"_slope{long_ma}"      # MA20 angle (°)
     HIGH_KEY = "_high_pct"
     LOW_KEY = "_low_pct"
     REC_KEY = "_rec"   # display-only; reads rec_label/rec_score/rec_kind via JS
@@ -161,16 +183,21 @@ def build_grid_options(
     VISIBLE_ORDER = [
         "symbol",
         "markPrice", "quoteVolume", "marketCap", "fundingRate",
-        "pct_1h", "pct_4h", "change24h",
-        "pct_3d", "pct_7d", "pct_14d",
-        SHORT_KEY, LONG_KEY, HIGH_KEY, LOW_KEY,
+        SHORT_KEY, SHORT_SLOPE_KEY, LONG_KEY, LONG_SLOPE_KEY,
+        HIGH_KEY, LOW_KEY,
         REC_KEY, "note",
     ]
 
     df_grid = df.copy()
-    for placeholder in (SHORT_KEY, LONG_KEY, HIGH_KEY, LOW_KEY, REC_KEY):
+    for placeholder in (SHORT_KEY, SHORT_SLOPE_KEY, LONG_KEY, LONG_SLOPE_KEY,
+                        HIGH_KEY, LOW_KEY, REC_KEY):
         if placeholder not in df_grid.columns:
             df_grid[placeholder] = None
+
+    # Signed numeric columns always sort by |value| — gap%, slope°, High/Low%,
+    # fundingRate. Sign matters for the cell color but the user wants to rank
+    # by magnitude (biggest movers, biggest gaps), not by sign.
+    signed_kw = {"comparator": JS_ABS_COMPARATOR}
 
     visible_present = [c for c in VISIBLE_ORDER if c in df_grid.columns]
     hidden_present = [c for c in df_grid.columns if c not in visible_present]
@@ -180,13 +207,17 @@ def build_grid_options(
     gob.configure_default_column(
         resizable=True, sortable=True, filter=False,
         editable=False, suppressMovable=False,
+        # Hide the per-column header menu (hamburger) on every column. Both
+        # keys for AG Grid v28 (suppressMenu) and v32+ (suppressHeaderMenuButton)
+        # so the option works regardless of the bundled ag-grid version.
+        suppressMenu=True, suppressHeaderMenuButton=True,
         cellStyle={"display": "flex", "alignItems": "center"},
     )
 
     # ── Symbol (pinned left, doubles as checkbox column) ──
     gob.configure_column(
         "symbol", headerName="Symbol", pinned="left",
-        width=130, minWidth=100,
+        width=95, minWidth=75,
         checkboxSelection=True, headerCheckboxSelection=False,
     )
 
@@ -196,63 +227,60 @@ def build_grid_options(
         valueFormatter=JS_FMT_PRICE, type=["numericColumn"],
     )
     gob.configure_column(
-        "quoteVolume", headerName="거래대금", width=115,
-        valueFormatter=JS_FMT_INT, type=["numericColumn"],
+        "quoteVolume", headerName="거래대금", width=80,
+        valueFormatter=JS_FMT_MCAP, type=["numericColumn"],
     )
     gob.configure_column(
-        "marketCap", headerName="시가총액", width=90,
+        "marketCap", headerName="시가총액", width=80,
         valueFormatter=JS_FMT_MCAP, type=["numericColumn"],
     )
     gob.configure_column(
         "fundingRate", headerName="Funding", width=62,
         valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
-        type=["numericColumn"],
+        type=["numericColumn"], **signed_kw,
     )
 
-    # ── Fixed period % columns ──
-    for n in PERIODS_H:
-        gob.configure_column(
-            f"pct_{n}h", headerName=f"{n}h", width=56,
-            valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
-            type=["numericColumn"],
-        )
+    # ── MA gap % + slope ° columns ──
+    # Each MA gets a pair: gap % (price vs MA, signed) and slope ° (MA trend
+    # angle, signed, price-independent). Both valueGetters key off the same
+    # ma_interval suffix → flipping the MA Interval picker swaps all 4 cells
+    # client-side in one shot.
     gob.configure_column(
-        "change24h", headerName="24h", width=56,
-        valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
-        type=["numericColumn"],
-    )
-    for n in PERIODS_D:
-        gob.configure_column(
-            f"pct_{n}d", headerName=f"{n}d", width=56,
-            valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
-            type=["numericColumn"],
-        )
-
-    # ── MA columns (valueGetter reads `__{ma_interval}` from row data) ──
-    gob.configure_column(
-        SHORT_KEY, headerName=f"MA{short_ma}", width=60,
+        SHORT_KEY, headerName=f"MA{short_ma}갭", width=66,
         valueGetter=js_window_value_getter(f"pct_ma{short_ma}", ma_interval),
         valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
-        type=["numericColumn"],
+        type=["numericColumn"], **signed_kw,
     )
     gob.configure_column(
-        LONG_KEY, headerName=f"MA{long_ma}", width=60,
+        SHORT_SLOPE_KEY, headerName=f"MA{short_ma}∠", width=66,
+        valueGetter=js_window_value_getter(f"slope{short_ma}", ma_interval),
+        valueFormatter=JS_FMT_DEG, cellStyle=JS_SIGNED_COLOR,
+        type=["numericColumn"], **signed_kw,
+    )
+    gob.configure_column(
+        LONG_KEY, headerName=f"MA{long_ma}갭", width=66,
         valueGetter=js_window_value_getter(f"pct_ma{long_ma}", ma_interval),
         valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
-        type=["numericColumn"],
+        type=["numericColumn"], **signed_kw,
+    )
+    gob.configure_column(
+        LONG_SLOPE_KEY, headerName=f"MA{long_ma}∠", width=66,
+        valueGetter=js_window_value_getter(f"slope{long_ma}", ma_interval),
+        valueFormatter=JS_FMT_DEG, cellStyle=JS_SIGNED_COLOR,
+        type=["numericColumn"], **signed_kw,
     )
     # ── HL columns (valueGetter reads `__{hl_lookback}` from row data) ──
     gob.configure_column(
         HIGH_KEY, headerName="High", width=58,
         valueGetter=js_window_value_getter("pct_off_high", hl_lookback),
         valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
-        type=["numericColumn"],
+        type=["numericColumn"], **signed_kw,
     )
     gob.configure_column(
         LOW_KEY, headerName="Low", width=58,
         valueGetter=js_window_value_getter("pct_off_low", hl_lookback),
         valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
-        type=["numericColumn"],
+        type=["numericColumn"], **signed_kw,
     )
 
     # ── 추천 (전략 점수, display-only) ──
@@ -290,7 +318,6 @@ def build_grid_options(
     opts.update({
         "rowHeight": 34,
         "headerHeight": 36,
-        "suppressMenuHide": True,
         "domLayout": "normal",
         "animateRows": False,
         "suppressRowClickSelection": True,
@@ -298,12 +325,29 @@ def build_grid_options(
         "enableCellTextSelection": True,
         # Auto-fit columns whenever the grid container resizes — fires on
         # window resize, sidebar toggle, and the layout shifts caused by
-        # ``st.dialog`` opening/closing (body scrollbar toggle). Without
-        # this, ``fit_columns_on_grid_load`` only fires once at mount time
-        # and columns stay at the wrong size after the chart dialog closes.
-        "onGridSizeChanged": JsCode(
-            "function(params){ params.api.sizeColumnsToFit(); }"
-        ),
+        # ``st.dialog`` opening/closing.
+        #
+        # While the chart dialog is open, the parent document briefly
+        # reflows the iframe to a transient (narrower) width. If we re-fit
+        # at that transient width, the columns get squeezed and stay
+        # squeezed once the dialog closes — visually it looks like
+        # "opening the chart shrinks the grid". Guard by checking the
+        # parent document for an open Streamlit dialog and skipping the
+        # fit while one is present. When the dialog closes, the iframe
+        # restores to its real width and onGridSizeChanged fires again
+        # (this time with no dialog) to re-fit correctly.
+        "onGridSizeChanged": JsCode("""
+function(params) {
+  try {
+    const top = window.parent && window.parent.document;
+    if (top && (top.querySelector('[data-testid="stDialog"]') ||
+                top.querySelector('div[role="dialog"]'))) {
+      return;
+    }
+  } catch (e) {}
+  params.api.sizeColumnsToFit();
+}
+"""),
         "onFirstDataRendered": JsCode(
             "function(params){ params.api.sizeColumnsToFit(); }"
         ),
@@ -339,7 +383,17 @@ div[role="dialog"] button[aria-label="Close"],
    scrollbar removed by the dialog's overflow:hidden), the AgGrid iframe
    gets re-measured at the wider width, and after the dialog closes the
    iframe sticks at that width — columns then squeeze to fit the now-
-   narrower visible viewport. */
+   narrower visible viewport.
+
+   ``overflow-y: scroll`` on <html> forces the vertical scrollbar to be
+   reserved at all times. Without it, Streamlit's dialog sets
+   ``body { overflow: hidden }`` while open, removing the scrollbar (~15px
+   gutter) and reflowing the page wider; after close the gutter returns
+   and the AgGrid iframe ends up narrower than before. Pinning the
+   scrollbar gutter eliminates that toggle entirely. */
+html {
+  overflow-y: scroll !important;
+}
 html, body {
   overflow-x: hidden !important;
   max-width: 100vw !important;

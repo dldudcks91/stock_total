@@ -1,116 +1,0 @@
-
-=== kr trend_pullback 1d th=60.0 top_n=50 ===
-
-=== KR / trend_pullback / 1d  score_th=60.0  rules=1 ===
-  cache built: 50 symbols (skipped 0)
-  total entries: 3592 across 50 symbols
-  trail=25% tp=  30 hold=252  full: n= 3592 S=+14.99 m=+15.1%  oos: n= 1603 S=+13.33
-  combo elapsed 1.6s
-  -> n_full=3592 Sharpe_full=14.99 Sharpe_oos=13.33 mean%_full=15.1 (elapsed 1.6s)
-
-=== kr trend_pullback 1d th=60.0 top_n=100 ===
-
-=== KR / trend_pullback / 1d  score_th=60.0  rules=1 ===
-  cache built: 100 symbols (skipped 0)
-  total entries: 6701 across 100 symbols
-  trail=25% tp=  30 hold=252  full: n= 6701 S=+17.66 m=+13.4%  oos: n= 2937 S=+15.49
-  combo elapsed 2.8s
-  -> n_full=6701 Sharpe_full=17.66 Sharpe_oos=15.49 mean%_full=13.37 (elapsed 2.8s)
-
-=== kr trend_pullback 1d th=60.0 top_n=300 ===
-
-=== KR / trend_pullback / 1d  score_th=60.0  rules=1 ===
-  cache built: 299 symbols (skipped 1)
-  total entries: 18143 across 296 symbols
-C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\numpy\core\fromnumeric.py:59: RuntimeWarning: overflow encountered in accumulate
-  return bound(*args, **kwds)
-C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\cycle2_exit_grid.py:131: RuntimeWarning: invalid value encountered in divide
-  dd = float((eq / peak - 1.0).min() * 100)
-  trail=25% tp=  30 hold=252  full: n=18143 S=+21.53 m=+10.8%  oos: n= 7565 S=+17.72
-  combo elapsed 7.5s
-  -> n_full=18143 Sharpe_full=21.53 Sharpe_oos=17.72 mean%_full=10.75 (elapsed 7.5s)
-
-=== kr trend_pullback 1d th=60.0 top_n=500 ===
-
-=== KR / trend_pullback / 1d  score_th=60.0  rules=1 ===
-  cache built: 499 symbols (skipped 1)
-  total entries: 28753 across 492 symbols
-C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\numpy\core\fromnumeric.py:59: RuntimeWarning: overflow encountered in accumulate
-  return bound(*args, **kwds)
-C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\cycle2_exit_grid.py:131: RuntimeWarning: invalid value encountered in divide
-  dd = float((eq / peak - 1.0).min() * 100)
-  trail=25% tp=  30 hold=252  full: n=28753 S=+23.75 m= +9.4%  oos: n=10877 S=+19.33
-  combo elapsed 13.3s
-  -> n_full=28753 Sharpe_full=23.75 Sharpe_oos=19.33 mean%_full=9.41 (elapsed 13.3s)
-
-=== us trend_pullback 1d th=70.0 top_n=50 ===
-
-=== US / trend_pullback / 1d  score_th=70.0  rules=1 ===
-  cache built: 50 symbols (skipped 0)
-  total entries: 3192 across 50 symbols
-  trail=20% tp=  30 hold=252  full: n= 3192 S=+11.57 m=+11.9%  oos: n= 1166 S= +5.78
-  combo elapsed 1.6s
-  -> n_full=3192 Sharpe_full=11.57 Sharpe_oos=5.78 mean%_full=11.89 (elapsed 1.6s)
-
-=== us trend_pullback 1d th=70.0 top_n=100 ===
-
-=== US / trend_pullback / 1d  score_th=70.0  rules=1 ===
-  cache built: 100 symbols (skipped 0)
-  total entries: 5959 across 100 symbols
-  trail=20% tp=  30 hold=252  full: n= 5959 S=+12.98 m= +9.8%  oos: n= 2108 S= +6.81
-  combo elapsed 2.8s
-  -> n_full=5959 Sharpe_full=12.98 Sharpe_oos=6.81 mean%_full=9.79 (elapsed 2.8s)
-
-=== us trend_pullback 1d th=70.0 top_n=300 ===
-
-=== US / trend_pullback / 1d  score_th=70.0  rules=1 ===
-C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
-  ret1 = close.pct_change()
-C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
-  is_up = (close > open_) & (close.pct_change() > 0)
-C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
-  ret1 = close.pct_change()
-C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
-  is_up = (close > open_) & (close.pct_change() > 0)
-  cache built: 296 symbols (skipped 3)
-  total entries: 19038 across 295 symbols
-C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\numpy\core\fromnumeric.py:59: RuntimeWarning: overflow encountered in accumulate
-  return bound(*args, **kwds)
-C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\cycle2_exit_grid.py:131: RuntimeWarning: invalid value encountered in divide
-  dd = float((eq / peak - 1.0).min() * 100)
-  trail=20% tp=  30 hold=252  full: n=19038 S=+19.76 m= +8.7%  oos: n= 6811 S=+12.66
-  combo elapsed 8.3s
-  -> n_full=19038 Sharpe_full=19.76 Sharpe_oos=12.66 mean%_full=8.65 (elapsed 8.3s)
-  0%|          | 0/3881 [00:00<?, ?it/s]  3%|3         | 120/3881 [00:00<00:04, 754.73it/s]  6%|6         | 240/3881 [00:00<00:04, 743.71it/s]  9%|9         | 360/3881 [00:00<00:05, 686.15it/s] 12%|#2        | 480/3881 [00:00<00:04, 701.81it/s] 15%|#5        | 600/3881 [00:00<00:04, 712.27it/s] 19%|#8        | 720/3881 [00:01<00:04, 726.19it/s] 22%|##1       | 840/3881 [00:01<00:04, 729.43it/s] 25%|##4       | 960/3881 [00:01<00:04, 699.01it/s] 28%|##7       | 1080/3881 [00:01<00:04, 698.59it/s] 31%|###       | 1200/3881 [00:01<00:03, 704.64it/s] 34%|###4      | 1320/3881 [00:01<00:03, 701.24it/s] 37%|###7      | 1440/3881 [00:02<00:03, 712.80it/s] 40%|####      | 1560/3881 [00:02<00:03, 710.66it/s] 43%|####3     | 1680/3881 [00:02<00:03, 718.21it/s] 46%|####6     | 1800/3881 [00:02<00:02, 701.86it/s] 49%|####9     | 1920/3881 [00:02<00:02, 669.98it/s] 53%|#####2    | 2040/3881 [00:02<00:02, 659.03it/s] 56%|#####5    | 2160/3881 [00:03<00:02, 662.41it/s] 59%|#####8    | 2280/3881 [00:03<00:02, 674.89it/s] 62%|######1   | 2400/3881 [00:03<00:02, 667.91it/s] 65%|######4   | 2520/3881 [00:03<00:02, 663.10it/s] 68%|######8   | 2640/3881 [00:03<00:01, 656.54it/s] 71%|#######1  | 2760/3881 [00:04<00:01, 661.73it/s] 74%|#######4  | 2880/3881 [00:04<00:01, 665.41it/s] 77%|#######7  | 3000/3881 [00:04<00:01, 650.62it/s] 80%|########  | 3120/3881 [00:04<00:01, 645.83it/s] 83%|########3 | 3240/3881 [00:04<00:01, 640.46it/s] 87%|########6 | 3360/3881 [00:04<00:00, 630.73it/s] 90%|########9 | 3480/3881 [00:05<00:00, 615.45it/s] 93%|#########2| 3600/3881 [00:05<00:00, 602.45it/s] 96%|#########5| 3720/3881 [00:05<00:00, 596.33it/s] 99%|#########8| 3840/3881 [00:05<00:00, 618.68it/s]100%|##########| 3881/3881 [00:06<00:00, 640.85it/s]
-
-=== us trend_pullback 1d th=70.0 top_n=500 ===
-
-=== US / trend_pullback / 1d  score_th=70.0  rules=1 ===
-C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
-  ret1 = close.pct_change()
-C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
-  is_up = (close > open_) & (close.pct_change() > 0)
-C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
-  ret1 = close.pct_change()
-C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
-  is_up = (close > open_) & (close.pct_change() > 0)
-  cache built: 493 symbols (skipped 6)
-  total entries: 32755 across 488 symbols
-C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\numpy\core\fromnumeric.py:59: RuntimeWarning: overflow encountered in accumulate
-  return bound(*args, **kwds)
-C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\cycle2_exit_grid.py:131: RuntimeWarning: invalid value encountered in divide
-  dd = float((eq / peak - 1.0).min() * 100)
-  trail=20% tp=  30 hold=252  full: n=32755 S=+22.87 m= +7.8%  oos: n=11531 S=+15.02
-  combo elapsed 14.5s
-  -> n_full=32755 Sharpe_full=22.87 Sharpe_oos=15.02 mean%_full=7.81 (elapsed 14.5s)
-
-saved: C:\Users\82109\Desktop\LYC\git\stock_total\scripts\out\optimize\cycle_4\universe_sensitivity.csv
-asset       strategy interval  score_th  top_n  n_full  win%_full  mean%_full  Sharpe_full  n_oos  win%_oos  mean%_oos  Sharpe_oos
-   kr trend_pullback       1d      60.0     50    3592       64.8       15.10        14.99   1603      71.2      18.37       13.33
-   kr trend_pullback       1d      60.0    100    6701       62.1       13.37        17.66   2937      68.2      16.55       15.49
-   kr trend_pullback       1d      60.0    300   18143       57.0       10.75        21.53   7565      62.4      13.69       17.72
-   kr trend_pullback       1d      60.0    500   28753       54.5        9.41        23.75  10877      59.9      12.21       19.33
-   us trend_pullback       1d      70.0     50    3192       58.1       11.89        11.57   1166      53.3       9.79        5.78
-   us trend_pullback       1d      70.0    100    5959       53.9        9.79        12.98   2108      51.1       8.64        6.81
-   us trend_pullback       1d      70.0    300   19038       51.3        8.65        19.76   6811      52.0       9.17       12.66
-   us trend_pullback       1d      70.0    500   32755       49.5        7.81        22.87  11531      51.0       8.67       15.02
