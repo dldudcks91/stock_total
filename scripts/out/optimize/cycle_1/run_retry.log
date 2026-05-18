@@ -1,0 +1,80 @@
+  loaded 200 (skipped 1)
+  loaded 250 (skipped 2)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+  total loaded: 296 symbols, skipped 3, elapsed 12.4s
+  th=    60 IS n=10499 S=+15.98 win=49.6% mean=+7.80% | OOS n= 5650 S=+19.88 win=52.0% mean=+9.40% (6.6s)
+  th=    70 IS n=12258 S=+18.82 win=51.1% mean=+8.42% | OOS n= 6805 S=+22.08 win=52.2% mean=+9.29% (8.6s)
+  th=    80 IS n= 8945 S=+15.57 win=50.6% mean=+8.10% | OOS n= 5029 S=+18.97 win=52.2% mean=+9.30% (6.5s)
+
+=== KR / trend_chase / 1d (universe=300, files=948, rule=hold_252d_trail20_TP30, thresholds=[60, 70, 80]) ===
+  loaded 50 (skipped 0)
+  loaded 100 (skipped 0)
+  loaded 150 (skipped 0)
+  loaded 200 (skipped 0)
+  loaded 250 (skipped 0)
+  total loaded: 299 symbols, skipped 1, elapsed 10.7s
+  th=    60 IS n= 2772 S=+5.05 win=44.0% mean=+4.61% | OOS n= 1221 S=+12.32 win=56.8% mean=+11.52% (2.7s)
+  th=    70 IS n= 1707 S=+4.03 win=44.3% mean=+4.74% | OOS n=  785 S=+10.22 win=57.2% mean=+12.04% (1.9s)
+  th=    80 IS n= 1001 S=+2.70 win=43.3% mean=+4.20% | OOS n=  443 S=+7.89 win=57.6% mean=+12.23% (1.0s)
+  0%|          | 0/3881 [00:00<?, ?it/s]  3%|3         | 120/3881 [00:00<00:05, 727.27it/s]  6%|6         | 240/3881 [00:00<00:05, 707.10it/s]  9%|9         | 360/3881 [00:00<00:04, 710.36it/s] 12%|#2        | 480/3881 [00:00<00:04, 703.67it/s] 15%|#5        | 600/3881 [00:00<00:04, 715.06it/s] 19%|#8        | 720/3881 [00:01<00:04, 714.80it/s] 22%|##1       | 840/3881 [00:01<00:03, 786.60it/s] 25%|##4       | 960/3881 [00:01<00:03, 757.45it/s] 28%|##7       | 1080/3881 [00:01<00:03, 821.35it/s] 31%|###       | 1200/3881 [00:01<00:03, 789.81it/s] 34%|###4      | 1320/3881 [00:01<00:03, 769.56it/s] 37%|###7      | 1440/3881 [00:01<00:03, 746.17it/s] 40%|####      | 1560/3881 [00:02<00:03, 737.58it/s] 43%|####3     | 1680/3881 [00:02<00:03, 729.05it/s] 46%|####6     | 1800/3881 [00:02<00:02, 709.05it/s] 49%|####9     | 1920/3881 [00:02<00:02, 674.55it/s] 53%|#####2    | 2040/3881 [00:02<00:02, 676.72it/s] 56%|#####5    | 2160/3881 [00:03<00:02, 665.80it/s] 59%|#####8    | 2280/3881 [00:03<00:02, 662.75it/s] 62%|######1   | 2400/3881 [00:03<00:02, 661.72it/s] 65%|######4   | 2520/3881 [00:03<00:02, 651.32it/s] 68%|######8   | 2640/3881 [00:03<00:01, 647.35it/s] 71%|#######1  | 2760/3881 [00:03<00:01, 619.63it/s] 74%|#######4  | 2880/3881 [00:04<00:01, 621.24it/s] 77%|#######7  | 3000/3881 [00:04<00:01, 623.33it/s] 80%|########  | 3120/3881 [00:04<00:01, 622.86it/s] 83%|########3 | 3240/3881 [00:04<00:01, 612.99it/s] 87%|########6 | 3360/3881 [00:04<00:00, 610.89it/s] 90%|########9 | 3480/3881 [00:05<00:00, 611.29it/s] 93%|#########2| 3600/3881 [00:05<00:00, 618.20it/s] 96%|#########5| 3720/3881 [00:05<00:00, 623.12it/s] 99%|#########8| 3840/3881 [00:05<00:00, 636.59it/s]100%|##########| 3881/3881 [00:05<00:00, 663.31it/s]
+
+=== US / trend_chase / 1d (universe=300, files=3849, rule=hold_252d_trail20_TP30, thresholds=[60, 70, 80]) ===
+  loaded 50 (skipped 1)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_chase.py:85: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret = close.pct_change()
+  loaded 100 (skipped 1)
+  loaded 150 (skipped 1)
+  loaded 200 (skipped 1)
+  loaded 250 (skipped 2)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_chase.py:85: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret = close.pct_change()
+  total loaded: 296 symbols, skipped 3, elapsed 12.8s
+  th=    60 IS n= 1297 S=+5.18 win=48.2% mean=+6.53% | OOS n=  883 S=+6.79 win=49.9% mean=+7.21% (2.1s)
+  th=    70 IS n=  722 S=+4.05 win=48.9% mean=+6.92% | OOS n=  551 S=+5.31 win=49.7% mean=+7.21% (0.9s)
+  th=    80 IS n=  372 S=+3.25 win=49.5% mean=+7.63% | OOS n=  273 S=+3.73 win=48.7% mean=+7.24% (0.4s)
+
+=== KR / quiet_bottom / 1w (universe=300, files=948, rule=hold_52w_trail20_TP30, thresholds=['binary']) ===
+  loaded 50 (skipped 0)
+  loaded 100 (skipped 0)
+  loaded 150 (skipped 1)
+  loaded 200 (skipped 1)
+  loaded 250 (skipped 1)
+  total loaded: 298 symbols, skipped 2, elapsed 25.8s
+  th=binary IS n=  370 S=+6.70 win=65.7% mean=+19.29% | OOS n=  242 S=+4.41 win=53.3% mean=+12.27% (0.1s)
+  0%|          | 0/3881 [00:00<?, ?it/s]  3%|3         | 120/3881 [00:00<00:05, 727.29it/s]  6%|6         | 240/3881 [00:00<00:05, 717.05it/s]  9%|9         | 360/3881 [00:00<00:04, 729.70it/s] 12%|#2        | 480/3881 [00:00<00:04, 728.74it/s] 15%|#5        | 600/3881 [00:00<00:04, 723.46it/s] 19%|#8        | 720/3881 [00:01<00:04, 713.03it/s] 22%|##1       | 840/3881 [00:01<00:04, 701.18it/s] 25%|##4       | 960/3881 [00:01<00:03, 784.57it/s] 28%|##7       | 1080/3881 [00:01<00:03, 753.68it/s] 31%|###       | 1200/3881 [00:01<00:03, 717.80it/s] 34%|###4      | 1320/3881 [00:01<00:03, 692.66it/s] 37%|###7      | 1440/3881 [00:02<00:03, 692.96it/s] 40%|####      | 1560/3881 [00:02<00:03, 689.55it/s] 43%|####3     | 1680/3881 [00:02<00:03, 699.29it/s] 46%|####6     | 1800/3881 [00:02<00:02, 693.93it/s] 49%|####9     | 1920/3881 [00:02<00:02, 672.77it/s] 53%|#####2    | 2040/3881 [00:02<00:02, 656.57it/s] 56%|#####5    | 2160/3881 [00:03<00:02, 653.10it/s] 59%|#####8    | 2280/3881 [00:03<00:02, 645.44it/s] 62%|######1   | 2400/3881 [00:03<00:02, 652.73it/s] 65%|######4   | 2520/3881 [00:03<00:02, 647.28it/s] 68%|######8   | 2640/3881 [00:03<00:01, 638.38it/s] 71%|#######1  | 2760/3881 [00:04<00:01, 634.31it/s] 74%|#######4  | 2880/3881 [00:04<00:01, 619.75it/s] 77%|#######7  | 3000/3881 [00:04<00:01, 626.17it/s] 80%|########  | 3120/3881 [00:04<00:01, 622.90it/s] 83%|########3 | 3240/3881 [00:04<00:01, 635.42it/s] 87%|########6 | 3360/3881 [00:05<00:00, 580.84it/s] 88%|########8 | 3420/3881 [00:05<00:00, 579.15it/s] 90%|########9 | 3480/3881 [00:05<00:00, 579.83it/s] 91%|#########1| 3540/3881 [00:05<00:00, 576.69it/s] 93%|#########2| 3600/3881 [00:05<00:00, 580.80it/s] 96%|#########5| 3720/3881 [00:05<00:00, 590.87it/s] 97%|#########7| 3780/3881 [00:05<00:00, 581.23it/s]100%|##########| 3881/3881 [00:05<00:00, 561.62it/s]100%|##########| 3881/3881 [00:06<00:00, 642.34it/s]
+
+=== US / quiet_bottom / 1w (universe=300, files=3849, rule=hold_52w_trail20_TP30, thresholds=['binary']) ===
+  loaded 50 (skipped 1)
+  loaded 100 (skipped 1)
+  loaded 150 (skipped 1)
+  loaded 200 (skipped 2)
+  loaded 250 (skipped 3)
+  total loaded: 295 symbols, skipped 4, elapsed 64.6s
+  th=binary IS n=  251 S=+3.50 win=56.6% mean=+12.85% | OOS n=  155 S=+4.96 win=55.5% mean=+18.08% (0.0s)
+
+=== CRYPTO / trend_chase / 1d (universe=300, files=553, rule=hold_60d_trail20_TP30, thresholds=[60, 70, 80]) ===
+  loaded 50 (skipped 0)
+  loaded 100 (skipped 1)
+  loaded 150 (skipped 1)
+  loaded 200 (skipped 1)
+  loaded 250 (skipped 1)
+  total loaded: 299 symbols, skipped 1, elapsed 18.3s
+  th=    60 IS n=  183 S=+3.80 win=62.3% mean=+14.30% | OOS n=  116 S=+1.35 win=50.0% mean=+4.90% (0.1s)
+  th=    70 IS n=  125 S=+3.35 win=64.8% mean=+15.44% | OOS n=   79 S=+0.63 win=44.3% mean=+3.09% (0.1s)
+  th=    80 IS n=   79 S=+2.35 win=63.3% mean=+14.23% | OOS n=   45 S=+0.10 win=37.8% mean=+0.62% (0.0s)
+
+=== CRYPTO / trend_pullback / 1d (universe=300, files=553, rule=hold_60d_trail15_cut3d, thresholds=[60, 70, 80]) ===
+  loaded 50 (skipped 0)
+  loaded 100 (skipped 1)
+  loaded 150 (skipped 1)
+  loaded 200 (skipped 1)
+  loaded 250 (skipped 1)
+  total loaded: 299 symbols, skipped 1, elapsed 21.9s
+  th=    60 IS n= 5037 S=+4.55 win=34.2% mean=+4.71% | OOS n= 7261 S=-0.32 win=26.4% mean=-0.17% (1.7s)
+  th=    70 IS n= 4768 S=+4.37 win=35.0% mean=+4.38% | OOS n= 6164 S=+1.00 win=28.1% mean=+0.60% (1.6s)
+  th=    80 IS n= 3654 S=+3.24 win=33.7% mean=+3.66% | OOS n= 4184 S=+1.77 win=29.5% mean=+1.32% (1.1s)
+
+saved: C:\Users\82109\Desktop\LYC\git\stock_total\scripts\out\optimize\cycle_1\oos_split.csv  (20 rows)

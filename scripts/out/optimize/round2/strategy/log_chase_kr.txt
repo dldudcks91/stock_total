@@ -1,0 +1,50 @@
+
+=== TASK trend_chase / kr / 1d (threshold=60.0, exit=hold_252d_trail20_TP30) ===
+  building universe (kr, top 300)...
+  universe=300 symbols (0.0s)
+  evaluating 240 param combinations...
+  [baseline] {'n': 1648, 'win_pct': 46.72330097087379, 'mean_pct': 6.167937449439408, 'median_pct': -2.5090108401083997, 'total_pct': 9.277684478390655e+25, 'mdd_pct': -98.09462704123278, 'sharpe': 0.40607064836425694, 'profit_factor': 1.816395446103304, 'avg_held_bars': 101.2876213592233} (15.9s)
+  [1/240] {'_ret_th_key': 'default', 'ret_th': [0.03, 0.05, 0.07, 0.1], 'base_lookback': 30, 'fresh_big_th': 0.03, 'max_prior_extension': 0.2} -> n=1356 win%=48.2 mean%=+6.83 sharpe=+0.44 (15.7s)
+  [2/240] {'_ret_th_key': 'default', 'ret_th': [0.03, 0.05, 0.07, 0.1], 'base_lookback': 30, 'fresh_big_th': 0.03, 'max_prior_extension': 0.3} -> n=1357 win%=48.1 mean%=+6.81 sharpe=+0.44 (16.2s)
+  [3/240] {'_ret_th_key': 'default', 'ret_th': [0.03, 0.05, 0.07, 0.1], 'base_lookback': 30, 'fresh_big_th': 0.03, 'max_prior_extension': 0.5} -> n=1357 win%=48.1 mean%=+6.81 sharpe=+0.44 (16.8s)
+  [4/240] {'_ret_th_key': 'default', 'ret_th': [0.03, 0.05, 0.07, 0.1], 'base_lookback': 30, 'fresh_big_th': 0.05, 'max_prior_extension': 0.2} -> n=2540 win%=47.4 mean%=+6.93 sharpe=+0.49 (15.3s)
+  [5/240] {'_ret_th_key': 'default', 'ret_th': [0.03, 0.05, 0.07, 0.1], 'base_lookback': 30, 'fresh_big_th': 0.05, 'max_prior_extension': 0.3} -> n=2572 win%=47.2 mean%=+6.88 sharpe=+0.48 (17.3s)
+  [10/240] {'_ret_th_key': 'default', 'ret_th': [0.03, 0.05, 0.07, 0.1], 'base_lookback': 30, 'fresh_big_th': 0.12, 'max_prior_extension': 0.2} -> n=3143 win%=48.6 mean%=+7.60 sharpe=+0.55 (24.7s)
+  [20/240] {'_ret_th_key': 'default', 'ret_th': [0.03, 0.05, 0.07, 0.1], 'base_lookback': 60, 'fresh_big_th': 0.08, 'max_prior_extension': 0.3} -> n=2591 win%=46.9 mean%=+6.77 sharpe=+0.48 (14.1s)
+  [30/240] {'_ret_th_key': 'default', 'ret_th': [0.03, 0.05, 0.07, 0.1], 'base_lookback': 90, 'fresh_big_th': 0.05, 'max_prior_extension': 0.5} -> n=1122 win%=48.0 mean%=+6.66 sharpe=+0.43 (14.0s)
+  [40/240] {'_ret_th_key': 'default', 'ret_th': [0.03, 0.05, 0.07, 0.1], 'base_lookback': 120, 'fresh_big_th': 0.05, 'max_prior_extension': 0.2} -> n=763 win%=46.3 mean%=+5.74 sharpe=+0.36 (13.8s)
+  [50/240] {'_ret_th_key': 'tight', 'ret_th': [0.02, 0.04, 0.06, 0.08], 'base_lookback': 30, 'fresh_big_th': 0.03, 'max_prior_extension': 0.3} -> n=1490 win%=48.7 mean%=+7.07 sharpe=+0.46 (13.9s)
+  [60/240] {'_ret_th_key': 'tight', 'ret_th': [0.02, 0.04, 0.06, 0.08], 'base_lookback': 30, 'fresh_big_th': 0.12, 'max_prior_extension': 0.5} -> n=3631 win%=48.2 mean%=+7.42 sharpe=+0.54 (15.9s)
+  [70/240] {'_ret_th_key': 'tight', 'ret_th': [0.02, 0.04, 0.06, 0.08], 'base_lookback': 60, 'fresh_big_th': 0.12, 'max_prior_extension': 0.2} -> n=2938 win%=48.2 mean%=+7.19 sharpe=+0.51 (12.7s)
+  [80/240] {'_ret_th_key': 'tight', 'ret_th': [0.02, 0.04, 0.06, 0.08], 'base_lookback': 90, 'fresh_big_th': 0.08, 'max_prior_extension': 0.3} -> n=2294 win%=45.9 mean%=+5.93 sharpe=+0.41 (8.6s)
+  [90/240] {'_ret_th_key': 'tight', 'ret_th': [0.02, 0.04, 0.06, 0.08], 'base_lookback': 120, 'fresh_big_th': 0.05, 'max_prior_extension': 0.5} -> n=861 win%=47.0 mean%=+6.09 sharpe=+0.38 (8.5s)
+  [100/240] {'_ret_th_key': 'loose', 'ret_th': [0.05, 0.07, 0.1, 0.15], 'base_lookback': 30, 'fresh_big_th': 0.05, 'max_prior_extension': 0.2} -> n=2098 win%=46.6 mean%=+6.67 sharpe=+0.46 (8.3s)
+  [110/240] {'_ret_th_key': 'loose', 'ret_th': [0.05, 0.07, 0.1, 0.15], 'base_lookback': 60, 'fresh_big_th': 0.03, 'max_prior_extension': 0.3} -> n=282 win%=48.6 mean%=+6.52 sharpe=+0.40 (12.7s)
+  [120/240] {'_ret_th_key': 'loose', 'ret_th': [0.05, 0.07, 0.1, 0.15], 'base_lookback': 60, 'fresh_big_th': 0.12, 'max_prior_extension': 0.5} -> n=2736 win%=47.4 mean%=+7.38 sharpe=+0.54 (6.4s)
+  [130/240] {'_ret_th_key': 'loose', 'ret_th': [0.05, 0.07, 0.1, 0.15], 'base_lookback': 90, 'fresh_big_th': 0.12, 'max_prior_extension': 0.2} -> n=2097 win%=47.2 mean%=+6.97 sharpe=+0.49 (6.5s)
+  [140/240] {'_ret_th_key': 'loose', 'ret_th': [0.05, 0.07, 0.1, 0.15], 'base_lookback': 120, 'fresh_big_th': 0.08, 'max_prior_extension': 0.3} -> n=1529 win%=45.3 mean%=+6.00 sharpe=+0.41 (8.9s)
+  [150/240] {'_ret_th_key': 'stretched', 'ret_th': [0.03, 0.06, 0.1, 0.15], 'base_lookback': 30, 'fresh_big_th': 0.05, 'max_prior_extension': 0.5} -> n=2437 win%=47.4 mean%=+6.80 sharpe=+0.47 (5.7s)
+  [160/240] {'_ret_th_key': 'stretched', 'ret_th': [0.03, 0.06, 0.1, 0.15], 'base_lookback': 60, 'fresh_big_th': 0.05, 'max_prior_extension': 0.2} -> n=1538 win%=47.4 mean%=+6.35 sharpe=+0.41 (5.6s)
+  [170/240] {'_ret_th_key': 'stretched', 'ret_th': [0.03, 0.06, 0.1, 0.15], 'base_lookback': 90, 'fresh_big_th': 0.03, 'max_prior_extension': 0.3} -> n=251 win%=49.0 mean%=+5.97 sharpe=+0.37 (5.4s)
+  [180/240] {'_ret_th_key': 'stretched', 'ret_th': [0.03, 0.06, 0.1, 0.15], 'base_lookback': 90, 'fresh_big_th': 0.12, 'max_prior_extension': 0.5} -> n=2807 win%=47.3 mean%=+7.00 sharpe=+0.50 (6.0s)
+  [190/240] {'_ret_th_key': 'stretched', 'ret_th': [0.03, 0.06, 0.1, 0.15], 'base_lookback': 120, 'fresh_big_th': 0.12, 'max_prior_extension': 0.2} -> n=2145 win%=46.5 mean%=+6.46 sharpe=+0.45 (5.7s)
+  [200/240] {'_ret_th_key': 'big', 'ret_th': [0.05, 0.08, 0.12, 0.18], 'base_lookback': 30, 'fresh_big_th': 0.08, 'max_prior_extension': 0.3} -> n=2636 win%=47.3 mean%=+7.35 sharpe=+0.54 (6.1s)
+  [210/240] {'_ret_th_key': 'big', 'ret_th': [0.05, 0.08, 0.12, 0.18], 'base_lookback': 60, 'fresh_big_th': 0.05, 'max_prior_extension': 0.5} -> n=1326 win%=47.7 mean%=+6.82 sharpe=+0.45 (6.4s)
+  [220/240] {'_ret_th_key': 'big', 'ret_th': [0.05, 0.08, 0.12, 0.18], 'base_lookback': 90, 'fresh_big_th': 0.05, 'max_prior_extension': 0.2} -> n=847 win%=48.6 mean%=+7.41 sharpe=+0.49 (5.6s)
+  [230/240] {'_ret_th_key': 'big', 'ret_th': [0.05, 0.08, 0.12, 0.18], 'base_lookback': 120, 'fresh_big_th': 0.03, 'max_prior_extension': 0.3} -> n=61 win%=44.3 mean%=+3.29 sharpe=+0.20 (6.4s)
+  [240/240] {'_ret_th_key': 'big', 'ret_th': [0.05, 0.08, 0.12, 0.18], 'base_lookback': 120, 'fresh_big_th': 0.12, 'max_prior_extension': 0.5} -> n=2249 win%=47.1 mean%=+7.16 sharpe=+0.51 (6.7s)
+
+  saved: C:\Users\82109\Desktop\LYC\git\stock_total\scripts\out\optimize\round2\strategy\trend_chase_kr_1d_grid.csv
+
+  ===== TOP 10 (by Sharpe) =====
+label  rank _ret_th_key  base_lookback  fresh_big_th  max_prior_extension    n   win_pct  mean_pct   sharpe  profit_factor    mdd_pct
+ p203   203         big           30.0          0.12                  0.5 2881 47.552933  7.418729 0.552968       2.011359 -94.673464
+ p107   107       loose           30.0          0.12                  0.5 2946 47.759674  7.447959 0.552159       2.006986 -97.617867
+ p057    57       tight           30.0          0.12                  0.2 3327 48.932973  7.660832 0.551787       2.071379 -98.686839
+ p009     9     default           30.0          0.12                  0.2 3143 48.552339  7.603719 0.551431       2.061451 -98.529424
+ p202   202         big           30.0          0.12                  0.3 2759 47.408481  7.386056 0.546359       2.010842 -96.464329
+ p011    11     default           30.0          0.12                  0.5 3419 47.850249  7.385758 0.545670       2.019758 -97.807263
+ p215   215         big           60.0          0.12                  0.5 2669 47.133758  7.360801 0.543941       2.007332 -97.572055
+ p059    59       tight           30.0          0.12                  0.5 3631 48.168549  7.418871 0.543862       2.022936 -98.280107
+ p119   119       loose           60.0          0.12                  0.5 2736 47.404971  7.378079 0.542872       2.000565 -98.432655
+ p106   106       loose           30.0          0.12                  0.3 2831 47.651007  7.368964 0.542731       1.997129 -98.262152

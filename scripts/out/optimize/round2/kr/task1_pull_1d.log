@@ -1,0 +1,38 @@
+
+--- build_cache asset=kr strategy=trend_pullback interval=1d universe_top=300 -> 300 symbols, 948 files ---
+  loaded 50 (skipped 0) elapsed 1.5s
+  loaded 100 (skipped 0) elapsed 2.8s
+  loaded 150 (skipped 0) elapsed 4.0s
+  loaded 200 (skipped 0) elapsed 5.3s
+  loaded 250 (skipped 0) elapsed 6.2s
+  build_cache done: 299 symbols, skipped 1. elapsed 7.6s
+
+=== Task1 KR trend_pullback/1d threshold=60 rules=288 ===
+C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\numpy\core\fromnumeric.py:59: RuntimeWarning: overflow encountered in accumulate
+  return bound(*args, **kwds)
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\kr_round2.py:330: RuntimeWarning: invalid value encountered in divide
+  dd = float((eq / peak - 1.0).min() * 100)
+  [20/288] elapsed 80.7s last rule=h120_tr15_TP25_SLx_cutY n=18143 sharpe=12.22
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\kr_round2.py:328: RuntimeWarning: overflow encountered in scalar multiply
+  total = float((eq[-1] - 1.0) * 100)
+  [40/288] elapsed 160.9s last rule=h120_tr15_TP30_SL15_cutY n=18143 sharpe=11.87
+  [60/288] elapsed 259.7s last rule=h120_tr15_TP40_SL20_cutY n=18143 sharpe=12.43
+  [80/288] elapsed 413.8s last rule=h180_tr20_TPx_SLx_cutY n=18143 sharpe=12.27
+  [100/288] elapsed 612.4s last rule=h180_tr20_TP25_SL15_cutY n=18143 sharpe=13.76
+  [120/288] elapsed 728.9s last rule=h180_tr20_TP30_SL20_cutY n=18143 sharpe=15.12
+  [140/288] elapsed 843.2s last rule=h180_tr25_TP40_SLx_cutY n=18143 sharpe=19.13
+  [160/288] elapsed 990.2s last rule=h252_tr25_TPx_SL15_cutY n=18143 sharpe=12.88
+  [180/288] elapsed 1109.8s last rule=h252_tr25_TP25_SL20_cutY n=18143 sharpe=17.01
+  [200/288] elapsed 1226.0s last rule=h252_tr15_TP40_SLx_cutY n=18143 sharpe=13.48
+  [220/288] elapsed 1354.1s last rule=h365_tr15_TPx_SL15_cutY n=18143 sharpe=10.31
+  [240/288] elapsed 1481.2s last rule=h365_tr15_TP25_SL20_cutY n=18143 sharpe=12.18
+  [260/288] elapsed 1556.7s last rule=h365_tr20_TP30_SLx_cutY n=18143 sharpe=15.74
+  [280/288] elapsed 1625.6s last rule=h365_tr20_TP40_SL15_cutY n=18143 sharpe=15.17
+  [288/288] elapsed 1658.7s last rule=h365_tr25_TP40_SL20_cutY n=18143 sharpe=18.69
+  saved: C:\Users\82109\Desktop\LYC\git\stock_total\scripts\out\optimize\round2\kr\task1_trend_pullback_1d.csv
+                   rule     n  win%  mean%  MDD%  Sharpe_ann   PF
+h252_tr25_TP40_SLx_cutN 18143  53.3  12.67   NaN       22.35 2.65
+h365_tr25_TP40_SLx_cutN 18143  52.3  12.72   NaN       22.16 2.62
+h180_tr25_TP40_SLx_cutN 18143  54.0  11.94   NaN       21.64 2.61
+h252_tr25_TP30_SLx_cutN 18143  57.0  10.75   NaN       21.53 2.42
+h365_tr25_TP30_SLx_cutN 18143  56.4  10.77   NaN       21.33 2.39

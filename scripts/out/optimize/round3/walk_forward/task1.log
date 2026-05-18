@@ -1,0 +1,137 @@
+- [2026-05-17 18:31:34] === Agent W start: task1 ===
+- [2026-05-17 18:31:34] task1 start — 6 sliding windows × 6 recommendations
+- [2026-05-17 18:31:34]   evaluating kr_trend_pullback_1d (th=60, hold=252, trail=0.25, TP=0.4)
+- [2026-05-17 18:31:34] [cache] KR build trend_pullback/1d top=800
+
+--- build_cache asset=kr strategy=trend_pullback interval=1d universe_top=800 -> 800 symbols, 948 files ---
+  loaded 50 (skipped 0) elapsed 0.9s
+  loaded 100 (skipped 0) elapsed 1.6s
+  loaded 150 (skipped 0) elapsed 2.4s
+  loaded 200 (skipped 0) elapsed 3.3s
+  loaded 250 (skipped 0) elapsed 4.3s
+  loaded 300 (skipped 0) elapsed 5.1s
+  loaded 350 (skipped 0) elapsed 5.9s
+  loaded 400 (skipped 0) elapsed 6.7s
+  loaded 450 (skipped 0) elapsed 7.7s
+  loaded 500 (skipped 0) elapsed 8.6s
+  loaded 550 (skipped 0) elapsed 9.9s
+  loaded 600 (skipped 0) elapsed 10.9s
+  loaded 650 (skipped 0) elapsed 11.7s
+  loaded 700 (skipped 0) elapsed 12.6s
+  loaded 750 (skipped 0) elapsed 13.4s
+  build_cache done: 799 symbols, skipped 1. elapsed 14.1s
+- [2026-05-17 18:31:48] [cache] KR trend_pullback/1d -> 799 symbols (14.1s)
+C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\numpy\core\fromnumeric.py:59: RuntimeWarning: overflow encountered in accumulate
+  return bound(*args, **kwds)
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\walk_forward.py:177: RuntimeWarning: invalid value encountered in divide
+  dd = float((eq / peak - 1.0).min() * 100)
+    W1 2020-05-01~2021-05-01: n=12869 sharpe= 90.03 mean= 23.63% win= 67.8% MDD=   nan%
+    W2 2021-05-01~2022-05-01: n=7249 sharpe=-24.59 mean= -7.96% win= 20.9% MDD=-100.0%
+    W3 2022-05-01~2023-05-01: n=5514 sharpe= -0.32 mean= -0.13% win= 31.8% MDD=-100.0%
+    W4 2023-05-01~2024-05-01: n=5674 sharpe=  0.89 mean=  0.37% win= 34.4% MDD=-100.0%
+    W5 2024-05-01~2025-05-01: n=5565 sharpe= 11.50 mean=  4.73% win= 39.7% MDD=-100.0%
+    W6 2025-05-01~2026-05-18: n=10453 sharpe= 41.39 mean= 12.45% win= 53.9% MDD=   nan%
+- [2026-05-17 18:31:59]   evaluating kr_trend_pullback_1w (th=75, hold=78, trail=0.2, TP=0.4)
+- [2026-05-17 18:31:59] [cache] KR build trend_pullback/1w top=800
+
+--- build_cache asset=kr strategy=trend_pullback interval=1w universe_top=800 -> 800 symbols, 948 files ---
+  loaded 50 (skipped 0) elapsed 1.4s
+  loaded 100 (skipped 0) elapsed 2.7s
+  loaded 150 (skipped 0) elapsed 4.0s
+  loaded 200 (skipped 0) elapsed 5.2s
+  loaded 250 (skipped 0) elapsed 6.5s
+  loaded 300 (skipped 0) elapsed 7.8s
+  loaded 350 (skipped 0) elapsed 9.0s
+  loaded 400 (skipped 0) elapsed 10.3s
+  loaded 450 (skipped 2) elapsed 11.7s
+  loaded 500 (skipped 2) elapsed 12.9s
+  loaded 550 (skipped 2) elapsed 14.2s
+  loaded 600 (skipped 2) elapsed 15.5s
+  loaded 650 (skipped 2) elapsed 17.0s
+  loaded 700 (skipped 2) elapsed 18.5s
+  loaded 750 (skipped 2) elapsed 19.7s
+  build_cache done: 797 symbols, skipped 3. elapsed 20.6s
+- [2026-05-17 18:32:20] [cache] KR trend_pullback/1w -> 797 symbols (20.7s)
+    W1 2020-05-01~2021-05-01: n=2396 sharpe= 25.47 mean= 18.03% win= 58.5% MDD= -99.8%
+    W2 2021-05-01~2022-05-01: n=3077 sharpe=-17.70 mean= -8.35% win= 19.2% MDD=-100.0%
+    W3 2022-05-01~2023-05-01: n= 874 sharpe=  1.18 mean=  1.30% win= 36.4% MDD=-100.0%
+    W4 2023-05-01~2024-05-01: n=1473 sharpe= 10.55 mean=  8.92% win= 46.6% MDD=-100.0%
+    W5 2024-05-01~2025-05-01: n=1712 sharpe= 27.75 mean= 20.48% win= 64.2% MDD= -99.8%
+    W6 2025-05-01~2026-05-18: n=2955 sharpe= 27.60 mean= 14.49% win= 60.5% MDD= -99.2%
+- [2026-05-17 18:32:21]   evaluating kr_trend_chase_1d (th=60, hold=365, trail=0.25, TP=0.4)
+- [2026-05-17 18:32:21] [cache] KR build trend_chase/1d top=800
+
+--- build_cache asset=kr strategy=trend_chase interval=1d universe_top=800 -> 800 symbols, 948 files ---
+  loaded 50 (skipped 0) elapsed 0.9s
+  loaded 100 (skipped 0) elapsed 1.5s
+  loaded 150 (skipped 0) elapsed 2.2s
+  loaded 200 (skipped 0) elapsed 2.9s
+  loaded 250 (skipped 0) elapsed 3.6s
+  loaded 300 (skipped 0) elapsed 4.3s
+  loaded 350 (skipped 0) elapsed 5.0s
+  loaded 400 (skipped 0) elapsed 5.7s
+  loaded 450 (skipped 0) elapsed 6.4s
+  loaded 500 (skipped 0) elapsed 7.1s
+  loaded 550 (skipped 0) elapsed 7.8s
+  loaded 600 (skipped 0) elapsed 8.5s
+  loaded 650 (skipped 0) elapsed 9.2s
+  loaded 700 (skipped 0) elapsed 9.9s
+  loaded 750 (skipped 0) elapsed 10.6s
+  build_cache done: 799 symbols, skipped 1. elapsed 11.2s
+- [2026-05-17 18:32:32] [cache] KR trend_chase/1d -> 799 symbols (11.2s)
+    W1 2020-05-01~2021-05-01: n=1877 sharpe= 35.91 mean= 23.89% win= 66.7% MDD= -93.3%
+    W2 2021-05-01~2022-05-01: n=1899 sharpe=-15.50 mean= -9.05% win= 18.9% MDD=-100.0%
+    W3 2022-05-01~2023-05-01: n=1910 sharpe= -0.57 mean= -0.39% win= 31.4% MDD=-100.0%
+    W4 2023-05-01~2024-05-01: n=2226 sharpe=  6.32 mean=  4.17% win= 39.1% MDD=-100.0%
+    W5 2024-05-01~2025-05-01: n=1895 sharpe= 17.82 mean= 12.57% win= 52.6% MDD= -99.5%
+    W6 2025-05-01~2026-05-18: n=2022 sharpe= 11.26 mean= 13.62% win= 53.9% MDD= -99.7%
+- [2026-05-17 18:32:36]   evaluating us_trend_pullback_1d (th=70, hold=252, trail=0.2, TP=0.3)
+- [2026-05-17 18:32:36] [cache] US build trend_pullback/1d top=300
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+- [2026-05-17 18:32:51] [cache] US trend_pullback/1d -> 295 symbols (14.4s)
+    W1 2020-05-01~2021-05-01: n=4809 sharpe= 45.40 mean= 14.64% win= 63.9% MDD= -99.9%
+    W2 2021-05-01~2022-05-01: n=1791 sharpe= -5.86 mean= -3.67% win= 29.1% MDD=-100.0%
+    W3 2022-05-01~2023-05-01: n=2851 sharpe= 11.77 mean=  5.17% win= 44.7% MDD=-100.0%
+    W4 2023-05-01~2024-05-01: n=2807 sharpe= 18.31 mean=  8.76% win= 49.6% MDD=-100.0%
+    W5 2024-05-01~2025-05-01: n=2586 sharpe= 10.39 mean=  5.17% win= 41.7% MDD=-100.0%
+    W6 2025-05-01~2026-05-18: n=4310 sharpe= 31.45 mean= 11.54% win= 58.1% MDD=-100.0%
+- [2026-05-17 18:33:02]   evaluating us_trend_pullback_1w (th=70, hold=52, trail=0.2, TP=0.3)
+- [2026-05-17 18:33:02] [cache] US build trend_pullback/1w top=300
+- [2026-05-17 18:33:14] [cache] US trend_pullback/1w -> 288 symbols (12.1s)
+    W1 2020-05-01~2021-05-01: n=1273 sharpe= 25.48 mean= 16.36% win= 67.9% MDD= -95.6%
+    W2 2021-05-01~2022-05-01: n= 795 sharpe= -6.67 mean= -5.90% win= 26.4% MDD=-100.0%
+    W3 2022-05-01~2023-05-01: n= 762 sharpe= 10.36 mean=  8.86% win= 54.2% MDD= -99.4%
+    W4 2023-05-01~2024-05-01: n=1035 sharpe= 16.19 mean= 13.25% win= 59.7% MDD= -98.5%
+    W5 2024-05-01~2025-05-01: n= 971 sharpe=  7.10 mean=  6.11% win= 44.0% MDD= -99.9%
+    W6 2025-05-01~2026-05-18: n=1076 sharpe= 12.94 mean= 10.06% win= 57.0% MDD= -99.9%
+- [2026-05-17 18:33:17]   evaluating us_trend_chase_1d (th=60, hold=252, trail=0.2, TP=0.3)
+- [2026-05-17 18:33:17] [cache] US build trend_chase/1d top=300
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_chase.py:85: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_chase.py:85: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret = close.pct_change()
+- [2026-05-17 18:33:32] [cache] US trend_chase/1d -> 295 symbols (15.0s)
+    W1 2020-05-01~2021-05-01: n= 264 sharpe= 11.86 mean= 14.74% win= 65.5% MDD= -57.1%
+    W2 2021-05-01~2022-05-01: n= 351 sharpe= -5.52 mean= -6.06% win= 21.7% MDD=-100.0%
+    W3 2022-05-01~2023-05-01: n= 274 sharpe=  5.01 mean=  6.39% win= 49.3% MDD= -87.1%
+    W4 2023-05-01~2024-05-01: n= 408 sharpe= 10.99 mean= 12.14% win= 59.1% MDD= -75.4%
+    W5 2024-05-01~2025-05-01: n= 511 sharpe=  7.94 mean=  8.06% win= 48.1% MDD= -88.9%
+    W6 2025-05-01~2026-05-18: n= 394 sharpe=  5.27 mean=  5.66% win= 51.3% MDD= -90.9%
+- [2026-05-17 18:33:41] task1 done
+
+=== Task 1 Sharpe matrix ===
+asset       strategy interval    W1     W2    W3    W4    W5    W6  mean   std    min   max  pct_pos
+   kr trend_pullback       1d 90.03 -24.59 -0.32  0.89 11.50 41.39 19.82 36.97 -24.59 90.03     66.7
+   kr trend_pullback       1w 25.47 -17.70  1.18 10.55 27.75 27.60 12.47 16.70 -17.70 27.75     83.3
+   kr    trend_chase       1d 35.91 -15.50 -0.57  6.32 17.82 11.26  9.21 15.84 -15.50 35.91     66.7
+   us trend_pullback       1d 45.40  -5.86 11.77 18.31 10.39 31.45 18.58 16.31  -5.86 45.40     83.3
+   us trend_pullback       1w 25.48  -6.67 10.36 16.19  7.10 12.94 10.90  9.73  -6.67 25.48     83.3
+   us    trend_chase       1d 11.86  -5.52  5.01 10.99  7.94  5.27  5.92  5.73  -5.52 11.86     83.3
+- [2026-05-17 18:33:41] === Agent W done (126.7s) ===

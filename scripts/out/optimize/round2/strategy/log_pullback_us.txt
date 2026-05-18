@@ -1,0 +1,358 @@
+
+=== TASK trend_pullback / us / 1d (threshold=70.0, exit=hold_252d_trail20_TP30) ===
+  building universe (us, top 300)...
+  universe=300 symbols (0.0s)
+  evaluating 80 param combinations...
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+  [baseline] {'n': 2442, 'win_pct': 46.846846846846844, 'mean_pct': 5.618152381267021, 'median_pct': -2.408499368530964, 'total_pct': 1.0169195934072198e+32, 'mdd_pct': -99.12411586319479, 'sharpe': 0.3911473061731723, 'profit_factor': 1.738435355939948, 'avg_held_bars': 92.79238329238329} (27.8s)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+  [1/80] {'rally_lookback': 30, 'rally_min_gain': 0.1, 'depth_lookback': 5} -> n=3624 win%=45.7 mean%=+4.83 sharpe=+0.34 (24.1s)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+  [2/80] {'rally_lookback': 30, 'rally_min_gain': 0.1, 'depth_lookback': 10} -> n=3651 win%=45.5 mean%=+4.79 sharpe=+0.34 (29.0s)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+  [3/80] {'rally_lookback': 30, 'rally_min_gain': 0.1, 'depth_lookback': 15} -> n=3666 win%=45.6 mean%=+4.79 sharpe=+0.34 (30.9s)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+  [4/80] {'rally_lookback': 30, 'rally_min_gain': 0.1, 'depth_lookback': 20} -> n=3665 win%=45.7 mean%=+4.83 sharpe=+0.34 (30.0s)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+  [5/80] {'rally_lookback': 30, 'rally_min_gain': 0.2, 'depth_lookback': 5} -> n=2906 win%=45.2 mean%=+4.98 sharpe=+0.36 (35.9s)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+  [10/80] {'rally_lookback': 30, 'rally_min_gain': 0.3, 'depth_lookback': 10} -> n=1715 win%=46.5 mean%=+6.30 sharpe=+0.47 (37.3s)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+  [20/80] {'rally_lookback': 45, 'rally_min_gain': 0.1, 'depth_lookback': 20} -> n=3485 win%=45.8 mean%=+4.80 sharpe=+0.33 (23.1s)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+  [30/80] {'rally_lookback': 45, 'rally_min_gain': 0.5, 'depth_lookback': 10} -> n=844 win%=50.2 mean%=+8.78 sharpe=+0.70 (21.2s)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+  [40/80] {'rally_lookback': 60, 'rally_min_gain': 0.2, 'depth_lookback': 20} -> n=3100 win%=46.3 mean%=+4.88 sharpe=+0.33 (23.8s)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+  [50/80] {'rally_lookback': 90, 'rally_min_gain': 0.1, 'depth_lookback': 10} -> n=3084 win%=47.3 mean%=+5.11 sharpe=+0.35 (18.6s)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+  [60/80] {'rally_lookback': 90, 'rally_min_gain': 0.3, 'depth_lookback': 20} -> n=2697 win%=47.8 mean%=+5.70 sharpe=+0.40 (11.6s)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+  [70/80] {'rally_lookback': 120, 'rally_min_gain': 0.2, 'depth_lookback': 10} -> n=2947 win%=47.4 mean%=+5.49 sharpe=+0.37 (12.0s)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+  [80/80] {'rally_lookback': 120, 'rally_min_gain': 0.5, 'depth_lookback': 20} -> n=1717 win%=51.0 mean%=+7.95 sharpe=+0.56 (11.2s)
+
+  saved: C:\Users\82109\Desktop\LYC\git\stock_total\scripts\out\optimize\round2\strategy\trend_pullback_us_1d_grid.csv
+
+  ===== TOP 10 (by Sharpe) =====
+label  rank  rally_lookback  rally_min_gain  depth_lookback    n   win_pct  mean_pct   sharpe  profit_factor    mdd_pct
+ p031    31            45.0             0.5            20.0  840 51.190476  9.300137 0.720617       2.369289 -97.396397
+ p030    30            45.0             0.5            15.0  843 50.889680  9.178394 0.717899       2.348140 -97.396397
+ p015    15            30.0             0.5            20.0  456 50.000000  8.856026 0.713558       2.231863 -92.565157
+ p028    28            45.0             0.5             5.0  823 50.425273  9.020884 0.705326       2.312904 -96.463166
+ p044    44            60.0             0.5             5.0 1046 52.007648  9.363883 0.702641       2.406365 -97.585965
+ p014    14            30.0             0.5            15.0  461 49.457701  8.547822 0.699421       2.182613 -92.565157
+ p029    29            45.0             0.5            10.0  844 50.236967  8.776757 0.696215       2.263996 -97.396397
+ p012    12            30.0             0.5             5.0  454 50.000000  8.578977 0.693075       2.175510 -92.565157
+ p046    46            60.0             0.5            15.0 1075 51.720930  9.171590 0.687738       2.352858 -99.229223
+ p045    45            60.0             0.5            10.0 1074 51.769088  9.071429 0.687034       2.334351 -99.292293

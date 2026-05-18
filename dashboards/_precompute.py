@@ -283,8 +283,13 @@ def _stock_recs_loaders(asset: str) -> dict:
     """Return ``{interval: loader(sym)}`` dict for stock ``compute_recommendations``.
 
     Daily reads ``{Open,High,Low,Close,Volume}`` from the asset's cache; weekly
-    resamples to W-FRI and monthly to month-end (ME). Caches per-symbol within
-    the closure scope so the same symbol isn't reread three times.
+    resamples to W-FRI and monthly to month-end (ME).
+
+    Holds AT MOST one symbol's daily df in the closure scope: same-symbol
+    1d/1w/1m calls reuse the read (the original optimization), but switching
+    to a new symbol evicts the prior one. Without this eviction the cache
+    accumulated all symbols' OHLCV for the full precompute run (~660MB for
+    US 3849 symbols).
     """
     cache = _cache_dir(asset)
     _daily_cache: dict[str, Optional[pd.DataFrame]] = {}
@@ -292,6 +297,7 @@ def _stock_recs_loaders(asset: str) -> dict:
     def _daily(sym: str):
         if sym in _daily_cache:
             return _daily_cache[sym]
+        _daily_cache.clear()
         path = cache / f"{sym}.parquet"
         if not path.exists():
             _daily_cache[sym] = None
@@ -325,16 +331,22 @@ def _crypto_recs_loaders() -> dict:
     """Return ``{interval: loader(sym)}`` dict for crypto ``compute_recommendations``.
 
     Wraps :func:`data.resample.load` so 1h/4h/1d/1w each get their own callable.
-    Per-symbol per-granularity result cached within the closure scope (so
-    1w/1d derived from the same 1d parquet doesn't re-read the file twice).
+
+    Holds AT MOST one symbol's worth across all granularities. Same-sym
+    1h/4h/1d/1w calls reuse reads (1w from 1d cache, 4h from 1h cache);
+    switching to a new symbol evicts the prior one's 4 entries.
     Symbols whose parquet is missing return None — recs spec will skip them.
     """
     from data.resample import load as _crypto_load
 
     _cache: dict[tuple, Optional[pd.DataFrame]] = {}
+    _current_sym: list[Optional[str]] = [None]
 
     def _make(iv: str):
         def _loader(sym: str):
+            if _current_sym[0] != sym:
+                _cache.clear()
+                _current_sym[0] = sym
             key = (sym, iv)
             if key in _cache:
                 return _cache[key]

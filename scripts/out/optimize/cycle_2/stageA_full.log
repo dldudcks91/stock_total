@@ -1,0 +1,221 @@
+
+=== KR / trend_pullback / 1d  score_th=60.0  rules=27 ===
+  cache built: 299 symbols (skipped 1)
+  total entries: 18143 across 296 symbols
+  trail=15% tp=  20 hold= 60  full: n=18143 S=+12.41 m= +4.3%  oos: n= 7565 S= +9.43
+  trail=15% tp=  30 hold= 60  full: n=18143 S=+12.93 m= +5.0%  oos: n= 7565 S=+10.11
+  trail=15% tp=none hold= 60  full: n=18143 S=+10.73 m= +6.4%  oos: n= 7565 S= +7.50
+  trail=20% tp=  20 hold= 60  full: n=18143 S=+14.11 m= +5.1%  oos: n= 7565 S=+11.22
+  trail=20% tp=  30 hold= 60  full: n=18143 S=+14.43 m= +5.9%  oos: n= 7565 S=+11.61
+C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\numpy\core\fromnumeric.py:59: RuntimeWarning: overflow encountered in accumulate
+  return bound(*args, **kwds)
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\cycle2_exit_grid.py:131: RuntimeWarning: invalid value encountered in divide
+  dd = float((eq / peak - 1.0).min() * 100)
+  trail=20% tp=none hold= 60  full: n=18143 S=+10.42 m= +7.8%  oos: n= 7565 S= +7.14
+  trail=25% tp=  20 hold= 60  full: n=18143 S=+15.54 m= +5.7%  oos: n= 7565 S=+12.61
+  trail=25% tp=  30 hold= 60  full: n=18143 S=+15.99 m= +6.6%  oos: n= 7565 S=+13.16
+  trail=25% tp=none hold= 60  full: n=18143 S=+10.35 m= +9.4%  oos: n= 7565 S= +7.26
+  trail=15% tp=  20 hold=120  full: n=18143 S=+14.00 m= +5.1%  oos: n= 7565 S=+10.44
+  trail=15% tp=  30 hold=120  full: n=18143 S=+14.79 m= +6.1%  oos: n= 7565 S=+11.17
+  trail=15% tp=none hold=120  full: n=18143 S=+12.23 m= +8.1%  oos: n= 7565 S= +8.24
+  trail=20% tp=  20 hold=120  full: n=18143 S=+16.59 m= +6.5%  oos: n= 7565 S=+12.52
+  trail=20% tp=  30 hold=120  full: n=18143 S=+17.19 m= +7.7%  oos: n= 7565 S=+12.91
+  trail=20% tp=none hold=120  full: n=18143 S=+13.13 m=+11.5%  oos: n= 7565 S= +8.36
+  trail=25% tp=  20 hold=120  full: n=18143 S=+18.69 m= +7.5%  oos: n= 7565 S=+14.80
+  trail=25% tp=  30 hold=120  full: n=18143 S=+19.86 m= +9.3%  oos: n= 7565 S=+15.54
+  trail=25% tp=none hold=120  full: n=18143 S=+13.24 m=+15.8%  oos: n= 7565 S= +8.78
+  trail=15% tp=  20 hold=252  full: n=18143 S=+14.77 m= +5.5%  oos: n= 7565 S=+11.52
+  trail=15% tp=  30 hold=252  full: n=18143 S=+15.68 m= +6.7%  oos: n= 7565 S=+12.22
+  trail=15% tp=none hold=252  full: n=18143 S=+12.90 m= +9.1%  oos: n= 7565 S= +8.79
+  trail=20% tp=  20 hold=252  full: n=18143 S=+17.54 m= +7.1%  oos: n= 7565 S=+13.76
+  trail=20% tp=  30 hold=252  full: n=18143 S=+18.40 m= +8.6%  oos: n= 7565 S=+14.13
+  trail=20% tp=none hold=252  full: n=18143 S=+14.55 m=+14.3%  oos: n= 7565 S= +9.06
+  trail=25% tp=  20 hold=252  full: n=18143 S=+19.80 m= +8.4%  oos: n= 7565 S=+16.76
+  trail=25% tp=  30 hold=252  full: n=18143 S=+21.53 m=+10.8%  oos: n= 7565 S=+17.72
+  trail=25% tp=none hold=252  full: n=18143 S=+15.35 m=+23.3%  oos: n= 7565 S=+10.35
+  combo elapsed 140.1s
+  >> stage A best: trail=25% tp=30 hold=252  Sharpe_full=21.53 Sharpe_oos=17.72
+
+=== US / trend_pullback / 1d  score_th=70.0  rules=27 ===
+  0%|          | 0/3881 [00:00<?, ?it/s]  2%|1         | 60/3881 [00:00<00:11, 324.32it/s]  3%|3         | 120/3881 [00:00<00:09, 393.06it/s]  5%|4         | 180/3881 [00:00<00:08, 429.90it/s]  6%|6         | 240/3881 [00:00<00:08, 416.44it/s]  8%|7         | 300/3881 [00:00<00:08, 427.21it/s]  9%|9         | 360/3881 [00:00<00:08, 415.59it/s] 11%|#         | 420/3881 [00:00<00:07, 452.89it/s] 12%|#2        | 480/3881 [00:01<00:07, 451.24it/s] 14%|#3        | 540/3881 [00:01<00:07, 443.90it/s] 15%|#5        | 600/3881 [00:01<00:07, 445.09it/s] 17%|#7        | 660/3881 [00:01<00:07, 443.88it/s] 19%|#8        | 720/3881 [00:01<00:07, 451.16it/s] 20%|##        | 780/3881 [00:01<00:06, 459.52it/s] 23%|##3       | 900/3881 [00:01<00:05, 512.46it/s] 25%|##4       | 960/3881 [00:02<00:05, 505.03it/s] 26%|##6       | 1020/3881 [00:02<00:05, 492.85it/s] 28%|##7       | 1080/3881 [00:02<00:05, 492.56it/s] 29%|##9       | 1140/3881 [00:02<00:05, 463.57it/s] 31%|###       | 1200/3881 [00:02<00:05, 462.99it/s] 32%|###2      | 1260/3881 [00:02<00:05, 479.72it/s] 34%|###4      | 1320/3881 [00:02<00:06, 413.88it/s] 37%|###7      | 1440/3881 [00:03<00:05, 477.63it/s] 40%|####      | 1560/3881 [00:03<00:04, 543.51it/s] 43%|####3     | 1680/3881 [00:03<00:03, 595.81it/s] 46%|####6     | 1800/3881 [00:03<00:03, 611.71it/s] 49%|####9     | 1920/3881 [00:03<00:03, 638.48it/s] 53%|#####2    | 2040/3881 [00:04<00:03, 606.58it/s] 56%|#####5    | 2160/3881 [00:04<00:02, 630.31it/s] 59%|#####8    | 2280/3881 [00:04<00:02, 618.65it/s] 62%|######1   | 2400/3881 [00:04<00:02, 627.54it/s] 65%|######4   | 2520/3881 [00:04<00:02, 627.76it/s] 68%|######8   | 2640/3881 [00:05<00:01, 639.06it/s] 71%|#######1  | 2760/3881 [00:05<00:01, 614.14it/s] 74%|#######4  | 2880/3881 [00:05<00:01, 684.22it/s] 77%|#######7  | 3000/3881 [00:05<00:01, 633.54it/s] 80%|########  | 3120/3881 [00:05<00:01, 626.98it/s] 83%|########3 | 3240/3881 [00:05<00:01, 592.02it/s] 87%|########6 | 3360/3881 [00:06<00:00, 577.22it/s] 88%|########8 | 3420/3881 [00:06<00:00, 578.15it/s] 90%|########9 | 3480/3881 [00:06<00:00, 558.40it/s] 93%|#########2| 3600/3881 [00:06<00:00, 529.50it/s] 94%|#########4| 3660/3881 [00:06<00:00, 541.68it/s] 97%|#########7| 3780/3881 [00:06<00:00, 551.43it/s] 99%|#########8| 3840/3881 [00:07<00:00, 553.35it/s]100%|##########| 3881/3881 [00:07<00:00, 533.62it/s]
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+  cache built: 296 symbols (skipped 3)
+  total entries: 19038 across 295 symbols
+  trail=15% tp=  20 hold= 60  full: n=19038 S=+11.66 m= +3.6%  oos: n= 6811 S= +9.78
+  trail=15% tp=  30 hold= 60  full: n=19038 S=+12.28 m= +4.2%  oos: n= 6811 S=+10.27
+  trail=15% tp=none hold= 60  full: n=19038 S=+11.92 m= +5.4%  oos: n= 6811 S= +9.62
+  trail=20% tp=  20 hold= 60  full: n=19038 S=+13.73 m= +4.5%  oos: n= 6811 S=+11.48
+  trail=20% tp=  30 hold= 60  full: n=19038 S=+14.48 m= +5.3%  oos: n= 6811 S=+12.15
+C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\numpy\core\fromnumeric.py:59: RuntimeWarning: overflow encountered in accumulate
+  return bound(*args, **kwds)
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\cycle2_exit_grid.py:131: RuntimeWarning: invalid value encountered in divide
+  dd = float((eq / peak - 1.0).min() * 100)
+  trail=20% tp=none hold= 60  full: n=19038 S=+13.83 m= +7.2%  oos: n= 6811 S=+11.31
+  trail=25% tp=  20 hold= 60  full: n=19038 S=+14.40 m= +4.8%  oos: n= 6811 S=+12.09
+  trail=25% tp=  30 hold= 60  full: n=19038 S=+15.21 m= +5.8%  oos: n= 6811 S=+12.87
+  trail=25% tp=none hold= 60  full: n=19038 S=+14.12 m= +8.0%  oos: n= 6811 S=+11.30
+  trail=15% tp=  20 hold=120  full: n=19038 S=+13.44 m= +4.4%  oos: n= 6811 S=+10.29
+  trail=15% tp=  30 hold=120  full: n=19038 S=+14.34 m= +5.4%  oos: n= 6811 S=+10.81
+  trail=15% tp=none hold=120  full: n=19038 S=+13.63 m= +7.4%  oos: n= 6811 S= +9.86
+  trail=20% tp=  20 hold=120  full: n=19038 S=+16.61 m= +5.9%  oos: n= 6811 S=+11.69
+  trail=20% tp=  30 hold=120  full: n=19038 S=+18.11 m= +7.5%  oos: n= 6811 S=+12.66
+  trail=20% tp=none hold=120  full: n=19038 S=+16.37 m=+11.9%  oos: n= 6811 S=+11.48
+  trail=25% tp=  20 hold=120  full: n=19038 S=+18.46 m= +6.9%  oos: n= 6811 S=+12.75
+  trail=25% tp=  30 hold=120  full: n=19038 S=+20.04 m= +8.8%  oos: n= 6811 S=+13.83
+  trail=25% tp=none hold=120  full: n=19038 S=+18.02 m=+14.8%  oos: n= 6811 S=+12.51
+  trail=15% tp=  20 hold=252  full: n=19038 S=+14.33 m= +4.8%  oos: n= 6811 S=+10.74
+  trail=15% tp=  30 hold=252  full: n=19038 S=+15.51 m= +6.0%  oos: n= 6811 S=+11.30
+  trail=15% tp=none hold=252  full: n=19038 S=+14.55 m= +8.9%  oos: n= 6811 S=+10.09
+  trail=20% tp=  20 hold=252  full: n=19038 S=+17.83 m= +6.5%  oos: n= 6811 S=+11.85
+  trail=20% tp=  30 hold=252  full: n=19038 S=+19.76 m= +8.7%  oos: n= 6811 S=+12.66
+  trail=20% tp=none hold=252  full: n=19038 S=+17.77 m=+15.9%  oos: n= 6811 S=+11.53
+  trail=25% tp=  20 hold=252  full: n=19038 S=+19.90 m= +7.8%  oos: n= 6811 S=+12.87
+  trail=25% tp=  30 hold=252  full: n=19038 S=+22.01 m=+10.3%  oos: n= 6811 S=+13.90
+  trail=25% tp=none hold=252  full: n=19038 S=+19.10 m=+22.1%  oos: n= 6811 S=+12.34
+  combo elapsed 180.0s
+  >> stage A best: trail=25% tp=30 hold=252  Sharpe_full=22.01 Sharpe_oos=13.9
+
+=== KR / trend_chase / 1d  score_th=60.0  rules=27 ===
+  cache built: 299 symbols (skipped 1)
+  total entries: 4011 across 282 symbols
+  trail=15% tp=  20 hold= 60  full: n= 4011 S= +4.15 m= +2.5%  oos: n= 1210 S= +3.00
+  trail=15% tp=  30 hold= 60  full: n= 4011 S= +4.15 m= +2.8%  oos: n= 1210 S= +3.03
+  trail=15% tp=none hold= 60  full: n= 4011 S= +3.67 m= +2.9%  oos: n= 1210 S= +2.65
+  trail=20% tp=  20 hold= 60  full: n= 4011 S= +4.92 m= +3.1%  oos: n= 1210 S= +3.83
+  trail=20% tp=  30 hold= 60  full: n= 4011 S= +4.84 m= +3.4%  oos: n= 1210 S= +3.82
+  trail=20% tp=none hold= 60  full: n= 4011 S= +4.15 m= +3.5%  oos: n= 1210 S= +3.20
+  trail=25% tp=  20 hold= 60  full: n= 4011 S= +5.39 m= +3.5%  oos: n= 1210 S= +4.37
+  trail=25% tp=  30 hold= 60  full: n= 4011 S= +5.36 m= +3.8%  oos: n= 1210 S= +4.47
+  trail=25% tp=none hold= 60  full: n= 4011 S= +4.64 m= +4.0%  oos: n= 1210 S= +3.82
+  trail=15% tp=  20 hold=120  full: n= 4011 S= +4.85 m= +3.3%  oos: n= 1210 S= +3.89
+  trail=15% tp=  30 hold=120  full: n= 4011 S= +5.06 m= +3.9%  oos: n= 1210 S= +3.83
+  trail=15% tp=none hold=120  full: n= 4011 S= +4.73 m= +4.8%  oos: n= 1210 S= +3.46
+  trail=20% tp=  20 hold=120  full: n= 4011 S= +5.96 m= +4.3%  oos: n= 1210 S= +5.24
+  trail=20% tp=  30 hold=120  full: n= 4011 S= +6.19 m= +5.2%  oos: n= 1210 S= +5.20
+  trail=20% tp=none hold=120  full: n= 4011 S= +5.46 m= +6.7%  oos: n= 1210 S= +4.15
+  trail=25% tp=  20 hold=120  full: n= 4011 S= +6.57 m= +4.9%  oos: n= 1210 S= +6.14
+  trail=25% tp=  30 hold=120  full: n= 4011 S= +7.03 m= +6.2%  oos: n= 1210 S= +6.40
+  trail=25% tp=none hold=120  full: n= 4011 S= +6.28 m= +8.1%  oos: n= 1210 S= +5.22
+  trail=15% tp=  20 hold=252  full: n= 4011 S= +5.31 m= +3.8%  oos: n= 1210 S= +4.92
+  trail=15% tp=  30 hold=252  full: n= 4011 S= +5.68 m= +4.7%  oos: n= 1210 S= +4.94
+  trail=15% tp=none hold=252  full: n= 4011 S= +5.02 m= +5.6%  oos: n= 1210 S= +4.21
+  trail=20% tp=  20 hold=252  full: n= 4011 S= +6.69 m= +5.3%  oos: n= 1210 S= +6.91
+  trail=20% tp=  30 hold=252  full: n= 4011 S= +7.23 m= +6.7%  oos: n= 1210 S= +7.02
+  trail=20% tp=none hold=252  full: n= 4011 S= +6.09 m= +8.9%  oos: n= 1210 S= +5.52
+  trail=25% tp=  20 hold=252  full: n= 4011 S= +7.12 m= +5.9%  oos: n= 1210 S= +8.49
+  trail=25% tp=  30 hold=252  full: n= 4011 S= +7.98 m= +7.9%  oos: n= 1210 S= +9.12
+  trail=25% tp=none hold=252  full: n= 4011 S= +6.92 m=+13.6%  oos: n= 1210 S= +6.43
+  combo elapsed 49.8s
+  >> stage A best: trail=25% tp=30 hold=252  Sharpe_full=7.98 Sharpe_oos=9.12
+
+=== US / trend_chase / 1d  score_th=60.0  rules=27 ===
+  0%|          | 0/3881 [00:00<?, ?it/s]  3%|3         | 120/3881 [00:00<00:05, 701.76it/s]  6%|6         | 240/3881 [00:00<00:04, 731.97it/s]  9%|9         | 360/3881 [00:00<00:04, 729.82it/s] 12%|#2        | 480/3881 [00:00<00:04, 730.57it/s] 15%|#5        | 600/3881 [00:00<00:04, 716.81it/s] 19%|#8        | 720/3881 [00:00<00:04, 727.75it/s] 22%|##1       | 840/3881 [00:01<00:04, 731.95it/s] 25%|##4       | 960/3881 [00:01<00:04, 677.91it/s] 28%|##7       | 1080/3881 [00:01<00:04, 693.86it/s] 31%|###       | 1200/3881 [00:01<00:03, 687.65it/s] 34%|###4      | 1320/3881 [00:01<00:03, 696.82it/s] 37%|###7      | 1440/3881 [00:02<00:03, 712.18it/s] 40%|####      | 1560/3881 [00:02<00:03, 694.09it/s] 43%|####3     | 1680/3881 [00:02<00:03, 651.82it/s] 46%|####6     | 1800/3881 [00:02<00:03, 620.44it/s] 49%|####9     | 1920/3881 [00:02<00:03, 635.68it/s] 53%|#####2    | 2040/3881 [00:02<00:02, 640.55it/s] 56%|#####5    | 2160/3881 [00:03<00:02, 648.18it/s] 59%|#####8    | 2280/3881 [00:03<00:02, 659.02it/s] 62%|######1   | 2400/3881 [00:03<00:02, 661.30it/s] 65%|######4   | 2520/3881 [00:03<00:02, 608.42it/s] 68%|######8   | 2640/3881 [00:03<00:02, 619.96it/s] 71%|#######1  | 2760/3881 [00:04<00:01, 631.28it/s] 74%|#######4  | 2880/3881 [00:04<00:01, 623.49it/s] 77%|#######7  | 3000/3881 [00:04<00:01, 623.94it/s] 80%|########  | 3120/3881 [00:04<00:01, 620.39it/s] 83%|########3 | 3240/3881 [00:04<00:01, 608.52it/s] 87%|########6 | 3360/3881 [00:05<00:00, 678.97it/s] 90%|########9 | 3480/3881 [00:05<00:00, 602.05it/s] 93%|#########2| 3600/3881 [00:05<00:00, 612.49it/s] 96%|#########5| 3720/3881 [00:05<00:00, 620.97it/s] 99%|#########8| 3840/3881 [00:06<00:00, 437.68it/s]100%|##########| 3881/3881 [00:06<00:00, 615.25it/s]
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_chase.py:85: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_chase.py:85: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret = close.pct_change()
+  cache built: 296 symbols (skipped 3)
+  total entries: 2202 across 278 symbols
+  trail=15% tp=  20 hold= 60  full: n= 2202 S= +4.32 m= +3.2%  oos: n=  876 S= +3.47
+  trail=15% tp=  30 hold= 60  full: n= 2202 S= +4.48 m= +3.7%  oos: n=  876 S= +3.59
+  trail=15% tp=none hold= 60  full: n= 2202 S= +4.26 m= +3.9%  oos: n=  876 S= +3.51
+  trail=20% tp=  20 hold= 60  full: n= 2202 S= +4.56 m= +3.5%  oos: n=  876 S= +3.51
+  trail=20% tp=  30 hold= 60  full: n= 2202 S= +4.68 m= +4.0%  oos: n=  876 S= +3.57
+  trail=20% tp=none hold= 60  full: n= 2202 S= +4.50 m= +4.3%  oos: n=  876 S= +3.55
+  trail=25% tp=  20 hold= 60  full: n= 2202 S= +4.49 m= +3.6%  oos: n=  876 S= +3.45
+  trail=25% tp=  30 hold= 60  full: n= 2202 S= +4.63 m= +4.0%  oos: n=  876 S= +3.54
+  trail=25% tp=none hold= 60  full: n= 2202 S= +4.47 m= +4.5%  oos: n=  876 S= +3.52
+  trail=15% tp=  20 hold=120  full: n= 2202 S= +4.64 m= +4.0%  oos: n=  876 S= +3.44
+  trail=15% tp=  30 hold=120  full: n= 2202 S= +4.86 m= +4.8%  oos: n=  876 S= +3.59
+  trail=15% tp=none hold=120  full: n= 2202 S= +4.53 m= +5.8%  oos: n=  876 S= +3.30
+  trail=20% tp=  20 hold=120  full: n= 2202 S= +4.88 m= +4.5%  oos: n=  876 S= +3.38
+  trail=20% tp=  30 hold=120  full: n= 2202 S= +5.08 m= +5.4%  oos: n=  876 S= +3.52
+  trail=20% tp=none hold=120  full: n= 2202 S= +4.73 m= +7.4%  oos: n=  876 S= +3.45
+  trail=25% tp=  20 hold=120  full: n= 2202 S= +4.93 m= +4.8%  oos: n=  876 S= +3.41
+  trail=25% tp=  30 hold=120  full: n= 2202 S= +5.14 m= +5.7%  oos: n=  876 S= +3.62
+  trail=25% tp=none hold=120  full: n= 2202 S= +4.89 m= +8.1%  oos: n=  876 S= +3.61
+  trail=15% tp=  20 hold=252  full: n= 2202 S= +5.10 m= +4.5%  oos: n=  876 S= +3.67
+  trail=15% tp=  30 hold=252  full: n= 2202 S= +5.35 m= +5.6%  oos: n=  876 S= +3.82
+  trail=15% tp=none hold=252  full: n= 2202 S= +4.66 m= +7.2%  oos: n=  876 S= +3.35
+  trail=20% tp=  20 hold=252  full: n= 2202 S= +5.57 m= +5.5%  oos: n=  876 S= +3.68
+  trail=20% tp=  30 hold=252  full: n= 2202 S= +5.74 m= +6.7%  oos: n=  876 S= +3.73
+  trail=20% tp=none hold=252  full: n= 2202 S= +5.07 m=+11.3%  oos: n=  876 S= +3.54
+  trail=25% tp=  20 hold=252  full: n= 2202 S= +5.71 m= +6.0%  oos: n=  876 S= +3.67
+  trail=25% tp=  30 hold=252  full: n= 2202 S= +5.93 m= +7.4%  oos: n=  876 S= +3.81
+  trail=25% tp=none hold=252  full: n= 2202 S= +5.23 m=+14.3%  oos: n=  876 S= +3.62
+  combo elapsed 35.1s
+  >> stage A best: trail=15% tp=30 hold=252  Sharpe_full=5.35 Sharpe_oos=3.82
+
+=== US / quiet_bottom / 1w  score_th=binary  rules=27 ===
+  0%|          | 0/3881 [00:00<?, ?it/s]  3%|3         | 120/3881 [00:00<00:04, 764.32it/s]  6%|6         | 240/3881 [00:00<00:04, 736.72it/s]  9%|9         | 360/3881 [00:00<00:04, 726.31it/s] 12%|#2        | 480/3881 [00:00<00:04, 724.95it/s] 15%|#5        | 600/3881 [00:00<00:04, 666.22it/s] 19%|#8        | 720/3881 [00:01<00:04, 679.19it/s] 22%|##1       | 840/3881 [00:01<00:04, 699.49it/s] 26%|##6       | 1020/3881 [00:01<00:03, 841.36it/s] 29%|##9       | 1140/3881 [00:01<00:03, 767.96it/s] 32%|###2      | 1260/3881 [00:01<00:03, 814.74it/s] 36%|###5      | 1380/3881 [00:01<00:02, 855.78it/s] 39%|###8      | 1500/3881 [00:01<00:02, 897.52it/s] 42%|####1     | 1620/3881 [00:02<00:02, 908.97it/s] 45%|####4     | 1740/3881 [00:02<00:02, 825.50it/s] 48%|####7     | 1860/3881 [00:02<00:02, 782.80it/s] 51%|#####1    | 1980/3881 [00:02<00:02, 786.31it/s] 54%|#####4    | 2100/3881 [00:02<00:02, 675.92it/s] 57%|#####7    | 2220/3881 [00:02<00:02, 674.26it/s] 60%|######    | 2340/3881 [00:03<00:02, 661.97it/s] 63%|######3   | 2460/3881 [00:03<00:02, 653.63it/s] 66%|######6   | 2580/3881 [00:03<00:01, 652.13it/s] 70%|######9   | 2700/3881 [00:03<00:01, 637.60it/s] 73%|#######2  | 2820/3881 [00:03<00:01, 580.45it/s] 74%|#######4  | 2880/3881 [00:04<00:01, 583.80it/s] 77%|#######7  | 3000/3881 [00:04<00:01, 599.99it/s] 80%|########  | 3120/3881 [00:04<00:01, 677.91it/s] 83%|########3 | 3240/3881 [00:04<00:01, 630.61it/s] 87%|########6 | 3360/3881 [00:04<00:00, 620.75it/s] 90%|########9 | 3480/3881 [00:05<00:00, 596.37it/s] 93%|#########2| 3600/3881 [00:05<00:00, 542.23it/s] 94%|#########4| 3660/3881 [00:05<00:00, 544.57it/s] 97%|#########7| 3780/3881 [00:05<00:00, 574.91it/s]100%|##########| 3881/3881 [00:05<00:00, 563.48it/s]100%|##########| 3881/3881 [00:05<00:00, 665.12it/s]
+  cache built: 295 symbols (skipped 4)
+  total entries: 404 across 64 symbols
+  trail=15% tp=  20 hold= 26  full: n=  404 S= +3.23 m= +9.9%  oos: n=  154 S= +2.10
+  trail=15% tp=  30 hold= 26  full: n=  404 S= +3.24 m=+11.2%  oos: n=  154 S= +2.12
+  trail=15% tp=none hold= 26  full: n=  404 S= +2.63 m=+16.1%  oos: n=  154 S= +1.83
+  trail=20% tp=  20 hold= 26  full: n=  404 S= +3.61 m=+11.4%  oos: n=  154 S= +2.44
+  trail=20% tp=  30 hold= 26  full: n=  404 S= +3.64 m=+13.2%  oos: n=  154 S= +2.54
+  trail=20% tp=none hold= 26  full: n=  404 S= +2.73 m=+16.9%  oos: n=  154 S= +2.07
+  trail=25% tp=  20 hold= 26  full: n=  404 S= +3.71 m=+11.9%  oos: n=  154 S= +2.51
+  trail=25% tp=  30 hold= 26  full: n=  404 S= +3.73 m=+13.8%  oos: n=  154 S= +2.56
+  trail=25% tp=none hold= 26  full: n=  404 S= +2.72 m=+17.9%  oos: n=  154 S= +2.05
+  trail=15% tp=  20 hold= 52  full: n=  404 S= +3.53 m=+10.8%  oos: n=  154 S= +2.45
+  trail=15% tp=  30 hold= 52  full: n=  404 S= +3.51 m=+12.2%  oos: n=  154 S= +2.34
+  trail=15% tp=none hold= 52  full: n=  404 S= +2.73 m=+18.8%  oos: n=  154 S= +1.91
+  trail=20% tp=  20 hold= 52  full: n=  404 S= +3.99 m=+12.8%  oos: n=  154 S= +2.96
+  trail=20% tp=  30 hold= 52  full: n=  404 S= +4.01 m=+14.9%  oos: n=  154 S= +2.89
+  trail=20% tp=none hold= 52  full: n=  404 S= +2.87 m=+20.2%  oos: n=  154 S= +2.27
+  trail=25% tp=  20 hold= 52  full: n=  404 S= +4.32 m=+14.1%  oos: n=  154 S= +3.16
+  trail=25% tp=  30 hold= 52  full: n=  404 S= +4.22 m=+15.9%  oos: n=  154 S= +3.10
+  trail=25% tp=none hold= 52  full: n=  404 S= +2.80 m=+28.7%  oos: n=  154 S= +2.17
+  trail=15% tp=  20 hold=104  full: n=  404 S= +3.76 m=+11.5%  oos: n=  154 S= +2.52
+  trail=15% tp=  30 hold=104  full: n=  404 S= +3.72 m=+12.9%  oos: n=  154 S= +2.41
+  trail=15% tp=none hold=104  full: n=  404 S= +2.87 m=+21.4%  oos: n=  154 S= +1.95
+  trail=20% tp=  20 hold=104  full: n=  404 S= +4.23 m=+13.6%  oos: n=  154 S= +3.03
+  trail=20% tp=  30 hold=104  full: n=  404 S= +4.24 m=+15.8%  oos: n=  154 S= +2.99
+  trail=20% tp=none hold=104  full: n=  404 S= +3.12 m=+24.2%  oos: n=  154 S= +2.35
+  trail=25% tp=  20 hold=104  full: n=  404 S= +4.78 m=+15.5%  oos: n=  154 S= +3.36
+  trail=25% tp=  30 hold=104  full: n=  404 S= +4.67 m=+17.7%  oos: n=  154 S= +3.36
+  trail=25% tp=none hold=104  full: n=  404 S= +3.28 m=+37.1%  oos: n=  154 S= +2.38
+  combo elapsed 47.7s
+  >> stage A best: trail=25% tp=20 hold=104  Sharpe_full=4.78 Sharpe_oos=3.36
+
+=== KR / quiet_bottom / 1w  score_th=binary  rules=27 ===
+  cache built: 298 symbols (skipped 2)
+  total entries: 607 across 109 symbols
+  trail=15% tp=  20 hold= 26  full: n=  607 S= +4.19 m= +9.9%  oos: n=  235 S= +1.44
+  trail=15% tp=  30 hold= 26  full: n=  607 S= +4.39 m=+11.8%  oos: n=  235 S= +1.52
+  trail=15% tp=none hold= 26  full: n=  607 S= +3.57 m=+14.8%  oos: n=  235 S= +1.12
+  trail=20% tp=  20 hold= 26  full: n=  607 S= +4.81 m=+11.6%  oos: n=  235 S= +1.83
+  trail=20% tp=  30 hold= 26  full: n=  607 S= +4.99 m=+13.9%  oos: n=  235 S= +1.96
+  trail=20% tp=none hold= 26  full: n=  607 S= +4.19 m=+20.7%  oos: n=  235 S= +1.74
+  trail=25% tp=  20 hold= 26  full: n=  607 S= +4.96 m=+12.2%  oos: n=  235 S= +1.94
+  trail=25% tp=  30 hold= 26  full: n=  607 S= +5.10 m=+14.5%  oos: n=  235 S= +2.05
+  trail=25% tp=none hold= 26  full: n=  607 S= +4.28 m=+21.2%  oos: n=  235 S= +1.83
+  trail=15% tp=  20 hold= 52  full: n=  607 S= +4.74 m=+11.4%  oos: n=  235 S= +1.82
+  trail=15% tp=  30 hold= 52  full: n=  607 S= +4.85 m=+13.3%  oos: n=  235 S= +1.93
+  trail=15% tp=none hold= 52  full: n=  607 S= +3.88 m=+18.5%  oos: n=  235 S= +1.34
+  trail=20% tp=  20 hold= 52  full: n=  607 S= +5.59 m=+13.7%  oos: n=  235 S= +2.34
+  trail=20% tp=  30 hold= 52  full: n=  607 S= +5.70 m=+16.5%  oos: n=  235 S= +2.51
+  trail=20% tp=none hold= 52  full: n=  607 S= +3.69 m=+30.5%  oos: n=  235 S= +1.85
+  trail=25% tp=  20 hold= 52  full: n=  607 S= +5.86 m=+14.7%  oos: n=  235 S= +2.55
+  trail=25% tp=  30 hold= 52  full: n=  607 S= +5.89 m=+17.5%  oos: n=  235 S= +2.67
+  trail=25% tp=none hold= 52  full: n=  607 S= +3.68 m=+30.6%  oos: n=  235 S= +2.00
+  trail=15% tp=  20 hold=104  full: n=  607 S= +5.12 m=+12.1%  oos: n=  235 S= +2.37
+  trail=15% tp=  30 hold=104  full: n=  607 S= +5.22 m=+14.3%  oos: n=  235 S= +2.44
+  trail=15% tp=none hold=104  full: n=  607 S= +4.17 m=+20.6%  oos: n=  235 S= +1.65
+  trail=20% tp=  20 hold=104  full: n=  607 S= +6.06 m=+14.7%  oos: n=  235 S= +2.96
+  trail=20% tp=  30 hold=104  full: n=  607 S= +6.09 m=+17.5%  oos: n=  235 S= +3.07
+  trail=20% tp=none hold=104  full: n=  607 S= +3.72 m=+36.5%  oos: n=  235 S= +1.87
+  trail=25% tp=  20 hold=104  full: n=  607 S= +6.34 m=+15.7%  oos: n=  235 S= +3.27
+  trail=25% tp=  30 hold=104  full: n=  607 S= +6.24 m=+18.6%  oos: n=  235 S= +3.38
+  trail=25% tp=none hold=104  full: n=  607 S= +3.79 m=+36.3%  oos: n=  235 S= +2.14
+  combo elapsed 23.9s
+  >> stage A best: trail=25% tp=30 hold=104  Sharpe_full=6.24 Sharpe_oos=3.38

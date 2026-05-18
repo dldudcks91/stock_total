@@ -1,0 +1,86 @@
+
+--- build_cache asset=kr strategy=trend_pullback interval=1d universe_top=100 -> 100 symbols, 948 files ---
+  loaded 50 (skipped 0) elapsed 1.0s
+  loaded 100 (skipped 0) elapsed 2.1s
+  build_cache done: 100 symbols, skipped 0. elapsed 2.1s
+  top=100: n_symbols=100 n_trades=6701 sharpe=14.97 win=53.9%
+
+--- build_cache asset=kr strategy=trend_pullback interval=1d universe_top=300 -> 300 symbols, 948 files ---
+  loaded 50 (skipped 0) elapsed 1.2s
+  loaded 100 (skipped 0) elapsed 2.3s
+  loaded 150 (skipped 0) elapsed 3.6s
+  loaded 200 (skipped 0) elapsed 5.0s
+  loaded 250 (skipped 0) elapsed 6.2s
+  build_cache done: 299 symbols, skipped 1. elapsed 7.5s
+C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\numpy\core\fromnumeric.py:59: RuntimeWarning: overflow encountered in accumulate
+  return bound(*args, **kwds)
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\kr_round2.py:345: RuntimeWarning: invalid value encountered in divide
+  dd = float((eq / peak - 1.0).min() * 100)
+  top=300: n_symbols=299 n_trades=18143 sharpe=18.4 win=49.8%
+
+--- build_cache asset=kr strategy=trend_pullback interval=1d universe_top=500 -> 500 symbols, 948 files ---
+  loaded 50 (skipped 0) elapsed 1.2s
+  loaded 100 (skipped 0) elapsed 2.5s
+  loaded 150 (skipped 0) elapsed 3.8s
+  loaded 200 (skipped 0) elapsed 5.0s
+  loaded 250 (skipped 0) elapsed 6.3s
+  loaded 300 (skipped 0) elapsed 7.6s
+  loaded 350 (skipped 0) elapsed 8.9s
+  loaded 400 (skipped 0) elapsed 10.5s
+  loaded 450 (skipped 0) elapsed 12.0s
+  build_cache done: 499 symbols, skipped 1. elapsed 13.2s
+C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\numpy\core\fromnumeric.py:59: RuntimeWarning: overflow encountered in accumulate
+  return bound(*args, **kwds)
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\kr_round2.py:345: RuntimeWarning: invalid value encountered in divide
+  dd = float((eq / peak - 1.0).min() * 100)
+  top=500: n_symbols=499 n_trades=29578 sharpe=18.77 win=46.7%
+
+--- build_cache asset=kr strategy=trend_pullback interval=1d universe_top=800 -> 800 symbols, 948 files ---
+  loaded 50 (skipped 0) elapsed 1.6s
+  loaded 100 (skipped 0) elapsed 3.1s
+  loaded 150 (skipped 0) elapsed 4.5s
+  loaded 200 (skipped 0) elapsed 6.0s
+  loaded 250 (skipped 0) elapsed 7.6s
+  loaded 300 (skipped 0) elapsed 9.4s
+  loaded 350 (skipped 0) elapsed 11.1s
+  loaded 400 (skipped 0) elapsed 12.7s
+  loaded 450 (skipped 0) elapsed 14.4s
+  loaded 500 (skipped 0) elapsed 15.9s
+  loaded 550 (skipped 0) elapsed 17.4s
+  loaded 600 (skipped 0) elapsed 18.9s
+  loaded 650 (skipped 0) elapsed 20.6s
+  loaded 700 (skipped 0) elapsed 22.5s
+  loaded 750 (skipped 0) elapsed 24.1s
+  build_cache done: 799 symbols, skipped 1. elapsed 25.4s
+C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\numpy\core\fromnumeric.py:59: RuntimeWarning: overflow encountered in accumulate
+  return bound(*args, **kwds)
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\kr_round2.py:345: RuntimeWarning: invalid value encountered in divide
+  dd = float((eq / peak - 1.0).min() * 100)
+  top=800: n_symbols=799 n_trades=47109 sharpe=20.18 win=44.8%
+
+--- build_cache asset=kr strategy=trend_pullback interval=1d universe_top=-1 -> 948 symbols, 948 files ---
+  loaded 50 (skipped 0) elapsed 1.5s
+  loaded 100 (skipped 0) elapsed 2.9s
+  loaded 150 (skipped 0) elapsed 4.3s
+  loaded 200 (skipped 0) elapsed 5.9s
+  loaded 250 (skipped 0) elapsed 7.5s
+  loaded 300 (skipped 0) elapsed 8.9s
+  loaded 350 (skipped 0) elapsed 10.4s
+  loaded 400 (skipped 0) elapsed 12.0s
+  loaded 450 (skipped 0) elapsed 13.5s
+  loaded 500 (skipped 0) elapsed 14.7s
+  loaded 550 (skipped 0) elapsed 16.0s
+  loaded 600 (skipped 0) elapsed 17.3s
+  loaded 650 (skipped 0) elapsed 18.6s
+  loaded 700 (skipped 0) elapsed 20.0s
+  loaded 750 (skipped 0) elapsed 21.3s
+  loaded 800 (skipped 0) elapsed 22.8s
+  loaded 850 (skipped 1) elapsed 24.0s
+  loaded 900 (skipped 1) elapsed 25.2s
+  build_cache done: 947 symbols, skipped 1. elapsed 26.2s
+C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\numpy\core\fromnumeric.py:59: RuntimeWarning: overflow encountered in accumulate
+  return bound(*args, **kwds)
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\kr_round2.py:345: RuntimeWarning: invalid value encountered in divide
+  dd = float((eq / peak - 1.0).min() * 100)
+  top=-1: n_symbols=947 n_trades=53298 sharpe=19.43 win=43.8%
+  saved: C:\Users\82109\Desktop\LYC\git\stock_total\scripts\out\optimize\round2\kr\task3_trend_pullback_1d.csv

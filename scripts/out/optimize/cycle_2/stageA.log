@@ -1,0 +1,126 @@
+
+=== KR / trend_pullback / 1d  score_th=60.0  rules=18 ===
+  cache built: 299 symbols (skipped 1)
+  total entries: 18143 across 296 symbols
+  trail=15% tp=  20 hold= 60  full: n=18143 S=+12.41 m= +4.3%  oos: n= 7565 S= +9.43
+  trail=15% tp=  30 hold= 60  full: n=18143 S=+12.93 m= +5.0%  oos: n= 7565 S=+10.11
+  trail=15% tp=none hold= 60  full: n=18143 S=+10.73 m= +6.4%  oos: n= 7565 S= +7.50
+  trail=20% tp=  20 hold= 60  full: n=18143 S=+14.11 m= +5.1%  oos: n= 7565 S=+11.22
+  trail=20% tp=  30 hold= 60  full: n=18143 S=+14.43 m= +5.9%  oos: n= 7565 S=+11.61
+C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\numpy\core\fromnumeric.py:59: RuntimeWarning: overflow encountered in accumulate
+  return bound(*args, **kwds)
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\cycle2_exit_grid.py:131: RuntimeWarning: invalid value encountered in divide
+  dd = float((eq / peak - 1.0).min() * 100)
+  trail=20% tp=none hold= 60  full: n=18143 S=+10.42 m= +7.8%  oos: n= 7565 S= +7.14
+  trail=25% tp=  20 hold= 60  full: n=18143 S=+15.54 m= +5.7%  oos: n= 7565 S=+12.61
+  trail=25% tp=  30 hold= 60  full: n=18143 S=+15.99 m= +6.6%  oos: n= 7565 S=+13.16
+  trail=25% tp=none hold= 60  full: n=18143 S=+10.35 m= +9.4%  oos: n= 7565 S= +7.26
+  trail=15% tp=  20 hold=252  full: n=18143 S=+14.77 m= +5.5%  oos: n= 7565 S=+11.52
+  trail=15% tp=  30 hold=252  full: n=18143 S=+15.68 m= +6.7%  oos: n= 7565 S=+12.22
+  trail=15% tp=none hold=252  full: n=18143 S=+12.90 m= +9.1%  oos: n= 7565 S= +8.79
+  trail=20% tp=  20 hold=252  full: n=18143 S=+17.54 m= +7.1%  oos: n= 7565 S=+13.76
+  trail=20% tp=  30 hold=252  full: n=18143 S=+18.40 m= +8.6%  oos: n= 7565 S=+14.13
+  trail=20% tp=none hold=252  full: n=18143 S=+14.55 m=+14.3%  oos: n= 7565 S= +9.06
+  trail=25% tp=  20 hold=252  full: n=18143 S=+19.80 m= +8.4%  oos: n= 7565 S=+16.76
+  trail=25% tp=  30 hold=252  full: n=18143 S=+21.53 m=+10.8%  oos: n= 7565 S=+17.72
+  trail=25% tp=none hold=252  full: n=18143 S=+15.35 m=+23.3%  oos: n= 7565 S=+10.35
+  combo elapsed 166.7s
+  >> stage A best: trail=25% tp=30 hold=252  Sharpe_full=21.53 Sharpe_oos=17.72
+
+=== US / trend_pullback / 1d  score_th=70.0  rules=18 ===
+  0%|          | 0/3881 [00:00<?, ?it/s]  2%|1         | 60/3881 [00:00<00:09, 389.61it/s]  3%|3         | 120/3881 [00:00<00:10, 361.96it/s]  5%|4         | 180/3881 [00:00<00:10, 364.73it/s]  6%|6         | 240/3881 [00:00<00:09, 374.16it/s]  8%|7         | 300/3881 [00:00<00:09, 380.46it/s]  9%|9         | 360/3881 [00:00<00:09, 377.78it/s] 11%|#         | 420/3881 [00:01<00:10, 315.35it/s] 12%|#2        | 480/3881 [00:01<00:10, 329.84it/s] 14%|#3        | 540/3881 [00:01<00:09, 346.46it/s] 15%|#5        | 600/3881 [00:01<00:11, 292.79it/s] 17%|#7        | 660/3881 [00:02<00:11, 287.61it/s] 19%|#8        | 720/3881 [00:02<00:11, 280.10it/s]Traceback (most recent call last):
+  File "C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\82109\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 1430, in getresponse
+    response.begin()
+  File "C:\Users\82109\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\82109\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\requests\adapters.py", line 644, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\urllib3\connectionpool.py", line 842, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\urllib3\util\retry.py", line 498, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\urllib3\util\util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\urllib3\connectionpool.py", line 788, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\urllib3\connection.py", line 571, in getresponse
+    httplib_response = super().getresponse()
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\82109\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 1430, in getresponse
+    response.begin()
+  File "C:\Users\82109\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\82109\AppData\Local\Programs\Python\Python312\Lib\http\client.py", line 300, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\cycle2_exit_grid.py", line 472, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\cycle2_exit_grid.py", line 397, in main
+    df = run_combo(asset, strat, itv, score_th, rules)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\cycle2_exit_grid.py", line 226, in run_combo
+    cache = build_cache(asset, strategy, interval)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\cycle2_exit_grid.py", line 175, in build_cache
+    universe = _universe(asset)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\cycle2_exit_grid.py", line 159, in _universe
+    return us_universe(UNIVERSE_TOP)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\82109\Desktop\LYC\git\stock_total\scripts\trend_strategies\forward_returns.py", line 111, in us_universe
+    df = fdr.StockListing("NASDAQ")
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\FinanceDataReader\data.py", line 178, in StockListing
+    return NaverStockListing(market).read()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\FinanceDataReader\naver\listing.py", line 60, in read
+    r = requests.get(url, headers=headers)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\requests\adapters.py", line 659, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+ 19%|#8        | 720/3881 [00:12<00:55, 57.23it/s] 

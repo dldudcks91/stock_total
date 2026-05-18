@@ -1,0 +1,12 @@
+﻿IS_n,IS_win%,IS_mean%,IS_MDD%,IS_Sharpe,IS_PF,OOS_n,OOS_win%,OOS_mean%,OOS_MDD%,OOS_Sharpe,OOS_PF,asset,strategy,interval,score_th,rule,gate_param,gate_value
+1297,48.2,6.53,-95.1,5.18,1.96,883,49.9,7.21,-95.6,6.79,2.11,us,trend_chase,1d,60,hold_252d_trail20_TP30,baseline,default
+1309,48.4,6.61,-95.6,5.27,1.97,887,50.2,7.31,-95.6,6.88,2.13,us,trend_chase,1d,60,hold_252d_trail20_TP30,amount_lookback,120
+1297,48.2,6.53,-95.1,5.18,1.96,883,49.9,7.21,-95.6,6.79,2.11,us,trend_chase,1d,60,hold_252d_trail20_TP30,amount_lookback,250
+1290,48.1,6.57,-95.1,5.21,1.96,880,49.9,7.17,-95.6,6.74,2.1,us,trend_chase,1d,60,hold_252d_trail20_TP30,amount_lookback,500
+798,49.9,7.17,-93.1,4.49,2.12,578,48.4,6.34,-84.5,4.94,1.96,us,trend_chase,1d,60,hold_252d_trail20_TP30,fresh_big_th,0.04
+1297,48.2,6.53,-95.1,5.18,1.96,883,49.9,7.21,-95.6,6.79,2.11,us,trend_chase,1d,60,hold_252d_trail20_TP30,fresh_big_th,0.05
+1740,49.0,6.82,-98.4,6.07,1.97,1118,50.3,7.47,-94.8,7.76,2.13,us,trend_chase,1d,60,hold_252d_trail20_TP30,fresh_big_th,0.06
+2362,48.3,6.79,-99.8,6.82,1.92,1423,51.9,8.68,-92.7,10.09,2.39,us,trend_chase,1d,60,hold_252d_trail20_TP30,fresh_big_th,0.08
+1297,48.2,6.53,-95.1,5.18,1.96,883,49.9,7.21,-95.6,6.79,2.11,us,trend_chase,1d,60,hold_252d_trail20_TP30,max_prior_extension,0.3
+1328,48.5,6.7,-95.1,5.38,1.99,901,50.1,7.27,-95.9,6.89,2.12,us,trend_chase,1d,60,hold_252d_trail20_TP30,max_prior_extension,0.4
+1339,48.4,6.66,-95.1,5.36,1.98,913,50.1,7.28,-95.9,6.94,2.12,us,trend_chase,1d,60,hold_252d_trail20_TP30,max_prior_extension,0.5

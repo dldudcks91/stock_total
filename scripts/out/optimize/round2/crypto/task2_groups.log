@@ -1,0 +1,1179 @@
+[btc] 1093 daily returns since 2023-05-17
+  classified 100/553 (1.8s)
+  classified 200/553 (3.5s)
+  classified 300/553 (5.2s)
+  classified 400/553 (6.9s)
+  classified 500/553 (9.0s)
+classification: {'trend': 297, 'junk': 228, 'whale': 20, 'follower': 6, 'benchmark': 1, 'stable': 1}
+[groups] sizes: {'follower': 6, 'junk': 228, 'trend': 297, 'whale': 20}
+
+=== interval=1d ===
+  scored 100/553 (4.0s)
+  scored 200/553 (7.8s)
+  scored 300/553 (11.8s)
+  scored 400/553 (16.0s)
+  scored 500/553 (20.0s)
+[1d] 486 symbols scored
+   follower 1d trend_chase     th=60  n=   11 win=81.8% Sharpe=+2.41
+   follower 1d trend_chase     th=70  n=    8 win=87.5% Sharpe=+2.04
+   follower 1d trend_chase     th=80  n=    5 win=80.0% Sharpe=+1.34
+   follower 1d trend_pullback  th=60  n=  353 win=39.4% Sharpe=+0.67
+   follower 1d trend_pullback  th=70  n=  326 win=41.1% Sharpe=+0.82
+   follower 1d trend_pullback  th=80  n=  253 win=40.7% Sharpe=+0.90
+       junk 1d trend_chase     th=60  n=   67 win=44.8% Sharpe=+0.50
+       junk 1d trend_chase     th=70  n=   42 win=42.9% Sharpe=+0.34
+       junk 1d trend_chase     th=80  n=   20 win=50.0% Sharpe=+0.42
+       junk 1d trend_pullback  th=60  n= 1070 win=46.7% Sharpe=+3.46
+       junk 1d trend_pullback  th=70  n=  928 win=45.8% Sharpe=+2.22
+       junk 1d trend_pullback  th=80  n=  687 win=45.1% Sharpe=+1.99
+      trend 1d trend_chase     th=60  n=  292 win=55.5% Sharpe=+3.65
+      trend 1d trend_chase     th=70  n=  201 win=55.7% Sharpe=+2.89
+      trend 1d trend_chase     th=80  n=  127 win=52.0% Sharpe=+2.02
+      trend 1d trend_pullback  th=60  n=11700 win=35.8% Sharpe=-1.00
+      trend 1d trend_pullback  th=70  n=10352 win=38.2% Sharpe=+1.37
+      trend 1d trend_pullback  th=80  n= 7291 win=40.6% Sharpe=+2.75
+      whale 1d trend_chase     th=60  n=   13 win=69.2% Sharpe=+1.43
+      whale 1d trend_chase     th=70  n=   11 win=72.7% Sharpe=+1.33
+      whale 1d trend_chase     th=80  n=    8 win=62.5% Sharpe=+0.63
+      whale 1d trend_pullback  th=60  n=  497 win=43.1% Sharpe=+2.38
+      whale 1d trend_pullback  th=70  n=  401 win=43.6% Sharpe=+2.31
+      whale 1d trend_pullback  th=80  n=  270 win=45.6% Sharpe=+2.61
+
+=== interval=4h ===
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+  scored 100/553 (5.6s)
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+  scored 200/553 (12.3s)
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+  scored 300/553 (18.2s)
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+  scored 400/553 (24.4s)
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+  scored 500/553 (30.9s)
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_groups.py:68: FutureWarning: 'H' is deprecated and will be removed in a future version, please use 'h' instead.
+  return df.resample("4H", label="left", closed="left").agg(agg).dropna()
+[4h] 518 symbols scored
+   follower 4h trend_chase     th=60  n=  344 win=38.1% Sharpe=+1.71
+   follower 4h trend_chase     th=70  n=  184 win=38.6% Sharpe=+1.92
+   follower 4h trend_chase     th=80  n=   89 win=40.4% Sharpe=+1.23
+   follower 4h trend_pullback  th=60  n=  773 win=31.7% Sharpe=+1.02
+   follower 4h trend_pullback  th=70  n=  853 win=32.8% Sharpe=+0.76
+   follower 4h trend_pullback  th=80  n=  722 win=32.0% Sharpe=+0.68
+       junk 4h trend_chase     th=60  n= 2044 win=34.4% Sharpe=+0.72
+       junk 4h trend_chase     th=70  n= 1199 win=33.4% Sharpe=+0.62
+       junk 4h trend_chase     th=80  n=  623 win=31.8% Sharpe=+0.43
+       junk 4h trend_pullback  th=60  n= 6858 win=31.1% Sharpe=+1.18
+       junk 4h trend_pullback  th=70  n= 6707 win=31.6% Sharpe=+1.85
+       junk 4h trend_pullback  th=80  n= 5282 win=32.1% Sharpe=+2.76
+      trend 4h trend_chase     th=60  n=13167 win=30.8% Sharpe=-0.85
+      trend 4h trend_chase     th=70  n= 7919 win=29.4% Sharpe=-1.39
+      trend 4h trend_chase     th=80  n= 4192 win=27.4% Sharpe=-1.87
+      trend 4h trend_pullback  th=60  n=36916 win=27.7% Sharpe=-2.56
+      trend 4h trend_pullback  th=70  n=39015 win=27.3% Sharpe=-2.84
+      trend 4h trend_pullback  th=80  n=32894 win=26.3% Sharpe=-4.57
+      whale 4h trend_chase     th=60  n=  604 win=29.5% Sharpe=+0.71
+      whale 4h trend_chase     th=70  n=  401 win=27.9% Sharpe=+0.09
+      whale 4h trend_chase     th=80  n=  248 win=26.2% Sharpe=-0.23
+      whale 4h trend_pullback  th=60  n= 1980 win=27.4% Sharpe=+0.55
+      whale 4h trend_pullback  th=70  n= 1843 win=26.0% Sharpe=+0.10
+      whale 4h trend_pullback  th=80  n= 1511 win=26.9% Sharpe=+0.87
+saved: C:\Users\82109\Desktop\LYC\git\stock_total\scripts\out\optimize\round2\crypto\task2_group_sharpe.csv

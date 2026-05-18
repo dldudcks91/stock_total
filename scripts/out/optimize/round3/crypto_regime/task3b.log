@@ -1,0 +1,15 @@
+[tier] {'follower': 93, 'junk': 302, 'trend': 126, 'whale': 30}
+  scored 100/553 (1.8s)
+  scored 200/553 (3.7s)
+  scored 300/553 (5.7s)
+  scored 400/553 (7.8s)
+  scored 500/553 (9.8s)
+  1d total: 431 (10.7s)
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_regime_combo.py:96: FutureWarning: Series.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
+  reg = regime.reindex(idx).fillna(method="ffill").fillna(0).to_numpy().astype("int8")
+  A_above_chase_below_pullback80            IS n=  633 S=+1.09  OOS n= 1721 S=+4.15 mean=+3.37% PF=1.57
+  A2_above_chase_below_pullback60           IS n=  989 S=+0.24  OOS n= 2408 S=+5.09 mean=+4.01% PF=1.62
+  B_per_tier_IS_tuned                       IS n= 1115 S=+2.73  OOS n= 3106 S=+1.50 mean=+0.98% PF=1.13
+  C_trend_chase_all_below_pull80            IS n=  543 S=-0.11  OOS n= 1696 S=+4.38 mean=+3.57% PF=1.63
+  D_junk_below_pullback60_only              IS n=   21 S=-0.32  OOS n= 1213 S=+4.38 mean=+5.97% PF=1.81
+saved: C:\Users\82109\Desktop\LYC\git\stock_total\scripts\out\optimize\round3\crypto_regime\task3b_policy_compare.csv

@@ -1,0 +1,77 @@
+[load 1d btc regime]
+  1d above share: 0.58
+  1w above share: 0.62
+
+=== interval=1d ===
+  scored 100/553 (2.0s)
+  scored 200/553 (3.9s)
+  scored 300/553 (6.5s)
+  scored 400/553 (8.3s)
+  scored 500/553 (10.1s)
+  total scored: 431 (11.0s)
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_regime_adaptive.py:138: FutureWarning: Series.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
+  reg = regime_above.reindex(idx).fillna(method="ffill").fillna(0).to_numpy().astype("int8")
+  1d baseline_chase     thC=60 thP=60  IS n=  247 S=+5.53  OOS n=  153 S=-1.13 mean=-2.12%
+  1d baseline_chase     thC=70 thP=60  IS n=  166 S=+4.79  OOS n=  100 S=-1.07 mean=-2.77%
+  1d baseline_pullback  thC=60 thP=60  IS n= 7551 S=+6.31  OOS n= 7373 S=-9.69 mean=-3.28%
+  1d baseline_pullback  thC=60 thP=70  IS n= 6983 S=+6.55  OOS n= 6235 S=-8.51 mean=-3.14%
+  1d baseline_pullback  thC=60 thP=80  IS n= 5098 S=+5.62  OOS n= 4344 S=-5.87 mean=-2.48%
+  1d regime_adaptive    thC=60 thP=60  IS n= 1002 S=+0.20  OOS n= 2409 S=+5.09 mean=+4.01%
+  1d regime_adaptive    thC=60 thP=70  IS n=  846 S=+0.42  OOS n= 2211 S=+4.19 mean=+3.36%
+  1d regime_adaptive    thC=60 thP=80  IS n=  641 S=+1.12  OOS n= 1722 S=+4.16 mean=+3.37%
+  1d regime_adaptive    thC=70 thP=60  IS n=  946 S=-0.44  OOS n= 2399 S=+5.13 mean=+4.05%
+  1d regime_adaptive    thC=70 thP=70  IS n=  790 S=-0.32  OOS n= 2201 S=+4.23 mean=+3.41%
+  1d regime_adaptive    thC=70 thP=80  IS n=  585 S=+0.34  OOS n= 1712 S=+4.21 mean=+3.43%
+  1d regime_adaptive    thC=80 thP=70  IS n=  747 S=-1.19  OOS n= 2188 S=+4.33 mean=+3.49%
+  1d regime_adaptive    thC=80 thP=80  IS n=  542 S=-0.57  OOS n= 1699 S=+4.33 mean=+3.54%
+  1d both_always        thC=60 thP=60  IS n= 7798 S=+6.98  OOS n= 7526 S=-9.76 mean=-3.26%
+  1d both_always        thC=60 thP=70  IS n= 7230 S=+7.24  OOS n= 6388 S=-8.59 mean=-3.11%
+  1d both_always        thC=60 thP=80  IS n= 5345 S=+6.40  OOS n= 4497 S=-5.98 mean=-2.47%
+  1d both_always        thC=70 thP=60  IS n= 7717 S=+6.80  OOS n= 7473 S=-9.75 mean=-3.28%
+  1d both_always        thC=70 thP=70  IS n= 7149 S=+7.06  OOS n= 6335 S=-8.58 mean=-3.13%
+  1d both_always        thC=70 thP=80  IS n= 5264 S=+6.20  OOS n= 4444 S=-5.96 mean=-2.49%
+  1d both_always        thC=80 thP=70  IS n= 7090 S=+6.83  OOS n= 6292 S=-8.58 mean=-3.14%
+  1d both_always        thC=80 thP=80  IS n= 5205 S=+5.94  OOS n= 4401 S=-5.96 mean=-2.50%
+
+=== interval=1w ===
+  scored 100/553 (1.9s)
+  scored 200/553 (3.8s)
+  scored 300/553 (5.9s)
+  scored 400/553 (8.1s)
+  total scored: 302 (11.0s)
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\crypto_regime_adaptive.py:138: FutureWarning: Series.fillna with 'method' is deprecated and will raise in a future version. Use obj.ffill() or obj.bfill() instead.
+  reg = regime_above.reindex(idx).fillna(method="ffill").fillna(0).to_numpy().astype("int8")
+  1w baseline_chase     thC=60 thP=60  IS n=    0 S=+0.00  OOS n=    0 S=+0.00 mean=+0.00%
+  1w baseline_chase     thC=70 thP=60  IS n=    0 S=+0.00  OOS n=    0 S=+0.00 mean=+0.00%
+  1w baseline_pullback  thC=60 thP=60  IS n=  518 S=+3.72  OOS n=  149 S=-7.67 mean=-16.14%
+  1w baseline_pullback  thC=60 thP=70  IS n=  291 S=+2.93  OOS n=  100 S=-7.16 mean=-16.72%
+  1w baseline_pullback  thC=60 thP=80  IS n=  149 S=+2.05  OOS n=   53 S=-4.22 mean=-14.17%
+  1w regime_adaptive    thC=60 thP=60  IS n=   27 S=+0.06  OOS n=   23 S=-1.78 mean=-9.74%
+  1w regime_adaptive    thC=60 thP=70  IS n=   10 S=+0.32  OOS n=   17 S=-1.80 mean=-7.52%
+  1w regime_adaptive    thC=60 thP=80  IS n=    4 S=+1.03  OOS n=    8 S=+0.38 mean=+2.19%
+  1w regime_adaptive    thC=70 thP=60  IS n=   27 S=+0.06  OOS n=   23 S=-1.78 mean=-9.74%
+  1w regime_adaptive    thC=70 thP=70  IS n=   10 S=+0.32  OOS n=   17 S=-1.80 mean=-7.52%
+  1w regime_adaptive    thC=70 thP=80  IS n=    4 S=+1.03  OOS n=    8 S=+0.38 mean=+2.19%
+  1w regime_adaptive    thC=80 thP=70  IS n=   10 S=+0.32  OOS n=   17 S=-1.80 mean=-7.52%
+  1w regime_adaptive    thC=80 thP=80  IS n=    4 S=+1.03  OOS n=    8 S=+0.38 mean=+2.19%
+  1w both_always        thC=60 thP=60  IS n=  518 S=+3.72  OOS n=  149 S=-7.67 mean=-16.14%
+  1w both_always        thC=60 thP=70  IS n=  291 S=+2.93  OOS n=  100 S=-7.16 mean=-16.72%
+  1w both_always        thC=60 thP=80  IS n=  149 S=+2.05  OOS n=   53 S=-4.22 mean=-14.17%
+  1w both_always        thC=70 thP=60  IS n=  518 S=+3.72  OOS n=  149 S=-7.67 mean=-16.14%
+  1w both_always        thC=70 thP=70  IS n=  291 S=+2.93  OOS n=  100 S=-7.16 mean=-16.72%
+  1w both_always        thC=70 thP=80  IS n=  149 S=+2.05  OOS n=   53 S=-4.22 mean=-14.17%
+  1w both_always        thC=80 thP=70  IS n=  291 S=+2.93  OOS n=  100 S=-7.16 mean=-16.72%
+  1w both_always        thC=80 thP=80  IS n=  149 S=+2.05  OOS n=   53 S=-4.22 mean=-14.17%
+
+saved: C:\Users\82109\Desktop\LYC\git\stock_total\scripts\out\optimize\round3\crypto_regime\task2_regime_grid.csv
+saved: C:\Users\82109\Desktop\LYC\git\stock_total\scripts\out\optimize\round3\crypto_regime\task2_regime_best.csv
+
+=== Best per (interval, mode) by OOS Sharpe ===
+interval              mode  th_chase  th_pullback  IS_Sharpe  IS_n  OOS_Sharpe  OOS_n  OOS_mean%
+      1d    baseline_chase        70           60       4.79   166       -1.07    100      -2.77
+      1d baseline_pullback        60           80       5.62  5098       -5.87   4344      -2.48
+      1d       both_always        70           80       6.20  5264       -5.96   4444      -2.49
+      1d   regime_adaptive        60           60       0.20  1002        5.09   2409       4.01
+      1w baseline_pullback        60           80       2.05   149       -4.22     53     -14.17
+      1w       both_always        70           80       2.05   149       -4.22     53     -14.17
+      1w   regime_adaptive        70           60       0.06    27       -1.78     23      -9.74

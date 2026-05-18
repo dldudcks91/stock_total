@@ -1,0 +1,23 @@
+- [2026-05-17 18:02:14] task1 start — trend_chase/1d, top300
+    cache 50 (skipped 1, elapsed 5.4s)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_chase.py:85: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret = close.pct_change()
+    cache 100 (skipped 1, elapsed 12.0s)
+    cache 150 (skipped 1, elapsed 17.1s)
+    cache 200 (skipped 2, elapsed 23.4s)
+    cache 250 (skipped 3, elapsed 28.3s)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_chase.py:85: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret = close.pct_change()
+  cache built: 295 symbols, skipped 4, elapsed 33.2s
+- [2026-05-17 18:02:47] task1: threshold=60.0, 192 rules over 295 symbols
+- [2026-05-17 18:02:58]   task1 20/192 elapsed 10.6s
+- [2026-05-17 18:03:11]   task1 40/192 elapsed 24.1s
+- [2026-05-17 18:03:23]   task1 60/192 elapsed 36.1s
+- [2026-05-17 18:03:35]   task1 80/192 elapsed 48.4s
+- [2026-05-17 18:03:49]   task1 100/192 elapsed 61.9s
+- [2026-05-17 18:04:02]   task1 120/192 elapsed 74.9s
+- [2026-05-17 18:04:16]   task1 140/192 elapsed 89.2s
+- [2026-05-17 18:04:30]   task1 160/192 elapsed 102.6s
+- [2026-05-17 18:04:44]   task1 180/192 elapsed 117.2s
+- [2026-05-17 18:04:53]   task1 192/192 elapsed 126.5s
+- [2026-05-17 18:04:53] task1 saved: C:\Users\82109\Desktop\LYC\git\stock_total\scripts\out\optimize\round2\us\task1_trend_chase_1d.csv  (best sharpe=0.53, rule=hold252_tr20_tp20_sl0_cut30)

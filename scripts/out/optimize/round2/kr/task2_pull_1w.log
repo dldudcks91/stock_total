@@ -1,0 +1,44 @@
+
+--- build_cache asset=kr strategy=trend_pullback interval=1w universe_top=300 -> 300 symbols, 948 files ---
+  loaded 50 (skipped 0) elapsed 2.7s
+  loaded 100 (skipped 0) elapsed 5.3s
+  loaded 150 (skipped 1) elapsed 7.6s
+  loaded 200 (skipped 1) elapsed 11.1s
+  loaded 250 (skipped 1) elapsed 14.0s
+  build_cache done: 298 symbols, skipped 2. elapsed 16.3s
+  using top 30/288 rules from task1 csv
+
+=== Task2 KR trend_pullback/1w rules=30 IS/OOS split ===
+  [30/30] elapsed 27.6s
+  saved: C:\Users\82109\Desktop\LYC\git\stock_total\scripts\out\optimize\round2\kr\task2_trend_pullback_1w.csv
+                   rule  IS_n  IS_Sharpe  OOS_n  OOS_Sharpe  robust%
+h78_tr20_TP40_SL15_cutN  3224       5.66   2343       23.22    410.2
+h78_tr20_TP40_SL20_cutN  3224       5.47   2343       25.11    459.0
+ h78_tr20_TP40_SLx_cutN  3224       5.41   2343       27.89    515.5
+h52_tr20_TP40_SL15_cutN  3224       5.39   2343       22.76    422.3
+h39_tr20_TP40_SL20_cutN  3224       5.39   2343       23.33    432.8
+ h39_tr20_TP40_SLx_cutN  3224       5.27   2343       24.77    470.0
+ h26_tr25_TP40_SLx_cutN  3224       5.26   2343       22.79    433.3
+h39_tr25_TP40_SL15_cutN  3224       5.22   2343       22.61    433.1
+h52_tr20_TP40_SL20_cutN  3224       5.14   2343       24.58    478.2
+h78_tr25_TP40_SL15_cutN  3224       5.01   2343       24.30    485.0
+ h52_tr20_TP40_SLx_cutN  3224       5.01   2343       26.87    536.3
+h39_tr25_TP40_SL20_cutN  3224       4.94   2343       24.75    501.0
+h52_tr25_TP40_SL15_cutN  3224       4.81   2343       23.67    492.1
+ h39_tr20_TP30_SLx_cutN  3224       4.78   2343       25.22    527.6
+ h39_tr25_TP40_SLx_cutN  3224       4.77   2343       26.55    556.6
+h78_tr20_TP30_SL20_cutN  3224       4.73   2343       25.21    533.0
+ h78_tr20_TP30_SLx_cutN  3224       4.72   2343       28.43    602.3
+h78_tr25_TP40_SL20_cutN  3224       4.57   2343       27.19    595.0
+h52_tr20_TP30_SL20_cutN  3224       4.56   2343       24.68    541.2
+h39_tr25_TP30_SL20_cutN  3224       4.43   2343       25.01    564.6
+ h52_tr20_TP30_SLx_cutN  3224       4.42   2343       27.42    620.4
+h52_tr25_TP40_SL20_cutN  3224       4.40   2343       26.34    598.6
+ h78_tr25_TP40_SLx_cutN  3224       4.38   2343       30.62    699.1
+ h39_tr25_TP30_SLx_cutN  3224       4.26   2343       27.11    636.4
+ h78_tr20_TP25_SLx_cutN  3224       4.25   2343       28.46    669.6
+ h52_tr25_TP40_SLx_cutN  3224       4.15   2343       29.16    702.7
+ h52_tr20_TP25_SLx_cutN  3224       4.03   2343       27.61    685.1
+h78_tr25_TP30_SL20_cutN  3224       3.81   2343       27.36    718.1
+ h78_tr25_TP30_SLx_cutN  3224       3.64   2343       31.33    860.7
+ h52_tr25_TP30_SLx_cutN  3224       3.57   2343       29.81    835.0

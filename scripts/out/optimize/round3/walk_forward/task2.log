@@ -1,0 +1,28 @@
+- [2026-05-17 18:33:54] === Agent W start: task2 ===
+- [2026-05-17 18:33:54] task2 start — regime tag per window
+
+=== Task 2 Regime tags ===
+asset window      start        end  start_px   end_px  ret%  max_dd%   regime
+   kr     W1 2020-05-01 2021-05-01   1895.37  3147.86  66.1     -7.8     bull
+   kr     W2 2021-05-01 2022-05-01   3127.20  2695.05 -13.8    -20.9     bear
+   kr     W3 2022-05-01 2023-05-01   2687.45  2501.53  -6.9    -19.8 sideways
+   kr     W4 2023-05-01 2024-05-01   2524.39  2692.06   6.6    -14.6 sideways
+   kr     W5 2024-05-01 2025-05-01   2683.65  2556.61  -4.7    -20.7 sideways
+   kr     W6 2025-05-01 2026-05-18   2559.79  7493.18 192.7    -19.9     bull
+   us     W1 2020-05-01 2021-05-01   8604.95 13962.68  62.3    -11.8     bull
+   us     W2 2021-05-01 2022-05-01  13895.12 12334.64 -11.2    -23.2     bear
+   us     W3 2022-05-01 2023-05-01  12536.02 12226.58  -2.5    -22.2 sideways
+   us     W4 2023-05-01 2024-05-01  12212.60 15657.82  28.2    -12.3     bull
+   us     W5 2024-05-01 2025-05-01  15605.48 17446.34  11.8    -24.3     bull
+   us     W6 2025-05-01 2026-05-18  17710.74 26225.14  48.1    -13.2     bull
+
+=== Task 2 Corr(index ret%, Sharpe) ===
+asset       strategy interval  corr_index_ret_vs_sharpe
+   kr    trend_chase       1d                     0.360
+   kr trend_pullback       1d                     0.582
+   kr trend_pullback       1w                     0.570
+   us    trend_chase       1d                     0.703
+   us trend_pullback       1d                     0.963
+   us trend_pullback       1w                     0.853
+- [2026-05-17 18:33:54] task2 done
+- [2026-05-17 18:33:54] === Agent W done (0.2s) ===

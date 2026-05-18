@@ -1,0 +1,6 @@
+﻿strategy,interval,score_th,rule,IS_n,IS_win%,IS_mean%,IS_Sharpe,IS_PF,IS_MDD%,OOS_n,OOS_win%,OOS_mean%,OOS_Sharpe,OOS_PF,OOS_MDD%
+trend_chase,1d,60,hold_60d_trail20_TP30,247,65.2,16.12,5.53,4.18,-63.4,170,38.8,-1.86,-1.07,0.77,-99.9
+trend_pullback,1d,70,hold_60d_trail15_cut3d,6983,34.6,4.84,6.55,1.66,-100.0,6418,25.2,-2.84,-7.64,0.68,-100.0
+trend_pullback,1w,60,hold_8w_trail15,518,48.8,16.6,3.72,2.55,-99.1,149,21.5,-16.14,-7.67,0.16,-100.0
+trend_chase,1h,60,hold_168h_trail20,14349,47.2,1.78,6.04,1.32,-100.0,32005,37.2,-1.27,-5.93,0.81,-100.0
+trend_pullback,1h,75,hold_336h_trail20_cut5h,14477,32.4,2.32,5.92,1.32,-100.0,29174,25.8,-0.26,-1.07,0.97,-100.0

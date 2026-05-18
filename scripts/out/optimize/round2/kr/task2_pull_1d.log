@@ -1,0 +1,50 @@
+
+--- build_cache asset=kr strategy=trend_pullback interval=1d universe_top=300 -> 300 symbols, 948 files ---
+  loaded 50 (skipped 0) elapsed 1.2s
+  loaded 100 (skipped 0) elapsed 2.5s
+  loaded 150 (skipped 0) elapsed 3.8s
+  loaded 200 (skipped 0) elapsed 5.1s
+  loaded 250 (skipped 0) elapsed 6.4s
+  build_cache done: 299 symbols, skipped 1. elapsed 7.7s
+  using top 30/288 rules from task1 csv
+
+=== Task2 KR trend_pullback/1d rules=30 IS/OOS split ===
+C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\numpy\core\fromnumeric.py:59: RuntimeWarning: overflow encountered in accumulate
+  return bound(*args, **kwds)
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\kr_round2.py:330: RuntimeWarning: invalid value encountered in divide
+  dd = float((eq / peak - 1.0).min() * 100)
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\kr_round2.py:328: RuntimeWarning: overflow encountered in scalar multiply
+  total = float((eq[-1] - 1.0) * 100)
+  [30/30] elapsed 143.3s
+  saved: C:\Users\82109\Desktop\LYC\git\stock_total\scripts\out\optimize\round2\kr\task2_trend_pullback_1d.csv
+                    rule  IS_n  IS_Sharpe  OOS_n  OOS_Sharpe  robust%
+ h252_tr25_TP40_SLx_cutN 10556      17.46   7647       30.93    177.1
+h252_tr25_TP40_SL20_cutN 10556      17.19   7647       26.84    156.1
+ h365_tr25_TP40_SLx_cutN 10556      16.89   7647       31.46    186.3
+ h180_tr25_TP40_SLx_cutN 10556      16.88   7647       29.75    176.2
+h365_tr25_TP40_SL20_cutN 10556      16.77   7647       26.90    160.4
+h180_tr25_TP40_SL20_cutN 10556      16.61   7647       26.40    158.9
+ h252_tr25_TP30_SLx_cutN 10556      16.35   7647       30.57    187.0
+h252_tr25_TP30_SL20_cutN 10556      16.11   7647       26.12    162.1
+ h120_tr25_TP40_SLx_cutN 10556      16.05   7647       26.97    168.0
+ h180_tr25_TP30_SLx_cutN 10556      16.01   7647       29.49    184.2
+ h252_tr25_TP40_SLx_cutY 10556      15.91   7647       26.21    164.7
+ h365_tr25_TP30_SLx_cutN 10556      15.80   7647       31.09    196.8
+h252_tr25_TP40_SL20_cutY 10556      15.74   7647       24.40    155.0
+h180_tr25_TP30_SL20_cutN 10556      15.72   7647       25.85    164.4
+h365_tr25_TP30_SL20_cutN 10556      15.71   7647       26.14    166.4
+ h252_tr20_TP40_SLx_cutN 10556      15.68   7647       24.52    156.4
+ h120_tr25_TP30_SLx_cutN 10556      15.67   7647       26.84    171.3
+h120_tr25_TP40_SL20_cutN 10556      15.56   7647       24.53    157.6
+ h365_tr20_TP40_SLx_cutN 10556      15.40   7647       24.81    161.1
+ h365_tr25_TP40_SLx_cutY 10556      15.38   7647       26.52    172.4
+h365_tr25_TP40_SL20_cutY 10556      15.34   7647       24.46    159.5
+ h180_tr25_TP40_SLx_cutY 10556      15.34   7647       25.55    166.6
+ h252_tr25_TP25_SLx_cutN 10556      15.27   7647       30.10    197.1
+ h180_tr25_TP25_SLx_cutN 10556      15.16   7647       29.03    191.5
+h252_tr25_TP25_SL20_cutN 10556      14.99   7647       25.42    169.6
+ h120_tr25_TP25_SLx_cutN 10556      14.98   7647       26.58    177.4
+h180_tr25_TP25_SL20_cutN 10556      14.82   7647       25.23    170.2
+ h252_tr25_TP30_SLx_cutY 10556      14.81   7647       25.45    171.8
+ h365_tr25_TP25_SLx_cutN 10556      14.80   7647       30.64    207.0
+h365_tr25_TP25_SL20_cutN 10556      14.69   7647       25.44    173.2

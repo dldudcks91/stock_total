@@ -1,0 +1,34 @@
+
+=== TASK trend_pullback / kr / 1d (threshold=60.0, exit=hold_252d_trail20_TP30) ===
+  building universe (kr, top 300)...
+  universe=300 symbols (12.5s)
+  evaluating 80 param combinations...
+  [baseline] {'n': 3285, 'win_pct': 48.858447488584474, 'mean_pct': 8.399392842035502, 'median_pct': -0.83333333333333, 'total_pct': 7.779727111358629e+74, 'mdd_pct': -96.78895745285715, 'sharpe': 0.5164687740257682, 'profit_factor': 2.182840798526088, 'avg_held_bars': 69.86453576864535} (16.3s)
+  [1/80] {'rally_lookback': 30, 'rally_min_gain': 0.1, 'depth_lookback': 5} -> n=4116 win%=46.8 mean%=+6.99 sharpe=+0.42 (12.9s)
+  [2/80] {'rally_lookback': 30, 'rally_min_gain': 0.1, 'depth_lookback': 10} -> n=4135 win%=46.7 mean%=+6.90 sharpe=+0.42 (11.4s)
+  [3/80] {'rally_lookback': 30, 'rally_min_gain': 0.1, 'depth_lookback': 15} -> n=4136 win%=46.9 mean%=+6.95 sharpe=+0.42 (12.9s)
+  [4/80] {'rally_lookback': 30, 'rally_min_gain': 0.1, 'depth_lookback': 20} -> n=4134 win%=46.8 mean%=+6.94 sharpe=+0.42 (15.9s)
+  [5/80] {'rally_lookback': 30, 'rally_min_gain': 0.2, 'depth_lookback': 5} -> n=3610 win%=47.4 mean%=+7.55 sharpe=+0.47 (14.6s)
+  [10/80] {'rally_lookback': 30, 'rally_min_gain': 0.3, 'depth_lookback': 10} -> n=2745 win%=47.6 mean%=+7.70 sharpe=+0.48 (17.6s)
+  [20/80] {'rally_lookback': 45, 'rally_min_gain': 0.1, 'depth_lookback': 20} -> n=4005 win%=47.4 mean%=+7.12 sharpe=+0.43 (26.2s)
+  [30/80] {'rally_lookback': 45, 'rally_min_gain': 0.5, 'depth_lookback': 10} -> n=1866 win%=49.1 mean%=+8.98 sharpe=+0.53 (17.0s)
+  [40/80] {'rally_lookback': 60, 'rally_min_gain': 0.2, 'depth_lookback': 20} -> n=3755 win%=48.3 mean%=+7.77 sharpe=+0.47 (15.6s)
+  [50/80] {'rally_lookback': 90, 'rally_min_gain': 0.1, 'depth_lookback': 10} -> n=3840 win%=48.9 mean%=+7.95 sharpe=+0.48 (19.1s)
+  [60/80] {'rally_lookback': 90, 'rally_min_gain': 0.3, 'depth_lookback': 20} -> n=3523 win%=48.9 mean%=+8.24 sharpe=+0.51 (15.6s)
+  [70/80] {'rally_lookback': 120, 'rally_min_gain': 0.2, 'depth_lookback': 10} -> n=3733 win%=48.2 mean%=+7.67 sharpe=+0.47 (15.3s)
+  [80/80] {'rally_lookback': 120, 'rally_min_gain': 0.5, 'depth_lookback': 20} -> n=2800 win%=49.0 mean%=+8.61 sharpe=+0.54 (14.9s)
+
+  saved: C:\Users\82109\Desktop\LYC\git\stock_total\scripts\out\optimize\round2\strategy\trend_pullback_kr_1d_grid.csv
+
+  ===== TOP 10 (by Sharpe) =====
+label  rank  rally_lookback  rally_min_gain  depth_lookback    n   win_pct  mean_pct   sharpe  profit_factor    mdd_pct
+ p062    62            90.0             0.5            15.0 2563 49.707374  8.965672 0.554780       2.288547 -92.825362
+ p061    61            90.0             0.5            10.0 2560 49.609375  8.946152 0.553862       2.288284 -94.706117
+ p063    63            90.0             0.5            20.0 2556 49.647887  8.908101 0.550442       2.275594 -94.764579
+ p060    60            90.0             0.5             5.0 2521 49.543832  8.857415 0.545973       2.262667 -94.880729
+ p045    45            60.0             0.5            10.0 2146 49.813607  9.130499 0.543287       2.297379 -95.671949
+ p047    47            60.0             0.5            20.0 2142 49.719888  9.083171 0.540307       2.292272 -94.096916
+ p077    77           120.0             0.5            10.0 2803 49.054584  8.647462 0.538804       2.236605 -98.377292
+ p046    46            60.0             0.5            15.0 2147 49.650675  9.052565 0.537908       2.283906 -95.866202
+ p078    78           120.0             0.5            15.0 2813 49.057945  8.620600 0.537651       2.231631 -98.665082
+ p079    79           120.0             0.5            20.0 2800 49.000000  8.607710 0.535492       2.229449 -97.546797

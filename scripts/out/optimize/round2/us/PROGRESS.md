@@ -1,0 +1,69 @@
+# Agent U — Round 2 진행 로그
+
+목표: US trend_pullback 1d/1w, trend_chase 1d 미세 튜닝 + OOS 검증 + universe 민감도 + (옵션) 섹터.
+
+기준선 (Round 1):
+- trend_pullback 1d th=70 → Sharpe 19.76 (n=19038)
+- trend_pullback 1w th=70 → Sharpe 10.14 (n=7683)
+- trend_chase    1d th=60 → Sharpe 5.74 (n=2202)
+
+- [2026-05-17 17:49:09] task1 start — trend_pullback/1d, top300
+- [2026-05-17 17:49:48] task1: threshold=70.0, 192 rules over 295 symbols
+- [2026-05-17 17:50:05]   task1 20/192 elapsed 16.5s
+- [2026-05-17 17:50:23]   task1 40/192 elapsed 34.5s
+- [2026-05-17 17:50:41]   task1 60/192 elapsed 53.0s
+- [2026-05-17 17:51:05]   task1 80/192 elapsed 76.8s
+- [2026-05-17 17:51:25]   task1 100/192 elapsed 96.3s
+- [2026-05-17 17:51:47]   task1 120/192 elapsed 118.8s
+- [2026-05-17 17:52:13]   task1 140/192 elapsed 144.9s
+- [2026-05-17 17:52:40]   task1 160/192 elapsed 171.7s
+- [2026-05-17 17:53:06]   task1 180/192 elapsed 197.5s
+- [2026-05-17 17:53:26]   task1 192/192 elapsed 218.0s
+- [2026-05-17 17:53:26] task1 saved: C:\Users\82109\Desktop\LYC\git\stock_total\scripts\out\optimize\round2\us\task1_trend_pullback_1d.csv  (best sharpe=0.61, rule=hold252_tr20_tp20_sl0_cut30)
+- [2026-05-17 17:54:48] task1 start — trend_pullback/1w, top300
+- [2026-05-17 17:54:50] task1 start — trend_chase/1d, top300
+- [2026-05-17 17:55:28] task2 start — trend_pullback/1d IS/OOS
+- [2026-05-17 17:55:59] task1: threshold=70.0, 192 rules over 288 symbols
+- [2026-05-17 17:56:06]   task1 20/192 elapsed 7.8s
+- [2026-05-17 17:56:14]   task1 40/192 elapsed 15.8s
+- [2026-05-17 17:56:23]   task1 60/192 elapsed 24.5s
+- [2026-05-17 17:56:32]   task1 80/192 elapsed 33.2s
+- [2026-05-17 17:56:34] task2: IS evaluating all 192 rules...
+- [2026-05-17 17:56:40]   task1 100/192 elapsed 41.0s
+- [2026-05-17 17:56:52]   task1 120/192 elapsed 53.1s
+- [2026-05-17 17:57:00]   task1 140/192 elapsed 61.1s
+- [2026-05-17 17:57:08]   task1 160/192 elapsed 69.4s
+- [2026-05-17 17:57:16]   task1 180/192 elapsed 77.7s
+- [2026-05-17 17:57:21]   task1 192/192 elapsed 82.6s
+- [2026-05-17 17:57:23] task1 saved: C:\Users\82109\Desktop\LYC\git\stock_total\scripts\out\optimize\round2\us\task1_trend_pullback_1w.csv  (best sharpe=0.63, rule=hold26_tr20_tp20_sl0_cut30)
+- [2026-05-17 18:00:43]   task2 done in 244.4s
+- [2026-05-17 18:00:43] task2 saved: C:\Users\82109\Desktop\LYC\git\stock_total\scripts\out\optimize\round2\us\task2_trend_pullback_1d.csv  IS-best hold252_tr20_tp20_sl0_cut30 IS Sharpe=0.51 → OOS Sharpe=0.82
+- [2026-05-17 18:02:14] task1 start — trend_chase/1d, top300
+- [2026-05-17 18:02:16] task2 start — trend_pullback/1w IS/OOS
+- [2026-05-17 18:02:47] task1: threshold=60.0, 192 rules over 295 symbols
+- [2026-05-17 18:02:50] task2: IS evaluating all 192 rules...
+- [2026-05-17 18:02:58]   task1 20/192 elapsed 10.6s
+- [2026-05-17 18:03:11]   task1 40/192 elapsed 24.1s
+- [2026-05-17 18:03:11] task3 start — universe sensitivity trend_pullback/1d
+- [2026-05-17 18:03:12]   task3: top100 (n_universe=100)
+- [2026-05-17 18:03:23]   task1 60/192 elapsed 36.1s
+- [2026-05-17 18:03:25]     n=931 mean%=9.28 Sharpe=0.70
+- [2026-05-17 18:03:25]   task3: top300 (n_universe=300)
+- [2026-05-17 18:03:35]   task1 80/192 elapsed 48.4s
+- [2026-05-17 18:03:49]   task1 100/192 elapsed 61.9s
+- [2026-05-17 18:03:58]   task2 done in 65.8s
+- [2026-05-17 18:03:58] task2 saved: C:\Users\82109\Desktop\LYC\git\stock_total\scripts\out\optimize\round2\us\task2_trend_pullback_1w.csv  IS-best hold39_tr20_tp20_sl20_cut30 IS Sharpe=0.59 → OOS Sharpe=0.60
+- [2026-05-17 18:04:02]   task1 120/192 elapsed 74.9s
+- [2026-05-17 18:04:02]     n=2989 mean%=7.99 Sharpe=0.58
+- [2026-05-17 18:04:02]   task3: top1000 (n_universe=1000)
+- [2026-05-17 18:04:16]   task1 140/192 elapsed 89.2s
+- [2026-05-17 18:04:30]   task1 160/192 elapsed 102.6s
+- [2026-05-17 18:04:44]   task1 180/192 elapsed 117.2s
+- [2026-05-17 18:04:53]   task1 192/192 elapsed 126.5s
+- [2026-05-17 18:04:53] task1 saved: C:\Users\82109\Desktop\LYC\git\stock_total\scripts\out\optimize\round2\us\task1_trend_chase_1d.csv  (best sharpe=0.53, rule=hold252_tr20_tp20_sl0_cut30)
+- [2026-05-17 18:05:52]     n=11108 mean%=nan Sharpe=0.00
+- [2026-05-17 18:05:52]   task3: all (n_universe=3849)
+- [2026-05-17 18:10:27]     n=34707 mean%=nan Sharpe=0.00
+- [2026-05-17 18:10:27]   task3: liquidity filter on top1000 (mean amount > 1M USD)
+- [2026-05-17 18:11:51]     liquid (amt>1M, top1000 base): 962 of 972
+- [2026-05-17 18:11:54] task3 saved: C:\Users\82109\Desktop\LYC\git\stock_total\scripts\out\optimize\round2\us\task3_trend_pullback_1d.csv

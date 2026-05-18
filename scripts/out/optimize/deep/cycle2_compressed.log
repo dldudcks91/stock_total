@@ -1,0 +1,200 @@
+
+=== A. micro grid for us/trend_pullback/1d th=70 ===
+    [us/trend_pullback/1d] loaded 100 (skip 1)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+    [us/trend_pullback/1d] loaded 200 (skip 1)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+    [us/trend_pullback/1d] cache done: 297 symbols, skip 3, 5.4s
+  [1/40] hold_180d_trail15_TP20: n=19103 mean=4.55% Sharpe=13.66 PF=1.75
+  [2/40] hold_180d_trail15_TP25: n=19103 mean=5.11% Sharpe=14.19 PF=1.83
+  [3/40] hold_180d_trail15_TP30: n=19103 mean=5.69% Sharpe=14.75 PF=1.93
+  [4/40] hold_180d_trail15_TP35: n=19103 mean=6.12% Sharpe=15.01 PF=2.0
+  [5/40] hold_180d_trail18_TP20: n=19103 mean=5.52% Sharpe=15.65 PF=1.84
+C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\numpy\core\fromnumeric.py:59: RuntimeWarning: overflow encountered in accumulate
+  return bound(*args, **kwds)
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\cycle2_compressed.py:321: RuntimeWarning: invalid value encountered in divide
+  dd = float((eq / peak - 1.0).min() * 100)
+  [6/40] hold_180d_trail18_TP25: n=19103 mean=6.29% Sharpe=16.35 PF=1.94
+  [7/40] hold_180d_trail18_TP30: n=19103 mean=7.07% Sharpe=17.03 PF=2.05
+  [8/40] hold_180d_trail18_TP35: n=19103 mean=7.62% Sharpe=17.3 PF=2.13
+  [9/40] hold_180d_trail20_TP20: n=19103 mean=6.16% Sharpe=16.92 PF=1.91
+  [10/40] hold_180d_trail20_TP25: n=19103 mean=7.11% Sharpe=17.86 PF=2.02
+  [11/40] hold_180d_trail20_TP30: n=19103 mean=8.03% Sharpe=18.67 PF=2.14
+  [12/40] hold_180d_trail20_TP35: n=19103 mean=8.72% Sharpe=19.04 PF=2.24
+  [13/40] hold_180d_trail22_TP20: n=19103 mean=6.8% Sharpe=18.23 PF=2.0
+  [14/40] hold_180d_trail22_TP25: n=19103 mean=7.87% Sharpe=19.25 PF=2.11
+  [15/40] hold_180d_trail22_TP30: n=19103 mean=8.92% Sharpe=20.15 PF=2.23
+  [16/40] hold_180d_trail22_TP35: n=19103 mean=9.71% Sharpe=20.56 PF=2.34
+  [17/40] hold_180d_trail25_TP20: n=19103 mean=7.23% Sharpe=18.78 PF=2.03
+  [18/40] hold_180d_trail25_TP25: n=19103 mean=8.37% Sharpe=19.76 PF=2.12
+  [19/40] hold_180d_trail25_TP30: n=19103 mean=9.48% Sharpe=20.66 PF=2.24
+  [20/40] hold_180d_trail25_TP35: n=19103 mean=10.34% Sharpe=21.12 PF=2.34
+  [21/40] hold_252d_trail15_TP20: n=19103 mean=4.72% Sharpe=14.11 PF=1.78
+  [22/40] hold_252d_trail15_TP25: n=19103 mean=5.33% Sharpe=14.69 PF=1.88
+  [23/40] hold_252d_trail15_TP30: n=19103 mean=5.96% Sharpe=15.3 PF=1.98
+  [24/40] hold_252d_trail15_TP35: n=19103 mean=6.41% Sharpe=15.53 PF=2.05
+  [25/40] hold_252d_trail18_TP20: n=19103 mean=5.74% Sharpe=16.17 PF=1.88
+  [26/40] hold_252d_trail18_TP25: n=19103 mean=6.56% Sharpe=16.9 PF=1.98
+  [27/40] hold_252d_trail18_TP30: n=19103 mean=7.4% Sharpe=17.6 PF=2.1
+  [28/40] hold_252d_trail18_TP35: n=19103 mean=7.99% Sharpe=17.86 PF=2.18
+  [29/40] hold_252d_trail20_TP20: n=19103 mean=6.42% Sharpe=17.48 PF=1.95
+  [30/40] hold_252d_trail20_TP25: n=19103 mean=7.45% Sharpe=18.5 PF=2.06
+  [31/40] hold_252d_trail20_TP30: n=19103 mean=8.46% Sharpe=19.35 PF=2.19
+  [32/40] hold_252d_trail20_TP35: n=19103 mean=9.21% Sharpe=19.74 PF=2.3
+  [33/40] hold_252d_trail22_TP20: n=19103 mean=7.08% Sharpe=18.78 PF=2.03
+  [34/40] hold_252d_trail22_TP25: n=19103 mean=8.26% Sharpe=19.93 PF=2.15
+  [35/40] hold_252d_trail22_TP30: n=19103 mean=9.38% Sharpe=20.83 PF=2.28
+  [36/40] hold_252d_trail22_TP35: n=19103 mean=10.26% Sharpe=21.28 PF=2.39
+  [37/40] hold_252d_trail25_TP20: n=19103 mean=7.6% Sharpe=19.48 PF=2.07
+  [38/40] hold_252d_trail25_TP25: n=19103 mean=8.85% Sharpe=20.55 PF=2.17
+  [39/40] hold_252d_trail25_TP30: n=19103 mean=10.07% Sharpe=21.51 PF=2.29
+  [40/40] hold_252d_trail25_TP35: n=19103 mean=11.06% Sharpe=22.03 PF=2.39
+saved: C:\Users\82109\Desktop\LYC\git\stock_total\scripts\out\optimize\deep\grids\cycle2_exit_micro_us_pullback.csv
+  >> best us_trend_pullback: hold_252d_trail25_TP35 Sharpe=22.03 mean=11.06% win=54.5%
+
+=== A. micro grid for kr/trend_chase/1d th=60 ===
+    [kr/trend_chase/1d] loaded 100 (skip 0)
+    [kr/trend_chase/1d] loaded 200 (skip 0)
+    [kr/trend_chase/1d] cache done: 299 symbols, skip 1, 4.3s
+  [1/40] hold_180d_trail15_TP20: n=4013 mean=3.58% Sharpe=5.13 PF=1.57
+  [2/40] hold_180d_trail15_TP25: n=4013 mean=3.99% Sharpe=5.32 PF=1.64
+  [3/40] hold_180d_trail15_TP30: n=4013 mean=4.38% Sharpe=5.46 PF=1.7
+  [4/40] hold_180d_trail15_TP35: n=4013 mean=4.55% Sharpe=5.39 PF=1.73
+  [5/40] hold_180d_trail18_TP20: n=4013 mean=4.4% Sharpe=5.94 PF=1.65
+  [6/40] hold_180d_trail18_TP25: n=4013 mean=5.03% Sharpe=6.25 PF=1.74
+  [7/40] hold_180d_trail18_TP30: n=4013 mean=5.52% Sharpe=6.38 PF=1.81
+  [8/40] hold_180d_trail18_TP35: n=4013 mean=5.77% Sharpe=6.31 PF=1.84
+  [9/40] hold_180d_trail20_TP20: n=4013 mean=4.8% Sharpe=6.29 PF=1.69
+  [10/40] hold_180d_trail20_TP25: n=4013 mean=5.45% Sharpe=6.57 PF=1.76
+  [11/40] hold_180d_trail20_TP30: n=4013 mean=6.02% Sharpe=6.73 PF=1.84
+  [12/40] hold_180d_trail20_TP35: n=4013 mean=6.28% Sharpe=6.64 PF=1.87
+  [13/40] hold_180d_trail22_TP20: n=4013 mean=5.15% Sharpe=6.59 PF=1.73
+  [14/40] hold_180d_trail22_TP25: n=4013 mean=5.94% Sharpe=6.97 PF=1.81
+  [15/40] hold_180d_trail22_TP30: n=4013 mean=6.65% Sharpe=7.22 PF=1.9
+  [16/40] hold_180d_trail22_TP35: n=4013 mean=7.02% Sharpe=7.18 PF=1.94
+  [17/40] hold_180d_trail25_TP20: n=4013 mean=5.41% Sharpe=6.74 PF=1.75
+  [18/40] hold_180d_trail25_TP25: n=4013 mean=6.34% Sharpe=7.23 PF=1.84
+  [19/40] hold_180d_trail25_TP30: n=4013 mean=7.14% Sharpe=7.5 PF=1.92
+  [20/40] hold_180d_trail25_TP35: n=4013 mean=7.56% Sharpe=7.46 PF=1.97
+  [21/40] hold_252d_trail15_TP20: n=4013 mean=3.81% Sharpe=5.37 PF=1.61
+  [22/40] hold_252d_trail15_TP25: n=4013 mean=4.27% Sharpe=5.58 PF=1.68
+  [23/40] hold_252d_trail15_TP30: n=4013 mean=4.7% Sharpe=5.73 PF=1.75
+  [24/40] hold_252d_trail15_TP35: n=4013 mean=4.88% Sharpe=5.66 PF=1.78
+  [25/40] hold_252d_trail18_TP20: n=4013 mean=4.74% Sharpe=6.26 PF=1.7
+  [26/40] hold_252d_trail18_TP25: n=4013 mean=5.47% Sharpe=6.62 PF=1.79
+  [27/40] hold_252d_trail18_TP30: n=4013 mean=6.06% Sharpe=6.79 PF=1.87
+  [28/40] hold_252d_trail18_TP35: n=4013 mean=6.35% Sharpe=6.73 PF=1.91
+  [29/40] hold_252d_trail20_TP20: n=4013 mean=5.25% Sharpe=6.67 PF=1.74
+  [30/40] hold_252d_trail20_TP25: n=4013 mean=6.01% Sharpe=7.01 PF=1.82
+  [31/40] hold_252d_trail20_TP30: n=4013 mean=6.68% Sharpe=7.21 PF=1.91
+  [32/40] hold_252d_trail20_TP35: n=4013 mean=7.04% Sharpe=7.16 PF=1.96
+  [33/40] hold_252d_trail22_TP20: n=4013 mean=5.67% Sharpe=7.03 PF=1.78
+  [34/40] hold_252d_trail22_TP25: n=4013 mean=6.58% Sharpe=7.45 PF=1.87
+  [35/40] hold_252d_trail22_TP30: n=4013 mean=7.43% Sharpe=7.75 PF=1.97
+  [36/40] hold_252d_trail22_TP35: n=4013 mean=7.9% Sharpe=7.74 PF=2.02
+  [37/40] hold_252d_trail25_TP20: n=4013 mean=5.98% Sharpe=7.16 PF=1.79
+  [38/40] hold_252d_trail25_TP25: n=4013 mean=7.03% Sharpe=7.69 PF=1.89
+  [39/40] hold_252d_trail25_TP30: n=4013 mean=7.99% Sharpe=8.03 PF=1.98
+  [40/40] hold_252d_trail25_TP35: n=4013 mean=8.53% Sharpe=8.01 PF=2.03
+saved: C:\Users\82109\Desktop\LYC\git\stock_total\scripts\out\optimize\deep\grids\cycle2_exit_micro_kr_chase.csv
+  >> best kr_trend_chase: hold_252d_trail25_TP30 Sharpe=8.03 mean=7.99% win=53.2%
+
+=== A. micro grid for us/trend_chase/1d th=60 ===
+    [us/trend_chase/1d] loaded 100 (skip 1)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_chase.py:85: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret = close.pct_change()
+    [us/trend_chase/1d] loaded 200 (skip 1)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_chase.py:85: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret = close.pct_change()
+    [us/trend_chase/1d] cache done: 297 symbols, skip 3, 5.0s
+  [1/40] hold_180d_trail15_TP20: n=2204 mean=4.16% Sharpe=4.67 PF=1.76
+  [2/40] hold_180d_trail15_TP25: n=2204 mean=4.71% Sharpe=4.83 PF=1.85
+  [3/40] hold_180d_trail15_TP30: n=2204 mean=5.21% Sharpe=5.0 PF=1.94
+  [4/40] hold_180d_trail15_TP35: n=2204 mean=5.5% Sharpe=4.99 PF=1.99
+  [5/40] hold_180d_trail18_TP20: n=2204 mean=4.73% Sharpe=5.0 PF=1.78
+  [6/40] hold_180d_trail18_TP25: n=2204 mean=5.27% Sharpe=5.07 PF=1.85
+  [7/40] hold_180d_trail18_TP30: n=2204 mean=5.83% Sharpe=5.24 PF=1.94
+  [8/40] hold_180d_trail18_TP35: n=2204 mean=6.29% Sharpe=5.32 PF=2.01
+  [9/40] hold_180d_trail20_TP20: n=2204 mean=5.02% Sharpe=5.14 PF=1.79
+  [10/40] hold_180d_trail20_TP25: n=2204 mean=5.62% Sharpe=5.22 PF=1.86
+  [11/40] hold_180d_trail20_TP30: n=2204 mean=6.24% Sharpe=5.41 PF=1.95
+  [12/40] hold_180d_trail20_TP35: n=2204 mean=6.73% Sharpe=5.49 PF=2.02
+  [13/40] hold_180d_trail22_TP20: n=2204 mean=5.04% Sharpe=5.01 PF=1.76
+  [14/40] hold_180d_trail22_TP25: n=2204 mean=5.67% Sharpe=5.12 PF=1.82
+  [15/40] hold_180d_trail22_TP30: n=2204 mean=6.29% Sharpe=5.3 PF=1.9
+  [16/40] hold_180d_trail22_TP35: n=2204 mean=6.83% Sharpe=5.42 PF=1.97
+  [17/40] hold_180d_trail25_TP20: n=2204 mean=5.41% Sharpe=5.24 PF=1.81
+  [18/40] hold_180d_trail25_TP25: n=2204 mean=6.15% Sharpe=5.4 PF=1.87
+  [19/40] hold_180d_trail25_TP30: n=2204 mean=6.8% Sharpe=5.58 PF=1.94
+  [20/40] hold_180d_trail25_TP35: n=2204 mean=7.39% Sharpe=5.71 PF=2.02
+  [21/40] hold_252d_trail15_TP20: n=2204 mean=4.4% Sharpe=4.93 PF=1.81
+  [22/40] hold_252d_trail15_TP25: n=2204 mean=5.04% Sharpe=5.09 PF=1.92
+  [23/40] hold_252d_trail15_TP30: n=2204 mean=5.58% Sharpe=5.26 PF=2.02
+  [24/40] hold_252d_trail15_TP35: n=2204 mean=5.91% Sharpe=5.25 PF=2.08
+  [25/40] hold_252d_trail18_TP20: n=2204 mean=5.06% Sharpe=5.31 PF=1.83
+  [26/40] hold_252d_trail18_TP25: n=2204 mean=5.72% Sharpe=5.39 PF=1.92
+  [27/40] hold_252d_trail18_TP30: n=2204 mean=6.34% Sharpe=5.56 PF=2.02
+  [28/40] hold_252d_trail18_TP35: n=2204 mean=6.77% Sharpe=5.57 PF=2.09
+  [29/40] hold_252d_trail20_TP20: n=2204 mean=5.34% Sharpe=5.4 PF=1.83
+  [30/40] hold_252d_trail20_TP25: n=2204 mean=6.05% Sharpe=5.49 PF=1.91
+  [31/40] hold_252d_trail20_TP30: n=2204 mean=6.74% Sharpe=5.67 PF=2.0
+  [32/40] hold_252d_trail20_TP35: n=2204 mean=7.21% Sharpe=5.69 PF=2.07
+  [33/40] hold_252d_trail22_TP20: n=2204 mean=5.37% Sharpe=5.25 PF=1.79
+  [34/40] hold_252d_trail22_TP25: n=2204 mean=6.16% Sharpe=5.41 PF=1.87
+  [35/40] hold_252d_trail22_TP30: n=2204 mean=6.8% Sharpe=5.55 PF=1.94
+  [36/40] hold_252d_trail22_TP35: n=2204 mean=7.35% Sharpe=5.62 PF=2.01
+  [37/40] hold_252d_trail25_TP20: n=2204 mean=5.84% Sharpe=5.53 PF=1.84
+  [38/40] hold_252d_trail25_TP25: n=2204 mean=6.75% Sharpe=5.73 PF=1.92
+  [39/40] hold_252d_trail25_TP30: n=2204 mean=7.41% Sharpe=5.84 PF=1.98
+  [40/40] hold_252d_trail25_TP35: n=2204 mean=8.04% Sharpe=5.94 PF=2.05
+saved: C:\Users\82109\Desktop\LYC\git\stock_total\scripts\out\optimize\deep\grids\cycle2_exit_micro_us_chase.csv
+  >> best us_trend_chase: hold_252d_trail25_TP35 Sharpe=5.94 mean=8.04% win=52.2%
+
+=== B. gate diag for kr/trend_pullback/1d th=60 rule=hold_252d_trail25_TP35 ===
+    [kr/trend_pullback/1d] loaded 100 (skip 0)
+    [kr/trend_pullback/1d] loaded 200 (skip 0)
+    [kr/trend_pullback/1d] cache done: 299 symbols, skip 1, 7.6s
+C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\numpy\core\fromnumeric.py:59: RuntimeWarning: overflow encountered in accumulate
+  return bound(*args, **kwds)
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\cycle2_compressed.py:321: RuntimeWarning: invalid value encountered in divide
+  dd = float((eq / peak - 1.0).min() * 100)
+  baseline: n=18188 mean=11.75% Sharpe=22.04 PF=2.53
+  +weekly: n=14716 mean=12.02% Sharpe=20.0 PF=2.57
+  +amount: n=1622 mean=10.46% Sharpe=5.95 PF=2.25
+  +weekly+amount: n=1391 mean=10.75% Sharpe=5.66 PF=2.29
+saved: C:\Users\82109\Desktop\LYC\git\stock_total\scripts\out\optimize\deep\grids\cycle3_gates_kr_pullback.csv
+
+=== B. gate diag for us/trend_pullback/1d th=70 rule=hold_252d_trail25_TP35 ===
+    [us/trend_pullback/1d] loaded 100 (skip 1)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+    [us/trend_pullback/1d] loaded 200 (skip 1)
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:102: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  ret1 = close.pct_change()
+C:\Users\82109\Desktop\LYC\git\stock_total\backtest\strategies\trend_pullback.py:117: FutureWarning: The default fill_method='pad' in Series.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  is_up = (close > open_) & (close.pct_change() > 0)
+    [us/trend_pullback/1d] cache done: 297 symbols, skip 3, 10.9s
+C:\Users\82109\Desktop\LYC\git\stock_total\.venv\Lib\site-packages\numpy\core\fromnumeric.py:59: RuntimeWarning: overflow encountered in accumulate
+  return bound(*args, **kwds)
+C:\Users\82109\Desktop\LYC\git\stock_total\scripts\optimize\cycle2_compressed.py:321: RuntimeWarning: invalid value encountered in divide
+  dd = float((eq / peak - 1.0).min() * 100)
+  baseline: n=19103 mean=11.06% Sharpe=22.03 PF=2.39
+  +weekly: n=17691 mean=11.22% Sharpe=21.57 PF=2.43
+  +amount: n=968 mean=11.37% Sharpe=5.1 PF=2.45
+  +weekly+amount: n=891 mean=11.28% Sharpe=4.86 PF=2.44
+saved: C:\Users\82109\Desktop\LYC\git\stock_total\scripts\out\optimize\deep\grids\cycle3_gates_us_pullback.csv
+
+=== C. crypto 1h probe ===
+    [crypto/trend_chase/1h] cache done: 30 symbols, skip 0, 1.5s
+saved: C:\Users\82109\Desktop\LYC\git\stock_total\scripts\out\optimize\deep\grids\cycle4_crypto_1h_probe.csv
+  probe: n=1762 mean=0.62% Sharpe=0.54 PF=1.12
+
+Total elapsed: 229.5s

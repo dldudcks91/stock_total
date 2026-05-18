@@ -1,0 +1,9 @@
+﻿tier,interval,strategy,score_th,rule,IS_n,IS_win%,IS_mean%,IS_Sharpe,IS_PF,IS_MDD%,OOS_n,OOS_win%,OOS_mean%,OOS_Sharpe,OOS_PF,OOS_MDD%
+follower,1d,trend_chase,90,hold_60d_trail20_TP30,25,64.0,13.68,1.65,3.61,-44.9,7,14.3,-8.95,-1.22,0.33,-42.7
+follower,1w,trend_pullback,90,hold_8w_trail15,16,50.0,6.97,0.52,1.82,-73.6,8,0.0,-23.7,-4.04,0.0,-87.5
+junk,1d,trend_pullback,90,hold_60d_trail20_TP30,32,46.9,9.9,0.89,1.91,-83.3,577,43.2,4.27,2.65,1.44,-100.0
+junk,1w,trend_pullback,80,hold_8w_trail15,3,66.7,2.84,0.1,1.24,-34.9,0,0.0,0.0,0.0,0.0,0.0
+trend,1d,trend_chase,60,hold_60d_trail20_TP30,116,62.1,15.59,3.48,4.17,-63.4,48,41.7,-0.34,-0.13,0.95,-84.4
+trend,1w,trend_pullback,90,hold_8w_trail15,34,47.1,15.85,0.91,2.5,-87.8,15,53.3,2.93,0.5,1.41,-34.0
+whale,1d,trend_chase,60,hold_60d_trail20_TP30,7,42.9,1.89,0.1,1.17,-60.5,10,40.0,0.28,0.02,1.02,-67.5
+whale,1w,trend_pullback,70,hold_8w_trail15,8,37.5,19.3,0.57,2.85,-50.7,2,0.0,-16.76,-2.73,0.0,-9.3

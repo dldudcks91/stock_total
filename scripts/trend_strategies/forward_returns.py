@@ -18,6 +18,7 @@ from __future__ import annotations
 import argparse
 import sys
 from pathlib import Path
+from typing import Optional
 
 import numpy as np
 import pandas as pd
@@ -100,13 +101,36 @@ def load_stock(path: Path, interval: str) -> pd.DataFrame:
 
 # --- universe ---------------------------------------------------------
 
+_UNIVERSE_CACHE_PATH = ROOT / "scripts" / "out" / "optimize" / "_universe_cache.json"
+
+
+def _cached_universe(asset: str, top_n: int) -> Optional[set]:
+    import json
+    if not _UNIVERSE_CACHE_PATH.exists():
+        return None
+    try:
+        data = json.loads(_UNIVERSE_CACHE_PATH.read_text(encoding="utf-8"))
+        syms = data.get(asset, [])
+        if not syms:
+            return None
+        return set(syms[:top_n])
+    except Exception:
+        return None
+
+
 def kr_universe(top_n: int) -> set:
+    cached = _cached_universe("kr", top_n)
+    if cached is not None:
+        return cached
     import FinanceDataReader as fdr
     df = fdr.StockListing("KOSPI").dropna(subset=["Marcap"]).sort_values("Marcap", ascending=False)
     return set(df["Code"].head(top_n).astype(str).tolist())
 
 
 def us_universe(top_n: int) -> set:
+    cached = _cached_universe("us", top_n)
+    if cached is not None:
+        return cached
     import FinanceDataReader as fdr
     df = fdr.StockListing("NASDAQ")
     return set(df["Symbol"].head(top_n).astype(str).tolist())
