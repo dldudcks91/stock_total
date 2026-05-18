@@ -25,8 +25,11 @@ description: 분석 run 폴더를 생성·마감하는 단일 스킬. `init` 으
    - 큰 질문 (가설 한 줄)
    - "성공/실패 판정" 의 조작적 정의 (어떤 메트릭이 어떻게 나오면 통과·폐기인가)
    - Layer 분해 (baseline → entry → exit → OOS → stability 류로 여러 run 이 묶이면 명시)
+   - **파라미터 스윕 매트릭스** — 각 Layer 마다 "어떤 knob 을 어떤 값들 로 비교하는가" 를 사전에 명시 (단일 포인트 분석 금지)
    - 데이터 범위·자산·표본 가드
    - 폐기 조건 (어떤 결과가 나오면 그만두는가)
+
+   **합의 방식**: 사용자가 서술형으로 자유롭게 답할 수 있게 **평문 질문 1~2 개씩** 끊어서 묻는다. AskUserQuestion 객관식 UI 는 **사용자가 명시적으로 "선택지 줘" 라고 했을 때만** 호출. 그 외에는 대화 흐름이 끊기지 않게 평문으로. 한 번에 여러 항목 묶어 묻지 말고 한 주제씩.
 2. 합의된 내용을 `scripts/<group>/PLAN.md` 에 Write. 템플릿:
 
    ```markdown
@@ -42,15 +45,25 @@ description: 분석 run 폴더를 생성·마감하는 단일 스킬. `init` 으
    - Layer 1 — {run 이름}: 목적
    - ...
 
-   ## 2. 데이터 / 표본 가드
+   ## 2. 파라미터 스윕 매트릭스 (필수)
+   | Layer | param | sweep values | default | 의미 |
+   |---|---|---|---|---|
+   | L1 | {param_name} | [v1, v2, v3, v4] | v2 | 한 줄 설명 |
+   | L1 | {다른 param} | [...] | ... | ... |
+
+   - 단일 값 분석 금지. 모든 결정 변수는 최소 3 개 값 비교.
+   - 모든 조합 (cartesian product) 을 다 돌리지 않아도 됨 — 핵심 axis 만.
+   - 결과 표는 행=sweep value, 열=핵심 메트릭 (n / mean / win / var_adj / median) 의 **wide format**.
+
+   ## 3. 데이터 / 표본 가드
    | 항목 | 값 |
 
-   ## 3. 폐기 조건
+   ## 4. 폐기 조건
    (어떤 결과가 나오면 가설을 버리는가)
 
-   ## 4. 다음 즉시 액션
+   ## 5. 다음 즉시 액션
    ```
-3. `init` 진입 시 Claude 는 `scripts/<group>/PLAN.md` 존재 여부를 확인 (검증 단계). 없으면 **init 거부** 후 사용자에게 "먼저 PLAN.md 를 함께 작성하자" 고 요청.
+3. `init` 진입 시 Claude 는 `scripts/<group>/PLAN.md` 존재 여부 + **`## 2. 파라미터 스윕 매트릭스` 섹션 존재 + 최소 1 개 param 정의** 를 확인. 없으면 **init 거부** 후 사용자에게 "먼저 PLAN.md 의 sweep 매트릭스를 함께 작성하자" 고 요청.
 
 **예외 없음**: 단발 탐색이라도 PLAN.md 한 줄(목적·판정·폐기) 은 반드시 둔다. PLAN.md 작성 자체는 1~3분 안에 끝낼 수 있는 분량이어도 됨 — 핵심은 "사용자 합의를 거쳤다" 는 사실.
 
@@ -118,11 +131,29 @@ description: 분석 run 폴더를 생성·마감하는 단일 스킬. `init` 으
    ## 목적
    {description or "(이 분석의 의도를 적으세요)"}
 
+   ## 파라미터 스윕
+   (이 run 이 비교한 파라미터 매트릭스 — PLAN.md 의 해당 Layer row 옮겨오기)
+
+   | param | sweep values | default |
+   |---|---|---|
+
    ## 방법
-   (어떤 게이트·필터를 적용했는지, params 핵심 한 줄 요약)
+   (어떤 게이트·필터를 적용했는지, sweep 핵심 한 줄 요약)
 
    ## 핵심 결과
    (분석 완료 후 채움 — `/study finalize` 이후 직접 손으로)
+
+   각 sweep param 에 대해 **wide format 표** 한 개씩:
+
+   ```
+   ### {param_name}
+   | {param_name} | n | mean@168h | win@168h | var_adj@168h | mean@672h | win@672h |
+   |---|---|---|---|---|---|---|
+   | v1 | ... | ... | ... | ... | ... | ... |
+   | v2 | ... | ... | ... | ... | ... | ... |
+   ```
+
+   단일 숫자가 아니라 **sweep 행 단위 비교** 가 강제. 다축 스윕이면 가장 중요한 axis 를 행으로 + 부 axis 별 별도 표.
 
    ## 산출물
    (`/study finalize` 가 자동 채움)
@@ -200,12 +231,24 @@ description: 분석 run 폴더를 생성·마감하는 단일 스킬. `init` 으
 
 5. **`env.txt` 마감 시 추가**: `finalized_at_kst` 한 줄 더.
 
-6. **사용자에게 알림**:
-   - finalize 완료 + README 의 **"핵심 결과"** 섹션은 자동 채우지 않으므로 직접 손으로 채워달라고 안내.
+6. **🔴 sweep 결과 표를 대화창에 인라인으로 표시 (필수)**:
+
+   finalize 는 단순히 파일 정리·README 채움으로 끝나지 **않는다**. README/CSV 만 보고 끝나면 사용자가 결과를 확인하려고 추가 명령을 해야 함. 대신:
+
+   - `output/sweep_<param>.csv` 를 **모두 읽어** 대화창에 **마크다운 wide 표** 로 옮긴다 (axis 별 1개씩).
+   - 추가로 `output/sweep_top_cells.csv` 또는 `output/sweep_grid.csv` 가 있으면 **top-N 행 (win 또는 var_adj 기준 정렬)** 도 인라인 표로 보여준다.
+   - 표 직후에 **한 단락 요약** — 어느 sweep 값이 가장 좋았는지, PLAN.md 판정 기준 ①~⑤ 충족 여부, 폐기 조건 발동 여부.
+   - 마지막에 **평문 1~2 문장 으로 끝낸다** — 객관식 (AskUserQuestion) 강제 X. 사용자가 서술형으로 답하도록 여백 둔다. 예: "다음 어디로 갈지 알려줘 / 이 결과를 보고 어떻게 좁히고 싶은지 말해줘". 사용자가 명시적으로 "선택지 줘" 라고 요청하지 않는 한 객관식 question UI 호출 금지.
+
+   이 단계가 **finalize 의 핵심**. README 작성은 대화창 표 확정 후 옮겨 적기.
+
+7. **사용자에게 알림**:
+   - finalize 완료 + 위 6번에서 보여준 표를 README "핵심 결과" 에 손으로 옮겨 적었음을 확인.
    - git status 가 dirty 였으면 경고: "git_dirty=true 이므로 정확한 재현 보장 X. 커밋 후 init 권장".
 
 ## 동작 원칙
 
+- **사용자 합의 없이 자율 진행 금지**: 이 스킬의 어떤 단계든, 본 문서에 "Claude 가 알아서 진행" 이라고 명시된 부분 외에는 **반드시 사용자와 논의 후 진행한다**. PLAN 작성·Layer 선택·params 결정·다음 run 진입·핵심 결과 해석 모두 사용자 컨펌이 우선. 자동 채우기가 허용된 곳 (init 골격 파일들, finalize 의 산출물 표·outputs 배열·finalized_at) 만 단독 진행 가능.
 - **단순 Claude 동작 (외부 스크립트 호출 X)**: Bash 로 git/pip/python 정보 수집 + Read/Write/Edit 로 파일 조작.
 - **idempotent finalize**: 같은 폴더에 다시 호출하면 outputs 만 다시 스캔하고 README 산출물 표 재생성 (덮어쓰기). 핵심 결과 섹션은 보존.
 - **재현성 우선**: `git_dirty=true` 이면 finalize 시 경고. `git_commit` 은 항상 기록.
@@ -213,6 +256,9 @@ description: 분석 run 폴더를 생성·마감하는 단일 스킬. `init` 으
 ## 자주 하는 실수
 
 - **PLAN.md 없이 init 진행 → 금지**. 첫 run 전에 반드시 사용자와 논의해 `scripts/<group>/PLAN.md` 를 먼저 작성.
+- **PLAN.md 에 sweep 매트릭스 없이 init 진행 → 금지**. `## 2. 파라미터 스윕 매트릭스` 섹션과 최소 1 개 param row 가 있어야 함. 단일 값 분석은 비교 기준이 없어 결과 해석 불가.
+- **결과 표를 단일 행 (단일 파라미터) 으로 마감 → 금지**. README "핵심 결과" 는 sweep 행 단위 비교가 반드시 보여야 함.
+- **finalize 후 대화창에 sweep 표를 인라인 출력하지 않고 끝내기 → 금지**. 사용자가 결과를 보려고 추가 명령을 해야 하면 finalize 가 실패한 것. 항상 마크다운 표 + 한 단락 요약 + 다음 결정 질문 세트로 마무리.
 - **PLAN.md 를 run 폴더 안에 박는 실수**. PLAN 은 group 마스터 플랜이므로 `scripts/<group>/PLAN.md` (group 루트) 위치. 개별 run 폴더 안 X.
 - `ts` 를 UTC 로 찍으면 한국 시간대 사용자가 헷갈림 → 항상 KST 로.
 - `params` 를 자동 추론하지 말 것 — 분석 모듈마다 의미 다름. 사용자/모듈이 채우게.
@@ -238,12 +284,31 @@ def main():
         cfg = json.loads(Path(args.config).read_text())
         out_dir = Path(args.config).parent / "output"
         params = cfg["params"]
+        sweep = cfg.get("sweep", {})  # {param: [v1, v2, ...]}
     else:
         out_dir = Path(args.out_dir) / "output"
         params = {k: v for k, v in vars(args).items() if k not in ("config", "out_dir")}
+        sweep = {}
 
     out_dir.mkdir(parents=True, exist_ok=True)
+    # sweep 이 비어 있지 않으면 cartesian product 또는 axis 별 loop 돌려 결과 모두 저장
     # ... 분석 + 결과를 out_dir 에 저장
 ```
 
-→ `--config` 만 받으면 모든 파라미터 자동 로드, `--out-dir` + 개별 인자 조합도 지원.
+→ `--config` 만 받으면 params + sweep 자동 로드. `--out-dir` + 개별 인자 조합도 지원.
+
+### sweep 결과 출력 컨벤션
+
+분석 모듈은 sweep param 별로 다음 형식의 결과 파일을 `output/` 에 저장:
+
+```
+output/
+├── sweep_<param_a>.csv         # wide: 행=sweep value, 열=핵심 메트릭
+├── sweep_<param_b>.csv
+├── sweep_grid.csv              # long: 모든 (combo × cell × horizon) row
+└── events_all.parquet          # raw events (param 컬럼 포함)
+```
+
+- `sweep_<param>.csv` 컬럼 예: `<param>, n, mean_168h, median_168h, win_168h, var_adj_168h, mean_672h, win_672h, ...`
+- 다축 스윕이면 marginal table (한 param 만 행으로, 나머지는 default 고정) + 전체 long format 두 가지를 같이 둠.
+- README "핵심 결과" 는 이 sweep CSV 들을 직접 표로 옮긴 형태.

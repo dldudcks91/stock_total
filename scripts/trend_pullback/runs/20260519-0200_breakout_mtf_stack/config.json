@@ -1,0 +1,76 @@
+{
+  "group": "trend_pullback",
+  "name": "breakout_mtf_stack",
+  "created_at": "2026-05-19T02:00:00+09:00",
+  "module": "scripts.trend_pullback.breakout_mtf_stack",
+  "git_commit": "0066b6f",
+  "git_branch": "main",
+  "git_dirty": true,
+  "params": {
+    "trigger": "1H close > MA20 on (1H,4H,1D,1W) AND body_ret>=body_min AND vol_ratio>=vol_min",
+    "ma_period": 20,
+    "ma_period_short_1h": 10,
+    "vol_sma_period": 20,
+    "cooldown_hours": 24,
+    "horizons_hours": [
+      4,
+      12,
+      24,
+      72,
+      168,
+      336,
+      672
+    ],
+    "min_history_hours": 720,
+    "fee_bps": 0,
+    "slippage_bps": 0
+  },
+  "sweep": {
+    "body_ret_min": [
+      0.01,
+      0.02,
+      0.03
+    ],
+    "vol_ratio_min": [
+      1.0,
+      2.0
+    ],
+    "pullback_timeout_h": [
+      24,
+      168
+    ]
+  },
+  "data": {
+    "asset": "crypto",
+    "interval": "1h trigger, multi-TF MA20 gates",
+    "cache_dir": "data/cache/crypto/1h",
+    "symbol_count": 553,
+    "data_until": "2026-05-19 01:00 KST"
+  },
+  "results_summary": {
+    "n_events_A": 88036,
+    "n_events_B": 175655,
+    "n_symbols_skipped": 126,
+    "elapsed_sec": 51.04369306564331
+  },
+  "outputs": [
+    "output/events_A.parquet",
+    "output/events_B.parquet",
+    "output/events_A_2025plus.parquet",
+    "output/events_B_2025plus.parquet",
+    "output/sweep_A_overall.csv",
+    "output/sweep_A_body.csv",
+    "output/sweep_A_vol.csv",
+    "output/sweep_A_all_long.csv",
+    "output/sweep_A_2025_long.csv",
+    "output/sweep_B_overall.csv",
+    "output/sweep_B_body.csv",
+    "output/sweep_B_vol.csv",
+    "output/sweep_B_timeout.csv",
+    "output/sweep_B_all_long.csv",
+    "output/sweep_B_2025_long.csv",
+    "output/B_2025_top_bot_20.csv",
+    "output/B_2025_top_bot_grid.png"
+  ],
+  "finalized_at": "2026-05-19T02:50:00+09:00"
+}

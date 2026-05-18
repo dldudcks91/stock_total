@@ -2,27 +2,75 @@
   "group": "ma20w_short",
   "name": "crypto_baseline",
   "created_at": "2026-05-18T21:40:45+09:00",
-  "module": "",
+  "module": "scripts.ma20w_short.baseline",
   "git_commit": "d1ff82d",
   "git_dirty": true,
   "git_branch": "main",
   "params": {
-    "rule": "short_when_close_below_MA20_weekly",
+    "rule": "short_when_MA20w_slope4w_below_zero",
     "asset": "crypto",
     "interval": "1w",
     "ma_window": 20,
-    "entry": "close < MA20 (week t close)",
-    "exit_candidates": ["close >= MA20 (week t close)", "fixed_hold_weeks", "trailing_stop", "TP/SL"],
-    "fees_bps": null,
-    "slippage_bps": null
+    "slope_window": 4,
+    "slope_formula": "MA20[t] / MA20[t-4] - 1",
+    "entry_signal": "slope_4w(t) < 0",
+    "entry_fill": "next week open (t+1)",
+    "exit_signal": "slope_4w(t) >= 0",
+    "exit_fill": "next week open (t+1)",
+    "fees_bps_roundtrip": 15,
+    "funding_bps_per_week": null,
+    "min_symbol_weeks": 30
   },
   "data": {
     "asset": "crypto",
     "interval": "1w",
     "cache_dir": "data/cache/crypto/1d (resampled to 1w in-memory)",
     "symbol_count": 553,
-    "data_until": "2026-05-18T17:00:04+09:00"
+    "classification_path": "data/cache/crypto/classification.parquet",
+    "classification_col": "tier_final",
+    "data_until": "2026-05-18T17:00:04+09:00",
+    "symbol_count_processed": 424,
+    "symbols_skipped": 122
   },
-  "results_summary": {},
-  "outputs": []
+  "results_summary": {
+    "n_trades": 1173,
+    "mean_short_return": -0.004930545296501562,
+    "median_short_return": 0.011302607076349976,
+    "win_rate": 0.5098039215686274,
+    "payoff": 0.9392306866705643,
+    "var95": -0.9292121232240075,
+    "var_adj_expectancy": -0.9521390623246998,
+    "avg_hold_weeks": 21.335890878090368,
+    "total_pnl": -5.783529632796332,
+    "by_tier_mean": {
+      "benchmark": -0.23252747616640213,
+      "follower": 0.04283499990235999,
+      "junk": -0.03851512737734488,
+      "stable": -0.0021003924989872616,
+      "trend": -0.026421915005433665,
+      "whale": 0.013942303141301456
+    },
+    "by_tier_win_rate": {
+      "benchmark": 0.2222222222222222,
+      "follower": 0.5435356200527705,
+      "junk": 0.5584415584415584,
+      "stable": 0.0,
+      "trend": 0.4642082429501085,
+      "whale": 0.5595238095238095
+    },
+    "by_tier_n_trades": {
+      "benchmark": 9,
+      "follower": 379,
+      "junk": 231,
+      "stable": 9,
+      "trend": 461,
+      "whale": 84
+    }
+  },
+  "outputs": [
+    "output/trades.parquet",
+    "output/summary.json",
+    "output/summary_by_tier.csv"
+  ],
+  "finalized_at": "2026-05-18T23:35:00+09:00"
 }

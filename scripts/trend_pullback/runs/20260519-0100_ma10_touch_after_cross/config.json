@@ -1,0 +1,60 @@
+{
+  "group": "trend_pullback",
+  "name": "ma10_touch_after_cross",
+  "created_at": "2026-05-19T01:00:00+09:00",
+  "module": "scripts.trend_pullback.ma10_touch_after_cross",
+  "git_commit": "0066b6f",
+  "git_branch": "main",
+  "git_dirty": true,
+  "params": {
+    "gate": "1W MA20 slope cross-up (strict): slope[W]>0 AND slope[W-1]<=0",
+    "ma_period_weekly": 20,
+    "ma_short_period": 10,
+    "entry_trigger": "first 1D bar where low<=MA10_locked<=high, starting from first 1D bar of week W+1",
+    "entry": "open of next 1D bar after the touch bar (no lookahead)",
+    "horizons_days": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      14,
+      21,
+      28,
+      35,
+      42,
+      49,
+      56
+    ],
+    "max_lookforward_days": 365,
+    "min_history_weeks": 30,
+    "fee_bps": 0,
+    "slippage_bps": 0,
+    "gate_strict": true
+  },
+  "sweep": {
+    "ma_short_period": [
+      5,
+      10,
+      15
+    ],
+    "gate_strict": [
+      true,
+      false
+    ]
+  },
+  "data": {
+    "asset": "crypto",
+    "interval": "1d trigger, 1w MA gates",
+    "cache_dir": "data/cache/crypto/1d",
+    "symbol_count": 553,
+    "data_until": "2026-05-17"
+  },
+  "results_summary": {
+    "n_combos": 4,
+    "n_events_default": 1451
+  },
+  "outputs": []
+}

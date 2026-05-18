@@ -1,0 +1,61 @@
+{
+  "group": "trend_pullback",
+  "name": "slope_cross_event",
+  "created_at": "2026-05-19T00:07:00+09:00",
+  "module": "scripts.trend_pullback.slope_cross_event",
+  "git_commit": "0066b6f",
+  "git_branch": "main",
+  "git_dirty": true,
+  "params": {
+    "trigger": "1W MA20 slope cross-up: MA20[W]-MA20[W-1]>0 AND MA20[W-1]-MA20[W-2]<=0",
+    "ma_period_weekly": 20,
+    "entry": "first 1D bar open after week W close (no lookahead)",
+    "horizons_days": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      14,
+      21,
+      28,
+      35,
+      42,
+      49,
+      56
+    ],
+    "min_history_weeks": 30,
+    "fee_bps": 0,
+    "slippage_bps": 0
+  },
+  "data": {
+    "asset": "crypto",
+    "interval": "1d trigger (1w MA20)",
+    "cache_dir": "data/cache/crypto/1d",
+    "symbol_count": 553,
+    "data_until": null
+  },
+  "results_summary": {
+    "n_events": 1430,
+    "n_symbols_with_events": 317,
+    "n_symbols_skipped": 236,
+    "fwd_1d_mean": -0.009887864143319526,
+    "fwd_1d_median": -0.008204488633330898,
+    "fwd_1d_win": 0.4195804195804196,
+    "fwd_7d_mean": -0.004371723612018095,
+    "fwd_7d_median": -0.01985743067150525,
+    "fwd_7d_win": 0.41468531468531467,
+    "fwd_14d_mean": 0.03063553909076428,
+    "fwd_14d_median": -0.027845669762180947,
+    "fwd_14d_win": 0.44195804195804195,
+    "fwd_28d_mean": 0.01293617388582855,
+    "fwd_28d_median": -0.06361963933630099,
+    "fwd_28d_win": 0.3685314685314685,
+    "fwd_56d_mean": -0.002521568291516262,
+    "fwd_56d_median": -0.13359771252832836,
+    "fwd_56d_win": 0.32167832167832167
+  },
+  "outputs": []
+}

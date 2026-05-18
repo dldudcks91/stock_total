@@ -1,0 +1,95 @@
+{
+  "group": "trend_pullback",
+  "name": "retest_confirm_grid",
+  "created_at": "2026-05-18T14:27:00+09:00",
+  "module": "scripts.trend_pullback.retest_confirm_grid",
+  "git_commit": "0066b6f",
+  "git_branch": "main",
+  "git_dirty": true,
+  "params": {
+    "gate": "1W_MA_slope_up (locked from previous completed week)",
+    "ma_period_weekly": 20,
+    "ma_interval": "1w",
+    "trigger_interval": "1h",
+    "touch_definition": "1h low<=MA_locked<=1h high; first such bar per week",
+    "confirm_offset": 1,
+    "entry": "open of bar i+confirm_offset+1 (no lookahead)",
+    "horizons_hours": [
+      1,
+      6,
+      24,
+      72,
+      168,
+      336,
+      672
+    ],
+    "vol_sma_period": 20,
+    "rsi_period": 14,
+    "n_quantiles": 5,
+    "min_history_weeks": 30,
+    "fee_bps": 0,
+    "slippage_bps": 0
+  },
+  "sweep": {
+    "ma_period_weekly": [
+      10,
+      20,
+      30,
+      50
+    ],
+    "confirm_offset": [
+      1,
+      2,
+      3
+    ],
+    "vol_sma_period": [
+      10,
+      20,
+      50
+    ],
+    "rsi_period": [
+      7,
+      14,
+      21
+    ]
+  },
+  "data": {
+    "asset": "crypto",
+    "interval": "1h trigger, 1w MA20",
+    "cache_dir": "data/cache/crypto/1h",
+    "symbol_count": 553,
+    "data_until": null
+  },
+  "results_summary": {
+    "n_events": 2921,
+    "n_symbols_with_events": 340,
+    "n_unique_weeks": 154,
+    "n_symbols_skipped": 213,
+    "fwd_24h_mean": 0.0008048910960748811,
+    "fwd_24h_median": -0.0007873903077612598,
+    "fwd_24h_win": 0.4777091906721536,
+    "fwd_24h_var_adj": -0.12645455328888672,
+    "fwd_168h_mean": -0.0014872240491699005,
+    "fwd_168h_median": -0.013849825551148998,
+    "fwd_168h_win": 0.4385783298826777,
+    "fwd_168h_var_adj": -0.2731542437708562,
+    "fwd_672h_mean": -0.03163432244100879,
+    "fwd_672h_median": -0.08193539442672948,
+    "fwd_672h_win": 0.3265805099545931,
+    "fwd_672h_var_adj": -0.8355621434919478,
+    "n_combos": 10,
+    "n_events_default": 2898,
+    "symbol_count": 553
+  },
+  "outputs": [
+    "output/events_all.parquet",
+    "output/sweep_overall.csv",
+    "output/sweep_ma_period_weekly.csv",
+    "output/sweep_confirm_offset.csv",
+    "output/sweep_vol_sma_period.csv",
+    "output/sweep_rsi_period.csv",
+    "output/sweep_grid1d.csv",
+    "output/sweep_top_cells.csv"
+  ],
+  "finalized_at": "2026-05-18T14:55:00+09:00"
+}

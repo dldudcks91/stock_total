@@ -1,0 +1,62 @@
+{
+  "group": "trend_pullback",
+  "name": "strong_breakout",
+  "created_at": "2026-05-19T03:00:00+09:00",
+  "module": "scripts.trend_pullback.breakout_mtf_stack",
+  "git_commit": "0066b6f",
+  "git_branch": "main",
+  "git_dirty": true,
+  "params": {
+    "trigger": "1H close > MA20 on (1H,4H,1D,1W) AND body_ret>=body_min AND vol_ratio>=vol_min — STRONG body+vol",
+    "ma_period": 20,
+    "ma_period_short_1h": 10,
+    "vol_sma_period": 20,
+    "cooldown_hours": 24,
+    "horizons_hours": [
+      4,
+      12,
+      24,
+      72,
+      168,
+      336,
+      672
+    ],
+    "min_history_hours": 720,
+    "fee_bps": 0,
+    "slippage_bps": 0,
+    "body_ret_min": 0.05,
+    "vol_ratio_min": 5.0,
+    "pullback_timeout_h": 24
+  },
+  "sweep": {
+    "body_ret_min": [
+      0.03,
+      0.05,
+      0.07,
+      0.1
+    ],
+    "vol_ratio_min": [
+      3.0,
+      5.0,
+      10.0
+    ],
+    "pullback_timeout_h": [
+      12,
+      24
+    ]
+  },
+  "data": {
+    "asset": "crypto",
+    "interval": "1h trigger, multi-TF MA20 gates",
+    "cache_dir": "data/cache/crypto/1h",
+    "symbol_count": 553,
+    "data_until": "2026-05-19 01:00 KST"
+  },
+  "results_summary": {
+    "n_events_A": 25389,
+    "n_events_B": 47881,
+    "n_symbols_skipped": 140,
+    "elapsed_sec": 33.4895396232605
+  },
+  "outputs": []
+}
