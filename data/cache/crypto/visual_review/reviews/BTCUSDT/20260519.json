@@ -1,0 +1,25 @@
+{
+  "symbol": "BTCUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17T09:00:00",
+  "tf_1w": {
+    "state": "A5",
+    "micro_action": null,
+    "volume_flag": "distribution_suspect",
+    "note": "2025-10 peak 125k 후 6개월 하락. MA20 우하향, 현재 가격 80k가 MA20에서 retest 진행."
+  },
+  "tf_1d": {
+    "state": "B5",
+    "micro_action": null,
+    "volume_flag": "normal",
+    "note": "6개월 하락 후 3월 변곡, 4-5월 풀백 MA10/MA20 지지받음. MA20 양 기울기 진행."
+  },
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_reason": "1W는 사이클 A 끝물 retest, 1D는 사이클 B 끝물 retest. 1W MA20 돌파 또는 이탈이 다음 추세 결정.",
+  "charts": {
+    "1w": "charts/BTCUSDT/20260519/BTCUSDT_1w.png",
+    "1d": "charts/BTCUSDT/20260519/BTCUSDT_1d.png"
+  },
+  "schema_version": 1
+}
