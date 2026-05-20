@@ -28,23 +28,31 @@ description: 크립토·KR·US 차트(1M/1W/1D)를 MA10/20/50 오버레이로 �
 | `signals` | 오늘 신호 발화 종목 (5~20) | 매일/매주 |
 | `refresh` | 전체 universe (~400) | 1회 베이스라인 + 월 1회 갱신 |
 
-## 3. 자산별 지원
+## 3. 자산별 지원 / TF 용도
 
-| 자산 | history 일반 | TF 세트 | facts/review 경로 |
+facts 는 5 TF 모두 산출 가능. **review 채점은 1M/1W/1D 만**, **entry 트리거는 1D/4H/1H** 사용.
+
+| 자산 | 가용 TF | review 채점 TF | entry 트리거 TF |
 |---|---|---|---|
-| crypto | 1M+1W+1D | `data/cache/crypto/visual_review/` |
-| crypto < 6개월 | 1D 만 | (1M/1W bars < 임계값이면 자동 생략) |
-| KR / US | 1M+1W+1D | `data/cache/{kr,us}/visual_review/` |
+| crypto | 1H / 4H / 1D / 1W / 1M | 1M+1W+1D | 1D+4H+1H |
+| crypto < 6개월 | 1D / (1H if 있음) | 1D만 (1M/1W 자동 생략) | 1D+1H |
+| KR / US | 1D / 1W / 1M | 1M+1W+1D | (1D만 — 1H 캐시 없음) |
+
+facts/review 저장 경로: `data/cache/{asset}/visual_review/`.
+
+소스 캐시:
+- 1H/4H → `data/cache/crypto/1h/{SYMBOL}.parquet` (4H 는 1H 에서 리샘플)
+- 1D/1W/1M → `data/cache/{asset}/1d/{SYMBOL}.parquet` (1W/1M 은 1D 에서 리샘플)
 
 ## 4. 7단계 분석 프로토콜 (Claude 가 따라야 할 순서)
 
-차트 분석은 항상 이 7단계로 진행. 각 단계 결과가 schema 의 특정 필드로 매핑.
+차트 분석은 항상 이 7단계로 진행. **1M/1W/1D 채점에만 적용**. 1H/4H 는 facts 만 산출하고 채점은 안 함 (entry 트리거 정량 신호용).
 
 | # | 단계 | 보는 것 | 결과 → 필드 |
 |---|---|---|---|
 | **1** | 빅픽처 | 가격 범위, 전체 슬로프, 직전 고점 대비 | facts: `last_close`, `ret_30d/90d`, `from_period_high_pct` |
-| **2** | 추세 해부 | MA 정배열, MA 간격, MA 기울기, 가격-MA 거리 | facts: `ma_stack`, `ma_slopes`, `ma_spread`, `price_pos`, `dist_from_ma` |
-| **3** | 미시 행동 | 마지막 봉, 캔들 모양, 거래량 | facts: `last_candle` + Claude: `micro_action`, `volume_flag` |
+| **2** | 추세 해부 | MA 정배열, MA 간격, MA 기울기, 가격-MA 거리 | facts: `ma_stack`, `ma_slopes`, `ma_spread`, `price_pos`, `dist_from_ma`, `nearest_ma` |
+| **3** | 미시 행동 | 마지막 봉, 캔들 모양, 거래량, 최근 강양봉 | facts: `last_candle`, `recent_strong_bull` + Claude: `micro_action`, `volume_flag` |
 | **4** | 핵심 레벨 | 지지/저항선 | Claude: `observations.key_levels` |
 | **5** | 사이클 위치 | A/B 어느 단계? | Claude: `state` + `confidence` |
 | **6** | 위험 | 과열, DD, 이상 패턴 | facts: `auto_risk_flags` + Claude: 시각 보강 |
@@ -74,10 +82,12 @@ data/cache/{asset}/visual_review/
 └── charts/
     └── {SYMBOL}/
         └── {YYYYMMDD}/
-            ├── _facts.json      # ★ git tracked (객관 사실)
+            ├── _facts.json      # ★ git tracked (객관 사실, 최대 5 TF)
             ├── {SYMBOL}_1m.png  # gitignored (재생성 가능)
             ├── {SYMBOL}_1w.png  # gitignored
-            └── {SYMBOL}_1d.png  # gitignored
+            ├── {SYMBOL}_1d.png  # gitignored
+            ├── {SYMBOL}_4h.png  # gitignored (entry 용, 옵션)
+            └── {SYMBOL}_1h.png  # gitignored (entry 용, 옵션)
 ```
 
 ### git 정책
@@ -98,7 +108,8 @@ PNG 는 큼 (~100KB × 3장 × 종목 수 = MB) + 재생성 가능. review JSON 
 - **거래량 서브플롯**: 포함
 - **이미지**: 1280×720, dpi 110
 - **렌더 도구**: `mplfinance` (style=charles, type=candle)
-- **종목당 렌더 시간**: ~0.4초 (warmup 후) + facts.json 출력 ~0.05초
+- **종목당 렌더 시간**: TF 한 장당 ~0.4초 (warmup 후) + facts.json 출력 ~0.05초
+- **지원 TF**: 1H / 4H / 1D / 1W / 1M (5종)
 
 ### 6.2 history 부족 시 TF 자동 생략
 
@@ -117,13 +128,15 @@ PNG 는 큼 (~100KB × 3장 × 종목 수 = MB) + 재생성 가능. review JSON 
 
 차트 렌더와 동시에 객관적 사실을 자동 계산 후 JSON 으로 저장. **모든 필드는 자동 — Claude 가 손댈 일 없음, 그대로 review.context 에 복사**.
 
+TF 는 호출 시 인자로 선택. 최대 5 TF (1m/1w/1d/4h/1h) 모두 같은 schema.
+
 ```json
 {
   "symbol": "BTCUSDT",
   "asset": "crypto",
   "date_str": "20260520",
   "generated_at": "2026-05-20T14:00:00+09:00",
-  "tfs": ["1m", "1w", "1d"],
+  "tfs": ["1m", "1w", "1d", "4h", "1h"],
 
   "tf_1m": {
     "last_close": 76803.8,
@@ -136,19 +149,38 @@ PNG 는 큼 (~100KB × 3장 × 종목 수 = MB) + 재생성 가능. review JSON 
     "ma_spread": "spread",                    // tight / normal / spread
     "price_pos": "between",                   // above_all / between / below_all
     "dist_from_ma": {"ma10_pct": -0.1239, "ma20_pct": -0.1596, "ma50_pct": 0.3039},
+    "dist_from_ma_atr": {"ma10_atr": -0.687, "ma20_atr": -0.922, "ma50_atr": 1.132}, // ATR 정규화 거리 (1 ATR 단위)
+    "nearest_ma": {"ma": "ma20", "dist_pct": -0.1596},   // 절대거리 최소 MA + 부호 유지
+
+    "atr": 15813.05,                          // Wilder ATR(14)
+    "atr_pct": 0.206,                         // ATR / close
+    "adx": 28.97,                             // ADX(14). <20 횡보 / 25+ 추세
+    "range_position": 0.26,                   // 최근 N봉 박스 내 위치 0=하단 / 1=상단
 
     "last_candle": {
       "type": "doji",                         // bull / bear / doji
       "body_pct": 0.0065,
+      "upper_wick_pct": 0.88,                 // 위꼬리 / 봉 폭
+      "lower_wick_pct": 0.04,                 // 아래꼬리 / 봉 폭
       "vol_rank_30d": 0.0,                    // 최근 30봉 중 거래량 백분위 (0~1)
-      "vol_anomaly": null                     // "spike" / "breakout" / null
+      "vol_anomaly": null,                    // "spike" / "breakout" / null
+      "accumulation_candle_score": 0.0,       // 0/0.3/0.6/1.0 (매집봉 단일봉)
+      "distribution_candle_score": 0.0        // 0/0.3/0.6/1.0 (분배봉 단일봉)
     },
 
-    "accumulation": {
-      "vol_5bar_vs_30bar": 0.9,               // 5봉 평균 거래량 / 30봉 평균
+    "accumulation": {                          // multi-bar (5봉) 매집 — 기존
+      "vol_5bar_vs_30bar": 0.9,
       "price_range_5bar_pct": 0.04,
-      "accumulation_score": 0.0               // 0~1.0 (0.6+ 는 매집 가능성)
+      "accumulation_score": 0.0
     },
+
+    "recent_strong_bull": null,               // 또는 아래 구조 (강양봉 발견 시)
+    // {
+    //   "bars_ago": 5, "body_pct": 0.0219, "vol_rank": 0.933, "close": 81056.6,
+    //   "max_retrace_pct": 0.0623,             // 양봉 종가 대비 이후 최저점 하락폭
+    //   "current_retrace_pct": 0.0525,         // 양봉 종가 대비 현재가 하락폭
+    //   "holding": false                       // current<5% AND max<10% 면 true (안 무너짐)
+    // }
 
     "ret_30d": 0.041,                          // 30봉 수익률 (TF 단위)
     "ret_90d": 0.156,
@@ -156,10 +188,13 @@ PNG 는 큼 (~100KB × 3장 × 종목 수 = MB) + 재생성 가능. review JSON 
     "vol_avg_recent_vs_prior": 0.829
   },
 
-  "tf_1w": {...},
-  "tf_1d": {...},
+  "tf_1w": {...}, "tf_1d": {...}, "tf_4h": {...}, "tf_1h": {...},
 
-  "auto_risk_flags": ["drawdown_deep"]        // parabolic/drawdown_deep/low_history/zombie
+  "auto_risk_flags": ["drawdown_deep"],       // parabolic/drawdown_deep/low_history/zombie
+
+  "global_nearest_ma": {                       // 모든 TF × MA 중 절대거리 최소 1개 (cross-TF)
+    "tf": "1h", "ma": "ma10", "dist_pct": -0.0005
+  }
 }
 ```
 
@@ -177,8 +212,81 @@ PNG 는 큼 (~100KB × 3장 × 종목 수 = MB) + 재생성 가능. review JSON 
 ### 7.3 `auto_risk_flags` 자동 룰
 - `parabolic`: 1D ret_30d > 0.5 OR 1D ret_90d > 1.0
 - `drawdown_deep`: 1W (또는 1D) from_period_high_pct < -0.3
-- `low_history`: TF 별 최소 봉수 부족 (crypto: 1d<100, 1w<50, 1m<24 / stocks 더 낮음)
+- `low_history`: TF 별 최소 봉수 부족 (crypto: 1h<200, 4h<100, 1d<100, 1w<50, 1m<24 / stocks 더 낮음)
 - `zombie`: 1D vol_avg_recent_vs_prior < 0.3 AND abs(ret_90d) < 0.1
+
+### 7.4 `nearest_ma` 자동 룰 (각 TF)
+- 절대거리 `|dist_from_ma|` 최소인 MA 한 개 선택 (ma10/ma20/ma50 중)
+- `dist_pct` 는 부호 유지 (음수 = MA 아래, 양수 = 위)
+- threshold 없음 — 단순히 "어느 MA 가 가장 가까운지" + 거리값. **진입 트리거 필터/정렬용**.
+
+### 7.5 `recent_strong_bull` 자동 룰 (각 TF)
+최근 lookback 봉 안에 강양봉 1개 검색. **가장 최근** 봉 반환 (없으면 null).
+
+강양봉 조건 (AND):
+- `type=bull` (close > open AND body/range > 0.4)
+- `body_pct >= 0.02` (2% 이상)
+- 그 봉의 `vol_rank` (직전 30봉 대비) `>= 0.7`
+
+lookback (TF 별):
+
+| TF | lookback | 의미 |
+|---|---|---|
+| 1H | 48봉 | 이틀 |
+| 4H | 24봉 | 4일 |
+| 1D | 10봉 | 2주 |
+| 1W | 6봉 | 1.5달 |
+| 1M | 3봉 | 3달 |
+
+출력: `{bars_ago, body_pct, vol_rank, close}` — `bars_ago=0` 이 가장 최근 봉.
+
+### 7.6 `global_nearest_ma` 자동 룰 (cross-TF)
+모든 TF × MA (최대 5×3=15개) 중 절대거리 최소 1개. 진입 트리거 종합 ranking 용.
+
+### 7.7 `atr` / `atr_pct` / `dist_from_ma_atr` (각 TF)
+**Wilder ATR(14)** — 봉당 평균 변동폭 절대값.
+- `atr` : 가격 단위 (e.g. BTC 1D 약 2,000)
+- `atr_pct` : `atr / close` (변동성 비교용)
+- `dist_from_ma_atr.{ma}_atr` : `(close - ma) / atr`. 1.0 = 1 ATR 거리, ±0.5 이하 = 사실상 닿음
+- 종목 변동성 자동 정규화. dist_pct 1.5% 가 BTC 엔 "닿음" 이지만 변동성 큰 알트엔 노이즈 — atr 단위가 진짜 거리.
+- ATR 부족 시 (`bars < period+1`) `null`.
+
+### 7.8 `adx` (각 TF)
+**ADX(14)** — Wilder. 추세 강도 0~100 (방향 무관).
+- `< 20` 횡보, `20~25` 약함, `25~50` 추세 있음, `50+` 강한 추세, `75+` 페러볼릭
+- review state 검증용 — review 가 A2 라고 했어도 ADX 빠지면 토핑 의심 (state stale).
+- 봉 부족 시 `null`.
+
+### 7.9 `range_position` (각 TF)
+최근 N봉 (1h=120, 4h=60, 1d=60, 1w=30, 1m=12) 박스 내 현재가 위치 0~1.
+- `< 0.3` 박스 하단 (매집권)
+- `> 0.7` 박스 상단 (분배권/신고가 임박)
+- vol spike 가 발생했을 때 매집/분배 구분에 사용.
+
+### 7.10 `last_candle.upper_wick_pct / lower_wick_pct`
+봉 위·아래꼬리 비율 (봉 폭 대비).
+- `lower_wick_pct >= 0.3` 이면 받침 (매집 신호)
+- `upper_wick_pct >= 0.3` 이면 위꼬리 우세 (분배 신호)
+
+### 7.11 `last_candle.accumulation_candle_score`
+**vol_rank ≥ 0.85 필수**. 0/0.3/0.6/1.0.
+- 패턴 (close_in_bar≥0.5, lower_wick≥0.3) 2점 + 위치 보너스 (range_position<0.4, from_high<-0.10) 2점
+- pattern 2 + bonus 2 → 1.0
+- pattern 2 + bonus 1 → 0.6
+- pattern 1 + (vol_rank) → 0.3
+- 0.6+ 면 매집봉 의심.
+
+### 7.12 `last_candle.distribution_candle_score`
+매집의 거울. **vol_rank ≥ 0.85 필수**.
+- 패턴 (close_in_bar≤0.5, upper_wick≥0.3) 2점 + 위치 보너스 (range_position>0.6, from_high>-0.05) 2점
+- 0.6+ 면 분배봉 의심.
+
+### 7.13 `recent_strong_bull.max_retrace_pct / current_retrace_pct / holding`
+강양봉 발견 후 retrace 정보.
+- `max_retrace_pct` : 양봉 종가 대비 이후 최저점 하락폭 (양수)
+- `current_retrace_pct` : 양봉 종가 대비 현재가 하락폭
+- `holding=true` : `current<5%` AND `max<10%` (양봉 후 안 무너지고 수렴 중)
+- **trend_pullback 핵심**: bars_ago≤10 AND holding=true 면 "장대양봉 + 수렴" 자동 캐치.
 
 ## 8. 채점 schema v2.1 (review JSON)
 
@@ -403,8 +511,14 @@ research/visual_review/
 ### CLI
 
 ```powershell
-# 차트 + facts.json 렌더
+# review 용 차트 + facts.json (1M+1W+1D)
 .venv/Scripts/python.exe -m research.visual_review.render BTCUSDT ETHUSDT --tfs 1m,1w,1d --asset crypto
+
+# entry 용 facts (1D+4H+1H, PNG 도 같이 생성됨)
+.venv/Scripts/python.exe -m research.visual_review.render BTCUSDT --tfs 1d,4h,1h --asset crypto
+
+# 풀 — 5 TF 전체
+.venv/Scripts/python.exe -m research.visual_review.render BTCUSDT --tfs 1m,1w,1d,4h,1h --asset crypto
 
 # 집계 (reviews/*/<date>.json → coin_state.parquet)
 .venv/Scripts/python.exe -m research.visual_review.store aggregate 20260520 --asset crypto
@@ -417,17 +531,44 @@ research/visual_review/
 
 ```python
 from research.visual_review.render import render_charts
+# review 용 (큰 그림 정성 채점용)
 render_charts(["BTCUSDT", "ETHUSDT"], tfs=["1m","1w","1d"], asset="crypto")
+
+# entry 용 (PNG 없이 facts 만 — Claude 채점 안 함, 정량 트리거 전용)
+from research.visual_review.facts import compute_facts_all_tfs
+facts = compute_facts_all_tfs("BTCUSDT", asset="crypto", tfs=["1d","4h","1h"])
+# facts["global_nearest_ma"] / facts["tf_1h"]["nearest_ma"] / recent_strong_bull 활용
 
 from research.visual_review.store import aggregate_state
 aggregate_state("20260520", asset="crypto")
 ```
 
+### 속도 가이드 (실측, 신규지표 atr/adx/range_pos/candle_score/retrace 포함)
+
+| 작업 | 단일 종목 | 563 종목 |
+|---|---|---|
+| facts 5 TF (1m/1w/1d/4h/1h) | ~40 ms | ~22초 |
+| facts entry 3 TF (1d/4h/1h) | ~25 ms | ~15초 |
+| facts review 3 TF (1m/1w/1d) | ~15 ms | ~9초 |
+| PNG 렌더 1 TF | ~0.4초 | ~4분 |
+
+→ facts 만이면 전체 universe 30초 안에 갱신 — 1분 cron 으로 충분. PNG 는 review 모드에서만.
+
 ## 13. 채점 워크플로 (서브에이전트 / 직접)
 
-### 13.1 효율적 처리 (Sonnet 4.6 권장, 5x 저렴)
+### 13.1 효율적 처리 — `crypto-visual-reviewer` agent
 
-10종목씩 3개 서브에이전트 병렬 → ~5~6분, ~$1.5.
+전용 서브에이전트(`.claude/agents/crypto-visual-reviewer.md`) 가 schema v2.1 채점만 담당.
+- 모델 **Sonnet 4.6 고정**, 도구는 Read/Glob/Grep/Write 만 (데이터 fetch 차단).
+- 입력: batch 심볼 5~15개 + asset + date_str. PNG·facts 는 사전 렌더 가정.
+- 출력: reviews/{SYMBOL}/{date}.json Write + 메인에 요약 한 줄씩.
+- 10종목 batch ≈ 5~8분, ~$0.5. 3개 병렬 가능 → 30종목 ~10분.
+
+refresh 모드 흐름:
+1. 메인이 universe 로드 (classification.parquet) + render_charts 호출 (전체 PNG·facts 렌더)
+2. 10종목씩 batch 분할
+3. `Agent(subagent_type="crypto-visual-reviewer", ...)` 병렬 3개씩 호출
+4. 모든 batch 완료 후 `store.aggregate_state` 로 집계
 
 ### 13.2 모델 선택
 
@@ -462,6 +603,7 @@ aggregate_state("20260520", asset="crypto")
 3. 시계열 비교 모듈 — 지난주 vs 이번주 state 변화 추적
 4. 자동 룰 + 시각 결합 정밀화 — verdict derivation 자동 룰 보완 (현재는 Claude 판단 위주)
 5. KR/US 정식 지원 — render.py / facts.py 모두 asset='kr'/'us' 지원 검증
+6. **Entry 트리거 통합** — `compute_facts_live(symbol, live_price)` 추가 (오늘 봉을 라이브 가격으로 합성), `entry_facts.parquet` writer (전체 universe nearest_ma + recent_strong_bull 종합 표), 대시보드 컬럼 노출
 
 ## 16. 캘리브된 표본 (검증 완료)
 

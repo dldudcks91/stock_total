@@ -27,7 +27,10 @@ from research.visual_review.facts import compute_facts_tf, auto_risk_flags
 ROOT = Path(__file__).resolve().parents[2]
 KST = ZoneInfo("Asia/Seoul")
 BARS = 200
-RULE_MAP = {"1d": None, "1w": "W-MON", "1m": "ME"}
+# TF → 소스 캐시 + 리샘플 룰. None = 소스 그대로.
+INTRADAY_TFS = {"1h", "4h"}
+DAILY_TFS = {"1d", "1w", "1m"}
+RESAMPLE_RULE = {"4h": "4h", "1w": "W-MON", "1m": "ME"}
 
 
 def _charts_root(asset: str) -> Path:
@@ -79,39 +82,67 @@ def _render_one(df_full: pd.DataFrame, symbol: str, tf_label: str, out_path: Pat
     return len(df), span
 
 
+def _load_source(asset: str, symbol: str, kind: str) -> Optional[pd.DataFrame]:
+    """소스 캐시 로드 + 정규화. kind ∈ {'1h','1d'}. 없으면 None."""
+    try:
+        return _normalize(load_ohlcv(asset, symbol, kind))
+    except (FileNotFoundError, ValueError):
+        return None
+
+
+def _df_for_tf(tf: str, df_1d: Optional[pd.DataFrame], df_1h: Optional[pd.DataFrame]) -> Optional[pd.DataFrame]:
+    if tf == "1h":
+        return df_1h
+    if tf == "4h":
+        return _resample(df_1h, RESAMPLE_RULE["4h"]) if df_1h is not None else None
+    if tf == "1d":
+        return df_1d
+    if tf in ("1w", "1m"):
+        return _resample(df_1d, RESAMPLE_RULE[tf]) if df_1d is not None else None
+    return None
+
+
 def render_symbol(symbol: str, tfs: Sequence[str], date_str: str, bars: int = BARS, asset: str = "crypto", verbose: bool = True) -> dict[str, Path]:
     """단일 종목, 여러 TF 렌더 + _facts.json 출력.
 
     Returns: {tf: Path}
     """
-    df_1d = _normalize(load_ohlcv(asset, symbol, "1d"))
+    tfs_lower = [t.lower() for t in tfs]
+    # 자산별 가용 TF 필터 (KR/US 는 1h 캐시 없음)
+    if asset != "crypto":
+        tfs_lower = [t for t in tfs_lower if t in DAILY_TFS]
+
+    need_1d = any(t in DAILY_TFS for t in tfs_lower)
+    need_1h = any(t in INTRADAY_TFS for t in tfs_lower)
+    df_1d = _load_source(asset, symbol, "1d") if need_1d else None
+    df_1h = _load_source(asset, symbol, "1h") if need_1h else None
+
     out_dir = _charts_root(asset) / symbol / date_str
     out_dir.mkdir(parents=True, exist_ok=True)
     out_paths: dict[str, Path] = {}
     facts_per_tf: dict[str, dict] = {}
     if verbose:
         print(f"[{symbol}]")
-    for tf in tfs:
-        tf_l = tf.lower()
-        if tf_l not in RULE_MAP:
-            raise ValueError(f"unsupported tf: {tf}")
-        rule = RULE_MAP[tf_l]
-        df_full = df_1d if rule is None else _resample(df_1d, rule)
-        if len(df_full) < 10:
+    for tf_l in tfs_lower:
+        if tf_l not in INTRADAY_TFS and tf_l not in DAILY_TFS:
+            raise ValueError(f"unsupported tf: {tf_l}")
+        df_full = _df_for_tf(tf_l, df_1d, df_1h)
+        if df_full is None or len(df_full) < 10:
             if verbose:
-                print(f"  {tf_l}: SKIP (only {len(df_full)} bars)")
+                n = 0 if df_full is None else len(df_full)
+                print(f"  {tf_l}: SKIP (only {n} bars)")
             continue
         out = out_dir / f"{symbol}_{tf_l}.png"
         t0 = time.perf_counter()
         n, span = _render_one(df_full, symbol, tf_l.upper(), out, bars=bars)
         dt = time.perf_counter() - t0
-        # facts 도 같이 계산
-        facts_per_tf[tf_l] = compute_facts_tf(df_full, bars=bars)
+        facts_per_tf[tf_l] = compute_facts_tf(df_full, bars=bars, tf_label=tf_l)
         if verbose:
             print(f"  {tf_l.upper()}: {n} bars ({span}) ({dt:.2f}s) -> {out.relative_to(ROOT)}")
         out_paths[tf_l] = out
     # _facts.json 저장
     if facts_per_tf:
+        from research.visual_review.facts import _global_nearest_ma
         facts_doc = {
             "symbol": symbol,
             "asset": asset,
@@ -122,6 +153,7 @@ def render_symbol(symbol: str, tfs: Sequence[str], date_str: str, bars: int = BA
         for tf_l, f in facts_per_tf.items():
             facts_doc[f"tf_{tf_l}"] = f
         facts_doc["auto_risk_flags"] = auto_risk_flags(facts_per_tf, asset=asset)
+        facts_doc["global_nearest_ma"] = _global_nearest_ma(facts_per_tf)
         facts_path = out_dir / "_facts.json"
         facts_path.write_text(json.dumps(facts_doc, ensure_ascii=False, indent=2), encoding="utf-8")
         if verbose:

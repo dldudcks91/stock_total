@@ -7,12 +7,9 @@
 ```
 scripts/
 ├── _common/                    # 공통 helper (run_helper.py)
-├── trend_pullback/             # trend_pullback 전략 관련 분석
-│   ├── *.py                    # 분석 모듈
-│   └── runs/                   # 분석 run 결과 (각 run = 폴더 1개)
-└── support_touch/              # 지지 테스트 (이평선 박치기 후 반등) 패턴 스캔
-    ├── scan.py
-    └── runs/                   # (마이그레이션 후 생성)
+└── trend_pullback/             # trend_pullback 전략 관련 분석
+    ├── *.py                    # 분석 모듈
+    └── runs/                   # 분석 run 결과 (각 run = 폴더 1개)
 ```
 
 ## 워크플로우
@@ -58,9 +55,6 @@ def main():
 | `visualize.py` | wick × bars × angle 단일 cell 의 케이스들을 candle 차트로 |
 
 모두 `--config <run_dir>/config.json` 으로 실행.
-
-### `support_touch/`
-이평선에 위에서 닿고 다시 반등하는 (지지 테스트 성공) 패턴 스캐너. 아직 새 패턴 마이그레이션 안 됨.
 
 ## 원칙
 

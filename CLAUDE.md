@@ -1,13 +1,13 @@
 # research_lab (옛 crypto_backtest)
 
-크립토 + KOSPI + NASDAQ 통합 리서치 / 백테스트 / 대시보드 (개인 연구용).
+크립토 + KOSPI + NASDAQ 통합 리서치 / 추천 시그널 / 대시보드 (개인 연구용).
 
 > 프로젝트 디렉터리 이름은 추후 리네임 예정. 코드/문서상 명칭은 자유롭게 사용.
 
 ## 구성 요약
 
 - **데이터 수집** — Bitget(crypto 1H/1D), FinanceDataReader(KR/US 1D), 한경 컨센서스(KR 정성), DART(KR 펀더멘털)
-- **백테스트** — 벡터화 엔진, 자산 무관 (현 단계는 crypto 위주, 주식은 단계적 확장)
+- **추천 시그널** — trend_pullback / trend_chase / quiet_bottom 3개 전략 (대시보드 추천 로직이 import)
 - **리서치 리포트** — KR 종목 종합 리서치 (정량+정성 통합 마크다운 리포트)
 - **대시보드** — Streamlit 멀티페이지
 
@@ -174,7 +174,7 @@ Get-CimInstance Win32_Process -Filter "Name='python.exe'" | Select-Object Proces
 |---|---|---|
 | `crypto-fetch` | crypto | Bitget 1H/1D OHLCV 다운로드 (`--granularity`) |
 | `crypto-classify` | crypto | BTC 벤치마크 4그룹 분류 |
-| `crypto-visual-review` | crypto | 차트 PNG 시각 판독 + 사이클/액션/볼륨 채점 |
+| `crypto-visual-review` | crypto | 차트 PNG 시각 판독 + 사이클/액션/볼륨 채점 (5 TF: 1h/4h/1d/1w/1m, review 채점은 1m+1w+1d, entry 정량은 1d+4h+1h) |
 | `kr-fetch` | KR | FDR로 KOSPI 일봉 다운로드 |
 | `us-fetch` | US | FDR로 NASDAQ 일봉 다운로드 |
 | `plot-chart` | 전 자산 | Bitget 스타일 캔들+MA+거래량+RSI Plotly 차트 |
