@@ -1,0 +1,76 @@
+{
+  "symbol": "UBUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T17:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2.1},
+  "tf_1w": {
+    "state": "A1",
+    "micro_action": "acceleration",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.12108,
+      "bars": 37,
+      "date_range": "2025-09-15 ~ 2026-05-25",
+      "ma10": 0.070841,
+      "ma20": 0.053038,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.7092, "ma20_pct": 1.2829, "ma50_pct": 0.0},
+      "last_candle": {"type": "bear", "body_pct": 0.1315, "vol_rank_30d": 0.367, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 2.907, "price_range_5bar_pct": 1.7204, "accumulation_score": 0.0},
+      "ret_30d": 0.5255,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.5096,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.05, "resistance": 0.25},
+      "pattern": "MA20 대비 +128% 극단 이격. vol_5bar 2.9배 급등. 고점 대비 -51%로 이미 반토막 하락 중. 전형적 펌프덤프 패턴.",
+      "recent_action": "4월 말 0.25까지 수직 급등 후 절반 반납. 주봉 거래량 폭발 후 급감 패턴."
+    }
+  },
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.12108,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.168628,
+      "ma20": 0.144612,
+      "ma50": 0.07882,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.282, "ma20_pct": -0.1627, "ma50_pct": 0.5362},
+      "last_candle": {"type": "bear", "body_pct": 0.1315, "vol_rank_30d": 0.533, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 0.828, "price_range_5bar_pct": 1.0463, "accumulation_score": 0.0},
+      "ret_30d": 1.8829,
+      "ret_90d": 1.9532,
+      "from_period_high_pct": -0.5096,
+      "vol_avg_recent_vs_prior": 5.297
+    },
+    "observations": {
+      "key_levels": {"support": 0.078, "resistance": 0.17},
+      "pattern": "30일 +188%, 90일 +195% 파라볼릭 급등. 일봉 거래량 5.3배 폭발. MA10(0.169) 하방 이탈 진행. MA50(0.079)까지 -35% 추가 하락 여지.",
+      "recent_action": "4월 말 고점 0.25 이후 급격한 되돌림. PNG에서 수직 급등-급락 패턴 명확. 분배 완료 신호."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "전형적 pump_dump 패턴 확정. 일봉 거래량 5.3배 폭발+파라볼릭+고점 대비 -51% 급락 진행. parabolic+drawdown_deep+low_history 3중 위험. MA50(0.079)까지 추가 낙폭 여지 크며 추격 매수 불가.",
+  "risk_flags": ["parabolic", "drawdown_deep", "low_history", "pump_dump_trace"],
+  "charts": {
+    "1w": "charts/UBUSDT/20260520/UBUSDT_1w.png",
+    "1d": "charts/UBUSDT/20260520/UBUSDT_1d.png"
+  }
+}

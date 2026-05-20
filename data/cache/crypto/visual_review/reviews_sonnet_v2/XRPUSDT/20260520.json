@@ -1,0 +1,104 @@
+{
+  "symbol": "XRPUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T17:10:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2},
+  "tf_1m": {
+    "state": "B3",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+    "context": {
+      "last_close": 1.3609,
+      "bars": 82,
+      "date_range": "2019-08-31 ~ 2026-05-31",
+      "ma10": 1.92138,
+      "ma20": 2.03225,
+      "ma50": 1.114245,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.2917, "ma20_pct": -0.3303, "ma50_pct": 0.2214},
+      "last_candle": {"type": "doji", "body_pct": 0.0047, "vol_rank_30d": 0.0},
+      "ret_30d": 1.245,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.6287,
+      "vol_avg_recent_vs_prior": 5.643
+    },
+    "observations": {
+      "key_levels": {"support": 1.1, "resistance": 2.0},
+      "pattern": "급등 후 급락",
+      "recent_action": "월봉 30d +125% 급등 후 현재 MA10/20 전부 하향 이탈. 거래량이 평균 5.6배로 pump_dump 흔적 강함."
+    }
+  },
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": "breaking",
+    "volume_flag": "dry",
+    "confidence": "high",
+    "context": {
+      "last_close": 1.3609,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 1.38922,
+      "ma20": 1.50103,
+      "ma50": 2.14312,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0204, "ma20_pct": -0.0934, "ma50_pct": -0.365},
+      "last_candle": {"type": "bear", "body_pct": 0.021, "vol_rank_30d": 0.0},
+      "ret_30d": -0.4831,
+      "ret_90d": 1.4006,
+      "from_period_high_pct": -0.6287,
+      "vol_avg_recent_vs_prior": 0.32
+    },
+    "observations": {
+      "key_levels": {"support": 1.1, "resistance": 1.55},
+      "pattern": "급등 후 완전 역배열",
+      "recent_action": "주봉 역배열 3선 모두 하향, 거래량 0.32배로 급감. 90d +140% 급등분 대부분 반납하는 패턴."
+    }
+  },
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 1.3609,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 1.4294,
+      "ma20": 1.413855,
+      "ma50": 1.393926,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0479, "ma20_pct": -0.0375, "ma50_pct": -0.0237},
+      "last_candle": {"type": "bear", "body_pct": 0.021, "vol_rank_30d": 0.433},
+      "ret_30d": -0.0234,
+      "ret_90d": -0.0423,
+      "from_period_high_pct": -0.4726,
+      "vol_avg_recent_vs_prior": 0.907
+    },
+    "observations": {
+      "key_levels": {"support": 1.28, "resistance": 1.45},
+      "pattern": "MA 밀집 하방 이탈",
+      "recent_action": "일봉 MA10/20/50이 1.39~1.43 좁은 구간에 집결 중이나 가격이 전부 하향 이탈. 베어 캔들 연속."
+    }
+  },
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1m pump_dump 흔적, 1w 역배열 붕괴, 1d MA 이탈로 전 TF 매수 근거 없음",
+  "risk_flags": ["drawdown_deep", "pump_dump_trace"],
+  "charts": {
+    "1m": "charts/XRPUSDT/20260520/XRPUSDT_1m.png",
+    "1w": "charts/XRPUSDT/20260520/XRPUSDT_1w.png",
+    "1d": "charts/XRPUSDT/20260520/XRPUSDT_1d.png"
+  }
+}

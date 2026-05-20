@@ -1,0 +1,107 @@
+{
+  "symbol": "TSLAUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T17:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2.1},
+  "tf_1m": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 405.19,
+      "bars": 10,
+      "date_range": "2025-08-31 ~ 2026-05-31",
+      "ma10": 411.024,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0142, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "last_candle": {"type": "doji", "body_pct": 0.0577, "vol_rank_30d": 0.3, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1885,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 350.0, "resistance": 500.0},
+      "pattern": "10봉밖에 없어 MA10만 존재. 구조 판단 불가 수준.",
+      "recent_action": "월봉 확인: 상장 후 고점(~500) 대비 -19% 눌림. 최근 월봉은 반등 시도 중."
+    }
+  },
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 405.19,
+      "bars": 40,
+      "date_range": "2025-08-25 ~ 2026-05-25",
+      "ma10": 386.129,
+      "ma20": 402.014,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0494, "ma20_pct": 0.0079, "ma50_pct": 0.0},
+      "last_candle": {"type": "doji", "body_pct": 0.0115, "vol_rank_30d": 0.0, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 0.376, "price_range_5bar_pct": 0.2201, "accumulation_score": 0.0},
+      "ret_30d": -0.1097,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1885,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 370.0, "resistance": 500.0},
+      "pattern": "주봉 MA10/20 하향이나 가격은 MA20 소폭 상회. 2025년 12월 고점(~500) 후 조정. 주봉 거래량 급감(최저 0위)으로 공방 소강.",
+      "recent_action": "3~4월 340~360 저점 확인 후 반등. 현재 MA20 회복 시도 중."
+    }
+  },
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 405.19,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 426.711,
+      "ma20": 413.455,
+      "ma50": 388.2486,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0504, "ma20_pct": -0.02, "ma50_pct": 0.0436},
+      "last_candle": {"type": "doji", "body_pct": 0.0115, "vol_rank_30d": 0.267, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 0.504, "price_range_5bar_pct": 0.1215, "accumulation_score": 0.0},
+      "ret_30d": 0.0233,
+      "ret_90d": -0.0137,
+      "from_period_high_pct": -0.1885,
+      "vol_avg_recent_vs_prior": 0.437
+    },
+    "observations": {
+      "key_levels": {"support": 388.0, "resistance": 450.0},
+      "pattern": "일봉 정배열 유지. MA20(413)~MA10(427) 사이 눌림. MA50(388) 지지 확인 후 재상승 중. 거래량 0.437배로 눌림목 조건 부합.",
+      "recent_action": "3월 저점(340) 이후 꾸준한 회복. MA50 지지 후 현재 MA20 재돌파 시도."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "일봉/주봉 모두 B3(눌림목) 상태로 정합. 일봉 정배열 + MA50 지지 확인 + 거래량 감소는 전형적 눌림목 셋업. 다만 low_history(10봉 월봉)와 주봉 MA 하향으로 매입 신중. MA20(413) 재돌파 + 거래량 증가 시 pass 업그레이드 고려.",
+  "risk_flags": ["low_history"],
+  "charts": {
+    "1m": "charts/TSLAUSDT/20260520/TSLAUSDT_1m.png",
+    "1w": "charts/TSLAUSDT/20260520/TSLAUSDT_1w.png",
+    "1d": "charts/TSLAUSDT/20260520/TSLAUSDT_1d.png"
+  }
+}

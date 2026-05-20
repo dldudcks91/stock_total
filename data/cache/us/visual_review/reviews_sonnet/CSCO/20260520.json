@@ -1,0 +1,32 @@
+{
+  "symbol": "CSCO",
+  "reviewed_at": "2026-05-20T15:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {
+    "state": "A1",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "note": "월봉 기준 2024년 바닥 이후 MA10/20 정배열 전환 + $120 부근 신고가 갱신, 상승 초기 사이클."
+  },
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "acceleration",
+    "volume_flag": "normal",
+    "note": "주봉에서 MA10/20/50 완전 정배열, 최근 주봉 장대양봉으로 가속 구간 진입."
+  },
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "note": "일봉에서 $120 고점 후 단기 MA10 근처로 눌림, 상승 추세 내 정상 조정 구간."
+  },
+  "tf_consistency": "정합",
+  "verdict": "pass",
+  "verdict_reason": "1M/1W/1D 모두 A 사이클 + MA 정배열, 일봉 눌림목은 전형적인 매수 기회로 tf_consistency 정합.",
+  "charts": {
+    "1m": "charts/CSCO/20260520/CSCO_1m.png",
+    "1w": "charts/CSCO/20260520/CSCO_1w.png",
+    "1d": "charts/CSCO/20260520/CSCO_1d.png"
+  },
+  "schema_version": 1
+}

@@ -1,0 +1,107 @@
+{
+  "symbol": "XAUTUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T17:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2.1},
+  "tf_1m": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 4490.15,
+      "bars": 14,
+      "date_range": "2025-04-30 ~ 2026-05-31",
+      "ma10": 4375.088,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0263, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "last_candle": {"type": "bear", "body_pct": 0.0273, "vol_rank_30d": 0.643, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.2005,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 4000, "resistance": 5600},
+      "pattern": "월봉 우상향 후 고점 조정",
+      "recent_action": "월봉 14봉으로 데이터 짧음. 고점(5621) 대비 -20% 조정 중, MA10(4375) 위에서 bear candle."
+    }
+  },
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+    "context": {
+      "last_close": 4490.15,
+      "bars": 60,
+      "date_range": "2025-04-07 ~ 2026-05-25",
+      "ma10": 4610.304,
+      "ma20": 4787.972,
+      "ma50": 4193.8508,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0261, "ma20_pct": -0.0622, "ma50_pct": 0.0707},
+      "last_candle": {"type": "bear", "body_pct": 0.0186, "vol_rank_30d": 0.0, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 1.315, "price_range_5bar_pct": 0.0753, "accumulation_score": 0.6},
+      "ret_30d": 0.1234,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.2005,
+      "vol_avg_recent_vs_prior": 3.4
+    },
+    "observations": {
+      "key_levels": {"support": 4200, "resistance": 4800},
+      "pattern": "주봉 고점 조정 + 매집 신호",
+      "recent_action": "accumulation_score 0.6 경계값 도달. 주봉 가격 폭 좁은 횡보(7.5%) + 거래량 1.3x로 매집 가능성 후보. PNG 확인 시 volume bar가 시각적으로 뚜렷하진 않아 accumulation_suspect 판정(약한 신호). vol_avg_recent 3.4x는 XAUT 초기 상장 이후 거래량 증가 맥락."
+    }
+  },
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 4490.15,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 4615.478,
+      "ma20": 4622.5845,
+      "ma50": 4670.1304,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0272, "ma20_pct": -0.0286, "ma50_pct": -0.0385},
+      "last_candle": {"type": "bear", "body_pct": 0.0186, "vol_rank_30d": 0.733, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 0.932, "price_range_5bar_pct": 0.0416, "accumulation_score": 0.0},
+      "ret_30d": -0.0514,
+      "ret_90d": -0.0931,
+      "from_period_high_pct": -0.2005,
+      "vol_avg_recent_vs_prior": 0.671
+    },
+    "observations": {
+      "key_levels": {"support": 4300, "resistance": 4700},
+      "pattern": "일봉 MA tight 역배열 하방",
+      "recent_action": "일봉 MA10/20/50 모두 4615~4670 tight 수렴 역배열, 현재 전부 하방. 거래량 vol_rank 0.73으로 비교적 활발한 하락 압력."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "주봉 accumulation_score 0.6(경계) + 금 현물 연동 구조로 관심 종목 — 일봉 MA 클러스터(4615~4670) 상방 돌파 확인 후 진입 검토",
+  "risk_flags": ["low_history", "accumulation_suspect"],
+  "charts": {
+    "1m": "data/cache/crypto/visual_review/charts/XAUTUSDT/20260520/XAUTUSDT_1m.png",
+    "1w": "data/cache/crypto/visual_review/charts/XAUTUSDT/20260520/XAUTUSDT_1w.png",
+    "1d": "data/cache/crypto/visual_review/charts/XAUTUSDT/20260520/XAUTUSDT_1d.png"
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "symbol": "TONUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T17:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2.1},
+  "tf_1m": {
+    "state": "B4",
+    "micro_action": "bounce_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 1.9802,
+      "bars": 37,
+      "date_range": "2023-05-31 ~ 2026-05-31",
+      "ma10": 1.85678,
+      "ma20": 3.037635,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0665, "ma20_pct": -0.3481, "ma50_pct": 0.0},
+      "last_candle": {"type": "bull", "body_pct": 0.3261, "vol_rank_30d": 0.967, "vol_anomaly": "breakout"},
+      "accumulation": {"vol_5bar_vs_30bar": 1.73, "price_range_5bar_pct": 0.9045, "accumulation_score": 0.0},
+      "ret_30d": -0.1787,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.7608,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 1.5, "resistance": 3.04},
+      "pattern": "월봉: 5월 bull 봉 breakout 신호(body 32.6%, vol_rank 0.967). 장기 하락 추세 중 강한 반등 봉. MA10(1.86) 위로 회복.",
+      "recent_action": "5월 대량 거래 동반 급등 봉. vol 5bar 1.73x. 단기 전환 가능성 탐색"
+    }
+  },
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "bounce_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 1.9802,
+      "bars": 158,
+      "date_range": "2023-05-22 ~ 2026-05-25",
+      "ma10": 1.59212,
+      "ma20": 1.507935,
+      "ma50": 2.120446,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.2438, "ma20_pct": 0.3132, "ma50_pct": -0.0661},
+      "last_candle": {"type": "doji", "body_pct": 0.0092, "vol_rank_30d": 0.133, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 2.793, "price_range_5bar_pct": 0.8223, "accumulation_score": 0.0},
+      "ret_30d": -0.1138,
+      "ret_90d": -0.6199,
+      "from_period_high_pct": -0.7608,
+      "vol_avg_recent_vs_prior": 0.663
+    },
+    "observations": {
+      "key_levels": {"support": 1.5, "resistance": 2.12},
+      "pattern": "주봉: MA10/20 위로 회복, MA50(2.12) 하위. 최근 5봉 거래량 2.79x — 강한 매수 유입. 그러나 30일 -11%, 90일 -62%.",
+      "recent_action": "5월 주봉 거래량 폭증(2.79x)은 주목. MA50 저항 돌파 여부가 관건"
+    }
+  },
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 1.9802,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 2.118,
+      "ma20": 2.012025,
+      "ma50": 1.595978,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0651, "ma20_pct": -0.0158, "ma50_pct": 0.2407},
+      "last_candle": {"type": "doji", "body_pct": 0.0092, "vol_rank_30d": 0.533, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 0.907, "price_range_5bar_pct": 0.1381, "accumulation_score": 0.0},
+      "ret_30d": 0.5392,
+      "ret_90d": 0.4029,
+      "from_period_high_pct": -0.3201,
+      "vol_avg_recent_vs_prior": 5.83
+    },
+    "observations": {
+      "key_levels": {"support": 2.012, "resistance": 2.92},
+      "pattern": "일봉 정배열, MA20(2.01) 근방 눌림. vol_avg_recent 5.83x — 4~5월 폭발적 거래 이후 소화 중. 30일 +53%, 90일 +40%.",
+      "recent_action": "4월말 대량 거래 동반 급등 후 MA10 아래로 눌림. 정배열 유지. MA20 지지 확인 중"
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "일봉 정배열 + MA20 눌림, 월봉 breakout 봉. 주봉/월봉 거래량 폭증 동반 반등. 단 parabolic+drawdown_deep(-76%) 위험. MA20 지지 확인 후 진입 검토.",
+  "risk_flags": ["parabolic", "drawdown_deep"],
+  "charts": {
+    "1m": "data/cache/crypto/visual_review/charts/TONUSDT/20260520/TONUSDT_1m.png",
+    "1w": "data/cache/crypto/visual_review/charts/TONUSDT/20260520/TONUSDT_1w.png",
+    "1d": "data/cache/crypto/visual_review/charts/TONUSDT/20260520/TONUSDT_1d.png"
+  }
+}

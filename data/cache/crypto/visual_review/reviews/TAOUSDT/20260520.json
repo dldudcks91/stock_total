@@ -1,0 +1,107 @@
+{
+  "symbol": "TAOUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T17:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2.1},
+  "tf_1m": {
+    "state": "A4",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 257.05,
+      "bars": 26,
+      "date_range": "2024-04-30 ~ 2026-05-31",
+      "ma10": 279.977,
+      "ma20": 343.7855,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0819, "ma20_pct": -0.2523, "ma50_pct": 0.0},
+      "last_candle": {"type": "doji", "body_pct": 0.0315, "vol_rank_30d": 0.5, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.655,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 150, "resistance": 344},
+      "pattern": "월봉 MA10/20 하향, 가격 두 MA 모두 아래. 고점 740 대비 -65.5%. 장기 하락 구조.",
+      "recent_action": "26바 월봉. 2024년 고점 740 이후 지속 하락. 5월 소폭 회복"
+    }
+  },
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "bounce_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 257.05,
+      "bars": 111,
+      "date_range": "2024-04-15 ~ 2026-05-25",
+      "ma10": 279.351,
+      "ma20": 247.4555,
+      "ma50": 304.4486,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0798, "ma20_pct": 0.0388, "ma50_pct": -0.1557},
+      "last_candle": {"type": "bear", "body_pct": 0.0167, "vol_rank_30d": 0.0, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 0.528, "price_range_5bar_pct": 0.3623, "accumulation_score": 0.0},
+      "ret_30d": -0.3806,
+      "ret_90d": -0.0818,
+      "from_period_high_pct": -0.655,
+      "vol_avg_recent_vs_prior": 1.187
+    },
+    "observations": {
+      "key_levels": {"support": 200, "resistance": 304},
+      "pattern": "주봉: MA20(247) 바로 위, MA10(279) 아래. 혼배열. 30일 -38%, 5봉 거래량 감소(0.53x). 상승 전 에너지 부족.",
+      "recent_action": "2026년 초 150 저점 이후 반등 중이나 MA10 저항. 주봉 bear 봉으로 재하락 신호"
+    }
+  },
+  "tf_1d": {
+    "state": "A4",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 257.05,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 288.953,
+      "ma20": 289.8745,
+      "ma50": 278.5398,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "down"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1104, "ma20_pct": -0.1132, "ma50_pct": -0.0772},
+      "last_candle": {"type": "bear", "body_pct": 0.0167, "vol_rank_30d": 0.0, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 0.593, "price_range_5bar_pct": 0.2107, "accumulation_score": 0.0},
+      "ret_30d": 0.0731,
+      "ret_90d": 0.4018,
+      "from_period_high_pct": -0.523,
+      "vol_avg_recent_vs_prior": 0.426
+    },
+    "observations": {
+      "key_levels": {"support": 220, "resistance": 290},
+      "pattern": "일봉 MA10/20/50 모두 아래. 혼배열. bear 봉 + vol 극감(0.593x, vol_rank 0). 거래 관심 소멸.",
+      "recent_action": "3월 고점(~360) 이후 재하락. MA들 모두 하향 수렴 중. 방향성 없는 하락 압력"
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "3개 TF 모두 MA 하위 위치. drawdown_deep(-65%). 일봉 거래량 소멸. 주봉 30일 -38%. 단기 반등 가능하나 추세 전환 증거 없음.",
+  "risk_flags": ["drawdown_deep"],
+  "charts": {
+    "1m": "data/cache/crypto/visual_review/charts/TAOUSDT/20260520/TAOUSDT_1m.png",
+    "1w": "data/cache/crypto/visual_review/charts/TAOUSDT/20260520/TAOUSDT_1w.png",
+    "1d": "data/cache/crypto/visual_review/charts/TAOUSDT/20260520/TAOUSDT_1d.png"
+  }
+}

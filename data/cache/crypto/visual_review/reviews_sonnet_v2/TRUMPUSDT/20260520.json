@@ -1,0 +1,104 @@
+{
+  "symbol": "TRUMPUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T16:35:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2},
+  "tf_1m": {
+    "state": "B5",
+    "micro_action": "breaking",
+    "volume_flag": "distribution_suspect",
+    "confidence": "high",
+    "context": {
+      "last_close": 2.014,
+      "bars": 17,
+      "date_range": "2025-01-31 ~ 2026-05-31",
+      "ma10": 4.9914,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.5965, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "last_candle": {"type": "bear", "body_pct": 0.1817, "vol_rank_30d": 0.529},
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9777,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 1.5, "resistance": 5.0},
+      "pattern": "장기 붕괴",
+      "recent_action": "월봉 기준 2025년 1월 고점 대비 -98%. MA10(4.99) 대비 -60%로 완전 이탈 상태."
+    }
+  },
+  "tf_1w": {
+    "state": "B5",
+    "micro_action": "breaking",
+    "volume_flag": "distribution_suspect",
+    "confidence": "high",
+    "context": {
+      "last_close": 2.014,
+      "bars": 71,
+      "date_range": "2025-01-20 ~ 2026-05-25",
+      "ma10": 2.6158,
+      "ma20": 3.2937,
+      "ma50": 5.95462,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2301, "ma20_pct": -0.3885, "ma50_pct": -0.6618},
+      "last_candle": {"type": "bear", "body_pct": 0.0293, "vol_rank_30d": 0.0},
+      "ret_30d": -0.7176,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9777,
+      "vol_avg_recent_vs_prior": 1.068
+    },
+    "observations": {
+      "key_levels": {"support": 1.5, "resistance": 3.0},
+      "pattern": "완전 역배열 붕괴",
+      "recent_action": "주봉 MA10/20/50 전부 하향, 완전 역배열. 30d -72%로 사실상 귀멸 수준. 볼륨 제로에 가까운 저거래량 하락."
+    }
+  },
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "breaking",
+    "volume_flag": "distribution_suspect",
+    "confidence": "high",
+    "context": {
+      "last_close": 2.014,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 2.2686,
+      "ma20": 2.3216,
+      "ma50": 2.62496,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1122, "ma20_pct": -0.1325, "ma50_pct": -0.2328},
+      "last_candle": {"type": "bear", "body_pct": 0.0293, "vol_rank_30d": 0.133},
+      "ret_30d": -0.2789,
+      "ret_90d": -0.4034,
+      "from_period_high_pct": -0.7895,
+      "vol_avg_recent_js": 1.878
+    },
+    "observations": {
+      "key_levels": {"support": 1.8, "resistance": 2.5},
+      "pattern": "역배열 지속 하락",
+      "recent_action": "일봉도 역배열 전체 하락. 가격 2.0 수준에서 지지선 탐색 중이나 90d -40%, MA 전부 하향으로 반등 신호 없음."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "1m/1w/1d 모두 역배열 하락(B4-B5) 정합. 고점 대비 -98%, 30d -72%/-28% 지속 붕괴. 저히스토리·drawdown_deep. 접근 불가.",
+  "risk_flags": ["drawdown_deep", "low_history", "distribution_suspect"],
+  "charts": {
+    "1m": "charts/TRUMPUSDT/20260520/TRUMPUSDT_1m.png",
+    "1w": "charts/TRUMPUSDT/20260520/TRUMPUSDT_1w.png",
+    "1d": "charts/TRUMPUSDT/20260520/TRUMPUSDT_1d.png"
+  }
+}

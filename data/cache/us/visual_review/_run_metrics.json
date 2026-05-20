@@ -1,0 +1,100 @@
+{
+  "run_id": "us_top30_20260520",
+  "started_at": "2026-05-20T14:02:22.027503+09:00",
+  "mode": "A (30 x 3TF)",
+  "asset": "us",
+  "universe": "NASDAQ top 30 by market cap (FDR listing order)",
+  "tfs": [
+    "1m",
+    "1w",
+    "1d"
+  ],
+  "date_str": "20260520",
+  "steps": [
+    {
+      "step": "render_charts",
+      "duration_sec": 31.9,
+      "images": 90
+    },
+    {
+      "step": "scoring",
+      "duration_sec": 970.7,
+      "tickers": 30,
+      "avg_per_ticker_sec": 32.4
+    },
+    {
+      "step": "aggregate_state",
+      "duration_sec": 1
+    },
+    {
+      "step": "scoring",
+      "duration_sec": 985.1,
+      "tickers": 30,
+      "avg_per_ticker_sec": 32.8
+    },
+    {
+      "step": "aggregate_state",
+      "duration_sec": 1
+    }
+  ],
+  "budget_estimate": {
+    "token_input": 155000,
+    "token_output": 12000,
+    "usd_estimate": 3.0,
+    "time_min": 15
+  },
+  "actuals": {
+    "render_time_sec": 31.9,
+    "scoring_time_sec": 985.1,
+    "aggregate_time_sec": null,
+    "total_time_sec": 1053.1,
+    "images_loaded": 90,
+    "image_tokens_estimate": 110700,
+    "text_tokens_estimate": 30000
+  },
+  "scoring_started_at": "2026-05-20T14:03:30.059712+09:00",
+  "finished_at": "2026-05-20T14:19:55.143796+09:00",
+  "result_summary": {
+    "total_tickers": 30,
+    "pass": 20,
+    "watch": 5,
+    "skip": 5,
+    "reject": 0,
+    "pass_tickers": [
+      "NVDA",
+      "AAPL",
+      "AMZN",
+      "GOOGL",
+      "GOOG",
+      "AVGO",
+      "WMT",
+      "AMD",
+      "ASML",
+      "COST",
+      "CSCO",
+      "LRCX",
+      "AMAT",
+      "TXN",
+      "ARM",
+      "LIN",
+      "KLAC",
+      "QCOM",
+      "ADI",
+      "PANW"
+    ],
+    "watch_tickers": [
+      "MSFT",
+      "TSLA",
+      "MU",
+      "INTC",
+      "SNDK"
+    ],
+    "skip_tickers": [
+      "META",
+      "NFLX",
+      "PLTR",
+      "TMUS",
+      "PEP"
+    ]
+  }
+}

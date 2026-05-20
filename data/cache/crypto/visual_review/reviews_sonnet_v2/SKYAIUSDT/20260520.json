@@ -1,0 +1,100 @@
+{
+  "symbol": "SKYAIUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T16:35:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2},
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "low",
+    "context": {
+      "last_close": 0.28259,
+      "bars": 13,
+      "date_range": "2025-05-31 ~ 2026-05-31",
+      "ma10": 0.094267,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 1.9978, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "last_candle": {"type": "doji", "body_pct": 0.2412, "vol_rank_30d": 0.538},
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.6752,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.09, "resistance": 0.90},
+      "pattern": "펌프 후 하락",
+      "recent_action": "1M 13봉 극히 짧은 history. 4~5월 급등 후 현재 고점 -68%. MA10에서 +200% 위이나 이는 MA10이 아직 상승을 따라잡는 중."
+    }
+  },
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.28259,
+      "bars": 54,
+      "date_range": "2025-05-19 ~ 2026-05-25",
+      "ma10": 0.237818,
+      "ma20": 0.139814,
+      "ma50": 0.079131,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.1883, "ma20_pct": 1.0212, "ma50_pct": 2.5712},
+      "last_candle": {"type": "bear", "body_pct": 0.1098, "vol_rank_30d": 0.0},
+      "ret_30d": 11.0868,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.6752,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.20, "resistance": 0.90},
+      "pattern": "정배열이나 고점 붕괴",
+      "recent_action": "1W 정배열 형태이나 30d +1100%의 극단적 펌프 후 -68% 하락 중. 최근 주봉 음봉, 거래량 거의 없음(vol_rank 0.0). 전형적 parabolic 붕괴."
+    }
+  },
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "breaking",
+    "volume_flag": "distribution_suspect",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.28259,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.39408,
+      "ma20": 0.477767,
+      "ma50": 0.271478,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.2829, "ma20_pct": -0.4085, "ma50_pct": 0.0409},
+      "last_candle": {"type": "bear", "body_pct": 0.1098, "vol_rank_30d": 0.167},
+      "ret_30d": 0.5512,
+      "ret_90d": 6.7295,
+      "from_period_high_pct": -0.6752,
+      "vol_avg_recent_vs_prior": 3.265
+    },
+    "observations": {
+      "key_levels": {"support": 0.20, "resistance": 0.40},
+      "pattern": "급락 후 MA50 지지",
+      "recent_action": "1D에서 급등 후 MA10/MA20 하향 돌파, MA50 부근 0.27에서 지지. 거래량 prior 대비 3.3배 증가는 distribution 가능성. 90d +673%의 극단적 이력."
+    }
+  },
+  "tf_consistency": "충돌",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "parabolic+pump_dump 붕괴 진행 중, -68% 하락 및 distribution_suspect — 재진입 시기 아님.",
+  "risk_flags": ["parabolic", "drawdown_deep", "low_history", "pump_dump_trace", "distribution_suspect"],
+  "charts": {"1m": "SKYAIUSDT_1m.png", "1w": "SKYAIUSDT_1w.png", "1d": "SKYAIUSDT_1d.png"}
+}

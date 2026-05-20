@@ -1,0 +1,107 @@
+{
+  "symbol": "ETHUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T17:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2.1},
+  "tf_1m": {
+    "state": "B4",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 2111.05,
+      "bars": 82,
+      "date_range": "2019-08-31 ~ 2026-05-31",
+      "ma10": 2922.559,
+      "ma20": 2832.184,
+      "ma50": 2416.6702,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2777, "ma20_pct": -0.2546, "ma50_pct": -0.1265},
+      "last_candle": {"type": "bear", "body_pct": 0.069, "vol_rank_30d": 0.0, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 0.609, "price_range_5bar_pct": 0.7886, "accumulation_score": 0.0},
+      "ret_30d": 0.0292,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.5741,
+      "vol_avg_recent_vs_prior": 2.524
+    },
+    "observations": {
+      "key_levels": {"support": 1800, "resistance": 2500},
+      "pattern": "월봉 전 고점 하방 이탈",
+      "recent_action": "고점(5000) 대비 -57% 하락, 월봉 전 MA 전체 하방 이탈 상태. vol_avg_recent 2.5x는 최근 거래량 급증이나 하락 압력 동반."
+    }
+  },
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": "breaking",
+    "volume_flag": "dry",
+    "confidence": "high",
+    "context": {
+      "last_close": 2111.05,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 2219.044,
+      "ma20": 2303.6745,
+      "ma50": 3060.292,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0487, "ma20_pct": -0.0836, "ma50_pct": -0.3102},
+      "last_candle": {"type": "doji", "body_pct": 0.0085, "vol_rank_30d": 0.0, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 0.57, "price_range_5bar_pct": 0.1639, "accumulation_score": 0.0},
+      "ret_30d": -0.4874,
+      "ret_90d": -0.1676,
+      "from_period_high_pct": -0.5741,
+      "vol_avg_recent_vs_prior": 0.371
+    },
+    "observations": {
+      "key_levels": {"support": 1800, "resistance": 2300},
+      "pattern": "주봉 역배열 낙폭 과대",
+      "recent_action": "MA10 아래서 주봉 doji 형성, 거래량 급감(0.37x). 단기 낙폭이 30d -49%로 과도하나 추세는 여전히 하방."
+    }
+  },
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "bounce_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 2111.05,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 2229.789,
+      "ma20": 2273.339,
+      "ma50": 2260.8702,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0533, "ma20_pct": -0.0714, "ma50_pct": -0.0663},
+      "last_candle": {"type": "doji", "body_pct": 0.0085, "vol_rank_30d": 0.367, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 1.058, "price_range_5bar_pct": 0.1054, "accumulation_score": 0.0},
+      "ret_30d": -0.0669,
+      "ret_90d": 0.0797,
+      "from_period_high_pct": -0.461,
+      "vol_avg_recent_vs_prior": 0.79
+    },
+    "observations": {
+      "key_levels": {"support": 2000, "resistance": 2300},
+      "pattern": "MA tight 수렴 대기",
+      "recent_action": "일봉 MA10/20/50가 모두 2250 근처로 tight 수렴. 현재 전부 하방에서 doji, 방향 결정 임박 국면."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "월봉·주봉 B4 하락 중이며 일봉만 B3 반등 탐색 — 상위 TF 추세 확인 전 진입 불가",
+  "risk_flags": ["drawdown_deep"],
+  "charts": {
+    "1m": "data/cache/crypto/visual_review/charts/ETHUSDT/20260520/ETHUSDT_1m.png",
+    "1w": "data/cache/crypto/visual_review/charts/ETHUSDT/20260520/ETHUSDT_1w.png",
+    "1d": "data/cache/crypto/visual_review/charts/ETHUSDT/20260520/ETHUSDT_1d.png"
+  }
+}

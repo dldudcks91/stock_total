@@ -1,0 +1,32 @@
+{
+  "symbol": "NVDA",
+  "reviewed_at": "2026-05-20T15:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {
+    "state": "A2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "note": "월봉 기준 2023년 이후 MA10/20/50 완전 정배열 상승 지속. 최근 몇 달은 MA10 근처에서 등락하며 추세 유지 중."
+  },
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "note": "주봉도 정배열 상승 추세 유지. 최근 수주 MA10 터치 후 반등 시도 중이며 MA20 이탈 없음."
+  },
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "acceleration",
+    "volume_flag": "normal",
+    "note": "일봉에서 2026년 4월 이후 급격한 상승 가속 구간 진입. MA10/20이 상향 확산 중이고 거래량도 수반."
+  },
+  "tf_consistency": "정합",
+  "verdict": "pass",
+  "verdict_reason": "전 타임프레임 A2 정합. 단 일봉 가속 국면으로 단기 과열 주의하며 눌림 시 매수 고려.",
+  "charts": {
+    "1m": "charts/NVDA/20260520/NVDA_1m.png",
+    "1w": "charts/NVDA/20260520/NVDA_1w.png",
+    "1d": "charts/NVDA/20260520/NVDA_1d.png"
+  },
+  "schema_version": 1
+}

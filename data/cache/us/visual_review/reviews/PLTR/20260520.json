@@ -1,0 +1,32 @@
+{
+  "symbol": "PLTR",
+  "reviewed_at": "2026-05-20T15:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {
+    "state": "A3",
+    "micro_action": null,
+    "volume_flag": "normal",
+    "note": "월봉 기준 2024년 말~2025년 초 급등 후 $150~$200 구간 횡보, 신고가 갱신 실패하며 MA10 하향 수렴 중."
+  },
+  "tf_1w": {
+    "state": "A4",
+    "micro_action": null,
+    "volume_flag": "normal",
+    "note": "주봉에서 고점($200) 이후 MA20 하향 이탈 + 반등 실패로 하락 첫 시도 확인, MA10/20 역배열 전환."
+  },
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "note": "일봉에서 MA10/20/50 역배열 + 하락 지속, $200 고점 대비 $130 수준으로 약 35% 하락 진행."
+  },
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "1M A3 횡보 전환, 1W A4 하락 첫 확인, 1D B2 하락 추세로 전 TF 약세 정합, 바닥 확인 전 진입 불가.",
+  "charts": {
+    "1m": "charts/PLTR/20260520/PLTR_1m.png",
+    "1w": "charts/PLTR/20260520/PLTR_1w.png",
+    "1d": "charts/PLTR/20260520/PLTR_1d.png"
+  },
+  "schema_version": 1
+}

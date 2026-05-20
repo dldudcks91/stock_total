@@ -1,0 +1,100 @@
+{
+  "symbol": "TAOUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T16:35:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2},
+  "tf_1m": {
+    "state": "B3",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 257.05,
+      "bars": 26,
+      "date_range": "2024-04-30 ~ 2026-05-31",
+      "ma10": 279.977,
+      "ma20": 343.7855,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0819, "ma20_pct": -0.2523, "ma50_pct": 0.0},
+      "last_candle": {"type": "doji", "body_pct": 0.0315, "vol_rank_30d": 0.5},
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.655,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 200.0, "resistance": 400.0},
+      "pattern": "하락 중",
+      "recent_action": "1M에서 ATH(~750) 대비 -66% 구간. MA10/MA20 모두 하향, 가격 아래 위치. 최근 월봉 doji로 방향 결정 미정."
+    }
+  },
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "bounce_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 257.05,
+      "bars": 111,
+      "date_range": "2024-04-15 ~ 2026-05-25",
+      "ma10": 279.351,
+      "ma20": 247.4555,
+      "ma50": 304.4486,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0798, "ma20_pct": 0.0388, "ma50_pct": -0.1557},
+      "last_candle": {"type": "bear", "body_pct": 0.0167, "vol_rank_30d": 0.0},
+      "ret_30d": -0.3806,
+      "ret_90d": -0.0818,
+      "from_period_high_pct": -0.655,
+      "vol_avg_recent_vs_prior": 1.187
+    },
+    "observations": {
+      "key_levels": {"support": 200.0, "resistance": 380.0},
+      "pattern": "혼합 배열 반등 실패",
+      "recent_action": "1W 혼합 배열, MA20(247) 소폭 위에서 음봉. 30d -38% 단기 급락 후 반등 시도이나 MA10(279) 저항에서 밀림. 거래량 낮음(0.0)."
+    }
+  },
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 257.05,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 288.953,
+      "ma20": 289.8745,
+      "ma50": 278.5398,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "down"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1104, "ma20_pct": -0.1132, "ma50_pct": -0.0772},
+      "last_candle": {"type": "bear", "body_pct": 0.0167, "vol_rank_30d": 0.0},
+      "ret_30d": 0.0731,
+      "ret_90d": 0.4018,
+      "from_period_high_pct": -0.523,
+      "vol_avg_recent_vs_prior": 0.426
+    },
+    "observations": {
+      "key_levels": {"support": 200.0, "resistance": 350.0},
+      "pattern": "MA 하향 돌파",
+      "recent_action": "1D에서 MA10/MA20/MA50 모두 하향 돌파, 혼합 배열로 추세 약화. 30d +7%이나 거래량 0.43배로 저조. 최근 음봉으로 하락 재개 가능성."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1D/1W/1M 모두 하락 압력, MA 하향 돌파 및 거래량 감소 — drawdown_deep 상태로 추세 전환 미확인.",
+  "risk_flags": ["drawdown_deep"],
+  "charts": {"1m": "TAOUSDT_1m.png", "1w": "TAOUSDT_1w.png", "1d": "TAOUSDT_1d.png"}
+}

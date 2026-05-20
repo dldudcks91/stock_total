@@ -1,0 +1,32 @@
+{
+  "symbol": "INTC",
+  "reviewed_at": "2026-05-20T15:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {
+    "state": "B5",
+    "micro_action": null,
+    "volume_flag": "normal",
+    "note": "월봉 기준 2022년 고점($70) 이후 하락 추세 지속했으나 2025년 하반기 이후 대형 양봉으로 MA20 상향 돌파 시도, B5 전환 확인 중."
+  },
+  "tf_1w": {
+    "state": "B5",
+    "micro_action": null,
+    "volume_flag": "normal",
+    "note": "주봉에서도 장기 하락 후 MA20 상향 돌파 + 거래량 급증으로 B5 전환 신호 발생, 아직 확인 단계."
+  },
+  "tf_1d": {
+    "state": "A1",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "note": "일봉은 2026년 초부터 MA10/20/50 정배열로 뚜렷한 상승 초기 구간, MA50까지 완전 배열됨."
+  },
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_reason": "1D는 A1 상승 초기로 강하나 1M/1W는 아직 B5 전환 확인 단계, 큰 그림에서 하락 사이클 탈출 여부 미확정으로 관망 후 월봉 종가 확인 필요.",
+  "charts": {
+    "1m": "charts/INTC/20260520/INTC_1m.png",
+    "1w": "charts/INTC/20260520/INTC_1w.png",
+    "1d": "charts/INTC/20260520/INTC_1d.png"
+  },
+  "schema_version": 1
+}

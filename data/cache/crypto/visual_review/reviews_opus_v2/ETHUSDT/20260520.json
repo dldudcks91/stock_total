@@ -1,0 +1,107 @@
+{
+  "symbol": "ETHUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T16:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-opus-4-7", "agent_id": null, "schema_version": 2},
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "distribution_suspect",
+    "confidence": "high",
+    "context": {
+      "last_close": 2111.05,
+      "bars": 82,
+      "date_range": "2019-08-31 ~ 2026-05-31",
+      "ma10": 2922.559,
+      "ma20": 2832.184,
+      "ma50": 2416.6702,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2777, "ma20_pct": -0.2546, "ma50_pct": -0.1265},
+      "last_candle": {"type": "bear", "body_pct": 0.069, "vol_rank_30d": 0.0},
+      "ret_30d": 0.0292,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.5741,
+      "vol_avg_recent_vs_prior": 2.524
+    },
+    "observations": {
+      "key_levels": {"support": 1800, "resistance": 3000},
+      "pattern": "재상승 실패",
+      "recent_action": "5k 전고점 대비 -57%, 월봉 MA들 아래로 깊은 이격."
+    }
+  },
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "dry",
+    "confidence": "high",
+    "context": {
+      "last_close": 2111.05,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 2219.044,
+      "ma20": 2303.6745,
+      "ma50": 3060.292,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0487, "ma20_pct": -0.0836, "ma50_pct": -0.3102},
+      "last_candle": {"type": "doji", "body_pct": 0.0085, "vol_rank_30d": 0.0},
+      "ret_30d": -0.4874,
+      "ret_90d": -0.1676,
+      "from_period_high_pct": -0.5741,
+      "vol_avg_recent_vs_prior": 0.371
+    },
+    "observations": {
+      "key_levels": {"support": 1900, "resistance": 2500},
+      "pattern": "역배열 횡보",
+      "recent_action": "주봉 MA50 아래 깊은 약세, MA10/20 부근 반등 시도 중."
+    }
+  },
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 2111.05,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 2229.789,
+      "ma20": 2273.339,
+      "ma50": 2260.8702,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0533, "ma20_pct": -0.0714, "ma50_pct": -0.0663},
+      "last_candle": {"type": "doji", "body_pct": 0.0085, "vol_rank_30d": 0.367},
+      "ret_30d": -0.0669,
+      "ret_90d": 0.0797,
+      "from_period_high_pct": -0.461,
+      "vol_avg_recent_vs_prior": 0.79
+    },
+    "observations": {
+      "key_levels": {"support": 2000, "resistance": 2400},
+      "pattern": "MA tight 수렴",
+      "recent_action": "2월 저점에서 반등 후 MA들 수렴 중, 방향 미정."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "월봉/주봉 깊은 역배열, 일봉 베이스도 약함 — BTC 대비 상대적 약세.",
+  "risk_flags": ["drawdown_deep"],
+
+  "charts": {
+    "1m": "charts/ETHUSDT/20260520/ETHUSDT_1m.png",
+    "1w": "charts/ETHUSDT/20260520/ETHUSDT_1w.png",
+    "1d": "charts/ETHUSDT/20260520/ETHUSDT_1d.png"
+  }
+}

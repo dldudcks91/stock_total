@@ -1,0 +1,32 @@
+{
+  "symbol": "NFLX",
+  "reviewed_at": "2026-05-20T15:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {
+    "state": "A4",
+    "micro_action": null,
+    "volume_flag": "normal",
+    "note": "월봉 기준 2024년 고점($140) 이후 하락 전환, MA10/20 역배열 진행 중으로 하락 첫 시도 확인 구간."
+  },
+  "tf_1w": {
+    "state": "A5",
+    "micro_action": null,
+    "volume_flag": "normal",
+    "note": "주봉에서 고점 이후 MA20 하향 기울기 + 반등 시도 후 재하락, A5 하락 재확인 국면."
+  },
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "note": "일봉에서 MA10/20/50 역배열 + 하락 추세 지속, 3월 반등 후 다시 $90 부근으로 하락 재개."
+  },
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "1M A4, 1W A5, 1D B2로 전 타임프레임에서 하락 국면, 반등 랠리도 소화 후 다시 하락하는 전형적 약세 패턴.",
+  "charts": {
+    "1m": "charts/NFLX/20260520/NFLX_1m.png",
+    "1w": "charts/NFLX/20260520/NFLX_1w.png",
+    "1d": "charts/NFLX/20260520/NFLX_1d.png"
+  },
+  "schema_version": 1
+}

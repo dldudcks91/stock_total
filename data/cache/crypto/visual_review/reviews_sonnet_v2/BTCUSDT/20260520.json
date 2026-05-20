@@ -1,0 +1,104 @@
+{
+  "symbol": "BTCUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T17:10:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2},
+  "tf_1m": {
+    "state": "B3",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "dry",
+    "confidence": "medium",
+    "context": {
+      "last_close": 76803.8,
+      "bars": 83,
+      "date_range": "2019-07-31 ~ 2026-05-31",
+      "ma10": 87668.74,
+      "ma20": 91386.17,
+      "ma50": 58902.232,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.1239, "ma20_pct": -0.1596, "ma50_pct": 0.3039},
+      "last_candle": {"type": "doji", "body_pct": 0.0065, "vol_rank_30d": 0.0},
+      "ret_30d": 1.0368,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.3913,
+      "vol_avg_recent_vs_prior": 0.897
+    },
+    "observations": {
+      "key_levels": {"support": 70000, "resistance": 92000},
+      "pattern": "하락 후 기저",
+      "recent_action": "월봉 기준 2025년 고점(~125k) 대비 -39% 구간. MA10이 꺾이며 MA20 아래로 내려왔고, 현재 MA50(~59k)과 MA20 사이 중간 위치에서 도지 형성 — 월봉 방향성 미결."
+    }
+  },
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "bounce_ma10",
+    "volume_flag": "dry",
+    "confidence": "medium",
+    "context": {
+      "last_close": 76803.8,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 74920.77,
+      "ma20": 75782.695,
+      "ma50": 94231.238,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0251, "ma20_pct": 0.0135, "ma50_pct": -0.1849},
+      "last_candle": {"type": "doji", "body_pct": 0.002, "vol_rank_30d": 0.0},
+      "ret_30d": -0.3267,
+      "ret_90d": 0.2997,
+      "from_period_high_pct": -0.3913,
+      "vol_avg_recent_vs_prior": 0.502
+    },
+    "observations": {
+      "key_levels": {"support": 70000, "resistance": 88000},
+      "pattern": "역배열 반등 시도",
+      "recent_action": "주봉 MA50이 여전히 ~94k로 대세 하락 기울기. 가격은 MA10/20 위로 살짝 회복했지만 도지+거래량 절반 수준으로 힘 없는 반등."
+    }
+  },
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 76803.8,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 79304.66,
+      "ma20": 79378.455,
+      "ma50": 75805.55,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0315, "ma20_pct": -0.0324, "ma50_pct": 0.0132},
+      "last_candle": {"type": "doji", "body_pct": 0.002, "vol_rank_30d": 0.3},
+      "ret_30d": 0.0411,
+      "ret_90d": 0.1561,
+      "from_period_high_pct": -0.3093,
+      "vol_avg_recent_vs_prior": 0.829
+    },
+    "observations": {
+      "key_levels": {"support": 74000, "resistance": 82000},
+      "pattern": "MA10/20 하향 이탈",
+      "recent_action": "2026년 2월 저점(~62k) 이후 회복세를 보였으나 4월 고점(~88k) 이후 MA10/20을 하향 이탈. MA50은 75.8k에서 지지 역할 기대 중."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "전 TF B3 하락 조정 중이나 MA50 지지권 근처로 반등 여부 확인 필요",
+  "risk_flags": ["drawdown_deep"],
+  "charts": {
+    "1m": "charts/BTCUSDT/20260520/BTCUSDT_1m.png",
+    "1w": "charts/BTCUSDT/20260520/BTCUSDT_1w.png",
+    "1d": "charts/BTCUSDT/20260520/BTCUSDT_1d.png"
+  }
+}

@@ -1,0 +1,107 @@
+{
+  "symbol": "ADAUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T17:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2.1},
+  "tf_1m": {
+    "state": "A5",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.2481,
+      "bars": 70,
+      "date_range": "2020-08-31 ~ 2026-05-31",
+      "ma10": 0.42838,
+      "ma20": 0.573155,
+      "ma50": 0.482658,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.4208, "ma20_pct": -0.5671, "ma50_pct": -0.486},
+      "last_candle": {"type": "doji", "body_pct": 0.0085, "vol_rank_30d": 0.333, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 1.393, "price_range_5bar_pct": 0.8742, "accumulation_score": 0.0},
+      "ret_30d": -0.3397,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9201,
+      "vol_avg_recent_vs_prior": 3.349
+    },
+    "observations": {
+      "key_levels": {"support": 0.22, "resistance": 0.45},
+      "pattern": "월봉 고점($3.1) 대비 -92% 붕괴. 전체 MA 역배열+하락. 최근 월봉 거래량 3.3배 증가는 분배 완결 또는 패닉셀 가능성.",
+      "recent_action": "2025년 사이클 피크 이후 지속 하락. 현재 2021년 바닥 수준에 근접."
+    }
+  },
+  "tf_1w": {
+    "state": "A5",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.2481,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 0.25243,
+      "ma20": 0.27853,
+      "ma50": 0.50235,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0172, "ma20_pct": -0.1093, "ma50_pct": -0.5061},
+      "last_candle": {"type": "bear", "body_pct": 0.0137, "vol_rank_30d": 0.0, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 0.558, "price_range_5bar_pct": 0.2031, "accumulation_score": 0.0},
+      "ret_30d": -0.6277,
+      "ret_90d": -0.2612,
+      "from_period_high_pct": -0.8132,
+      "vol_avg_recent_vs_prior": 0.624
+    },
+    "observations": {
+      "key_levels": {"support": 0.22, "resistance": 0.30},
+      "pattern": "주봉 완전 역배열. 최근 4주 -62.8%. MA10(0.252) 하방 돌파 진행 중.",
+      "recent_action": "주봉 거래량 축소(0.624배)되며 매수 공백 상태."
+    }
+  },
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "bounce_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.2481,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.26359,
+      "ma20": 0.26072,
+      "ma50": 0.253374,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0588, "ma20_pct": -0.0484, "ma50_pct": -0.0208},
+      "last_candle": {"type": "bear", "body_pct": 0.0137, "vol_rank_30d": 0.067, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 0.826, "price_range_5bar_pct": 0.1112, "accumulation_score": 0.0},
+      "ret_30d": 0.0244,
+      "ret_90d": -0.0925,
+      "from_period_high_pct": -0.5988,
+      "vol_avg_recent_vs_prior": 0.824
+    },
+    "observations": {
+      "key_levels": {"support": 0.24, "resistance": 0.27},
+      "pattern": "일봉 정배열이나 가격이 MA 전체 하방. MA50(0.253) 지지선에서 등락. 30일 +2.4%로 소폭 안정화 구간.",
+      "recent_action": "4~5월 0.24~0.28 박스권. 거래량 축소(0.824배)로 방향성 결정 대기."
+    }
+  },
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "월봉/주봉 A5(강한 하락) vs 일봉 B4(눌림) 충돌. 상위 타임프레임이 압도적 하락 추세. 일봉 단기 정배열은 기술적 반등 수준이며, 월봉 -92% 붕괴 + 주봉 역배열로 진입 근거 없음.",
+  "risk_flags": ["drawdown_deep"],
+  "charts": {
+    "1m": "charts/ADAUSDT/20260520/ADAUSDT_1m.png",
+    "1w": "charts/ADAUSDT/20260520/ADAUSDT_1w.png",
+    "1d": "charts/ADAUSDT/20260520/ADAUSDT_1d.png"
+  }
+}

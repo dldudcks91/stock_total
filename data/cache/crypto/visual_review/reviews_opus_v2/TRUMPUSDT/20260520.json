@@ -1,0 +1,104 @@
+{
+  "symbol": "TRUMPUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T16:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-opus-4-7", "agent_id": null, "schema_version": 2},
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "distribution_suspect",
+    "confidence": "high",
+    "context": {
+      "last_close": 2.014,
+      "bars": 17,
+      "date_range": "2025-01-31 ~ 2026-05-31",
+      "ma10": 4.9914,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.5965, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "last_candle": {"type": "bear", "body_pct": 0.1817, "vol_rank_30d": 0.529},
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9777,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 2.0, "resistance": 8.0},
+      "pattern": "long_term_downtrend",
+      "recent_action": "90 ATH → 2.0, -97.7% 지속 감쇠."
+    }
+  },
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 2.014,
+      "bars": 71,
+      "date_range": "2025-01-20 ~ 2026-05-25",
+      "ma10": 2.6158,
+      "ma20": 3.2937,
+      "ma50": 5.95462,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2301, "ma20_pct": -0.3885, "ma50_pct": -0.6618},
+      "last_candle": {"type": "bear", "body_pct": 0.0293, "vol_rank_30d": 0.0},
+      "ret_30d": -0.7176,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9777,
+      "vol_avg_recent_vs_prior": 1.068
+    },
+    "observations": {
+      "key_levels": {"support": 1.5, "resistance": 4.0},
+      "pattern": "stage_downtrend",
+      "recent_action": "주봉 역배열 + MA 전체 하향, 바닥 신호 없음."
+    }
+  },
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 2.014,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 2.2686,
+      "ma20": 2.3216,
+      "ma50": 2.62496,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1122, "ma20_pct": -0.1325, "ma50_pct": -0.2328},
+      "last_candle": {"type": "bear", "body_pct": 0.0293, "vol_rank_30d": 0.133},
+      "ret_30d": -0.2789,
+      "ret_90d": -0.4034,
+      "from_period_high_pct": -0.7895,
+      "vol_avg_recent_vs_prior": 1.878
+    },
+    "observations": {
+      "key_levels": {"support": 1.8, "resistance": 3.0},
+      "pattern": "downtrend",
+      "recent_action": "9 → 2 매끄러운 하향, MA 역배열 지속."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF 역배열 + 지속 하락, 바닥 신호 없음.",
+  "risk_flags": ["drawdown_deep", "low_history"],
+  "charts": {
+    "1m": "charts/TRUMPUSDT/20260520/TRUMPUSDT_1m.png",
+    "1w": "charts/TRUMPUSDT/20260520/TRUMPUSDT_1w.png",
+    "1d": "charts/TRUMPUSDT/20260520/TRUMPUSDT_1d.png"
+  }
+}

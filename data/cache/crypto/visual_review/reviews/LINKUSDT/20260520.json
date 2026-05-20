@@ -1,0 +1,107 @@
+{
+  "symbol": "LINKUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T17:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2.1},
+  "tf_1m": {
+    "state": "A4",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 9.443,
+      "bars": 70,
+      "date_range": "2020-08-31 ~ 2026-05-31",
+      "ma10": 13.3019,
+      "ma20": 14.77185,
+      "ma50": 12.04678,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2901, "ma20_pct": -0.3607, "ma50_pct": -0.2161},
+      "last_candle": {"type": "doji", "body_pct": 0.0364, "vol_rank_30d": 0.267, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 0.842, "price_range_5bar_pct": 0.7686, "accumulation_score": 0.0},
+      "ret_30d": -0.3443,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8217,
+      "vol_avg_recent_vs_prior": 2.182
+    },
+    "observations": {
+      "key_levels": {"support": 8.0, "resistance": 14.0},
+      "pattern": "고점($52) 대비 -82%. 월봉 전체 MA 하향. 최근 월봉 거래량 2.2배 증가는 분배 또는 패닉 매물.",
+      "recent_action": "2025년 고점($30) 이후 지속 하락. 2021년 이전 가격대 복귀 중."
+    }
+  },
+  "tf_1w": {
+    "state": "B5",
+    "micro_action": "bounce_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 9.443,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 9.3446,
+      "ma20": 9.74355,
+      "ma50": 14.33318,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0105, "ma20_pct": -0.0308, "ma50_pct": -0.3412},
+      "last_candle": {"type": "bear", "body_pct": 0.0166, "vol_rank_30d": 0.0, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 0.466, "price_range_5bar_pct": 0.2078, "accumulation_score": 0.0},
+      "ret_30d": -0.4813,
+      "ret_90d": -0.1215,
+      "from_period_high_pct": -0.6949,
+      "vol_avg_recent_vs_prior": 0.429
+    },
+    "observations": {
+      "key_levels": {"support": 8.5, "resistance": 10.0},
+      "pattern": "주봉 역배열. MA10(9.34) 소폭 상회. 거래량 최저(0위)로 관심 없음. 최근 4주 -48%.",
+      "recent_action": "주봉 거래량 0.43배 급감. 바닥 형성 또는 지속 하락 중 확인 어려움."
+    }
+  },
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "bounce_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 9.443,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 10.0664,
+      "ma20": 9.8405,
+      "ma50": 9.40722,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0619, "ma20_pct": -0.0404, "ma50_pct": 0.0038},
+      "last_candle": {"type": "bear", "body_pct": 0.0166, "vol_rank_30d": 0.4, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 1.045, "price_range_5bar_pct": 0.1328, "accumulation_score": 0.0},
+      "ret_30d": 0.0427,
+      "ret_90d": 0.0983,
+      "from_period_high_pct": -0.4652,
+      "vol_avg_recent_vs_prior": 0.94
+    },
+    "observations": {
+      "key_levels": {"support": 9.4, "resistance": 10.5},
+      "pattern": "일봉 정배열 유지. MA50(9.41) 직상 위치. 30일 +4.3%, 90일 +9.8%로 안정적 회복세. 거래량 정상(0.94배).",
+      "recent_action": "2월 저점($8.5) 이후 완만한 회복. MA50 지지 후 현재 MA20(9.84) 재돌파 시도 중."
+    }
+  },
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "일봉 정배열 + MA50 지지 + 안정적 회복세는 긍정적. 그러나 주봉/월봉 역배열로 상위 추세 여전히 하락. 일봉 단독 긍정 구조이나 상위 프레임 저항 강함. 주봉 MA20(9.74) 위로 안착 확인 시 pass 검토 가능.",
+  "risk_flags": ["drawdown_deep"],
+  "charts": {
+    "1m": "charts/LINKUSDT/20260520/LINKUSDT_1m.png",
+    "1w": "charts/LINKUSDT/20260520/LINKUSDT_1w.png",
+    "1d": "charts/LINKUSDT/20260520/LINKUSDT_1d.png"
+  }
+}

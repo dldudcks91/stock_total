@@ -1,17 +1,18 @@
 ---
 name: crypto-visual-review
-description: Bitget 코인 차트(1W/1D, KR/US 종목은 1M 추가)를 MA10/20/50 오버레이로 렌더링하고, Claude 가 직접 PNG 를 시각 판독해 사이클 단계(A1~A5 / B1~B5 / C1)·micro_action·volume_flag 로 채점·기록하는 스킬. 백테스트 룰만으로 못 거르는 시각 패턴(분배 의심, 펌프&덤프 흔적, 좀비 의심, TF 충돌)을 잡아내기 위함. 모드: 단일(single) / 신호 트리거(signals) / 전수 베이스라인(refresh). 사용자가 "차트 보고 판정", "시각 검증", "visual review", "사이클 단계", "코인 훑어줘" 라고 할 때 발동.
+description: 크립토·KR·US 차트(1M/1W/1D)를 MA10/20/50 오버레이로 렌더링하고, Claude 가 직접 PNG 를 시각 판독해 사이클 단계(A1~A5/B1~B5/C1)·micro_action(9 enum, bounce 포함)·volume_flag(5 enum, accumulation 포함)·risk_flags 로 채점·기록하는 스킬. schema v2.1. facts.json 으로 객관 사실 자동 추출 + Claude 시각 판정 결합. 매집/분배/펌프&덤프/좀비/TF 충돌 시각 패턴 모두 잡음. 모드: 단일(single)/신호(signals)/전수(refresh). 사용자가 "차트 보고 판정", "시각 검증", "visual review", "사이클 단계", "매집봉", "코인 훑어줘" 라고 할 때 발동.
 ---
 
-# /crypto-visual-review — Bitget 코인 시각 검증 스킬
+# /crypto-visual-review — 시각 검증 스킬 (schema v2.1)
 
-백테스트 룰만으론 못 거르는 케이스(펌프&덤프, 분배 의심, 좀비, TF 충돌)를 **Claude 가 차트를 PNG 로 직접 보고** 사이클·단계로 채점한다. 결과는 표준 위치에 누적되어 시계열 비교 가능.
+백테스트 룰만으론 못 잡는 패턴(매집/분배/펌프&덤프/좀비/TF 충돌)을 **Claude 가 차트 PNG 를 직접 보고** 사이클·단계로 채점한다. 객관적 사실은 facts.json 으로 자동 추출하고 Claude 는 그것을 기반으로 시각 정성 판단을 보강한다. 결과는 표준 위치에 누적되어 시계열 비교 가능.
 
 ## 1. 목적
 
-- 백테스트 신호의 보완: 같은 종목·시그널이라도 차트 모양·MA 행동·거래량 분배 패턴은 룰로 표현하기 어렵다. 사람(또는 Claude)이 PNG 한 장 봐야 잡힌다.
-- **자동매매 X — 추천 시그널 전용**. 시각 검증은 buy zone 후보 좁히기와 진입 회피용.
-- 사이클 라벨(A/B) + 단계(1~5) 로 모든 종목을 동일 프레임으로 비교 가능하게.
+- 백테스트 신호의 보완: 룰로 표현 어려운 시각 패턴(매집봉, 분배, 페러볼릭)을 잡음.
+- **자동매매 X — 추천 시그널 전용**.
+- 사이클 라벨(A/B) + 단계(1~5) + 보조 enum 으로 모든 종목 동일 프레임 비교.
+- **PNG 가 git 동기화 안 되어도** review JSON 만으로 당시 차트 상태 재구성 가능 (schema v2.1).
 
 ## 2. 트리거 / 모드
 
@@ -27,370 +28,459 @@ description: Bitget 코인 차트(1W/1D, KR/US 종목은 1M 추가)를 MA10/20/5
 | `signals` | 오늘 신호 발화 종목 (5~20) | 매일/매주 |
 | `refresh` | 전체 universe (~400) | 1회 베이스라인 + 월 1회 갱신 |
 
-## 3. 운영 사이클 (3 phase)
+## 3. 자산별 지원
 
-| Phase | 빈도 | 모수 | 소요 | 산출 |
-|---|---|---|---|---|
-| **0. 베이스라인** | 1회 (시작) | 전체 ~400 | 3~5h (분할) | `coin_state.parquet` 초기화 |
-| **1. 신호 트리거** | 매일/매주 | 5~20 | 10~30m | 신호 종목만, `reviews/` 추가 |
-| **2. 정기 갱신** | 월 1회 | 전체 | 3~5h | 전체 상태 업데이트 |
-
-## 4. 저장 구조
-
-```
-data/cache/crypto/visual_review/
-├── coin_state.parquet           # 종목별 최신 상태 (한 줄 / symbol)
-├── reviews/
-│   └── {SYMBOL}/
-│       └── {YYYYMMDD}.json      # 시점별 판정 (history)
-├── charts/
-│   └── {SYMBOL}/
-│       └── {YYYYMMDD}/
-│           ├── {SYMBOL}_1w.png  # 주봉 차트
-│           └── {SYMBOL}_1d.png  # 일봉 차트 (history 짧으면 1d 메인)
-└── signals.parquet              # 백테스트 신호 + 시각판정 결합
-```
-
-## 5. 차트 렌더링 규격
-
-### 5.1 자산별 default TF 세트
-
-| 자산 | history 길이 | TF 세트 | 비고 |
+| 자산 | history 일반 | TF 세트 | facts/review 경로 |
 |---|---|---|---|
-| **Crypto** | 일반 | **1W + 1D** | 사이클 짧음, 24/7 |
-| Crypto | < 6개월 | 1D 만 | 1W 봉 수 부족 |
-| KR / US | 일반 | 1M + 1W + 1D | 사이클 김, 향후 확장 |
+| crypto | 1M+1W+1D | `data/cache/crypto/visual_review/` |
+| crypto < 6개월 | 1D 만 | (1M/1W bars < 임계값이면 자동 생략) |
+| KR / US | 1M+1W+1D | `data/cache/{kr,us}/visual_review/` |
 
-### 5.2 각 차트 공통 사양
+## 4. 7단계 분석 프로토콜 (Claude 가 따라야 할 순서)
+
+차트 분석은 항상 이 7단계로 진행. 각 단계 결과가 schema 의 특정 필드로 매핑.
+
+| # | 단계 | 보는 것 | 결과 → 필드 |
+|---|---|---|---|
+| **1** | 빅픽처 | 가격 범위, 전체 슬로프, 직전 고점 대비 | facts: `last_close`, `ret_30d/90d`, `from_period_high_pct` |
+| **2** | 추세 해부 | MA 정배열, MA 간격, MA 기울기, 가격-MA 거리 | facts: `ma_stack`, `ma_slopes`, `ma_spread`, `price_pos`, `dist_from_ma` |
+| **3** | 미시 행동 | 마지막 봉, 캔들 모양, 거래량 | facts: `last_candle` + Claude: `micro_action`, `volume_flag` |
+| **4** | 핵심 레벨 | 지지/저항선 | Claude: `observations.key_levels` |
+| **5** | 사이클 위치 | A/B 어느 단계? | Claude: `state` + `confidence` |
+| **6** | 위험 | 과열, DD, 이상 패턴 | facts: `auto_risk_flags` + Claude: 시각 보강 |
+| **7** | 액션 | 매수/관망/회피 | Claude: `tf_consistency`, `verdict`, `verdict_reason`, `verdict_confidence` |
+
+### 채점 워크플로
+
+```
+Step 0: facts.json 읽기 (단계 1, 2, 3-자동, 6-자동 결과)
+Step 1: PNG 보고 빅픽처 sanity check
+Step 2: MA 배열 + 가격 거리 확인 (facts 그대로 OK)
+Step 3: 마지막 봉·거래량 시각 확인 → micro_action, volume_flag 결정
+Step 4: 지지/저항 가격 픽 → observations.key_levels
+Step 5: 1~4 종합 → state (A1~B5/C1) + confidence
+Step 6: risk_flags = auto_risk_flags + 시각 보강
+Step 7: 모든 TF 종합 → tf_consistency, verdict, verdict_reason
+```
+
+## 5. 저장 구조
+
+```
+data/cache/{asset}/visual_review/
+├── coin_state.parquet           # 종목별 최신 상태 (한 줄 / symbol)
+├── reviews/                     # ★ git tracked
+│   └── {SYMBOL}/
+│       └── {YYYYMMDD}.json      # 시점별 판정 (v2.1 schema)
+└── charts/
+    └── {SYMBOL}/
+        └── {YYYYMMDD}/
+            ├── _facts.json      # ★ git tracked (객관 사실)
+            ├── {SYMBOL}_1m.png  # gitignored (재생성 가능)
+            ├── {SYMBOL}_1w.png  # gitignored
+            └── {SYMBOL}_1d.png  # gitignored
+```
+
+### git 정책
+
+```gitignore
+# .gitignore
+data/cache/*/visual_review/charts/**/*.png
+```
+
+PNG 는 큼 (~100KB × 3장 × 종목 수 = MB) + 재생성 가능. review JSON + facts.json 만 영구 보존하면 PNG 없어도 분석 재현 가능.
+
+## 6. 차트 렌더링 규격
+
+### 6.1 봉/MA/거래량
+
 - **봉 수**: 200 봉 고정 (history 부족하면 가용 전체)
-- **MA**: MA10 (gold) / MA20 (red) / MA50 (blue), thin (width 0.8)
+- **MA**: MA10 (gold) / MA20 (red) / MA50 (blue), width 0.8
 - **거래량 서브플롯**: 포함
 - **이미지**: 1280×720, dpi 110
-- **렌더 도구**: `mplfinance` (style=`charles`, type=`candle`)
-- **종목당 렌더 시간**: ~0.4초 (warmup 후)
+- **렌더 도구**: `mplfinance` (style=charles, type=candle)
+- **종목당 렌더 시간**: ~0.4초 (warmup 후) + facts.json 출력 ~0.05초
 
-### 5.3 MA 의미 (각 TF 별)
+### 6.2 history 부족 시 TF 자동 생략
+
+`render.py` 가 자동 처리:
+- bars < 10 인 TF 는 SKIP (PNG 미생성)
+- review JSON 에서 해당 tf block 생략
+- `tf_consistency` 는 가용 TF 만으로 평가 (또는 "분리")
+
+### 6.3 MA 의미
+
 - MA10 = 단기 추세선 (모멘텀)
 - MA20 = 중기 추세선 (메인 지지/저항)
 - MA50 = 장기 추세선 (큰 그림 지지/저항)
 
-### 5.4 헬퍼 스크립트
-초기 prototype 은 `.claude/skills/crypto-visual-review/_tmp/render_test.py` 에 있음. 정식 운영 시 `research/visual_review/render.py` 로 이전 권장.
+## 7. `_facts.json` 명세 (renderer 자동 출력)
 
-## 6. 채점 스키마 (핵심)
-
-### 6.1 `state` (필수, 11개 enum)
-
-**사이클 A — 상승 추세 (큰 그림이 위로)**
-
-| 값 | 시각 정의 |
-|---|---|
-| `A1` | 상승 출발. 변곡 직후 안정 상승 자리잡음. MA 정배열 진행, 가격이 MA20 위 안정. |
-| `A2` | 지속적 상승. MA10/20/50 완전 정배열 + 모두 우상향. 풀백마다 MA10/MA20 지지. |
-| `A3` | 상승 멈추고 횡보 (topping). 신고가 못 가고 박스, MA들 평탄해짐. |
-| `A4` | 하락 시도. MA20 아래 첫 음봉, 단 확정 안 됨 (다시 회복 가능). |
-| `A5` | 하락 retest 확정. 풀백이 MA20 에 막힘 + MA20 음 기울기 — 사이클 A 끝. |
-
-**사이클 B — 하락 추세 (큰 그림이 아래로)**
-
-| 값 | 시각 정의 |
-|---|---|
-| `B1` | 하락 시작. 피크 깬 첫 음봉 + 거래량 동반. |
-| `B2` | 지속적 하락. MA 역배열 + 모두 우하향. **좀비 코인도 여기 포함** (양봉 나오면 B4 로 전이). |
-| `B3` | 하락 멈추고 횡보 (base / 바닥 다지기). MA들 평탄·수렴, 가격 박스. |
-| `B4` | 상승 시도. MA20 위 첫 양봉 + 거래량 동반, 단 확정 안 됨. |
-| `B5` | 상승 retest 확정. 풀백이 MA20 에 받음 + MA20 양 기울기 — 사이클 B 끝. |
-
-**C — 분류 불가**
-
-| 값 | 시각 정의 |
-|---|---|
-| `C1` | 박스 (3년+ 방향 없는 횡보) / 펌프&덤프 / 비정상 패턴 / 신규 코인 1D 도 박스 |
-
-**판정 우선순위**:
-1. 큰 추세 방향 보고 A or B 결정
-2. 안정 단계(1, 2) vs 변환 단계(3, 4, 5) 판단
-3. 둘 다 명확 X 면 C1
-
-### 6.2 `micro_action` (선택, 6개 enum)
-
-안정 단계(A1/A2/B2/B3) 안에서 현재 단기 행동.
-
-| 값 | 의미 |
-|---|---|
-| `riding` | MA 위/아래 안정적, 풀백 없이 진행 |
-| `pullback_ma10` | MA10 닿고 반등 시도 (얕은 풀백) |
-| `pullback_ma20` | MA20 닿고 지지/저항 테스트 |
-| `pullback_ma50` | MA50 까지 깊은 풀백 |
-| `breaking` | MA50 도 깨고 추세 끝나는 중 |
-| `acceleration` | 가격 가속 (페러볼릭 상승, 거래량 폭증) |
-
-**언제 채움**: 안정 단계일 때만 의미 있음. 변환 단계(A3/A4/A5/B4/B5) 에는 `null`.
-
-### 6.3 `volume_flag` (선택, 4개 enum)
-
-| 값 | 의미 |
-|---|---|
-| `normal` | 거래량 정상, 추세에 부합 |
-| `distribution_suspect` | 가격 횡보인데 거래량 매도 우세 (분배 의심) |
-| `dry` | 거래대금 미미, 관심 빠짐 (좀비 의심) |
-| `pump_dump_trace` | 1봉 폭등 후 거래량 소멸 흔적 |
-
-**언제 채움**: 시각적으로 특이 패턴 보이면. 정상이면 `null` 또는 `normal`.
-
-### 6.4 `tf_consistency` (1종목 종합)
-
-TF 별 state 가 같은 방향 가리키는지.
-
-| 값 | 의미 |
-|---|---|
-| `정합` | 모든 TF 가 같은 사이클 (A 계열 or B 계열) + 비슷한 단계 |
-| `충돌` | 큰 TF 와 작은 TF 의 사이클이 다름 (예: 1W=B, 1D=A) |
-| `분리` | 같은 사이클이지만 한 TF stable, 다른 TF 변환 중 |
-
-### 6.5 `verdict` (최종 매매 판정)
-
-| 값 | 의미 |
-|---|---|
-| `pass` | 매매 적합 (buy zone) |
-| `watch` | 관망 (변곡 대기 / 단계 확인 필요) |
-| `skip` | 매매 회피 |
-| `reject` | 영구 제외 (좀비 + dry 거래량 / 펌프&덤프) |
-
-**기본 결정 룰** (예비안, 추후 정밀화):
-- 큰 TF state ∈ {A1, A2, B5} + tf_consistency=정합 → `pass`
-- 큰 TF state = B4 → `watch`
-- 큰 TF state ∈ {B2, B3} → `skip` (B3 는 watch 가능)
-- 큰 TF state ∈ {A3, A4, A5} → `skip` (피크 후 위험)
-- volume_flag ∈ {`dry`, `pump_dump_trace`} → `reject`
-- TF 충돌 → 한 단계 보수적 판정
-
-### 6.6 매매 함의 한 줄 요약
-
-| state | 매매 |
-|---|---|
-| A1, A2 | 보유 / 풀백 매수 |
-| A3 | 비중 축소 검토 |
-| A4 | exit 검토 |
-| A5 | exit |
-| B1, B2 | skip |
-| B3 | watch (돌파 대기) |
-| B4 | 작게 진입 / watch |
-| **B5** | **buy zone** ⭐ |
-| C1 | skip (또는 free note 따라) |
-
-## 7. 데이터 스키마 (저장)
-
-### 7.1 `coin_state.parquet`
-
-종목별 최신 상태 한 줄/symbol.
-
-| 컬럼 | 타입 | 의미 |
-|---|---|---|
-| `symbol` | str | `BTCUSDT` |
-| `last_review_date` | date | 마지막 판정일 (KST) |
-| `state_1w` | str | 11 enum 중 하나 |
-| `state_1d` | str | 11 enum 중 하나 |
-| `micro_action_1w` | str | null 가능 |
-| `micro_action_1d` | str | null 가능 |
-| `volume_flag_1w` | str | null 가능 |
-| `volume_flag_1d` | str | null 가능 |
-| `tf_consistency` | str | `정합` / `충돌` / `분리` |
-| `verdict` | str | `pass` / `watch` / `skip` / `reject` |
-| `note` | str | 자유 메모 |
-| `chart_path_1w` | str | charts 상대경로 |
-| `chart_path_1d` | str | charts 상대경로 |
-
-### 7.2 `reviews/{SYMBOL}/{YYYYMMDD}.json`
-
-시점별 스냅샷 (history 보존).
+차트 렌더와 동시에 객관적 사실을 자동 계산 후 JSON 으로 저장. **모든 필드는 자동 — Claude 가 손댈 일 없음, 그대로 review.context 에 복사**.
 
 ```json
 {
   "symbol": "BTCUSDT",
-  "reviewed_at": "<KST ISO>",
-  "data_until": "<마지막 캔들 timestamp KST>",
-  "tf_1w": {
-    "state": "A3",
-    "micro_action": null,
-    "volume_flag": "distribution_suspect",
-    "note": ""
+  "asset": "crypto",
+  "date_str": "20260520",
+  "generated_at": "2026-05-20T14:00:00+09:00",
+  "tfs": ["1m", "1w", "1d"],
+
+  "tf_1m": {
+    "last_close": 76803.8,
+    "bars": 83,
+    "date_range": "2019-07-31 ~ 2026-05-31",
+
+    "ma10": 87668.74, "ma20": 91386.17, "ma50": 58902.23,
+    "ma_stack": "혼합",                      // 정배열 / 역배열 / 혼합
+    "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "up"},  // up/flat/down
+    "ma_spread": "spread",                    // tight / normal / spread
+    "price_pos": "between",                   // above_all / between / below_all
+    "dist_from_ma": {"ma10_pct": -0.1239, "ma20_pct": -0.1596, "ma50_pct": 0.3039},
+
+    "last_candle": {
+      "type": "doji",                         // bull / bear / doji
+      "body_pct": 0.0065,
+      "vol_rank_30d": 0.0,                    // 최근 30봉 중 거래량 백분위 (0~1)
+      "vol_anomaly": null                     // "spike" / "breakout" / null
+    },
+
+    "accumulation": {
+      "vol_5bar_vs_30bar": 0.9,               // 5봉 평균 거래량 / 30봉 평균
+      "price_range_5bar_pct": 0.04,
+      "accumulation_score": 0.0               // 0~1.0 (0.6+ 는 매집 가능성)
+    },
+
+    "ret_30d": 0.041,                          // 30봉 수익률 (TF 단위)
+    "ret_90d": 0.156,
+    "from_period_high_pct": -0.309,
+    "vol_avg_recent_vs_prior": 0.829
   },
-  "tf_1d": {
-    "state": "B5",
-    "micro_action": null,
-    "volume_flag": "normal",
-    "note": ""
-  },
-  "tf_consistency": "충돌",
-  "verdict": "watch",
-  "verdict_reason": "1W 토핑 / 1D 변곡 시도, 큰 TF 보수적",
-  "charts": {
-    "1w": "charts/BTCUSDT/20260519/BTCUSDT_1w.png",
-    "1d": "charts/BTCUSDT/20260519/BTCUSDT_1d.png"
-  },
-  "schema_version": 1
+
+  "tf_1w": {...},
+  "tf_1d": {...},
+
+  "auto_risk_flags": ["drawdown_deep"]        // parabolic/drawdown_deep/low_history/zombie
 }
 ```
 
-### 7.3 `signals.parquet`
+### 7.1 `vol_anomaly` 자동 감지 룰
+- `"spike"`: body_pct < 1% AND vol_rank_30d > 0.85 (도지+거래량 폭증 → 매집/분배 의심)
+- `"breakout"`: body_pct > 3% AND vol_rank_30d > 0.85 (큰 봉+거래량 폭증)
+- `null`: 이상 없음
 
-백테스트 신호 ⊕ 시각 판정 결합.
+### 7.2 `accumulation_score` 자동 룰 (multi-bar)
+- 1.0: vol_5/30 ≥ 1.5 AND 5봉 가격 폭 < 5%
+- 0.6: vol_5/30 ≥ 1.2 AND 가격 폭 < 8%
+- 0.3: vol_5/30 ≥ 1.0 AND 가격 폭 < 10%
+- 0.0: 그 외
 
-| 컬럼 | 의미 |
+### 7.3 `auto_risk_flags` 자동 룰
+- `parabolic`: 1D ret_30d > 0.5 OR 1D ret_90d > 1.0
+- `drawdown_deep`: 1W (또는 1D) from_period_high_pct < -0.3
+- `low_history`: TF 별 최소 봉수 부족 (crypto: 1d<100, 1w<50, 1m<24 / stocks 더 낮음)
+- `zombie`: 1D vol_avg_recent_vs_prior < 0.3 AND abs(ret_90d) < 0.1
+
+## 8. 채점 schema v2.1 (review JSON)
+
+모든 필드 의무. v1 reviews 는 호환을 위해 계속 읽힘.
+
+```json
+{
+  "symbol": "BTCUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T15:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",            // or claude-opus-4-7
+    "agent_id": null,                        // 서브에이전트면 id
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "A2",                           // ★ Claude (11 enum, §9.1)
+    "micro_action": "pullback_ma10",         // ★ Claude (9 enum, §9.2)
+    "volume_flag": "normal",                 // ★ Claude (5 enum, §9.3)
+    "confidence": "high",                    // ★ Claude (3 enum, §9.4)
+
+    "context": { ... facts.tf_1m 그대로 복사 ... },
+
+    "observations": {                        // ★ Claude (PNG 시각 추출)
+      "key_levels": {"support": 95000, "resistance": 110000},
+      "pattern": "stair_step_up",            // 자유 1~3 단어
+      "recent_action": "신고가 갱신 후 MA10 풀백 진행"  // 1~2 문장
+    }
+  },
+  "tf_1w": {...},
+  "tf_1d": {...},
+
+  "tf_consistency": "정합",                  // ★ Claude (§9.5)
+  "verdict": "pass",                         // ★ Claude (§9.6)
+  "verdict_confidence": "high",              // ★ Claude
+  "verdict_reason": "전 TF A2 정합, 신고가 갱신 중",
+
+  "risk_flags": ["parabolic"],               // auto + Claude 시각 보강
+
+  "charts": {
+    "1m": "charts/BTCUSDT/20260520/BTCUSDT_1m.png",  // 경로 hint
+    "1w": "charts/BTCUSDT/20260520/BTCUSDT_1w.png",
+    "1d": "charts/BTCUSDT/20260520/BTCUSDT_1d.png"
+  }
+}
+```
+
+## 9. ENUM 정의
+
+### 9.1 `state` (11) — 사이클 단계
+
+**사이클 A — 상승 추세**
+| 값 | 시각 정의 |
 |---|---|
-| `symbol` | |
-| `signal_date` | 백테스트 신호 발화일 |
-| `strategy` | `trend_pullback` / `trend_chase` / ... |
-| `visual_verdict` | 시각 판정 결과 (`pass` / `watch` / `skip` / `reject` / `pending`) |
-| `visual_reviewed_at` | 시각 판정 시각 (없으면 null) |
-| `combined_action` | 백테스트 ∩ 시각 둘 다 통과 시 `take`, 아니면 `drop` |
+| `A1` | 상승 출발. 변곡 직후 안정. MA 정배열 진행, 가격 MA20 위. |
+| `A2` | 지속 상승. MA10/20/50 완전 정배열+우상향. 풀백마다 MA10/MA20 지지. |
+| `A3` | 토핑 횡보. 신고가 못 가고 박스, MAs 평탄. |
+| `A4` | 하락 첫 시도. MA20 아래 첫 음봉, 미확정. |
+| `A5` | 하락 retest 확정. 풀백이 MA20 에 막힘+MA20 음 기울기. |
 
-## 8. 워크플로우
+**사이클 B — 하락 추세**
+| 값 | 시각 정의 |
+|---|---|
+| `B1` | 하락 시작. 피크 깬 첫 음봉+거래량. |
+| `B2` | 지속 하락. MA 역배열+우하향. 좀비도 여기. |
+| `B3` | 바닥 다지기. MAs 평탄·수렴, 가격 박스. |
+| `B4` | 상승 첫 시도. MA20 위 첫 양봉, 미확정. |
+| `B5` ⭐ | 상승 retest 확정. 풀백이 MA20 받음+MA20 양 기울기. **buy zone**. |
 
-### 8.1 대상 종목 결정
+**C — 분류 불가**
+| 값 | 시각 정의 |
+|---|---|
+| `C1` | 박스 (3년+ 횡보) / 펌프&덤프 / 비정상 / 신규 1D 도 박스 |
 
-- **`single`**: 인자 1종목
-- **`signals`**: 오늘자 신호 종목 — 백테스트 산출 파일 (TBD: 위치 정해야 함) 에서 로드
-- **`refresh`**: 전체 universe → 사전 필터 적용 후 남은 종목
+### 9.2 `micro_action` (9) — 단기 행동
 
-### 8.2 차트 렌더링
+| 값 | 의미 |
+|---|---|
+| `riding` | MA 위/아래 안정, 풀백 없이 진행 |
+| `pullback_ma10` | MA10 닿는 중, 반등 미확정 |
+| `pullback_ma20` | MA20 닿는 중, 반등 미확정 |
+| `pullback_ma50` | MA50 까지 깊은 풀백, 반등 미확정 |
+| `bounce_ma10` ⭐ | MA10 닿고 반등 확정 (양봉+거래량+MA10 위 복귀) |
+| `bounce_ma20` ⭐ | MA20 닿고 반등 확정 (trend_pullback 핵심 시그널) |
+| `bounce_ma50` ⭐ | MA50 닿고 반등 확정 |
+| `breaking` | MA50 깨고 추세 끝나는 중 |
+| `acceleration` | 페러볼릭 상승+거래량 폭증 |
 
-각 종목당 1M + 1W + 1D 세 장 PNG 생성 (메이저), 일반 알트는 1W+1D, 신규(<6m) 는 1D. crypto 기본 200봉.
+**"반등 확정" 기준**: MA{N} 위로 복귀한 양봉+거래량+직전 1~2봉 안에 발생.
 
-```python
-# 모듈 호출 (정식)
-from research.visual_review.render import render_charts
-render_charts(["BTCUSDT", "TRXUSDT"], tfs=["1m", "1w", "1d"])
-# → data/cache/crypto/visual_review/charts/{SYMBOL}/{YYYYMMDD}/{SYMBOL}_{1m,1w,1d}.png
+### 9.3 `volume_flag` (5) — 거래량 이상
+
+| 값 | 의미 | 자동 신호 |
+|---|---|---|
+| `normal` | 추세에 부합 | (default) |
+| `accumulation_suspect` ⭐ | 큰손 매집 의심 | spike + state∈{B3,B4,A1} OR acc_score≥0.6 |
+| `distribution_suspect` | 큰손 분배 의심 | spike + state∈{A2,A3,A5} |
+| `dry` | 좀비, 관심 빠짐 | vol_avg < 0.3 + 횡보 |
+| `pump_dump_trace` | 작전 흔적 | 폭등 후 거래량 즉시 소멸 |
+
+**판정 우선순위**: pump_dump_trace > distribution > accumulation > dry > normal.
+**자세한 시각 패턴 / state 조합 → §10**.
+
+### 9.4 `confidence` (3) — 자신감
+
+| 값 | 의미 |
+|---|---|
+| `high` | 명확히 분류 가능 |
+| `medium` | 경계 사례 |
+| `low` | 데이터 부족 / 패턴 모호 |
+
+각 TF 별로 + 최종 `verdict_confidence` 도 별도. low 인 케이스는 사람 재검토 큐 후보.
+
+### 9.5 `tf_consistency` (3) — TF 간 정합성
+
+| 값 | 의미 |
+|---|---|
+| `정합` | 모든 TF 가 같은 사이클(A or B) + 비슷한 단계 |
+| `충돌` | 큰 TF 와 작은 TF 사이클이 다름 (예 1W=B, 1D=A) |
+| `분리` | 같은 사이클인데 한 TF stable, 다른 TF 변환 중 |
+
+### 9.6 `verdict` (4) — 최종 액션
+
+| 값 | 의미 |
+|---|---|
+| `pass` | 매매 적합 (buy zone) |
+| `watch` | 관망 (변곡 대기 / 충돌 / 페러볼릭 위험) |
+| `skip` | 매매 회피 |
+| `reject` | 영구 제외 (펌프&덤프 / 좀비+dry) |
+
+**자동 derivation 룰 (예비)**:
+- 큰 TF state ∈ {A1, A2, B5} + tf_consistency=정합 → `pass`
+- 큰 TF state = B4 → `watch`
+- 큰 TF state ∈ {B2, B3} → `skip` (B3는 watch 가능)
+- 큰 TF state ∈ {A3, A4, A5} → `skip`
+- volume_flag ∈ {pump_dump_trace} 또는 (dry + zombie risk) → `reject`
+- volume_flag = accumulation_suspect + state ∈ {B3, B4} → `pass` 강화
+- volume_flag = distribution_suspect + state ∈ {A2, A3} → `skip` 강화
+- risk_flags 에 parabolic 있으면 한 단계 보수적
+
+### 9.7 `risk_flags` (list) — 위험 태그
+
+| 값 | 의미 | 자동/시각 |
+|---|---|---|
+| `parabolic` | 단기 폭등 | 자동 (1D ret_30d>0.5 OR ret_90d>1.0) |
+| `drawdown_deep` | 피크 -30%+ | 자동 (1W from_period_high<-0.3) |
+| `low_history` | 데이터 짧음 | 자동 (TF 별 봉수 부족) |
+| `zombie` | 거래량 죽음 | 자동 (vol_avg<0.3 + 횡보) |
+| `distribution_suspect` | 분배 의심 | 시각 (volume_flag 와 sync) |
+| `pump_dump_trace` | 펌프&덤프 흔적 | 시각 (volume_flag 와 sync) |
+| `accumulation_suspect` | 매집 의심 | 시각 (volume_flag 와 sync) |
+
+## 10. `volume_flag` 시각 패턴 가이드
+
+### 10.1 `accumulation_suspect` (매집 의심)
+
+**시각**:
+```
+[가격]    ───•───•───•───•───•───   ← 작은 봉들 (도지/작은 양봉)
+[거래량]   ▁▁▁▂▁▁▁▂▂█▂▂▂▂          ← 막대 하나 우뚝 (또는 줄지어 평균 위)
 ```
 
-CLI:
+**state 조합별**:
+| state | 해석 |
+|---|---|
+| B3 (바닥) + spike | ★ 매집 강함, B5 변환 임박 |
+| B4 (상승 시도) + spike | 매집 확인 |
+| A1 (변곡 직후) + spike | 새 추세 매집 |
 
-```powershell
-.venv/Scripts/python.exe -m research.visual_review.render BTCUSDT TRXUSDT --tfs 1m,1w,1d
-```
+### 10.2 `distribution_suspect` (분배 의심)
 
-### 8.3 Claude 가 PNG 읽고 채점
+**시각**: accumulation 과 비슷하나 **고점권 + 위꼬리/음봉 거래량 우세**.
 
-각 종목마다, 각 TF 별로:
+**state 조합별**:
+| state | 해석 |
+|---|---|
+| A2 (강세) + spike | 분배 시작 → watch |
+| A3 (토핑) + spike | ★ 분배 강함 → skip |
+| A5 (retest) + spike | 마지막 분배 → exit |
 
-1. Read 로 PNG 읽기 (이미지 보기)
-2. **state** 결정 (11 enum 중 하나) — 큰 추세 → 단계
-3. 안정 단계면 **micro_action** 추가
-4. 특이 거래량이면 **volume_flag**
-5. 다른 TF 도 동일하게 채점
-6. **tf_consistency** 판단 (정합 / 충돌 / 분리)
-7. **verdict** 도출 (룰 + 자유 보정)
-8. **note** 한 줄
+### 10.3 `dry` (좀비)
 
-### 8.4 결과 기록
+**시각**: 거래량 막대 일관되게 평균 이하 + 가격 평탄.
+**state 조합**: B2 + dry → 좀비 코인 / C1 + dry → reject 후보.
 
-1. `reviews/{SYMBOL}/{YYYYMMDD}.json` Write (각 종목별 — 서브에이전트가 직접 Write 권장)
-2. `coin_state.parquet` 의 해당 row 갱신 (모든 종목 채점 끝나면 한 번에)
-3. `signals` 모드라면 `signals.parquet` 의 `visual_verdict` + `combined_action` 갱신
+### 10.4 `pump_dump_trace` (펌프&덤프)
 
-```python
-# 모듈 호출
-from research.visual_review.store import aggregate_state
-aggregate_state("20260519")   # date 인자 생략 시 오늘 KST
-```
+**시각**: 1~3봉 폭등 후 거래량+가격 즉시 죽음.
+**자주 동반**: parabolic, drawdown_deep, low_history risk_flags 동시 트리거.
+**verdict**: `reject` 확정.
 
-CLI:
+## 11. 매매 함의 (요약)
 
-```powershell
-.venv/Scripts/python.exe -m research.visual_review.store aggregate 20260519
-.venv/Scripts/python.exe -m research.visual_review.store show
-```
+| state | + volume_flag | verdict |
+|---|---|---|
+| A1, A2 | normal | pass (보유 / 풀백 매수) |
+| A1, A2 | distribution | watch / skip |
+| A2 | acceleration | watch (페러볼릭) |
+| A3 | * | skip (비중 축소) |
+| A4 | * | skip (exit 검토) |
+| A5 | * | skip (exit 확정) |
+| B1, B2 | * | skip |
+| B2 | dry | reject (좀비) |
+| B3 | accumulation | watch (변환 대기) |
+| B3 | normal | watch (돌파 대기) |
+| B4 | accumulation | pass (조심) |
+| **B5** | normal/accumulation | **pass** ⭐ buy zone |
+| C1 | pump_dump_trace | reject |
 
-### 8.5 대화창 요약
-
-본 종목들 표로 정리 — symbol · state_1w · state_1d · verdict · note 요약.
-`pass` 종목 강조 + 다음 액션 제안.
-
-## 9. 사전 자동 필터 (refresh 모드)
-
-전수 모드에서 모수 압축용 자동 컷 — 임계값은 캘리브 후 확정 (TBD):
-
-- 거래대금 컷: 최근 30일 평균 거래대금 < $X → 제외
-- 신규 / history 부족: 6개월 미만 history → C1 자동 분류
-- 더 정밀한 사전 필터는 추후 보강
-
-## 10. 컨텍스트 윈도우 관리
-
-- PNG 한 장이 토큰 꽤 차지 → **한 세션 20~30 종목** 권장
-- `refresh` 모드는 batch 단위로 분할 실행, 각 batch 종료 시 `coin_state.parquet` 저장
-- 다음 세션 이어갈 땐 `last_review_date` 오래된 종목부터
-
-## 11. 동작 원칙
-
-- **시각 판정 우선**: 코드 룰로 자동 채점 X. Claude 가 PNG 직접 보고 enum 선택.
-- **사용자 합의된 스키마 외 임의 추가 금지**: 11 state / 6 micro_action / 4 volume_flag 외 새 값 만들지 않음. 필요 시 user 와 합의 후 본 SKILL.md 수정.
-- **PNG 보존 필수**: 사후 검증용. 자동 삭제 X.
-- **시계열 history 유지**: `reviews/{SYMBOL}/` 옛 JSON 덮어쓰기 X. 날짜별 추가.
-- **백테스트와 결합**: `signals.parquet` 의 `combined_action == take` 만 진짜 매매 후보.
-- **자동매매 X**: 추천 시그널 전용.
-- **KST 시각 표준**: 모든 timestamp KST.
-
-## 12. 헬퍼 모듈 위치 (정식)
+## 12. 헬퍼 모듈
 
 ```
 research/visual_review/
-├── __init__.py         # 공개 API: render_charts, aggregate_state, load_review
-├── render.py           # PNG 렌더 (mplfinance + MA10/20/50)
-│                       #   - render_charts(symbols, tfs, date_str, ...) — 모듈 호출
-│                       #   - CLI: python -m research.visual_review.render BTCUSDT ...
-└── store.py            # reviews / coin_state I/O
-                        #   - load_review(symbol, date) / save_review(...)
-                        #   - aggregate_state(date) — reviews/*/<date>.json → coin_state.parquet upsert
-                        #   - CLI: python -m research.visual_review.store aggregate <date>
+├── __init__.py
+├── facts.py           # 객관 사실 자동 계산 (compute_facts_all_tfs, auto_risk_flags)
+├── render.py          # PNG + _facts.json 출력 (render_charts)
+└── store.py           # reviews ↔ coin_state.parquet I/O (aggregate_state, load_review, save_review)
 ```
 
-추후 추가 예정 (TBD):
-- `filter.py` — 사전 자동 필터 (거래대금/history)
-- `universe.py` — 모드별 대상 종목 결정 (signals/refresh)
+### CLI
 
-### prototype 잔여
+```powershell
+# 차트 + facts.json 렌더
+.venv/Scripts/python.exe -m research.visual_review.render BTCUSDT ETHUSDT --tfs 1m,1w,1d --asset crypto
+
+# 집계 (reviews/*/<date>.json → coin_state.parquet)
+.venv/Scripts/python.exe -m research.visual_review.store aggregate 20260520 --asset crypto
+
+# 현재 상태 표시
+.venv/Scripts/python.exe -m research.visual_review.store show --asset crypto
 ```
-.claude/skills/crypto-visual-review/_tmp/
-└── scan_cycle_b.py     # 사이클 단계 후보 자동 스캔 (실험용, 추후 모듈로 승격)
+
+### Python
+
+```python
+from research.visual_review.render import render_charts
+render_charts(["BTCUSDT", "ETHUSDT"], tfs=["1m","1w","1d"], asset="crypto")
+
+from research.visual_review.store import aggregate_state
+aggregate_state("20260520", asset="crypto")
 ```
 
-## 13. 향후 확장 / TODO
+## 13. 채점 워크플로 (서브에이전트 / 직접)
 
-### 다음 작업 (우선순위 순)
+### 13.1 효율적 처리 (Sonnet 4.6 권장, 5x 저렴)
 
-1. **filter.py / universe.py 추가** — `signals` 모드 (오늘 신호 종목 자동 로드) 와 `refresh` 모드 (전체 universe + 사전 필터) 구현
-2. **`signals.parquet` writer** — 백테스트 결과와 결합하는 store API 추가
-3. **TF 세트 정책 확정** — 메이저 코인 (5년+ history) 은 1M+1W+1D, 일반 알트는 1W+1D, 신규 (<6개월) 는 1D 만. 임계값 (24/26봉) 은 잠정 — render.py 에 자동 선택 로직 추가
-4. **enum 캘리브 누적** — `coin_state.parquet` 의 시계열을 보고 enum 정의 정제
+10종목씩 3개 서브에이전트 병렬 → ~5~6분, ~$1.5.
 
-### 추후 확장
+### 13.2 모델 선택
 
-- KR / US 로 확장 시 `kr-visual-review`, `us-visual-review` 별도 스킬 (또는 `--asset` 인자)
-- KR/US 는 1M + 1W + 1D 3장 세트 (사이클 김)
-- micro_action / volume_flag 값 추가 검토:
-  - 수직 펌프 (acceleration) 를 별도 state 로 분리할지
-  - 거래량 의심 4값을 세분할지
-- 시각 판정 history 분석 — 시간 따라 state 가 어떻게 변천했는지 보면서 룰 재학습
-- 시각 판정 ↔ 백테스트 결과 cross-check 리포트 (시각 pass 인데 백테스트 실패한 케이스 패턴 분석)
-- 자동 사전 필터 모듈 분리
-- TF 별 사이클 라벨 충돌 해소 (1W=A5 + 1D=B5 같은 경우 framework 재정의 필요)
+| 작업 | 권장 모델 | 이유 |
+|---|---|---|
+| 시각 채점 (refresh / signals) | **Sonnet 4.6** | 5x 저렴, 정확도 충분, 약간 보수적 (안전) |
+| 복잡한 시각 audit / edge case | Opus 4.7 | 깊은 reasoning, 더 lenient |
 
-## 14. 캘리브된 표본 (현재까지 검증 완료)
+**검증 사례**: 30 종목 비교 시 Opus vs Sonnet verdict 일치율 ~73~80%, 불일치는 대부분 1단계 인접 (pass↔watch, watch↔skip).
 
-각 enum 의 시각 정의가 명확한지 확인한 종목·TF.
+### 13.3 컨텍스트 윈도우 관리
 
-| state | 확정된 표본 |
-|---|---|
-| A1 | NC 1M (3.5년 다운 후 2025-06 변곡, 11개월 안정 상승) |
-| A2 | NC 1W, TRX 1W |
-| A3 | (BTC 1W 후반부 부근, 명확 표본 더 찾기) |
-| A4 | (transient, 표본 적음) |
-| A5 | (BCH 1W ~ 사이) |
-| B1 | (transient) |
-| B2 | SOL 1W, MOVE 1W, SUI 1W |
-| B3 | POLYX 1W |
-| B4 | ONDO 1W (방금 돌파) |
-| B5 | POLYX 1D, ONDO 1D (retest 진행) |
-| C1 | (아직 명확 표본 없음) |
+- PNG 한 장 ≈ 1.2K 토큰. 30 종목 × 3 TF = ~110K 이미지 토큰
+- **한 세션 20~30 종목** 권장 (Sonnet 1M context 이면 더 가능)
+- `refresh` 모드는 batch 분할 (10 종목씩) → 병렬 가능
+
+## 14. 동작 원칙
+
+- **시각 판정 우선**: 코드 룰로 enum 자동 채점 X. Claude 가 PNG 보고 결정. 자동 facts 는 객관 사실만.
+- **합의된 schema 외 새 값 금지**: 11 state / 9 micro_action / 5 volume_flag / 3 confidence / 6+ risk_flags. 새 값 필요 시 user 와 합의 후 SKILL.md 수정.
+- **PNG 는 gitignored**: 재생성 가능. `render_charts(...)` 로 0.4s/종목.
+- **review JSON + facts.json 은 git tracked**: 시계열 history + 객관 사실 영구 보존.
+- **PNG 없이도 review 만으로 차트 상태 재구성 가능** (v2.1 핵심 목표).
+- **시계열 history 유지**: `reviews/{SYMBOL}/` 옛 JSON 덮어쓰기 X. 날짜별 추가.
+- **자동매매 X**: 추천 시그널 전용.
+- **KST 시각 표준**: 모든 timestamp KST.
+
+## 15. 향후 확장 / TODO
+
+1. `filter.py` / `universe.py` 추가 — signals 모드 (오늘 신호 종목 자동 로드) + refresh 모드 (전체 universe + 사전 필터)
+2. `signals.parquet` writer — 백테스트 신호 + visual_verdict 결합
+3. 시계열 비교 모듈 — 지난주 vs 이번주 state 변화 추적
+4. 자동 룰 + 시각 결합 정밀화 — verdict derivation 자동 룰 보완 (현재는 Claude 판단 위주)
+5. KR/US 정식 지원 — render.py / facts.py 모두 asset='kr'/'us' 지원 검증
+
+## 16. 캘리브된 표본 (검증 완료)
+
+| state | crypto | US |
+|---|---|---|
+| A1 | TONUSDT 1D (B 전환 직후) | TXN 1M, ARM 1M, QCOM 1M |
+| A2 | HYPEUSDT, NVDAUSDT, MUUSDT | NVDA, AAPL, AMZN, GOOGL, AMD, AVGO, LRCX, KLAC |
+| A3 | ZECUSDT 1W | (정밀 표본 부족) |
+| A4 | (transient) | (transient) |
+| A5 | XAGUSDT 1D | META, NFLX (피크 후 retest) |
+| B1 | (transient) | (transient) |
+| B2 | ETHUSDT 1W, SOLUSDT 1W, DOGEUSDT 1M | TMUS 1W/1D |
+| B3 | BTCUSDT 1W/1D, PEPEUSDT, ADAUSDT | META 1D, NFLX 1D |
+| B4 | SUIUSDT 1D, ONDOUSDT 1D | TSLA 1D |
+| B5 | (찾는 중) | (찾는 중) |
+| C1 | RAVEUSDT, BSBUSDT (펌프&덤프) | (해당 없음) |
+
+### volume_flag 표본
+- `accumulation_suspect`: XAUTUSDT 1W, MUUSDT 1D (auto detect + 시각 확인)
+- `distribution_suspect`: ORCAUSDT, ONDOUSDT, SKYAIUSDT (1W/1D)
+- `pump_dump_trace`: LABUSDT, BSBUSDT, RAVEUSDT, UBUSDT, TRUMPUSDT
+- `dry`: ADAUSDT 1W (이전 v2 판정 — v2.1 에선 normal 으로 회수됨)

@@ -1,0 +1,86 @@
+{
+  "symbol": "MUUSDT",
+  "asset": "crypto",
+  "date_str": "20260520",
+  "generated_at": "2026-05-20T17:03:41.297734+09:00",
+  "tfs": [
+    "1w",
+    "1d"
+  ],
+  "tf_1w": {
+    "last_close": 706.49,
+    "bars": 15,
+    "date_range": "2026-02-16 ~ 2026-05-25",
+    "ma10": 527.857,
+    "ma20": null,
+    "ma50": null,
+    "ma_stack": "혼합",
+    "ma_slopes": {
+      "ma10": "up",
+      "ma20": "flat",
+      "ma50": "flat"
+    },
+    "ma_spread": "normal",
+    "price_pos": "above_all",
+    "dist_from_ma": {
+      "ma10_pct": 0.3384,
+      "ma20_pct": 0.0,
+      "ma50_pct": 0.0
+    },
+    "last_candle": {
+      "type": "doji",
+      "body_pct": 0.0227,
+      "vol_rank_30d": 0.6,
+      "vol_anomaly": null
+    },
+    "accumulation": {
+      "vol_5bar_vs_30bar": 1.0,
+      "price_range_5bar_pct": 0.0,
+      "accumulation_score": 0.0
+    },
+    "ret_30d": 0.0,
+    "ret_90d": 0.0,
+    "from_period_high_pct": -0.1384,
+    "vol_avg_recent_vs_prior": 1.0
+  },
+  "tf_1d": {
+    "last_close": 706.49,
+    "bars": 98,
+    "date_range": "2026-02-11 ~ 2026-05-19",
+    "ma10": 744.004,
+    "ma20": 682.934,
+    "ma50": 535.1036,
+    "ma_stack": "정배열",
+    "ma_slopes": {
+      "ma10": "up",
+      "ma20": "up",
+      "ma50": "up"
+    },
+    "ma_spread": "spread",
+    "price_pos": "between",
+    "dist_from_ma": {
+      "ma10_pct": -0.0504,
+      "ma20_pct": 0.0345,
+      "ma50_pct": 0.3203
+    },
+    "last_candle": {
+      "type": "doji",
+      "body_pct": 0.0227,
+      "vol_rank_30d": 0.967,
+      "vol_anomaly": null
+    },
+    "accumulation": {
+      "vol_5bar_vs_30bar": 3.064,
+      "price_range_5bar_pct": 0.1911,
+      "accumulation_score": 0.0
+    },
+    "ret_30d": 0.5793,
+    "ret_90d": 0.6651,
+    "from_period_high_pct": -0.1384,
+    "vol_avg_recent_vs_prior": 1.602
+  },
+  "auto_risk_flags": [
+    "parabolic",
+    "low_history"
+  ]
+}

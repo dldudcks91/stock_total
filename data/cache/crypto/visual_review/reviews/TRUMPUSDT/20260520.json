@@ -1,0 +1,107 @@
+{
+  "symbol": "TRUMPUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T17:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2.1},
+  "tf_1m": {
+    "state": "A5",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 2.014,
+      "bars": 17,
+      "date_range": "2025-01-31 ~ 2026-05-31",
+      "ma10": 4.9914,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.5965, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "last_candle": {"type": "bear", "body_pct": 0.1817, "vol_rank_30d": 0.529, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9777,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 1.5, "resistance": 5.0},
+      "pattern": "상장 고점($80) 대비 -97.8%. MA10(4.99) 하방 -60%. 월봉 지속 하락 추세.",
+      "recent_action": "2026년 3월 대형 거래량 스파이크($150M) 후 재하락. 밈코인 특성상 극단적 변동성."
+    }
+  },
+  "tf_1w": {
+    "state": "A5",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 2.014,
+      "bars": 71,
+      "date_range": "2025-01-20 ~ 2026-05-25",
+      "ma10": 2.6158,
+      "ma20": 3.2937,
+      "ma50": 5.95462,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2301, "ma20_pct": -0.3885, "ma50_pct": -0.6618},
+      "last_candle": {"type": "bear", "body_pct": 0.0293, "vol_rank_30d": 0.0, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 1.678, "price_range_5bar_pct": 0.566, "accumulation_score": 0.0},
+      "ret_30d": -0.7176,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9777,
+      "vol_avg_recent_vs_prior": 1.068
+    },
+    "observations": {
+      "key_levels": {"support": 1.5, "resistance": 3.0},
+      "pattern": "주봉 완전 역배열. 최근 4주 -71.8%. 거래량 최저(0위)로 관심 소멸.",
+      "recent_action": "3월 대형 거래량 반등 시도 실패 후 재하락."
+    }
+  },
+  "tf_1d": {
+    "state": "A5",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 2.014,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 2.2686,
+      "ma20": 2.3216,
+      "ma50": 2.62496,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1122, "ma20_pct": -0.1325, "ma50_pct": -0.2328},
+      "last_candle": {"type": "bear", "body_pct": 0.0293, "vol_rank_30d": 0.133, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 0.854, "price_range_5bar_pct": 0.2006, "accumulation_score": 0.0},
+      "ret_30d": -0.2789,
+      "ret_90d": -0.4034,
+      "from_period_high_pct": -0.7895,
+      "vol_avg_recent_vs_prior": 1.878
+    },
+    "observations": {
+      "key_levels": {"support": 1.5, "resistance": 2.7},
+      "pattern": "일봉 역배열 전체 하락. 3개월 -40%. 거래량 1.878배는 패닉셀 흔적. MA10/20/50 모두 저항.",
+      "recent_action": "3월 반등(~4.5) 실패 후 신저가 경신 중. 2달러 심리적 지지 시험."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 타임프레임 A5(강한 하락) 완전 정합. 고점 대비 -97.8%, 주봉/일봉 역배열, 모든 MA 저항. 밈코인 특성상 거래량 없이 추가 급락 가능. 신규 진입 이유 없음.",
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace"],
+  "charts": {
+    "1m": "charts/TRUMPUSDT/20260520/TRUMPUSDT_1m.png",
+    "1w": "charts/TRUMPUSDT/20260520/TRUMPUSDT_1w.png",
+    "1d": "charts/TRUMPUSDT/20260520/TRUMPUSDT_1d.png"
+  }
+}

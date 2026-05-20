@@ -1,0 +1,74 @@
+{
+  "symbol": "XAUUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T17:10:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2},
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 4493.2,
+      "bars": 24,
+      "date_range": "2025-12-15 ~ 2026-05-25",
+      "ma10": 4624.636,
+      "ma20": 4803.844,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0284, "ma20_pct": -0.0647, "ma50_pct": 0.0},
+      "last_candle": {"type": "bear", "body_pct": 0.0207, "vol_rank_30d": 0.292},
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.2001,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 4200, "resistance": 4800},
+      "pattern": "고점 조정",
+      "recent_action": "주봉 24봉밖에 없어 MA50 미산출. 2026년 2월~3월 고점(~5600) 대비 -20% 조정 중이며 MA10 아래 베어 캔들 연속."
+    }
+  },
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 4493.2,
+      "bars": 158,
+      "date_range": "2025-12-13 ~ 2026-05-19",
+      "ma10": 4624.257,
+      "ma20": 4633.302,
+      "ma50": 4688.283,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0283, "ma20_pct": -0.0302, "ma50_pct": -0.0416},
+      "last_candle": {"type": "bear", "body_pct": 0.0207, "vol_rank_30d": 0.5},
+      "ret_30d": -0.0558,
+      "ret_90d": -0.0969,
+      "from_period_high_pct": -0.2001,
+      "vol_avg_recent_vs_prior": 0.682
+    },
+    "observations": {
+      "key_levels": {"support": 4350, "resistance": 4700},
+      "pattern": "역배열 밀집 하방 이탈",
+      "recent_action": "일봉 MA10/20/50이 4620~4690 구간에 집결해 역배열로 정렬. 가격은 이를 전부 하향 이탈하며 하락 추세 유지. 거래량 중립."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1w/1d 동반 B3 하락 조정, 히스토리 부족(low_history)으로 패턴 신뢰도 제한",
+  "risk_flags": ["low_history"],
+  "charts": {
+    "1w": "charts/XAUUSDT/20260520/XAUUSDT_1w.png",
+    "1d": "charts/XAUUSDT/20260520/XAUUSDT_1d.png"
+  }
+}

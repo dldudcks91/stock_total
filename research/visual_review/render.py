@@ -12,7 +12,7 @@ CLI:
     .venv/Scripts/python.exe -m research.visual_review.render BTCUSDT TRXUSDT --tfs 1m,1w,1d
 """
 from __future__ import annotations
-import argparse, sys, time
+import argparse, json, sys, time
 from datetime import datetime
 from pathlib import Path
 from typing import Iterable, Optional, Sequence
@@ -22,12 +22,16 @@ import pandas as pd
 import mplfinance as mpf
 
 from data.loader import load_ohlcv
+from research.visual_review.facts import compute_facts_tf, auto_risk_flags
 
 ROOT = Path(__file__).resolve().parents[2]
-CHARTS_ROOT = ROOT / "data" / "cache" / "crypto" / "visual_review" / "charts"
 KST = ZoneInfo("Asia/Seoul")
 BARS = 200
 RULE_MAP = {"1d": None, "1w": "W-MON", "1m": "ME"}
+
+
+def _charts_root(asset: str) -> Path:
+    return ROOT / "data" / "cache" / asset / "visual_review" / "charts"
 
 
 def _normalize(df: pd.DataFrame) -> pd.DataFrame:
@@ -76,14 +80,15 @@ def _render_one(df_full: pd.DataFrame, symbol: str, tf_label: str, out_path: Pat
 
 
 def render_symbol(symbol: str, tfs: Sequence[str], date_str: str, bars: int = BARS, asset: str = "crypto", verbose: bool = True) -> dict[str, Path]:
-    """단일 종목, 여러 TF 렌더.
+    """단일 종목, 여러 TF 렌더 + _facts.json 출력.
 
     Returns: {tf: Path}
     """
     df_1d = _normalize(load_ohlcv(asset, symbol, "1d"))
-    out_dir = CHARTS_ROOT / symbol / date_str
+    out_dir = _charts_root(asset) / symbol / date_str
     out_dir.mkdir(parents=True, exist_ok=True)
     out_paths: dict[str, Path] = {}
+    facts_per_tf: dict[str, dict] = {}
     if verbose:
         print(f"[{symbol}]")
     for tf in tfs:
@@ -100,9 +105,27 @@ def render_symbol(symbol: str, tfs: Sequence[str], date_str: str, bars: int = BA
         t0 = time.perf_counter()
         n, span = _render_one(df_full, symbol, tf_l.upper(), out, bars=bars)
         dt = time.perf_counter() - t0
+        # facts 도 같이 계산
+        facts_per_tf[tf_l] = compute_facts_tf(df_full, bars=bars)
         if verbose:
             print(f"  {tf_l.upper()}: {n} bars ({span}) ({dt:.2f}s) -> {out.relative_to(ROOT)}")
         out_paths[tf_l] = out
+    # _facts.json 저장
+    if facts_per_tf:
+        facts_doc = {
+            "symbol": symbol,
+            "asset": asset,
+            "date_str": date_str,
+            "generated_at": datetime.now(KST).isoformat(),
+            "tfs": list(facts_per_tf.keys()),
+        }
+        for tf_l, f in facts_per_tf.items():
+            facts_doc[f"tf_{tf_l}"] = f
+        facts_doc["auto_risk_flags"] = auto_risk_flags(facts_per_tf, asset=asset)
+        facts_path = out_dir / "_facts.json"
+        facts_path.write_text(json.dumps(facts_doc, ensure_ascii=False, indent=2), encoding="utf-8")
+        if verbose:
+            print(f"  _facts.json -> {facts_path.relative_to(ROOT)} (risk: {facts_doc['auto_risk_flags']})")
     return out_paths
 
 
@@ -135,7 +158,7 @@ def render_charts(
         # 첫 mpf.plot 호출은 1~3초 더 걸림 — 워밍업으로 본 작업 시간 정확화
         sym0 = next(iter(symbols))
         df_w = _normalize(load_ohlcv(asset, sym0, "1d"))
-        tmp = CHARTS_ROOT / "_warmup.png"
+        tmp = _charts_root(asset) / "_warmup.png"
         tmp.parent.mkdir(parents=True, exist_ok=True)
         _render_one(df_w, sym0, "1D", tmp, bars=50)
     t_all = time.perf_counter()
@@ -144,7 +167,7 @@ def render_charts(
         results[s] = render_symbol(s, tfs, date_str, bars=bars, asset=asset, verbose=verbose)
     if verbose:
         print(f"\nDONE - {len(results)} symbols x {len(tfs)} TFs in {time.perf_counter() - t_all:.1f}s")
-        print(f"Out: {CHARTS_ROOT}/<SYMBOL>/{date_str}/")
+        print(f"Out: {_charts_root(asset)}/<SYMBOL>/{date_str}/")
     return results
 
 
@@ -157,6 +180,7 @@ def _cli():
     ap.add_argument("--bars", type=int, default=BARS)
     ap.add_argument("--no-warmup", action="store_true")
     ap.add_argument("--quiet", action="store_true")
+    ap.add_argument("--asset", default="crypto", choices=["crypto", "kr", "us"])
     a = ap.parse_args()
     tfs = [t.strip() for t in a.tfs.split(",") if t.strip()]
     render_charts(
@@ -164,6 +188,7 @@ def _cli():
         tfs=tfs,
         date_str=a.date,
         bars=a.bars,
+        asset=a.asset,
         warmup=not a.no_warmup,
         verbose=not a.quiet,
     )

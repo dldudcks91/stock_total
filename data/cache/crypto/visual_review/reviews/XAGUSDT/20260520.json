@@ -1,0 +1,76 @@
+{
+  "symbol": "XAGUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T17:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2.1},
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 74.31,
+      "bars": 20,
+      "date_range": "2026-01-12 ~ 2026-05-25",
+      "ma10": 75.699,
+      "ma20": 81.5095,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0183, "ma20_pct": -0.0883, "ma50_pct": 0.0},
+      "last_candle": {"type": "bear", "body_pct": 0.0595, "vol_rank_30d": 0.15, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.3899,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 67, "resistance": 82},
+      "pattern": "단기 급락 후 횡보",
+      "recent_action": "주봉 20봉 데이터, 고점(122) 대비 -39% 조정 후 74~80 횡보. MA10(75.7) 하방 bear candle."
+    }
+  },
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 74.31,
+      "bars": 133,
+      "date_range": "2026-01-07 ~ 2026-05-19",
+      "ma10": 80.694,
+      "ma20": 78.6015,
+      "ma50": 76.978,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0791, "ma20_pct": -0.0546, "ma50_pct": -0.0347},
+      "last_candle": {"type": "bear", "body_pct": 0.0595, "vol_rank_30d": 0.767, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 1.347, "price_range_5bar_pct": 0.1414, "accumulation_score": 0.0},
+      "ret_30d": -0.0602,
+      "ret_90d": -0.0374,
+      "from_period_high_pct": -0.3899,
+      "vol_avg_recent_vs_prior": 0.736
+    },
+    "observations": {
+      "key_levels": {"support": 70, "resistance": 82},
+      "pattern": "일봉 정배열 MA 하방 이탈",
+      "recent_action": "일봉 MA10/20/50 모두 상향이지만 현재 전부 하방. vol_rank 0.77로 비교적 높은 거래량 동반 하락이어서 지지 테스트 강도 주목."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "은 현물 추적, 이력 짧아(low_history) 신호 약함 — 일봉 MA50(77) 지지 확인 후 재진입 검토",
+  "risk_flags": ["drawdown_deep", "low_history"],
+  "charts": {
+    "1w": "data/cache/crypto/visual_review/charts/XAGUSDT/20260520/XAGUSDT_1w.png",
+    "1d": "data/cache/crypto/visual_review/charts/XAGUSDT/20260520/XAGUSDT_1d.png"
+  }
+}

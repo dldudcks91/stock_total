@@ -1,0 +1,76 @@
+{
+  "symbol": "CLUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T17:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2.1},
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 103.926,
+      "bars": 11,
+      "date_range": "2026-03-16 ~ 2026-05-25",
+      "ma10": 99.1366,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0483, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "last_candle": {"type": "bull", "body_pct": 0.016, "vol_rank_30d": 0.091, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1128,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 90, "resistance": 117},
+      "pattern": "신규 상장 초기 안착",
+      "recent_action": "주봉 11봉만 존재, MA10(99.1) 위에서 bull 마감으로 고점 -11% 내 횡보. 데이터 부족으로 추세 판단 불가."
+    }
+  },
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 103.926,
+      "bars": 65,
+      "date_range": "2026-03-16 ~ 2026-05-19",
+      "ma10": 99.8133,
+      "ma20": 99.6789,
+      "ma50": 97.94828,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0412, "ma20_pct": 0.0426, "ma50_pct": 0.061},
+      "last_candle": {"type": "bull", "body_pct": 0.016, "vol_rank_30d": 0.5, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 0.587, "price_range_5bar_pct": 0.0733, "accumulation_score": 0.0},
+      "ret_30d": 0.1788,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1128,
+      "vol_avg_recent_vs_prior": 1.219
+    },
+    "observations": {
+      "key_levels": {"support": 97, "resistance": 117},
+      "pattern": "일봉 정배열 MA 위 안착",
+      "recent_action": "일봉 MA10/20/50 tight 정배열(97~100) 위에서 bull 마감. 최근 거래량은 평균 수준, 안정적 상승 구조."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "일봉 정배열로 구조 양호하나 이력 65봉 부족(low_history) — 거래량 동반 돌파(117 상방) 확인 후 진입 검토",
+  "risk_flags": ["low_history"],
+  "charts": {
+    "1w": "data/cache/crypto/visual_review/charts/CLUSDT/20260520/CLUSDT_1w.png",
+    "1d": "data/cache/crypto/visual_review/charts/CLUSDT/20260520/CLUSDT_1d.png"
+  }
+}

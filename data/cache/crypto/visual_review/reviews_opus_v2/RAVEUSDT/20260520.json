@@ -1,0 +1,74 @@
+{
+  "symbol": "RAVEUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T16:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-opus-4-7", "agent_id": null, "schema_version": 2},
+  "tf_1w": {
+    "state": "C1",
+    "micro_action": "acceleration",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.59506,
+      "bars": 24,
+      "date_range": "2025-12-15 ~ 2026-05-25",
+      "ma10": 1.331409,
+      "ma20": 0.828383,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.5531, "ma20_pct": -0.2817, "ma50_pct": 0.0},
+      "last_candle": {"type": "doji", "body_pct": 0.0212, "vol_rank_30d": 0.25},
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.979,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.5, "resistance": 5.0},
+      "pattern": "펌프&덤프",
+      "recent_action": "주봉 단일 캔들 25달러 스파이크 후 0.6달러로 -98% 붕괴."
+    }
+  },
+  "tf_1d": {
+    "state": "C1",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.59506,
+      "bars": 156,
+      "date_range": "2025-12-15 ~ 2026-05-19",
+      "ma10": 0.63506,
+      "ma20": 0.66882,
+      "ma50": 2.261636,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.063, "ma20_pct": -0.1103, "ma50_pct": -0.7369},
+      "last_candle": {"type": "doji", "body_pct": 0.0212, "vol_rank_30d": 0.433},
+      "ret_30d": -0.0665,
+      "ret_90d": 0.5577,
+      "from_period_high_pct": -0.979,
+      "vol_avg_recent_vs_prior": 1.038
+    },
+    "observations": {
+      "key_levels": {"support": 0.5, "resistance": 5.0},
+      "pattern": "펌프 후 폭락",
+      "recent_action": "4월 0.5→27 펌프 후 0.6 부근으로 회귀, 거래량 사그라듬."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "극심한 펌프&덤프, 98% 드로다운, 좀비 상태 — 진입 불가.",
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace", "zombie"],
+  "charts": {
+    "1w": "charts/RAVEUSDT/20260520/RAVEUSDT_1w.png",
+    "1d": "charts/RAVEUSDT/20260520/RAVEUSDT_1d.png"
+  }
+}

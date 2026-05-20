@@ -1,0 +1,104 @@
+{
+  "symbol": "TAOUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T16:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-opus-4-7", "agent_id": null, "schema_version": 2},
+  "tf_1m": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 257.05,
+      "bars": 26,
+      "date_range": "2024-04-30 ~ 2026-05-31",
+      "ma10": 279.977,
+      "ma20": 343.7855,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0819, "ma20_pct": -0.2523, "ma50_pct": 0.0},
+      "last_candle": {"type": "doji", "body_pct": 0.0315, "vol_rank_30d": 0.5},
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.655,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 200, "resistance": 350},
+      "pattern": "다운 트렌드",
+      "recent_action": "고점 700에서 -65% 하락 후 200~300 박스."
+    }
+  },
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 257.05,
+      "bars": 111,
+      "date_range": "2024-04-15 ~ 2026-05-25",
+      "ma10": 279.351,
+      "ma20": 247.4555,
+      "ma50": 304.4486,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0798, "ma20_pct": 0.0388, "ma50_pct": -0.1557},
+      "last_candle": {"type": "bear", "body_pct": 0.0167, "vol_rank_30d": 0.0},
+      "ret_30d": -0.3806,
+      "ret_90d": -0.0818,
+      "from_period_high_pct": -0.655,
+      "vol_avg_recent_vs_prior": 1.187
+    },
+    "observations": {
+      "key_levels": {"support": 200, "resistance": 310},
+      "pattern": "삼각수렴",
+      "recent_action": "200~310 횡보 6개월, MA10/20 수렴 — 방향성 대기."
+    }
+  },
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "dry",
+    "confidence": "medium",
+    "context": {
+      "last_close": 257.05,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 288.953,
+      "ma20": 289.8745,
+      "ma50": 278.5398,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "down"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1104, "ma20_pct": -0.1132, "ma50_pct": -0.0772},
+      "last_candle": {"type": "bear", "body_pct": 0.0167, "vol_rank_30d": 0.0},
+      "ret_30d": 0.0731,
+      "ret_90d": 0.4018,
+      "from_period_high_pct": -0.523,
+      "vol_avg_recent_vs_prior": 0.426
+    },
+    "observations": {
+      "key_levels": {"support": 250, "resistance": 320},
+      "pattern": "이중천장 의심",
+      "recent_action": "3월 350 고점 후 250 부근 후퇴, MA10/50 데드크로스 임박, 거래량 마름."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "전 TF 약세 흐름, MA50 이탈로 추세 손상, 모멘텀 부재.",
+  "risk_flags": ["drawdown_deep"],
+  "charts": {
+    "1m": "charts/TAOUSDT/20260520/TAOUSDT_1m.png",
+    "1w": "charts/TAOUSDT/20260520/TAOUSDT_1w.png",
+    "1d": "charts/TAOUSDT/20260520/TAOUSDT_1d.png"
+  }
+}

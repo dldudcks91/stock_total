@@ -1,0 +1,74 @@
+{
+  "symbol": "MUUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T16:35:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2},
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 706.49,
+      "bars": 15,
+      "date_range": "2026-02-16 ~ 2026-05-25",
+      "ma10": 527.857,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.3384, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "last_candle": {"type": "doji", "body_pct": 0.0227, "vol_rank_30d": 0.6},
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1384,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 500.0, "resistance": 830.0},
+      "pattern": "급등 후 조정",
+      "recent_action": "주봉 15봉, MA20/50 미형성. 고점 830 대비 -14%. MA10(528) 대비 +34% 확장 상태에서 도지 형성. 5월 들어 볼륨 급증 후 되밀림."
+    }
+  },
+  "tf_1d": {
+    "state": "A3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 706.49,
+      "bars": 98,
+      "date_range": "2026-02-11 ~ 2026-05-19",
+      "ma10": 744.004,
+      "ma20": 682.934,
+      "ma50": 535.1036,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0504, "ma20_pct": 0.0345, "ma50_pct": 0.3203},
+      "last_candle": {"type": "doji", "body_pct": 0.0227, "vol_rank_30d": 0.967},
+      "ret_30d": 0.5793,
+      "ret_90d": 0.6651,
+      "from_period_high_pct": -0.1384,
+      "vol_avg_recent_vs_prior": 1.602
+    },
+    "observations": {
+      "key_levels": {"support": 680.0, "resistance": 830.0},
+      "pattern": "MA10 하단 눌림목",
+      "recent_action": "일봉 정배열 전구간, 90d +67% 강한 상승. 5월 초 820 고점 후 MA10(744) 하단으로 눌림. 볼륨 rank 0.967 고볼륨 도지 — 매도 압력이지만 MA20(683) 지지 유효할 경우 눌림목 구조."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1d/1w 정배열 정합, 90d +67% 강한 모멘텀. 파라볼릭·저히스토리 플래그 있으나 MA20(683) 지지 확인 시 눌림목 매수 구조 유효. 볼륨 감소 확인 후 재진입 탐색.",
+  "risk_flags": ["parabolic", "low_history"],
+  "charts": {
+    "1w": "charts/MUUSDT/20260520/MUUSDT_1w.png",
+    "1d": "charts/MUUSDT/20260520/MUUSDT_1d.png"
+  }
+}

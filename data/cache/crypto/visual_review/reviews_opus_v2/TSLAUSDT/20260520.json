@@ -1,0 +1,104 @@
+{
+  "symbol": "TSLAUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T16:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-opus-4-7", "agent_id": null, "schema_version": 2},
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 405.19,
+      "bars": 10,
+      "date_range": "2025-08-31 ~ 2026-05-31",
+      "ma10": 411.024,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0142, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "last_candle": {"type": "doji", "body_pct": 0.0577, "vol_rank_30d": 0.3},
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1885,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 380, "resistance": 450},
+      "pattern": "early_history",
+      "recent_action": "10개 월봉만 존재, 500 고점 후 380 저점 반등 중."
+    }
+  },
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": "bounce_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 405.19,
+      "bars": 40,
+      "date_range": "2025-08-25 ~ 2026-05-25",
+      "ma10": 386.129,
+      "ma20": 402.014,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0494, "ma20_pct": 0.0079, "ma50_pct": 0.0},
+      "last_candle": {"type": "doji", "body_pct": 0.0115, "vol_rank_30d": 0.0},
+      "ret_30d": -0.1097,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1885,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 380, "resistance": 450},
+      "pattern": "ma20_bounce",
+      "recent_action": "500 → 340 조정 후 MA20 회복 시도."
+    }
+  },
+  "tf_1d": {
+    "state": "A4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "dry",
+    "confidence": "medium",
+    "context": {
+      "last_close": 405.19,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 426.711,
+      "ma20": 413.455,
+      "ma50": 388.2486,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0504, "ma20_pct": -0.02, "ma50_pct": 0.0436},
+      "last_candle": {"type": "doji", "body_pct": 0.0115, "vol_rank_30d": 0.267},
+      "ret_30d": 0.0233,
+      "ret_90d": -0.0137,
+      "from_period_high_pct": -0.1885,
+      "vol_avg_recent_vs_prior": 0.437
+    },
+    "observations": {
+      "key_levels": {"support": 388, "resistance": 450},
+      "pattern": "ma20_pullback",
+      "recent_action": "340 저점에서 회복, MA50 위 정배열 + MA10/20 사이 눌림."
+    }
+  },
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "일봉 정배열 + 눌림 양호, 주봉은 여전히 약세 회복 단계.",
+  "risk_flags": ["low_history"],
+  "charts": {
+    "1m": "charts/TSLAUSDT/20260520/TSLAUSDT_1m.png",
+    "1w": "charts/TSLAUSDT/20260520/TSLAUSDT_1w.png",
+    "1d": "charts/TSLAUSDT/20260520/TSLAUSDT_1d.png"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "symbol": "ADI",
+  "reviewed_at": "2026-05-20T14:31:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {
+    "state": "A2",
+    "micro_action": "acceleration",
+    "volume_flag": "normal",
+    "note": "강한 상승, MA 정배열, 신고가 430"
+  },
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "acceleration",
+    "volume_flag": "normal",
+    "note": "안정 우상향, 강한 모멘텀"
+  },
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "note": "11월 변곡 후 강한 상승, 430 신고가, MA10 풀백"
+  },
+  "tf_consistency": "정합",
+  "verdict": "pass",
+  "verdict_reason": "전 TF A2 가속, 깨끗한 추세",
+  "charts": {
+    "1m": "charts/ADI/20260520/ADI_1m.png",
+    "1w": "charts/ADI/20260520/ADI_1w.png",
+    "1d": "charts/ADI/20260520/ADI_1d.png"
+  },
+  "schema_version": 1
+}

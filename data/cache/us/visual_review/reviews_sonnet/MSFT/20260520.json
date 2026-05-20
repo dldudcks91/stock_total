@@ -1,0 +1,32 @@
+{
+  "symbol": "MSFT",
+  "reviewed_at": "2026-05-20T15:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {
+    "state": "A3",
+    "micro_action": null,
+    "volume_flag": "normal",
+    "note": "월봉 기준 2024년 고점($550) 이후 신고가 없이 횡보 전환. MA10/20이 수렴하며 추세가 멈춘 상태."
+  },
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": null,
+    "volume_flag": "normal",
+    "note": "주봉에서 2024년 말 고점 이후 MA10/20/50이 역배열로 전환. 가격이 MA들 아래에서 하락 지속."
+  },
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": null,
+    "volume_flag": "normal",
+    "note": "일봉에서 2025년 하반기부터 명확한 하락 추세. 최근 $375~$425 구간에서 바닥 다지기 시도 중이나 확인 미흡."
+  },
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_reason": "월봉 A3(고점 횡보), 주봉·일봉 B2(하락 추세). 큰 TF 기준 하락 추세 확인되어 회피.",
+  "charts": {
+    "1m": "charts/MSFT/20260520/MSFT_1m.png",
+    "1w": "charts/MSFT/20260520/MSFT_1w.png",
+    "1d": "charts/MSFT/20260520/MSFT_1d.png"
+  },
+  "schema_version": 1
+}

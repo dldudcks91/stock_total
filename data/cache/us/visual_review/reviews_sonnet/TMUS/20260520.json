@@ -1,0 +1,32 @@
+{
+  "symbol": "TMUS",
+  "reviewed_at": "2026-05-20T15:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {
+    "state": "A4",
+    "micro_action": null,
+    "volume_flag": "normal",
+    "note": "월봉에서 2024년 말 $270 고점 이후 MA20 아래로 이탈, MA10/20 하향 교차 시작. 장기 상승 추세가 첫 붕괴 신호를 보내는 A4 구간."
+  },
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "note": "주봉에서는 이미 MA10/20/50이 역배열, 가격이 $190 수준으로 하락하며 $270 고점 대비 30% 이상 하락. 명확한 하락 추세 지속."
+  },
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "note": "일봉에서도 MA 역배열로 $180~$200 사이에서 하락 지속, 2026년 2월 반등 시도가 실패하고 다시 하락."
+  },
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_reason": "1W/1D가 B2 하락 추세이며 1M도 A4로 하락 전환 진행 중. 모든 신호가 매도/회피를 가리키므로 매수 관심 제외.",
+  "charts": {
+    "1m": "charts/TMUS/20260520/TMUS_1m.png",
+    "1w": "charts/TMUS/20260520/TMUS_1w.png",
+    "1d": "charts/TMUS/20260520/TMUS_1d.png"
+  },
+  "schema_version": 1
+}

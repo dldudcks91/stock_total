@@ -1,0 +1,32 @@
+{
+  "symbol": "ASML",
+  "reviewed_at": "2026-05-20T14:15:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {
+    "state": "A2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "note": "MA 정배열, 우상향, 신고가 1600"
+  },
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "acceleration",
+    "volume_flag": "normal",
+    "note": "강한 가속 상승, 정배열"
+  },
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "note": "1600 피크 후 MA20까지 풀백"
+  },
+  "tf_consistency": "정합",
+  "verdict": "pass",
+  "verdict_reason": "전 TF A2, MA20 지지 확인 시 buy zone",
+  "charts": {
+    "1m": "charts/ASML/20260520/ASML_1m.png",
+    "1w": "charts/ASML/20260520/ASML_1w.png",
+    "1d": "charts/ASML/20260520/ASML_1d.png"
+  },
+  "schema_version": 1
+}

@@ -1,0 +1,74 @@
+{
+  "symbol": "LABUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T17:10:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2},
+  "tf_1w": {
+    "state": "A3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "low",
+    "context": {
+      "last_close": 4.25375,
+      "bars": 32,
+      "date_range": "2025-10-20 ~ 2026-05-25",
+      "ma10": 1.814893,
+      "ma20": 0.981405,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 1.3438, "ma20_pct": 3.3343, "ma50_pct": 0.0},
+      "last_candle": {"type": "doji", "body_pct": 0.1213, "vol_rank_30d": 0.067},
+      "ret_30d": 22.7839,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.489,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 2.5, "resistance": 8.5},
+      "pattern": "수직 급등 후 급락",
+      "recent_action": "30d +2278% 파라볼릭 급등 후 고점(~8.5) 대비 -49% 급락. MA10(1.81) 대비 +134%로 극단적 이격. 히스토리 32봉 미만으로 패턴 신뢰 불가."
+    }
+  },
+  "tf_1d": {
+    "state": "A4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "low",
+    "context": {
+      "last_close": 4.25375,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 4.897835,
+      "ma20": 3.850742,
+      "ma50": 1.836963,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.1315, "ma20_pct": 0.1047, "ma50_pct": 1.3156},
+      "last_candle": {"type": "doji", "body_pct": 0.1213, "vol_rank_30d": 0.533},
+      "ret_30d": 6.9082,
+      "ret_90d": 25.3602,
+      "from_period_high_pct": -0.489,
+      "vol_avg_recent_vs_prior": 3.537
+    },
+    "observations": {
+      "key_levels": {"support": 3.0, "resistance": 6.5},
+      "pattern": "파라볼릭 급등 후 조정",
+      "recent_action": "일봉 90d +2536%, 거래량 3.5배. MA10(4.9) 아래로 내려와 정배열은 유지하나 고점 대비 -49% 급락 중. pump_dump 패턴 전형적."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "파라볼릭+히스토리 부족+pump_dump 전형, 고점 대비 -49% 조정 진행 중으로 진입 불가",
+  "risk_flags": ["parabolic", "drawdown_deep", "low_history", "pump_dump_trace"],
+  "charts": {
+    "1w": "charts/LABUSDT/20260520/LABUSDT_1w.png",
+    "1d": "charts/LABUSDT/20260520/LABUSDT_1d.png"
+  }
+}

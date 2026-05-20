@@ -1,0 +1,32 @@
+{
+  "symbol": "AMAT",
+  "reviewed_at": "2026-05-20T14:22:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {
+    "state": "A2",
+    "micro_action": "acceleration",
+    "volume_flag": "normal",
+    "note": "강한 가속 상승, 신고가 450"
+  },
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "acceleration",
+    "volume_flag": "normal",
+    "note": "MA 정배열, 강한 우상향"
+  },
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "note": "450 신고가 후 MA20 풀백"
+  },
+  "tf_consistency": "정합",
+  "verdict": "pass",
+  "verdict_reason": "전 TF A2, MA20 지지 시 buy zone",
+  "charts": {
+    "1m": "charts/AMAT/20260520/AMAT_1m.png",
+    "1w": "charts/AMAT/20260520/AMAT_1w.png",
+    "1d": "charts/AMAT/20260520/AMAT_1d.png"
+  },
+  "schema_version": 1
+}

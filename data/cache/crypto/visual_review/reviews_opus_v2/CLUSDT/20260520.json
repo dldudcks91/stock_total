@@ -1,0 +1,77 @@
+{
+  "symbol": "CLUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T16:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-opus-4-7", "agent_id": null, "schema_version": 2},
+
+  "tf_1w": {
+    "state": "C1",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 103.926,
+      "bars": 11,
+      "date_range": "2026-03-16 ~ 2026-05-25",
+      "ma10": 99.1366,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0483, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "last_candle": {"type": "bull", "body_pct": 0.016, "vol_rank_30d": 0.091},
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1128,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 90, "resistance": 115},
+      "pattern": "박스",
+      "recent_action": "11주 박스 횡보, MA20/50 없음."
+    }
+  },
+  "tf_1d": {
+    "state": "B5",
+    "micro_action": "bounce_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 103.926,
+      "bars": 65,
+      "date_range": "2026-03-16 ~ 2026-05-19",
+      "ma10": 99.8133,
+      "ma20": 99.6789,
+      "ma50": 97.94828,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0412, "ma20_pct": 0.0426, "ma50_pct": 0.061},
+      "last_candle": {"type": "bull", "body_pct": 0.016, "vol_rank_30d": 0.5},
+      "ret_30d": 0.1788,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1128,
+      "vol_avg_recent_vs_prior": 1.219
+    },
+    "observations": {
+      "key_levels": {"support": 95, "resistance": 115},
+      "pattern": "타이트 정배열",
+      "recent_action": "MA 위에서 양봉, 정배열 형성. 80 저점 후 반등 retest 확정."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "히스토리 부족(주봉 11바)이지만 일봉 정배열 회복 — 데이터 누적 후 재평가.",
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1w": "charts/CLUSDT/20260520/CLUSDT_1w.png",
+    "1d": "charts/CLUSDT/20260520/CLUSDT_1d.png"
+  }
+}

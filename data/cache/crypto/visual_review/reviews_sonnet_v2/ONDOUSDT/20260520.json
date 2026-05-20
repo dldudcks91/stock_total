@@ -1,0 +1,104 @@
+{
+  "symbol": "ONDOUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T16:35:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2},
+  "tf_1m": {
+    "state": "B4",
+    "micro_action": "breaking",
+    "volume_flag": "distribution_suspect",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.3687,
+      "bars": 27,
+      "date_range": "2024-03-31 ~ 2026-05-31",
+      "ma10": 0.47828,
+      "ma20": 0.73669,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2291, "ma20_pct": -0.4995, "ma50_pct": 0.0},
+      "last_candle": {"type": "bull", "body_pct": 0.2883, "vol_rank_30d": 0.815},
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8282,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.25, "resistance": 0.55},
+      "pattern": "장기 하락 후 첫 반등",
+      "recent_action": "고점 2.0 대비 -83%, 최근 볼륨 급증(rank 0.82)하며 큰 양봉 출현. 월봉 처음으로 눈에 띄는 매수 신호."
+    }
+  },
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "bounce_ma10",
+    "volume_flag": "dry",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.3687,
+      "bars": 113,
+      "date_range": "2024-04-01 ~ 2026-05-25",
+      "ma10": 0.30472,
+      "ma20": 0.29856,
+      "ma50": 0.574934,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.21, "ma20_pct": 0.2349, "ma50_pct": -0.3587},
+      "last_candle": {"type": "bear", "body_pct": 0.0461, "vol_rank_30d": 0.233},
+      "ret_30d": -0.5053,
+      "ret_90d": -0.4044,
+      "from_period_high_pct": -0.8282,
+      "vol_avg_recent_vs_prior": 0.526
+    },
+    "observations": {
+      "key_levels": {"support": 0.28, "resistance": 0.55},
+      "pattern": "바닥 탐색 반등 시도",
+      "recent_action": "주봉 MA10 상향 전환, MA10/20 위로 소폭 이탈. 그러나 MA50 하향 강하고 30d -50%로 장기 하락 중. 음봉으로 되밀림."
+    }
+  },
+  "tf_1d": {
+    "state": "A4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "distribution_suspect",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.3687,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.38212,
+      "ma20": 0.35508,
+      "ma50": 0.29798,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0351, "ma20_pct": 0.0384, "ma50_pct": 0.2373},
+      "last_candle": {"type": "bear", "body_pct": 0.0461, "vol_rank_30d": 0.9},
+      "ret_30d": 0.4736,
+      "ret_90d": 0.3945,
+      "from_period_high_pct": -0.4806,
+      "vol_avg_recent_vs_prior": 2.472
+    },
+    "observations": {
+      "key_levels": {"support": 0.30, "resistance": 0.50},
+      "pattern": "MA10 눌림목 고볼륨",
+      "recent_action": "일봉 정배열, 30d +47% 강한 반등 후 MA10(0.382) 하단 눌림. 볼륨 2.5x + rank 0.9로 고볼륨 하락 — 분산 의심이나 단기 눌림 가능성도 공존."
+    }
+  },
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "일봉 정배열 A4(30d +47% 반등)이나 주봉·월봉은 여전히 하락 추세(B3/B4) 충돌. 고볼륨 distribution 의심. MA20(0.355) 지지 확인 시 재검토.",
+  "risk_flags": ["drawdown_deep", "distribution_suspect"],
+  "charts": {
+    "1m": "charts/ONDOUSDT/20260520/ONDOUSDT_1m.png",
+    "1w": "charts/ONDOUSDT/20260520/ONDOUSDT_1w.png",
+    "1d": "charts/ONDOUSDT/20260520/ONDOUSDT_1d.png"
+  }
+}

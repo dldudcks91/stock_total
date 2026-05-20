@@ -1,0 +1,32 @@
+{
+  "symbol": "LRCX",
+  "reviewed_at": "2026-05-20T14:20:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {
+    "state": "A2",
+    "micro_action": "acceleration",
+    "volume_flag": "normal",
+    "note": "강한 가속 상승, 신고가 300"
+  },
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "acceleration",
+    "volume_flag": "normal",
+    "note": "MA 완전 정배열, 우상향"
+  },
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "note": "305 신고가 후 MA10 풀백"
+  },
+  "tf_consistency": "정합",
+  "verdict": "pass",
+  "verdict_reason": "전 TF A2 가속, MA10 지지 시 buy zone",
+  "charts": {
+    "1m": "charts/LRCX/20260520/LRCX_1m.png",
+    "1w": "charts/LRCX/20260520/LRCX_1w.png",
+    "1d": "charts/LRCX/20260520/LRCX_1d.png"
+  },
+  "schema_version": 1
+}

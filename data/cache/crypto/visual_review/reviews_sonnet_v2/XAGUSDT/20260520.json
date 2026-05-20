@@ -1,0 +1,74 @@
+{
+  "symbol": "XAGUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T17:10:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2},
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 74.31,
+      "bars": 20,
+      "date_range": "2026-01-12 ~ 2026-05-25",
+      "ma10": 75.699,
+      "ma20": 81.5095,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0183, "ma20_pct": -0.0883, "ma50_pct": 0.0},
+      "last_candle": {"type": "bear", "body_pct": 0.0595, "vol_rank_30d": 0.15},
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.3899,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 65, "resistance": 82},
+      "pattern": "고점 하락 조정",
+      "recent_action": "주봉 20봉 히스토리로 MA50 미산출. 2026년 2월 고점(~122) 대비 -39% 조정. 베어 바디 6% 하락 캔들로 추세 하락 지속."
+    }
+  },
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 74.31,
+      "bars": 133,
+      "date_range": "2026-01-07 ~ 2026-05-19",
+      "ma10": 80.694,
+      "ma20": 78.6015,
+      "ma50": 76.978,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0791, "ma20_pct": -0.0546, "ma50_pct": -0.0347},
+      "last_candle": {"type": "bear", "body_pct": 0.0595, "vol_rank_30d": 0.767},
+      "ret_30d": -0.0602,
+      "ret_90d": -0.0374,
+      "from_period_high_pct": -0.3899,
+      "vol_avg_recent_vs_prior": 0.736
+    },
+    "observations": {
+      "key_levels": {"support": 68, "resistance": 82},
+      "pattern": "정배열 MA 전부 하향 이탈",
+      "recent_action": "일봉 MA10/20/50 정배열이나 가격이 모두 하향 이탈. 베어 캔들 거래량 높아(0.77) 매도 압력 상당. 1월 고점(~122) 후 하락 채널 지속."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "히스토리 부족+고점 대비 -39%, 1d MA 전부 하향 이탈로 매수 근거 없음",
+  "risk_flags": ["drawdown_deep", "low_history"],
+  "charts": {
+    "1w": "charts/XAGUSDT/20260520/XAGUSDT_1w.png",
+    "1d": "charts/XAGUSDT/20260520/XAGUSDT_1d.png"
+  }
+}

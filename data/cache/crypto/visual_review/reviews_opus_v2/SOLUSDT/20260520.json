@@ -1,0 +1,107 @@
+{
+  "symbol": "SOLUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T16:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-opus-4-7", "agent_id": null, "schema_version": 2},
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 84.267,
+      "bars": 59,
+      "date_range": "2021-07-31 ~ 2026-05-31",
+      "ma10": 129.4505,
+      "ma20": 151.2566,
+      "ma50": 101.40175,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.349, "ma20_pct": -0.4429, "ma50_pct": -0.169},
+      "last_candle": {"type": "doji", "body_pct": 0.0145, "vol_rank_30d": 0.333},
+      "ret_30d": 0.4188,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.715,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 80, "resistance": 150},
+      "pattern": "심한 조정",
+      "recent_action": "300 전고점 대비 -71%, 전 MA 우하향."
+    }
+  },
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "dry",
+    "confidence": "medium",
+    "context": {
+      "last_close": 84.267,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 86.1337,
+      "ma20": 94.0562,
+      "ma50": 140.3937,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0217, "ma20_pct": -0.1041, "ma50_pct": -0.3998},
+      "last_candle": {"type": "bear", "body_pct": 0.0127, "vol_rank_30d": 0.0},
+      "ret_30d": -0.5757,
+      "ret_90d": -0.3745,
+      "from_period_high_pct": -0.715,
+      "vol_avg_recent_vs_prior": 0.507
+    },
+    "observations": {
+      "key_levels": {"support": 80, "resistance": 110},
+      "pattern": "역배열 바닥 시도",
+      "recent_action": "MA10 부근 횡보, 거래량 미진."
+    }
+  },
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 84.267,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 90.1726,
+      "ma20": 88.4702,
+      "ma50": 85.90844,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0655, "ma20_pct": -0.0475, "ma50_pct": -0.0191},
+      "last_candle": {"type": "bear", "body_pct": 0.0127, "vol_rank_30d": 0.167},
+      "ret_30d": 0.0102,
+      "ret_90d": 0.0331,
+      "from_period_high_pct": -0.5543,
+      "vol_avg_recent_vs_prior": 0.828
+    },
+    "observations": {
+      "key_levels": {"support": 80, "resistance": 100},
+      "pattern": "타이트 베이스",
+      "recent_action": "일봉 정배열 형성 + MA들이 80-90 박스 안에서 수렴, 약한 우상향."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "일봉 베이스 형성 진행 중 — 95-100 돌파 시 진입 후보.",
+  "risk_flags": ["drawdown_deep"],
+
+  "charts": {
+    "1m": "charts/SOLUSDT/20260520/SOLUSDT_1m.png",
+    "1w": "charts/SOLUSDT/20260520/SOLUSDT_1w.png",
+    "1d": "charts/SOLUSDT/20260520/SOLUSDT_1d.png"
+  }
+}

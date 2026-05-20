@@ -1,0 +1,32 @@
+{
+  "symbol": "AAPL",
+  "reviewed_at": "2026-05-20T15:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {
+    "state": "A2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "note": "월봉 상 2019년 이후 장기 상승 추세 유지. MA10/20/50 정배열이며 최근 최고가 경신 중."
+  },
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "note": "주봉에서 2025년 하반기 조정 후 재상승 국면. 현재 MA10 근처 눌림 상태에서 반등 시도 중."
+  },
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "acceleration",
+    "volume_flag": "normal",
+    "note": "일봉에서 2026년 4월부터 가파른 상승 재개. MA10/20이 빠르게 상향 확산되며 가속 구간."
+  },
+  "tf_consistency": "정합",
+  "verdict": "pass",
+  "verdict_reason": "전 타임프레임 A2 정합. 일봉 가속 국면이므로 단기 과열 조정 시 진입 기회 탐색 권장.",
+  "charts": {
+    "1m": "charts/AAPL/20260520/AAPL_1m.png",
+    "1w": "charts/AAPL/20260520/AAPL_1w.png",
+    "1d": "charts/AAPL/20260520/AAPL_1d.png"
+  },
+  "schema_version": 1
+}

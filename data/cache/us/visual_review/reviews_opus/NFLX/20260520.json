@@ -1,0 +1,32 @@
+{
+  "symbol": "NFLX",
+  "reviewed_at": "2026-05-20T14:19:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {
+    "state": "A5",
+    "micro_action": null,
+    "volume_flag": "normal",
+    "note": "2025 피크 140 후 5개월 -33% 하락, MA20 하회"
+  },
+  "tf_1w": {
+    "state": "A5",
+    "micro_action": null,
+    "volume_flag": "normal",
+    "note": "MA10/20/50 모두 우하향, 큰 토핑 확정"
+  },
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": null,
+    "volume_flag": "normal",
+    "note": "75 바닥 후 박스 80-110 횡보"
+  },
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "1M/1W 토핑 retest + 1D 박스 — 추세 회복 신호 전 회피",
+  "charts": {
+    "1m": "charts/NFLX/20260520/NFLX_1m.png",
+    "1w": "charts/NFLX/20260520/NFLX_1w.png",
+    "1d": "charts/NFLX/20260520/NFLX_1d.png"
+  },
+  "schema_version": 1
+}

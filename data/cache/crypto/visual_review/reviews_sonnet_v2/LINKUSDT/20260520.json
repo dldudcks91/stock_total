@@ -1,0 +1,104 @@
+{
+  "symbol": "LINKUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T16:35:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2},
+  "tf_1m": {
+    "state": "B4",
+    "micro_action": "breaking",
+    "volume_flag": "distribution_suspect",
+    "confidence": "high",
+    "context": {
+      "last_close": 9.443,
+      "bars": 70,
+      "date_range": "2020-08-31 ~ 2026-05-31",
+      "ma10": 13.3019,
+      "ma20": 14.77185,
+      "ma50": 12.04678,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2901, "ma20_pct": -0.3607, "ma50_pct": -0.2161},
+      "last_candle": {"type": "doji", "body_pct": 0.0364, "vol_rank_30d": 0.267},
+      "ret_30d": -0.3443,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8217,
+      "vol_avg_recent_vs_prior": 2.182
+    },
+    "observations": {
+      "key_levels": {"support": 7.5, "resistance": 15.0},
+      "pattern": "장기 하락 채널",
+      "recent_action": "월봉 고점 52 대비 -82%. 모든 MA 하향, 30d -34%. 볼륨 2.2x 급증하며 하락 — 분산 패턴."
+    }
+  },
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "bounce_ma10",
+    "volume_flag": "dry",
+    "confidence": "medium",
+    "context": {
+      "last_close": 9.443,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 9.3446,
+      "ma20": 9.74355,
+      "ma50": 14.33318,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0105, "ma20_pct": -0.0308, "ma50_pct": -0.3412},
+      "last_candle": {"type": "bear", "body_pct": 0.0166, "vol_rank_30d": 0.0},
+      "ret_30d": -0.4813,
+      "ret_90d": -0.1215,
+      "from_period_high_pct": -0.6949,
+      "vol_avg_recent_vs_prior": 0.429
+    },
+    "observations": {
+      "key_levels": {"support": 8.5, "resistance": 10.5},
+      "pattern": "MA10 저항 하방 정체",
+      "recent_action": "주봉 역배열, MA10(9.34) 근방에서 정체. 30d -48%의 급락 후 현재 저볼륨 바닥 탐색. MA20(9.74) 위로 회복 실패."
+    }
+  },
+  "tf_1d": {
+    "state": "A3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 9.443,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 10.0664,
+      "ma20": 9.8405,
+      "ma50": 9.40722,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0619, "ma20_pct": -0.0404, "ma50_pct": 0.0038},
+      "last_candle": {"type": "bear", "body_pct": 0.0166, "vol_rank_30d": 0.4},
+      "ret_30d": 0.0427,
+      "ret_90d": 0.0983,
+      "from_period_high_pct": -0.4652,
+      "vol_avg_recent_vs_prior": 0.94
+    },
+    "observations": {
+      "key_levels": {"support": 9.4, "resistance": 11.0},
+      "pattern": "MA10/20 아래 눌림",
+      "recent_action": "일봉 정배열이나 MA10/20 모두 이탈, MA50(9.41) 직상에서 지지선 탐색 중. 90d +10%로 상승 모멘텀 약화."
+    }
+  },
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "일봉 정배열 유지(A3)이나 주봉·월봉 역배열(B3/B4) 충돌. MA50(9.41) 지지 여부가 핵심 — 이탈 시 스킵. 유지 시 일봉 반등 가능성 감시.",
+  "risk_flags": ["drawdown_deep"],
+  "charts": {
+    "1m": "charts/LINKUSDT/20260520/LINKUSDT_1m.png",
+    "1w": "charts/LINKUSDT/20260520/LINKUSDT_1w.png",
+    "1d": "charts/LINKUSDT/20260520/LINKUSDT_1d.png"
+  }
+}

@@ -6,8 +6,24 @@ __pycache__/
 venv/
 .ipynb_checkpoints/
 
-# Data (캐시 및 런 결과는 git에 안 올림)
-data/cache/
+# Data (캐시 및 런 결과는 git에 안 올림 — 단 visual_review 만 동기화)
+# git 의 negation 룰은 ancestor 디렉토리도 같이 unignore 해야 작동함
+data/cache/*
+!data/cache/crypto
+!data/cache/kr
+!data/cache/us
+data/cache/crypto/*
+data/cache/kr/*
+data/cache/us/*
+!data/cache/crypto/visual_review
+!data/cache/kr/visual_review
+!data/cache/us/visual_review
+!data/cache/crypto/visual_review/**
+!data/cache/kr/visual_review/**
+!data/cache/us/visual_review/**
+# PNG 는 큼 + 재생성 가능, 제외 유지
+data/cache/*/visual_review/charts/**/*.png
+
 data/alerts/
 data/*.parquet
 data/*.csv

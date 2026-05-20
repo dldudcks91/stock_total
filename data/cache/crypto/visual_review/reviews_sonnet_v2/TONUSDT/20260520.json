@@ -1,0 +1,100 @@
+{
+  "symbol": "TONUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T16:35:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2},
+  "tf_1m": {
+    "state": "B3",
+    "micro_action": "bounce_ma10",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+    "context": {
+      "last_close": 1.9802,
+      "bars": 37,
+      "date_range": "2023-05-31 ~ 2026-05-31",
+      "ma10": 1.85678,
+      "ma20": 3.037635,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0665, "ma20_pct": -0.3481, "ma50_pct": 0.0},
+      "last_candle": {"type": "bull", "body_pct": 0.3261, "vol_rank_30d": 0.967},
+      "ret_30d": -0.1787,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.7608,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 1.50, "resistance": 3.10},
+      "pattern": "하락 후 반등 시도",
+      "recent_action": "1M에서 ATH(~8.3) 대비 -76% 구간. 최근 월봉 대형 불봉(body 33%)이며 거래량 rank 0.97로 매우 강. 반등 기대감이나 MA20(3.03) 저항 유효."
+    }
+  },
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "bounce_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 1.9802,
+      "bars": 158,
+      "date_range": "2023-05-22 ~ 2026-05-25",
+      "ma10": 1.59212,
+      "ma20": 1.507935,
+      "ma50": 2.120446,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.2438, "ma20_pct": 0.3132, "ma50_pct": -0.0661},
+      "last_candle": {"type": "doji", "body_pct": 0.0092, "vol_rank_30d": 0.133},
+      "ret_30d": -0.1138,
+      "ret_90d": -0.6199,
+      "from_period_high_pct": -0.7608,
+      "vol_avg_recent_vs_prior": 0.663
+    },
+    "observations": {
+      "key_levels": {"support": 1.50, "resistance": 2.80},
+      "pattern": "바닥 반등 시도",
+      "recent_action": "1W MA10 위 +24% 회복이나 MA50(2.12) 저항 강. 90d -62% 하락 이후 반등 구간. 거래량은 기존 대비 낮음(0.66x). 혼합 배열로 방향성 미확정."
+    }
+  },
+  "tf_1d": {
+    "state": "A4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 1.9802,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 2.118,
+      "ma20": 2.012025,
+      "ma50": 1.595978,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0651, "ma20_pct": -0.0158, "ma50_pct": 0.2407},
+      "last_candle": {"type": "doji", "body_pct": 0.0092, "vol_rank_30d": 0.533},
+      "ret_30d": 0.5392,
+      "ret_90d": 0.4029,
+      "from_period_high_pct": -0.3201,
+      "vol_avg_recent_vs_prior": 5.83
+    },
+    "observations": {
+      "key_levels": {"support": 1.50, "resistance": 2.90},
+      "pattern": "정배열 눌림 MA20",
+      "recent_action": "1D 정배열 유지, MA20(2.01) 아래 조정 중. 거래량 5.83배 급증은 4월말 급등 구간 반영. 현재 MA20 지지 테스트, 5월 반등 모멘텀 둔화."
+    }
+  },
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "1D 정배열이나 1W/1M 역배열 충돌, parabolic+drawdown_deep — MA10 위 안착과 상위 TF 전환 확인 필요.",
+  "risk_flags": ["parabolic", "drawdown_deep"],
+  "charts": {"1m": "TONUSDT_1m.png", "1w": "TONUSDT_1w.png", "1d": "TONUSDT_1d.png"}
+}

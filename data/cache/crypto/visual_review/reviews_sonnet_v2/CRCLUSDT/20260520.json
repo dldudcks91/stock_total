@@ -1,0 +1,104 @@
+{
+  "symbol": "CRCLUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T16:35:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2},
+  "tf_1m": {
+    "state": "A3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "low",
+    "context": {
+      "last_close": 110.94,
+      "bars": 10,
+      "date_range": "2025-08-31 ~ 2026-05-31",
+      "ma10": 99.815,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.1115, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "last_candle": {"type": "doji", "body_pct": 0.1761, "vol_rank_30d": 0.6},
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.3001,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 80.0, "resistance": 160.0},
+      "pattern": "초단기 V반등",
+      "recent_action": "월봉 10봉, MA20/50 미형성. 고점 대비 -30% 위치에서 상승 중이나 역사 부족."
+    }
+  },
+  "tf_1w": {
+    "state": "A3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 110.94,
+      "bars": 40,
+      "date_range": "2025-08-25 ~ 2026-05-25",
+      "ma10": 108.375,
+      "ma20": 94.666,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0237, "ma20_pct": 0.1719, "ma50_pct": 0.0},
+      "last_candle": {"type": "doji", "body_pct": 0.0084, "vol_rank_30d": 0.133},
+      "ret_30d": -0.2209,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.3001,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 95.0, "resistance": 158.0},
+      "pattern": "고점 하락 후 눌림",
+      "recent_action": "주봉 MA10/20 상향이나 30d -22%. 3월 고점(~158) 후 하락 조정 중 MA10 근방에서 도지 형성."
+    }
+  },
+  "tf_1d": {
+    "state": "A4",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 110.94,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 117.915,
+      "ma20": 113.705,
+      "ma50": 103.6062,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0592, "ma20_pct": -0.0243, "ma50_pct": 0.0708},
+      "last_candle": {"type": "doji", "body_pct": 0.0084, "vol_rank_30d": 0.533},
+      "ret_30d": 0.1019,
+      "ret_90d": 0.7482,
+      "from_period_high_pct": -0.2088,
+      "vol_avg_recent_vs_prior": 0.647
+    },
+    "observations": {
+      "key_levels": {"support": 103.0, "resistance": 140.0},
+      "pattern": "MA20 눌림목",
+      "recent_action": "일봉 정배열 유지, 90d +75%의 강한 상승 후 MA20(113.7) 아래 소폭 이탈. 볼륨 감소하며 도지 — 눌림목 매수 구간 탐색 중."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1d 정배열 A4 눌림목(MA20 근처), 1w/1m도 상승 구조 정합. 저히스토리·drawdown_deep 플래그 있으나 90d +75% 모멘텀 유효 — MA50(103) 지지 확인 후 진입 고려.",
+  "risk_flags": ["drawdown_deep", "low_history"],
+  "charts": {
+    "1m": "charts/CRCLUSDT/20260520/CRCLUSDT_1m.png",
+    "1w": "charts/CRCLUSDT/20260520/CRCLUSDT_1w.png",
+    "1d": "charts/CRCLUSDT/20260520/CRCLUSDT_1d.png"
+  }
+}

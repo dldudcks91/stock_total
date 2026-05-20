@@ -1,0 +1,42 @@
+{
+  "symbol": "BSBUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T16:35:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2},
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "pump_dump_trace",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.8402,
+      "bars": 56,
+      "date_range": "2026-03-25 ~ 2026-05-19",
+      "ma10": 0.535528,
+      "ma20": 0.564026,
+      "ma50": 0.419544,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.5689, "ma20_pct": 0.4896, "ma50_pct": 1.0026},
+      "last_candle": {"type": "doji", "body_pct": 0.1694, "vol_rank_30d": 0.833},
+      "ret_30d": 2.6119,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.3391,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.50, "resistance": 1.30},
+      "pattern": "펌프 후 급락",
+      "recent_action": "56일 history만 있으며 4월말 급등(최고점 ~1.27) 후 현재 -34% 조정. MA10/MA20이 하향 전환, 가격은 MA50 위 2배에 위치. 거래량은 급등 구간 대비 현저히 축소."
+    }
+  },
+  "tf_consistency": "분리",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "56일 극단적 단기 history에 parabolic+pump_dump 패턴, drawdown_deep 위험 — 진입 불가.",
+  "risk_flags": ["parabolic", "drawdown_deep", "low_history", "pump_dump_trace"],
+  "charts": {"1d": "BSBUSDT_1d.png"}
+}

@@ -1,0 +1,32 @@
+{
+  "symbol": "CSCO",
+  "reviewed_at": "2026-05-20T14:18:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {
+    "state": "A2",
+    "micro_action": "acceleration",
+    "volume_flag": "normal",
+    "note": "2024~2026 가속 상승, 50 → 120"
+  },
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "acceleration",
+    "volume_flag": "normal",
+    "note": "MA 정배열, 강한 우상향 모멘텀"
+  },
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "note": "120 신고가 후 MA10 풀백"
+  },
+  "tf_consistency": "정합",
+  "verdict": "pass",
+  "verdict_reason": "전 TF A2 가속, 깨끗한 정배열",
+  "charts": {
+    "1m": "charts/CSCO/20260520/CSCO_1m.png",
+    "1w": "charts/CSCO/20260520/CSCO_1w.png",
+    "1d": "charts/CSCO/20260520/CSCO_1d.png"
+  },
+  "schema_version": 1
+}

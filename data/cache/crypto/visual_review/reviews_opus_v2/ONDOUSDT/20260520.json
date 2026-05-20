@@ -1,0 +1,104 @@
+{
+  "symbol": "ONDOUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T16:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-opus-4-7", "agent_id": null, "schema_version": 2},
+  "tf_1m": {
+    "state": "B5",
+    "micro_action": "bounce_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.3687,
+      "bars": 27,
+      "date_range": "2024-03-31 ~ 2026-05-31",
+      "ma10": 0.47828,
+      "ma20": 0.73669,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2291, "ma20_pct": -0.4995, "ma50_pct": 0.0},
+      "last_candle": {"type": "bull", "body_pct": 0.2883, "vol_rank_30d": 0.815},
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8282,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.25, "resistance": 0.75},
+      "pattern": "bottom_attempt",
+      "recent_action": "2.1 ATH → 0.25 저점, 거래량 0.8 + 큰 양봉 등장."
+    }
+  },
+  "tf_1w": {
+    "state": "B5",
+    "micro_action": "bounce_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.3687,
+      "bars": 113,
+      "date_range": "2024-04-01 ~ 2026-05-25",
+      "ma10": 0.30472,
+      "ma20": 0.29856,
+      "ma50": 0.574934,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.21, "ma20_pct": 0.2349, "ma50_pct": -0.3587},
+      "last_candle": {"type": "bear", "body_pct": 0.0461, "vol_rank_30d": 0.233},
+      "ret_30d": -0.5053,
+      "ret_90d": -0.4044,
+      "from_period_high_pct": -0.8282,
+      "vol_avg_recent_vs_prior": 0.526
+    },
+    "observations": {
+      "key_levels": {"support": 0.27, "resistance": 0.50},
+      "pattern": "base_reversal",
+      "recent_action": "0.27 베이스 후 MA10 골든크로스 + 0.37 회복."
+    }
+  },
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.3687,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.38212,
+      "ma20": 0.35508,
+      "ma50": 0.29798,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0351, "ma20_pct": 0.0384, "ma50_pct": 0.2373},
+      "last_candle": {"type": "bear", "body_pct": 0.0461, "vol_rank_30d": 0.9},
+      "ret_30d": 0.4736,
+      "ret_90d": 0.3945,
+      "from_period_high_pct": -0.4806,
+      "vol_avg_recent_vs_prior": 2.472
+    },
+    "observations": {
+      "key_levels": {"support": 0.30, "resistance": 0.50},
+      "pattern": "stage2_pullback",
+      "recent_action": "0.25 베이스 돌파 후 0.50까지 +90%, MA10 가벼운 눌림."
+    }
+  },
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "일봉 강한 stage2 정배열 + 눌림, 주봉도 반전 베이스. 거래량 증가 양호.",
+  "risk_flags": ["drawdown_deep"],
+  "charts": {
+    "1m": "charts/ONDOUSDT/20260520/ONDOUSDT_1m.png",
+    "1w": "charts/ONDOUSDT/20260520/ONDOUSDT_1w.png",
+    "1d": "charts/ONDOUSDT/20260520/ONDOUSDT_1d.png"
+  }
+}

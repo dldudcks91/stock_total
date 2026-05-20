@@ -1,0 +1,104 @@
+{
+  "symbol": "XAUTUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T17:10:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2},
+  "tf_1m": {
+    "state": "A4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 4490.15,
+      "bars": 14,
+      "date_range": "2025-04-30 ~ 2026-05-31",
+      "ma10": 4375.088,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0263, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "last_candle": {"type": "bear", "body_pct": 0.0273, "vol_rank_30d": 0.643},
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.2005,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 4000, "resistance": 5600},
+      "pattern": "장기 상승 후 조정",
+      "recent_action": "월봉 14봉으로 MA20/50 미산출. 2025년 저점(~3200)에서 꾸준한 상승 후 2026년 2월~3월 고점(~5600) 대비 -20% 조정 중."
+    }
+  },
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "distribution_suspect",
+    "confidence": "medium",
+    "context": {
+      "last_close": 4490.15,
+      "bars": 60,
+      "date_range": "2025-04-07 ~ 2026-05-25",
+      "ma10": 4610.304,
+      "ma20": 4787.972,
+      "ma50": 4193.8508,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0261, "ma20_pct": -0.0622, "ma50_pct": 0.0707},
+      "last_candle": {"type": "bear", "body_pct": 0.0186, "vol_rank_30d": 0.0},
+      "ret_30d": 0.1234,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.2005,
+      "vol_avg_recent_vs_prior": 3.4
+    },
+    "observations": {
+      "key_levels": {"support": 4200, "resistance": 4800},
+      "pattern": "고점 조정 혼합",
+      "recent_action": "주봉 거래량이 평균 3.4배로 고점 부근에서 분산 의심. MA10 하향 이탈하며 MA20/10 모두 역전 시작 중."
+    }
+  },
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 4490.15,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 4615.478,
+      "ma20": 4622.5845,
+      "ma50": 4670.1304,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0272, "ma20_pct": -0.0286, "ma50_pct": -0.0385},
+      "last_candle": {"type": "bear", "body_pct": 0.0186, "vol_rank_30d": 0.733},
+      "ret_30d": -0.0514,
+      "ret_90d": -0.0931,
+      "from_period_high_pct": -0.2005,
+      "vol_avg_recent_vs_prior": 0.671
+    },
+    "observations": {
+      "key_levels": {"support": 4350, "resistance": 4700},
+      "pattern": "역배열 밀집 하방 이탈",
+      "recent_action": "일봉 MA10/20/50이 4615~4670 역배열로 밀집. 가격이 전부 하향 이탈하며 베어 캔들 거래량 높음. XAUUSDT와 유사한 패턴(금 선물 연동)."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "금 연동 자산으로 장기 우상향 기조 유지 중이나 현재 -20% 조정 구간, 지지 확인 필요",
+  "risk_flags": ["low_history", "distribution_suspect"],
+  "charts": {
+    "1m": "charts/XAUTUSDT/20260520/XAUTUSDT_1m.png",
+    "1w": "charts/XAUTUSDT/20260520/XAUTUSDT_1w.png",
+    "1d": "charts/XAUTUSDT/20260520/XAUTUSDT_1d.png"
+  }
+}

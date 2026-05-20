@@ -1,0 +1,32 @@
+{
+  "symbol": "WMT",
+  "reviewed_at": "2026-05-20T15:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {
+    "state": "A2",
+    "micro_action": "acceleration",
+    "volume_flag": "normal",
+    "note": "월봉 상 2024년 이후 가속 상승 중. MA10/20/50 정배열이며 $140 근처 신고가 경신."
+  },
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "note": "주봉에서 완연한 정배열 상승. 풀백 없이 MA10 위에서 지속 상승하는 강한 추세."
+  },
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "note": "일봉에서 $130 고점 이후 MA20 근처로 눌림 후 재상승 시도 중. 눌림목 매수 구간."
+  },
+  "tf_consistency": "정합",
+  "verdict": "pass",
+  "verdict_reason": "전 타임프레임 A2 정합. 일봉 MA20 눌림 구간으로 trend_pullback 전략 진입 조건 부합.",
+  "charts": {
+    "1m": "charts/WMT/20260520/WMT_1m.png",
+    "1w": "charts/WMT/20260520/WMT_1w.png",
+    "1d": "charts/WMT/20260520/WMT_1d.png"
+  },
+  "schema_version": 1
+}

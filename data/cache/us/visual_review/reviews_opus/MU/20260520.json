@@ -1,0 +1,32 @@
+{
+  "symbol": "MU",
+  "reviewed_at": "2026-05-20T14:13:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {
+    "state": "A2",
+    "micro_action": "acceleration",
+    "volume_flag": "distribution_suspect",
+    "note": "수직 펌프 100 → 820, 직전 큰 위꼬리 음봉"
+  },
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "acceleration",
+    "volume_flag": "distribution_suspect",
+    "note": "거래량 폭증 + 가속 펌프, 직전 820 → 720 -12% 풀백"
+  },
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "note": "신고가 820 후 MA10 풀백"
+  },
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_reason": "정합 A2 가속이지만 페러볼릭 + 거래량 분배 의심 — 풀백 깊이 확인 필요",
+  "charts": {
+    "1m": "charts/MU/20260520/MU_1m.png",
+    "1w": "charts/MU/20260520/MU_1w.png",
+    "1d": "charts/MU/20260520/MU_1d.png"
+  },
+  "schema_version": 1
+}

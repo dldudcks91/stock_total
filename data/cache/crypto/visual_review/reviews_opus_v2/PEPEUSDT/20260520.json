@@ -1,0 +1,104 @@
+{
+  "symbol": "PEPEUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T16:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-opus-4-7", "agent_id": null, "schema_version": 2},
+  "tf_1m": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "dry",
+    "confidence": "medium",
+    "context": {
+      "last_close": 4e-06,
+      "bars": 37,
+      "date_range": "2023-05-31 ~ 2026-05-31",
+      "ma10": 5e-06,
+      "ma20": 9e-06,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3103, "ma20_pct": -0.5769, "ma50_pct": 0.0},
+      "last_candle": {"type": "doji", "body_pct": 0.0636, "vol_rank_30d": 0.0},
+      "ret_30d": 2.3527,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8717,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 3.5e-06, "resistance": 1e-05},
+      "pattern": "장기 하락",
+      "recent_action": "2024년 고점에서 87% 하락, MA10/20 아래에서 횡보."
+    }
+  },
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+    "context": {
+      "last_close": 4e-06,
+      "bars": 160,
+      "date_range": "2023-05-08 ~ 2026-05-25",
+      "ma10": 4e-06,
+      "ma20": 4e-06,
+      "ma50": 7e-06,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0199, "ma20_pct": -0.0947, "ma50_pct": -0.452},
+      "last_candle": {"type": "bear", "body_pct": 0.0147, "vol_rank_30d": 0.0},
+      "ret_30d": -0.489,
+      "ret_90d": -0.5212,
+      "from_period_high_pct": -0.8717,
+      "vol_avg_recent_vs_prior": 0.538
+    },
+    "observations": {
+      "key_levels": {"support": 3.5e-06, "resistance": 7e-06},
+      "pattern": "역배열 지속",
+      "recent_action": "MA50 아래에서 -52% 하락, 거래량 마름."
+    }
+  },
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "dry",
+    "confidence": "medium",
+    "context": {
+      "last_close": 4e-06,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 4e-06,
+      "ma20": 4e-06,
+      "ma50": 4e-06,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0829, "ma20_pct": -0.0942, "ma50_pct": -0.0441},
+      "last_candle": {"type": "bear", "body_pct": 0.0147, "vol_rank_30d": 0.0},
+      "ret_30d": -0.0016,
+      "ret_90d": -0.1393,
+      "from_period_high_pct": -0.4982,
+      "vol_avg_recent_vs_prior": 0.743
+    },
+    "observations": {
+      "key_levels": {"support": 3.5e-06, "resistance": 4.5e-06},
+      "pattern": "수렴 횡보",
+      "recent_action": "MA10/20/50 모두 4e-06 근처 수렴, 거래량 메마름 — 방향성 부재."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "장기 하락 추세 지속, 바닥 다지기 초기 단계 — 트리거 부재.",
+  "risk_flags": ["drawdown_deep"],
+  "charts": {
+    "1m": "charts/PEPEUSDT/20260520/PEPEUSDT_1m.png",
+    "1w": "charts/PEPEUSDT/20260520/PEPEUSDT_1w.png",
+    "1d": "charts/PEPEUSDT/20260520/PEPEUSDT_1d.png"
+  }
+}

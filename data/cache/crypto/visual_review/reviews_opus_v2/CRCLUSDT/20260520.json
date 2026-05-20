@@ -1,0 +1,104 @@
+{
+  "symbol": "CRCLUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T16:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-opus-4-7", "agent_id": null, "schema_version": 2},
+  "tf_1m": {
+    "state": "A3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 110.94,
+      "bars": 10,
+      "date_range": "2025-08-31 ~ 2026-05-31",
+      "ma10": 99.815,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.1115, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "last_candle": {"type": "doji", "body_pct": 0.1761, "vol_rank_30d": 0.6},
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.3001,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 65, "resistance": 140},
+      "pattern": "v_recovery",
+      "recent_action": "140 고점 → 65 저점 후 V자 반등 진행 중."
+    }
+  },
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 110.94,
+      "bars": 40,
+      "date_range": "2025-08-25 ~ 2026-05-25",
+      "ma10": 108.375,
+      "ma20": 94.666,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0237, "ma20_pct": 0.1719, "ma50_pct": 0.0},
+      "last_candle": {"type": "doji", "body_pct": 0.0084, "vol_rank_30d": 0.133},
+      "ret_30d": -0.2209,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.3001,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 90, "resistance": 140},
+      "pattern": "ma_recovery",
+      "recent_action": "MA10/20 골든크로스 + 우상향, 110 보합."
+    }
+  },
+  "tf_1d": {
+    "state": "A4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 110.94,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 117.915,
+      "ma20": 113.705,
+      "ma50": 103.6062,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0592, "ma20_pct": -0.0243, "ma50_pct": 0.0708},
+      "last_candle": {"type": "doji", "body_pct": 0.0084, "vol_rank_30d": 0.533},
+      "ret_30d": 0.1019,
+      "ret_90d": 0.7482,
+      "from_period_high_pct": -0.2088,
+      "vol_avg_recent_vs_prior": 0.647
+    },
+    "observations": {
+      "key_levels": {"support": 100, "resistance": 135},
+      "pattern": "uptrend_pullback",
+      "recent_action": "60→140 강한 상승 후 MA10/20 위 눌림 진행."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "정배열 + 눌림 양호, 다만 히스토리 부족하고 거래량 약화.",
+  "risk_flags": ["drawdown_deep", "low_history"],
+  "charts": {
+    "1m": "charts/CRCLUSDT/20260520/CRCLUSDT_1m.png",
+    "1w": "charts/CRCLUSDT/20260520/CRCLUSDT_1w.png",
+    "1d": "charts/CRCLUSDT/20260520/CRCLUSDT_1d.png"
+  }
+}

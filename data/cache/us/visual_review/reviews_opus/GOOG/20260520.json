@@ -1,0 +1,32 @@
+{
+  "symbol": "GOOG",
+  "reviewed_at": "2026-05-20T14:08:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {
+    "state": "A2",
+    "micro_action": "acceleration",
+    "volume_flag": "normal",
+    "note": "2025 가속 상승, 신고가 400+, 정배열 + 우상향 (GOOGL과 동일)"
+  },
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "acceleration",
+    "volume_flag": "normal",
+    "note": "강한 모멘텀, MA 완전 정배열"
+  },
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "note": "4월 박스 돌파 후 신고가 405, MA10 풀백"
+  },
+  "tf_consistency": "정합",
+  "verdict": "pass",
+  "verdict_reason": "GOOGL과 동일 패턴, A2 정배열 가속",
+  "charts": {
+    "1m": "charts/GOOG/20260520/GOOG_1m.png",
+    "1w": "charts/GOOG/20260520/GOOG_1w.png",
+    "1d": "charts/GOOG/20260520/GOOG_1d.png"
+  },
+  "schema_version": 1
+}

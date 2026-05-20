@@ -1,0 +1,107 @@
+{
+  "symbol": "SKYAIUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T17:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2.1},
+  "tf_1m": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 0.28259,
+      "bars": 13,
+      "date_range": "2025-05-31 ~ 2026-05-31",
+      "ma10": 0.094267,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 1.9978, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "last_candle": {"type": "doji", "body_pct": 0.2412, "vol_rank_30d": 0.538, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.6752,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.094, "resistance": 0.87},
+      "pattern": "13바 월봉 신뢰 극히 낮음. MA10 대비 +200% 극단 이격 — 파라볼릭.",
+      "recent_action": "고점 0.87 대비 -67.5% 낙폭 중"
+    }
+  },
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "distribution_suspect",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.28259,
+      "bars": 54,
+      "date_range": "2025-05-19 ~ 2026-05-25",
+      "ma10": 0.237818,
+      "ma20": 0.139814,
+      "ma50": 0.079131,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.1883, "ma20_pct": 1.0212, "ma50_pct": 2.5712},
+      "last_candle": {"type": "bear", "body_pct": 0.1098, "vol_rank_30d": 0.0, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 1.262, "price_range_5bar_pct": 2.5372, "accumulation_score": 0.0},
+      "ret_30d": 11.0868,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.6752,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.237, "resistance": 0.87},
+      "pattern": "주봉 정배열이나 5봉 가격 범위 253%(극단 변동성). 최근 30일 +1107%. bear 캔들로 하락 반전. 분배 의심.",
+      "recent_action": "급등 후 분배 시작 시그널. 주봉 bear 봉 + 고점 -67.5%"
+    }
+  },
+  "tf_1d": {
+    "state": "A3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "distribution_suspect",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.28259,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.39408,
+      "ma20": 0.477767,
+      "ma50": 0.271478,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.2829, "ma20_pct": -0.4085, "ma50_pct": 0.0409},
+      "last_candle": {"type": "bear", "body_pct": 0.1098, "vol_rank_30d": 0.167, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 0.228, "price_range_5bar_pct": 0.4436, "accumulation_score": 0.0},
+      "ret_30d": 0.5512,
+      "ret_90d": 6.7295,
+      "from_period_high_pct": -0.6752,
+      "vol_avg_recent_vs_prior": 3.265
+    },
+    "observations": {
+      "key_levels": {"support": 0.27, "resistance": 0.48},
+      "pattern": "일봉: 4월 0.87 고점 후 급락. MA10/20 하향, 가격은 두 MA 아래. 5봉 거래량 급감(0.23x). vol_avg_recent_vs_prior 3.27 — 과거 급등 시 대량거래 후 소멸.",
+      "recent_action": "분배 완료 후 거래량 고갈 단계. MA50(0.27) 근방 지지 여부 미확인"
+    }
+  },
+  "tf_consistency": "충돌",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "parabolic+drawdown_deep+low_history 삼중 위험. 30일 +1107% 후 고점 -67.5% 급락. 일봉 분배 패턴(vol 급감+하락 캔들). 완전 회피.",
+  "risk_flags": ["parabolic", "drawdown_deep", "low_history", "distribution_suspect"],
+  "charts": {
+    "1m": "data/cache/crypto/visual_review/charts/SKYAIUSDT/20260520/SKYAIUSDT_1m.png",
+    "1w": "data/cache/crypto/visual_review/charts/SKYAIUSDT/20260520/SKYAIUSDT_1w.png",
+    "1d": "data/cache/crypto/visual_review/charts/SKYAIUSDT/20260520/SKYAIUSDT_1d.png"
+  }
+}

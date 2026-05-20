@@ -1,0 +1,104 @@
+{
+  "symbol": "TONUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T16:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-opus-4-7", "agent_id": null, "schema_version": 2},
+  "tf_1m": {
+    "state": "B5",
+    "micro_action": "acceleration",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 1.9802,
+      "bars": 37,
+      "date_range": "2023-05-31 ~ 2026-05-31",
+      "ma10": 1.85678,
+      "ma20": 3.037635,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0665, "ma20_pct": -0.3481, "ma50_pct": 0.0},
+      "last_candle": {"type": "bull", "body_pct": 0.3261, "vol_rank_30d": 0.967},
+      "ret_30d": -0.1787,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.7608,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 1.25, "resistance": 3.0},
+      "pattern": "바닥 반등",
+      "recent_action": "월봉 32% 양봉 + 거래량 최고치 — 장기 하락 마감 신호."
+    }
+  },
+  "tf_1w": {
+    "state": "B5",
+    "micro_action": "bounce_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 1.9802,
+      "bars": 158,
+      "date_range": "2023-05-22 ~ 2026-05-25",
+      "ma10": 1.59212,
+      "ma20": 1.507935,
+      "ma50": 2.120446,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.2438, "ma20_pct": 0.3132, "ma50_pct": -0.0661},
+      "last_candle": {"type": "doji", "body_pct": 0.0092, "vol_rank_30d": 0.133},
+      "ret_30d": -0.1138,
+      "ret_90d": -0.6199,
+      "from_period_high_pct": -0.7608,
+      "vol_avg_recent_vs_prior": 0.663
+    },
+    "observations": {
+      "key_levels": {"support": 1.3, "resistance": 2.5},
+      "pattern": "바닥 이탈",
+      "recent_action": "1.3 부근 5개월 횡보 후 2.0 돌파, MA50(2.12) 저항 테스트 중."
+    }
+  },
+  "tf_1d": {
+    "state": "A1",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 1.9802,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 2.118,
+      "ma20": 2.012025,
+      "ma50": 1.595978,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0651, "ma20_pct": -0.0158, "ma50_pct": 0.2407},
+      "last_candle": {"type": "doji", "body_pct": 0.0092, "vol_rank_30d": 0.533},
+      "ret_30d": 0.5392,
+      "ret_90d": 0.4029,
+      "from_period_high_pct": -0.3201,
+      "vol_avg_recent_vs_prior": 5.83
+    },
+    "observations": {
+      "key_levels": {"support": 1.6, "resistance": 3.0},
+      "pattern": "박스 폭파",
+      "recent_action": "1.25~1.5 박스 6개월 후 거래량 6배로 2.95까지 급등, MA10/20 부근 1차 눌림."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "pass",
+  "verdict_confidence": "high",
+  "verdict_reason": "장기 하락 마감 + 일봉 정배열 + 거래량 폭증 + 박스 돌파 — 추세 전환 신호.",
+  "risk_flags": ["parabolic", "drawdown_deep"],
+  "charts": {
+    "1m": "charts/TONUSDT/20260520/TONUSDT_1m.png",
+    "1w": "charts/TONUSDT/20260520/TONUSDT_1w.png",
+    "1d": "charts/TONUSDT/20260520/TONUSDT_1d.png"
+  }
+}

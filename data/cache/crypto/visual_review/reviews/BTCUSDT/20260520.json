@@ -1,0 +1,107 @@
+{
+  "symbol": "BTCUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T17:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2.1},
+  "tf_1m": {
+    "state": "B3",
+    "micro_action": "bounce_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 76803.8,
+      "bars": 83,
+      "date_range": "2019-07-31 ~ 2026-05-31",
+      "ma10": 87668.74,
+      "ma20": 91386.17,
+      "ma50": 58902.232,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.1239, "ma20_pct": -0.1596, "ma50_pct": 0.3039},
+      "last_candle": {"type": "doji", "body_pct": 0.0065, "vol_rank_30d": 0.0, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 0.33, "price_range_5bar_pct": 0.4946, "accumulation_score": 0.0},
+      "ret_30d": 1.0368,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.3913,
+      "vol_avg_recent_vs_prior": 0.897
+    },
+    "observations": {
+      "key_levels": {"support": 70000, "resistance": 90000},
+      "pattern": "월봉 역배열 탈출 시도",
+      "recent_action": "고점(~127k) 대비 -39% 하락 후 월봉 MA50(58.9k) 위에서 지지받으며 반등 중. 최근 월봉 거래량은 축소되어 momentum 약함."
+    }
+  },
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "bounce_ma10",
+    "volume_flag": "dry",
+    "confidence": "medium",
+    "context": {
+      "last_close": 76803.8,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 74920.77,
+      "ma20": 75782.695,
+      "ma50": 94231.238,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0251, "ma20_pct": 0.0135, "ma50_pct": -0.1849},
+      "last_candle": {"type": "doji", "body_pct": 0.002, "vol_rank_30d": 0.0, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 0.648, "price_range_5bar_pct": 0.1044, "accumulation_score": 0.0},
+      "ret_30d": -0.3267,
+      "ret_90d": 0.2997,
+      "from_period_high_pct": -0.3913,
+      "vol_avg_recent_vs_prior": 0.502
+    },
+    "observations": {
+      "key_levels": {"support": 73000, "resistance": 88000},
+      "pattern": "주봉 역배열 횡보",
+      "recent_action": "MA10/MA20 사이에서 doji 형성, 거래량은 선행 30봉 대비 절반 수준으로 방향성 부재. 주봉 MA50(94.2k)이 압도적 저항."
+    }
+  },
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 76803.8,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 79304.66,
+      "ma20": 79378.455,
+      "ma50": 75805.55,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0315, "ma20_pct": -0.0324, "ma50_pct": 0.0132},
+      "last_candle": {"type": "doji", "body_pct": 0.002, "vol_rank_30d": 0.3, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 0.96, "price_range_5bar_pct": 0.0732, "accumulation_score": 0.0},
+      "ret_30d": 0.0411,
+      "ret_90d": 0.1561,
+      "from_period_high_pct": -0.3093,
+      "vol_avg_recent_vs_prior": 0.829
+    },
+    "observations": {
+      "key_levels": {"support": 75500, "resistance": 80000},
+      "pattern": "MA10/MA20 하회 pullback",
+      "recent_action": "2월 저점(~63k) 반등 후 80k 부근에서 저항. 일봉 MA50(75.8k)이 주요 지지선이며 현재 그 위에서 doji 형성 중."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "전 타임프레임 B3 수렴, 일봉 MA50 지지 확인 중이나 주봉 거래량 건조 — 추가 상승 확인 후 진입 고려",
+  "risk_flags": ["drawdown_deep"],
+  "charts": {
+    "1m": "data/cache/crypto/visual_review/charts/BTCUSDT/20260520/BTCUSDT_1m.png",
+    "1w": "data/cache/crypto/visual_review/charts/BTCUSDT/20260520/BTCUSDT_1w.png",
+    "1d": "data/cache/crypto/visual_review/charts/BTCUSDT/20260520/BTCUSDT_1d.png"
+  }
+}

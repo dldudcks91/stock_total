@@ -1,0 +1,100 @@
+{
+  "symbol": "PEPEUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T16:35:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2},
+  "tf_1m": {
+    "state": "B3",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 4e-06,
+      "bars": 37,
+      "date_range": "2023-05-31 ~ 2026-05-31",
+      "ma10": 5e-06,
+      "ma20": 9e-06,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3103, "ma20_pct": -0.5769, "ma50_pct": 0.0},
+      "last_candle": {"type": "doji", "body_pct": 0.0636, "vol_rank_30d": 0.0},
+      "ret_30d": 2.3527,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8717,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 3e-06, "resistance": 6e-06},
+      "pattern": "역배열 하단",
+      "recent_action": "1M에서 ATH(~2.7e-5) 대비 -87% 구간. MA10/MA20 모두 하향. 30d +235%는 최근 단기 반등이나 장기 추세는 하락."
+    }
+  },
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "breaking",
+    "volume_flag": "dry",
+    "confidence": "high",
+    "context": {
+      "last_close": 4e-06,
+      "bars": 160,
+      "date_range": "2023-05-08 ~ 2026-05-25",
+      "ma10": 4e-06,
+      "ma20": 4e-06,
+      "ma50": 7e-06,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0199, "ma20_pct": -0.0947, "ma50_pct": -0.452},
+      "last_candle": {"type": "bear", "body_pct": 0.0147, "vol_rank_30d": 0.0},
+      "ret_30d": -0.489,
+      "ret_90d": -0.5212,
+      "from_period_high_pct": -0.8717,
+      "vol_avg_recent_vs_prior": 0.538
+    },
+    "observations": {
+      "key_levels": {"support": 3e-06, "resistance": 5e-06},
+      "pattern": "역배열 하락",
+      "recent_action": "1W 역배열, MA 3개 모두 하향, 30d -49%/90d -52%. 거래량 절반 이하로 건조. 장기 하락 추세 지속."
+    }
+  },
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "dry",
+    "confidence": "high",
+    "context": {
+      "last_close": 4e-06,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 4e-06,
+      "ma20": 4e-06,
+      "ma50": 4e-06,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0829, "ma20_pct": -0.0942, "ma50_pct": -0.0441},
+      "last_candle": {"type": "bear", "body_pct": 0.0147, "vol_rank_30d": 0.0},
+      "ret_30d": -0.0016,
+      "ret_90d": -0.1393,
+      "from_period_high_pct": -0.4982,
+      "vol_avg_recent_vs_prior": 0.743
+    },
+    "observations": {
+      "key_levels": {"support": 3.0e-06, "resistance": 5.0e-06},
+      "pattern": "횡보 하락",
+      "recent_action": "1D에서 MA3개 모두 근접한 flat 구간, 가격은 MA 아래. 거래량 축소(0.74x) 및 음봉 지속. 단기 횡보이나 상위 TF는 명확한 하락."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "1M/1W/1D 모두 하락 역배열, drawdown_deep -87% — 추세 전환 미확인, 매수 근거 없음.",
+  "risk_flags": ["drawdown_deep"],
+  "charts": {"1m": "PEPEUSDT_1m.png", "1w": "PEPEUSDT_1w.png", "1d": "PEPEUSDT_1d.png"}
+}

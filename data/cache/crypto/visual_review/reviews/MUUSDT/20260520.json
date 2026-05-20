@@ -1,0 +1,76 @@
+{
+  "symbol": "MUUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T17:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2.1},
+  "tf_1w": {
+    "state": "A1",
+    "micro_action": "acceleration",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 706.49,
+      "bars": 15,
+      "date_range": "2026-02-16 ~ 2026-05-25",
+      "ma10": 527.857,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.3384, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "last_candle": {"type": "doji", "body_pct": 0.0227, "vol_rank_30d": 0.6, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1384,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 500.0, "resistance": 830.0},
+      "pattern": "15봉 데이터. MA10 위 +34%. 고점 대비 -14%로 아직 고점 근처. 주봉 대형 거래량 폭발 후 반납 중.",
+      "recent_action": "5월 초 고점(~830) 후 현재 700대 횡보. 주봉 최근 대형 음봉 주의."
+    }
+  },
+  "tf_1d": {
+    "state": "A1",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+    "context": {
+      "last_close": 706.49,
+      "bars": 98,
+      "date_range": "2026-02-11 ~ 2026-05-19",
+      "ma10": 744.004,
+      "ma20": 682.934,
+      "ma50": 535.1036,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0504, "ma20_pct": 0.0345, "ma50_pct": 0.3203},
+      "last_candle": {"type": "doji", "body_pct": 0.0227, "vol_rank_30d": 0.967, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 3.064, "price_range_5bar_pct": 0.1911, "accumulation_score": 0.0},
+      "ret_30d": 0.5793,
+      "ret_90d": 0.6651,
+      "from_period_high_pct": -0.1384,
+      "vol_avg_recent_vs_prior": 1.602
+    },
+    "observations": {
+      "key_levels": {"support": 683.0, "resistance": 830.0},
+      "pattern": "일봉 정배열 전체 상향. vol_rank 96.7%, vol_5bar 3.06배 + 가격권 고점 근처. 30일 +57.9%, 90일 +66.5% 강한 상승. MA10(744) 하방 눌림 중.",
+      "recent_action": "5월 초 거래량 폭발(100K+ 일 기준) 후 고점 형성. MA20(683) 지지 시험 예정. PNG에서 5월 거래량 최고치 우뚝 서 있으나 가격은 MA10 하방으로 눌림."
+    }
+  },
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "일봉 정배열 + 60/90일 강한 상승 + MA20 지지권 눌림은 긍정적. vol_5bar 3.06배 + vol_rank 97%는 고점 부근 고거래량으로 분배 또는 매집 판단 불가(PNG 시각 확인 필요). parabolic + low_history 주의. MA20(683) 지지 확인 + 거래량 감소 후 watch 유지, 재상승 확인 시 pass 검토.",
+  "risk_flags": ["parabolic", "low_history"],
+  "charts": {
+    "1w": "charts/MUUSDT/20260520/MUUSDT_1w.png",
+    "1d": "charts/MUUSDT/20260520/MUUSDT_1d.png"
+  }
+}

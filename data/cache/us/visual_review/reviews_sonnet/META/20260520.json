@@ -1,0 +1,32 @@
+{
+  "symbol": "META",
+  "reviewed_at": "2026-05-20T15:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {
+    "state": "A3",
+    "micro_action": null,
+    "volume_flag": "normal",
+    "note": "월봉 기준 2024년 말 $800 고점 이후 신고가 없이 $600~700 박스 횡보. MA10/20 수렴하며 추세 정체."
+  },
+  "tf_1w": {
+    "state": "A3",
+    "micro_action": null,
+    "volume_flag": "normal",
+    "note": "주봉도 고점 이후 MA들이 수평으로 수렴 중. 가격이 MA50 근처까지 눌리며 방향 탐색 중."
+  },
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": null,
+    "volume_flag": "normal",
+    "note": "일봉에서 고점 이후 MA20 이하로 이탈, MA10/20이 역배열로 전환되며 하락 추세 진입."
+  },
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_reason": "월봉·주봉 A3 고점 정체 + 일봉 B2 하락 전환. 큰 TF 천장 신호 확인으로 회피.",
+  "charts": {
+    "1m": "charts/META/20260520/META_1m.png",
+    "1w": "charts/META/20260520/META_1w.png",
+    "1d": "charts/META/20260520/META_1d.png"
+  },
+  "schema_version": 1
+}

@@ -1,0 +1,100 @@
+{
+  "symbol": "HYPEUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T16:35:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2},
+  "tf_1m": {
+    "state": "A2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 48.036,
+      "bars": 18,
+      "date_range": "2024-12-31 ~ 2026-05-31",
+      "ma10": 37.7054,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.274, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "last_candle": {"type": "bull", "body_pct": 0.1735, "vol_rank_30d": 0.333},
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1926,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 37.0, "resistance": 60.0},
+      "pattern": "상승 추세",
+      "recent_action": "1M 18봉으로 history 부족하나 MA10 위 riding 중. 불봉 캔들 유지, 최근 월봉 상승 전환 확인."
+    }
+  },
+  "tf_1w": {
+    "state": "A3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 48.036,
+      "bars": 75,
+      "date_range": "2024-12-23 ~ 2026-05-25",
+      "ma10": 41.6598,
+      "ma20": 35.97295,
+      "ma50": 38.34056,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.1531, "ma20_pct": 0.3353, "ma50_pct": 0.2529},
+      "last_candle": {"type": "doji", "body_pct": 0.0063, "vol_rank_30d": 0.0},
+      "ret_30d": 0.0321,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1926,
+      "vol_avg_recent_vs_prior": 1.011
+    },
+    "observations": {
+      "key_levels": {"support": 40.0, "resistance": 59.0},
+      "pattern": "고점 근처 doji",
+      "recent_action": "1W 상승 3MA 모두 기울기 UP, 가격 MA10 위 +15%. 최고점(-19%) 근처에서 doji 형성, 단기 방향성 결정 대기 국면."
+    }
+  },
+  "tf_1d": {
+    "state": "A3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 48.036,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 43.5524,
+      "ma20": 42.81695,
+      "ma50": 41.3094,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.1029, "ma20_pct": 0.1219, "ma50_pct": 0.1628},
+      "last_candle": {"type": "doji", "body_pct": 0.0063, "vol_rank_30d": 0.8},
+      "ret_30d": 0.18,
+      "ret_90d": 0.6744,
+      "from_period_high_pct": -0.0179,
+      "vol_avg_recent_vs_prior": 1.175
+    },
+    "observations": {
+      "key_levels": {"support": 41.0, "resistance": 59.0},
+      "pattern": "정배열 riding",
+      "recent_action": "1D 정배열 확실, 3MA 모두 우상향이며 가격 전고점 -2%까지 상승. 거래량 증가(1.18x) 동반. MA50 위 riding 유지 중."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "pass",
+  "verdict_confidence": "high",
+  "verdict_reason": "1D/1W 정배열 및 3MA 상향, 전고점 -2% 신고점 돌파 임박 — low_history 외 주요 위험 없음.",
+  "risk_flags": ["low_history"],
+  "charts": {"1m": "HYPEUSDT_1m.png", "1w": "HYPEUSDT_1w.png", "1d": "HYPEUSDT_1d.png"}
+}

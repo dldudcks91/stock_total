@@ -1,0 +1,107 @@
+{
+  "symbol": "DOGEUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T16:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-opus-4-7", "agent_id": null, "schema_version": 2},
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "dry",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.10295,
+      "bars": 61,
+      "date_range": "2021-05-31 ~ 2026-05-31",
+      "ma10": 0.13961,
+      "ma20": 0.186601,
+      "ma50": 0.131869,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2626, "ma20_pct": -0.4483, "ma50_pct": -0.2193},
+      "last_candle": {"type": "doji", "body_pct": 0.034, "vol_rank_30d": 0.5},
+      "ret_30d": 0.2342,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.7877,
+      "vol_avg_recent_vs_prior": 5.657
+    },
+    "observations": {
+      "key_levels": {"support": 0.09, "resistance": 0.15},
+      "pattern": "장기 하락",
+      "recent_action": "0.48 전고점에서 -79%, 모든 MA 아래."
+    }
+  },
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "dry",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.10295,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 0.099245,
+      "ma20": 0.103238,
+      "ma50": 0.156755,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0373, "ma20_pct": -0.0028, "ma50_pct": -0.3432},
+      "last_candle": {"type": "bear", "body_pct": 0.0172, "vol_rank_30d": 0.0},
+      "ret_30d": -0.4859,
+      "ret_90d": 0.0372,
+      "from_period_high_pct": -0.7877,
+      "vol_avg_recent_vs_prior": 0.382
+    },
+    "observations": {
+      "key_levels": {"support": 0.09, "resistance": 0.13},
+      "pattern": "역배열 다지기",
+      "recent_action": "MA10/20 부근 횡보, 거래량 매우 낮음."
+    }
+  },
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "bounce_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.10295,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.110088,
+      "ma20": 0.109782,
+      "ma50": 0.100851,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0648, "ma20_pct": -0.0622, "ma50_pct": 0.0208},
+      "last_candle": {"type": "bear", "body_pct": 0.0172, "vol_rank_30d": 0.1},
+      "ret_30d": 0.1076,
+      "ret_90d": 0.0453,
+      "from_period_high_pct": -0.4546,
+      "vol_avg_recent_vs_prior": 1.449
+    },
+    "observations": {
+      "key_levels": {"support": 0.09, "resistance": 0.12},
+      "pattern": "베이스에서 첫 반등 시도",
+      "recent_action": "일봉 정배열 형성, MA50 위 안착, 단기 풀백 중."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "일봉 베이스 정배열로 전환 — 0.12 돌파 시 진입 후보. 장기 약세 부담.",
+  "risk_flags": ["drawdown_deep"],
+
+  "charts": {
+    "1m": "charts/DOGEUSDT/20260520/DOGEUSDT_1m.png",
+    "1w": "charts/DOGEUSDT/20260520/DOGEUSDT_1w.png",
+    "1d": "charts/DOGEUSDT/20260520/DOGEUSDT_1d.png"
+  }
+}

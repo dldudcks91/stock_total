@@ -1,0 +1,71 @@
+{
+  "symbol": "ZECUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T16:35:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2},
+  "tf_1w": {
+    "state": "A3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 573.58,
+      "bars": 32,
+      "date_range": "2025-10-20 ~ 2026-05-25",
+      "ma10": 385.582,
+      "ma20": 339.0165,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.4876, "ma20_pct": 0.6919, "ma50_pct": 0.0},
+      "last_candle": {"type": "doji", "body_pct": 0.0182, "vol_rank_30d": 0.0},
+      "ret_30d": 0.68,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.2462,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 385.0, "resistance": 760.0},
+      "pattern": "급등 후 조정",
+      "recent_action": "1W에서 MA10/MA20이 혼합 배열이나 가격은 MA10에서 +49% 위에 위치. 최근 캔들이 doji로 모멘텀 소진 신호. 30d 수익률 +68%로 단기 급등 후 숨 고르기 구간."
+    }
+  },
+  "tf_1d": {
+    "state": "A3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 573.58,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 550.307,
+      "ma20": 515.619,
+      "ma50": 397.7876,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0423, "ma20_pct": 0.1124, "ma50_pct": 0.4419},
+      "last_candle": {"type": "doji", "body_pct": 0.0182, "vol_rank_30d": 0.567},
+      "ret_30d": 0.9024,
+      "ret_90d": 1.1689,
+      "from_period_high_pct": -0.2462,
+      "vol_avg_recent_vs_prior": 1.064
+    },
+    "observations": {
+      "key_levels": {"support": 500.0, "resistance": 760.0},
+      "pattern": "정배열 눌림목",
+      "recent_action": "1D 정배열 완성, MA10에서 +4% 위의 doji. 30d +90%, 90d +117% 강한 상승 이후 단기 조정 국면. MA10 근처에서 눌림목 진행 중."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1D 정배열 유효하나 parabolic+low_history 리스크 및 단기 급등 후 doji 조정 — 눌림목 안착 확인 후 진입 검토.",
+  "risk_flags": ["parabolic", "low_history"],
+  "charts": {"1w": "ZECUSDT_1w.png", "1d": "ZECUSDT_1d.png"}
+}

@@ -1,0 +1,74 @@
+{
+  "symbol": "UBUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T16:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-opus-4-7", "agent_id": null, "schema_version": 2},
+  "tf_1w": {
+    "state": "C1",
+    "micro_action": "acceleration",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.12108,
+      "bars": 37,
+      "date_range": "2025-09-15 ~ 2026-05-25",
+      "ma10": 0.070841,
+      "ma20": 0.053038,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.7092, "ma20_pct": 1.2829, "ma50_pct": 0.0},
+      "last_candle": {"type": "bear", "body_pct": 0.1315, "vol_rank_30d": 0.367},
+      "ret_30d": 0.5255,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.5096,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.07, "resistance": 0.25},
+      "pattern": "spike_after_flat",
+      "recent_action": "장기간 0.04 보합 후 폭등(0.25 윗꼬리), 음봉 마감."
+    }
+  },
+  "tf_1d": {
+    "state": "C1",
+    "micro_action": "acceleration",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.12108,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.168628,
+      "ma20": 0.144612,
+      "ma50": 0.07882,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.282, "ma20_pct": -0.1627, "ma50_pct": 0.5362},
+      "last_candle": {"type": "bear", "body_pct": 0.1315, "vol_rank_30d": 0.533},
+      "ret_30d": 1.8829,
+      "ret_90d": 1.9532,
+      "from_period_high_pct": -0.5096,
+      "vol_avg_recent_vs_prior": 5.297
+    },
+    "observations": {
+      "key_levels": {"support": 0.08, "resistance": 0.25},
+      "pattern": "parabolic_blowoff",
+      "recent_action": "0.04에서 0.25까지 6배 급등 후 -50% 급락, MA10 이탈."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "포물선 후 50% 급락, 펌프덤프 패턴.",
+  "risk_flags": ["parabolic", "drawdown_deep", "low_history", "pump_dump_trace"],
+  "charts": {
+    "1w": "charts/UBUSDT/20260520/UBUSDT_1w.png",
+    "1d": "charts/UBUSDT/20260520/UBUSDT_1d.png"
+  }
+}

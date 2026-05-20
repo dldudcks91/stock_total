@@ -1,0 +1,32 @@
+{
+  "symbol": "KLAC",
+  "reviewed_at": "2026-05-20T14:26:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {
+    "state": "A2",
+    "micro_action": "acceleration",
+    "volume_flag": "normal",
+    "note": "강한 가속 상승, 신고가 2000"
+  },
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "acceleration",
+    "volume_flag": "normal",
+    "note": "MA 완전 정배열, 1950 신고가"
+  },
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "note": "1900 신고가 후 MA20 풀백"
+  },
+  "tf_consistency": "정합",
+  "verdict": "pass",
+  "verdict_reason": "전 TF A2 가속, MA20 지지 시 buy zone",
+  "charts": {
+    "1m": "charts/KLAC/20260520/KLAC_1m.png",
+    "1w": "charts/KLAC/20260520/KLAC_1w.png",
+    "1d": "charts/KLAC/20260520/KLAC_1d.png"
+  },
+  "schema_version": 1
+}

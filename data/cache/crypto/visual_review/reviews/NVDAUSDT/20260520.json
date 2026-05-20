@@ -1,0 +1,107 @@
+{
+  "symbol": "NVDAUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T17:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2.1},
+  "tf_1m": {
+    "state": "A1",
+    "micro_action": "acceleration",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 221.83,
+      "bars": 10,
+      "date_range": "2025-08-31 ~ 2026-05-31",
+      "ma10": 189.283,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.1719, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "last_candle": {"type": "bull", "body_pct": 0.0967, "vol_rank_30d": 0.9, "vol_anomaly": "breakout"},
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0793,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 189, "resistance": 241},
+      "pattern": "월봉 10바, MA10만 유효. 마지막 봉 breakout(body>3% + vol 상위 10%). 강한 돌파 신호.",
+      "recent_action": "5월 bull 봉 + 거래량 breakout. 고점 -7.9% 근접"
+    }
+  },
+  "tf_1w": {
+    "state": "A1",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 221.83,
+      "bars": 40,
+      "date_range": "2025-08-25 ~ 2026-05-25",
+      "ma10": 198.868,
+      "ma20": 192.184,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.1155, "ma20_pct": 0.1543, "ma50_pct": 0.0},
+      "last_candle": {"type": "doji", "body_pct": 0.0051, "vol_rank_30d": 0.4, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 3.133, "price_range_5bar_pct": 0.2075, "accumulation_score": 0.0},
+      "ret_30d": 0.1586,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0793,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 192, "resistance": 241},
+      "pattern": "주봉 MA10/20 상향. 최근 5봉 거래량 3.13x 급증 후 도지 — 상승 전 에너지 축적. 고점 -7.9%.",
+      "recent_action": "2026년 3월 저점 168 대비 강한 반등. 주봉 5봉 거래량 폭증은 주목할 신호"
+    }
+  },
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 221.83,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 223.747,
+      "ma20": 214.0085,
+      "ma50": 201.5208,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0086, "ma20_pct": 0.0365, "ma50_pct": 0.1008},
+      "last_candle": {"type": "doji", "body_pct": 0.0051, "vol_rank_30d": 0.8, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 1.537, "price_range_5bar_pct": 0.1034, "accumulation_score": 0.0},
+      "ret_30d": 0.1164,
+      "ret_90d": 0.1793,
+      "from_period_high_pct": -0.0793,
+      "vol_avg_recent_vs_prior": 2.014
+    },
+    "observations": {
+      "key_levels": {"support": 214, "resistance": 241},
+      "pattern": "일봉 정배열, MA10(224) 바로 아래 눌림목. vol_avg 2.0x — 최근 거래 관심 증가. 신고가 근접.",
+      "recent_action": "4~5월 강한 반등 후 MA10 눌림. 월봉 breakout 봉과 일치 → 단기 재개 신호"
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "pass",
+  "verdict_confidence": "high",
+  "verdict_reason": "월봉 breakout(body+vol), 일봉 정배열 MA10 눌림, 고점 -7.9%. 주봉 5봉 거래량 3.13x. 3개 TF 정합. low_history 있으나 일봉 200바 충분. 눌림목 매수 적합.",
+  "risk_flags": ["low_history"],
+  "charts": {
+    "1m": "data/cache/crypto/visual_review/charts/NVDAUSDT/20260520/NVDAUSDT_1m.png",
+    "1w": "data/cache/crypto/visual_review/charts/NVDAUSDT/20260520/NVDAUSDT_1w.png",
+    "1d": "data/cache/crypto/visual_review/charts/NVDAUSDT/20260520/NVDAUSDT_1d.png"
+  }
+}

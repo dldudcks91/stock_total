@@ -1,0 +1,100 @@
+{
+  "symbol": "SUIUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T16:35:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2},
+  "tf_1m": {
+    "state": "B3",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 1.0514,
+      "bars": 37,
+      "date_range": "2023-05-31 ~ 2026-05-31",
+      "ma10": 1.66639,
+      "ma20": 2.427635,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3691, "ma20_pct": -0.5669, "ma50_pct": 0.0},
+      "last_candle": {"type": "doji", "body_pct": 0.1367, "vol_rank_30d": 0.533},
+      "ret_30d": 0.7618,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8042,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.85, "resistance": 1.67},
+      "pattern": "역배열 하단",
+      "recent_action": "1M에서 ATH(~5.2) 대비 -80% 구간. 가격이 MA10(-37%), MA20(-57%) 모두 하회. 최근 30d +76% 반등이나 월봉 MA10/20은 여전히 역배열."
+    }
+  },
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": "bounce_ma10",
+    "volume_flag": "dry",
+    "confidence": "medium",
+    "context": {
+      "last_close": 1.0514,
+      "bars": 160,
+      "date_range": "2023-05-08 ~ 2026-05-25",
+      "ma10": 0.98567,
+      "ma20": 1.07737,
+      "ma50": 2.084154,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0667, "ma20_pct": -0.0241, "ma50_pct": -0.4955},
+      "last_candle": {"type": "doji", "body_pct": 0.0118, "vol_rank_30d": 0.0},
+      "ret_30d": -0.5971,
+      "ret_90d": 0.3356,
+      "from_period_high_pct": -0.8042,
+      "vol_avg_recent_vs_prior": 0.508
+    },
+    "observations": {
+      "key_levels": {"support": 0.85, "resistance": 1.60},
+      "pattern": "역배열 반등 시도",
+      "recent_action": "1W 역배열, 30d -60%, MA10 직상에서 doji 형성. 거래량 prior 대비 절반 수준으로 건조(dry). MA20 저항선 1.08 돌파 여부 주목."
+    }
+  },
+  "tf_1d": {
+    "state": "A4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 1.0514,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 1.1572,
+      "ma20": 1.05947,
+      "ma50": 0.979598,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0914, "ma20_pct": -0.0076, "ma50_pct": 0.0733},
+      "last_candle": {"type": "doji", "body_pct": 0.0118, "vol_rank_30d": 0.667},
+      "ret_30d": 0.1405,
+      "ret_90d": 0.1309,
+      "from_period_high_pct": -0.5623,
+      "vol_avg_recent_vs_prior": 1.672
+    },
+    "observations": {
+      "key_levels": {"support": 0.98, "resistance": 1.45},
+      "pattern": "MA20 눌림목",
+      "recent_action": "1D 정배열 유지, 가격이 MA10 아래 MA20 근처까지 조정. 거래량 증가(1.67x) 동반한 최근 반등 후 다시 MA20에서 지지 테스트 중."
+    }
+  },
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "1D 정배열이나 1W/1M 역배열 충돌 — 단기 반등 구간이나 drawdown_deep 리스크, 상위 TF 확인 전 관망.",
+  "risk_flags": ["drawdown_deep"],
+  "charts": {"1m": "SUIUSDT_1m.png", "1w": "SUIUSDT_1w.png", "1d": "SUIUSDT_1d.png"}
+}

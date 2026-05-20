@@ -1,0 +1,44 @@
+{
+  "symbol": "BSBUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T16:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-opus-4-7", "agent_id": null, "schema_version": 2},
+  "tf_1d": {
+    "state": "C1",
+    "micro_action": "acceleration",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.8402,
+      "bars": 56,
+      "date_range": "2026-03-25 ~ 2026-05-19",
+      "ma10": 0.535528,
+      "ma20": 0.564026,
+      "ma50": 0.419544,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.5689, "ma20_pct": 0.4896, "ma50_pct": 1.0026},
+      "last_candle": {"type": "doji", "body_pct": 0.1694, "vol_rank_30d": 0.833},
+      "ret_30d": 2.6119,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.3391,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.55, "resistance": 1.25},
+      "pattern": "급등 후 변동성",
+      "recent_action": "0.2→1.25 급등 후 0.5로 되돌림, 다시 0.8로 반등 — 극심한 변동성."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "히스토리 부족 + 급등급락 패턴, 신규 코인 펌프 흔적.",
+  "risk_flags": ["parabolic", "drawdown_deep", "low_history", "pump_dump_trace"],
+  "charts": {
+    "1d": "charts/BSBUSDT/20260520/BSBUSDT_1d.png"
+  }
+}

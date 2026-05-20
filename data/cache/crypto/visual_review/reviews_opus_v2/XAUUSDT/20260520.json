@@ -1,0 +1,77 @@
+{
+  "symbol": "XAUUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T16:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-opus-4-7", "agent_id": null, "schema_version": 2},
+
+  "tf_1w": {
+    "state": "A5",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 4493.2,
+      "bars": 24,
+      "date_range": "2025-12-15 ~ 2026-05-25",
+      "ma10": 4624.636,
+      "ma20": 4803.844,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0284, "ma20_pct": -0.0647, "ma50_pct": 0.0},
+      "last_candle": {"type": "bear", "body_pct": 0.0207, "vol_rank_30d": 0.292},
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.2001,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 4400, "resistance": 4900},
+      "pattern": "토핑 후 풀백",
+      "recent_action": "5600 전고점에서 -20% 조정, MA10/20 부근 횡보."
+    }
+  },
+  "tf_1d": {
+    "state": "A5",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 4493.2,
+      "bars": 158,
+      "date_range": "2025-12-13 ~ 2026-05-19",
+      "ma10": 4624.257,
+      "ma20": 4633.302,
+      "ma50": 4688.283,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0283, "ma20_pct": -0.0302, "ma50_pct": -0.0416},
+      "last_candle": {"type": "bear", "body_pct": 0.0207, "vol_rank_30d": 0.5},
+      "ret_30d": -0.0558,
+      "ret_90d": -0.0969,
+      "from_period_high_pct": -0.2001,
+      "vol_avg_recent_vs_prior": 0.682
+    },
+    "observations": {
+      "key_levels": {"support": 4400, "resistance": 4800},
+      "pattern": "MA tight 수렴",
+      "recent_action": "MA10/20/50 좁은 밴드에서 수렴, 음봉으로 약하게 이탈."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "장기 상승 후 -20% 조정 — MA50 회복 시 재진입 가능, 현재는 약세 지속.",
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1w": "charts/XAUUSDT/20260520/XAUUSDT_1w.png",
+    "1d": "charts/XAUUSDT/20260520/XAUUSDT_1d.png"
+  }
+}

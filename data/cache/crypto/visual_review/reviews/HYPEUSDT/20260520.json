@@ -1,0 +1,107 @@
+{
+  "symbol": "HYPEUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T17:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2.1},
+  "tf_1m": {
+    "state": "A1",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 48.036,
+      "bars": 18,
+      "date_range": "2024-12-31 ~ 2026-05-31",
+      "ma10": 37.7054,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.274, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "last_candle": {"type": "bull", "body_pct": 0.1735, "vol_rank_30d": 0.333, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1926,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 37, "resistance": 60},
+      "pattern": "월봉 상승 추세 유지. MA10만 유효(18바). 고점 59.5 대비 -19%.",
+      "recent_action": "월봉 bull 캔들, MA10 위에서 유지. 바 수 부족으로 월봉 신뢰도 낮음"
+    }
+  },
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 48.036,
+      "bars": 75,
+      "date_range": "2024-12-23 ~ 2026-05-25",
+      "ma10": 41.6598,
+      "ma20": 35.97295,
+      "ma50": 38.34056,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.1531, "ma20_pct": 0.3353, "ma50_pct": 0.2529},
+      "last_candle": {"type": "doji", "body_pct": 0.0063, "vol_rank_30d": 0.0, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 0.539, "price_range_5bar_pct": 0.2246, "accumulation_score": 0.0},
+      "ret_30d": 0.0321,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1926,
+      "vol_avg_recent_vs_prior": 1.011
+    },
+    "observations": {
+      "key_levels": {"support": 41.7, "resistance": 59.5},
+      "pattern": "주봉 MA10/20/50 모두 상향, 가격은 전체 위. 주봉 최근 거래량 감소(0.54x)는 눌림 신호.",
+      "recent_action": "2026년 초 저점 25 대비 강한 회복. 최근 주봉 도지 + 거래량 감소 → 단기 조정 국면"
+    }
+  },
+  "tf_1d": {
+    "state": "A1",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 48.036,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 43.5524,
+      "ma20": 42.81695,
+      "ma50": 41.3094,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.1029, "ma20_pct": 0.1219, "ma50_pct": 0.1628},
+      "last_candle": {"type": "doji", "body_pct": 0.0063, "vol_rank_30d": 0.8, "vol_anomaly": null},
+      "accumulation": {"vol_5bar_vs_30bar": 2.919, "price_range_5bar_pct": 0.1786, "accumulation_score": 0.0},
+      "ret_30d": 0.18,
+      "ret_90d": 0.6744,
+      "from_period_high_pct": -0.0179,
+      "vol_avg_recent_vs_prior": 1.175
+    },
+    "observations": {
+      "key_levels": {"support": 42.8, "resistance": 49},
+      "pattern": "일봉 완전 정배열, 고점 -1.8%의 ATH 직전 위치. 5봉 거래량 급증(2.92x)으로 강한 매수세. vol_rank_30d 0.8로 상위권.",
+      "recent_action": "최근 대량거래 동반 신고가 시도. MA10 근방 도지봉은 짧은 소화 과정"
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "pass",
+  "verdict_confidence": "high",
+  "verdict_reason": "일봉 정배열 완성 + 고점 -1.8% ATH 직전. 주봉/월봉 모두 상향. 5봉 거래량 폭증(2.92x). low_history 있으나 75주 데이터로 주봉 신뢰 가능. 눌림목 진입 유효.",
+  "risk_flags": ["low_history"],
+  "charts": {
+    "1m": "data/cache/crypto/visual_review/charts/HYPEUSDT/20260520/HYPEUSDT_1m.png",
+    "1w": "data/cache/crypto/visual_review/charts/HYPEUSDT/20260520/HYPEUSDT_1w.png",
+    "1d": "data/cache/crypto/visual_review/charts/HYPEUSDT/20260520/HYPEUSDT_1d.png"
+  }
+}

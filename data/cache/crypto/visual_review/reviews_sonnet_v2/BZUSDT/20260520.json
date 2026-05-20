@@ -1,0 +1,42 @@
+{
+  "symbol": "BZUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-20T16:35:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {"model": "claude-sonnet-4-6", "agent_id": null, "schema_version": 2},
+  "tf_1d": {
+    "state": "A3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 106.36,
+      "bars": 49,
+      "date_range": "2026-04-01 ~ 2026-05-19",
+      "ma10": 104.049,
+      "ma20": 104.9955,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0222, "ma20_pct": 0.013, "ma50_pct": 0.0},
+      "last_candle": {"type": "bull", "body_pct": 0.0133, "vol_rank_30d": 0.3},
+      "ret_30d": 0.1696,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0751,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 100.0, "resistance": 115.0},
+      "pattern": "반등 후 압축",
+      "recent_action": "4월 초 급락 이후 87 바닥에서 반등해 5월 초 115 고점 형성. 이후 MA10/MA20 수렴 구간에서 작은 양봉으로 횡보 중이며 MA50 미형성으로 역사가 짧다."
+    }
+  },
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "역사 49봉(저히스토리)으로 구조 신뢰 낮음. 1d 정배열 유사하나 MA10 하향·MA50 미형성. 30d +17% 반등 후 115 저항 하단 압축 중 — 돌파 확인 시 재검토.",
+  "risk_flags": ["low_history"],
+  "charts": {"1d": "charts/BZUSDT/20260520/BZUSDT_1d.png"}
+}
