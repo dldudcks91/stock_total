@@ -36,11 +36,7 @@ data/
 └── fetch_log.py         # 마지막 fetch 시점 기록
 
 backtest/
-├── engine/              # 시그널 → 체결 → 포지션 → 성과
-├── strategies/          # 한 파일 = 한 전략 (전략별 .md 리포트 동거)
-├── runs/                # 런 결과 (런별 디렉터리, gitignore)
-├── batch_runner.py      # 다중 전략·심볼 일괄 실행
-└── compare.py           # 런 비교 (skill 백엔드)
+└── strategies/          # 한 파일 = 한 전략 (대시보드 _recommendation.py 가 import)
 
 research/                # KR 종목 종합 리서치 (옛 stock_research 흡수)
 ├── collect.py           # FDR 일봉 단일 종목 헬퍼
@@ -61,8 +57,6 @@ dashboards/              # Streamlit 멀티페이지
 ├── _cache.py / _lib.py / _stock_grid.py
 ├── _precompute.py       # KR/US 지표·추천 디스크 캐시 (refs/recs.parquet writer/reader)
 └── pages/
-    ├── 1_Backtest.py    # 단일 런 뷰어
-    ├── 2_Compare.py     # 멀티 런 비교
     ├── 3_Bitget.py      # 크립토 표
     ├── 4_KOSPI.py       # KR 표
     ├── 5_NASDAQ.py      # US 표
@@ -82,14 +76,6 @@ docs/                    # 영구 문서
 
 notebooks/               # 임시 탐색용 (.py 모듈로 옮긴 뒤 비움)
 ```
-
-## 런 디렉터리 규약 (백테스트)
-
-`backtest/runs/{YYYYMMDD-HHMMSS}_{strategy}_{symbol}/`
-- `config.yaml` — 사용한 파라미터
-- `trades.parquet` — 체결 로그
-- `equity.parquet` — 자본 곡선
-- `metrics.json` — 샤프, MDD, 승률 등
 
 ## 데이터 스키마
 
@@ -188,12 +174,9 @@ Get-CimInstance Win32_Process -Filter "Name='python.exe'" | Select-Object Proces
 |---|---|---|
 | `crypto-fetch` | crypto | Bitget 1H/1D OHLCV 다운로드 (`--granularity`) |
 | `crypto-classify` | crypto | BTC 벤치마크 4그룹 분류 |
+| `crypto-visual-review` | crypto | 차트 PNG 시각 판독 + 사이클/액션/볼륨 채점 |
 | `kr-fetch` | KR | FDR로 KOSPI 일봉 다운로드 |
 | `us-fetch` | US | FDR로 NASDAQ 일봉 다운로드 |
-| `analyze-metrics` | 전 자산 | 이동평균·RSI·수익률·변동성 |
-| `new-strategy` | 백테스트 | 전략 파일 템플릿 생성 |
-| `run-backtest` | 백테스트 | 단일 전략 단일 심볼 실행 |
-| `compare-runs` | 백테스트 | 두 런 메트릭 비교 |
 | `plot-chart` | 전 자산 | Bitget 스타일 캔들+MA+거래량+RSI Plotly 차트 |
 | `launch-dashboard` | UI | Streamlit 실행 |
 | `study` | 분석 | scripts/<group>/runs/ 표준 폴더 init/finalize (재현성 보장) |

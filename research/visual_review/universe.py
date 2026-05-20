@@ -64,7 +64,8 @@ def avg_dollar_volume_table(
         df["tier_final"] = None
         df["listing_days"] = None
     if exclude_junk:
-        df = df[df["tier_final"] != "junk"]
+        # tier_final 이 junk* 로 시작하는 라벨 (junk, junk_pump, junk_new) 모두 제외
+        df = df[~df["tier_final"].fillna("").str.startswith("junk")]
     if min_listing_days > 0:
         df = df[(df["listing_days"].fillna(0)) >= min_listing_days]
     df = df.sort_values("avg_amount", ascending=False).reset_index(drop=True)

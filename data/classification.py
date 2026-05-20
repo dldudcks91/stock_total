@@ -188,6 +188,9 @@ class CoinMetrics:
     pump_recurrence: float
     realized_vol_annual: float
     volume_score_3y: float
+    avg_quote_vol_30d: float
+    vol_30d: float
+    vol_pct_rank: float
     listing_days: int
     last_price: float
     max_drawdown_3y: float
@@ -259,6 +262,31 @@ def compute_metrics(
     # Volume score 3y (sum of amount)
     vol_score = float(df["amount"].sum()) if "amount" in df.columns else float("nan")
 
+    # avg_quote_vol_30d: 마지막 30개 일봉의 amount 평균 (USDT)
+    if "amount" in df.columns and df.shape[0] >= 1:
+        tail_n = min(30, df.shape[0])
+        avg_qv30 = float(df["amount"].tail(tail_n).mean())
+    else:
+        avg_qv30 = float("nan")
+
+    # vol_30d: 마지막 30개 일수익률의 연환산 변동성
+    if ret.size >= 5:
+        tail_n = min(30, ret.size)
+        vol30 = float(ret.tail(tail_n).std(ddof=0) * np.sqrt(365))
+    else:
+        vol30 = float("nan")
+
+    # vol_pct_rank: 30봉 롤링 변동성을 자기 자신 히스토리 백분위(0~1)로
+    if ret.size >= 60:
+        roll = ret.rolling(30).std(ddof=0) * np.sqrt(365)
+        roll = roll.dropna()
+        if len(roll) >= 10 and np.isfinite(vol30):
+            vol_rank = float((roll <= vol30).mean())
+        else:
+            vol_rank = float("nan")
+    else:
+        vol_rank = float("nan")
+
     # Listing days = # of daily bars in cache (full, not truncated by --start/--end? we use windowed)
     listing_days = int(df.shape[0])
     last_price = float(close.iloc[-1])
@@ -275,6 +303,9 @@ def compute_metrics(
         pump_recurrence=pump_rec,
         realized_vol_annual=realized_vol_annual,
         volume_score_3y=vol_score,
+        avg_quote_vol_30d=avg_qv30,
+        vol_30d=vol30,
+        vol_pct_rank=vol_rank,
         listing_days=listing_days,
         last_price=last_price,
         max_drawdown_3y=mdd,
@@ -296,6 +327,9 @@ def _empty_metrics(symbol: str, daily: pd.DataFrame) -> CoinMetrics:
         pump_recurrence=float("nan"),
         realized_vol_annual=float("nan"),
         volume_score_3y=float("nan"),
+        avg_quote_vol_30d=float("nan"),
+        vol_30d=float("nan"),
+        vol_pct_rank=float("nan"),
         listing_days=listing,
         last_price=last,
         max_drawdown_3y=float("nan"),
@@ -546,29 +580,42 @@ def classify_kmeans(df: pd.DataFrame, btc_symbol: str = "BTCUSDT", seed: int = 4
 
 
 # ---------------------------------------------------------------------------
-# 7-tier → 4-group consolidation
+# 7-tier → behavior group consolidation
 # ---------------------------------------------------------------------------
-# 사용자 합의: 최종 노출은 4그룹 (+ 시스템 2개)
-#   trend    = 추세추종형 (자기 시장 가진 메이저)
-#   follower = 큰형 추종형 (BTC와 강하게 동조)
-#   whale    = 세력형 (단발 충격 또는 적당한 펌프)
-#   junk     = 잡코인 (주작 의심 + 신규 미검증 + 분류 불가)
-GROUP4_MAP: dict[str, str] = {
+# 사용자 합의: 행동 그룹 6개 (+ 시스템 2개) — junk를 본질에 맞춰 3개로 세분화
+#   trend     = 추세추종형 (자기 시장 가진 메이저)
+#   follower  = 큰형 추종형 (BTC와 강하게 동조)
+#   whale     = 세력형 (단발 충격 또는 적당한 펌프)
+#   junk_pump = 진짜 주작 의심 (반복 펌프 + 두꺼운 꼬리)
+#   junk_new  = 신규 미검증 (listing_days < 365)
+#   junk      = 분류 불가 (mixed, 어느 룰에도 안 걸림)
+BEHAVIOR_MAP: dict[str, str] = {
     "leader": "trend",
     "co_leader": "trend",
     "beta_follower": "follower",
     "whale_driven": "whale",
-    "pump_dump": "junk",
-    "unclassified_new": "junk",
+    "pump_dump": "junk_pump",
+    "unclassified_new": "junk_new",
     "mixed": "junk",
     # 시스템 라벨은 그대로 유지
     "benchmark": "benchmark",
     "stable": "stable",
 }
 
+# Backward-compat alias (옛 GROUP4_MAP을 import하는 코드 보호)
+GROUP4_MAP = BEHAVIOR_MAP
 
+
+def to_behavior(tier: str) -> str:
+    return BEHAVIOR_MAP.get(tier, "junk")
+
+
+# 옛 4그룹 보기 (junk_* 를 모두 junk로 합침). 외부 호환용.
 def to_group4(tier: str) -> str:
-    return GROUP4_MAP.get(tier, "junk")
+    b = BEHAVIOR_MAP.get(tier, "junk")
+    if b in ("junk_pump", "junk_new"):
+        return "junk"
+    return b
 
 
 # ---------------------------------------------------------------------------
@@ -683,7 +730,7 @@ def classify(
     out["tier_rule"] = tier_rule
     out["tier_kmeans"] = tier_kmeans
     out["tier_detail"] = tier_final  # 7-way (leader/co_leader/...)
-    out["tier_final"] = tier_final.map(GROUP4_MAP).fillna("junk")  # 4-way
+    out["tier_final"] = tier_final.map(BEHAVIOR_MAP).fillna("junk")  # 6-way (junk 세분)
     out["classified_at"] = datetime.now(timezone.utc).isoformat()
     out = out.reset_index().rename(columns={"index": "symbol"})
 
@@ -692,6 +739,7 @@ def classify(
         "symbol", "tier_final", "tier_detail", "tier_rule", "tier_kmeans",
         "r2_btc", "beta_btc", "hurst", "kurtosis", "kurt_trimmed",
         "pump_count_per_year", "pump_recurrence", "realized_vol_annual",
+        "avg_quote_vol_30d", "vol_30d", "vol_pct_rank",
         "volume_score_3y", "listing_days", "last_price", "max_drawdown_3y",
         "classified_at",
     ]

@@ -14,7 +14,9 @@ import pandas as pd
 
 CLASSIFICATION_PATH = Path(__file__).parent / "cache" / "crypto" / "classification.parquet"
 
-VALID_TIERS = ("trend", "follower", "whale", "junk")
+# tier_final 은 6-way 행동 라벨 (trend, follower, whale, junk_pump, junk_new, junk)
+# + 시스템 라벨 (benchmark, stable)
+VALID_TIERS = ("trend", "follower", "whale", "junk_pump", "junk_new", "junk")
 
 
 def _load_df() -> pd.DataFrame:
@@ -26,7 +28,7 @@ def _load_df() -> pd.DataFrame:
 
 
 def load_groups(min_obs: int = 300) -> Dict[str, List[str]]:
-    """Return {tier: [symbol, ...]} for the four target tiers, filtered by min_obs."""
+    """Return {tier: [symbol, ...]} for the target tiers, filtered by min_obs."""
     df = _load_df()
     df = df[df["n_obs"] >= min_obs]
     out: Dict[str, List[str]] = {}
@@ -41,9 +43,19 @@ def sample_group(
     limit: Optional[int] = None,
     min_obs: int = 300,
 ) -> List[str]:
-    """Return up to ``limit`` symbols from a tier, ordered by listing length desc."""
+    """Return up to ``limit`` symbols from a tier, ordered by listing length desc.
+
+    tier 인자로 'junk' 를 받으면 (junk, junk_pump, junk_new) 모두 합쳐서 반환 (옛 4그룹 호환).
+    """
+    if tier == "junk":
+        syms = []
+        for t in ("junk", "junk_pump", "junk_new"):
+            syms += load_groups(min_obs=min_obs).get(t, [])
+        if limit is not None:
+            syms = syms[:limit]
+        return syms
     if tier not in VALID_TIERS:
-        raise ValueError(f"tier must be one of {VALID_TIERS}, got {tier}")
+        raise ValueError(f"tier must be one of {VALID_TIERS} (or 'junk' alias), got {tier}")
     syms = load_groups(min_obs=min_obs)[tier]
     if limit is not None:
         syms = syms[:limit]

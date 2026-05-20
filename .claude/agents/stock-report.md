@@ -17,7 +17,7 @@ tools: Bash, Read, Write, Edit, Glob, Grep, WebFetch, WebSearch, Skill
 
 1. **기업 개요** — 사업 영역, 매출 구성, 주요 제품/서비스
 2. **업황 / 업계 구조** — `industry-analysis` agent 호출
-3. **정량 분석** — `/kr-fetch` 또는 `/us-fetch` → `/analyze-metrics`
+3. **정량 분석** — `/kr-fetch` 또는 `/us-fetch` → `research.analyze` 모듈로 MA위치·수익률·변동성·RSI 계산
 4. **증권사 컨센서스** (KR만) — `broker-consensus` agent 호출. 목표주가·투자의견·강세론/약세론
 5. **미래가치 / 성장 동력** — 산업 트렌드 + 회사 고유 모멘텀 (신사업, M&A, 규제 수혜 등) — WebSearch 기반
 6. **리스크** — 매크로 / 산업 / 회사 고유 리스크 분리
@@ -28,7 +28,7 @@ tools: Bash, Read, Write, Edit, Glob, Grep, WebFetch, WebSearch, Skill
 
 ```
 1. /kr-fetch ticker (or /us-fetch)        → 일봉 캐시 보장
-2. /analyze-metrics ticker                → 기준일/MA위치/수익률/변동성/RSI
+2. research.analyze 모듈 직접 호출         → 기준일/MA위치/수익률/변동성/RSI
 3. Skill 또는 직접 research/industry_brief → 업종/피어/규제 환경
 4. (KR) broker-consensus agent            → 컨센서스 표 + 강세론/약세론
 5. (KR) fundamentals-deep agent           → 분기 실적·전기비/전년동기비
