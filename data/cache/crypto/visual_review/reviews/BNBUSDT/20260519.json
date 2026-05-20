@@ -1,28 +1,13 @@
 {
   "symbol": "BNBUSDT",
   "reviewed_at": "2026-05-19T00:00:00+09:00",
-  "data_until": "2026-05-17T09:00:00",
-  "tf_1m": {
-    "state": "A5",
-    "micro_action": null,
-    "volume_flag": "distribution_suspect",
-    "note": "2025-Q3 peak 1400 시점 거대 거래량 spike + 음봉. 이후 하락 진행. MA20 우하향, 가격 MA20 아래 자리잡음."
-  },
-  "tf_1w": {
-    "state": "B2",
-    "micro_action": "riding",
-    "volume_flag": "normal",
-    "note": "Peak 후 -58% 폭락. MA50 아래, 모든 MA 우하향. 최근 640 부근 횡보 6주."
-  },
-  "tf_1d": {
-    "state": "B3",
-    "micro_action": null,
-    "volume_flag": "normal",
-    "note": "580 저점 후 2개월 박스 횡보. MA10/20/50 평탄화. B4 (MA20 돌파 양봉) 아직 미발현."
-  },
-  "tf_consistency": "정합",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "A5", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "2025 후반 $1400 1봉 폭등 후 거래량과 함께 즉시 급락, MA20 음 기울기 — 상승 사이클 종료 확정" },
+  "tf_1w": { "state": "B2", "micro_action": "riding", "volume_flag": "normal", "note": "고점 $1400 이후 MA10/20 우하향 역배열, MA50 평탄 — 하락 지속, 최근 $640 부근 횡보" },
+  "tf_1d": { "state": "B4", "micro_action": null, "volume_flag": "normal", "note": "$600 베이스 형성 후 MA20 위 첫 양봉 출현, 거래량 미증가 — 상승 시도 미확정" },
+  "tf_consistency": "충돌",
   "verdict": "skip",
-  "verdict_reason": "1M 사이클 A 끝물 retest, 1W/1D 이미 사이클 B 진행. 모두 약세 방향 정합. 1D B4 발현까지 진입 부적합.",
+  "verdict_reason": "1M 펌프&덤프 흔적 + 1W 하락 지속(B2). 1D 베이스 시도는 있으나 큰 TF 가 강한 매도세, 보수적으로 skip",
   "charts": {
     "1m": "charts/BNBUSDT/20260519/BNBUSDT_1m.png",
     "1w": "charts/BNBUSDT/20260519/BNBUSDT_1w.png",

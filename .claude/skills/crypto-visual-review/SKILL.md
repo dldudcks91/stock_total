@@ -256,12 +256,19 @@ TF 별 state 가 같은 방향 가리키는지.
 
 ### 8.2 차트 렌더링
 
-각 종목당 1W + 1D 두 장 PNG 생성. crypto 기본 200봉.
+각 종목당 1M + 1W + 1D 세 장 PNG 생성 (메이저), 일반 알트는 1W+1D, 신규(<6m) 는 1D. crypto 기본 200봉.
 
 ```python
-# 예시 호출 (헬퍼는 _tmp/render_test.py 참조)
-render("crypto", "BTCUSDT", ["1w", "1d"], prefix="btc")
-# → data/cache/crypto/visual_review/charts/BTCUSDT/{YYYYMMDD}/BTCUSDT_1w.png + _1d.png
+# 모듈 호출 (정식)
+from research.visual_review.render import render_charts
+render_charts(["BTCUSDT", "TRXUSDT"], tfs=["1m", "1w", "1d"])
+# → data/cache/crypto/visual_review/charts/{SYMBOL}/{YYYYMMDD}/{SYMBOL}_{1m,1w,1d}.png
+```
+
+CLI:
+
+```powershell
+.venv/Scripts/python.exe -m research.visual_review.render BTCUSDT TRXUSDT --tfs 1m,1w,1d
 ```
 
 ### 8.3 Claude 가 PNG 읽고 채점
@@ -279,9 +286,22 @@ render("crypto", "BTCUSDT", ["1w", "1d"], prefix="btc")
 
 ### 8.4 결과 기록
 
-1. `reviews/{SYMBOL}/{YYYYMMDD}.json` Write
-2. `coin_state.parquet` 의 해당 row 갱신 (없으면 추가)
+1. `reviews/{SYMBOL}/{YYYYMMDD}.json` Write (각 종목별 — 서브에이전트가 직접 Write 권장)
+2. `coin_state.parquet` 의 해당 row 갱신 (모든 종목 채점 끝나면 한 번에)
 3. `signals` 모드라면 `signals.parquet` 의 `visual_verdict` + `combined_action` 갱신
+
+```python
+# 모듈 호출
+from research.visual_review.store import aggregate_state
+aggregate_state("20260519")   # date 인자 생략 시 오늘 KST
+```
+
+CLI:
+
+```powershell
+.venv/Scripts/python.exe -m research.visual_review.store aggregate 20260519
+.venv/Scripts/python.exe -m research.visual_review.store show
+```
 
 ### 8.5 대화창 요약
 
@@ -312,33 +332,38 @@ render("crypto", "BTCUSDT", ["1w", "1d"], prefix="btc")
 - **자동매매 X**: 추천 시그널 전용.
 - **KST 시각 표준**: 모든 timestamp KST.
 
-## 12. 헬퍼 스크립트 위치
+## 12. 헬퍼 모듈 위치 (정식)
 
-### 현재 (prototype)
-```
-.claude/skills/crypto-visual-review/_tmp/
-├── render_test.py      # 차트 렌더 (mplfinance + MA10/20/50)
-└── scan_cycle_b.py     # 사이클 단계 후보 자동 스캔
-```
-
-### 정식 운영 시 이전 권장
 ```
 research/visual_review/
-├── __init__.py
-├── render.py           # PNG 렌더 (dashboards.charts 또는 mplfinance)
-├── filter.py           # 사전 자동 필터
-├── store.py            # coin_state / reviews / signals I/O
-└── universe.py         # 모드별 대상 종목 결정
+├── __init__.py         # 공개 API: render_charts, aggregate_state, load_review
+├── render.py           # PNG 렌더 (mplfinance + MA10/20/50)
+│                       #   - render_charts(symbols, tfs, date_str, ...) — 모듈 호출
+│                       #   - CLI: python -m research.visual_review.render BTCUSDT ...
+└── store.py            # reviews / coin_state I/O
+                        #   - load_review(symbol, date) / save_review(...)
+                        #   - aggregate_state(date) — reviews/*/<date>.json → coin_state.parquet upsert
+                        #   - CLI: python -m research.visual_review.store aggregate <date>
+```
+
+추후 추가 예정 (TBD):
+- `filter.py` — 사전 자동 필터 (거래대금/history)
+- `universe.py` — 모드별 대상 종목 결정 (signals/refresh)
+
+### prototype 잔여
+```
+.claude/skills/crypto-visual-review/_tmp/
+└── scan_cycle_b.py     # 사이클 단계 후보 자동 스캔 (실험용, 추후 모듈로 승격)
 ```
 
 ## 13. 향후 확장 / TODO
 
 ### 다음 작업 (우선순위 순)
 
-1. **헬퍼 스크립트 정리** — `_tmp/render_test.py`·`run_single.py` 를 `research/visual_review/render.py` 로 이전 + 정식 입력 인자화
-2. **`store.py` 작성** — `coin_state.parquet` / `reviews/{SYMBOL}/{YYYYMMDD}.json` I/O 헬퍼 분리 (현재 ad-hoc bash inline 으로 처리 중)
-3. **실제 채점 첫 시도** — 4~5종목 골라서 스킬대로 단일 모드 실행하면서 enum 일관성·시각 판단 캘리브
-4. **TF 세트 정책 확정** — 메이저 코인 (5년+ history) 은 1M+1W+1D, 일반 알트는 1W+1D, 신규 (<6개월) 는 1D 만. 임계값 (24/26봉) 은 잠정. BTC 1M 도 추가 채점 필요 (현재 1W+1D 만 있음)
+1. **filter.py / universe.py 추가** — `signals` 모드 (오늘 신호 종목 자동 로드) 와 `refresh` 모드 (전체 universe + 사전 필터) 구현
+2. **`signals.parquet` writer** — 백테스트 결과와 결합하는 store API 추가
+3. **TF 세트 정책 확정** — 메이저 코인 (5년+ history) 은 1M+1W+1D, 일반 알트는 1W+1D, 신규 (<6개월) 는 1D 만. 임계값 (24/26봉) 은 잠정 — render.py 에 자동 선택 로직 추가
+4. **enum 캘리브 누적** — `coin_state.parquet` 의 시계열을 보고 enum 정의 정제
 
 ### 추후 확장
 
