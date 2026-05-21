@@ -1,0 +1,171 @@
+{
+  "symbol": "INUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:32:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "dry",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.05813,
+      "bars": 10,
+      "date_range": "2025-08-31 ~ 2026-05-31",
+      "ma10": 0.074204,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2166, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.2166},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.059,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.1445,
+        "upper_wick_pct": 0.344,
+        "lower_wick_pct": 0.155,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8047,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.05, "resistance": 0.075},
+      "pattern": "low_history_downtrend",
+      "recent_action": "월봉 10개뿐으로 매우 짧은 역사. 상장 후 고점 대비 -80% 하락. MA10만 존재하며 가격 크게 이탈."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "zombie",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.05813,
+      "bars": 42,
+      "date_range": "2025-08-11 ~ 2026-05-25",
+      "ma10": 0.061138,
+      "ma20": 0.063296,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0492, "ma20_pct": -0.0816, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.15, "ma20_atr": -0.258, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0492},
+      "atr": 0.020054,
+      "atr_pct": 0.345,
+      "adx": 33.72,
+      "range_position": 0.166,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0072,
+        "upper_wick_pct": 0.333,
+        "lower_wick_pct": 0.407,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.05, "price_range_5bar_pct": 0.2885, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.5653,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8047,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.05, "resistance": 0.07},
+      "pattern": "zombie_downtrend",
+      "recent_action": "주봉 역배열 하락. 거래량 극소(vol_5bar_vs_30bar=0.05, vol_rank=0). 좀비 코인 의심. 최근 30일 -56% 급락."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "zombie",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.05813,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.062183,
+      "ma20": 0.065308,
+      "ma50": 0.06354,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0652, "ma20_pct": -0.1099, "ma50_pct": -0.0851},
+      "dist_from_ma_atr": {"ma10_atr": -0.976, "ma20_atr": -1.729, "ma50_atr": -1.303},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0652},
+      "atr": 0.004151,
+      "atr_pct": 0.0714,
+      "adx": 29.84,
+      "range_position": 0.059,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0072,
+        "upper_wick_pct": 0.333,
+        "lower_wick_pct": 0.407,
+        "vol_rank_30d": 0.167,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.12, "price_range_5bar_pct": 0.1507, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.0798,
+      "ret_90d": -0.0382,
+      "from_period_high_pct": -0.5629,
+      "vol_avg_recent_vs_prior": 0.144
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.05, "resistance": 0.07},
+      "pattern": "zombie_bear",
+      "recent_action": "일봉 vol_avg 0.144로 거래량 심각한 고갈. 전 MA 아래에서 하락 지속. 간헐적 급등 스파이크만 있고 추세 전환 신호 없음."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF B2 하락 + zombie 거래량. 일봉 vol_avg 0.144, 주봉 vol_5bar 0.05로 거래량 사실상 고갈. 고점 대비 -80%, 저유동성 좀비 코인. low_history 추가.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "zombie"],
+
+  "charts": {
+    "1m": "charts/INUSDT/20260521/INUSDT_1m.png",
+    "1w": "charts/INUSDT/20260521/INUSDT_1w.png",
+    "1d": "charts/INUSDT/20260521/INUSDT_1d.png"
+  }
+}

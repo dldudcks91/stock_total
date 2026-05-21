@@ -1,0 +1,128 @@
+{
+  "symbol": "WMTUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:33:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 134.42,
+      "bars": 13,
+      "date_range": "2026-03-02 ~ 2026-05-25",
+      "ma10": 127.643,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0531, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0531},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.956,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0083,
+        "upper_wick_pct": 0.248,
+        "lower_wick_pct": 0.383,
+        "vol_rank_30d": 0.077,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0055,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 127.0, "resistance": 135.5},
+      "pattern": "new_high_zone",
+      "recent_action": "상장 3개월, 13봉으로 데이터 극히 부족. MA10 위 신고가 수준에서 안착."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "riding",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 134.42,
+      "bars": 79,
+      "date_range": "2026-03-02 ~ 2026-05-19",
+      "ma10": 131.628,
+      "ma20": 131.285,
+      "ma50": 128.7012,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "up"},
+      "ma_spread": "tight",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0212, "ma20_pct": 0.0239, "ma50_pct": 0.0444},
+      "dist_from_ma_atr": {"ma10_atr": 1.262, "ma20_atr": 1.417, "ma50_atr": 2.586},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0212},
+      "atr": 2.211655,
+      "atr_pct": 0.0165,
+      "adx": 16.7,
+      "range_position": 0.955,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0083,
+        "upper_wick_pct": 0.248,
+        "lower_wick_pct": 0.383,
+        "vol_rank_30d": 0.967,
+        "vol_anomaly": "spike",
+        "accumulation_candle_score": 0.3,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.236,
+        "price_range_5bar_pct": 0.0313,
+        "accumulation_score": 0.6
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.06,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0055,
+      "vol_avg_recent_vs_prior": 0.284
+    },
+
+    "observations": {
+      "key_levels": {"support": 128.0, "resistance": 136.0},
+      "pattern": "new_high_consolidation",
+      "recent_action": "상장 후 완만한 상승 지속. MA10/20/50 정배열. 신고가 근처에서 거래량 spike + accumulation_score 0.6 발생. vol_avg_recent 0.28로 좀비 경계."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "신규 상장(79봉) + low_history + zombie 플래그. 1D A2 상승 중이나 vol_avg 0.28 극단 감소. 거래량 spike는 매집 의심이나 확신 부족.",
+  "risk_flags": ["low_history", "zombie"],
+
+  "charts": {
+    "1w": "charts/WMTUSDT/20260521/WMTUSDT_1w.png",
+    "1d": "charts/WMTUSDT/20260521/WMTUSDT_1d.png"
+  }
+}

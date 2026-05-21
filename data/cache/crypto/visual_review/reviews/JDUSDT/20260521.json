@@ -1,0 +1,137 @@
+{
+  "symbol": "JDUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:33:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B5",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 32.37,
+      "bars": 30,
+      "date_range": "2025-11-03 ~ 2026-05-25",
+      "ma10": 29.995,
+      "ma20": 29.137,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0792, "ma20_pct": 0.111, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 1.108, "ma20_atr": 1.508, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0792},
+      "atr": 2.143778,
+      "atr_pct": 0.0662,
+      "adx": 25.42,
+      "range_position": 0.74,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.0222,
+        "upper_wick_pct": 0.238,
+        "lower_wick_pct": 0.076,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0783,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 28.0, "resistance": 34.5},
+      "pattern": "stair_step_up",
+      "recent_action": "바닥(25불) 확인 후 계단식 상승. MA10/20 위로 가격 위치. 30주 데이터로 신뢰도 낮음."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 32.37,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 31.896,
+      "ma20": 30.9845,
+      "ma50": 30.257,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0149, "ma20_pct": 0.0447, "ma50_pct": 0.0698},
+      "dist_from_ma_atr": {"ma10_atr": 0.566, "ma20_atr": 1.654, "ma50_atr": 2.522},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0149},
+      "atr": 0.837785,
+      "atr_pct": 0.0259,
+      "adx": 25.29,
+      "range_position": 0.757,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.0222,
+        "upper_wick_pct": 0.238,
+        "lower_wick_pct": 0.076,
+        "vol_rank_30d": 0.4,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.842,
+        "price_range_5bar_pct": 0.0528,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 6,
+        "body_pct": 0.0655,
+        "vol_rank": 1.0,
+        "close": 33.75,
+        "max_retrace_pct": 0.0673,
+        "current_retrace_pct": 0.0409,
+        "holding": true
+      },
+      "ret_30d": 0.0296,
+      "ret_90d": 0.1767,
+      "from_period_high_pct": -0.0554,
+      "vol_avg_recent_vs_prior": 0.261
+    },
+
+    "observations": {
+      "key_levels": {"support": 30.0, "resistance": 34.5},
+      "pattern": "uptrend_healthy",
+      "recent_action": "MA 완전 정배열 우상향. 강양봉(6봉 전, 6.7% 하락 후 현재 4.1% 조정, holding=true) 이후 MA10 부근 수렴 중. 거래량 감소(0.261)는 주의."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1d A2 정합 + 1w B5 상승 확인. 그러나 low_history(1m 없음, 1w 30봉) + vol_avg=0.261 거래량 극감이 우려. MA10 지지 확인 후 pass 고려.",
+
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1w": "charts/JDUSDT/20260521/JDUSDT_1w.png",
+    "1d": "charts/JDUSDT/20260521/JDUSDT_1d.png"
+  }
+}

@@ -1,0 +1,147 @@
+{
+  "symbol": "2ZUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:10:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": null,
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.08879,
+      "bars": 34,
+      "date_range": "2025-10-06 ~ 2026-05-25",
+      "ma10": 0.085209,
+      "ma20": 0.089145,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.042, "ma20_pct": -0.004, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.03, "ma20_atr": -0.003, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.004},
+      "atr": 0.121203,
+      "atr_pct": 1.3651,
+      "adx": 31.89,
+      "range_position": 0.136,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.007,
+        "upper_wick_pct": 0.651,
+        "lower_wick_pct": 0.176,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 2,
+        "body_pct": 0.1907,
+        "vol_rank": 0.733,
+        "close": 0.10424,
+        "max_retrace_pct": 0.1873,
+        "current_retrace_pct": 0.1482,
+        "holding": false
+      },
+      "ret_30d": -0.6119,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9282,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.075, "resistance": 0.105},
+      "pattern": "downtrend_collapse",
+      "recent_action": "펌프 이후 -93% 급락하여 ATH 대비 최저권. 주봉 MA10/20 모두 하향, 가격은 MA20 직하."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.08879,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.096665,
+      "ma20": 0.093065,
+      "ma50": 0.087052,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0815, "ma20_pct": -0.0459, "ma50_pct": 0.02},
+      "dist_from_ma_atr": {"ma10_atr": -1.227, "ma20_atr": -0.666, "ma50_atr": 0.271},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.02},
+      "atr": 0.006419,
+      "atr_pct": 0.0723,
+      "adx": 27.24,
+      "range_position": 0.525,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.007,
+        "upper_wick_pct": 0.651,
+        "lower_wick_pct": 0.176,
+        "vol_rank_30d": 0.033,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.79,
+        "price_range_5bar_pct": 0.2284,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 9,
+        "body_pct": 0.0523,
+        "vol_rank": 0.9,
+        "close": 0.10428,
+        "max_retrace_pct": 0.1876,
+        "current_retrace_pct": 0.1485,
+        "holding": false
+      },
+      "ret_30d": 0.0748,
+      "ret_90d": 0.2082,
+      "from_period_high_pct": -0.5811,
+      "vol_avg_recent_vs_prior": 0.932
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.075, "resistance": 0.105},
+      "pattern": "base_forming",
+      "recent_action": "0.075 저점에서 반등해 MA50 근처까지 회복. 일봉 MA10/20/50 정배열로 전환 중이나 가격은 MA10/20 아래 재하락."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "주봉 B2(하락 지속), 일봉 B3(바닥 탐색 중) — TF 충돌. ATH 대비 -93% 급락 코인으로 drawdown_deep + low_history. 일봉 바닥권 신호 있으나 주봉 추세 미전환으로 매수 부적합.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1w": "charts/2ZUSDT/20260521/2ZUSDT_1w.png",
+    "1d": "charts/2ZUSDT/20260521/2ZUSDT_1d.png"
+  }
+}

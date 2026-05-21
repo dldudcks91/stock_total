@@ -1,0 +1,183 @@
+{
+  "symbol": "JSTUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:35:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "A2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.09162,
+      "bars": 14,
+      "date_range": "2025-04-30 ~ 2026-05-31",
+      "ma10": 0.052126,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.7577, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.7577},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.991,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0308,
+        "upper_wick_pct": 0.039,
+        "lower_wick_pct": 0.775,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0065,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.06, "resistance": 0.095},
+      "pattern": "parabolic_rise",
+      "recent_action": "14봉 데이터로 신뢰도 매우 낮음. 계단식 상승 중이며 현재 역대 최고 수준(range_pos=0.991)."
+    }
+  },
+
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.09162,
+      "bars": 57,
+      "date_range": "2025-04-28 ~ 2026-05-25",
+      "ma10": 0.077114,
+      "ma20": 0.061345,
+      "ma50": 0.045962,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.1881, "ma20_pct": 0.4935, "ma50_pct": 0.9934},
+      "dist_from_ma_atr": {"ma10_atr": 1.815, "ma20_atr": 3.787, "ma50_atr": 5.712},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.1881},
+      "atr": 0.007994,
+      "atr_pct": 0.0873,
+      "adx": 49.26,
+      "range_position": 0.99,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.0235,
+        "upper_wick_pct": 0.217,
+        "lower_wick_pct": 0.007,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.377,
+        "price_range_5bar_pct": 0.2143,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 1.6766,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0065,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.075, "resistance": 0.095},
+      "pattern": "stair_step_up",
+      "recent_action": "MA 완전 정배열+spread. ADX=49로 강한 추세. 30일 수익률 167%로 parabolic 권역. 신고가 근처."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.09162,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.089589,
+      "ma20": 0.087089,
+      "ma50": 0.078082,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0227, "ma20_pct": 0.052, "ma50_pct": 0.1734},
+      "dist_from_ma_atr": {"ma10_atr": 0.538, "ma20_atr": 1.201, "ma50_atr": 3.588},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0227},
+      "atr": 0.003773,
+      "atr_pct": 0.0412,
+      "adx": 16.41,
+      "range_position": 0.984,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.0235,
+        "upper_wick_pct": 0.217,
+        "lower_wick_pct": 0.007,
+        "vol_rank_30d": 0.533,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.258,
+        "price_range_5bar_pct": 0.0524,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.2622,
+      "ret_90d": 1.1593,
+      "from_period_high_pct": -0.0065,
+      "vol_avg_recent_vs_prior": 0.279
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.085, "resistance": 0.095},
+      "pattern": "steady_uptrend",
+      "recent_action": "일봉 MA 정배열+상향, 가격 MA10 위(+2.3%). 90일 수익률 115%. 거래량 감소(0.279) 추세에서 상승 지속."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1m/1w/1d A2 정합이나 30일 167% 상승으로 parabolic 위험. 1w ADX=49, ret_90d=1.16 모두 과열 신호. 진입보다 조정 후 재판단 권고.",
+
+  "risk_flags": ["parabolic", "low_history"],
+
+  "charts": {
+    "1m": "charts/JSTUSDT/20260521/JSTUSDT_1m.png",
+    "1w": "charts/JSTUSDT/20260521/JSTUSDT_1w.png",
+    "1d": "charts/JSTUSDT/20260521/JSTUSDT_1d.png"
+  }
+}

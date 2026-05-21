@@ -1,0 +1,129 @@
+{
+  "symbol": "OXYUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:34:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 60.61,
+      "bars": 11,
+      "date_range": "2026-03-16 ~ 2026-05-25",
+      "ma10": 59.551,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0178, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0178},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.551,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.0145,
+        "upper_wick_pct": 0.18,
+        "lower_wick_pct": 0.233,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1047,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 55.0, "resistance": 68.0},
+      "pattern": "low_history_base",
+      "recent_action": "1W 11봉 극단적 low_history. 초기 변동 후 현재 MA10 위에서 안정. 패턴 판정 불가."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 60.61,
+      "bars": 69,
+      "date_range": "2026-03-12 ~ 2026-05-19",
+      "ma10": 57.629,
+      "ma20": 57.3215,
+      "ma50": 57.9744,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "down"},
+      "ma_spread": "tight",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0517, "ma20_pct": 0.0574, "ma50_pct": 0.0455},
+      "dist_from_ma_atr": {"ma10_atr": 1.893, "ma20_atr": 2.088, "ma50_atr": 1.674},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.0455},
+      "atr": 1.57458,
+      "atr_pct": 0.026,
+      "adx": 17.98,
+      "range_position": 0.551,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.0145,
+        "upper_wick_pct": 0.18,
+        "lower_wick_pct": 0.233,
+        "vol_rank_30d": 0.233,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.415,
+        "price_range_5bar_pct": 0.0757,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.1139,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1047,
+      "vol_avg_recent_vs_prior": 0.323
+    },
+
+    "observations": {
+      "key_levels": {"support": 55.0, "resistance": 68.0},
+      "pattern": "base_above_ma",
+      "recent_action": "1D에서 68 고점 후 53까지 하락, 이후 반등하여 현재 60.6으로 MA 3선(57~58) 모두 위. ADX=18 약함. 거래량은 감소 추세(vol_avg=0.323). MA 수렴 구간."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "1W/1D 모두 B4 정합이나 1W 11봉 low_history로 패턴 신뢰도 낮음. 1D에서 MA 전부 위에 있으나 거래량 감소, ADX 약함. 더 많은 봉 쌓인 후 재판정 권장.",
+
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1w": "charts/OXYUSDT/20260521/OXYUSDT_1w.png",
+    "1d": "charts/OXYUSDT/20260521/OXYUSDT_1d.png"
+  }
+}

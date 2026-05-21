@@ -1,0 +1,74 @@
+{
+  "symbol": "CRWVUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 100.02,
+      "bars": 22,
+      "date_range": "2026-04-28 ~ 2026-05-19",
+      "ma10": 109.038,
+      "ma20": 114.9395,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0827, "ma20_pct": -0.1298, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -1.115, "ma20_atr": -1.844, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0827},
+      "atr": 8.088807,
+      "atr_pct": 0.0809,
+      "adx": null,
+      "range_position": 0.116,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0416,
+        "upper_wick_pct": 0.004,
+        "lower_wick_pct": 0.55,
+        "vol_rank_30d": 0.773,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.2806,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 95.0, "resistance": 115.0},
+      "pattern": "new_listing_decline",
+      "recent_action": "상장 22일 데이터 불과. 고점 138 대비 -28% 하락 중. MA10/20 모두 우하향, 현재가 MA 하방. 최근 아래꼬리 있는 음봉 거래량 상승."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "skip",
+  "verdict_confidence": "low",
+  "verdict_reason": "신규 상장 22일 데이터 only, low_history. 하락 추세 중이나 데이터 부족으로 구조 판단 어려움.",
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1d": "charts/CRWVUSDT/20260521/CRWVUSDT_1d.png"
+  }
+}

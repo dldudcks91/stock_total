@@ -1,0 +1,75 @@
+{
+  "symbol": "AIGENSYNUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.03411,
+      "bars": 21,
+      "date_range": "2026-04-29 ~ 2026-05-19",
+      "ma10": 0.035307,
+      "ma20": 0.035381,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0339, "ma20_pct": -0.0359, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.107, "ma20_atr": -0.113, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0339},
+      "atr": 0.011225,
+      "atr_pct": 0.3291,
+      "adx": null,
+      "range_position": 0.2,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0812,
+        "upper_wick_pct": 0.245,
+        "lower_wick_pct": 0.101,
+        "vol_rank_30d": 0.429,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.4439,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.028, "resistance": 0.045},
+      "pattern": "new_listing_box",
+      "recent_action": "신규 상장 21일 데이터. 상장 초 $0.06 고점 이후 $0.030~0.040 박스 형성. 거래량 불규칙. ADX null로 추세 강도 미파악. low_history로 신뢰도 낮음."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "skip",
+  "verdict_confidence": "low",
+  "verdict_reason": "1M/1W PNG 없음(신규상장). 1D 21봉만으로 판단 불가. low_history + drawdown_deep. 최소 3개월 이상 데이터 축적 후 재검토.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1d": "charts/AIGENSYNUSDT/20260521/AIGENSYNUSDT_1d.png"
+  }
+}

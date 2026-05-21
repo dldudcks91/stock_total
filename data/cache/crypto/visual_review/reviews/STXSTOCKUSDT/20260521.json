@@ -1,0 +1,83 @@
+{
+  "symbol": "STXSTOCKUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "A3",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 735.71,
+      "bars": 35,
+      "date_range": "2026-04-15 ~ 2026-05-19",
+      "ma10": 786.18,
+      "ma20": 767.431,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0642, "ma20_pct": -0.0413, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -1.257, "ma20_atr": -0.79, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0413},
+      "atr": 40.162112,
+      "atr_pct": 0.0546,
+      "adx": 69.19,
+      "range_position": 0.69,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0025,
+        "upper_wick_pct": 0.143,
+        "lower_wick_pct": 0.82,
+        "vol_rank_30d": 0.2,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.174,
+        "price_range_5bar_pct": 0.1504,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 8,
+        "body_pct": 0.0621,
+        "vol_rank": 0.808,
+        "close": 835.72,
+        "max_retrace_pct": 0.1691,
+        "current_retrace_pct": 0.1197,
+        "holding": false
+      },
+      "ret_30d": 0.3445,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1241,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 700.0, "resistance": 840.0},
+      "pattern": "impulse_pullback",
+      "recent_action": "4월 초 530에서 5월 10일 850까지 급등(+60%) 후 현재 735로 조정. MA20 -4.1% 하방. 거래량 감소 중. 히스토리 35봉 제한적."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "1D만 채점 가능(low_history). ADX=69.19 매우 강한 추세이나 최근 고점(850) 대비 조정 중, MA20 하방 이탈. 히스토리 짧아 신뢰도 낮음. 관망.",
+
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1d": "charts/STXSTOCKUSDT/20260521/STXSTOCKUSDT_1d.png"
+  }
+}

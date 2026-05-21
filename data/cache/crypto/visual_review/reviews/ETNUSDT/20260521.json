@@ -1,0 +1,20 @@
+{
+  "symbol": "ETNUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "채점 가능 TF(1m/1w/1d) PNG 미존재 — 4h/1h entry TF만 있음. low_history로 전체 사이클 판정 불가. 1H 역배열+ADX46 하락 추세, 4H accumulation_score 1.0 주목. 데이터 축적 후 재판정 필요.",
+
+  "risk_flags": ["low_history"],
+
+  "charts": {}
+}

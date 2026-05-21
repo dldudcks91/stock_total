@@ -1,0 +1,183 @@
+{
+  "symbol": "JASMYUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:31:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.005627,
+      "bars": 45,
+      "date_range": "2022-09-30 ~ 2026-05-31",
+      "ma10": 0.007762,
+      "ma20": 0.013853,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.275, "ma20_pct": -0.5938, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.331, "ma20_atr": -1.277, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.275},
+      "atr": 0.006441,
+      "atr_pct": 1.1447,
+      "adx": 23.97,
+      "range_position": 0.086,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0002,
+        "upper_wick_pct": 0.941,
+        "lower_wick_pct": 0.058,
+        "vol_rank_30d": 0.033,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.732,
+        "price_range_5bar_pct": 1.0148,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.1411,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9049,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.004, "resistance": 0.015},
+      "pattern": "secular_downtrend",
+      "recent_action": "2024년 0.06 고점 이후 지속 하락. 월봉 MA10 대비 -27.5%, 역배열 하향 진행 중."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.005627,
+      "bars": 192,
+      "date_range": "2022-09-26 ~ 2026-05-25",
+      "ma10": 0.005705,
+      "ma20": 0.006036,
+      "ma50": 0.009448,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0137, "ma20_pct": -0.0677, "ma50_pct": -0.4044},
+      "dist_from_ma_atr": {"ma10_atr": -0.058, "ma20_atr": -0.301, "ma50_atr": -2.809},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0137},
+      "atr": 0.00136,
+      "atr_pct": 0.2417,
+      "adx": 19.64,
+      "range_position": 0.182,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0142,
+        "upper_wick_pct": 0.172,
+        "lower_wick_pct": 0.521,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.301,
+        "price_range_5bar_pct": 0.4125,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.4569,
+      "ret_90d": -0.7012,
+      "from_period_high_pct": -0.9049,
+      "vol_avg_recent_vs_prior": 1.117
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.004, "resistance": 0.007},
+      "pattern": "ma_death_cross",
+      "recent_action": "MA10/20/50 완전 역배열 하향. 가격 MA10 바로 아래. 거래량 감소 추세로 하락 추세 지속 중."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.005627,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.00632,
+      "ma20": 0.00613,
+      "ma50": 0.005755,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1097, "ma20_pct": -0.082, "ma50_pct": -0.0223},
+      "dist_from_ma_atr": {"ma10_atr": -1.757, "ma20_atr": -1.274, "ma50_atr": -0.325},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0223},
+      "atr": 0.000395,
+      "atr_pct": 0.0701,
+      "adx": 22.84,
+      "range_position": 0.201,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0142,
+        "upper_wick_pct": 0.172,
+        "lower_wick_pct": 0.521,
+        "vol_rank_30d": 0.767,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.495,
+        "price_range_5bar_pct": 0.1873,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0036,
+      "ret_90d": -0.018,
+      "from_period_high_pct": -0.4709,
+      "vol_avg_recent_vs_prior": 1.415
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.005, "resistance": 0.0065},
+      "pattern": "compressed_range",
+      "recent_action": "일봉에서는 MA 정배열로 전환했으나 가격이 MA 전부 아래. 1월 스파이크 이후 좁은 박스권 횡보 중. 주봉 B2와 충돌."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "1m/1w B2 명확한 하락추세, 1d는 B3로 다르지만 주봉 역배열 지배. 피크 대비 -90.5% drawdown. 상위 TF 역배열 해소 전 매수 부적합.",
+
+  "risk_flags": ["drawdown_deep"],
+
+  "charts": {
+    "1m": "charts/JASMYUSDT/20260521/JASMYUSDT_1m.png",
+    "1w": "charts/JASMYUSDT/20260521/JASMYUSDT_1w.png",
+    "1d": "charts/JASMYUSDT/20260521/JASMYUSDT_1d.png"
+  }
+}

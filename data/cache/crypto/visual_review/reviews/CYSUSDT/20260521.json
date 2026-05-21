@@ -1,0 +1,121 @@
+{
+  "symbol": "CYSUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.44512,
+      "bars": 24,
+      "date_range": "2025-12-15 ~ 2026-05-25",
+      "ma10": 0.43762,
+      "ma20": 0.420365,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0171, "ma20_pct": 0.0589, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.046, "ma20_atr": 0.152, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0171},
+      "atr": 0.162952,
+      "atr_pct": 0.3661,
+      "adx": null,
+      "range_position": 0.503,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.1061,
+        "upper_wick_pct": 0.211,
+        "lower_wick_pct": 0.106,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.4208,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.40, "resistance": 0.52},
+      "pattern": "base_forming",
+      "recent_action": "피크 대비 -42% 낙폭 후 0.40~0.50 박스권 형성. MA10/MA20 모두 우상향하며 가격이 MA 위에 안착 시도 중."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.44512,
+      "bars": 159,
+      "date_range": "2025-12-12 ~ 2026-05-19",
+      "ma10": 0.463815,
+      "ma20": 0.472398,
+      "ma50": 0.402876,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0403, "ma20_pct": -0.0577, "ma50_pct": 0.1049},
+      "dist_from_ma_atr": {"ma10_atr": -0.339, "ma20_atr": -0.495, "ma50_atr": 0.767},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0403},
+      "atr": 0.055101,
+      "atr_pct": 0.1238,
+      "adx": 15.26,
+      "range_position": 0.461,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.1061,
+        "upper_wick_pct": 0.211,
+        "lower_wick_pct": 0.106,
+        "vol_rank_30d": 0.433,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.708, "price_range_5bar_pct": 0.2325, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0188,
+      "ret_90d": -0.1166,
+      "from_period_high_pct": -0.4208,
+      "vol_avg_recent_vs_prior": 0.207
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.39, "resistance": 0.48},
+      "pattern": "pullback_after_bounce",
+      "recent_action": "4월 바닥(0.19~0.20) 이후 반등해 MA20 복귀 시도했으나 현재 MA10/MA20 아래로 되밀리는 중. 거래량 현저히 감소(vol_avg 0.207)로 관심 희박."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W B3 박스권 + 1D B4 상승 시도 단계이나 1D 거래량 급감(0.207배)·ADX 15(횡보) 확인. 1W MA10/MA20 우상향 중이나 low_history(24봉)로 신뢰도 제한. 1D MA10 복귀 확인 시 watch→pass 전환 검토.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1w": "charts/CYSUSDT/20260521/CYSUSDT_1w.png",
+    "1d": "charts/CYSUSDT/20260521/CYSUSDT_1d.png"
+  }
+}

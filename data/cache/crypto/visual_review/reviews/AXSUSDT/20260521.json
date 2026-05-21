@@ -1,0 +1,199 @@
+{
+  "symbol": "AXSUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:06:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 1.165,
+      "bars": 57,
+      "date_range": "2021-09-30 ~ 2026-05-31",
+      "ma10": 1.4706,
+      "ma20": 2.77495,
+      "ma50": 6.766372,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2078, "ma20_pct": -0.5802, "ma50_pct": -0.8278},
+      "dist_from_ma_atr": {"ma10_atr": -0.127, "ma20_atr": -0.671, "ma50_atr": -2.335},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.2078},
+      "atr": 2.398749,
+      "atr_pct": 2.059,
+      "adx": 9.98,
+      "range_position": 0.172,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.1734,
+        "upper_wick_pct": 0.284,
+        "lower_wick_pct": 0.19,
+        "vol_rank_30d": 0.567,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 8.486,
+        "price_range_5bar_pct": 1.8893,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.8169,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.993,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.8, "resistance": 2.0},
+      "pattern": "prolonged_downtrend",
+      "recent_action": "2021년 고점 160 대비 -99% 낙폭. 57개월 내내 하락. MA 완전 역배열."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 1.165,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 1.2103,
+      "ma20": 1.3234,
+      "ma50": 1.6411,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0374, "ma20_pct": -0.1197, "ma50_pct": -0.2901},
+      "dist_from_ma_atr": {"ma10_atr": -0.136, "ma20_atr": -0.475, "ma50_atr": -1.427},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0374},
+      "atr": 0.333672,
+      "atr_pct": 0.2864,
+      "adx": 20.08,
+      "range_position": 0.172,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0318,
+        "upper_wick_pct": 0.197,
+        "lower_wick_pct": 0.197,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.549,
+        "price_range_5bar_pct": 0.5931,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 4,
+        "body_pct": 0.231,
+        "vol_rank": 0.867,
+        "close": 1.437,
+        "max_retrace_pct": 0.2401,
+        "current_retrace_pct": 0.1893,
+        "holding": false
+      },
+      "ret_30d": -0.2613,
+      "ret_90d": -0.7507,
+      "from_period_high_pct": -0.9429,
+      "vol_avg_recent_vs_prior": 4.205
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.9, "resistance": 1.5},
+      "pattern": "base_with_volume_spike",
+      "recent_action": "2025년 12월 거래량 급증(vol_avg 4.2배) 후 반등 시도. 현재 MA10 아래 조정 중. 큰 그림에서는 아직 바닥 확정 안 됨."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 1.165,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 1.2586,
+      "ma20": 1.3178,
+      "ma50": 1.23264,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0744, "ma20_pct": -0.116, "ma50_pct": -0.0549},
+      "dist_from_ma_atr": {"ma10_atr": -1.098, "ma20_atr": -1.792, "ma50_atr": -0.793},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0549},
+      "atr": 0.085281,
+      "atr_pct": 0.0732,
+      "adx": 27.67,
+      "range_position": 0.177,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0318,
+        "upper_wick_pct": 0.197,
+        "lower_wick_pct": 0.197,
+        "vol_rank_30d": 0.567,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.47,
+        "price_range_5bar_pct": 0.1554,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.0641,
+        "vol_rank": 0.833,
+        "close": 1.202,
+        "max_retrace_pct": 0.0408,
+        "current_retrace_pct": 0.0308,
+        "holding": true
+      },
+      "ret_30d": 0.0737,
+      "ret_90d": -0.0898,
+      "from_period_high_pct": -0.6108,
+      "vol_avg_recent_vs_prior": 3.051
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.95, "resistance": 1.45},
+      "pattern": "rebound_attempt",
+      "recent_action": "2026년 1월 거래량 급증 후 반등 시도. 어제 강양봉(holding=true) 이나 아직 MA 아래. B4 상승 첫 시도 단계."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1M B2 극단적 낙폭(-99%). 1D B4 상승 시도 + 거래량 급증(vol_avg 3배). 그러나 큰 TF 여전히 역배열. 1W 바닥 확인 + MA10 위 복귀 확인 후 재판정.",
+
+  "risk_flags": ["drawdown_deep", "accumulation_suspect"],
+
+  "charts": {
+    "1m": "charts/AXSUSDT/20260521/AXSUSDT_1m.png",
+    "1w": "charts/AXSUSDT/20260521/AXSUSDT_1w.png",
+    "1d": "charts/AXSUSDT/20260521/AXSUSDT_1d.png"
+  }
+}

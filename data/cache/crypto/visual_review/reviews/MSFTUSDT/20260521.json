@@ -1,0 +1,145 @@
+{
+  "symbol": "MSFTUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 417.33,
+      "bars": 36,
+      "date_range": "2025-09-22 ~ 2026-05-25",
+      "ma10": 401.182,
+      "ma20": 412.8805,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0403, "ma20_pct": 0.0108, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.63, "ma20_atr": 0.174, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.0108},
+      "atr": 25.639308,
+      "atr_pct": 0.0614,
+      "adx": 36.49,
+      "range_position": 0.31,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0155,
+        "upper_wick_pct": 0.548,
+        "lower_wick_pct": 0.071,
+        "vol_rank_30d": 0.067,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.004,
+        "price_range_5bar_pct": 0.1115,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.0264,
+        "vol_rank": 0.733,
+        "close": 423.8,
+        "max_retrace_pct": 0.0181,
+        "current_retrace_pct": 0.0153,
+        "holding": true
+      },
+      "ret_30d": -0.2163,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.2481,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 370.0, "resistance": 450.0},
+      "pattern": "base_building",
+      "recent_action": "장기 하락 후 370 바닥권에서 반등, 현재 417로 MA20(413) 위 돌파 시도 중. 위꼬리 강해 저항 있음."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "riding",
+    "volume_flag": "distribution_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 417.33,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 415.016,
+      "ma20": 414.646,
+      "ma50": 405.306,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "down", "ma50": "up"},
+      "ma_spread": "tight",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0056, "ma20_pct": 0.0065, "ma50_pct": 0.0297},
+      "dist_from_ma_atr": {"ma10_atr": 0.233, "ma20_atr": 0.271, "ma50_atr": 1.212},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0056},
+      "atr": 9.91705,
+      "atr_pct": 0.0238,
+      "adx": 21.45,
+      "range_position": 0.689,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0155,
+        "upper_wick_pct": 0.548,
+        "lower_wick_pct": 0.071,
+        "vol_rank_30d": 0.867,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.6
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.999,
+        "price_range_5bar_pct": 0.0658,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 4,
+        "body_pct": 0.0273,
+        "vol_rank": 0.833,
+        "close": 420.06,
+        "max_retrace_pct": 0.0095,
+        "current_retrace_pct": 0.0065,
+        "holding": true
+      },
+      "ret_30d": -0.0054,
+      "ret_90d": 0.0404,
+      "from_period_high_pct": -0.2033,
+      "vol_avg_recent_vs_prior": 0.961
+    },
+
+    "observations": {
+      "key_levels": {"support": 400.0, "resistance": 450.0},
+      "pattern": "consolidation",
+      "recent_action": "1D 기준 MA 수렴 상태에서 박스 등락. distribution_candle_score 0.6으로 분배봉 의심, 추세 전환 확인 미완."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W/1D 모두 B4 반등 첫 시도. 370 바닥 반등이나 MA20 기울기 여전히 하향, distribution_candle_score 0.6 경계. MA20 양전환 확인 후 B5 전환 대기.",
+
+  "risk_flags": ["low_history", "distribution_suspect"],
+
+  "charts": {
+    "1w": "charts/MSFTUSDT/20260521/MSFTUSDT_1w.png",
+    "1d": "charts/MSFTUSDT/20260521/MSFTUSDT_1d.png"
+  }
+}

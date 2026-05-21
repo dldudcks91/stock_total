@@ -1,0 +1,121 @@
+{
+  "symbol": "ARMUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:07:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 223.52,
+      "bars": 38,
+      "date_range": "2025-09-08 ~ 2026-05-25",
+      "ma10": 182.462,
+      "ma20": 150.0305,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.225, "ma20_pct": 0.4898, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 1.696, "ma20_atr": 3.036, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.225},
+      "atr": 24.209605,
+      "atr_pct": 0.1083,
+      "adx": 32.22,
+      "range_position": 0.741,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0335,
+        "upper_wick_pct": 0.182,
+        "lower_wick_pct": 0.443,
+        "vol_rank_30d": 0.167,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.072, "price_range_5bar_pct": 0.4252, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.2449,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1671,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 175.0, "resistance": 270.0},
+      "pattern": "uptrend_stair_step",
+      "recent_action": "1W 가격 MA10/20 상방 유지. 고점 대비 -17%로 소폭 조정. 38봉으로 history 짧으나 상승 기조 명확."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 223.52,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 213.899,
+      "ma20": 213.3805,
+      "ma50": 188.6826,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.045, "ma20_pct": 0.0475, "ma50_pct": 0.1846},
+      "dist_from_ma_atr": {"ma10_atr": 0.677, "ma20_atr": 0.713, "ma50_atr": 2.45},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.045},
+      "atr": 14.219455,
+      "atr_pct": 0.0636,
+      "adx": 35.91,
+      "range_position": 0.679,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0335,
+        "upper_wick_pct": 0.182,
+        "lower_wick_pct": 0.443,
+        "vol_rank_30d": 0.567,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.667, "price_range_5bar_pct": 0.1273, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.3557,
+      "ret_90d": 0.7524,
+      "from_period_high_pct": -0.1671,
+      "vol_avg_recent_vs_prior": 1.065
+    },
+
+    "observations": {
+      "key_levels": {"support": 200.0, "resistance": 270.0},
+      "pattern": "stair_step_up",
+      "recent_action": "1D 정배열(MA10>MA20>MA50) 유지, ADX 35.9 추세 강함. 30일 +35%, 90일 +75% 수익. MA10 지지권 근접 눌림 중."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "pass",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W/1D A2 정합 상승추세. ADX 32/36으로 추세 강도 확인. MA10/20 정배열. 단 low_history(1W 38봉) + ret_90d 0.75로 페러볼릭 주의 필요. 풀백 구간은 매수 관심.",
+
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1w": "charts/ARMUSDT/20260521/ARMUSDT_1w.png",
+    "1d": "charts/ARMUSDT/20260521/ARMUSDT_1d.png"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "symbol": "OPGUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.2391,
+      "bars": 27,
+      "date_range": "2026-04-23 ~ 2026-05-19",
+      "ma10": 0.27326,
+      "ma20": 0.267275,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.125, "ma20_pct": -0.1054, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.628, "ma20_atr": -0.518, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.1054},
+      "atr": 0.054412,
+      "atr_pct": 0.2276,
+      "adx": null,
+      "range_position": 0.115,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0552,
+        "upper_wick_pct": 0.308,
+        "lower_wick_pct": 0.11,
+        "vol_rank_30d": 0.296,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.4557,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.22, "resistance": 0.30},
+      "pattern": "new_listing_consolidation",
+      "recent_action": "상장 27일. 고점 대비 -46% 하락 후 현재 박스권 하단. MA10/20 모두 위에서 눌러주는 형태. 봉수 부족으로 판정 신뢰도 낮음."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "skip",
+  "verdict_confidence": "low",
+  "verdict_reason": "상장 27일, 1D 데이터만 존재. MA10/20 역배열 진행 중. 최소 60봉 이상 확보 후 재판정 권고.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1d": "charts/OPGUSDT/20260521/OPGUSDT_1d.png"
+  }
+}

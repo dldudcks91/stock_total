@@ -1,0 +1,129 @@
+{
+  "symbol": "KATUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:40:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.00842,
+      "bars": 10,
+      "date_range": "2026-03-23 ~ 2026-05-25",
+      "ma10": 0.009822,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1427, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1427},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.033,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.0249,
+        "upper_wick_pct": 0.098,
+        "lower_wick_pct": 0.39,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.7249,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.007, "resistance": 0.013},
+      "pattern": "short_history_decline",
+      "recent_action": "1W 10봉으로 데이터 매우 부족. ATH ~0.030 대비 -72% 하락. 4월 말 단기 spike 이후 하락 추세 재개."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.00842,
+      "bars": 63,
+      "date_range": "2026-03-18 ~ 2026-05-19",
+      "ma10": 0.009084,
+      "ma20": 0.009444,
+      "ma50": 0.009895,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0731, "ma20_pct": -0.1084, "ma50_pct": -0.1491},
+      "dist_from_ma_atr": {"ma10_atr": -0.578, "ma20_atr": -0.891, "ma50_atr": -1.285},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0731},
+      "atr": 0.001148,
+      "atr_pct": 0.1364,
+      "adx": 33.17,
+      "range_position": 0.033,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.0249,
+        "upper_wick_pct": 0.098,
+        "lower_wick_pct": 0.39,
+        "vol_rank_30d": 0.067,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.117,
+        "price_range_5bar_pct": 0.1496,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.0665,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.7249,
+      "vol_avg_recent_vs_prior": 2.656
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.007, "resistance": 0.012},
+      "pattern": "spike_fade_base",
+      "recent_action": "1D에서 4월 말 $0.030 spike 후 즉시 $0.008대로 급락. 현재 박스 최하단에서 거래량 2.6배 증가는 주목. 4H에서 breakout 신호(vol_anomaly) 관찰됨."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W low_history(10봉), 1D B3 바닥 다지기 중. 4H/1H에서 breakout+accumulation_suspect 신호 있으나 상위 TF 데이터 부족으로 판단 불가. drawdown_deep + low_history. 데이터 축적 후 재검토.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "accumulation_suspect"],
+
+  "charts": {
+    "1w": "charts/KATUSDT/20260521/KATUSDT_1w.png",
+    "1d": "charts/KATUSDT/20260521/KATUSDT_1d.png"
+  }
+}

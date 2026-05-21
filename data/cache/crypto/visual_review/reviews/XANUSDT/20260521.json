@@ -1,0 +1,136 @@
+{
+  "symbol": "XANUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:37:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.008688,
+      "bars": 34,
+      "date_range": "2025-10-06 ~ 2026-05-25",
+      "ma10": 0.008618,
+      "ma20": 0.009301,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0082, "ma20_pct": -0.0659, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.006, "ma20_atr": -0.056, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0082},
+      "atr": 0.010864,
+      "atr_pct": 1.2505,
+      "adx": 29.54,
+      "range_position": 0.053,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0421,
+        "upper_wick_pct": 0.181,
+        "lower_wick_pct": 0.251,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.8008,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9499,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.007, "resistance": 0.012},
+      "pattern": "sustained_decline",
+      "recent_action": "상장 초 0.17에서 현 0.0087 (-95%). low_history. MA10/20 하향. range_pos 0.053 극단 하단."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "bounce_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.008688,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.009532,
+      "ma20": 0.009114,
+      "ma50": 0.008565,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0886, "ma20_pct": -0.0467, "ma50_pct": 0.0144},
+      "dist_from_ma_atr": {"ma10_atr": -0.805, "ma20_atr": -0.406, "ma50_atr": 0.117},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.0144},
+      "atr": 0.00105,
+      "atr_pct": 0.1208,
+      "adx": 43.87,
+      "range_position": 0.378,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0421,
+        "upper_wick_pct": 0.181,
+        "lower_wick_pct": 0.251,
+        "vol_rank_30d": 0.533,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.71,
+        "price_range_5bar_pct": 0.3437,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 8,
+        "body_pct": 0.0747,
+        "vol_rank": 0.8,
+        "close": 0.010202,
+        "max_retrace_pct": 0.1643,
+        "current_retrace_pct": 0.1484,
+        "holding": false
+      },
+      "ret_30d": 0.1483,
+      "ret_90d": 0.1181,
+      "from_period_high_pct": -0.8498,
+      "vol_avg_recent_vs_prior": 0.672
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.0082, "resistance": 0.011},
+      "pattern": "recovery_attempt",
+      "recent_action": "2026-03 바닥(0.007) 이후 반등. MA50 위 안착 중. ADX 44 강함. 강양봉 후 -16% 되돌림(holding=false)으로 반등 확정 미확인."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "1D B4 반등 시도(ADX 44 강세)이나 1W B2 지배. low_history + 강양봉 되돌림 실패. MA20 위 복귀 확인 필요.",
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1w": "charts/XANUSDT/20260521/XANUSDT_1w.png",
+    "1d": "charts/XANUSDT/20260521/XANUSDT_1d.png"
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "symbol": "ELSAUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.06431,
+      "bars": 18,
+      "date_range": "2026-01-26 ~ 2026-05-25",
+      "ma10": 0.067839,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.052, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.067, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.052},
+      "atr": 0.052566,
+      "atr_pct": 0.8174,
+      "adx": null,
+      "range_position": 0.029,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0031,
+        "upper_wick_pct": 0.418,
+        "lower_wick_pct": 0.451,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.7498,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.06, "resistance": 0.09},
+      "pattern": "launch_dump",
+      "recent_action": "2026년 1월 출시 후 $0.25에서 $0.064로 급락(-75%). 현재 극저 거래량(vol_rank 0.0)으로 바닥권 횡보. 데이터 18봉으로 신뢰도 매우 낮음."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.06431,
+      "bars": 118,
+      "date_range": "2026-01-22 ~ 2026-05-19",
+      "ma10": 0.069707,
+      "ma20": 0.072511,
+      "ma50": 0.069677,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0774, "ma20_pct": -0.1131, "ma50_pct": -0.077},
+      "dist_from_ma_atr": {"ma10_atr": -1.195, "ma20_atr": -1.816, "ma50_atr": -1.188},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.077},
+      "atr": 0.004516,
+      "atr_pct": 0.0702,
+      "adx": 27.6,
+      "range_position": 0.222,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0031,
+        "upper_wick_pct": 0.418,
+        "lower_wick_pct": 0.451,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.585, "price_range_5bar_pct": 0.151, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.0198,
+      "ret_90d": -0.1516,
+      "from_period_high_pct": -0.7498,
+      "vol_avg_recent_vs_prior": 0.787
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.06, "resistance": 0.075},
+      "pattern": "low_vol_consolidation",
+      "recent_action": "3~5월 $0.06~$0.08 구간 횡보. 1H에서 vol_anomaly=spike + accumulation_score=1.0 신호(단기). MA 모두 우하향으로 바닥 확정 미결."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "low",
+  "verdict_reason": "신규 코인(low_history). 1W/1D 모두 B2~B3, MA 역배열. 1H에서 accumulation 신호 있으나 큰 그림 하락 추세 미전환. 데이터 부족으로 신뢰도 낮아 skip.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1w": "charts/ELSAUSDT/20260521/ELSAUSDT_1w.png",
+    "1d": "charts/ELSAUSDT/20260521/ELSAUSDT_1d.png"
+  }
+}

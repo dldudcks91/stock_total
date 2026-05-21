@@ -1,0 +1,130 @@
+{
+  "symbol": "ACUUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:13:30+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": null,
+
+  "tf_1w": {
+    "state": "C1",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.08296,
+      "bars": 18,
+      "date_range": "2026-01-26 ~ 2026-05-25",
+      "ma10": 0.091266,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.091, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.091},
+      "atr": 0.099824,
+      "atr_pct": 1.2033,
+      "adx": null,
+      "range_position": 0.027,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0509,
+        "upper_wick_pct": 0.093,
+        "lower_wick_pct": 0.157,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.7868,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.08, "resistance": 0.13},
+      "pattern": "launch_dump",
+      "recent_action": "2026년 1월 상장 직후 0.4 ATH 후 -78.7% 급락. 주봉 18개 부족, MA10만 산출. 거래량 소멸 추세."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.08296,
+      "bars": 119,
+      "date_range": "2026-01-21 ~ 2026-05-19",
+      "ma10": 0.097111,
+      "ma20": 0.100588,
+      "ma50": 0.093385,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1457, "ma20_pct": -0.1753, "ma50_pct": -0.1116},
+      "dist_from_ma_atr": {"ma10_atr": -1.542, "ma20_atr": -1.922, "ma50_atr": -1.136},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.1116},
+      "atr": 0.009174,
+      "atr_pct": 0.1106,
+      "adx": 29.13,
+      "range_position": 0.162,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0509,
+        "upper_wick_pct": 0.093,
+        "lower_wick_pct": 0.157,
+        "vol_rank_30d": 0.1,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.509,
+        "price_range_5bar_pct": 0.2428,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.0448,
+      "ret_90d": -0.1649,
+      "from_period_high_pct": -0.7868,
+      "vol_avg_recent_vs_prior": 1.03
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.075, "resistance": 0.105},
+      "pattern": "post_ipo_dump",
+      "recent_action": "상장 직후 0.4 ATH 급등 후 119일간 지속 하락. 가격 MA10/20/50 전 하단. 하락 추세 지속 중."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W C1/1D B2 정합(신규 상장 펌프&덤프). ATH -78.7% 급락, low_history. 상장 직후 덤프 패턴으로 reject.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace"],
+
+  "charts": {
+    "1w": "charts/ACUUSDT/20260521/ACUUSDT_1w.png",
+    "1d": "charts/ACUUSDT/20260521/ACUUSDT_1d.png"
+  }
+}

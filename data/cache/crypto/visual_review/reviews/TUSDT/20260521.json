@@ -1,0 +1,167 @@
+{
+  "symbol": "TUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.005305,
+      "bars": 22,
+      "date_range": "2024-08-31 ~ 2026-05-31",
+      "ma10": 0.009447,
+      "ma20": 0.015134,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.4384, "ma20_pct": -0.6495, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.855, "ma20_atr": -2.029, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.4384},
+      "atr": 0.004844,
+      "atr_pct": 0.9131,
+      "adx": null,
+      "range_position": 0.0,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0959,
+        "upper_wick_pct": 0.563,
+        "lower_wick_pct": 0.007,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8761,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.004, "resistance": 0.009},
+      "pattern": "steady_decline",
+      "recent_action": "1M 차트 2025년 초 반등 후 재하락. 현재 0.005 수준으로 역대 최저. range_position 0.0."
+    }
+  },
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "dry",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.005305,
+      "bars": 93,
+      "date_range": "2024-08-19 ~ 2026-05-25",
+      "ma10": 0.00602,
+      "ma20": 0.006844,
+      "ma50": 0.011277,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1188, "ma20_pct": -0.2249, "ma50_pct": -0.5296},
+      "dist_from_ma_atr": {"ma10_atr": -0.624, "ma20_atr": -1.344, "ma50_atr": -5.217},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1188},
+      "atr": 0.001145,
+      "atr_pct": 0.2158,
+      "adx": 21.15,
+      "range_position": 0.001,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0217,
+        "upper_wick_pct": 0.268,
+        "lower_wick_pct": 0.048,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.259, "price_range_5bar_pct": 0.223, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.5919,
+      "ret_90d": -0.7518,
+      "from_period_high_pct": -0.8761,
+      "vol_avg_recent_vs_prior": 0.216
+    },
+    "observations": {
+      "key_levels": {"support": 0.004, "resistance": 0.008},
+      "pattern": "zombie_drift",
+      "recent_action": "1W 역배열 전구간 하향, range_position 0.001 역대 최저권. vol_avg 0.216 좀비 수준. 거래량 고갈."
+    }
+  },
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "dry",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.005305,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.005874,
+      "ma20": 0.005943,
+      "ma50": 0.006085,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0969, "ma20_pct": -0.1073, "ma50_pct": -0.1282},
+      "dist_from_ma_atr": {"ma10_atr": -2.351, "ma20_atr": -2.632, "ma50_atr": -3.22},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0969},
+      "atr": 0.000242,
+      "atr_pct": 0.0457,
+      "adx": 22.35,
+      "range_position": 0.005,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0217,
+        "upper_wick_pct": 0.268,
+        "lower_wick_pct": 0.048,
+        "vol_rank_30d": 0.267,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.973, "price_range_5bar_pct": 0.1497, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 9,
+        "body_pct": 0.0346,
+        "vol_rank": 0.833,
+        "close": 0.006421,
+        "max_retrace_pct": 0.1751,
+        "current_retrace_pct": 0.1738,
+        "holding": false
+      },
+      "ret_30d": -0.1391,
+      "ret_90d": -0.2518,
+      "from_period_high_pct": -0.6423,
+      "vol_avg_recent_vs_prior": 0.495
+    },
+    "observations": {
+      "key_levels": {"support": 0.005, "resistance": 0.007},
+      "pattern": "downtrend_persistent",
+      "recent_action": "1D 역배열 전구간 하향. 9일 전 강양봉이 있었으나 이후 무너져 holding=false. 현재 0.005 근처 저점 무너지는 중."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF B2 역배열 정합. 피크 대비 -88%. vol_avg 0.216 좀비. 거래량 고갈+하락 지속. 매매 회피 대상.",
+  "risk_flags": ["drawdown_deep", "low_history", "zombie"],
+  "charts": {
+    "1m": "charts/TUSDT/20260521/TUSDT_1m.png",
+    "1w": "charts/TUSDT/20260521/TUSDT_1w.png",
+    "1d": "charts/TUSDT/20260521/TUSDT_1d.png"
+  }
+}

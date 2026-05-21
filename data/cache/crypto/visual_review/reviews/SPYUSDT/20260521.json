@@ -1,0 +1,120 @@
+{
+  "symbol": "SPYUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:38:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "A1",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 734.3,
+      "bars": 15,
+      "date_range": "2026-02-16 ~ 2026-05-25",
+      "ma10": 698.639,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.051, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.051},
+      "atr": 20.868231,
+      "atr_pct": 0.0284,
+      "adx": null,
+      "range_position": 0.879,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0064,
+        "upper_wick_pct": 0.138,
+        "lower_wick_pct": 0.317,
+        "vol_rank_30d": 0.133,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0194,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 680.0, "resistance": 750.0},
+      "pattern": "strong_uptrend",
+      "recent_action": "1W에서 3월 하락 이후 강반등, MA10 우상향. 현재 52주 최고 근방 -1.9%. 봉수 15봉 부족."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 734.3,
+      "bars": 98,
+      "date_range": "2026-02-11 ~ 2026-05-19",
+      "ma10": 738.804,
+      "ma20": 732.5485,
+      "ma50": 706.2934,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0061, "ma20_pct": 0.0024, "ma50_pct": 0.0397},
+      "dist_from_ma_atr": {"ma10_atr": -0.666, "ma20_atr": 0.259, "ma50_atr": 4.143},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.0024},
+      "atr": 6.759609,
+      "atr_pct": 0.0092,
+      "adx": 36.79,
+      "range_position": 0.879,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0064,
+        "upper_wick_pct": 0.138,
+        "lower_wick_pct": 0.317,
+        "vol_rank_30d": 0.4,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.498, "price_range_5bar_pct": 0.0219, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0408,
+      "ret_90d": 0.0703,
+      "from_period_high_pct": -0.0194,
+      "vol_avg_recent_vs_prior": 1.769
+    },
+
+    "observations": {
+      "key_levels": {"support": 705.0, "resistance": 750.0},
+      "pattern": "stair_step_up",
+      "recent_action": "1D에서 3월 저점 이후 MA10/20/50 완전 정배열 우상향. 현재 MA10 아래 -0.6% 소폭 조정 — 건강한 풀백."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "pass",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1D A2 정배열 우상향, 1W A1 변곡 후 강반등 정합. from_high -1.9% 신고가권. 신규 상장 low_history(98봉) 감안 medium.",
+
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1w": "charts/SPYUSDT/20260521/SPYUSDT_1w.png",
+    "1d": "charts/SPYUSDT/20260521/SPYUSDT_1d.png"
+  }
+}

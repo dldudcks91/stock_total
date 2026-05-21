@@ -1,0 +1,191 @@
+{
+  "symbol": "BRUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.12951,
+      "bars": 15,
+      "date_range": "2025-03-31 ~ 2026-05-31",
+      "ma10": 0.085027,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.5232, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.447, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.5232},
+      "atr": 0.099423,
+      "atr_pct": 0.7677,
+      "adx": null,
+      "range_position": 0.392,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.2754,
+        "upper_wick_pct": 0.61,
+        "lower_wick_pct": 0.056,
+        "vol_rank_30d": 0.267,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.5113,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.085, "resistance": 0.17},
+      "pattern": "pump_dump_crash",
+      "recent_action": "1M 봉 기준 파라볼릭 스파이크 후 고점 대비 -51% 하락 완료. MA10 훨씬 위에 위치하나 역설적으로 MA가 아래 있는 상태 — 가격이 고점에서 왔다는 뜻."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.12951,
+      "bars": 62,
+      "date_range": "2025-03-24 ~ 2026-05-25",
+      "ma10": 0.130042,
+      "ma20": 0.093606,
+      "ma50": 0.078293,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0041, "ma20_pct": 0.3836, "ma50_pct": 0.6542},
+      "dist_from_ma_atr": {"ma10_atr": -0.01, "ma20_atr": 0.679, "ma50_atr": 0.968},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0041},
+      "atr": 0.052891,
+      "atr_pct": 0.4084,
+      "adx": 56.85,
+      "range_position": 0.38,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0215,
+        "upper_wick_pct": 0.512,
+        "lower_wick_pct": 0.249,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.959,
+        "price_range_5bar_pct": 1.124,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 3,
+        "body_pct": 0.4688,
+        "vol_rank": 0.933,
+        "close": 0.20947,
+        "max_retrace_pct": 0.4102,
+        "current_retrace_pct": 0.3817,
+        "holding": false
+      },
+      "ret_30d": 0.8277,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.5113,
+      "vol_avg_recent_vs_prior": 0.432
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.078, "resistance": 0.21},
+      "pattern": "parabolic_reversal",
+      "recent_action": "1W에서 전형적 펌프앤덤프 확인. 2026년 3월 극단적 거래량 급등과 함께 0.05→0.27 펌프, 이후 1~2봉 안에 거래량 소멸하며 0.13까지 하락. 현재 MA10 바로 아래."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.12951,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.135807,
+      "ma20": 0.15367,
+      "ma50": 0.135872,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0464, "ma20_pct": -0.1572, "ma50_pct": -0.0468},
+      "dist_from_ma_atr": {"ma10_atr": -0.299, "ma20_atr": -1.148, "ma50_atr": -0.302},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0464},
+      "atr": 0.02104,
+      "atr_pct": 0.1625,
+      "adx": 30.67,
+      "range_position": 0.352,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0215,
+        "upper_wick_pct": 0.512,
+        "lower_wick_pct": 0.249,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.067,
+        "price_range_5bar_pct": 0.131,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.3128,
+      "ret_90d": 1.5454,
+      "from_period_high_pct": -0.5113,
+      "vol_avg_recent_vs_prior": 0.271
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.095, "resistance": 0.155},
+      "pattern": "post_pump_bleed",
+      "recent_action": "1D에서 2025년 11월~2026년 2월은 0.05 횡보 거래량 거의 없음. 3월 초 대량 거래와 함께 파라볼릭 상승 후 즉시 붕괴. 현재 MAs 모두 위에 있고 가격은 below_all. 거래량 vol_avg 0.271 — 관심 소멸."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF에서 펌프앤덤프 패턴 확인. 1W에서 극단적 거래량 스파이크 후 즉시 거래량 소멸. 1D에서도 거래량 0.271로 관심 빠짐. 1M/1W/1D 모두 B2+pump_dump_trace 정합. parabolic+drawdown_deep+low_history 위험 플래그 동시 존재.",
+
+  "risk_flags": ["parabolic", "drawdown_deep", "low_history", "pump_dump_trace"],
+
+  "charts": {
+    "1m": "charts/BRUSDT/20260521/BRUSDT_1m.png",
+    "1w": "charts/BRUSDT/20260521/BRUSDT_1w.png",
+    "1d": "charts/BRUSDT/20260521/BRUSDT_1d.png"
+  }
+}

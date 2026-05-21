@@ -1,0 +1,137 @@
+{
+  "symbol": "MRVLUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 178.91,
+      "bars": 37,
+      "date_range": "2025-09-15 ~ 2026-05-25",
+      "ma10": 140.656,
+      "ma20": 111.7145,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.272, "ma20_pct": 0.6015, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 2.378, "ma20_atr": 4.178, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.272},
+      "atr": 16.08342,
+      "atr_pct": 0.0899,
+      "adx": 49.61,
+      "range_position": 0.889,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.0525,
+        "upper_wick_pct": 0.151,
+        "lower_wick_pct": 0.361,
+        "vol_rank_30d": 0.167,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.239,
+        "price_range_5bar_pct": 0.2569,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 1.01,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0698,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 140.0, "resistance": 192.0},
+      "pattern": "parabolic_rally",
+      "recent_action": "4월 이후 강한 우상향 지속, MA10 위 27% 과도하게 확장된 상태로 고점 대비 소폭 조정 중."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 178.91,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 174.749,
+      "ma20": 170.627,
+      "ma50": 148.534,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0238, "ma20_pct": 0.0485, "ma50_pct": 0.2045},
+      "dist_from_ma_atr": {"ma10_atr": 0.386, "ma20_atr": 0.769, "ma50_atr": 2.819},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0238},
+      "atr": 10.775176,
+      "atr_pct": 0.0602,
+      "adx": 28.7,
+      "range_position": 0.874,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.0525,
+        "upper_wick_pct": 0.151,
+        "lower_wick_pct": 0.361,
+        "vol_rank_30d": 0.633,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.968,
+        "price_range_5bar_pct": 0.123,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 6,
+        "body_pct": 0.1048,
+        "vol_rank": 1.0,
+        "close": 182.59,
+        "max_retrace_pct": 0.1096,
+        "current_retrace_pct": 0.0202,
+        "holding": false
+      },
+      "ret_30d": 0.295,
+      "ret_90d": 1.2584,
+      "from_period_high_pct": -0.0698,
+      "vol_avg_recent_vs_prior": 1.228
+    },
+
+    "observations": {
+      "key_levels": {"support": 165.0, "resistance": 192.0},
+      "pattern": "stair_step_up",
+      "recent_action": "1D 정배열 유지, MA10 근접(+2.4%)으로 풀백 중. 6일전 강양봉 이후 소폭 조정 중이나 아직 MA10 위 유지."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W/1D 모두 A2 상승 추세이나 1W ret_30d +101% parabolic 경고, ADX 49.6 고열. 고점 -7% 조정 중으로 MA10 수렴 확인 후 재진입 검토 필요.",
+
+  "risk_flags": ["parabolic", "low_history"],
+
+  "charts": {
+    "1w": "charts/MRVLUSDT/20260521/MRVLUSDT_1w.png",
+    "1d": "charts/MRVLUSDT/20260521/MRVLUSDT_1d.png"
+  }
+}

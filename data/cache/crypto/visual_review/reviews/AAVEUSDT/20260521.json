@@ -1,0 +1,199 @@
+{
+  "symbol": "AAVEUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 87.4,
+      "bars": 63,
+      "date_range": "2021-03-31 ~ 2026-05-31",
+      "ma10": 166.066,
+      "ma20": 197.7765,
+      "ma50": 132.79142,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.4737, "ma20_pct": -0.5581, "ma50_pct": -0.3418},
+      "dist_from_ma_atr": {"ma10_atr": -1.05, "ma20_atr": -1.473, "ma50_atr": -0.606},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.3418},
+      "atr": 74.950393,
+      "atr_pct": 0.8576,
+      "adx": 20.99,
+      "range_position": 0.022,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0616,
+        "upper_wick_pct": 0.631,
+        "lower_wick_pct": 0.052,
+        "vol_rank_30d": 0.5,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.027,
+        "price_range_5bar_pct": 1.083,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.1102,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8688,
+      "vol_avg_recent_vs_prior": 0.616
+    },
+
+    "observations": {
+      "key_levels": {"support": 75.0, "resistance": 130.0},
+      "pattern": "long_term_downtrend",
+      "recent_action": "2021년 고점 대비 -87% 하락. 2025년 단기 반등(~370) 이후 재하락 중. 현재 역사적 저점 인근."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 87.4,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 96.135,
+      "ma20": 113.8725,
+      "ma50": 194.758,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0909, "ma20_pct": -0.2325, "ma50_pct": -0.5512},
+      "dist_from_ma_atr": {"ma10_atr": -0.359, "ma20_atr": -1.089, "ma50_atr": -4.416},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0909},
+      "atr": 24.313397,
+      "atr_pct": 0.2782,
+      "adx": 39.94,
+      "range_position": 0.011,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0229,
+        "upper_wick_pct": 0.247,
+        "lower_wick_pct": 0.068,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.178,
+        "price_range_5bar_pct": 0.1941,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 2,
+        "body_pct": 0.0886,
+        "vol_rank": 0.867,
+        "close": 101.14,
+        "max_retrace_pct": 0.1446,
+        "current_retrace_pct": 0.1359,
+        "holding": false
+      },
+      "ret_30d": -0.6282,
+      "ret_90d": -0.352,
+      "from_period_high_pct": -0.7816,
+      "vol_avg_recent_vs_prior": 0.567
+    },
+
+    "observations": {
+      "key_levels": {"support": 80.0, "resistance": 105.0},
+      "pattern": "descending_channel",
+      "recent_action": "MA 완전 역배열. 2주전 반등봉(~101) 이후 retest 실패하고 재하락. range_position 0.011 박스 최하단."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 87.4,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 94.344,
+      "ma20": 93.8775,
+      "ma50": 95.4486,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "down"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0736, "ma20_pct": -0.069, "ma50_pct": -0.0843},
+      "dist_from_ma_atr": {"ma10_atr": -1.366, "ma20_atr": -1.274, "ma50_atr": -1.584},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.069},
+      "atr": 5.082734,
+      "atr_pct": 0.0582,
+      "adx": 14.04,
+      "range_position": 0.052,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0229,
+        "upper_wick_pct": 0.247,
+        "lower_wick_pct": 0.068,
+        "vol_rank_30d": 0.1,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.603,
+        "price_range_5bar_pct": 0.1436,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 9,
+        "body_pct": 0.0625,
+        "vol_rank": 0.8,
+        "close": 102.11,
+        "max_retrace_pct": 0.1527,
+        "current_retrace_pct": 0.1441,
+        "holding": false
+      },
+      "ret_30d": -0.0309,
+      "ret_90d": -0.2883,
+      "from_period_high_pct": -0.6308,
+      "vol_avg_recent_vs_prior": 1.46
+    },
+
+    "observations": {
+      "key_levels": {"support": 82.0, "resistance": 100.0},
+      "pattern": "flat_base_attempt",
+      "recent_action": "MA 수렴 평탄(ADX 14). 반등 시도 후 재하락 반복. 박스권 하단에서 바닥 다지기 중."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF B2/B2/B3 — 명확한 하락추세 정합. drawdown_deep. 1M 역사적 저점권이나 반등 확인 전 진입 불가.",
+
+  "risk_flags": ["drawdown_deep"],
+
+  "charts": {
+    "1m": "charts/AAVEUSDT/20260521/AAVEUSDT_1m.png",
+    "1w": "charts/AAVEUSDT/20260521/AAVEUSDT_1w.png",
+    "1d": "charts/AAVEUSDT/20260521/AAVEUSDT_1d.png"
+  }
+}

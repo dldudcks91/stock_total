@@ -1,0 +1,129 @@
+{
+  "symbol": "FOLKSUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "C1",
+    "micro_action": "riding",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 1.3134,
+      "bars": 29,
+      "date_range": "2025-11-10 ~ 2026-05-25",
+      "ma10": 1.2569,
+      "ma20": 1.5249,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.045, "ma20_pct": -0.1387, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.03, "ma20_atr": -0.113, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.045},
+      "atr": 1.865334,
+      "atr_pct": 1.4202,
+      "adx": 55.02,
+      "range_position": 0.011,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0126,
+        "upper_wick_pct": 0.288,
+        "lower_wick_pct": 0.334,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9717,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 1.0, "resistance": 3.0},
+      "pattern": "pump_dump_collapse",
+      "recent_action": "2025-12월 단기에 40USDT 폭등 후 즉시 붕괴, 현재 1.3으로 -97%. 거래량 완전 소멸. 전형적 펌프&덤프 패턴."
+    }
+  },
+
+  "tf_1d": {
+    "state": "C1",
+    "micro_action": "riding",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 1.3134,
+      "bars": 195,
+      "date_range": "2025-11-06 ~ 2026-05-19",
+      "ma10": 1.40077,
+      "ma20": 1.404645,
+      "ma50": 1.277668,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "down", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0624, "ma20_pct": -0.065, "ma50_pct": 0.028},
+      "dist_from_ma_atr": {"ma10_atr": -0.694, "ma20_atr": -0.725, "ma50_atr": 0.284},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.028},
+      "atr": 0.125869,
+      "atr_pct": 0.0958,
+      "adx": 28.28,
+      "range_position": 0.564,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0126,
+        "upper_wick_pct": 0.288,
+        "lower_wick_pct": 0.334,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.307,
+        "price_range_5bar_pct": 0.1972,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.1076,
+      "ret_90d": 0.0316,
+      "from_period_high_pct": -0.9717,
+      "vol_avg_recent_vs_prior": 0.393
+    },
+
+    "observations": {
+      "key_levels": {"support": 1.0, "resistance": 2.0},
+      "pattern": "post_pump_debris",
+      "recent_action": "1D에서도 고점 -97% 낙폭, 거래량 급감. 1~3 수준 작은 등락 반복하며 방치 상태."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "2025-12월 전형적 펌프&덤프 패턴. 1W/1D 모두 C1, 고점 대비 -97%, 거래량 소멸. 매매 회피 대상.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace"],
+
+  "charts": {
+    "1w": "charts/FOLKSUSDT/20260521/FOLKSUSDT_1w.png",
+    "1d": "charts/FOLKSUSDT/20260521/FOLKSUSDT_1d.png"
+  }
+}

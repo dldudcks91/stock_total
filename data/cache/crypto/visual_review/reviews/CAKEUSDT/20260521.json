@@ -1,0 +1,191 @@
+{
+  "symbol": "CAKEUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:15:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 1.3983,
+      "bars": 27,
+      "date_range": "2024-03-31 ~ 2026-05-31",
+      "ma10": 1.87326,
+      "ma20": 2.07086,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2535, "ma20_pct": -0.3248, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.544, "ma20_atr": -0.771, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.2535},
+      "atr": 0.872743,
+      "atr_pct": 0.6241,
+      "adx": null,
+      "range_position": 0.067,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0343,
+        "upper_wick_pct": 0.772,
+        "lower_wick_pct": 0.043,
+        "vol_rank_30d": 0.037,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.7108,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 1.2, "resistance": 2.0},
+      "pattern": "downtrend_low",
+      "recent_action": "1M에서 2024년 $5 고점 이후 지속 하락. MA10/20 역배열 우하향. 현재 고점 대비 -71%."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 1.3983,
+      "bars": 113,
+      "date_range": "2024-04-01 ~ 2026-05-25",
+      "ma10": 1.47083,
+      "ma20": 1.513915,
+      "ma50": 2.109828,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0493, "ma20_pct": -0.0764, "ma50_pct": -0.3372},
+      "dist_from_ma_atr": {"ma10_atr": -0.285, "ma20_atr": -0.454, "ma50_atr": -2.794},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0493},
+      "atr": 0.25466,
+      "atr_pct": 0.1821,
+      "adx": 14.02,
+      "range_position": 0.142,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0158,
+        "upper_wick_pct": 0.192,
+        "lower_wick_pct": 0.27,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.131,
+        "price_range_5bar_pct": 0.1848,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.4793,
+      "ret_90d": -0.1934,
+      "from_period_high_pct": -0.7108,
+      "vol_avg_recent_vs_prior": 0.258
+    },
+
+    "observations": {
+      "key_levels": {"support": 1.2, "resistance": 1.6},
+      "pattern": "bear_channel_bottom",
+      "recent_action": "1W ADX 14 약한 추세. MA10 미세 상향전환하나 가격은 아래. 1W vol_avg 0.258 — 매우 낮은 거래량. 바닥권 근처이나 반전 신호 없음."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 1.3983,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 1.50025,
+      "ma20": 1.50256,
+      "ma50": 1.496094,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "up"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.068, "ma20_pct": -0.0694, "ma50_pct": -0.0654},
+      "dist_from_ma_atr": {"ma10_atr": -1.749, "ma20_atr": -1.788, "ma50_atr": -1.678},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0654},
+      "atr": 0.058295,
+      "atr_pct": 0.0417,
+      "adx": 24.54,
+      "range_position": 0.257,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0158,
+        "upper_wick_pct": 0.192,
+        "lower_wick_pct": 0.27,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.81,
+        "price_range_5bar_pct": 0.1088,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 9,
+        "body_pct": 0.0386,
+        "vol_rank": 0.833,
+        "close": 1.6161,
+        "max_retrace_pct": 0.1416,
+        "current_retrace_pct": 0.1348,
+        "holding": false
+      },
+      "ret_30d": -0.0693,
+      "ret_90d": 0.1022,
+      "from_period_high_pct": -0.4997,
+      "vol_avg_recent_vs_prior": 0.698
+    },
+
+    "observations": {
+      "key_levels": {"support": 1.25, "resistance": 1.60},
+      "pattern": "ma_convergence_flat",
+      "recent_action": "1D에서 MA10/20/50이 1.50 부근 tight하게 수렴. 가격은 그 아래 1.40. 최근 1.62 상방 돌파 시도 후 실패 (holding=false). 박스권 B3 패턴이나 확정 전."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1M/1W B2 하락 추세, 1D만 B3 가능성 — TF 충돌. 큰 그림은 약세. 1W 거래량 극히 낮아 매집 없음. 1D MA 수렴은 긍정적이나 하방 돌파 리스크 존재. skip 유지.",
+
+  "risk_flags": ["drawdown_deep"],
+
+  "charts": {
+    "1m": "charts/CAKEUSDT/20260521/CAKEUSDT_1m.png",
+    "1w": "charts/CAKEUSDT/20260521/CAKEUSDT_1w.png",
+    "1d": "charts/CAKEUSDT/20260521/CAKEUSDT_1d.png"
+  }
+}

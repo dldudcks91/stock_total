@@ -1,0 +1,79 @@
+{
+  "symbol": "SOXLUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:32:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "A3",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 154.28,
+      "bars": 41,
+      "date_range": "2026-04-09 ~ 2026-05-19",
+      "ma10": 169.995,
+      "ma20": 158.311,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0924, "ma20_pct": -0.0255, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -1.044, "ma20_atr": -0.268, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0255},
+      "atr": 15.050729,
+      "atr_pct": 0.0976,
+      "adx": 39.76,
+      "range_position": 0.703,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0112,
+        "upper_wick_pct": 0.249,
+        "lower_wick_pct": 0.683,
+        "vol_rank_30d": 0.967,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.6,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.97, "price_range_5bar_pct": 0.3327, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 8,
+        "body_pct": 0.0734,
+        "vol_rank": 0.933,
+        "close": 190.4,
+        "max_retrace_pct": 0.2903,
+        "current_retrace_pct": 0.1897,
+        "holding": false
+      },
+      "ret_30d": 0.6434,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1956,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 140.0, "resistance": 190.0},
+      "pattern": "peak_pullback",
+      "recent_action": "상장 후 190 급등(+64% 페러볼릭) 이후 MA20 근방 조정 진행 중. 마지막 봉 고거래량+아래꼬리 길게 — 지지 테스트 중."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "신규 상장(41봉) low_history + 페러볼릭 직후 조정. MA20 지지 여부 미확정, 1M/1W 없어 큰그림 판단 불가. 관망.",
+
+  "risk_flags": ["parabolic", "low_history"],
+
+  "charts": {
+    "1d": "charts/SOXLUSDT/20260521/SOXLUSDT_1d.png"
+  }
+}

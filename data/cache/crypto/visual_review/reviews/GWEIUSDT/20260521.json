@@ -1,0 +1,137 @@
+{
+  "symbol": "GWEIUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:20:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.13256,
+      "bars": 17,
+      "date_range": "2026-02-02 ~ 2026-05-25",
+      "ma10": 0.09094,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.4577, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 1.632, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.4577},
+      "atr": 0.025497,
+      "atr_pct": 0.1923,
+      "adx": null,
+      "range_position": 0.768,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0766,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.326,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1996,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.09, "resistance": 0.16},
+      "pattern": "stair_step_up",
+      "recent_action": "1W 17봉 상승 추세. MA10 위 +45%, 고점 대비 -20% 풀백 중. 봉수 부족으로 신뢰도 낮음."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.13256,
+      "bars": 111,
+      "date_range": "2026-01-29 ~ 2026-05-19",
+      "ma10": 0.137418,
+      "ma20": 0.128349,
+      "ma50": 0.097604,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0354, "ma20_pct": 0.0328, "ma50_pct": 0.3581},
+      "dist_from_ma_atr": {"ma10_atr": -0.299, "ma20_atr": 0.259, "ma50_atr": 2.153},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.0328},
+      "atr": 0.016237,
+      "atr_pct": 0.1225,
+      "adx": 58.42,
+      "range_position": 0.743,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0766,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.326,
+        "vol_rank_30d": 0.4,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.879,
+        "price_range_5bar_pct": 0.2864,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 4,
+        "body_pct": 0.06,
+        "vol_rank": 0.9,
+        "close": 0.15651,
+        "max_retrace_pct": 0.1844,
+        "current_retrace_pct": 0.153,
+        "holding": false
+      },
+      "ret_30d": 0.2701,
+      "ret_90d": 3.6791,
+      "from_period_high_pct": -0.1996,
+      "vol_avg_recent_vs_prior": 0.992
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.128, "resistance": 0.165},
+      "pattern": "impulse_pullback",
+      "recent_action": "1D 정배열+ADX 58 강한 추세. 최근 강양봉(4일 전) 이후 MA10 방향 풀백 진행. holding=false로 완전 수렴 미완."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W/1D 모두 A2 정합. 1D ADX 58 강한 추세, 정배열 우상향. 그러나 90일 수익률 +368% parabolic 구간이며 MA10 풀백 반등 미확정. 봉수 부족(1W 17봉). 반등 확인 후 재진입 권장.",
+
+  "risk_flags": ["parabolic", "low_history"],
+
+  "charts": {
+    "1w": "charts/GWEIUSDT/20260521/GWEIUSDT_1w.png",
+    "1d": "charts/GWEIUSDT/20260521/GWEIUSDT_1d.png"
+  }
+}

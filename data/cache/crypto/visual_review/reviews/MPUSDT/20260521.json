@@ -1,0 +1,71 @@
+{
+  "symbol": "MPUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:39:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "B1",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 55.31,
+      "bars": 22,
+      "date_range": "2026-04-28 ~ 2026-05-19",
+      "ma10": 62.155,
+      "ma20": 65.1815,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1101, "ma20_pct": -0.1514, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -1.814, "ma20_atr": -2.617, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1101},
+      "atr": 3.772776,
+      "atr_pct": 0.0682,
+      "adx": null,
+      "range_position": 0.032,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0298,
+        "upper_wick_pct": 0.008,
+        "lower_wick_pct": 0.295,
+        "vol_rank_30d": 0.955,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.3
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.2778,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 52.0, "resistance": 72.0},
+      "pattern": "early_decline",
+      "recent_action": "상장 22봉. 5월 초 75 고점 형성 후 55까지 하락 중. MA10/20 하향 기울기. 고거래량(-27% 낙폭) 패턴."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "1m/1w 봉수 부족(low_history). 1d만 22봉으로 판정. 상장 직후 하락 중이나 데이터 부족으로 사이클 확정 불가. 재검토 필요.",
+  "risk_flags": ["low_history"],
+  "charts": {
+    "1d": "charts/MPUSDT/20260521/MPUSDT_1d.png"
+  }
+}

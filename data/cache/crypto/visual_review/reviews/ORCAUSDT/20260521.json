@@ -1,0 +1,191 @@
+{
+  "symbol": "ORCAUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:37:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 1.376,
+      "bars": 18,
+      "date_range": "2024-12-31 ~ 2026-05-31",
+      "ma10": 1.416,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0282, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.016, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0282},
+      "atr": 2.447083,
+      "atr_pct": 1.7784,
+      "adx": null,
+      "range_position": 0.324,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.5385,
+        "upper_wick_pct": 0.261,
+        "lower_wick_pct": 0.019,
+        "vol_rank_30d": 0.778,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8508,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 1.0, "resistance": 2.5},
+      "pattern": "long_term_downtrend",
+      "recent_action": "1M 차트에서 2024년 말 고점(~9) 이후 장기 하락. 현재 1.4 수준으로 ATH 대비 85% 낙폭. MA10 하향 중."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "distribution_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 1.376,
+      "bars": 77,
+      "date_range": "2024-12-09 ~ 2026-05-25",
+      "ma10": 1.2212,
+      "ma20": 1.08705,
+      "ma50": 1.52714,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.1268, "ma20_pct": 0.2658, "ma50_pct": -0.099},
+      "dist_from_ma_atr": {"ma10_atr": 0.439, "ma20_atr": 0.82, "ma50_atr": -0.429},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.099},
+      "atr": 0.352589,
+      "atr_pct": 0.2562,
+      "adx": 24.34,
+      "range_position": 0.419,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0422,
+        "upper_wick_pct": 0.124,
+        "lower_wick_pct": 0.225,
+        "vol_rank_30d": 0.067,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 6.232,
+        "price_range_5bar_pct": 1.0763,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 4,
+        "body_pct": 0.3904,
+        "vol_rank": 0.967,
+        "close": 1.496,
+        "max_retrace_pct": 0.0936,
+        "current_retrace_pct": 0.0802,
+        "holding": false
+      },
+      "ret_30d": -0.0759,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8508,
+      "vol_avg_recent_vs_prior": 2.351
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.90, "resistance": 1.60},
+      "pattern": "failed_recovery",
+      "recent_action": "1W에서 최근 4봉 전 강양봉(1.5) 이후 다시 눌림. MA50(1.53) 저항 돌파 실패. vol_5/30 6.2배 이상으로 단기 거래량 급증했으나 분배 패턴 의심. MA50 상방 돌파 미확인."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "distribution_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 1.376,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 1.5029,
+      "ma20": 1.6528,
+      "ma50": 1.25038,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0844, "ma20_pct": -0.1675, "ma50_pct": 0.1005},
+      "dist_from_ma_atr": {"ma10_atr": -0.753, "ma20_atr": -1.643, "ma50_atr": 0.746},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0844},
+      "atr": 0.168469,
+      "atr_pct": 0.1224,
+      "adx": 33.44,
+      "range_position": 0.364,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0422,
+        "upper_wick_pct": 0.124,
+        "lower_wick_pct": 0.225,
+        "vol_rank_30d": 0.2,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.278,
+        "price_range_5bar_pct": 0.2129,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.5654,
+      "ret_90d": 0.0658,
+      "from_period_high_pct": -0.4233,
+      "vol_avg_recent_vs_prior": 37.318
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.90, "resistance": 2.30},
+      "pattern": "parabolic_pullback",
+      "recent_action": "1D에서 4월 말 2.3 급등 후 현재 1.4로 40% 급락 진행. vol_avg 37배로 극단적 거래량 이상. MA10(1.5), MA20(1.65) 모두 상방에서 저항. 분배 의심 패턴."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1M/1W/1D 모두 B2~B3 하락 또는 바닥 탐색. 1D에서 vol_avg 37배 + parabolic_collapse 패턴으로 분배 의심. 1W/1D distribution_suspect. 추세 전환 확인 전 skip.",
+
+  "risk_flags": ["parabolic", "drawdown_deep", "low_history", "distribution_suspect"],
+
+  "charts": {
+    "1m": "charts/ORCAUSDT/20260521/ORCAUSDT_1m.png",
+    "1w": "charts/ORCAUSDT/20260521/ORCAUSDT_1w.png",
+    "1d": "charts/ORCAUSDT/20260521/ORCAUSDT_1d.png"
+  }
+}

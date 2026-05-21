@@ -1,0 +1,68 @@
+{
+  "symbol": "COHRUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:01:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "bounce_ma20",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "low",
+    "context": {
+      "last_close": 355.64,
+      "bars": 28,
+      "date_range": "2026-04-22 ~ 2026-05-19",
+      "ma10": 377.663,
+      "ma20": 353.142,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0583, "ma20_pct": 0.0071, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.915, "ma20_atr": 0.104, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.0071},
+      "atr": 24.062894,
+      "atr_pct": 0.0677,
+      "adx": null,
+      "range_position": 0.517,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0224,
+        "upper_wick_pct": 0.082,
+        "lower_wick_pct": 0.649,
+        "vol_rank_30d": 0.964,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.6,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1426,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 330.0, "resistance": 420.0},
+      "pattern": "early_recovery",
+      "recent_action": "초기 하락 후 MA20 위로 복귀. 마지막 봉이 긴 아래꼬리 도지로 매집 의심 신호(score 0.6). 단 상장 28일로 이력 매우 부족, 판정 신뢰도 낮음."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "신규 코인 28일 이력만 존재(low_history). 1D 기준 B4 상승 첫 시도 + MA20 위 복귀 + 매집봉 신호 있으나 이력 부족으로 판정 신뢰도 낮음. 추가 검증 필요.",
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1d": "charts/COHRUSDT/20260521/COHRUSDT_1d.png"
+  }
+}

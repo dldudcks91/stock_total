@@ -1,0 +1,159 @@
+{
+  "symbol": "CHILLGUYUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.01373,
+      "bars": 19,
+      "date_range": "2024-11-30 ~ 2026-05-31",
+      "ma10": 0.019709,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3034, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.039, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.3034},
+      "atr": 0.15424,
+      "atr_pct": 11.2338,
+      "adx": null,
+      "range_position": 0.088,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.1792,
+        "upper_wick_pct": 0.701,
+        "lower_wick_pct": 0.033,
+        "vol_rank_30d": 0.158,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9802,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.01, "resistance": 0.02},
+      "pattern": "pump_then_dump",
+      "recent_action": "2024년 11월 상장 후 급등(0.7 고점) 후 현재 -98% 낙폭. 전형적인 밈코인 펌프&덤프. 저점권에서 박스."
+    }
+  },
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.01373,
+      "bars": 79,
+      "date_range": "2024-11-25 ~ 2026-05-25",
+      "ma10": 0.012718,
+      "ma20": 0.012999,
+      "ma50": 0.02818,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0796, "ma20_pct": 0.0563, "ma50_pct": -0.5128},
+      "dist_from_ma_atr": {"ma10_atr": 0.143, "ma20_atr": 0.104, "ma50_atr": -2.046},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.0563},
+      "atr": 0.007061,
+      "atr_pct": 0.5143,
+      "adx": 13.55,
+      "range_position": 0.301,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.051,
+        "upper_wick_pct": 0.434,
+        "lower_wick_pct": 0.077,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.564, "price_range_5bar_pct": 0.6905, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.5252,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9802,
+      "vol_avg_recent_vs_prior": 0.334
+    },
+    "observations": {
+      "key_levels": {"support": 0.01, "resistance": 0.02},
+      "pattern": "pump_then_dump",
+      "recent_action": "주봉 역배열, MA50과 큰 간격. 거래량이 평균 33% 수준으로 줄어드는 전형적 좀비 패턴."
+    }
+  },
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 0.01373,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.015612,
+      "ma20": 0.015457,
+      "ma50": 0.01297,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.1205, "ma20_pct": -0.1118, "ma50_pct": 0.0586},
+      "dist_from_ma_atr": {"ma10_atr": -0.848, "ma20_atr": -0.779, "ma50_atr": 0.343},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.0586},
+      "atr": 0.002218,
+      "atr_pct": 0.1616,
+      "adx": 32.19,
+      "range_position": 0.519,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.051,
+        "upper_wick_pct": 0.434,
+        "lower_wick_pct": 0.077,
+        "vol_rank_30d": 0.433,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.672, "price_range_5bar_pct": 0.3125, "accumulation_score": 0.0},
+      "recent_strong_bull": {"bars_ago": 5, "body_pct": 0.0837, "vol_rank": 0.767, "close": 0.01673, "max_retrace_pct": 0.2265, "current_retrace_pct": 0.1793, "holding": false},
+      "ret_30d": 0.0402,
+      "ret_90d": 0.3064,
+      "from_period_high_pct": -0.5282,
+      "vol_avg_recent_vs_prior": 0.929
+    },
+    "observations": {
+      "key_levels": {"support": 0.012, "resistance": 0.02},
+      "pattern": "recovery_attempt",
+      "recent_action": "일봉에서 2026년 3월부터 반등 시도. MA50 위에서 진행 중이나 5봉전 양봉 후 -18% 되돌림. MA10/20 아래로 재진입."
+    }
+  },
+  "tf_consistency": "충돌",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "전형적 밈코인 pump&dump. 고점 대비 -98%, 1M/1W pump_dump_trace + 거래량 감소. 상위 TF 구조 복원 불가 수준 손상.",
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace"],
+  "charts": {
+    "1m": "charts/CHILLGUYUSDT/20260521/CHILLGUYUSDT_1m.png",
+    "1w": "charts/CHILLGUYUSDT/20260521/CHILLGUYUSDT_1w.png",
+    "1d": "charts/CHILLGUYUSDT/20260521/CHILLGUYUSDT_1d.png"
+  }
+}

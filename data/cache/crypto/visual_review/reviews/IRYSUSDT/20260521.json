@@ -1,0 +1,137 @@
+{
+  "symbol": "IRYSUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.03454,
+      "bars": 26,
+      "date_range": "2025-12-01 ~ 2026-05-25",
+      "ma10": 0.031697,
+      "ma20": 0.033337,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0897, "ma20_pct": 0.0361, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.184, "ma20_atr": 0.078, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.0361},
+      "atr": 0.015444,
+      "atr_pct": 0.4471,
+      "adx": null,
+      "range_position": 0.302,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0457,
+        "upper_wick_pct": 0.229,
+        "lower_wick_pct": 0.427,
+        "vol_rank_30d": 0.115,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.5476,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.028, "resistance": 0.05},
+      "pattern": "nascent_recovery",
+      "recent_action": "바닥 확인 후 MA10/20 위 복귀. 단 26주 데이터 부족으로 신뢰도 낮음."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.03454,
+      "bars": 174,
+      "date_range": "2025-11-27 ~ 2026-05-19",
+      "ma10": 0.046653,
+      "ma20": 0.042038,
+      "ma50": 0.033519,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.2596, "ma20_pct": -0.1784, "ma50_pct": 0.0304},
+      "dist_from_ma_atr": {"ma10_atr": -1.411, "ma20_atr": -0.873, "ma50_atr": 0.119},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.0304},
+      "atr": 0.008587,
+      "atr_pct": 0.2486,
+      "adx": 56.41,
+      "range_position": 0.298,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0457,
+        "upper_wick_pct": 0.229,
+        "lower_wick_pct": 0.427,
+        "vol_rank_30d": 0.7,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 5.295,
+        "price_range_5bar_pct": 1.2672,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 7,
+        "body_pct": 0.146,
+        "vol_rank": 1.0,
+        "close": 0.05275,
+        "max_retrace_pct": 0.3824,
+        "current_retrace_pct": 0.3452,
+        "holding": false
+      },
+      "ret_30d": 0.1602,
+      "ret_90d": 0.3647,
+      "from_period_high_pct": -0.5476,
+      "vol_avg_recent_vs_prior": 2.75
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.030, "resistance": 0.055},
+      "pattern": "failed_breakout_pullback",
+      "recent_action": "5월 초 0.07 부근 신고가 시도 후 38% 급락, MA50 부근에서 지지 테스트 중. ADX=56으로 추세 강도 높지만 하락 방향 주의."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "1w B4 회복 시도 + 1d B4 이나 강양봉 후 38% 되돌림으로 안정성 미확인. low_history로 1m 채점 불가. MA50 지지 확인 후 재판정 필요.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1w": "charts/IRYSUSDT/20260521/IRYSUSDT_1w.png",
+    "1d": "charts/IRYSUSDT/20260521/IRYSUSDT_1d.png"
+  }
+}

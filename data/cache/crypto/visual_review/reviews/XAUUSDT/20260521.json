@@ -1,0 +1,129 @@
+{
+  "symbol": "XAUUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:36:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 4493.2,
+      "bars": 24,
+      "date_range": "2025-12-15 ~ 2026-05-25",
+      "ma10": 4624.636,
+      "ma20": 4803.844,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0284, "ma20_pct": -0.0647, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.495, "ma20_atr": -1.17, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0284},
+      "atr": 265.527562,
+      "atr_pct": 0.0591,
+      "adx": null,
+      "range_position": 0.248,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0207,
+        "upper_wick_pct": 0.057,
+        "lower_wick_pct": 0.181,
+        "vol_rank_30d": 0.292,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.2001,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 4200, "resistance": 4800},
+      "pattern": "peak_pullback",
+      "recent_action": "주봉 24봉밖에 없어 패턴 신뢰도 낮음. 2026년 2월 고점($5,350) 이후 급격한 하락 후 $4,400~$4,800 박스권에서 다지기. MA10 하향, MA20 상향으로 혼재."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 4493.2,
+      "bars": 158,
+      "date_range": "2025-12-13 ~ 2026-05-19",
+      "ma10": 4624.257,
+      "ma20": 4633.302,
+      "ma50": 4688.283,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0283, "ma20_pct": -0.0302, "ma50_pct": -0.0416},
+      "dist_from_ma_atr": {"ma10_atr": -1.562, "ma20_atr": -1.67, "ma50_atr": -2.325},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0283},
+      "atr": 83.912913,
+      "atr_pct": 0.0187,
+      "adx": 21.03,
+      "range_position": 0.485,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0207,
+        "upper_wick_pct": 0.057,
+        "lower_wick_pct": 0.181,
+        "vol_rank_30d": 0.5,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.831,
+        "price_range_5bar_pct": 0.0424,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.0558,
+      "ret_90d": -0.0969,
+      "from_period_high_pct": -0.2001,
+      "vol_avg_recent_vs_prior": 0.682
+    },
+
+    "observations": {
+      "key_levels": {"support": 4350, "resistance": 4700},
+      "pattern": "flat_ma_below_all",
+      "recent_action": "일봉 MA10/20/50이 4,624~4,688 수준에서 수렴·평탄화되며 강한 저항대 형성. 현재가는 모든 MA 하방. 2026년 3월 저점($4,150) 이후 반등 후 다시 횡보 구간."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "1W/1D 모두 B3 정합. 그러나 low_history(1W 24봉)로 패턴 신뢰도 낮음. MA 저항대(4,624~4,688) 돌파 여부 관찰 필요. 데이터 부족으로 전략적 판단 보류.",
+
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1w": "charts/XAUUSDT/20260521/XAUUSDT_1w.png",
+    "1d": "charts/XAUUSDT/20260521/XAUUSDT_1d.png"
+  }
+}

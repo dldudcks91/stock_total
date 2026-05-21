@@ -1,0 +1,179 @@
+{
+  "symbol": "ARUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:09:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 2.091,
+      "bars": 54,
+      "date_range": "2021-12-31 ~ 2026-05-31",
+      "ma10": 3.2771,
+      "ma20": 7.2906,
+      "ma50": 11.829,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3619, "ma20_pct": -0.7132, "ma50_pct": -0.8232},
+      "dist_from_ma_atr": {"ma10_atr": -0.229, "ma20_atr": -1.002, "ma50_atr": -1.877},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.3619},
+      "atr": 5.187997,
+      "atr_pct": 2.4811,
+      "adx": 14.91,
+      "range_position": 0.109,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0875,
+        "upper_wick_pct": 0.772,
+        "lower_wick_pct": 0.025,
+        "vol_rank_30d": 0.533,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.204, "price_range_5bar_pct": 1.3137, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.7337,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9697,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 1.5, "resistance": 4.0},
+      "pattern": "sustained_downtrend",
+      "recent_action": "$70 고점에서 -97% 붕괴. 1M 역배열 MA10/20/50 전부 우하향. 위꼬리(0.772) 우세로 반등 매도 압력."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 2.091,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 1.9704,
+      "ma20": 2.1996,
+      "ma50": 4.12866,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0612, "ma20_pct": -0.0494, "ma50_pct": -0.4935},
+      "dist_from_ma_atr": {"ma10_atr": 0.182, "ma20_atr": -0.164, "ma50_atr": -3.071},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0494},
+      "atr": 0.663468,
+      "atr_pct": 0.3173,
+      "adx": 12.56,
+      "range_position": 0.084,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.011,
+        "upper_wick_pct": 0.596,
+        "lower_wick_pct": 0.172,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.39, "price_range_5bar_pct": 0.4768, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 5,
+        "body_pct": 0.1328,
+        "vol_rank": 0.767,
+        "close": 2.094,
+        "max_retrace_pct": 0.1442,
+        "current_retrace_pct": 0.0014,
+        "holding": false
+      },
+      "ret_30d": -0.5072,
+      "ret_90d": -0.9036,
+      "from_period_high_pct": -0.9578,
+      "vol_avg_recent_vs_prior": 2.091
+    },
+
+    "observations": {
+      "key_levels": {"support": 1.5, "resistance": 3.0},
+      "pattern": "bear_trend_lower_lows",
+      "recent_action": "1W 역배열 전구간. MA10/MA20 사이에서 횡보. 5봉 전 강양봉(+13%) 나왔으나 holding=false. ADX 12.6으로 추세 약화 중."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 2.091,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 2.2485,
+      "ma20": 2.25905,
+      "ma50": 2.01428,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.07, "ma20_pct": -0.0744, "ma50_pct": 0.0381},
+      "dist_from_ma_atr": {"ma10_atr": -0.907, "ma20_atr": -0.968, "ma50_atr": 0.442},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.0381},
+      "atr": 0.173576,
+      "atr_pct": 0.083,
+      "adx": 31.45,
+      "range_position": 0.41,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.011,
+        "upper_wick_pct": 0.596,
+        "lower_wick_pct": 0.172,
+        "vol_rank_30d": 0.267,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.284, "price_range_5bar_pct": 0.1712, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0235,
+      "ret_90d": 0.0663,
+      "from_period_high_pct": -0.7602,
+      "vol_avg_recent_vs_prior": 1.084
+    },
+
+    "observations": {
+      "key_levels": {"support": 1.80, "resistance": 2.50},
+      "pattern": "range_bottom",
+      "recent_action": "1D $1.8~$2.5 박스권. MA50 위에서 MA10/20 아래. MAs 혼재 수렴 중. 거래량 낮고 강양봉 없음."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "1M/1W B2 명확한 하락추세(-97% 낙폭). 1D B3 박스 시도 중이나 돌파 미확인. drawdown_deep. 전환 신호(강양봉+MA 돌파) 없음.",
+
+  "risk_flags": ["drawdown_deep"],
+
+  "charts": {
+    "1m": "charts/ARUSDT/20260521/ARUSDT_1m.png",
+    "1w": "charts/ARUSDT/20260521/ARUSDT_1w.png",
+    "1d": "charts/ARUSDT/20260521/ARUSDT_1d.png"
+  }
+}

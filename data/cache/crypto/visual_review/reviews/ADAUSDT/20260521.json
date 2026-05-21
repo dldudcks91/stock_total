@@ -1,0 +1,191 @@
+{
+  "symbol": "ADAUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:33:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.2481,
+      "bars": 70,
+      "date_range": "2020-08-31 ~ 2026-05-31",
+      "ma10": 0.42838,
+      "ma20": 0.573155,
+      "ma50": 0.482658,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.4208, "ma20_pct": -0.5671, "ma50_pct": -0.486},
+      "dist_from_ma_atr": {"ma10_atr": -0.797, "ma20_atr": -1.437, "ma50_atr": -1.037},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.4208},
+      "atr": 0.226208,
+      "atr_pct": 0.9118,
+      "adx": 17.67,
+      "range_position": 0.035,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0085,
+        "upper_wick_pct": 0.931,
+        "lower_wick_pct": 0.021,
+        "vol_rank_30d": 0.333,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.393,
+        "price_range_5bar_pct": 0.8742,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.3397,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9201,
+      "vol_avg_recent_vs_prior": 3.349
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.20, "resistance": 0.50},
+      "pattern": "secular_downtrend",
+      "recent_action": "1M 차트에서 2021년 역대 고점(~3.0) 이후 4년간 지속 하락. 현재 ATH 대비 92% 하락. MA10/20/50 모두 역배열 우하향으로 장기 약세 구조 고착."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.2481,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 0.25243,
+      "ma20": 0.27853,
+      "ma50": 0.50235,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0172, "ma20_pct": -0.1093, "ma50_pct": -0.5061},
+      "dist_from_ma_atr": {"ma10_atr": -0.076, "ma20_atr": -0.533, "ma50_atr": -4.45},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0172},
+      "atr": 0.057137,
+      "atr_pct": 0.2303,
+      "adx": 31.79,
+      "range_position": 0.061,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0137,
+        "upper_wick_pct": 0.284,
+        "lower_wick_pct": 0.209,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.558,
+        "price_range_5bar_pct": 0.2031,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.6277,
+      "ret_90d": -0.2612,
+      "from_period_high_pct": -0.8132,
+      "vol_avg_recent_vs_prior": 0.624
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.22, "resistance": 0.30},
+      "pattern": "descending_channel",
+      "recent_action": "1W 역배열 완성. ADX 31.79 추세 뚜렷. 2025년 12월 1.2까지 반등했다가 다시 0.25 이하로 급락. MA10에 MA 아래 1.7% 위치로 단기 저항 부근."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.2481,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.26359,
+      "ma20": 0.26072,
+      "ma50": 0.253374,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0588, "ma20_pct": -0.0484, "ma50_pct": -0.0208},
+      "dist_from_ma_atr": {"ma10_atr": -1.328, "ma20_atr": -1.082, "ma50_atr": -0.452},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0208},
+      "atr": 0.011667,
+      "atr_pct": 0.047,
+      "adx": 17.9,
+      "range_position": 0.279,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0137,
+        "upper_wick_pct": 0.284,
+        "lower_wick_pct": 0.209,
+        "vol_rank_30d": 0.067,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.826,
+        "price_range_5bar_pct": 0.1112,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 9,
+        "body_pct": 0.0411,
+        "vol_rank": 0.733,
+        "close": 0.2822,
+        "max_retrace_pct": 0.1315,
+        "current_retrace_pct": 0.1208,
+        "holding": false
+      },
+      "ret_30d": 0.0244,
+      "ret_90d": -0.0925,
+      "from_period_high_pct": -0.5988,
+      "vol_avg_recent_vs_prior": 0.824
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.23, "resistance": 0.285},
+      "pattern": "ma_cluster_support",
+      "recent_action": "1D에서 MA10/20/50이 0.25~0.26 구간에 집결. 가격이 MA50 바로 밑에서 지지 탐색 중. 9봉 전 장대양봉(0.28) 이후 13% 하락했으나 추세 붕괴는 아직 미확정."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "1M/1W 역배열 B2 구조가 지배적. 1D에서 B3 바닥 다지기 시도 중이나 큰 그림 B2 압도적. 역대 고점 대비 92% 하락, 1W ADX 31.79로 하락 추세 강함. 큰 TF 충돌로 skip.",
+
+  "risk_flags": ["drawdown_deep"],
+
+  "charts": {
+    "1m": "charts/ADAUSDT/20260521/ADAUSDT_1m.png",
+    "1w": "charts/ADAUSDT/20260521/ADAUSDT_1w.png",
+    "1d": "charts/ADAUSDT/20260521/ADAUSDT_1d.png"
+  }
+}

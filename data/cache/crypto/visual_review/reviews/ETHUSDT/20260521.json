@@ -1,0 +1,183 @@
+{
+  "symbol": "ETHUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:32:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 2111.05,
+      "bars": 82,
+      "date_range": "2019-08-31 ~ 2026-05-31",
+      "ma10": 2922.559,
+      "ma20": 2832.184,
+      "ma50": 2416.6702,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2777, "ma20_pct": -0.2546, "ma50_pct": -0.1265},
+      "dist_from_ma_atr": {"ma10_atr": -0.963, "ma20_atr": -0.856, "ma50_atr": -0.363},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.1265},
+      "atr": 842.40426,
+      "atr_pct": 0.399,
+      "adx": 16.81,
+      "range_position": 0.116,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.069,
+        "upper_wick_pct": 0.481,
+        "lower_wick_pct": 0.098,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.609,
+        "price_range_5bar_pct": 0.7886,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0292,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.5741,
+      "vol_avg_recent_vs_prior": 2.524
+    },
+
+    "observations": {
+      "key_levels": {"support": 1500, "resistance": 2500},
+      "pattern": "below_all_ma_downtrend",
+      "recent_action": "월봉 기준 모든 MA(MA10/20/50) 아래에 위치하며 고점 대비 -57% 하락. 2022년 하락 이후 2024년 반등했으나 재차 급락하여 2019년 이후 장기 지지권 근처에서 횡보."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 2111.05,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 2219.044,
+      "ma20": 2303.6745,
+      "ma50": 3060.292,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0487, "ma20_pct": -0.0836, "ma50_pct": -0.3102},
+      "dist_from_ma_atr": {"ma10_atr": -0.342, "ma20_atr": -0.61, "ma50_atr": -3.007},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0487},
+      "atr": 315.633536,
+      "atr_pct": 0.1495,
+      "adx": 17.51,
+      "range_position": 0.153,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0085,
+        "upper_wick_pct": 0.326,
+        "lower_wick_pct": 0.336,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.57,
+        "price_range_5bar_pct": 0.1639,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.4874,
+      "ret_90d": -0.1676,
+      "from_period_high_pct": -0.5741,
+      "vol_avg_recent_vs_prior": 0.371
+    },
+
+    "observations": {
+      "key_levels": {"support": 1800, "resistance": 2400},
+      "pattern": "persistent_downtrend",
+      "recent_action": "주봉 역배열 지속, MA10(2,219)이 저항으로 작동 중. 거래량 비율 0.37로 관심 축소 신호. 1W MA10 상향 전환 시도 중이나 가격은 여전히 모든 MA 하방."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 2111.05,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 2229.789,
+      "ma20": 2273.339,
+      "ma50": 2260.8702,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0533, "ma20_pct": -0.0714, "ma50_pct": -0.0663},
+      "dist_from_ma_atr": {"ma10_atr": -1.498, "ma20_atr": -2.047, "ma50_atr": -1.89},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0533},
+      "atr": 79.286715,
+      "atr_pct": 0.0376,
+      "adx": 20.89,
+      "range_position": 0.331,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0085,
+        "upper_wick_pct": 0.326,
+        "lower_wick_pct": 0.336,
+        "vol_rank_30d": 0.367,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.058,
+        "price_range_5bar_pct": 0.1054,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.0669,
+      "ret_90d": 0.0797,
+      "from_period_high_pct": -0.461,
+      "vol_avg_recent_vs_prior": 0.79
+    },
+
+    "observations": {
+      "key_levels": {"support": 1900, "resistance": 2280},
+      "pattern": "flat_box_below_ma",
+      "recent_action": "일봉 MA10/20/50이 2,230~2,273 범위로 수렴하며 저항대 형성. 현재가가 모든 MA 아래에서 약 3월~5월간 2,000~2,500 박스권 횡보 중. 1D 기준 B3 전환 가능성 관찰 중."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "1M/1W B2(지속 하락), 1D B3 경계. 큰 TF가 B2 하락 추세로 충돌 상태. 1W 거래량 0.37로 관심 급감. drawdown_deep(-57%) 심각. B3 전환 확인 시까지 매매 회피.",
+
+  "risk_flags": ["drawdown_deep"],
+
+  "charts": {
+    "1m": "charts/ETHUSDT/20260521/ETHUSDT_1m.png",
+    "1w": "charts/ETHUSDT/20260521/ETHUSDT_1w.png",
+    "1d": "charts/ETHUSDT/20260521/ETHUSDT_1d.png"
+  }
+}

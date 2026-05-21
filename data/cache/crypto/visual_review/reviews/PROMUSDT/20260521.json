@@ -1,0 +1,179 @@
+{
+  "symbol": "PROMUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 1.0781,
+      "bars": 17,
+      "date_range": "2025-01-31 ~ 2026-05-31",
+      "ma10": 5.43455,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.8016, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -1.366, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.8016},
+      "atr": 3.189969,
+      "atr_pct": 2.9589,
+      "adx": null,
+      "range_position": 0.013,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.9218,
+        "upper_wick_pct": 0.133,
+        "lower_wick_pct": 0.019,
+        "vol_rank_30d": 0.706,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9128,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.8, "resistance": 2.5},
+      "pattern": "catastrophic_decline",
+      "recent_action": "1M 17봉으로 데이터 부족. 차트에서 2025-10~11월 약 10~11 USDT 고점 후 2026-01월 수직 붕괴. 현재 1.07."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "distribution_suspect",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 1.0781,
+      "bars": 71,
+      "date_range": "2025-01-20 ~ 2026-05-25",
+      "ma10": 1.52095,
+      "ma20": 1.851775,
+      "ma50": 5.981416,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2912, "ma20_pct": -0.4178, "ma50_pct": -0.8198},
+      "dist_from_ma_atr": {"ma10_atr": -0.511, "ma20_atr": -0.894, "ma50_atr": -5.663},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.2912},
+      "atr": 0.865858,
+      "atr_pct": 0.8031,
+      "adx": 41.2,
+      "range_position": 0.015,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0566,
+        "upper_wick_pct": 0.427,
+        "lower_wick_pct": 0.153,
+        "vol_rank_30d": 0.6,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.958, "price_range_5bar_pct": 1.3809, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 5,
+        "body_pct": 0.4086,
+        "vol_rank": 1.0,
+        "close": 2.2522,
+        "max_retrace_pct": 0.5312,
+        "current_retrace_pct": 0.5213,
+        "holding": false
+      },
+      "ret_30d": -0.8894,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9128,
+      "vol_avg_recent_vs_prior": 2.549
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.8, "resistance": 2.2},
+      "pattern": "dead_cat_failed",
+      "recent_action": "5주 전 vol_rank 1.0의 대형 양봉(+40%) 후 -52% 추가 하락, holding=false. 1W ADX 41.2 강한 하락. 반등 실패."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "distribution_suspect",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 1.0781,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 1.71424,
+      "ma20": 1.8665,
+      "ma50": 1.700458,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3711, "ma20_pct": -0.4224, "ma50_pct": -0.366},
+      "dist_from_ma_atr": {"ma10_atr": -3.039, "ma20_atr": -3.766, "ma50_atr": -2.973},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.366},
+      "atr": 0.209346,
+      "atr_pct": 0.1942,
+      "adx": 36.27,
+      "range_position": 0.076,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0566,
+        "upper_wick_pct": 0.427,
+        "lower_wick_pct": 0.153,
+        "vol_rank_30d": 0.9,
+        "vol_anomaly": "breakout",
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.3
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.214, "price_range_5bar_pct": 0.7655, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.5524,
+      "ret_90d": -0.206,
+      "from_period_high_pct": -0.9029,
+      "vol_avg_recent_vs_prior": 0.599
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.8, "resistance": 1.8},
+      "pattern": "freefall_decline",
+      "recent_action": "1D 최근 음봉에 vol_rank 0.9 + breakout 이상 감지 = 분배 의심. MA 전체 아래 -37% 이격. 30d -55% 급락 진행형."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF B2 하락 정합. 1W ADX 41.2, 1D ADX 36.3 강한 하락추세. 고점 -91%, 반등 시도마다 거래량 수반 하락으로 분배 의심.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "distribution_suspect"],
+
+  "charts": {
+    "1m": "charts/PROMUSDT/20260521/PROMUSDT_1m.png",
+    "1w": "charts/PROMUSDT/20260521/PROMUSDT_1w.png",
+    "1d": "charts/PROMUSDT/20260521/PROMUSDT_1d.png"
+  }
+}

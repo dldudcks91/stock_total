@@ -1,0 +1,187 @@
+{
+  "symbol": "HFTUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:32:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.01363,
+      "bars": 11,
+      "date_range": "2025-07-31 ~ 2026-05-31",
+      "ma10": 0.033548,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.5937, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.5937},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.014,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0404,
+        "upper_wick_pct": 0.768,
+        "lower_wick_pct": 0.106,
+        "vol_rank_30d": 0.182,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9185,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.012, "resistance": 0.025},
+      "pattern": "sustained_decline",
+      "recent_action": "상장(2025-07) 이후 단 11봉, 0.14 초기 고점에서 0.013까지 -91% 급락. 봉 수 부족으로 신뢰도 낮음."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.01363,
+      "bars": 47,
+      "date_range": "2025-07-07 ~ 2026-05-25",
+      "ma10": 0.014329,
+      "ma20": 0.017178,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0488, "ma20_pct": -0.2065, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.088, "ma20_atr": -0.446, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0488},
+      "atr": 0.007962,
+      "atr_pct": 0.5842,
+      "adx": 23.6,
+      "range_position": 0.04,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0183,
+        "upper_wick_pct": 0.318,
+        "lower_wick_pct": 0.114,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.407, "price_range_5bar_pct": 0.3199, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 2,
+        "body_pct": 0.1652,
+        "vol_rank": 0.7,
+        "close": 0.01731,
+        "max_retrace_pct": 0.2392,
+        "current_retrace_pct": 0.2126,
+        "holding": false
+      },
+      "ret_30d": -0.729,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9185,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.012, "resistance": 0.017},
+      "pattern": "downtrend_step",
+      "recent_action": "1W MA10/MA20 모두 하향, 가격 아래. 2주 전 강양봉(+16%) 발생했으나 이후 -21% 되돌림으로 무너짐."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "dry",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.01363,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.015051,
+      "ma20": 0.015016,
+      "ma50": 0.014547,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "up"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0944, "ma20_pct": -0.0923, "ma50_pct": -0.063},
+      "dist_from_ma_atr": {"ma10_atr": -1.461, "ma20_atr": -1.426, "ma50_atr": -0.943},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.063},
+      "atr": 0.000972,
+      "atr_pct": 0.0713,
+      "adx": 26.23,
+      "range_position": 0.361,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0183,
+        "upper_wick_pct": 0.318,
+        "lower_wick_pct": 0.114,
+        "vol_rank_30d": 0.467,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.417, "price_range_5bar_pct": 0.1864, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.0209,
+        "vol_rank": 0.733,
+        "close": 0.01388,
+        "max_retrace_pct": 0.0216,
+        "current_retrace_pct": 0.018,
+        "holding": true
+      },
+      "ret_30d": -0.1184,
+      "ret_90d": -0.2071,
+      "from_period_high_pct": -0.7974,
+      "vol_avg_recent_vs_prior": 1.064
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.013, "resistance": 0.016},
+      "pattern": "tight_range_bottom",
+      "recent_action": "1D에서 MA 3선이 0.014~0.015에 수렴. 직전 강양봉(bars_ago=1) holding 중이며 박스권 내 안정화 시도 중."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1M/1W B2(하락 역배열), 1D는 B3(MA수렴 박스)로 충돌. 1D에서 단기 강양봉 holding 긍정적이나 거래량이 매우 낮고(dry) 고점 대비 -80% 수준. 큰 그림 추세 전환 신호 미확인 상태.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1m": "charts/HFTUSDT/20260521/HFTUSDT_1m.png",
+    "1w": "charts/HFTUSDT/20260521/HFTUSDT_1w.png",
+    "1d": "charts/HFTUSDT/20260521/HFTUSDT_1d.png"
+  }
+}

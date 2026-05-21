@@ -1,0 +1,120 @@
+{
+  "symbol": "GIGGLEUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+    "context": {
+      "last_close": 32.48,
+      "bars": 32,
+      "date_range": "2025-10-20 ~ 2026-05-25",
+      "ma10": 32.43,
+      "ma20": 34.808,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0015, "ma20_pct": -0.0669, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.003, "ma20_atr": -0.127, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0015},
+      "atr": 18.265288,
+      "atr_pct": 0.5624,
+      "adx": 22.2,
+      "range_position": 0.045,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0536,
+        "upper_wick_pct": 0.129,
+        "lower_wick_pct": 0.098,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.8092,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8876,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 25.0, "resistance": 45.0},
+      "pattern": "pump_dump_collapse",
+      "recent_action": "출시 직후 ~280 수준 고점에서 30일 기준 -81% 폭락. 거래량 초기 폭발 후 완전 소멸. ATR 56% 수준의 극단적 변동성."
+    }
+  },
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+    "context": {
+      "last_close": 32.48,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 34.657,
+      "ma20": 34.6275,
+      "ma50": 32.8106,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0628, "ma20_pct": -0.062, "ma50_pct": -0.0101},
+      "dist_from_ma_atr": {"ma10_atr": -0.599, "ma20_atr": -0.591, "ma50_atr": -0.091},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0101},
+      "atr": 3.634408,
+      "atr_pct": 0.1119,
+      "adx": 40.42,
+      "range_position": 0.318,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0536,
+        "upper_wick_pct": 0.129,
+        "lower_wick_pct": 0.098,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.379, "price_range_5bar_pct": 0.1268, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 9,
+        "body_pct": 0.0609,
+        "vol_rank": 0.833,
+        "close": 39.56,
+        "max_retrace_pct": 0.2108,
+        "current_retrace_pct": 0.179,
+        "holding": false
+      },
+      "ret_30d": 0.024,
+      "ret_90d": 0.0845,
+      "from_period_high_pct": -0.8817,
+      "vol_avg_recent_vs_prior": 0.851
+    },
+    "observations": {
+      "key_levels": {"support": 28.0, "resistance": 42.0},
+      "pattern": "post_pump_bleed",
+      "recent_action": "고점 -88%에서 횡보 중. 최근 반등 시도(bars_ago=9) 있었으나 21% 되돌림으로 이미 무너짐. ADX 40으로 하락 추세 강함."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "1W/1D 모두 펌프&덤프 패턴 확인. 출시 직후 ~280에서 현재 ~32로 -88% 붕괴, 초기 거래량 폭발 후 완전 소멸. 매매 회피 대상.",
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace"],
+  "charts": {
+    "1w": "charts/GIGGLEUSDT/20260521/GIGGLEUSDT_1w.png",
+    "1d": "charts/GIGGLEUSDT/20260521/GIGGLEUSDT_1d.png"
+  }
+}

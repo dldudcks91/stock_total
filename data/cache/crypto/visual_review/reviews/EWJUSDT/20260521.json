@@ -1,0 +1,107 @@
+{
+  "symbol": "EWJUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "dry",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 90.2,
+      "bars": 10,
+      "date_range": "2026-03-23 ~ 2026-05-25",
+      "ma10": 87.804,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0273, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0273},
+      "atr": null, "atr_pct": null, "adx": null,
+      "range_position": 0.77,
+      "last_candle": {
+        "type": "doji", "body_pct": 0.0085,
+        "upper_wick_pct": 0.34, "lower_wick_pct": 0.302,
+        "vol_rank_30d": 0.0, "vol_anomaly": null,
+        "accumulation_candle_score": 0.0, "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0, "ret_90d": 0.0,
+      "from_period_high_pct": -0.0338,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 82.0, "resistance": 94.0},
+      "pattern": "early_recovery",
+      "recent_action": "1W 10봉 신규 코인. 80달러 저점 후 상승 중. 거래량 크게 감소."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "dry",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 90.2,
+      "bars": 64,
+      "date_range": "2026-03-17 ~ 2026-05-19",
+      "ma10": 91.493,
+      "ma20": 90.7375,
+      "ma50": 88.8902,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "tight",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0141, "ma20_pct": -0.0059, "ma50_pct": 0.0147},
+      "dist_from_ma_atr": {"ma10_atr": -0.774, "ma20_atr": -0.322, "ma50_atr": 0.784},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0059},
+      "atr": 1.670641, "atr_pct": 0.0185, "adx": 26.24,
+      "range_position": 0.77,
+      "last_candle": {
+        "type": "doji", "body_pct": 0.0085,
+        "upper_wick_pct": 0.34, "lower_wick_pct": 0.302,
+        "vol_rank_30d": 0.4, "vol_anomaly": null,
+        "accumulation_candle_score": 0.0, "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.005, "price_range_5bar_pct": 0.0339, "accumulation_score": 0.3},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0122, "ret_90d": 0.0,
+      "from_period_high_pct": -0.0338,
+      "vol_avg_recent_vs_prior": 0.223
+    },
+
+    "observations": {
+      "key_levels": {"support": 87.0, "resistance": 94.0},
+      "pattern": "stair_step_up",
+      "recent_action": "1D 정배열 형성, 고점 -3.4%로 신고가권. 거래량 감소가 약점. ADX 26 추세 있음."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "1D A3(신고가권 횡보)/1W B4(상승 시도) 불일치, 거래량 소멸(zombie flag), 1D 64봉 제한. 고점 돌파 재확인 필요.",
+
+  "risk_flags": ["low_history", "zombie"],
+
+  "charts": {
+    "1w": "charts/EWJUSDT/20260521/EWJUSDT_1w.png",
+    "1d": "charts/EWJUSDT/20260521/EWJUSDT_1d.png"
+  }
+}

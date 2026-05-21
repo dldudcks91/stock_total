@@ -1,0 +1,171 @@
+{
+  "symbol": "MELANIAUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:38:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "C1",
+    "micro_action": "riding",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.0929,
+      "bars": 17,
+      "date_range": "2025-01-31 ~ 2026-05-31",
+      "ma10": 0.12765,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2722, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.009, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.2722},
+      "atr": 3.839442,
+      "atr_pct": 41.3288,
+      "adx": null,
+      "range_position": 0.134,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.1087,
+        "upper_wick_pct": 0.535,
+        "lower_wick_pct": 0.018,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9934,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.07, "resistance": 0.15},
+      "pattern": "melania_pump_dump",
+      "recent_action": "2025년 1월 트럼프 취임 관련 폭등 후 -99.34% 붕괴. 1M 차트에서 초기 1봉 거대 음봉 후 거래량 즉시 소멸."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.0929,
+      "bars": 71,
+      "date_range": "2025-01-20 ~ 2026-05-25",
+      "ma10": 0.10661,
+      "ma20": 0.11812,
+      "ma50": 0.148906,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1286, "ma20_pct": -0.2135, "ma50_pct": -0.3761},
+      "dist_from_ma_atr": {"ma10_atr": -0.158, "ma20_atr": -0.291, "ma50_atr": -0.647},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1286},
+      "atr": 0.08662,
+      "atr_pct": 0.9324,
+      "adx": 22.79,
+      "range_position": 0.021,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0312,
+        "upper_wick_pct": 0.214,
+        "lower_wick_pct": 0.095,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.09, "price_range_5bar_pct": 0.3283, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.2908,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9934,
+      "vol_avg_recent_vs_prior": 0.733
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.08, "resistance": 0.12},
+      "pattern": "post_pump_base",
+      "recent_action": "상장 초기 $14 고점 이후 완전 붕괴. 거래량 매우 낮고 역배열 지속."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.0929,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.10275,
+      "ma20": 0.10434,
+      "ma50": 0.107018,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0959, "ma20_pct": -0.1096, "ma50_pct": -0.1319},
+      "dist_from_ma_atr": {"ma10_atr": -1.805, "ma20_atr": -2.097, "ma50_atr": -2.588},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0959},
+      "atr": 0.005456,
+      "atr_pct": 0.0587,
+      "adx": 16.17,
+      "range_position": 0.012,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0312,
+        "upper_wick_pct": 0.214,
+        "lower_wick_pct": 0.095,
+        "vol_rank_30d": 0.267,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.492, "price_range_5bar_pct": 0.1475, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.0892,
+      "ret_90d": -0.2067,
+      "from_period_high_pct": -0.5961,
+      "vol_avg_recent_vs_prior": 0.882
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.09, "resistance": 0.115},
+      "pattern": "low_vol_drift",
+      "recent_action": "1D에서 2026년 이후 0.09~0.12 박스권이나 ADX=16.17 극도 약세. 하락 지속 중."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "멜라니아 밈코인. 1M에서 pump_dump_trace 명확. 고점 대비 -99.34%. drawdown_deep+low_history. 영구 제외.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace"],
+
+  "charts": {
+    "1m": "charts/MELANIAUSDT/20260521/MELANIAUSDT_1m.png",
+    "1w": "charts/MELANIAUSDT/20260521/MELANIAUSDT_1w.png",
+    "1d": "charts/MELANIAUSDT/20260521/MELANIAUSDT_1d.png"
+  }
+}

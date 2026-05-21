@@ -1,0 +1,124 @@
+{
+  "symbol": "BREVUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:08:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.1102,
+      "bars": 20,
+      "date_range": "2026-01-12 ~ 2026-05-25",
+      "ma10": 0.11945,
+      "ma20": 0.14951,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0774, "ma20_pct": -0.2629, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.118, "ma20_atr": -0.502, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0774},
+      "atr": 0.078317,
+      "atr_pct": 0.7107,
+      "adx": null,
+      "range_position": 0.014,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0227,
+        "upper_wick_pct": 0.214,
+        "lower_wick_pct": 0.19,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.798,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.08, "resistance": 0.14},
+      "pattern": "new_listing_drop",
+      "recent_action": "상장 후 0.50→0.11 급락. 1W 20봉으로 데이터 부족. MA10만 산출. range_position 0.014 극하단. ADX null."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.1102,
+      "bars": 134,
+      "date_range": "2026-01-06 ~ 2026-05-19",
+      "ma10": 0.12101,
+      "ma20": 0.120985,
+      "ma50": 0.12144,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0893, "ma20_pct": -0.0891, "ma50_pct": -0.0926},
+      "dist_from_ma_atr": {"ma10_atr": -1.241, "ma20_atr": -1.238, "ma50_atr": -1.29},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0891},
+      "atr": 0.008713,
+      "atr_pct": 0.0791,
+      "adx": 17.61,
+      "range_position": 0.151,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0227,
+        "upper_wick_pct": 0.214,
+        "lower_wick_pct": 0.19,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.998, "price_range_5bar_pct": 0.1978, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 9, "body_pct": 0.057, "vol_rank": 1.0, "close": 0.1352,
+        "max_retrace_pct": 0.2012, "current_retrace_pct": 0.1849, "holding": false
+      },
+      "ret_30d": -0.0824,
+      "ret_90d": -0.1652,
+      "from_period_high_pct": -0.798,
+      "vol_avg_recent_vs_prior": 0.954
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.09, "resistance": 0.14},
+      "pattern": "tight_box_base",
+      "recent_action": "ADX 17.61 횡보권. MA10/20/50 tight 수렴. 9봉 전 강양봉 후 -20% retrace 실패. 현재 0.11 박스 하단 근처."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W low_history + B2 초기 하락. 1D B3 박스 횡보이나 반등 실패 반복. from_high -80%. 돌파 확인 전 진입 불가.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1w": "charts/BREVUSDT/20260521/BREVUSDT_1w.png",
+    "1d": "charts/BREVUSDT/20260521/BREVUSDT_1d.png"
+  }
+}

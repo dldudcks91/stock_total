@@ -1,0 +1,147 @@
+{
+  "symbol": "FIDAUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:20:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.02157,
+      "bars": 21,
+      "date_range": "2024-09-30 ~ 2026-05-31",
+      "ma10": 0.039419,
+      "ma20": 0.097542,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.4528, "ma20_pct": -0.7789, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.261, "ma20_atr": -1.11, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.4528},
+      "atr": 0.068472, "atr_pct": 3.1744, "adx": null,
+      "range_position": 0.079,
+      "last_candle": {
+        "type": "bull", "body_pct": 0.2388,
+        "upper_wick_pct": 0.481, "lower_wick_pct": 0.049,
+        "vol_rank_30d": 0.952, "vol_anomaly": "breakout",
+        "accumulation_candle_score": 0.3, "distribution_candle_score": 0.3
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0, "ret_90d": 0.0,
+      "from_period_high_pct": -0.9508,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.015, "resistance": 0.04},
+      "pattern": "long_decline_spike",
+      "recent_action": "2024-9월 이후 지속 하락(-95%). 최근 월봉 거래량 폭증(breakout)과 강양봉 출현. 전환 신호 주목 필요."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": "bounce_ma20",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "low",
+    "context": {
+      "last_close": 0.02157,
+      "bars": 88,
+      "date_range": "2024-09-23 ~ 2026-05-25",
+      "ma10": 0.017326,
+      "ma20": 0.019575,
+      "ma50": 0.05031,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.2449, "ma20_pct": 0.1019, "ma50_pct": -0.5713},
+      "dist_from_ma_atr": {"ma10_atr": 0.544, "ma20_atr": 0.256, "ma50_atr": -3.681},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.1019},
+      "atr": 0.007808, "atr_pct": 0.362, "adx": 30.24,
+      "range_position": 0.187,
+      "last_candle": {
+        "type": "doji", "body_pct": 0.0088,
+        "upper_wick_pct": 0.202, "lower_wick_pct": 0.718,
+        "vol_rank_30d": 0.833, "vol_anomaly": null,
+        "accumulation_candle_score": 0.0, "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 2.574, "price_range_5bar_pct": 0.5086, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.6451, "ret_90d": 0.0,
+      "from_period_high_pct": -0.9508,
+      "vol_avg_recent_vs_prior": 1.356
+    },
+    "observations": {
+      "key_levels": {"support": 0.015, "resistance": 0.03},
+      "pattern": "bottom_bounce_attempt",
+      "recent_action": "긴 하락 추세에서 MA20 돌파 시도. 1W 도지 아래꼬리 길게(lower_wick 0.718). 거래량 증가. 상승 첫 시도 미확정."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.02157,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.019403,
+      "ma20": 0.018468,
+      "ma50": 0.017445,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.1117, "ma20_pct": 0.1679, "ma50_pct": 0.2365},
+      "dist_from_ma_atr": {"ma10_atr": 1.038, "ma20_atr": 1.486, "ma50_atr": 1.976},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.1117},
+      "atr": 0.002088, "atr_pct": 0.0968, "adx": 44.57,
+      "range_position": 0.642,
+      "last_candle": {
+        "type": "doji", "body_pct": 0.0088,
+        "upper_wick_pct": 0.202, "lower_wick_pct": 0.718,
+        "vol_rank_30d": 0.9, "vol_anomaly": "spike",
+        "accumulation_candle_score": 0.6, "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 30.341, "price_range_5bar_pct": 0.5086, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 2, "body_pct": 0.3024, "vol_rank": 1.0, "close": 0.02328,
+        "max_retrace_pct": 0.1551, "current_retrace_pct": 0.0735, "holding": false
+      },
+      "ret_30d": 0.3713, "ret_90d": 0.1535,
+      "from_period_high_pct": -0.6521,
+      "vol_avg_recent_vs_prior": 1.396
+    },
+    "observations": {
+      "key_levels": {"support": 0.017, "resistance": 0.028},
+      "pattern": "spike_vol_burst",
+      "recent_action": "최근 강양봉(body=0.3024, vol_rank=1.0)과 거래량 30배 폭증. 1D 정배열 단기 형성. 단기 펌프 후 조정 중으로 지속성 불확실."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "1M B2 하락, 1W/1D B4 상승 첫 시도. 최근 1D 거래량 30배 폭증이 실제 매집인지 펌프인지 불확실. TF 충돌 + low_history + drawdown -95%.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "accumulation_suspect"],
+
+  "charts": {
+    "1m": "charts/FIDAUSDT/20260521/FIDAUSDT_1m.png",
+    "1w": "charts/FIDAUSDT/20260521/FIDAUSDT_1w.png",
+    "1d": "charts/FIDAUSDT/20260521/FIDAUSDT_1d.png"
+  }
+}

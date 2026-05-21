@@ -1,0 +1,179 @@
+{
+  "symbol": "HAEDALUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.02847,
+      "bars": 14,
+      "date_range": "2025-04-30 ~ 2026-05-31",
+      "ma10": 0.057673,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.5064, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.5064},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.023,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0513,
+        "upper_wick_pct": 0.888,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.907,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.025, "resistance": 0.06},
+      "pattern": "sustained_decline",
+      "recent_action": "상장 이후 꾸준한 하락으로 고점 대비 -90.7%. 봉 수 14개로 월봉 의미 있는 분석 어려움."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.02847,
+      "bars": 56,
+      "date_range": "2025-05-05 ~ 2026-05-25",
+      "ma10": 0.030577,
+      "ma20": 0.031287,
+      "ma50": 0.077545,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0689, "ma20_pct": -0.09, "ma50_pct": -0.6329},
+      "dist_from_ma_atr": {"ma10_atr": -0.165, "ma20_atr": -0.22, "ma50_atr": -3.834},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0689},
+      "atr": 0.012799,
+      "atr_pct": 0.4496,
+      "adx": 22.06,
+      "range_position": 0.086,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0481,
+        "upper_wick_pct": 0.055,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.367, "price_range_5bar_pct": 0.4566, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.6872,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.907,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.025, "resistance": 0.04},
+      "pattern": "downtrend_ma_resistance",
+      "recent_action": "MA10/MA20 역배열, 가격이 모든 MA 아래서 하락 지속. 거래량 급감으로 관심 소멸 중."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.02847,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.033335,
+      "ma20": 0.032748,
+      "ma50": 0.031289,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1459, "ma20_pct": -0.1306, "ma50_pct": -0.0901},
+      "dist_from_ma_atr": {"ma10_atr": -1.862, "ma20_atr": -1.637, "ma50_atr": -1.079},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0901},
+      "atr": 0.002613,
+      "atr_pct": 0.0918,
+      "adx": 24.99,
+      "range_position": 0.213,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0481,
+        "upper_wick_pct": 0.055,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.133,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.534, "price_range_5bar_pct": 0.2441, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 9,
+        "body_pct": 0.0972,
+        "vol_rank": 1.0,
+        "close": 0.03836,
+        "max_retrace_pct": 0.2578,
+        "current_retrace_pct": 0.2578,
+        "holding": false
+      },
+      "ret_30d": -0.1597,
+      "ret_90d": -0.0087,
+      "from_period_high_pct": -0.6691,
+      "vol_avg_recent_vs_prior": 1.007
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.026, "resistance": 0.038},
+      "pattern": "range_bottom",
+      "recent_action": "일봉에서 MA가 수렴하며 박스권 바닥 형성 중이나, 9일 전 강양봉이 -25.8% 무너져 상승 시도 실패. 여전히 MA 전체 아래."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W/1M 역배열 지속 하락(B2), 1D는 바닥 다지기(B3) 시도 중이나 MA 전체 아래에서 강양봉 무너짐 확인. 고점 대비 -90% 수준으로 drawdown_deep + low_history 리스크. 1W MA10 소폭 상향 전환은 긍정적이나 반등 확인 전 매매 회피.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1m": "charts/HAEDALUSDT/20260521/HAEDALUSDT_1m.png",
+    "1w": "charts/HAEDALUSDT/20260521/HAEDALUSDT_1w.png",
+    "1d": "charts/HAEDALUSDT/20260521/HAEDALUSDT_1d.png"
+  }
+}

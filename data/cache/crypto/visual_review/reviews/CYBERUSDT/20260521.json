@@ -1,0 +1,182 @@
+{
+  "symbol": "CYBERUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.4669,
+      "bars": 34,
+      "date_range": "2023-08-31 ~ 2026-05-31",
+      "ma10": 0.85732,
+      "ma20": 1.51679,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.4554, "ma20_pct": -0.6922, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.234, "ma20_atr": -0.63, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.4554},
+      "atr": 1.667763,
+      "atr_pct": 3.572,
+      "adx": 19.56,
+      "range_position": 0.009,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.1167,
+        "upper_wick_pct": 0.562,
+        "lower_wick_pct": 0.016,
+        "vol_rank_30d": 0.333,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.9241,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9717,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.40, "resistance": 0.90},
+      "pattern": "pump_dump_collapse",
+      "recent_action": "2024년 초 15달러 고점 후 -97% 하락. 최근 월봉 ret_30d -92%. 현재 역사적 신저가권. MA10 아래 가속 하락."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.4669,
+      "bars": 145,
+      "date_range": "2023-08-21 ~ 2026-05-25",
+      "ma10": 0.51739,
+      "ma20": 0.56612,
+      "ma50": 1.020172,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0976, "ma20_pct": -0.1753, "ma50_pct": -0.5423},
+      "dist_from_ma_atr": {"ma10_atr": -0.317, "ma20_atr": -0.622, "ma50_atr": -3.469},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0976},
+      "atr": 0.159509,
+      "atr_pct": 0.3416,
+      "adx": 7.16,
+      "range_position": 0.064,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0334,
+        "upper_wick_pct": 0.145,
+        "lower_wick_pct": 0.101,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.232,
+        "price_range_5bar_pct": 0.2769,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.5589,
+      "ret_90d": -0.8607,
+      "from_period_high_pct": -0.9717,
+      "vol_avg_recent_vs_prior": 0.591
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.40, "resistance": 0.55},
+      "pattern": "capitulation_zone",
+      "recent_action": "주봉 완전 역배열, ADX 7로 방향성 사실상 소멸. ret_90d -86%로 극단적 하락. 2025년 7월 거래량 스파이크 후 복귀, 이후 신저가."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.4669,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.52555,
+      "ma20": 0.53713,
+      "ma50": 0.525828,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1116, "ma20_pct": -0.1308, "ma50_pct": -0.1121},
+      "dist_from_ma_atr": {"ma10_atr": -2.178, "ma20_atr": -2.608, "ma50_atr": -2.188},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1116},
+      "atr": 0.02693,
+      "atr_pct": 0.0577,
+      "adx": 27.84,
+      "range_position": 0.016,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0334,
+        "upper_wick_pct": 0.145,
+        "lower_wick_pct": 0.101,
+        "vol_rank_30d": 0.767,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.389,
+        "price_range_5bar_pct": 0.1748,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.0906,
+      "ret_90d": -0.2545,
+      "from_period_high_pct": -0.5724,
+      "vol_avg_recent_vs_prior": 1.564
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.44, "resistance": 0.55},
+      "pattern": "continued_decline",
+      "recent_action": "일봉에서도 모든 MA 하방, ADX 28. 2026년 2월 거래량 급증 후 반등 실패. range_position 0.016으로 박스 최하단."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF B2/B3 하락 + 역배열. 고점 대비 -97% 하락, ret_90d -86%(1W). 거래량 스파이크 후 즉시 복귀 패턴 반복. 진입 근거 없음.",
+  "risk_flags": ["drawdown_deep"],
+
+  "charts": {
+    "1m": "charts/CYBERUSDT/20260521/CYBERUSDT_1m.png",
+    "1w": "charts/CYBERUSDT/20260521/CYBERUSDT_1w.png",
+    "1d": "charts/CYBERUSDT/20260521/CYBERUSDT_1d.png"
+  }
+}

@@ -1,0 +1,176 @@
+{
+  "symbol": "NEWTUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:31:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.0731,
+      "bars": 12,
+      "date_range": "2025-06-30 ~ 2026-05-31",
+      "ma10": 0.11688,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3746, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.3746},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.036,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0027,
+        "upper_wick_pct": 0.842,
+        "lower_wick_pct": 0.147,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8965,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.065, "resistance": 0.12},
+      "pattern": "dump_decay",
+      "recent_action": "상장 직후 급등(~0.7) 후 연속 하락. 12봉만 존재하는 low_history. 거래량 급감하며 관심 소멸."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.0731,
+      "bars": 48,
+      "date_range": "2025-06-30 ~ 2026-05-25",
+      "ma10": 0.07345,
+      "ma20": 0.076725,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0048, "ma20_pct": -0.0472, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.011, "ma20_atr": -0.116, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0048},
+      "atr": 0.031251,
+      "atr_pct": 0.4275,
+      "adx": 15.68,
+      "range_position": 0.136,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0014,
+        "upper_wick_pct": 0.452,
+        "lower_wick_pct": 0.516,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.52,
+        "price_range_5bar_pct": 0.3899,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.5296,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8965,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.065, "resistance": 0.1},
+      "pattern": "sustained_downtrend",
+      "recent_action": "상장 후 줄곧 하락. MA10/20 역배열 하향. 최근 주봉 도지 군집이나 거래량 의미없는 수준."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.0731,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.07762,
+      "ma20": 0.07719,
+      "ma50": 0.074308,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "down", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0582, "ma20_pct": -0.053, "ma50_pct": -0.0163},
+      "dist_from_ma_atr": {"ma10_atr": -0.937, "ma20_atr": -0.848, "ma50_atr": -0.25},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0163},
+      "atr": 0.004823,
+      "atr_pct": 0.066,
+      "adx": 24.12,
+      "range_position": 0.305,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0014,
+        "upper_wick_pct": 0.452,
+        "lower_wick_pct": 0.516,
+        "vol_rank_30d": 0.267,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.801,
+        "price_range_5bar_pct": 0.1587,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0384,
+      "ret_90d": 0.0533,
+      "from_period_high_pct": -0.4913,
+      "vol_avg_recent_vs_prior": 1.888
+    },
+    "observations": {
+      "key_levels": {"support": 0.065, "resistance": 0.09},
+      "pattern": "sideways_low",
+      "recent_action": "일봉 MA50 직하단에서 횡보. 상장 이후 고점대비 -49%. MA50(0.074) 근처에서 지지 테스트 중."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "medium",
+  "verdict_reason": "상장 직후 대형 펌프 후 지속 하락. 전 TF B2 하락. volume_flag=pump_dump_trace. low_history로 데이터 부족. 고점 대비 -90% 손실.",
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace"],
+
+  "charts": {
+    "1m": "charts/NEWTUSDT/20260521/NEWTUSDT_1m.png",
+    "1w": "charts/NEWTUSDT/20260521/NEWTUSDT_1w.png",
+    "1d": "charts/NEWTUSDT/20260521/NEWTUSDT_1d.png"
+  }
+}

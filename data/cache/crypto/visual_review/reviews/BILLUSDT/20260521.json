@@ -1,0 +1,74 @@
+{
+  "symbol": "BILLUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:33:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": null,
+  "tf_1w": null,
+
+  "tf_1d": {
+    "state": "C1",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.11196,
+      "bars": 14,
+      "date_range": "2026-05-06 ~ 2026-05-19",
+      "ma10": 0.157569,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2895, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.2895},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.321,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.359,
+        "upper_wick_pct": 0.073,
+        "lower_wick_pct": 0.265,
+        "vol_rank_30d": 0.5,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.5284,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.08, "resistance": 0.23},
+      "pattern": "pump_dump",
+      "recent_action": "상장 14일. 고점 대비 -53%. 차트상 초기 급등 후 하락 중. MA10 아래 -29% 위치. ATR/ADX 미산출 데이터 부족."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "reject",
+  "verdict_confidence": "low",
+  "verdict_reason": "1d 14봉 극단적 low_history. 고점 대비 -53% 급락. pump_dump_trace 패턴. 1w/1m 데이터 없어 전체 사이클 판단 불가. 충분한 데이터 축적 전 제외.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace"],
+
+  "charts": {
+    "1d": "charts/BILLUSDT/20260521/BILLUSDT_1d.png"
+  }
+}

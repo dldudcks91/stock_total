@@ -1,0 +1,137 @@
+{
+  "symbol": "XAGUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:40:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 74.31,
+      "bars": 20,
+      "date_range": "2026-01-12 ~ 2026-05-25",
+      "ma10": 75.699,
+      "ma20": 81.5095,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0183, "ma20_pct": -0.0883, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.109, "ma20_atr": -0.564, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0183},
+      "atr": 12.763093,
+      "atr_pct": 0.1718,
+      "adx": null,
+      "range_position": 0.216,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0595,
+        "upper_wick_pct": 0.038,
+        "lower_wick_pct": 0.196,
+        "vol_rank_30d": 0.15,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.3899,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 65, "resistance": 85},
+      "pattern": "peak_pullback_box",
+      "recent_action": "주봉 20봉(5개월) 데이터로 신뢰도 낮음. 고점($121) 대비 -39% 하락 후 $65~$90 박스권. MA50 미생성 상태."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 74.31,
+      "bars": 133,
+      "date_range": "2026-01-07 ~ 2026-05-19",
+      "ma10": 80.694,
+      "ma20": 78.6015,
+      "ma50": 76.978,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0791, "ma20_pct": -0.0546, "ma50_pct": -0.0347},
+      "dist_from_ma_atr": {"ma10_atr": -1.74, "ma20_atr": -1.17, "ma50_atr": -0.727},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0347},
+      "atr": 3.668251,
+      "atr_pct": 0.0494,
+      "adx": 17.23,
+      "range_position": 0.464,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0595,
+        "upper_wick_pct": 0.038,
+        "lower_wick_pct": 0.196,
+        "vol_rank_30d": 0.767,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.347,
+        "price_range_5bar_pct": 0.1414,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.0258,
+        "vol_rank": 0.967,
+        "close": 78.73,
+        "max_retrace_pct": 0.0705,
+        "current_retrace_pct": 0.0561,
+        "holding": false
+      },
+      "ret_30d": -0.0602,
+      "ret_90d": -0.0374,
+      "from_period_high_pct": -0.3899,
+      "vol_avg_recent_vs_prior": 0.736
+    },
+
+    "observations": {
+      "key_levels": {"support": 68, "resistance": 82},
+      "pattern": "below_all_ma_bounce_attempt",
+      "recent_action": "일봉 MA10/20/50 모두 상향 기울기지만 현재가가 전부 아래에 위치. 전일 강양봉(78.73) 후 당일 -5.6% 하락으로 holding 실패. MA50(77.0)이 근접 저항. 1월 고점($121) 이후 지속 하락 구조."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "1W/1D B3 정합. low_history(1W 20봉)로 신뢰도 제한. 1D 강양봉 후 되돌림 실패. MA50 저항 돌파 확인 필요. drawdown_deep(-39%).",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1w": "charts/XAGUSDT/20260521/XAGUSDT_1w.png",
+    "1d": "charts/XAGUSDT/20260521/XAGUSDT_1d.png"
+  }
+}

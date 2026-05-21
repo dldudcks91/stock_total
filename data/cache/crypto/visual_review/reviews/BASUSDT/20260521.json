@@ -1,0 +1,199 @@
+{
+  "symbol": "BASUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:14:30+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "C1",
+    "micro_action": "riding",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.019943,
+      "bars": 10,
+      "date_range": "2025-08-31 ~ 2026-05-31",
+      "ma10": 0.011258,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.7715, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.7715},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.103,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.2401,
+        "upper_wick_pct": 0.597,
+        "lower_wick_pct": 0.044,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8833,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.010, "resistance": 0.025},
+      "pattern": "pump_dump_residual",
+      "recent_action": "1M 10봉 뿐. 2025-10 폭등 후 거래량 즉시 소멸, 고점 대비 -88%. P&D 잔재."
+    }
+  },
+
+  "tf_1w": {
+    "state": "A1",
+    "micro_action": "riding",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.019943,
+      "bars": 39,
+      "date_range": "2025-09-01 ~ 2026-05-25",
+      "ma10": 0.013659,
+      "ma20": 0.009531,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.4601, "ma20_pct": 1.0924, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.899, "ma20_atr": 1.49, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.4601},
+      "atr": 0.006989,
+      "atr_pct": 0.3504,
+      "adx": 74.38,
+      "range_position": 0.686,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0041,
+        "upper_wick_pct": 0.796,
+        "lower_wick_pct": 0.162,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.363,
+        "price_range_5bar_pct": 0.9028,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 4,
+        "body_pct": 0.2844,
+        "vol_rank": 0.767,
+        "close": 0.013999,
+        "max_retrace_pct": 0.1544,
+        "current_retrace_pct": -0.4246,
+        "holding": false
+      },
+      "ret_30d": 0.2325,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8833,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.012, "resistance": 0.030},
+      "pattern": "weak_recovery_attempt",
+      "recent_action": "1W ADX 74(강추세)지만 상방. 가격은 MA10 대비 +46% 위. 고점 -88%에서 단기 반등 중이나 거래량 낮고(vol_rank 0.0) 신뢰 낮음."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.019943,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.023315,
+      "ma20": 0.020236,
+      "ma50": 0.013643,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.1446, "ma20_pct": -0.0145, "ma50_pct": 0.4618},
+      "dist_from_ma_atr": {"ma10_atr": -0.982, "ma20_atr": -0.085, "ma50_atr": 1.835},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0145},
+      "atr": 0.003433,
+      "atr_pct": 0.1722,
+      "adx": 49.88,
+      "range_position": 0.656,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0041,
+        "upper_wick_pct": 0.796,
+        "lower_wick_pct": 0.162,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.336,
+        "price_range_5bar_pct": 0.4319,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 9,
+        "body_pct": 0.1189,
+        "vol_rank": 0.8,
+        "close": 0.023568,
+        "max_retrace_pct": 0.1816,
+        "current_retrace_pct": 0.1538,
+        "holding": false
+      },
+      "ret_30d": 1.5251,
+      "ret_90d": 1.8393,
+      "from_period_high_pct": -0.2852,
+      "vol_avg_recent_vs_prior": 1.221
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.015, "resistance": 0.025},
+      "pattern": "parabolic_pullback",
+      "recent_action": "1D 30일 수익률 +153%, 90일 +184%. MA 정배열이나 폭등 후 풀백 중. 강양봉 9봉 전 후 -15% 무너짐."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "1D 정배열+강한 ADX 49.88로 보면 상승 같으나 1M P&D 흔적+1W 거래량 없음. 1D 단기 폭등(+153%)은 parabolic 위험. 시각적으로 trust 낮음. 관망.",
+
+  "risk_flags": ["parabolic", "drawdown_deep", "low_history", "pump_dump_trace"],
+
+  "charts": {
+    "1m": "charts/BASUSDT/20260521/BASUSDT_1m.png",
+    "1w": "charts/BASUSDT/20260521/BASUSDT_1w.png",
+    "1d": "charts/BASUSDT/20260521/BASUSDT_1d.png"
+  }
+}

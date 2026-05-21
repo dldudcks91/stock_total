@@ -1,0 +1,191 @@
+{
+  "symbol": "MERLUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:10:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.0285,
+      "bars": 19,
+      "date_range": "2024-11-30 ~ 2026-05-31",
+      "ma10": 0.156918,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.8184, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -1.015, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.8184},
+      "atr": 0.126477,
+      "atr_pct": 4.4378,
+      "adx": null,
+      "range_position": 0.015,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.1442,
+        "upper_wick_pct": 0.665,
+        "lower_wick_pct": 0.061,
+        "vol_rank_30d": 0.421,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9459,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.025, "resistance": 0.16},
+      "pattern": "collapse_flatline",
+      "recent_action": "1M 봉 수가 19개로 데이터 부족. 피크 0.5 대비 -94% 붕괴 후 0.025~0.035 극저가 횡보 중."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.0285,
+      "bars": 80,
+      "date_range": "2024-11-18 ~ 2026-05-25",
+      "ma10": 0.030758,
+      "ma20": 0.057905,
+      "ma50": 0.165708,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0734, "ma20_pct": -0.5078, "ma50_pct": -0.828},
+      "dist_from_ma_atr": {"ma10_atr": -0.061, "ma20_atr": -0.796, "ma50_atr": -3.715},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0734},
+      "atr": 0.036929,
+      "atr_pct": 1.2958,
+      "adx": 31.13,
+      "range_position": 0.015,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0147,
+        "upper_wick_pct": 0.511,
+        "lower_wick_pct": 0.187,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.674,
+        "price_range_5bar_pct": 0.5439,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 5,
+        "body_pct": 0.3094,
+        "vol_rank": 0.9,
+        "close": 0.03749,
+        "max_retrace_pct": 0.2641,
+        "current_retrace_pct": 0.2398,
+        "holding": false
+      },
+      "ret_30d": -0.9215,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9459,
+      "vol_avg_recent_vs_prior": 0.82
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.025, "resistance": 0.038},
+      "pattern": "downtrend_staircase",
+      "recent_action": "1W 역배열 완성, ADX 31로 추세 확인. 피크 대비 -94% 위치. 강양봉 시도 후 전량 되돌림."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.0285,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.032827,
+      "ma20": 0.034674,
+      "ma50": 0.032151,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1318, "ma20_pct": -0.1781, "ma50_pct": -0.1136},
+      "dist_from_ma_atr": {"ma10_atr": -1.212, "ma20_atr": -1.73, "ma50_atr": -1.023},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.1136},
+      "atr": 0.003569,
+      "atr_pct": 0.1252,
+      "adx": 20.29,
+      "range_position": 0.267,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0147,
+        "upper_wick_pct": 0.511,
+        "lower_wick_pct": 0.187,
+        "vol_rank_30d": 0.033,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.489,
+        "price_range_5bar_pct": 0.3575,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.2494,
+      "ret_90d": -0.4942,
+      "from_period_high_pct": -0.9459,
+      "vol_avg_recent_vs_prior": 1.088
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.025, "resistance": 0.035},
+      "pattern": "flat_low_base",
+      "recent_action": "1D 에서 2026년 2월 이후 0.025~0.035 박스 수렴. 거래량 매우 낮아 관심 소멸 상태."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF B2 정합. 피크 대비 -94% 하락, 역배열 추세 지속. 극저가 수렴 중이나 반등 신호 없음.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1m": "charts/MERLUSDT/20260521/MERLUSDT_1m.png",
+    "1w": "charts/MERLUSDT/20260521/MERLUSDT_1w.png",
+    "1d": "charts/MERLUSDT/20260521/MERLUSDT_1d.png"
+  }
+}

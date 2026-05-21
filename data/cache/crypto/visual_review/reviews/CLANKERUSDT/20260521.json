@@ -1,0 +1,112 @@
+{
+  "symbol": "CLANKERUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 23.21,
+      "bars": 31,
+      "date_range": "2025-10-27 ~ 2026-05-25",
+      "ma10": 25.344,
+      "ma20": 28.0075,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0842, "ma20_pct": -0.1713, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.218, "ma20_atr": -0.489, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0842},
+      "atr": 9.807759,
+      "atr_pct": 0.4226,
+      "adx": 21.62,
+      "range_position": 0.012,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0694,
+        "upper_wick_pct": 0.222,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.8002,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8281,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 20.0, "resistance": 30.0},
+      "pattern": "sustained_downtrend",
+      "recent_action": "상장(2025년 10월) 후 고점 ~135 대비 -82% 낙폭. MA10/20이 역배열 우하향. 현재 박스권 하단 근처에서 거래량 감소."
+    }
+  },
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 23.21,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 24.619,
+      "ma20": 24.9615,
+      "ma50": 25.3158,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0572, "ma20_pct": -0.0702, "ma50_pct": -0.0832},
+      "dist_from_ma_atr": {"ma10_atr": -0.752, "ma20_atr": -0.934, "ma50_atr": -1.123},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0572},
+      "atr": 1.874688,
+      "atr_pct": 0.0808,
+      "adx": 25.64,
+      "range_position": 0.092,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0694,
+        "upper_wick_pct": 0.222,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.667,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.999, "price_range_5bar_pct": 0.1904, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.0519,
+      "ret_90d": -0.304,
+      "from_period_high_pct": -0.784,
+      "vol_avg_recent_vs_prior": 2.564
+    },
+    "observations": {
+      "key_levels": {"support": 20.0, "resistance": 27.0},
+      "pattern": "base_consolidation",
+      "recent_action": "일봉에서 2026년 2월 이후 20~28 박스권 형성. MA들이 수렴하며 tight 스프레드. 거래량 평균 2.5배로 아직 활성화는 되어 있으나 방향 미확인."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W/1D 모두 B2~B3 — 전체적 하락 추세. 신규 상장 코인(low_history) + 고점 대비 -82% + 상위 TF 역배열 미해소. 박스권 상단 돌파 확인 전 관망.",
+  "risk_flags": ["drawdown_deep", "low_history"],
+  "charts": {
+    "1w": "charts/CLANKERUSDT/20260521/CLANKERUSDT_1w.png",
+    "1d": "charts/CLANKERUSDT/20260521/CLANKERUSDT_1d.png"
+  }
+}

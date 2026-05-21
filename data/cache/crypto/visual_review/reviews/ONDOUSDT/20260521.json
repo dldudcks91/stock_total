@@ -1,0 +1,199 @@
+{
+  "symbol": "ONDOUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:39:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.3687,
+      "bars": 27,
+      "date_range": "2024-03-31 ~ 2026-05-31",
+      "ma10": 0.47828,
+      "ma20": 0.73669,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2291, "ma20_pct": -0.4995, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.364, "ma20_atr": -1.223, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.2291},
+      "atr": 0.300804,
+      "atr_pct": 0.8159,
+      "adx": null,
+      "range_position": 0.173,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.2883,
+        "upper_wick_pct": 0.525,
+        "lower_wick_pct": 0.001,
+        "vol_rank_30d": 0.815,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8282,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.25, "resistance": 0.60},
+      "pattern": "long_term_downtrend",
+      "recent_action": "1M에서 2025년 초 고점(2.1) 이후 지속 하락. 현재 ATH 대비 83% 낙폭. MA10/20 역배열 우하향. 최근 봉 위꼬리 길어 저항권 확인."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "distribution_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.3687,
+      "bars": 113,
+      "date_range": "2024-04-01 ~ 2026-05-25",
+      "ma10": 0.30472,
+      "ma20": 0.29856,
+      "ma50": 0.574934,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.21, "ma20_pct": 0.2349, "ma50_pct": -0.3587},
+      "dist_from_ma_atr": {"ma10_atr": 0.751, "ma20_atr": 0.823, "ma50_atr": -2.421},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.21},
+      "atr": 0.08518,
+      "atr_pct": 0.231,
+      "adx": 34.89,
+      "range_position": 0.299,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0461,
+        "upper_wick_pct": 0.337,
+        "lower_wick_pct": 0.247,
+        "vol_rank_30d": 0.233,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.474,
+        "price_range_5bar_pct": 0.6368,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 2,
+        "body_pct": 0.2674,
+        "vol_rank": 0.967,
+        "close": 0.4285,
+        "max_retrace_pct": 0.2229,
+        "current_retrace_pct": 0.1396,
+        "holding": false
+      },
+      "ret_30d": -0.5053,
+      "ret_90d": -0.4044,
+      "from_period_high_pct": -0.8282,
+      "vol_avg_recent_vs_prior": 0.526
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.28, "resistance": 0.50},
+      "pattern": "volatile_recovery",
+      "recent_action": "1W에서 2봉 전 강양봉(0.43) 이후 재하락. MA10(0.30), MA20(0.30) 위에 있으나 MA50(0.57)은 여전히 크게 상방에. ADX 34.89로 추세 강하나 방향 혼조. 분배 패턴 주의."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "distribution_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.3687,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.38212,
+      "ma20": 0.35508,
+      "ma50": 0.29798,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0351, "ma20_pct": 0.0384, "ma50_pct": 0.2373},
+      "dist_from_ma_atr": {"ma10_atr": -0.379, "ma20_atr": 0.384, "ma50_atr": 1.996},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0351},
+      "atr": 0.035428,
+      "atr_pct": 0.0961,
+      "adx": 43.31,
+      "range_position": 0.519,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0461,
+        "upper_wick_pct": 0.337,
+        "lower_wick_pct": 0.247,
+        "vol_rank_30d": 0.9,
+        "vol_anomaly": "breakout",
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.3
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.358,
+        "price_range_5bar_pct": 0.1804,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.1037,
+        "vol_rank": 0.8,
+        "close": 0.3857,
+        "max_retrace_pct": 0.0703,
+        "current_retrace_pct": 0.0441,
+        "holding": true
+      },
+      "ret_30d": 0.4736,
+      "ret_90d": 0.3945,
+      "from_period_high_pct": -0.4806,
+      "vol_avg_recent_vs_prior": 2.472
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.30, "resistance": 0.50},
+      "pattern": "high_vol_pullback",
+      "recent_action": "1D에서 MA 정배열 복구 후 4월말~5월 초 0.5까지 급등. 이후 MA10(0.38) 부근으로 조정. 직전 봉 장대양봉(0.39, vol_rank 0.8) holding=true. 그러나 vol_anomaly=breakout + distribution_candle_score 0.3으로 분배 주의."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1D B4 상승 시도 중이나 1M/1W 큰 그림 B2 하락 구조 충돌. 1D에서 직전 강양봉 holding=true이나 vol_anomaly=breakout 후 음봉으로 분배 의심. 1W에서 MA50 대비 36% 디스카운트로 큰 그림 복구 미완성. watch.",
+
+  "risk_flags": ["drawdown_deep", "distribution_suspect"],
+
+  "charts": {
+    "1m": "charts/ONDOUSDT/20260521/ONDOUSDT_1m.png",
+    "1w": "charts/ONDOUSDT/20260521/ONDOUSDT_1w.png",
+    "1d": "charts/ONDOUSDT/20260521/ONDOUSDT_1d.png"
+  }
+}

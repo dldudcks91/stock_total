@@ -1,0 +1,131 @@
+{
+  "symbol": "MMTUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:32:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "C1",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.1238,
+      "bars": 29,
+      "date_range": "2025-11-10 ~ 2026-05-25",
+      "ma10": 0.1261,
+      "ma20": 0.142025,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0182, "ma20_pct": -0.1283, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.003, "ma20_atr": -0.024, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0182},
+      "atr": 0.749757,
+      "atr_pct": 6.0562,
+      "adx": 41.2,
+      "range_position": 0.004,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0121,
+        "upper_wick_pct": 0.778,
+        "lower_wick_pct": 0.014,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9795,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.10, "resistance": 0.15},
+      "pattern": "pump_dump",
+      "recent_action": "상장 직후 6 USDT 이상 폭등 후 거래량+가격 즉시 소멸, 현재 0.12 수준에서 횡보. 전형적 펌프&덤프 패턴."
+    }
+  },
+
+  "tf_1d": {
+    "state": "C1",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.1238,
+      "bars": 197,
+      "date_range": "2025-11-04 ~ 2026-05-19",
+      "ma10": 0.13201,
+      "ma20": 0.134255,
+      "ma50": 0.130006,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0622, "ma20_pct": -0.0779, "ma50_pct": -0.0477},
+      "dist_from_ma_atr": {"ma10_atr": -0.959, "ma20_atr": -1.222, "ma50_atr": -0.725},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0477},
+      "atr": 0.008557,
+      "atr_pct": 0.0691,
+      "adx": 31.93,
+      "range_position": 0.375,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0121,
+        "upper_wick_pct": 0.778,
+        "lower_wick_pct": 0.014,
+        "vol_rank_30d": 0.9,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.3
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.037,
+        "price_range_5bar_pct": 0.1801,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 9,
+        "body_pct": 0.0522,
+        "vol_rank": 0.767,
+        "close": 0.1512,
+        "max_retrace_pct": 0.2414,
+        "current_retrace_pct": 0.1812,
+        "holding": false
+      },
+      "ret_30d": -0.0104,
+      "ret_90d": -0.0635,
+      "from_period_high_pct": -0.9795,
+      "vol_avg_recent_vs_prior": 0.155
+    },
+    "observations": {
+      "key_levels": {"support": 0.10, "resistance": 0.16},
+      "pattern": "pump_dump_decay",
+      "recent_action": "일봉 상장 직후 6 USDT 폭등 후 일방 하락. 현재 0.12~0.16 박스 횡보. vol_avg 0.155로 거래량 거의 소멸. zombie 수준."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "상장 직후 6 USDT 폭등 후 즉시 소멸, 전형적 펌프&덤프. 1m 봉수 부족(low_history). 1w/1d 모두 C1 정합. vol_avg 0.155 zombie.",
+  "risk_flags": ["drawdown_deep", "low_history", "zombie", "pump_dump_trace"],
+  "charts": {
+    "1w": "charts/MMTUSDT/20260521/MMTUSDT_1w.png",
+    "1d": "charts/MMTUSDT/20260521/MMTUSDT_1d.png"
+  }
+}

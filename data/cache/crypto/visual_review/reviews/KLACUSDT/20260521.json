@@ -1,0 +1,65 @@
+{
+  "symbol": "KLACUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:05:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 1748.78,
+      "bars": 22,
+      "date_range": "2026-04-28 ~ 2026-05-19",
+      "ma10": 1822.531,
+      "ma20": 1797.541,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0405, "ma20_pct": -0.0271, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.819, "ma20_atr": -0.542, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0271},
+      "atr": 90.011576,
+      "atr_pct": 0.0515,
+      "adx": null,
+      "range_position": 0.408,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0107,
+        "upper_wick_pct": 0.199,
+        "lower_wick_pct": 0.579,
+        "vol_rank_30d": 0.773,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0963,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 1650.0, "resistance": 1950.0},
+      "pattern": "early_consolidation",
+      "recent_action": "22봉 신규 상장 초기. 4월말 1900 근처 고점 후 1700~1900 박스권 횡보 중. MA20 아래로 하락 후 도지 발생, 지지 여부 미확정."
+    }
+  },
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "22봉 신규 상장으로 사이클 판정 신뢰도 낮음(low_history). 1D만 채점 가능. MA20 하회 후 바닥 탐색 중.",
+  "risk_flags": ["low_history"],
+  "charts": {
+    "1d": "charts/KLACUSDT/20260521/KLACUSDT_1d.png"
+  }
+}

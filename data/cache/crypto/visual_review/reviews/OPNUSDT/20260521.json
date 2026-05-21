@@ -1,0 +1,129 @@
+{
+  "symbol": "OPNUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.1686,
+      "bars": 14,
+      "date_range": "2026-02-23 ~ 2026-05-25",
+      "ma10": 0.18289,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0781, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0781},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.032,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0421,
+        "upper_wick_pct": 0.244,
+        "lower_wick_pct": 0.197,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.7825,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.155, "resistance": 0.22},
+      "pattern": "downtrend_low_history",
+      "recent_action": "신규 상장 후 0.77 고점 대비 78% 하락, 14봉 이내로 history 부족하여 MA20/50 미형성. 0.17 구간에서 횡보 시도."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.1686,
+      "bars": 87,
+      "date_range": "2026-02-22 ~ 2026-05-19",
+      "ma10": 0.18195,
+      "ma20": 0.181065,
+      "ma50": 0.179416,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0734, "ma20_pct": -0.0688, "ma50_pct": -0.0603},
+      "dist_from_ma_atr": {"ma10_atr": -0.736, "ma20_atr": -0.687, "ma50_atr": -0.596},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0603},
+      "atr": 0.018134,
+      "atr_pct": 0.1076,
+      "adx": 14.58,
+      "range_position": 0.143,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0421,
+        "upper_wick_pct": 0.244,
+        "lower_wick_pct": 0.197,
+        "vol_rank_30d": 0.133,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.5,
+        "price_range_5bar_pct": 0.1732,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0657,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.7825,
+      "vol_avg_recent_vs_prior": 0.461
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.155, "resistance": 0.20},
+      "pattern": "consolidation_bottom",
+      "recent_action": "1D에서 MA 3선이 타이트하게 수렴하며 모두 하방 기울기. 가격은 MA50 아래에서 횡보. ADX=14.6으로 추세 없음. 거래량 감소 추세."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "신규 상장 87일. 1W low_history로 패턴 불명확. 1D는 B2 상태로 MA 3선 모두 하향+가격 아래, ADX 낮아 추세 약함. 고점 대비 -78% 낙폭. 1m TF 없음.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1w": "charts/OPNUSDT/20260521/OPNUSDT_1w.png",
+    "1d": "charts/OPNUSDT/20260521/OPNUSDT_1d.png"
+  }
+}

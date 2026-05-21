@@ -1,0 +1,79 @@
+{
+  "symbol": "SOXSUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:33:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "bounce_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 9.77,
+      "bars": 41,
+      "date_range": "2026-04-09 ~ 2026-05-19",
+      "ma10": 9.087,
+      "ma20": 10.3265,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0752, "ma20_pct": -0.0539, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.552, "ma20_atr": -0.45, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0539},
+      "atr": 1.236406,
+      "atr_pct": 0.1266,
+      "adx": 58.74,
+      "range_position": 0.083,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0143,
+        "upper_wick_pct": 0.701,
+        "lower_wick_pct": 0.216,
+        "vol_rank_30d": 0.933,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.3
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 4.986, "price_range_5bar_pct": 0.2886, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 4,
+        "body_pct": 0.1182,
+        "vol_rank": 1.0,
+        "close": 9.39,
+        "max_retrace_pct": 0.0724,
+        "current_retrace_pct": -0.0405,
+        "holding": true
+      },
+      "ret_30d": -0.4882,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.6522,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 8.5, "resistance": 10.5},
+      "pattern": "recovery_attempt",
+      "recent_action": "27.5 고점에서 9 수준까지 급락 후 4봉 전 강양봉 +11.8%(vol 1.0) 출현, 현재 MA10 위 +7.5% 반등 유지 중."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "신규 상장(41봉) low_history, 1M/1W 채점 불가. 1D B4 상승 시도 중이나 ADX 58.74 강한 하락 추세 배경, MA20 -5.4% 저항 미돌파. 추가 확인 필요.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1d": "charts/SOXSUSDT/20260521/SOXSUSDT_1d.png"
+  }
+}

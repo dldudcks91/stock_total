@@ -1,0 +1,150 @@
+{
+  "symbol": "ETHWUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.2685,
+      "bars": 20,
+      "date_range": "2024-10-31 ~ 2026-05-31",
+      "ma10": 0.65189,
+      "ma20": 1.471345,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.5881, "ma20_pct": -0.8175, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.591, "ma20_atr": -1.855, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.5881},
+      "atr": 0.648606, "atr_pct": 2.4157, "adx": null,
+      "range_position": 0.015,
+      "last_candle": {
+        "type": "doji", "body_pct": 0.146,
+        "upper_wick_pct": 0.543, "lower_wick_pct": 0.066,
+        "vol_rank_30d": 0.0, "vol_anomaly": null,
+        "accumulation_candle_score": 0.0, "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0, "ret_90d": 0.0,
+      "from_period_high_pct": -0.9501,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.20, "resistance": 0.70},
+      "pattern": "death_spiral",
+      "recent_action": "1M: 2024년 말 5달러 고점 이후 -95% 폭락. MA10/20 대비 -59%/-82% 이격."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.2685,
+      "bars": 85,
+      "date_range": "2024-10-14 ~ 2026-05-25",
+      "ma10": 0.28449,
+      "ma20": 0.335605,
+      "ma50": 0.840962,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0562, "ma20_pct": -0.2, "ma50_pct": -0.6807},
+      "dist_from_ma_atr": {"ma10_atr": -0.147, "ma20_atr": -0.618, "ma50_atr": -5.276},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0562},
+      "atr": 0.10851, "atr_pct": 0.4041, "adx": 28.36,
+      "range_position": 0.039,
+      "last_candle": {
+        "type": "doji", "body_pct": 0.0142,
+        "upper_wick_pct": 0.403, "lower_wick_pct": 0.342,
+        "vol_rank_30d": 0.0, "vol_anomaly": null,
+        "accumulation_candle_score": 0.0, "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.389, "price_range_5bar_pct": 0.3732, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.7239, "ret_90d": 0.0,
+      "from_period_high_pct": -0.9501,
+      "vol_avg_recent_vs_prior": 0.356
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.20, "resistance": 0.32},
+      "pattern": "terminal_decline",
+      "recent_action": "1W ret_30d -72%, 역배열 전체 우하향. ADX 28 하락 추세 유효. 거래량 감소."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.2685,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.29937,
+      "ma20": 0.307435,
+      "ma50": 0.292154,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1031, "ma20_pct": -0.1266, "ma50_pct": -0.081},
+      "dist_from_ma_atr": {"ma10_atr": -1.427, "ma20_atr": -1.8, "ma50_atr": -1.094},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.081},
+      "atr": 0.021627, "atr_pct": 0.0805, "adx": 41.28,
+      "range_position": 0.118,
+      "last_candle": {
+        "type": "doji", "body_pct": 0.0142,
+        "upper_wick_pct": 0.403, "lower_wick_pct": 0.342,
+        "vol_rank_30d": 0.033, "vol_anomaly": null,
+        "accumulation_candle_score": 0.0, "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.249, "price_range_5bar_pct": 0.187, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.0321, "ret_90d": -0.1617,
+      "from_period_high_pct": -0.7145,
+      "vol_avg_recent_vs_prior": 0.394
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.24, "resistance": 0.32},
+      "pattern": "bottoming_attempt",
+      "recent_action": "1D: 4월 이후 0.27~0.32 박스권 형성. ADX 41 하락 추세 강하나 일부 횡보 징후. MA50 하방 지지 시험 중."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "1M/1W B2 강한 하락 vs 1D B3 박스 충돌. 큰 그림 역배열+고점 -95%. 단기 박스는 있으나 반등 근거 불충분.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1m": "charts/ETHWUSDT/20260521/ETHWUSDT_1m.png",
+    "1w": "charts/ETHWUSDT/20260521/ETHWUSDT_1w.png",
+    "1d": "charts/ETHWUSDT/20260521/ETHWUSDT_1d.png"
+  }
+}

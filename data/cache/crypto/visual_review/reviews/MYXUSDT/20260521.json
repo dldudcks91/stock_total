@@ -1,0 +1,129 @@
+{
+  "symbol": "MYXUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "C1",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.1798,
+      "bars": 37,
+      "date_range": "2025-09-15 ~ 2026-05-25",
+      "ma10": 0.23908,
+      "ma20": 1.74708,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.248, "ma20_pct": -0.8971, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.041, "ma20_atr": -1.088, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.248},
+      "atr": 1.440257,
+      "atr_pct": 8.0103,
+      "adx": 28.08,
+      "range_position": 0.004,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0172,
+        "upper_wick_pct": 0.5,
+        "lower_wick_pct": 0.163,
+        "vol_rank_30d": 0.133,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.534,
+        "price_range_5bar_pct": 0.8281,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.9328,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9904,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.15, "resistance": 0.30},
+      "pattern": "pump_dump",
+      "recent_action": "상장 초기 17-18달러에서 현재 0.18까지 -99% 급락. 전형적인 펌프&덤프 완료 패턴."
+    }
+  },
+
+  "tf_1d": {
+    "state": "C1",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.1798,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.2143,
+      "ma20": 0.23527,
+      "ma50": 0.240882,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.161, "ma20_pct": -0.2358, "ma50_pct": -0.2536},
+      "dist_from_ma_atr": {"ma10_atr": -1.274, "ma20_atr": -2.048, "ma50_atr": -2.256},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.161},
+      "atr": 0.027081,
+      "atr_pct": 0.1506,
+      "adx": 24.36,
+      "range_position": 0.056,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0172,
+        "upper_wick_pct": 0.5,
+        "lower_wick_pct": 0.163,
+        "vol_rank_30d": 0.367,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.761,
+        "price_range_5bar_pct": 0.3799,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.1626,
+      "ret_90d": -0.8223,
+      "from_period_high_pct": -0.9763,
+      "vol_avg_recent_vs_prior": 0.306
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.15, "resistance": 0.25},
+      "pattern": "zombie_decline",
+      "recent_action": "1D 역배열, MA 전부 하향. 피크 -97.6%, 거래량 30% 수준으로 좀비화 진행 중."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "1W/1D 모두 C1 pump&dump 패턴 확인. 피크 대비 -99%, 거래량 소멸 진행 중. 영구 제외 대상.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace"],
+
+  "charts": {
+    "1w": "charts/MYXUSDT/20260521/MYXUSDT_1w.png",
+    "1d": "charts/MYXUSDT/20260521/MYXUSDT_1d.png"
+  }
+}

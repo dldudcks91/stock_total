@@ -1,0 +1,64 @@
+{
+  "symbol": "EWTUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "A3",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 89.88,
+      "bars": 56,
+      "date_range": "2026-03-25 ~ 2026-05-19",
+      "ma10": 93.212,
+      "ma20": 92.78,
+      "ma50": 84.8848,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0357, "ma20_pct": -0.0313, "ma50_pct": 0.0588},
+      "dist_from_ma_atr": {"ma10_atr": -1.583, "ma20_atr": -1.378, "ma50_atr": 2.373},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0313},
+      "atr": 2.104662, "atr_pct": 0.0234, "adx": 48.14,
+      "range_position": 0.739,
+      "last_candle": {
+        "type": "bear", "body_pct": 0.0226,
+        "upper_wick_pct": 0.0, "lower_wick_pct": 0.36,
+        "vol_rank_30d": 0.9, "vol_anomaly": null,
+        "accumulation_candle_score": 0.3, "distribution_candle_score": 0.3
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 2.114, "price_range_5bar_pct": 0.0771, "accumulation_score": 0.6},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0755, "ret_90d": 0.0,
+      "from_period_high_pct": -0.079,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 85.0, "resistance": 97.0},
+      "pattern": "high_base_pullback",
+      "recent_action": "1D: 4~5월 ADX 48 강한 상승 후 고점 -8% 위치 풀백. accumulation_score 0.6 + 거래량 폭증으로 큰손 지지 의심. MA20 테스트 중."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1D만 가용(low_history 56봉). A3 고점권 풀백이나 accumulation_suspect 시그널 긍정적. MA20 지지 확인 시 pass 전환 후보.",
+
+  "risk_flags": ["low_history", "accumulation_suspect"],
+
+  "charts": {
+    "1d": "charts/EWTUSDT/20260521/EWTUSDT_1d.png"
+  }
+}

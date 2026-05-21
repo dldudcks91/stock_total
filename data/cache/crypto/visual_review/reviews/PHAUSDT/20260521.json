@@ -1,0 +1,191 @@
+{
+  "symbol": "PHAUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:38:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.03307,
+      "bars": 18,
+      "date_range": "2024-12-31 ~ 2026-05-31",
+      "ma10": 0.04884,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3229, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.243, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.3229},
+      "atr": 0.064964,
+      "atr_pct": 1.9644,
+      "adx": null,
+      "range_position": 0.095,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0611,
+        "upper_wick_pct": 0.663,
+        "lower_wick_pct": 0.148,
+        "vol_rank_30d": 0.167,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9306,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.025, "resistance": 0.055},
+      "pattern": "downtrend_low_history",
+      "recent_action": "1M 18봉으로 history 부족. 상장 초 0.47 수준에서 지속 하락. 2026년 3월 거대 거래량 spike 시각 확인(1D 참조)."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.03307,
+      "bars": 74,
+      "date_range": "2024-12-30 ~ 2026-05-25",
+      "ma10": 0.035198,
+      "ma20": 0.033502,
+      "ma50": 0.061779,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0605, "ma20_pct": -0.0129, "ma50_pct": -0.4647},
+      "dist_from_ma_atr": {"ma10_atr": -0.188, "ma20_atr": -0.038, "ma50_atr": -2.543},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0129},
+      "atr": 0.011291,
+      "atr_pct": 0.3414,
+      "adx": 17.71,
+      "range_position": 0.197,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0039,
+        "upper_wick_pct": 0.39,
+        "lower_wick_pct": 0.528,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.233,
+        "price_range_5bar_pct": 0.3233,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.471,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9306,
+      "vol_avg_recent_vs_prior": 2.648
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.025, "resistance": 0.045},
+      "pattern": "bottom_vol_spike",
+      "recent_action": "1W에서 2026년 2-3월 초대형 거래량 폭발(vol_avg_recent_vs_prior=2.648) 후 가격 안정화 시도. MA20(0.0335)에 거의 닿는 수준. ADX=17.7 추세 없음. 아래꼬리(0.528) 긴 도지봉."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.03307,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.034254,
+      "ma20": 0.034078,
+      "ma50": 0.034976,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "down"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0346, "ma20_pct": -0.0296, "ma50_pct": -0.0545},
+      "dist_from_ma_atr": {"ma10_atr": -0.438, "ma20_atr": -0.373, "ma50_atr": -0.705},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0296},
+      "atr": 0.002704,
+      "atr_pct": 0.0818,
+      "adx": 15.27,
+      "range_position": 0.223,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0039,
+        "upper_wick_pct": 0.39,
+        "lower_wick_pct": 0.528,
+        "vol_rank_30d": 0.733,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.906,
+        "price_range_5bar_pct": 0.1633,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.0792,
+        "vol_rank": 0.867,
+        "close": 0.03294,
+        "max_retrace_pct": 0.0255,
+        "current_retrace_pct": -0.0039,
+        "holding": true
+      },
+      "ret_30d": 0.1097,
+      "ret_90d": 0.3648,
+      "from_period_high_pct": -0.5951,
+      "vol_avg_recent_vs_prior": 0.444
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.027, "resistance": 0.045},
+      "pattern": "base_ma_convergence",
+      "recent_action": "1D에서 2026년 3월 대량 거래량(약 8배 spike) 후 0.026 저점 형성, 이후 횡보. MA 3선이 0.034~0.035 구간에 수렴(tight). 최근 강양봉(bars_ago=1, holding=true) 확인. ADX=15.3."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1M B2(history 부족), 1W/1D B3 정합. 2026년 3월 거대 거래량 spike 후 바닥 형성 시도 중(accumulation_suspect). 1D 최근 강양봉+holding=true 긍정적. 고점 대비 -93% 낙폭. B4 전환 확인 시 재판정 필요.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "accumulation_suspect"],
+
+  "charts": {
+    "1m": "charts/PHAUSDT/20260521/PHAUSDT_1m.png",
+    "1w": "charts/PHAUSDT/20260521/PHAUSDT_1w.png",
+    "1d": "charts/PHAUSDT/20260521/PHAUSDT_1d.png"
+  }
+}

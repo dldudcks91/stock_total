@@ -1,0 +1,68 @@
+{
+  "symbol": "AMDUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:12:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "A3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 417.41,
+      "bars": 35,
+      "date_range": "2026-04-15 ~ 2026-05-19",
+      "ma10": 435.815,
+      "ma20": 415.2105,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0422, "ma20_pct": 0.0053, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.852, "ma20_atr": 0.102, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.0053},
+      "atr": 21.602718,
+      "atr_pct": 0.0518,
+      "adx": 31.76,
+      "range_position": 0.749,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0126,
+        "upper_wick_pct": 0.179,
+        "lower_wick_pct": 0.669,
+        "vol_rank_30d": 0.633,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.857, "price_range_5bar_pct": 0.1295, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.5248,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1172,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 400.0, "resistance": 475.0},
+      "pattern": "parabolic_pullback",
+      "recent_action": "4~5월 급등(+52%) 후 고점권 횡보 시작. MA10 아래로 이탈하며 토핑 신호. ret_30d 0.52로 parabolic."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "신규 코인(35봉 low_history). parabolic 위험 + 고점 횡보 진입. MA20 지지 여부 확인 후 판단.",
+  "risk_flags": ["parabolic", "low_history"],
+
+  "charts": {
+    "1d": "charts/AMDUSDT/20260521/AMDUSDT_1d.png"
+  }
+}

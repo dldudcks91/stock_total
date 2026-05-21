@@ -1,0 +1,83 @@
+{
+  "symbol": "SQQQUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 44.24,
+      "bars": 50,
+      "date_range": "2026-03-31 ~ 2026-05-19",
+      "ma10": 42.83,
+      "ma20": 45.1955,
+      "ma50": 56.3366,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0329, "ma20_pct": -0.0211, "ma50_pct": -0.2147},
+      "dist_from_ma_atr": {"ma10_atr": 0.654, "ma20_atr": -0.443, "ma50_atr": -5.611},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0211},
+      "atr": 2.155748,
+      "atr_pct": 0.0487,
+      "adx": 46.95,
+      "range_position": 0.071,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0197,
+        "upper_wick_pct": 0.55,
+        "lower_wick_pct": 0.059,
+        "vol_rank_30d": 0.967,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.3
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 2.272,
+        "price_range_5bar_pct": 0.0997,
+        "accumulation_score": 0.3
+      },
+      "recent_strong_bull": {
+        "bars_ago": 4,
+        "body_pct": 0.0525,
+        "vol_rank": 1.0,
+        "close": 43.4,
+        "max_retrace_pct": 0.029,
+        "current_retrace_pct": -0.0194,
+        "holding": true
+      },
+      "ret_30d": -0.2476,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.5056,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 40.0, "resistance": 45.5},
+      "pattern": "downtrend_bounce_attempt",
+      "recent_action": "3월말 고점 87-88선에서 급락 후 지속 하락, 최근 4일 전 강양봉+최고거래량으로 반등 시도 중이나 MA20 저항 눈앞."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1D만 채점 가능(low_history). 역배열+ADX 46.95 강한 하락추세, from_high -50%. 최근 강양봉 반등 시도이나 MA20 저항 미돌파, B2 하락 지속 판정.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1d": "charts/SQQQUSDT/20260521/SQQQUSDT_1d.png"
+  }
+}

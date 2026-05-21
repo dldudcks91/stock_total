@@ -1,0 +1,137 @@
+{
+  "symbol": "ASMLUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "A3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 1466.9,
+      "bars": 38,
+      "date_range": "2025-09-08 ~ 2026-05-25",
+      "ma10": 1423.265,
+      "ma20": 1410.5895,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0307, "ma20_pct": 0.0399, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.35, "ma20_atr": 0.452, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0307},
+      "atr": 124.623445,
+      "atr_pct": 0.085,
+      "adx": 39.85,
+      "range_position": 0.781,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.007,
+        "upper_wick_pct": 0.225,
+        "lower_wick_pct": 0.54,
+        "vol_rank_30d": 0.133,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.57,
+        "price_range_5bar_pct": 0.1661,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.3866,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0897,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 1350.0, "resistance": 1610.0},
+      "pattern": "topping_doji",
+      "recent_action": "급등 후 고점권에서 도지 형성, 거래량 감소하며 상승 동력 약화 중"
+    }
+  },
+
+  "tf_1d": {
+    "state": "A4",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 1466.9,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 1528.769,
+      "ma20": 1504.9875,
+      "ma50": 1454.049,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0405, "ma20_pct": -0.0253, "ma50_pct": 0.0088},
+      "dist_from_ma_atr": {"ma10_atr": -1.127, "ma20_atr": -0.694, "ma50_atr": 0.234},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.0088},
+      "atr": 54.897509,
+      "atr_pct": 0.0374,
+      "adx": 14.07,
+      "range_position": 0.621,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.007,
+        "upper_wick_pct": 0.225,
+        "lower_wick_pct": 0.54,
+        "vol_rank_30d": 0.8,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.974,
+        "price_range_5bar_pct": 0.1031,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 6,
+        "body_pct": 0.0522,
+        "vol_rank": 0.7,
+        "close": 1593.37,
+        "max_retrace_pct": 0.0942,
+        "current_retrace_pct": 0.0794,
+        "holding": false
+      },
+      "ret_30d": 0.0166,
+      "ret_90d": -0.0024,
+      "from_period_high_pct": -0.0897,
+      "vol_avg_recent_vs_prior": 0.429
+    },
+
+    "observations": {
+      "key_levels": {"support": 1430.0, "resistance": 1600.0},
+      "pattern": "pullback_after_high",
+      "recent_action": "신고가 1610 근방 도달 후 MA10/20 아래로 풀백, MA50(1454) 위에서 지지 여부 관찰 중"
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W A3 토핑 + 1D A4 하락 첫 시도. MA50 지지 여부가 관건. 저역사(38W) low_history 감안 판단 유보.",
+
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1w": "charts/ASMLUSDT/20260521/ASMLUSDT_1w.png",
+    "1d": "charts/ASMLUSDT/20260521/ASMLUSDT_1d.png"
+  }
+}

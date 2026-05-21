@@ -1,0 +1,159 @@
+{
+  "symbol": "CELRUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.002495,
+      "bars": 37,
+      "date_range": "2023-05-31 ~ 2026-05-31",
+      "ma10": 0.004112,
+      "ma20": 0.008244,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3933, "ma20_pct": -0.6974, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.382, "ma20_atr": -1.359, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.3933},
+      "atr": 0.004231,
+      "atr_pct": 1.696,
+      "adx": 9.72,
+      "range_position": 0.041,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.1014,
+        "upper_wick_pct": 0.612,
+        "lower_wick_pct": 0.047,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.66, "price_range_5bar_pct": 0.9683, "accumulation_score": 0.0},
+      "recent_strong_bull": {"bars_ago": 1, "body_pct": 0.1135, "vol_rank": 0.7, "close": 0.002748, "max_retrace_pct": 0.1048, "current_retrace_pct": 0.0921, "holding": false},
+      "ret_30d": -0.8286,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.937,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.002, "resistance": 0.005},
+      "pattern": "sustained_downtrend",
+      "recent_action": "월봉 고점 대비 -93.7% 낙폭. MA들이 큰 폭으로 역배열. 최근 1개봉 강양봉 있었으나 이미 되돌림 중."
+    }
+  },
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.002495,
+      "bars": 160,
+      "date_range": "2023-05-08 ~ 2026-05-25",
+      "ma10": 0.002611,
+      "ma20": 0.002801,
+      "ma50": 0.004996,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0444, "ma20_pct": -0.1093, "ma50_pct": -0.5006},
+      "dist_from_ma_atr": {"ma10_atr": -0.173, "ma20_atr": -0.457, "ma50_atr": -3.737},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0444},
+      "atr": 0.000669,
+      "atr_pct": 0.2683,
+      "adx": 31.34,
+      "range_position": 0.077,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0421,
+        "upper_wick_pct": 0.052,
+        "lower_wick_pct": 0.17,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.589, "price_range_5bar_pct": 0.2978, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.5664,
+      "ret_90d": -0.7786,
+      "from_period_high_pct": -0.937,
+      "vol_avg_recent_vs_prior": 0.335
+    },
+    "observations": {
+      "key_levels": {"support": 0.002, "resistance": 0.003},
+      "pattern": "bear_downtrend",
+      "recent_action": "주봉 3중 역배열 우하향. ADX 31로 추세 강함. 거래량이 평균 대비 33% 수준으로 감소."
+    }
+  },
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.002495,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.002804,
+      "ma20": 0.002815,
+      "ma50": 0.002662,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.11, "ma20_pct": -0.1137, "ma50_pct": -0.0627},
+      "dist_from_ma_atr": {"ma10_atr": -1.725, "ma20_atr": -1.789, "ma50_atr": -0.933},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0627},
+      "atr": 0.000179,
+      "atr_pct": 0.0717,
+      "adx": 29.19,
+      "range_position": 0.243,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0421,
+        "upper_wick_pct": 0.052,
+        "lower_wick_pct": 0.17,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.675, "price_range_5bar_pct": 0.1796, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0122,
+      "ret_90d": -0.0535,
+      "from_period_high_pct": -0.6032,
+      "vol_avg_recent_vs_prior": 1.003
+    },
+    "observations": {
+      "key_levels": {"support": 0.0024, "resistance": 0.003},
+      "pattern": "base_consolidation",
+      "recent_action": "일봉에서 2026년 3~5월 약 0.0025~0.003 박스권 형성 중. MA50 소폭 상향, MA20 횡보로 수렴 시도."
+    }
+  },
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "1M/1W 강한 B2 하락 추세, 1D B3 횡보 시도 — TF 충돌. 상위 TF 추세 전환 확인 전 진입 불가.",
+  "risk_flags": ["drawdown_deep"],
+  "charts": {
+    "1m": "charts/CELRUSDT/20260521/CELRUSDT_1m.png",
+    "1w": "charts/CELRUSDT/20260521/CELRUSDT_1w.png",
+    "1d": "charts/CELRUSDT/20260521/CELRUSDT_1d.png"
+  }
+}

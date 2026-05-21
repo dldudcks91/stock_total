@@ -1,0 +1,191 @@
+{
+  "symbol": "GALAUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.003319,
+      "bars": 54,
+      "date_range": "2021-12-31 ~ 2026-05-31",
+      "ma10": 0.007173,
+      "ma20": 0.01504,
+      "ma50": 0.029323,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.5373, "ma20_pct": -0.7793, "ma50_pct": -0.8868},
+      "dist_from_ma_atr": {"ma10_atr": -0.268, "ma20_atr": -0.815, "ma50_atr": -1.809},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.5373},
+      "atr": 0.014374,
+      "atr_pct": 4.3307,
+      "adx": 17.15,
+      "range_position": 0.041,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.038,
+        "upper_wick_pct": 0.819,
+        "lower_wick_pct": 0.096,
+        "vol_rank_30d": 0.667,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 2.38,
+        "price_range_5bar_pct": 1.6809,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.8682,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9947,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.002, "resistance": 0.008},
+      "pattern": "long_term_decay",
+      "recent_action": "1M 차트에서 2021 고점 0.6 이후 4년 하락, 현재 0.003으로 -99.5%. 역배열 완전, ADX 낮아 추세 약화 조짐은 있으나 절대 가격 극저점."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.003319,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 0.003224,
+      "ma20": 0.003947,
+      "ma50": 0.009237,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0293, "ma20_pct": -0.1591, "ma50_pct": -0.6407},
+      "dist_from_ma_atr": {"ma10_atr": 0.078, "ma20_atr": -0.515, "ma50_atr": -4.852},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0293},
+      "atr": 0.00122,
+      "atr_pct": 0.3675,
+      "adx": 38.33,
+      "range_position": 0.074,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0208,
+        "upper_wick_pct": 0.228,
+        "lower_wick_pct": 0.167,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.801,
+        "price_range_5bar_pct": 0.4438,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 2,
+        "body_pct": 0.2029,
+        "vol_rank": 0.933,
+        "close": 0.003913,
+        "max_retrace_pct": 0.1832,
+        "current_retrace_pct": 0.1518,
+        "holding": false
+      },
+      "ret_30d": -0.7034,
+      "ret_90d": -0.8206,
+      "from_period_high_pct": -0.9617,
+      "vol_avg_recent_vs_prior": 1.105
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.002, "resistance": 0.005},
+      "pattern": "multi_year_downtrend",
+      "recent_action": "1W에서 최근 강양봉(body 20%) 후 -18% 리트레이스, holding false. 역배열 지속, 30일 -70% 폭락."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.003319,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.003594,
+      "ma20": 0.003546,
+      "ma50": 0.003295,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0766, "ma20_pct": -0.064, "ma50_pct": 0.0073},
+      "dist_from_ma_atr": {"ma10_atr": -1.117, "ma20_atr": -0.921, "ma50_atr": 0.098},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.0073},
+      "atr": 0.000246,
+      "atr_pct": 0.0742,
+      "adx": 21.99,
+      "range_position": 0.347,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0208,
+        "upper_wick_pct": 0.228,
+        "lower_wick_pct": 0.167,
+        "vol_rank_30d": 0.067,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.392,
+        "price_range_5bar_pct": 0.1609,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.048,
+      "ret_90d": -0.143,
+      "from_period_high_pct": -0.6947,
+      "vol_avg_recent_vs_prior": 1.109
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.003, "resistance": 0.005},
+      "pattern": "base_building",
+      "recent_action": "1D에서 MA10/20/50 정배열(상향) 전환 중. MA50 우상향 시작, 가격이 저점 형성 후 횡보. 큰 그림은 B2이나 1D에서 B3 바닥 다지기 패턴 가능성."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1M/1W B2 지속 하락, 1D에서 MA 정배열 전환 조짐(B3 초기). TF 충돌 구간. 큰 그림 B2 우세하나 1D 미시 패턴에서 바닥 신호 관찰 중.",
+
+  "risk_flags": ["drawdown_deep"],
+
+  "charts": {
+    "1m": "charts/GALAUSDT/20260521/GALAUSDT_1m.png",
+    "1w": "charts/GALAUSDT/20260521/GALAUSDT_1w.png",
+    "1d": "charts/GALAUSDT/20260521/GALAUSDT_1d.png"
+  }
+}

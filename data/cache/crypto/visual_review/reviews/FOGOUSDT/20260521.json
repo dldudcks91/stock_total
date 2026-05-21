@@ -1,0 +1,137 @@
+{
+  "symbol": "FOGOUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.02043,
+      "bars": 19,
+      "date_range": "2026-01-19 ~ 2026-05-25",
+      "ma10": 0.018806,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0864, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.119, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0864},
+      "atr": 0.013647,
+      "atr_pct": 0.668,
+      "adx": null,
+      "range_position": 0.099,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.1767,
+        "upper_wick_pct": 0.021,
+        "lower_wick_pct": 0.125,
+        "vol_rank_30d": 0.263,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.6757,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.018, "resistance": 0.028},
+      "pattern": "downtrend_base",
+      "recent_action": "1W 19봉 데이터 한계. 1월 고점 0.063에서 0.02 수준으로 -68% 하락 후 박스권 형성 중."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "bounce_ma20",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.02043,
+      "bars": 125,
+      "date_range": "2026-01-15 ~ 2026-05-19",
+      "ma10": 0.019255,
+      "ma20": 0.019381,
+      "ma50": 0.018785,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.061, "ma20_pct": 0.0541, "ma50_pct": 0.0875},
+      "dist_from_ma_atr": {"ma10_atr": 0.732, "ma20_atr": 0.654, "ma50_atr": 1.025},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.0541},
+      "atr": 0.001605,
+      "atr_pct": 0.0786,
+      "adx": 21.93,
+      "range_position": 0.65,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.1767,
+        "upper_wick_pct": 0.021,
+        "lower_wick_pct": 0.125,
+        "vol_rank_30d": 0.967,
+        "vol_anomaly": "breakout",
+        "accumulation_candle_score": 0.3,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.763,
+        "price_range_5bar_pct": 0.209,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 0,
+        "body_pct": 0.1767,
+        "vol_rank": 1.0,
+        "close": 0.02043,
+        "max_retrace_pct": 0.0,
+        "current_retrace_pct": 0.0,
+        "holding": true
+      },
+      "ret_30d": 0.022,
+      "ret_90d": -0.1861,
+      "from_period_high_pct": -0.6757,
+      "vol_avg_recent_vs_prior": 0.66
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.018, "resistance": 0.025},
+      "pattern": "dead_cat_bounce",
+      "recent_action": "장기 하락 후 당일 대형 양봉(body 17.7%, vol rank top) 출현. MA10/20/50 수렴권에서 상방 이탈 시도. 추세 전환 확인 필요."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "1W 데이터 부족(19봉). 1D에서 강양봉+거래량 폭증으로 B4 전환 시도 포착. 단 1월 고점 대비 -68% 낙폭이 크고, dead cat bounce 가능성 배제 불가. 지속성 확인 필요.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1w": "charts/FOGOUSDT/20260521/FOGOUSDT_1w.png",
+    "1d": "charts/FOGOUSDT/20260521/FOGOUSDT_1d.png"
+  }
+}

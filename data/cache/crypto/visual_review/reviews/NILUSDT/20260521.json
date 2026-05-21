@@ -1,0 +1,184 @@
+{
+  "symbol": "NILUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:34:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "C1",
+    "micro_action": "acceleration",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "low",
+    "context": {
+      "last_close": 0.05266,
+      "bars": 15,
+      "date_range": "2025-03-31 ~ 2026-05-31",
+      "ma10": 0.116633,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.5485, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.315, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.5485},
+      "atr": 0.203296,
+      "atr_pct": 3.8605,
+      "adx": null,
+      "range_position": 0.049,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.2685,
+        "upper_wick_pct": 0.795,
+        "lower_wick_pct": 0.003,
+        "vol_rank_30d": 0.933,
+        "vol_anomaly": "breakout",
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.3
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9399,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.04, "resistance": 0.12},
+      "pattern": "pump_dump",
+      "recent_action": "15봉 저히스토리. 상장 초기 급등(~0.85) 후 -94% 폭락. 최근 월봉에서 거대 볼륨 급등-되돌림 패턴."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": "bounce_ma20",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "low",
+    "context": {
+      "last_close": 0.05266,
+      "bars": 62,
+      "date_range": "2025-03-24 ~ 2026-05-25",
+      "ma10": 0.042398,
+      "ma20": 0.049842,
+      "ma50": 0.162238,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.242, "ma20_pct": 0.0565, "ma50_pct": -0.6754},
+      "dist_from_ma_atr": {"ma10_atr": 0.351, "ma20_atr": 0.096, "ma50_atr": -3.744},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.0565},
+      "atr": 0.029267,
+      "atr_pct": 0.5558,
+      "adx": 26.59,
+      "range_position": 0.075,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.1096,
+        "upper_wick_pct": 0.207,
+        "lower_wick_pct": 0.085,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 3.722,
+        "price_range_5bar_pct": 1.3515,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.8209,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9399,
+      "vol_avg_recent_vs_prior": 5.268
+    },
+    "observations": {
+      "key_levels": {"support": 0.04, "resistance": 0.08},
+      "pattern": "volatile_bounce",
+      "recent_action": "최근 주봉에서 거대 거래량 동반 급등 양봉 출현. vol_avg 5.3x 수준. MA10/20 위로 올라섰으나 MA50은 훨씬 위."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A1",
+    "micro_action": "riding",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "low",
+    "context": {
+      "last_close": 0.05266,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.052939,
+      "ma20": 0.052248,
+      "ma50": 0.043125,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0053, "ma20_pct": 0.0079, "ma50_pct": 0.2211},
+      "dist_from_ma_atr": {"ma10_atr": -0.036, "ma20_atr": 0.053, "ma50_atr": 1.224},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0053},
+      "atr": 0.00779,
+      "atr_pct": 0.1479,
+      "adx": 46.58,
+      "range_position": 0.29,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.1096,
+        "upper_wick_pct": 0.207,
+        "lower_wick_pct": 0.085,
+        "vol_rank_30d": 0.667,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.264,
+        "price_range_5bar_pct": 0.1677,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 0,
+        "body_pct": 0.1096,
+        "vol_rank": 0.7,
+        "close": 0.05266,
+        "max_retrace_pct": 0.0,
+        "current_retrace_pct": 0.0,
+        "holding": true
+      },
+      "ret_30d": 0.3968,
+      "ret_90d": 0.0121,
+      "from_period_high_pct": -0.7895,
+      "vol_avg_recent_vs_prior": 8.388
+    },
+    "observations": {
+      "key_levels": {"support": 0.045, "resistance": 0.08},
+      "pattern": "breakout_vol",
+      "recent_action": "4월 말부터 거대 거래량(vol_avg 8.4x) 동반 급등. 일봉 강양봉 오늘 봉. 일봉 MA 정배열 형성 중."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "1D 급등(거래량 8x) A1 가능성 있으나 1M/1W 이력상 pump_dump 패턴. TF 충돌 + low_history + drawdown_deep. 급등 직후 추적 관찰 필요.",
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace", "accumulation_suspect"],
+
+  "charts": {
+    "1m": "charts/NILUSDT/20260521/NILUSDT_1m.png",
+    "1w": "charts/NILUSDT/20260521/NILUSDT_1w.png",
+    "1d": "charts/NILUSDT/20260521/NILUSDT_1d.png"
+  }
+}

@@ -1,0 +1,129 @@
+{
+  "symbol": "ZKCUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:10:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.0667,
+      "bars": 37,
+      "date_range": "2025-09-15 ~ 2026-05-25",
+      "ma10": 0.07253,
+      "ma20": 0.085225,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0804, "ma20_pct": -0.2174, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.067, "ma20_atr": -0.212, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0804},
+      "atr": 0.087462,
+      "atr_pct": 1.3113,
+      "adx": 53.85,
+      "range_position": 0.009,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0375,
+        "upper_wick_pct": 0.074,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.103,
+        "price_range_5bar_pct": 0.2609,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.7453,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9555,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.06, "resistance": 0.12},
+      "pattern": "post_pump_collapse",
+      "recent_action": "상장 직후(2025-09) 1.4 수준 폭등 후 현재 0.067로 -96%. 1W ADX 53으로 강한 하락 추세. 최근 4주 -75%."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.0667,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.07413,
+      "ma20": 0.075065,
+      "ma50": 0.073438,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1002, "ma20_pct": -0.1114, "ma50_pct": -0.0918},
+      "dist_from_ma_atr": {"ma10_atr": -1.854, "ma20_atr": -2.087, "ma50_atr": -1.681},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0918},
+      "atr": 0.004008,
+      "atr_pct": 0.0601,
+      "adx": 24.65,
+      "range_position": 0.09,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0375,
+        "upper_wick_pct": 0.074,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.167,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.441,
+        "price_range_5bar_pct": 0.1499,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.0471,
+      "ret_90d": -0.2859,
+      "from_period_high_pct": -0.7106,
+      "vol_avg_recent_vs_prior": 0.627
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.060, "resistance": 0.090},
+      "pattern": "staircase_decline",
+      "recent_action": "1D 차트에서 2026년 초 0.15 구간 이후 계단식 하락. MA군 전체 아래. 거래량은 초기 대비 급감."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "상장 직후 폭등+즉시 소멸 패턴 — 전형적 pump_dump_trace. 1W/1D 모두 B2 정합. 고점 대비 -96%. 영구 제외 권고.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace"],
+
+  "charts": {
+    "1w": "charts/ZKCUSDT/20260521/ZKCUSDT_1w.png",
+    "1d": "charts/ZKCUSDT/20260521/ZKCUSDT_1d.png"
+  }
+}

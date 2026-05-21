@@ -1,0 +1,171 @@
+{
+  "symbol": "ARKUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:06:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.1581,
+      "bars": 21,
+      "date_range": "2024-09-30 ~ 2026-05-31",
+      "ma10": 0.26167,
+      "ma20": 0.357345,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3958, "ma20_pct": -0.5576, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.755, "ma20_atr": -1.453, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.3958},
+      "atr": 0.137091,
+      "atr_pct": 0.8671,
+      "adx": null,
+      "range_position": 0.018,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.098,
+        "upper_wick_pct": 0.525,
+        "lower_wick_pct": 0.015,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8034,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.13, "resistance": 0.25},
+      "pattern": "sustained_downtrend",
+      "recent_action": "1M 21봉 history 짧음. $0.75 고점에서 -80% 하락. ADX null. MA10/20 역배열."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.1581,
+      "bars": 88,
+      "date_range": "2024-09-23 ~ 2026-05-25",
+      "ma10": 0.1693,
+      "ma20": 0.189975,
+      "ma50": 0.29727,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0662, "ma20_pct": -0.1678, "ma50_pct": -0.4682},
+      "dist_from_ma_atr": {"ma10_atr": -0.35, "ma20_atr": -0.995, "ma50_atr": -4.343},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0662},
+      "atr": 0.032044,
+      "atr_pct": 0.2027,
+      "adx": 28.27,
+      "range_position": 0.038,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0316,
+        "upper_wick_pct": 0.154,
+        "lower_wick_pct": 0.077,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.246, "price_range_5bar_pct": 0.2132, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.5183,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8034,
+      "vol_avg_recent_vs_prior": 0.248
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.13, "resistance": 0.20},
+      "pattern": "bear_trend_volume_dry",
+      "recent_action": "1W 역배열 전구간 우하향. vol_avg 0.248로 거래량 고갈 중. 강양봉 없음. range_position 0.038 구간 최하단."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "dry",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.1581,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.17343,
+      "ma20": 0.175095,
+      "ma50": 0.172136,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0884, "ma20_pct": -0.0971, "ma50_pct": -0.0815},
+      "dist_from_ma_atr": {"ma10_atr": -1.931, "ma20_atr": -2.14, "ma50_atr": -1.768},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0815},
+      "atr": 0.007941,
+      "atr_pct": 0.0502,
+      "adx": 21.83,
+      "range_position": 0.19,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0316,
+        "upper_wick_pct": 0.154,
+        "lower_wick_pct": 0.077,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.487, "price_range_5bar_pct": 0.141, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.0516,
+      "ret_90d": -0.155,
+      "from_period_high_pct": -0.5823,
+      "vol_avg_recent_vs_prior": 1.471
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.14, "resistance": 0.20},
+      "pattern": "ma_tight_below",
+      "recent_action": "1D MA10/20/50 수렴하며 가격 전체 아래. 거래량 낮고 방향성 없음. ADX 21.8으로 추세 약함."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF B2/B3 하락 국면. 1W 거래량 고갈(0.248), 1M low_history. -80% 낙폭 drawdown_deep. 강양봉 없음. 돌파 신호 없음.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1m": "charts/ARKUSDT/20260521/ARKUSDT_1m.png",
+    "1w": "charts/ARKUSDT/20260521/ARKUSDT_1w.png",
+    "1d": "charts/ARKUSDT/20260521/ARKUSDT_1d.png"
+  }
+}

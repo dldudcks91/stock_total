@@ -1,0 +1,71 @@
+{
+  "symbol": "PRLUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.2006,
+      "bars": 49,
+      "date_range": "2026-04-01 ~ 2026-05-19",
+      "ma10": 0.23392,
+      "ma20": 0.25268,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1424, "ma20_pct": -0.2061, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -1.028, "ma20_atr": -1.607, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1424},
+      "atr": 0.032406,
+      "atr_pct": 0.1615,
+      "adx": 37.55,
+      "range_position": 0.212,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0304,
+        "upper_wick_pct": 0.297,
+        "lower_wick_pct": 0.186,
+        "vol_rank_30d": 0.033,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.147, "price_range_5bar_pct": 0.3136, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0597,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.5512,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.17, "resistance": 0.27},
+      "pattern": "post_pump_decline",
+      "recent_action": "4월 상장 직후 ~0.45 USDT 펌프 후 -55% 하락 중. ADX 37.5 강한 하락추세. 1D MA 하향 역배열 중이며 반등 신호 없음."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "신규 상장 49봉, 1D만 채점 가능. 상장 펌프 후 지속 하락 B2, ADX 37.5 강한 추세. low_history로 채점 신뢰도 제한.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1d": "charts/PRLUSDT/20260521/PRLUSDT_1d.png"
+  }
+}

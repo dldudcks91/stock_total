@@ -1,0 +1,137 @@
+{
+  "symbol": "JCTUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:32:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.003011,
+      "bars": 28,
+      "date_range": "2025-11-17 ~ 2026-05-25",
+      "ma10": 0.003073,
+      "ma20": 0.002385,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0203, "ma20_pct": 0.2627, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.046, "ma20_atr": 0.46, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0203},
+      "atr": 0.001362,
+      "atr_pct": 0.4525,
+      "adx": null,
+      "range_position": 0.399,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0399,
+        "upper_wick_pct": 0.033,
+        "lower_wick_pct": 0.475,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.4956,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.002, "resistance": 0.004},
+      "pattern": "recovery_attempt",
+      "recent_action": "3월 이후 바닥 확인 후 반등 시도. MA10 바로 아래에서 조정 중. 28주 데이터로 신뢰도 제한적."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.003011,
+      "bars": 190,
+      "date_range": "2025-11-11 ~ 2026-05-19",
+      "ma10": 0.003482,
+      "ma20": 0.003303,
+      "ma50": 0.003247,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1353, "ma20_pct": -0.0884, "ma50_pct": -0.0727},
+      "dist_from_ma_atr": {"ma10_atr": -0.83, "ma20_atr": -0.515, "ma50_atr": -0.416},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0727},
+      "atr": 0.000567,
+      "atr_pct": 0.1884,
+      "adx": 20.95,
+      "range_position": 0.304,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0399,
+        "upper_wick_pct": 0.033,
+        "lower_wick_pct": 0.475,
+        "vol_rank_30d": 0.333,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.492,
+        "price_range_5bar_pct": 0.6151,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 6,
+        "body_pct": 0.1586,
+        "vol_rank": 1.0,
+        "close": 0.004319,
+        "max_retrace_pct": 0.3297,
+        "current_retrace_pct": 0.3028,
+        "holding": false
+      },
+      "ret_30d": -0.1689,
+      "ret_90d": 0.6925,
+      "from_period_high_pct": -0.4956,
+      "vol_avg_recent_vs_prior": 0.301
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.0025, "resistance": 0.0045},
+      "pattern": "spike_and_retrace",
+      "recent_action": "3월 스파이크(0.006 부근) 후 33% 급락. MA 정배열이나 가격이 모든 MA 아래. vol_avg=0.301로 거래량 급감."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "1w/1d 모두 B4이나 강양봉 후 30%+ 되돌림으로 안정성 미확인. low_history + 거래량 감소. MA50 지지 여부 확인 필요.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1w": "charts/JCTUSDT/20260521/JCTUSDT_1w.png",
+    "1d": "charts/JCTUSDT/20260521/JCTUSDT_1d.png"
+  }
+}

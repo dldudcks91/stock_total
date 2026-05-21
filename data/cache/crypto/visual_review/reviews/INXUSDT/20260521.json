@@ -1,0 +1,121 @@
+{
+  "symbol": "INXUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:33:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.009894,
+      "bars": 17,
+      "date_range": "2026-02-02 ~ 2026-05-25",
+      "ma10": 0.011186,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1155, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.253, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1155},
+      "atr": 0.005102,
+      "atr_pct": 0.5157,
+      "adx": null,
+      "range_position": 0.071,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0049,
+        "upper_wick_pct": 0.53,
+        "lower_wick_pct": 0.419,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.6668,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.008, "resistance": 0.012},
+      "pattern": "low_history_box",
+      "recent_action": "주봉 17개뿐. 1월 상장 후 고점 대비 -67% 하락권. MA10 하나만 있고 가격 아래. 범위 하단부에 위치."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.009894,
+      "bars": 109,
+      "date_range": "2026-01-31 ~ 2026-05-19",
+      "ma10": 0.011484,
+      "ma20": 0.011145,
+      "ma50": 0.011369,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "down"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1385, "ma20_pct": -0.1123, "ma50_pct": -0.1298},
+      "dist_from_ma_atr": {"ma10_atr": -0.959, "ma20_atr": -0.755, "ma50_atr": -0.89},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.1123},
+      "atr": 0.001658,
+      "atr_pct": 0.1676,
+      "adx": 40.74,
+      "range_position": 0.071,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0049,
+        "upper_wick_pct": 0.53,
+        "lower_wick_pct": 0.419,
+        "vol_rank_30d": 0.367,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.341, "price_range_5bar_pct": 0.2517, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.1538,
+      "ret_90d": -0.1987,
+      "from_period_high_pct": -0.6668,
+      "vol_avg_recent_vs_prior": 1.863
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.0085, "resistance": 0.015},
+      "pattern": "spike_and_retrace",
+      "recent_action": "4월 초 0.030 급등 스파이크 후 급락 복귀. 현재 박스 하단 0.010 근방 횡보. 차트상 pump_dump 패턴 의심."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "신규 상장(low_history). 1W 역배열 하향. 1D 박스 하단부 횡보. 4월 스파이크 후 급락 패턴 pump_dump 의심. 전환 확인 전 매매 회피.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace"],
+
+  "charts": {
+    "1w": "charts/INXUSDT/20260521/INXUSDT_1w.png",
+    "1d": "charts/INXUSDT/20260521/INXUSDT_1d.png"
+  }
+}

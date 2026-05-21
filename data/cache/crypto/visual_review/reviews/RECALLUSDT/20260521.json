@@ -1,0 +1,137 @@
+{
+  "symbol": "RECALLUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.05541,
+      "bars": 32,
+      "date_range": "2025-10-20 ~ 2026-05-25",
+      "ma10": 0.048961,
+      "ma20": 0.055736,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.1317, "ma20_pct": -0.0058, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.082, "ma20_atr": -0.004, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0058},
+      "atr": 0.078962,
+      "atr_pct": 1.4251,
+      "adx": 49.87,
+      "range_position": 0.041,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0366,
+        "upper_wick_pct": 0.406,
+        "lower_wick_pct": 0.165,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.8853,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9353,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.040, "resistance": 0.075},
+      "pattern": "ipo_collapse",
+      "recent_action": "상장 직후 폭락, 거래량 거의 없이 $0.055 수준에서 수렴. 좀비 패턴."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.05541,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.059159,
+      "ma20": 0.055191,
+      "ma50": 0.049765,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0634, "ma20_pct": 0.004, "ma50_pct": 0.1134},
+      "dist_from_ma_atr": {"ma10_atr": -0.618, "ma20_atr": 0.036, "ma50_atr": 0.931},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.004},
+      "atr": 0.006066,
+      "atr_pct": 0.1095,
+      "adx": 39.7,
+      "range_position": 0.517,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0366,
+        "upper_wick_pct": 0.406,
+        "lower_wick_pct": 0.165,
+        "vol_rank_30d": 0.8,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 14.071,
+        "price_range_5bar_pct": 0.3857,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 3,
+        "body_pct": 0.0774,
+        "vol_rank": 1.0,
+        "close": 0.06883,
+        "max_retrace_pct": 0.2325,
+        "current_retrace_pct": 0.195,
+        "holding": false
+      },
+      "ret_30d": 0.1568,
+      "ret_90d": 0.0384,
+      "from_period_high_pct": -0.8452,
+      "vol_avg_recent_vs_prior": 2.925
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.045, "resistance": 0.075},
+      "pattern": "spike_volume_consolidate",
+      "recent_action": "최근 거래량 급증+강양봉 후 MA20 근처 되돌림. 1D vol_avg 2.9배로 매집 가능성 있으나 되돌림 폭 큼(-23%). 신뢰도 낮음."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W B2 좀비+거래량 없음, 1D 최근 거래량 스파이크는 있으나 drawdown_deep -85% + low_history. TF 충돌로 매매 부적합.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1w": "charts/RECALLUSDT/20260521/RECALLUSDT_1w.png",
+    "1d": "charts/RECALLUSDT/20260521/RECALLUSDT_1d.png"
+  }
+}

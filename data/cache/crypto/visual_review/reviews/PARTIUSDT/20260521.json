@@ -1,0 +1,199 @@
+{
+  "symbol": "PARTIUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:35:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.05486,
+      "bars": 15,
+      "date_range": "2025-03-31 ~ 2026-05-31",
+      "ma10": 0.093516,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.4134, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.309, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.4134},
+      "atr": 0.125066,
+      "atr_pct": 2.2797,
+      "adx": null,
+      "range_position": 0.083,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.2585,
+        "upper_wick_pct": 0.478,
+        "lower_wick_pct": 0.028,
+        "vol_rank_30d": 0.4,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8747,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.04, "resistance": 0.12},
+      "pattern": "downtrend_low_history",
+      "recent_action": "1M 15봉으로 history 부족. 상장 초 고점 0.38~0.45에서 지속 하락하여 현재 0.055. MA10(0.093)과 격차 크게 벌어짐."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.05486,
+      "bars": 61,
+      "date_range": "2025-03-31 ~ 2026-05-25",
+      "ma10": 0.061432,
+      "ma20": 0.077785,
+      "ma50": 0.117482,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.107, "ma20_pct": -0.2947, "ma50_pct": -0.533},
+      "dist_from_ma_atr": {"ma10_atr": -0.248, "ma20_atr": -0.865, "ma50_atr": -2.362},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.107},
+      "atr": 0.026512,
+      "atr_pct": 0.4833,
+      "adx": 10.88,
+      "range_position": 0.15,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0339,
+        "upper_wick_pct": 0.5,
+        "lower_wick_pct": 0.17,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.498,
+        "price_range_5bar_pct": 0.5594,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 3,
+        "body_pct": 0.1912,
+        "vol_rank": 0.8,
+        "close": 0.04936,
+        "max_retrace_pct": 0.0346,
+        "current_retrace_pct": -0.1114,
+        "holding": true
+      },
+      "ret_30d": -0.2526,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8747,
+      "vol_avg_recent_vs_prior": 1.654
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.04, "resistance": 0.08},
+      "pattern": "downtrend_with_bounce_attempt",
+      "recent_action": "1W 역배열 완성(ADX=10.9 낮음). 최근 3봉 전 강양봉 발생(vol_rank=0.8) 후 현재 위쪽으로 돌파(holding=true). 2025년 하반기 거래량 집중 후 하락."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.05486,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.059117,
+      "ma20": 0.053558,
+      "ma50": 0.054797,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "down"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.072, "ma20_pct": 0.0243, "ma50_pct": 0.0012},
+      "dist_from_ma_atr": {"ma10_atr": -0.704, "ma20_atr": 0.215, "ma50_atr": 0.01},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.0012},
+      "atr": 0.006044,
+      "atr_pct": 0.1102,
+      "adx": 32.71,
+      "range_position": 0.262,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0339,
+        "upper_wick_pct": 0.5,
+        "lower_wick_pct": 0.17,
+        "vol_rank_30d": 0.233,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.526,
+        "price_range_5bar_pct": 0.1734,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 6,
+        "body_pct": 0.1108,
+        "vol_rank": 0.833,
+        "close": 0.06382,
+        "max_retrace_pct": 0.1554,
+        "current_retrace_pct": 0.1404,
+        "holding": false
+      },
+      "ret_30d": 0.4125,
+      "ret_90d": -0.4705,
+      "from_period_high_pct": -0.6669,
+      "vol_avg_recent_vs_prior": 1.043
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.043, "resistance": 0.07},
+      "pattern": "bottom_bounce_retest",
+      "recent_action": "1D에서 0.04 저점 반등 후 0.064까지 상승 후 다시 풀백. MA10(0.059) 아래, MA20(0.053)/MA50(0.054) 위. ADX=32.7 추세 있음. 바닥 다지기 구간."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1M/1W B2 하락 지속, 1D만 B3 바닥 다지기 시도로 TF 충돌. 고점 대비 -87%. 1D 단기 반등이 있었으나 되돌려짐(holding=false). 큰 그림 하락 추세 우세.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1m": "charts/PARTIUSDT/20260521/PARTIUSDT_1m.png",
+    "1w": "charts/PARTIUSDT/20260521/PARTIUSDT_1w.png",
+    "1d": "charts/PARTIUSDT/20260521/PARTIUSDT_1d.png"
+  }
+}

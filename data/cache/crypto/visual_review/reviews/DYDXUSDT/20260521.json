@@ -1,0 +1,171 @@
+{
+  "symbol": "DYDXUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:05:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.143,
+      "bars": 54,
+      "date_range": "2021-12-31 ~ 2026-05-31",
+      "ma10": 0.25088,
+      "ma20": 0.569655,
+      "ma50": 1.521962,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.43, "ma20_pct": -0.749, "ma50_pct": -0.906},
+      "dist_from_ma_atr": {"ma10_atr": -0.221, "ma20_atr": -0.874, "ma50_atr": -2.825},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.43},
+      "atr": 0.488117,
+      "atr_pct": 3.4134,
+      "adx": 8.8,
+      "range_position": 0.112,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0573,
+        "upper_wick_pct": 0.732,
+        "lower_wick_pct": 0.163,
+        "vol_rank_30d": 0.6,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 4.162, "price_range_5bar_pct": 0.9895, "accumulation_score": 0.0},
+      "recent_strong_bull": {"bars_ago": 1, "body_pct": 0.3327, "vol_rank": 0.8, "close": 0.1512, "max_retrace_pct": 0.1376, "current_retrace_pct": 0.0542, "holding": false},
+      "ret_30d": -0.9559,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9866,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.10, "resistance": 0.25},
+      "pattern": "terminal_decline",
+      "recent_action": "2024년 말~2026년 초 거래량 급증 동반 폭락. MA 완전 역배열, 고점 대비 -99%. 최근 월봉에서 일시 반등했으나 ma20 회복 실패."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.143,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 0.12622,
+      "ma20": 0.125425,
+      "ma50": 0.31801,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.1329, "ma20_pct": 0.1401, "ma50_pct": -0.5503},
+      "dist_from_ma_atr": {"ma10_atr": 0.347, "ma20_atr": 0.363, "ma50_atr": -3.616},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.1329},
+      "atr": 0.048402,
+      "atr_pct": 0.3385,
+      "adx": 28.9,
+      "range_position": 0.224,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0056,
+        "upper_wick_pct": 0.64,
+        "lower_wick_pct": 0.288,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.251, "price_range_5bar_pct": 0.5587, "accumulation_score": 0.0},
+      "recent_strong_bull": {"bars_ago": 5, "body_pct": 0.2652, "vol_rank": 0.733, "close": 0.1346, "max_retrace_pct": 0.049, "current_retrace_pct": -0.0624, "holding": true},
+      "ret_30d": -0.5722,
+      "ret_90d": -0.842,
+      "from_period_high_pct": -0.9684,
+      "vol_avg_recent_vs_prior": 2.939
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.10, "resistance": 0.20},
+      "pattern": "bounce_attempt",
+      "recent_action": "2026년 초 대규모 거래량 동반 급락 이후 0.10 바닥권에서 반등 시도. MA10/MA20 위로 복귀하며 상승 첫 시도 국면. 아직 MA50 (0.32)은 한참 위."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.143,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.15094,
+      "ma20": 0.1545,
+      "ma50": 0.134322,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0526, "ma20_pct": -0.0744, "ma50_pct": 0.0646},
+      "dist_from_ma_atr": {"ma10_atr": -0.554, "ma20_atr": -0.802, "ma50_atr": 0.605},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0526},
+      "atr": 0.014345,
+      "atr_pct": 0.1003,
+      "adx": 34.67,
+      "range_position": 0.498,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0056,
+        "upper_wick_pct": 0.64,
+        "lower_wick_pct": 0.288,
+        "vol_rank_30d": 0.8,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.404, "price_range_5bar_pct": 0.1902, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0704,
+      "ret_90d": 0.4144,
+      "from_period_high_pct": -0.6109,
+      "vol_avg_recent_vs_prior": 0.455
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.13, "resistance": 0.16},
+      "pattern": "consolidation_above_ma50",
+      "recent_action": "MA50 상향 기울기, 가격 MA50 위에서 MA10/20 아래로 눌림. 3월 반등 후 현재 MA10 아래서 수렴 중."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1M B2(종합 하락 트렌드)이나 1W/1D는 B4 반등 첫 시도 국면. TF 충돌. 1W 거래량 급증(vol_avg 2.9배) + 강양봉 보유 중 긍정 요소이나 MA50 여전히 먼 상태. 관망 권고.",
+
+  "risk_flags": ["drawdown_deep"],
+
+  "charts": {
+    "1m": "charts/DYDXUSDT/20260521/DYDXUSDT_1m.png",
+    "1w": "charts/DYDXUSDT/20260521/DYDXUSDT_1w.png",
+    "1d": "charts/DYDXUSDT/20260521/DYDXUSDT_1d.png"
+  }
+}

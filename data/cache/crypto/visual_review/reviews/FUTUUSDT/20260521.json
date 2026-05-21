@@ -1,0 +1,137 @@
+{
+  "symbol": "FUTUUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 125.03,
+      "bars": 30,
+      "date_range": "2025-11-03 ~ 2026-05-25",
+      "ma10": 144.706,
+      "ma20": 151.272,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.136, "ma20_pct": -0.1735, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -1.241, "ma20_atr": -1.655, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.136},
+      "atr": 15.860667,
+      "atr_pct": 0.1269,
+      "adx": 24.8,
+      "range_position": 0.011,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0573,
+        "upper_wick_pct": 0.103,
+        "lower_wick_pct": 0.096,
+        "vol_rank_30d": 0.1,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.381,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 115.0, "resistance": 160.0},
+      "pattern": "downtrend_new_low",
+      "recent_action": "1W 30봉. 2025-11월 200 근처 고점 이후 지속 하락, 현재 125로 신저점. MA10/20 우하향, 가격 MA 아래."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 125.03,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 137.11,
+      "ma20": 145.6885,
+      "ma50": 150.8082,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0881, "ma20_pct": -0.1418, "ma50_pct": -0.1709},
+      "dist_from_ma_atr": {"ma10_atr": -2.048, "ma20_atr": -3.503, "ma50_atr": -4.371},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0881},
+      "atr": 5.89765,
+      "atr_pct": 0.0472,
+      "adx": 25.41,
+      "range_position": 0.019,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0573,
+        "upper_wick_pct": 0.103,
+        "lower_wick_pct": 0.096,
+        "vol_rank_30d": 0.7,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.029,
+        "price_range_5bar_pct": 0.1544,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 6,
+        "body_pct": 0.0345,
+        "vol_rank": 0.933,
+        "close": 143.24,
+        "max_retrace_pct": 0.1331,
+        "current_retrace_pct": 0.1271,
+        "holding": false
+      },
+      "ret_30d": -0.2466,
+      "ret_90d": -0.1813,
+      "from_period_high_pct": -0.381,
+      "vol_avg_recent_vs_prior": 0.787
+    },
+
+    "observations": {
+      "key_levels": {"support": 115.0, "resistance": 145.0},
+      "pattern": "lower_low_continuation",
+      "recent_action": "1D 역배열. 4월 말 반등 시도(143까지) 후 재차 하락, 강양봉 이후 -13% 무너짐. 신저점 갱신 중."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "1W/1D 정합 B2. MA 완전 역배열, 신저점 갱신 중. 반등 후 재하락 패턴 반복. drawdown_deep 위험.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1w": "charts/FUTUUSDT/20260521/FUTUUSDT_1w.png",
+    "1d": "charts/FUTUUSDT/20260521/FUTUUSDT_1d.png"
+  }
+}

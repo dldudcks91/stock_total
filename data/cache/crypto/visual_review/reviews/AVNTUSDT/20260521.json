@@ -1,0 +1,129 @@
+{
+  "symbol": "AVNTUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:03:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.13454,
+      "bars": 37,
+      "date_range": "2025-09-15 ~ 2026-05-25",
+      "ma10": 0.141652,
+      "ma20": 0.181756,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0502, "ma20_pct": -0.2598, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.041, "ma20_atr": -0.274, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0502},
+      "atr": 0.172452,
+      "atr_pct": 1.2818,
+      "adx": 11.07,
+      "range_position": 0.023,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0244,
+        "upper_wick_pct": 0.197,
+        "lower_wick_pct": 0.122,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.168,
+        "price_range_5bar_pct": 0.3565,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.8059,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9495,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.12, "resistance": 0.20},
+      "pattern": "volume_dry_downtrend",
+      "recent_action": "고점 대비 -95% 낙폭, 주봉 거래량 완전 소멸. MA 역배열+하향. 최근 30일 -81% 폭락."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.13454,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.147898,
+      "ma20": 0.149328,
+      "ma50": 0.14354,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0903, "ma20_pct": -0.099, "ma50_pct": -0.0627},
+      "dist_from_ma_atr": {"ma10_atr": -1.327, "ma20_atr": -1.47, "ma50_atr": -0.894},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0627},
+      "atr": 0.010063,
+      "atr_pct": 0.0748,
+      "adx": 30.36,
+      "range_position": 0.236,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0244,
+        "upper_wick_pct": 0.197,
+        "lower_wick_pct": 0.122,
+        "vol_rank_30d": 0.033,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.396,
+        "price_range_5bar_pct": 0.1717,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0237,
+      "ret_90d": -0.2919,
+      "from_period_high_pct": -0.8148,
+      "vol_avg_recent_vs_prior": 0.929
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.12, "resistance": 0.18},
+      "pattern": "dead_cat_sideways",
+      "recent_action": "0.13~0.18 사이 횡보 중. MA 수렴하고 있으나 가격이 모든 MA 아래. 거래량 극히 저조."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF B2~B3, 고점 대비 -81~95% 낙폭, 주봉 거래량 소멸. 바닥 다지기 시도 중이나 거래량 없어 신뢰도 낮음. 회피.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1w": "charts/AVNTUSDT/20260521/AVNTUSDT_1w.png",
+    "1d": "charts/AVNTUSDT/20260521/AVNTUSDT_1d.png"
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "symbol": "ASTRUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.0077,
+      "bars": 40,
+      "date_range": "2023-02-28 ~ 2026-05-31",
+      "ma10": 0.012263,
+      "ma20": 0.026877,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3721, "ma20_pct": -0.7135, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.307, "ma20_atr": -1.291, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.3721},
+      "atr": 0.014851,
+      "atr_pct": 1.9287,
+      "adx": 20.93,
+      "range_position": 0.053,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0481,
+        "upper_wick_pct": 0.823,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.167,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.782,
+        "price_range_5bar_pct": 0.8688,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.8829,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9613,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.005, "resistance": 0.015},
+      "pattern": "post_pump_collapse",
+      "recent_action": "2024년 초 펌프 후 지속 하락, 피크 -96%. 월봉 MA 역배열 고착"
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.0077,
+      "bars": 170,
+      "date_range": "2023-02-27 ~ 2026-05-25",
+      "ma10": 0.00802,
+      "ma20": 0.008306,
+      "ma50": 0.01515,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0399, "ma20_pct": -0.0729, "ma50_pct": -0.4917},
+      "dist_from_ma_atr": {"ma10_atr": -0.169, "ma20_atr": -0.32, "ma50_atr": -3.94},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0399},
+      "atr": 0.001891,
+      "atr_pct": 0.2456,
+      "adx": 23.36,
+      "range_position": 0.11,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0299,
+        "upper_wick_pct": 0.258,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.275,
+        "price_range_5bar_pct": 0.2779,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.5667,
+      "ret_90d": -0.8749,
+      "from_period_high_pct": -0.9613,
+      "vol_avg_recent_vs_prior": 0.413
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.006, "resistance": 0.010},
+      "pattern": "stair_step_down",
+      "recent_action": "2025년 8월 대규모 거래량 이벤트 후 급락 재개, 주봉 역배열 지속"
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.0077,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.008611,
+      "ma20": 0.00862,
+      "ma50": 0.008124,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1058, "ma20_pct": -0.1067, "ma50_pct": -0.0522},
+      "dist_from_ma_atr": {"ma10_atr": -1.966, "ma20_atr": -1.986, "ma50_atr": -0.916},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0522},
+      "atr": 0.000463,
+      "atr_pct": 0.0602,
+      "adx": 22.25,
+      "range_position": 0.274,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0299,
+        "upper_wick_pct": 0.258,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.033,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.846,
+        "price_range_5bar_pct": 0.1818,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.0039,
+      "ret_90d": 0.0253,
+      "from_period_high_pct": -0.5534,
+      "vol_avg_recent_vs_prior": 0.929
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.007, "resistance": 0.011},
+      "pattern": "base_attempt",
+      "recent_action": "일봉 0.007~0.011 박스 형성 시도, MA20/50 상향이나 MA10 하향 혼재로 아직 확정 안됨"
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "1M/1W B2 펌프&덤프 흔적 + 피크 -96%. 1D B3 박스 시도이나 상위 TF 역배열 지배. reject 수준의 코인.",
+
+  "risk_flags": ["drawdown_deep", "pump_dump_trace"],
+
+  "charts": {
+    "1m": "charts/ASTRUSDT/20260521/ASTRUSDT_1m.png",
+    "1w": "charts/ASTRUSDT/20260521/ASTRUSDT_1w.png",
+    "1d": "charts/ASTRUSDT/20260521/ASTRUSDT_1d.png"
+  }
+}

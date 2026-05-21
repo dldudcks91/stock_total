@@ -1,0 +1,145 @@
+{
+  "symbol": "UBUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:36:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "C1",
+    "micro_action": "acceleration",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.12108,
+      "bars": 37,
+      "date_range": "2025-09-15 ~ 2026-05-25",
+      "ma10": 0.070841,
+      "ma20": 0.053038,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.7092, "ma20_pct": 1.2829, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 1.512, "ma20_atr": 2.047, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.7092},
+      "atr": 0.033234,
+      "atr_pct": 0.2745,
+      "adx": 36.85,
+      "range_position": 0.45,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.1315,
+        "upper_wick_pct": 0.239,
+        "lower_wick_pct": 0.038,
+        "vol_rank_30d": 0.367,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 2.907,
+        "price_range_5bar_pct": 1.7204,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 3,
+        "body_pct": 0.5963,
+        "vol_rank": 1.0,
+        "close": 0.1223,
+        "max_retrace_pct": 0.1809,
+        "current_retrace_pct": 0.01,
+        "holding": false
+      },
+      "ret_30d": 0.5255,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.5096,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.04, "resistance": 0.25},
+      "pattern": "pump_dump",
+      "recent_action": "1W 차트에서 장기간(2025.11~2026.04) 0.04~0.05 횡보 후 2026년 4월 말 폭발적 급등(0.25까지). 현재 0.12로 반토막. MA10 대비 70% 프리미엄으로 극단적 과열 후 하락 중."
+    }
+  },
+
+  "tf_1d": {
+    "state": "C1",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.12108,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.168628,
+      "ma20": 0.144612,
+      "ma50": 0.07882,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.282, "ma20_pct": -0.1627, "ma50_pct": 0.5362},
+      "dist_from_ma_atr": {"ma10_atr": -1.5, "ma20_atr": -0.742, "ma50_atr": 1.333},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.1627},
+      "atr": 0.031696,
+      "atr_pct": 0.2618,
+      "adx": 53.32,
+      "range_position": 0.45,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.1315,
+        "upper_wick_pct": 0.239,
+        "lower_wick_pct": 0.038,
+        "vol_rank_30d": 0.533,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.828,
+        "price_range_5bar_pct": 1.0463,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 6,
+        "body_pct": 0.1988,
+        "vol_rank": 0.8,
+        "close": 0.21249,
+        "max_retrace_pct": 0.4341,
+        "current_retrace_pct": 0.4302,
+        "holding": false
+      },
+      "ret_30d": 1.8829,
+      "ret_90d": 1.9532,
+      "from_period_high_pct": -0.5096,
+      "vol_avg_recent_vs_prior": 5.297
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.04, "resistance": 0.17},
+      "pattern": "parabolic_collapse",
+      "recent_action": "1D에서 4월 말 0.25 고점 이후 급락 중. ret_30d +188%로 전형적 펌프&덤프 패턴. 6봉 전 장대양봉(0.21) 이후 43% 추가 낙폭. MA20 대비 -16%로 하방 압력 지속."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "전형적 펌프&덤프 패턴. ret_30d +188%, 고점 대비 -51% 급락. 1W/1D 모두 C1으로 비정상 패턴. vol_avg_recent 5.3배로 단기 작전성 거래 흔적. 영구 제외 권고.",
+
+  "risk_flags": ["parabolic", "drawdown_deep", "low_history", "pump_dump_trace"],
+
+  "charts": {
+    "1w": "charts/UBUSDT/20260521/UBUSDT_1w.png",
+    "1d": "charts/UBUSDT/20260521/UBUSDT_1d.png"
+  }
+}

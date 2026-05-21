@@ -1,0 +1,171 @@
+{
+  "symbol": "DYMUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:10:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.02401,
+      "bars": 28,
+      "date_range": "2024-02-29 ~ 2026-05-31",
+      "ma10": 0.078205,
+      "ma20": 0.440667,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.693, "ma20_pct": -0.9455, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.109, "ma20_atr": -0.841, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.693},
+      "atr": 0.495503,
+      "atr_pct": 20.6374,
+      "adx": null,
+      "range_position": 0.022,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.2503,
+        "upper_wick_pct": 0.641,
+        "lower_wick_pct": 0.003,
+        "vol_rank_30d": 0.964,
+        "vol_anomaly": "breakout",
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.3
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.997,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.02, "resistance": 0.08},
+      "pattern": "terminal_collapse",
+      "recent_action": "출시 고점 $8 대비 현재 $0.024로 -99.7%. 최근 거래량 폭증(vol_rank 0.964)과 위꼬리 우세 봉은 분배 압력 신호."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.02401,
+      "bars": 117,
+      "date_range": "2024-03-04 ~ 2026-05-25",
+      "ma10": 0.022237,
+      "ma20": 0.034805,
+      "ma50": 0.116882,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0797, "ma20_pct": -0.3102, "ma50_pct": -0.7946},
+      "dist_from_ma_atr": {"ma10_atr": 0.086, "ma20_atr": -0.522, "ma50_atr": -4.489},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0797},
+      "atr": 0.020687,
+      "atr_pct": 0.8616,
+      "adx": 17.74,
+      "range_position": 0.037,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0321,
+        "upper_wick_pct": 0.421,
+        "lower_wick_pct": 0.249,
+        "vol_rank_30d": 0.433,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 3.38, "price_range_5bar_pct": 0.7264, "accumulation_score": 0.0},
+      "recent_strong_bull": {"bars_ago": 2, "body_pct": 0.2135, "vol_rank": 0.967, "close": 0.02487, "max_retrace_pct": 0.1789, "current_retrace_pct": 0.0346, "holding": false},
+      "ret_30d": -0.7718,
+      "ret_90d": -0.9813,
+      "from_period_high_pct": -0.997,
+      "vol_avg_recent_vs_prior": 9.319
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.018, "resistance": 0.035},
+      "pattern": "base_forming",
+      "recent_action": "2026년 4~5월 거래량 9배 급증 동반 반등 시도(주봉 강양봉). 하지만 MA10 아래서 되밀림 반복, 바닥 다지기 여부 미확정."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.02401,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.024555,
+      "ma20": 0.022336,
+      "ma50": 0.020571,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0222, "ma20_pct": 0.0749, "ma50_pct": 0.1672},
+      "dist_from_ma_atr": {"ma10_atr": -0.167, "ma20_atr": 0.513, "ma50_atr": 1.055},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0222},
+      "atr": 0.00326,
+      "atr_pct": 0.1358,
+      "adx": 46.15,
+      "range_position": 0.408,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0321,
+        "upper_wick_pct": 0.421,
+        "lower_wick_pct": 0.249,
+        "vol_rank_30d": 0.7,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.487, "price_range_5bar_pct": 0.2262, "accumulation_score": 0.0},
+      "recent_strong_bull": {"bars_ago": 1, "body_pct": 0.1352, "vol_rank": 0.767, "close": 0.02478, "max_retrace_pct": 0.0545, "current_retrace_pct": 0.0311, "holding": true},
+      "ret_30d": 0.4025,
+      "ret_90d": -0.457,
+      "from_period_high_pct": -0.8898,
+      "vol_avg_recent_vs_prior": 2.436
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.020, "resistance": 0.028},
+      "pattern": "ma_cross_up",
+      "recent_action": "1D MA10/20/50 단기 정배열 형성, ADX 46으로 추세 강함. 전일 거래량 동반 강양봉 + holding=true. 상승 첫 시도 확인 중."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "1D는 B4(상승 첫 시도, ADX 46 강한 추세), 1W는 B3(바닥 다지기), 1M은 B2. TF 충돌 상태. 1D 강양봉+holding 긍정적이나 1W/1M 큰 그림은 여전히 역배열. 거래량 급증이 매집인지 분배인지 불명확. 관망.",
+
+  "risk_flags": ["drawdown_deep"],
+
+  "charts": {
+    "1m": "charts/DYMUSDT/20260521/DYMUSDT_1m.png",
+    "1w": "charts/DYMUSDT/20260521/DYMUSDT_1w.png",
+    "1d": "charts/DYMUSDT/20260521/DYMUSDT_1d.png"
+  }
+}

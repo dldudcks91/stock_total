@@ -1,0 +1,116 @@
+{
+  "symbol": "CLOUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.0599,
+      "bars": 32,
+      "date_range": "2025-10-20 ~ 2026-05-25",
+      "ma10": 0.09216,
+      "ma20": 0.160685,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.35, "ma20_pct": -0.6272, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.263, "ma20_atr": -0.822, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.35},
+      "atr": 0.122596,
+      "atr_pct": 2.0467,
+      "adx": 20.27,
+      "range_position": 0.008,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.1603,
+        "upper_wick_pct": 0.112,
+        "lower_wick_pct": 0.287,
+        "vol_rank_30d": 0.2,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.7969,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9344,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.055, "resistance": 0.095},
+      "pattern": "downtrend_collapse",
+      "recent_action": "1W 기준 고점 대비 -93% 대폭락. 현재 MA10/MA20 모두 아래 위치하며 하락 지속. 박스권 하단에서 미미한 거래량으로 소폭 반등 흔적만 보임."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.0599,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.09501,
+      "ma20": 0.10823,
+      "ma50": 0.105122,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3695, "ma20_pct": -0.4465, "ma50_pct": -0.4302},
+      "dist_from_ma_atr": {"ma10_atr": -2.182, "ma20_atr": -3.004, "ma50_atr": -2.811},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.3695},
+      "atr": 0.016089,
+      "atr_pct": 0.2686,
+      "adx": 29.36,
+      "range_position": 0.039,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.1603,
+        "upper_wick_pct": 0.112,
+        "lower_wick_pct": 0.287,
+        "vol_rank_30d": 0.933,
+        "vol_anomaly": "breakout",
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.3
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 2.141, "price_range_5bar_pct": 1.0518, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.4937,
+      "ret_90d": -0.2623,
+      "from_period_high_pct": -0.9344,
+      "vol_avg_recent_vs_prior": 1.11
+    },
+    "observations": {
+      "key_levels": {"support": 0.055, "resistance": 0.105},
+      "pattern": "downtrend_break",
+      "recent_action": "1D 전 MA 아래 역배열 상태에서 거래량 급증 음봉 출현. 이전 소폭 반등 시도가 모두 MA에 막히며 하락 지속. MA10까지 -37% 거리."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "1W/1D 모두 B2 하락 지속. 고점 대비 -93% 폭락 후 의미 있는 바닥 다지기 없음. 거래량 급증 음봉으로 최근 압박 재확인.",
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1w": "charts/CLOUSDT/20260521/CLOUSDT_1w.png",
+    "1d": "charts/CLOUSDT/20260521/CLOUSDT_1d.png"
+  }
+}

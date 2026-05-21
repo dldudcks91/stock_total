@@ -1,0 +1,171 @@
+{
+  "symbol": "POLUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:36:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.08933,
+      "bars": 21,
+      "date_range": "2024-09-30 ~ 2026-05-31",
+      "ma10": 0.140735,
+      "ma20": 0.225188,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3653, "ma20_pct": -0.6033, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.599, "ma20_atr": -1.584, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.3653},
+      "atr": 0.085753,
+      "atr_pct": 0.96,
+      "adx": null,
+      "range_position": 0.039,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0646,
+        "upper_wick_pct": 0.584,
+        "lower_wick_pct": 0.076,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8838,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.07, "resistance": 0.15},
+      "pattern": "sustained_decline",
+      "recent_action": "2024-10월 0.65 고점에서 현재 0.089까지 -88% 하락. 1M 21봉으로 역사 짧고 전 MA 하단에 위치."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.08933,
+      "bars": 90,
+      "date_range": "2024-09-09 ~ 2026-05-25",
+      "ma10": 0.09294,
+      "ma20": 0.102831,
+      "ma50": 0.158103,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0388, "ma20_pct": -0.1313, "ma50_pct": -0.435},
+      "dist_from_ma_atr": {"ma10_atr": -0.189, "ma20_atr": -0.706, "ma50_atr": -3.594},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0388},
+      "atr": 0.019137,
+      "atr_pct": 0.2142,
+      "adx": 22.46,
+      "range_position": 0.068,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0162,
+        "upper_wick_pct": 0.241,
+        "lower_wick_pct": 0.287,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.381, "price_range_5bar_pct": 0.1899, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.5522,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8838,
+      "vol_avg_recent_vs_prior": 0.768
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.07, "resistance": 0.10},
+      "pattern": "downtrend_persistent",
+      "recent_action": "1W 역배열 전 MA 우하향. 2026-04월 큰 녹색 거래량 폭발 후에도 가격은 0.09 부근에서 수렴. 반등 지속력 미확인."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.08933,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.094953,
+      "ma20": 0.096434,
+      "ma50": 0.092543,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0592, "ma20_pct": -0.0737, "ma50_pct": -0.0347},
+      "dist_from_ma_atr": {"ma10_atr": -1.473, "ma20_atr": -1.861, "ma50_atr": -0.842},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0347},
+      "atr": 0.003818,
+      "atr_pct": 0.0427,
+      "adx": 26.93,
+      "range_position": 0.346,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0162,
+        "upper_wick_pct": 0.241,
+        "lower_wick_pct": 0.287,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.612, "price_range_5bar_pct": 0.078, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0207,
+      "ret_90d": -0.1698,
+      "from_period_high_pct": -0.5421,
+      "vol_avg_recent_vs_prior": 0.861
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.080, "resistance": 0.100},
+      "pattern": "range_stabilizing",
+      "recent_action": "1D MA10/20 수렴, MA50 수평. 2026-01월 급등 실패 후 박스 재형성. 현재 0.085~0.10 박스 범위 내 수렴."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1M/1W B2, 1D B3 분리. 고점 -88% 붕괴. 1D 박스 수렴 시도하나 1W 역배열 유지로 watch 이상 불가.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1m": "charts/POLUSDT/20260521/POLUSDT_1m.png",
+    "1w": "charts/POLUSDT/20260521/POLUSDT_1w.png",
+    "1d": "charts/POLUSDT/20260521/POLUSDT_1d.png"
+  }
+}

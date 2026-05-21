@@ -1,0 +1,75 @@
+{
+  "symbol": "GENIUSUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.42108,
+      "bars": 34,
+      "date_range": "2026-04-16 ~ 2026-05-19",
+      "ma10": 0.496792,
+      "ma20": 0.526315,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1524, "ma20_pct": -0.1999, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.89, "ma20_atr": -1.238, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1524},
+      "atr": 0.085028,
+      "atr_pct": 0.2019,
+      "adx": 12.04,
+      "range_position": 0.027,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0818,
+        "upper_wick_pct": 0.151,
+        "lower_wick_pct": 0.154,
+        "vol_rank_30d": 0.1,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.3503,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.5772,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.40, "resistance": 0.75},
+      "pattern": "ipo_downtrend",
+      "recent_action": "4월 상장 후 0.75 근처에서 지속 하락, 현재 0.42로 -42%. MA10/20 하향, ADX 12로 추세 약하나 방향은 하락. 거래량도 급감."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "skip",
+  "verdict_confidence": "low",
+  "verdict_reason": "신규 상장 34봉(low_history). 1M/1W PNG 미존재. 1D만으로 B2 초기 하락 판정. 상장 후 하락 패턴, 바닥 확인 불가.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1d": "charts/GENIUSUSDT/20260521/GENIUSUSDT_1d.png"
+  }
+}

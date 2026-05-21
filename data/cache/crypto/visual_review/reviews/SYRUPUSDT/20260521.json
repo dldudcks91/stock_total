@@ -1,0 +1,183 @@
+{
+  "symbol": "SYRUPUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:44:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.2087,
+      "bars": 13,
+      "date_range": "2025-05-31 ~ 2026-05-31",
+      "ma10": 0.30391,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3133, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.3133},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.032,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.1423,
+        "upper_wick_pct": 0.398,
+        "lower_wick_pct": 0.098,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.6876,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.18, "resistance": 0.35},
+      "pattern": "collapse_low_history",
+      "recent_action": "월봉 13봉 데이터 부족. 2025년 7월 피크(약 0.67) 이후 -69% 하락. 거래량 급감 추세."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.2087,
+      "bars": 55,
+      "date_range": "2025-05-12 ~ 2026-05-25",
+      "ma10": 0.22825,
+      "ma20": 0.256795,
+      "ma50": 0.348652,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0857, "ma20_pct": -0.1873, "ma50_pct": -0.4014},
+      "dist_from_ma_atr": {"ma10_atr": -0.368, "ma20_atr": -0.904, "ma50_atr": -2.632},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0857},
+      "atr": 0.053175,
+      "atr_pct": 0.2548,
+      "adx": 17.59,
+      "range_position": 0.05,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0019,
+        "upper_wick_pct": 0.716,
+        "lower_wick_pct": 0.23,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.347,
+        "price_range_5bar_pct": 0.2827,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.4558,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.6876,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.20, "resistance": 0.26},
+      "pattern": "declining_volume_downtrend",
+      "recent_action": "주봉 완전 역배열, 거래량 급감. 2025년 중반 이후 지속 하락, 최근 30일 -46%."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.2087,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.22898,
+      "ma20": 0.23878,
+      "ma50": 0.232716,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0886, "ma20_pct": -0.126, "ma50_pct": -0.1032},
+      "dist_from_ma_atr": {"ma10_atr": -1.653, "ma20_atr": -2.451, "ma50_atr": -1.957},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0886},
+      "atr": 0.01227,
+      "atr_pct": 0.0588,
+      "adx": 24.35,
+      "range_position": 0.184,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0019,
+        "upper_wick_pct": 0.716,
+        "lower_wick_pct": 0.23,
+        "vol_rank_30d": 0.067,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.667,
+        "price_range_5bar_pct": 0.1797,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.0741,
+      "ret_90d": -0.1085,
+      "from_period_high_pct": -0.5855,
+      "vol_avg_recent_vs_prior": 1.275
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.20, "resistance": 0.25},
+      "pattern": "base_attempt",
+      "recent_action": "일봉은 2026년 3~5월 0.20~0.25달러 박스 형성 중. 전 MA 아래이나 수렴 움직임 관찰."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W B2 하락 vs 1D B3 박스. 주봉 역배열 지배, 피크 -69%. 1D 박스는 아직 돌파 미확정. 매매 회피.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1m": "charts/SYRUPUSDT/20260521/SYRUPUSDT_1m.png",
+    "1w": "charts/SYRUPUSDT/20260521/SYRUPUSDT_1w.png",
+    "1d": "charts/SYRUPUSDT/20260521/SYRUPUSDT_1d.png"
+  }
+}

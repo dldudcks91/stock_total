@@ -1,0 +1,172 @@
+{
+  "symbol": "USTCUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "low",
+    "context": {
+      "last_close": 0.00599,
+      "bars": 16,
+      "date_range": "2025-02-28 ~ 2026-05-31",
+      "ma10": 0.007221,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1705, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.224, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1705},
+      "atr": 0.005494,
+      "atr_pct": 0.9172,
+      "adx": null,
+      "range_position": 0.143,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.1235,
+        "upper_wick_pct": 0.659,
+        "lower_wick_pct": 0.072,
+        "vol_rank_30d": 0.5,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.7275,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.004, "resistance": 0.008},
+      "pattern": "collapsed_asset",
+      "recent_action": "테라 붕괴 이후 극저가 구간. 16봉 데이터만 존재. ATR 91%로 극심한 변동성."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.00599,
+      "bars": 67,
+      "date_range": "2025-02-17 ~ 2026-05-25",
+      "ma10": 0.00573,
+      "ma20": 0.005618,
+      "ma50": 0.008556,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0454, "ma20_pct": 0.0662, "ma50_pct": -0.2999},
+      "dist_from_ma_atr": {"ma10_atr": 0.166, "ma20_atr": 0.238, "ma50_atr": -1.641},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0454},
+      "atr": 0.001563,
+      "atr_pct": 0.261,
+      "adx": 14.94,
+      "range_position": 0.21,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0401,
+        "upper_wick_pct": 0.083,
+        "lower_wick_pct": 0.417,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.244, "price_range_5bar_pct": 0.5676, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 3,
+        "body_pct": 0.2105,
+        "vol_rank": 0.733,
+        "close": 0.00765,
+        "max_retrace_pct": 0.2431,
+        "current_retrace_pct": 0.217,
+        "holding": false
+      },
+      "ret_30d": -0.2475,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.7275,
+      "vol_avg_recent_vs_prior": 4.875
+    },
+    "observations": {
+      "key_levels": {"support": 0.004, "resistance": 0.008},
+      "pattern": "erratic_bounce",
+      "recent_action": "주봉 3봉 전 강양봉(+21%) 이후 retrace -24%(holding false). vol_avg 4.875로 최근 거래량 급증. 투기적 변동 패턴."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.00599,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.006697,
+      "ma20": 0.006952,
+      "ma50": 0.005828,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.1056, "ma20_pct": -0.1383, "ma50_pct": 0.0278},
+      "dist_from_ma_atr": {"ma10_atr": -1.132, "ma20_atr": -1.539, "ma50_atr": 0.259},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.0278},
+      "atr": 0.000625,
+      "atr_pct": 0.1043,
+      "adx": 33.49,
+      "range_position": 0.411,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0401,
+        "upper_wick_pct": 0.083,
+        "lower_wick_pct": 0.417,
+        "vol_rank_30d": 0.1,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.642, "price_range_5bar_pct": 0.1803, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.2077,
+      "ret_90d": 0.1815,
+      "from_period_high_pct": -0.5697,
+      "vol_avg_recent_vs_prior": 2.657
+    },
+    "observations": {
+      "key_levels": {"support": 0.004, "resistance": 0.008},
+      "pattern": "unstable_recovery",
+      "recent_action": "일봉 2025년 12월 단기 spike 이후 급락, 4월 반등. MA 혼합배열로 방향성 불명확. MA10 하향으로 단기 약세."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "테라 붕괴 이후 극저가 좀비 자산. 투기적 변동만 반복. drawdown_deep + low_history + pump_dump_trace. 영구 제외 권고.",
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace"],
+
+  "charts": {
+    "1m": "charts/USTCUSDT/20260521/USTCUSDT_1m.png",
+    "1w": "charts/USTCUSDT/20260521/USTCUSDT_1w.png",
+    "1d": "charts/USTCUSDT/20260521/USTCUSDT_1d.png"
+  }
+}

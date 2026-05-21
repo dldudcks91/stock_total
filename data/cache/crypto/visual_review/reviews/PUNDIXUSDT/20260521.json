@@ -1,0 +1,179 @@
+{
+  "symbol": "PUNDIXUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.136,
+      "bars": 14,
+      "date_range": "2025-04-30 ~ 2026-05-31",
+      "ma10": 0.21508,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3677, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.3677},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.008,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0647,
+        "upper_wick_pct": 0.675,
+        "lower_wick_pct": 0.024,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.7902,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.10, "resistance": 0.22},
+      "pattern": "downtrend_stall",
+      "recent_action": "1M 14봉. 2025-05월 고점(~0.65) 후 지속 하락, 현재 -79%."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.136,
+      "bars": 56,
+      "date_range": "2025-05-05 ~ 2026-05-25",
+      "ma10": 0.14655,
+      "ma20": 0.16472,
+      "ma50": 0.24121,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.072, "ma20_pct": -0.1744, "ma50_pct": -0.4362},
+      "dist_from_ma_atr": {"ma10_atr": -0.387, "ma20_atr": -1.055, "ma50_atr": -3.863},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.072},
+      "atr": 0.027235,
+      "atr_pct": 0.2003,
+      "adx": 40.85,
+      "range_position": 0.009,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0228,
+        "upper_wick_pct": 0.174,
+        "lower_wick_pct": 0.152,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.17, "price_range_5bar_pct": 0.2147, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.5944,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.7902,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.12, "resistance": 0.17},
+      "pattern": "bear_dry",
+      "recent_action": "1W ADX 40.8 강한 하락추세. 최근 30d -59% 급락. 거래량 극히 낮아 반등 동력 없음."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.136,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.14873,
+      "ma20": 0.15036,
+      "ma50": 0.148778,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0856, "ma20_pct": -0.0955, "ma50_pct": -0.0859},
+      "dist_from_ma_atr": {"ma10_atr": -2.0, "ma20_atr": -2.256, "ma50_atr": -2.007},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0856},
+      "atr": 0.006365,
+      "atr_pct": 0.0468,
+      "adx": 21.53,
+      "range_position": 0.066,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0228,
+        "upper_wick_pct": 0.174,
+        "lower_wick_pct": 0.152,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.413, "price_range_5bar_pct": 0.1434, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 9,
+        "body_pct": 0.0237,
+        "vol_rank": 0.833,
+        "close": 0.1603,
+        "max_retrace_pct": 0.156,
+        "current_retrace_pct": 0.1516,
+        "holding": false
+      },
+      "ret_30d": -0.0634,
+      "ret_90d": -0.1626,
+      "from_period_high_pct": -0.5734,
+      "vol_avg_recent_vs_prior": 3.104
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.125, "resistance": 0.16},
+      "pattern": "base_attempt",
+      "recent_action": "1D MA 세 선 0.149~0.150 수렴, 가격은 MA 아래 박스 시도. 9일 전 강양봉 후 -15% 하락(holding=false). vol_avg 3.1로 최근 거래량은 회복."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1M/1W B2 강한 하락, 1D만 B3 전환 시도. TF 충돌. 큰 그림 하락 우세, 1D 반등 시도가 무너지며 skip 유지.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1m": "charts/PUNDIXUSDT/20260521/PUNDIXUSDT_1m.png",
+    "1w": "charts/PUNDIXUSDT/20260521/PUNDIXUSDT_1w.png",
+    "1d": "charts/PUNDIXUSDT/20260521/PUNDIXUSDT_1d.png"
+  }
+}

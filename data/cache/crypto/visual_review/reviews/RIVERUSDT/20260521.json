@@ -1,0 +1,124 @@
+{
+  "symbol": "RIVERUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 6.289,
+      "bars": 32,
+      "date_range": "2025-10-20 ~ 2026-05-25",
+      "ma10": 9.8609,
+      "ma20": 16.41195,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3622, "ma20_pct": -0.6168, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.43, "ma20_atr": -1.218, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.3622},
+      "atr": 8.313373,
+      "atr_pct": 1.3219,
+      "adx": 53.94,
+      "range_position": 0.055,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.1719,
+        "upper_wick_pct": 0.06,
+        "lower_wick_pct": 0.153,
+        "vol_rank_30d": 0.033,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.1347,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9269,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 5.0, "resistance": 10.0},
+      "pattern": "pump_dump_collapse",
+      "recent_action": "1W 차트에서 2026년 1월 ~85달러까지 폭등 후 즉시 붕괴. 현재 6달러대로 고점 대비 -92% 수준. 거래량 소멸 뚜렷한 펌프&덤프 패턴."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 6.289,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 6.8446,
+      "ma20": 6.5919,
+      "ma50": 7.9461,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0812, "ma20_pct": -0.046, "ma50_pct": -0.2085},
+      "dist_from_ma_atr": {"ma10_atr": -0.567, "ma20_atr": -0.309, "ma50_atr": -1.691},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.046},
+      "atr": 0.979941,
+      "atr_pct": 0.1558,
+      "adx": 19.39,
+      "range_position": 0.068,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.1719,
+        "upper_wick_pct": 0.06,
+        "lower_wick_pct": 0.153,
+        "vol_rank_30d": 0.7,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.892, "price_range_5bar_pct": 0.3117, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 5, "body_pct": 0.089, "vol_rank": 0.833, "close": 7.36,
+        "max_retrace_pct": 0.1742, "current_retrace_pct": 0.1455, "holding": false
+      },
+      "ret_30d": 0.0939,
+      "ret_90d": -0.2146,
+      "from_period_high_pct": -0.9269,
+      "vol_avg_recent_vs_prior": 0.5
+    },
+
+    "observations": {
+      "key_levels": {"support": 5.5, "resistance": 8.0},
+      "pattern": "post_pump_decline",
+      "recent_action": "1D에서 폭등 이후 점진적 하락세 지속. MA50이 우하향하며 가격 천장 역할. 강양봉 이후 되돌림 미해소."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "1W·1D 모두 펌프&덤프 흔적 명확. 고점 대비 -92% 붕괴 후 거래량 소멸. 전형적 pump_dump_trace 패턴으로 영구 제외.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace"],
+
+  "charts": {
+    "1w": "charts/RIVERUSDT/20260521/RIVERUSDT_1w.png",
+    "1d": "charts/RIVERUSDT/20260521/RIVERUSDT_1d.png"
+  }
+}

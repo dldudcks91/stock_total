@@ -1,0 +1,199 @@
+{
+  "symbol": "NEARUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:20:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 1.6024,
+      "bars": 54,
+      "date_range": "2021-12-31 ~ 2026-05-31",
+      "ma10": 1.68668,
+      "ma20": 2.62994,
+      "ma50": 3.187076,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.05, "ma20_pct": -0.3907, "ma50_pct": -0.4972},
+      "dist_from_ma_atr": {"ma10_atr": -0.063, "ma20_atr": -0.764, "ma50_atr": -1.178},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.05},
+      "atr": 1.345095,
+      "atr_pct": 0.8394,
+      "adx": 13.73,
+      "range_position": 0.305,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.191,
+        "upper_wick_pct": 0.198,
+        "lower_wick_pct": 0.115,
+        "vol_rank_30d": 0.633,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.579,
+        "price_range_5bar_pct": 0.6573,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.1465,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9223,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 1.0, "resistance": 3.0},
+      "pattern": "long_term_downtrend",
+      "recent_action": "1M 기준 ATH ~20 대비 -92% 붕괴. MA 전 역배열 우하향. 최근 월봉 양봉은 단기 반등 시도에 불과."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": "bounce_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 1.6024,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 1.38974,
+      "ma20": 1.34876,
+      "ma50": 1.925186,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.153, "ma20_pct": 0.1881, "ma50_pct": -0.1677},
+      "dist_from_ma_atr": {"ma10_atr": 0.723, "ma20_atr": 0.862, "ma50_atr": -1.097},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.153},
+      "atr": 0.294272,
+      "atr_pct": 0.1836,
+      "adx": 13.01,
+      "range_position": 0.326,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0137,
+        "upper_wick_pct": 0.577,
+        "lower_wick_pct": 0.219,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.607,
+        "price_range_5bar_pct": 0.2781,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 2,
+        "body_pct": 0.1845,
+        "vol_rank": 0.733,
+        "close": 1.5473,
+        "max_retrace_pct": 0.0531,
+        "current_retrace_pct": -0.0356,
+        "holding": true
+      },
+      "ret_30d": -0.312,
+      "ret_90d": -0.5978,
+      "from_period_high_pct": -0.8224,
+      "vol_avg_recent_vs_prior": 0.836
+    },
+
+    "observations": {
+      "key_levels": {"support": 1.2, "resistance": 2.0},
+      "pattern": "recovery_attempt",
+      "recent_action": "1W에서 2025년 말~2026년 초 저점($1 근방) 이후 반등. MA10/MA20 위 복귀 중이나 MA50(1.93) 저항이 강력. 최근 위꼬리 우세가 불안 요소."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A1",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "distribution_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 1.6024,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 1.56367,
+      "ma20": 1.47356,
+      "ma50": 1.391054,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0248, "ma20_pct": 0.0874, "ma50_pct": 0.1519},
+      "dist_from_ma_atr": {"ma10_atr": 0.417, "ma20_atr": 1.388, "ma50_atr": 2.277},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0248},
+      "atr": 0.0928,
+      "atr_pct": 0.0579,
+      "adx": 34.81,
+      "range_position": 0.843,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0137,
+        "upper_wick_pct": 0.577,
+        "lower_wick_pct": 0.219,
+        "vol_rank_30d": 0.867,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.6
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.153,
+        "price_range_5bar_pct": 0.1381,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.0728,
+        "vol_rank": 0.867,
+        "close": 1.6244,
+        "max_retrace_pct": 0.028,
+        "current_retrace_pct": 0.0135,
+        "holding": true
+      },
+      "ret_30d": 0.2103,
+      "ret_90d": 0.5756,
+      "from_period_high_pct": -0.4961,
+      "vol_avg_recent_vs_prior": 1.045
+    },
+
+    "observations": {
+      "key_levels": {"support": 1.40, "resistance": 1.80},
+      "pattern": "stair_step_up",
+      "recent_action": "1D 차트에서 정배열 형성 후 계단식 상승. 그러나 박스 상단 0.84 위치에서 distribution_candle_score 0.6 나옴 — 거래량 동반 위꼬리 도지는 분배 의심 신호."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1D A1 정배열 상승이나 1M B2 역배열과 충돌. 1D 박스 상단에서 distribution_suspect. 1W는 B4 상승 시도 중. 상위 TF 구조상 진입 신중 필요. drawdown_deep 플래그.",
+
+  "risk_flags": ["drawdown_deep", "distribution_suspect"],
+
+  "charts": {
+    "1m": "charts/NEARUSDT/20260521/NEARUSDT_1m.png",
+    "1w": "charts/NEARUSDT/20260521/NEARUSDT_1w.png",
+    "1d": "charts/NEARUSDT/20260521/NEARUSDT_1d.png"
+  }
+}

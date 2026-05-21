@@ -1,0 +1,191 @@
+{
+  "symbol": "BTCUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B3",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 76803.8,
+      "bars": 83,
+      "date_range": "2019-07-31 ~ 2026-05-31",
+      "ma10": 87668.74,
+      "ma20": 91386.17,
+      "ma50": 58902.232,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.1239, "ma20_pct": -0.1596, "ma50_pct": 0.3039},
+      "dist_from_ma_atr": {"ma10_atr": -0.687, "ma20_atr": -0.922, "ma50_atr": 1.132},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1239},
+      "atr": 15813.048667,
+      "atr_pct": 0.2059,
+      "adx": 28.97,
+      "range_position": 0.255,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0065,
+        "upper_wick_pct": 0.883,
+        "lower_wick_pct": 0.044,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.33,
+        "price_range_5bar_pct": 0.4946,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 1.0368,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.3913,
+      "vol_avg_recent_vs_prior": 0.897
+    },
+
+    "observations": {
+      "key_levels": {"support": 58000, "resistance": 95000},
+      "pattern": "post_peak_consolidation",
+      "recent_action": "2024~2025년 강세 사이클 이후 고점 대비 -39% 하락, MA10/MA20이 모두 현재가 위에 위치하며 월봉 기준 바닥권에서 다지기 중. 거래량은 전 고점 대비 축소."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 76803.8,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 74920.77,
+      "ma20": 75782.695,
+      "ma50": 94231.238,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0251, "ma20_pct": 0.0135, "ma50_pct": -0.1849},
+      "dist_from_ma_atr": {"ma10_atr": 0.272, "ma20_atr": 0.147, "ma50_atr": -2.517},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.0135},
+      "atr": 6923.345594,
+      "atr_pct": 0.0901,
+      "adx": 25.43,
+      "range_position": 0.301,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.002,
+        "upper_wick_pct": 0.333,
+        "lower_wick_pct": 0.545,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.648,
+        "price_range_5bar_pct": 0.1044,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.3267,
+      "ret_90d": 0.2997,
+      "from_period_high_pct": -0.3913,
+      "vol_avg_recent_vs_prior": 0.502
+    },
+
+    "observations": {
+      "key_levels": {"support": 69000, "resistance": 90000},
+      "pattern": "lower_high_box",
+      "recent_action": "주봉 기준 MA20(~75,800) 위로 간신히 복귀했으나 MA50(~94,200)과 거리가 큼. 1W MA10 상향, MA20/50 하향으로 혼재된 역배열 상태에서 바닥 다지기 국면."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 76803.8,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 79304.66,
+      "ma20": 79378.455,
+      "ma50": 75805.55,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0315, "ma20_pct": -0.0324, "ma50_pct": 0.0132},
+      "dist_from_ma_atr": {"ma10_atr": -1.217, "ma20_atr": -1.253, "ma50_atr": 0.486},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.0132},
+      "atr": 2054.191664,
+      "atr_pct": 0.0267,
+      "adx": 23.98,
+      "range_position": 0.664,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.002,
+        "upper_wick_pct": 0.333,
+        "lower_wick_pct": 0.545,
+        "vol_rank_30d": 0.3,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.96,
+        "price_range_5bar_pct": 0.0732,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 5,
+        "body_pct": 0.0219,
+        "vol_rank": 0.933,
+        "close": 81056.6,
+        "max_retrace_pct": 0.0623,
+        "current_retrace_pct": 0.0525,
+        "holding": false
+      },
+      "ret_30d": 0.0411,
+      "ret_90d": 0.1561,
+      "from_period_high_pct": -0.3093,
+      "vol_avg_recent_vs_prior": 0.829
+    },
+
+    "observations": {
+      "key_levels": {"support": 74000, "resistance": 82000},
+      "pattern": "ma_convergence_flat",
+      "recent_action": "일봉 MA10/MA20이 약 79,300~79,400 수준으로 수렴·평탄화되며 현재가가 그 아래에 위치. MA50(75,800)은 위로 기울어져 하방 지지 역할. 5일 전 강양봉(81,056) 후 현재 약 5.2% 되돌림 중으로 holding 미확정."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "전 TF B3 정합. 1D MA10/20 수렴 평탄화 중이며 MA50 지지권. 강양봉 후 되돌림 진행 중으로 B4 전환 확인 전까지 관망. drawdown_deep(-39%) 주의.",
+
+  "risk_flags": ["drawdown_deep"],
+
+  "charts": {
+    "1m": "charts/BTCUSDT/20260521/BTCUSDT_1m.png",
+    "1w": "charts/BTCUSDT/20260521/BTCUSDT_1w.png",
+    "1d": "charts/BTCUSDT/20260521/BTCUSDT_1d.png"
+  }
+}

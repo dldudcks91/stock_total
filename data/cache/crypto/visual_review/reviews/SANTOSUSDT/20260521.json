@@ -1,0 +1,191 @@
+{
+  "symbol": "SANTOSUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 1.029,
+      "bars": 20,
+      "date_range": "2024-10-31 ~ 2026-05-31",
+      "ma10": 1.5749,
+      "ma20": 2.25075,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3466, "ma20_pct": -0.5428, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.399, "ma20_atr": -0.894, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.3466},
+      "atr": 1.367029,
+      "atr_pct": 1.3285,
+      "adx": null,
+      "range_position": 0.165,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.105,
+        "upper_wick_pct": 0.55,
+        "lower_wick_pct": 0.076,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8592,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.8, "resistance": 2.0},
+      "pattern": "downtrend_staircase",
+      "recent_action": "2024년 10월 고점 7달러 이후 월봉 지속 하락. 현재 가격이 MA10/MA20 아래 완전 역배열. 거래량 급감(vol_rank 0.0) — 관심 소멸."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 1.029,
+      "bars": 83,
+      "date_range": "2024-10-28 ~ 2026-05-25",
+      "ma10": 1.1235,
+      "ma20": 1.46475,
+      "ma50": 1.71884,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0841, "ma20_pct": -0.2975, "ma50_pct": -0.4013},
+      "dist_from_ma_atr": {"ma10_atr": -0.324, "ma20_atr": -1.494, "ma50_atr": -2.366},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0841},
+      "atr": 0.291623,
+      "atr_pct": 0.2834,
+      "adx": 19.49,
+      "range_position": 0.057,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0078,
+        "upper_wick_pct": 0.452,
+        "lower_wick_pct": 0.357,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.26,
+        "price_range_5bar_pct": 0.3605,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.2618,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8592,
+      "vol_avg_recent_vs_prior": 0.365
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.8, "resistance": 1.5},
+      "pattern": "persistent_bear",
+      "recent_action": "주봉 완전 역배열. vol_avg_recent_vs_prior 0.365로 거래량 급감. 도지 연속 — 매수/매도 모두 소극적인 좀비 패턴."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 1.029,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 1.1189,
+      "ma20": 1.1345,
+      "ma50": 1.14718,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0803, "ma20_pct": -0.093, "ma50_pct": -0.103},
+      "dist_from_ma_atr": {"ma10_atr": -1.218, "ma20_atr": -1.429, "ma50_atr": -1.601},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0803},
+      "atr": 0.073833,
+      "atr_pct": 0.0718,
+      "adx": 19.44,
+      "range_position": 0.209,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0078,
+        "upper_wick_pct": 0.452,
+        "lower_wick_pct": 0.357,
+        "vol_rank_30d": 0.233,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.551,
+        "price_range_5bar_pct": 0.1409,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 9,
+        "body_pct": 0.0383,
+        "vol_rank": 0.833,
+        "close": 1.28,
+        "max_retrace_pct": 0.2133,
+        "current_retrace_pct": 0.1961,
+        "holding": false
+      },
+      "ret_30d": -0.1775,
+      "ret_90d": -0.4518,
+      "from_period_high_pct": -0.5962,
+      "vol_avg_recent_vs_prior": 0.704
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.9, "resistance": 1.3},
+      "pattern": "box_bottom_attempt",
+      "recent_action": "일봉 1.0~1.3 범위 박스. ADX 19 횡보. 9일 전 강양봉 후 19% 되돌림, 현재 1.0달러 지지 여부 관건. 거래량 감소 추세."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF B2~B3 하락/횡보 정합. 1W 거래량 dry, 1M ADX 부재로 추세 동력 없음. 90일 -45% 하락 후 박스 형성 중이나 매집 신호 없음. 반등 확인 전 회피.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1m": "charts/SANTOSUSDT/20260521/SANTOSUSDT_1m.png",
+    "1w": "charts/SANTOSUSDT/20260521/SANTOSUSDT_1w.png",
+    "1d": "charts/SANTOSUSDT/20260521/SANTOSUSDT_1d.png"
+  }
+}

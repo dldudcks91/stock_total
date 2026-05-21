@@ -1,0 +1,179 @@
+{
+  "symbol": "LUMIAUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:34:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.09878,
+      "bars": 20,
+      "date_range": "2024-10-31 ~ 2026-05-31",
+      "ma10": 0.142999,
+      "ma20": 0.41752,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3092, "ma20_pct": -0.7634, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.142, "ma20_atr": -1.02, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.3092},
+      "atr": 0.312371,
+      "atr_pct": 3.1623,
+      "adx": null,
+      "range_position": 0.113,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.4345,
+        "upper_wick_pct": 0.487,
+        "lower_wick_pct": 0.06,
+        "vol_rank_30d": 0.5,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9619,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.08, "resistance": 0.20},
+      "pattern": "sustained_downtrend",
+      "recent_action": "1M 20봉 (약 20개월) 데이터. 2024년 10월 약 2.5달러 고점 이후 -96% 붕괴. 최근 수개월은 0.1달러 이하로 내려앉은 상태."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.09878,
+      "bars": 84,
+      "date_range": "2024-10-21 ~ 2026-05-25",
+      "ma10": 0.10292,
+      "ma20": 0.092448,
+      "ma50": 0.170837,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0402, "ma20_pct": 0.0685, "ma50_pct": -0.4218},
+      "dist_from_ma_atr": {"ma10_atr": -0.106, "ma20_atr": 0.162, "ma50_atr": -1.847},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0402},
+      "atr": 0.039023,
+      "atr_pct": 0.3951,
+      "adx": 19.78,
+      "range_position": 0.225,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0122,
+        "upper_wick_pct": 0.469,
+        "lower_wick_pct": 0.352,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.98, "price_range_5bar_pct": 1.2499, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 4,
+        "body_pct": 0.2841,
+        "vol_rank": 0.867,
+        "close": 0.15682,
+        "max_retrace_pct": 0.4062,
+        "current_retrace_pct": 0.3701,
+        "holding": false
+      },
+      "ret_30d": -0.2779,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9619,
+      "vol_avg_recent_vs_prior": 0.996
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.07, "resistance": 0.13},
+      "pattern": "base_forming",
+      "recent_action": "1W MA10(상향)과 MA20(하향) 교차 혼재. 4주 전 강양봉(0.157) 이후 크게 되돌림. 최근 0.09~0.13 박스에서 수렴 진행 중."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A4",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.09878,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.110839,
+      "ma20": 0.124376,
+      "ma50": 0.111224,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1088, "ma20_pct": -0.2058, "ma50_pct": -0.1119},
+      "dist_from_ma_atr": {"ma10_atr": -0.874, "ma20_atr": -1.855, "ma50_atr": -0.902},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1088},
+      "atr": 0.013796,
+      "atr_pct": 0.1397,
+      "adx": 31.02,
+      "range_position": 0.249,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0122,
+        "upper_wick_pct": 0.469,
+        "lower_wick_pct": 0.352,
+        "vol_rank_30d": 0.133,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.398, "price_range_5bar_pct": 0.2181, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.1078,
+      "ret_90d": 0.5362,
+      "from_period_high_pct": -0.6039,
+      "vol_avg_recent_vs_prior": 1.812
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.08, "resistance": 0.14},
+      "pattern": "peak_reversal",
+      "recent_action": "1D 차트에서 2026년 4월 약 0.225달러 고점 달성 후 급락. MA10/20 아래로 이탈. 90일 수익률 +54%로 상승 이후 되돌림 국면. 저점권 탐색 중."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1M B2 지속 하락, 1D 고점 이탈 후 되돌림(A4). 1W만 B3 수렴 징후. 고점 -96% 극단적 하락 + low_history. 추세 전환 확인 불가.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1m": "charts/LUMIAUSDT/20260521/LUMIAUSDT_1m.png",
+    "1w": "charts/LUMIAUSDT/20260521/LUMIAUSDT_1w.png",
+    "1d": "charts/LUMIAUSDT/20260521/LUMIAUSDT_1d.png"
+  }
+}

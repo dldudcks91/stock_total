@@ -1,0 +1,183 @@
+{
+  "symbol": "C98USDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:10:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.01892,
+      "bars": 49,
+      "date_range": "2022-05-31 ~ 2026-05-31",
+      "ma10": 0.029627,
+      "ma20": 0.064076,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3614, "ma20_pct": -0.7047, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.216, "ma20_atr": -0.911, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.3614},
+      "atr": 0.049548,
+      "atr_pct": 2.6188,
+      "adx": 13.64,
+      "range_position": 0.07,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0624,
+        "upper_wick_pct": 0.717,
+        "lower_wick_pct": 0.062,
+        "vol_rank_30d": 0.367,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 2.117,
+        "price_range_5bar_pct": 1.0333,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.8999,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.978,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.015, "resistance": 0.035},
+      "pattern": "multi_year_downtrend",
+      "recent_action": "1M에서 2022년 이후 4년 지속 하락. 고점 대비 -97.8%. 역배열 유지, 모든 MA 우하향."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.01892,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 0.022338,
+      "ma20": 0.023931,
+      "ma50": 0.034323,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.153, "ma20_pct": -0.2094, "ma50_pct": -0.4488},
+      "dist_from_ma_atr": {"ma10_atr": -0.541, "ma20_atr": -0.794, "ma50_atr": -2.44},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.153},
+      "atr": 0.006313,
+      "atr_pct": 0.3336,
+      "adx": 9.44,
+      "range_position": 0.111,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0386,
+        "upper_wick_pct": 0.121,
+        "lower_wick_pct": 0.141,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.146,
+        "price_range_5bar_pct": 0.2822,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.4952,
+      "ret_90d": -0.8309,
+      "from_period_high_pct": -0.9696,
+      "vol_avg_recent_vs_prior": 0.681
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.015, "resistance": 0.025},
+      "pattern": "zombie_decline",
+      "recent_action": "1W ADX 9.44 추세 없음. 역배열 역하향 전 TF. 최근 30봉 수익률 -49.5%, 90봉 -83%. 거래량 극히 낮음."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.01892,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.021082,
+      "ma20": 0.021143,
+      "ma50": 0.021673,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1026, "ma20_pct": -0.1051, "ma50_pct": -0.127},
+      "dist_from_ma_atr": {"ma10_atr": -1.658, "ma20_atr": -1.705, "ma50_atr": -2.111},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1026},
+      "atr": 0.001304,
+      "atr_pct": 0.0689,
+      "adx": 20.55,
+      "range_position": 0.027,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0386,
+        "upper_wick_pct": 0.121,
+        "lower_wick_pct": 0.141,
+        "vol_rank_30d": 0.1,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.637,
+        "price_range_5bar_pct": 0.1945,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.1122,
+      "ret_90d": -0.3296,
+      "from_period_high_pct": -0.5824,
+      "vol_avg_recent_vs_prior": 0.782
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.017, "resistance": 0.025},
+      "pattern": "new_low_grind",
+      "recent_action": "1D에서 2026년 1월 거래량 급등(매도세) 이후 가격은 0.015-0.02 범위에서 계속 하락. 3개 MA 모두 아래 tight하게 위치하며 모두 우하향. 기술적 최저점 갱신 중."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "1M/1W/1D 모두 B2+dry 정합. 고점 -97.8% 기록하며 지속 하락 중. 1W ADX 9.44 — 추세조차 없는 좀비 코인 특성. 전 TF MA 역배열 유지. reject 확정.",
+
+  "risk_flags": ["drawdown_deep", "zombie"],
+
+  "charts": {
+    "1m": "charts/C98USDT/20260521/C98USDT_1m.png",
+    "1w": "charts/C98USDT/20260521/C98USDT_1w.png",
+    "1d": "charts/C98USDT/20260521/C98USDT_1d.png"
+  }
+}

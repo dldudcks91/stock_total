@@ -1,0 +1,179 @@
+{
+  "symbol": "HOODUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:36:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 74.33,
+      "bars": 10,
+      "date_range": "2025-08-31 ~ 2026-05-31",
+      "ma10": 102.72,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2764, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.2764},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.12,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0165,
+        "upper_wick_pct": 0.857,
+        "lower_wick_pct": 0.006,
+        "vol_rank_30d": 0.6,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.5154,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 65.0, "resistance": 110.0},
+      "pattern": "peak_decline",
+      "recent_action": "상장 초기 153 고점 이후 지속 하락. 월봉 10봉으로 신뢰도 매우 낮음."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 74.33,
+      "bars": 39,
+      "date_range": "2025-09-01 ~ 2026-05-25",
+      "ma10": 76.386,
+      "ma20": 82.7635,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0269, "ma20_pct": -0.1019, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.172, "ma20_atr": -0.705, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0269},
+      "atr": 11.954326,
+      "atr_pct": 0.1608,
+      "adx": 25.36,
+      "range_position": 0.124,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0371,
+        "upper_wick_pct": 0.162,
+        "lower_wick_pct": 0.228,
+        "vol_rank_30d": 0.033,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 2.069, "price_range_5bar_pct": 0.307, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 2,
+        "body_pct": 0.0526,
+        "vol_rank": 0.8,
+        "close": 80.79,
+        "max_retrace_pct": 0.0927,
+        "current_retrace_pct": 0.08,
+        "holding": false
+      },
+      "ret_30d": -0.4931,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.5154,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 65.0, "resistance": 82.0},
+      "pattern": "downtrend_consolidation",
+      "recent_action": "1W MA10/MA20 모두 하향, 1개월 -49% 급락 후 현재 MA10 근접. 2주 전 강양봉 이후 -8% 무너짐."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 74.33,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 77.429,
+      "ma20": 76.543,
+      "ma50": 77.542,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "up"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.04, "ma20_pct": -0.0289, "ma50_pct": -0.0414},
+      "dist_from_ma_atr": {"ma10_atr": -0.84, "ma20_atr": -0.6, "ma50_atr": -0.871},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0289},
+      "atr": 3.689095,
+      "atr_pct": 0.0496,
+      "adx": 17.62,
+      "range_position": 0.361,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0371,
+        "upper_wick_pct": 0.162,
+        "lower_wick_pct": 0.228,
+        "vol_rank_30d": 0.333,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.246, "price_range_5bar_pct": 0.1022, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.1613,
+      "ret_90d": -0.0125,
+      "from_period_high_pct": -0.5021,
+      "vol_avg_recent_vs_prior": 1.103
+    },
+
+    "observations": {
+      "key_levels": {"support": 67.0, "resistance": 82.0},
+      "pattern": "ma_convergence_bottom",
+      "recent_action": "1D MA 3선이 76~78에 수렴. ADX 17.6으로 추세 약함. 4~5월 거래량 유의미하게 증가하며 박스권 형성 시도."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W B2(하락) vs 1D B3(박스 수렴)로 충돌. 1D MA 3선 수렴 + ADX 낮음 → 변곡 가능성 있으나 1W 역배열 미해소. 거래량이 4월 이후 점진 증가는 긍정. 1D MA20(76.5) 이상 안착 + 1W MA10(76.4) 위 복귀 시 재검토.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1m": "charts/HOODUSDT/20260521/HOODUSDT_1m.png",
+    "1w": "charts/HOODUSDT/20260521/HOODUSDT_1w.png",
+    "1d": "charts/HOODUSDT/20260521/HOODUSDT_1d.png"
+  }
+}

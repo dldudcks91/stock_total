@@ -1,0 +1,179 @@
+{
+  "symbol": "LTCUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:33:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 54.48,
+      "bars": 82,
+      "date_range": "2019-08-31 ~ 2026-05-31",
+      "ma10": 74.755,
+      "ma20": 86.2185,
+      "ma50": 80.0552,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2712, "ma20_pct": -0.3681, "ma50_pct": -0.3195},
+      "dist_from_ma_atr": {"ma10_atr": -0.74, "ma20_atr": -1.158, "ma50_atr": -0.933},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.2712},
+      "atr": 27.401432,
+      "atr_pct": 0.503,
+      "adx": 19.15,
+      "range_position": 0.104,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0125,
+        "upper_wick_pct": 0.727,
+        "lower_wick_pct": 0.181,
+        "vol_rank_30d": 0.2,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.709, "price_range_5bar_pct": 0.7316, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.2151,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8681,
+      "vol_avg_recent_vs_prior": 1.458
+    },
+
+    "observations": {
+      "key_levels": {"support": 50.0, "resistance": 80.0},
+      "pattern": "downtrend_continuation",
+      "recent_action": "2021년 최고점 약 412달러 대비 현재 54달러로 -87%. 1M MA10/20/50 모두 우하향. 최근 2025~2026년 120달러 고점 이후 재하락 국면."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 54.48,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 54.983,
+      "ma20": 57.6995,
+      "ma50": 81.7918,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0091, "ma20_pct": -0.0558, "ma50_pct": -0.3339},
+      "dist_from_ma_atr": {"ma10_atr": -0.063, "ma20_atr": -0.404, "ma50_atr": -3.427},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0091},
+      "atr": 7.968602,
+      "atr_pct": 0.1463,
+      "adx": 32.4,
+      "range_position": 0.138,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0026,
+        "upper_wick_pct": 0.072,
+        "lower_wick_pct": 0.802,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.29, "price_range_5bar_pct": 0.1358, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.4514,
+      "ret_90d": -0.1662,
+      "from_period_high_pct": -0.6301,
+      "vol_avg_recent_vs_prior": 0.5
+    },
+
+    "observations": {
+      "key_levels": {"support": 48.0, "resistance": 65.0},
+      "pattern": "downtrend_retest",
+      "recent_action": "1W MA10에 거의 닿은 상태(dist -0.9%). 역배열 MA10/20/50 모두 우하향. 2025년 초 120달러 고점 이후 우하향 지속. 마지막 봉은 긴 아래꼬리 도지(하방 시도 후 복귀)."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 54.48,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 56.907,
+      "ma20": 56.534,
+      "ma50": 55.5166,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0426, "ma20_pct": -0.0363, "ma50_pct": -0.0187},
+      "dist_from_ma_atr": {"ma10_atr": -1.287, "ma20_atr": -1.09, "ma50_atr": -0.55},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0187},
+      "atr": 1.885111,
+      "atr_pct": 0.0346,
+      "adx": 22.41,
+      "range_position": 0.339,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0026,
+        "upper_wick_pct": 0.072,
+        "lower_wick_pct": 0.802,
+        "vol_rank_30d": 0.4,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.266, "price_range_5bar_pct": 0.098, "accumulation_score": 0.3},
+      "recent_strong_bull": {
+        "bars_ago": 5,
+        "body_pct": 0.021,
+        "vol_rank": 0.933,
+        "close": 58.17,
+        "max_retrace_pct": 0.0865,
+        "current_retrace_pct": 0.0634,
+        "holding": false
+      },
+      "ret_30d": 0.0083,
+      "ret_90d": 0.0225,
+      "from_period_high_pct": -0.5203,
+      "vol_avg_recent_vs_prior": 1.048
+    },
+
+    "observations": {
+      "key_levels": {"support": 52.0, "resistance": 62.0},
+      "pattern": "base_forming",
+      "recent_action": "1D에서 MA10/20/50 전부 55~57 구간에 수렴 flat. 가격은 MA50 바로 아래(dist -1.87%). 2026년 2~3월 이후 52~62달러 박스권. 5일 전 강양봉이 있었으나 무너진 상태."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1M/1W B2 역배열이나 1D 박스권 수렴 진행 중. LTC는 역사 긴 메이저 코인으로 B3 전환 가능성 모니터링 필요. 큰 TF 추세 전환 확인 전까지 관망.",
+
+  "risk_flags": ["drawdown_deep"],
+
+  "charts": {
+    "1m": "charts/LTCUSDT/20260521/LTCUSDT_1m.png",
+    "1w": "charts/LTCUSDT/20260521/LTCUSDT_1w.png",
+    "1d": "charts/LTCUSDT/20260521/LTCUSDT_1d.png"
+  }
+}

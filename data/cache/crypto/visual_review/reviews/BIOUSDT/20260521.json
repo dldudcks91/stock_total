@@ -1,0 +1,191 @@
+{
+  "symbol": "BIOUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "C1",
+    "micro_action": "riding",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.0337,
+      "bars": 17,
+      "date_range": "2025-01-31 ~ 2026-05-31",
+      "ma10": 0.061427,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.4514, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.109, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.4514},
+      "atr": 0.254468,
+      "atr_pct": 7.551,
+      "adx": null,
+      "range_position": 0.058,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.2231,
+        "upper_wick_pct": 0.759,
+        "lower_wick_pct": 0.017,
+        "vol_rank_30d": 0.765,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9629,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.02, "resistance": 0.06},
+      "pattern": "pump_dump",
+      "recent_action": "상장 직후 0.8달러 고점 → 수직 낙하. 고점 대비 -96.3%. 전형적 펌프&덤프 패턴."
+    }
+  },
+
+  "tf_1w": {
+    "state": "C1",
+    "micro_action": "riding",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.0337,
+      "bars": 73,
+      "date_range": "2025-01-06 ~ 2026-05-25",
+      "ma10": 0.030138,
+      "ma20": 0.030415,
+      "ma50": 0.065684,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.1182, "ma20_pct": 0.108, "ma50_pct": -0.4869},
+      "dist_from_ma_atr": {"ma10_atr": 0.205, "ma20_atr": 0.189, "ma50_atr": -1.839},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.108},
+      "atr": 0.017395,
+      "atr_pct": 0.5162,
+      "adx": 20.48,
+      "range_position": 0.234,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.1534,
+        "upper_wick_pct": 0.014,
+        "lower_wick_pct": 0.096,
+        "vol_rank_30d": 0.033,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 3.283,
+        "price_range_5bar_pct": 1.1736,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 3,
+        "body_pct": 0.4881,
+        "vol_rank": 1.0,
+        "close": 0.0548,
+        "max_retrace_pct": 0.3953,
+        "current_retrace_pct": 0.385,
+        "holding": false
+      },
+      "ret_30d": -0.6356,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9629,
+      "vol_avg_recent_vs_prior": 0.709
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.02, "resistance": 0.055},
+      "pattern": "dead_cat_bounce",
+      "recent_action": "2026년 4월 단기 스파이크(0.055) 후 다시 급락. 반복적 펌프 소멸 패턴."
+    }
+  },
+
+  "tf_1d": {
+    "state": "C1",
+    "micro_action": "riding",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.0337,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.042718,
+      "ma20": 0.046881,
+      "ma50": 0.033362,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.2111, "ma20_pct": -0.2812, "ma50_pct": 0.0101},
+      "dist_from_ma_atr": {"ma10_atr": -1.431, "ma20_atr": -2.092, "ma50_atr": 0.054},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.0101},
+      "atr": 0.006301,
+      "atr_pct": 0.187,
+      "adx": 40.71,
+      "range_position": 0.354,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.1534,
+        "upper_wick_pct": 0.014,
+        "lower_wick_pct": 0.096,
+        "vol_rank_30d": 0.2,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.242,
+        "price_range_5bar_pct": 0.4154,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.2057,
+      "ret_90d": 0.4304,
+      "from_period_high_pct": -0.6373,
+      "vol_avg_recent_vs_prior": 1.861
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.02, "resistance": 0.05},
+      "pattern": "repeated_spike_fail",
+      "recent_action": "4월 폭등 후 재하락 진행. 거래량 크게 감소. 큰 그림 펌프&덤프 구조 내 단기 반등."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF C1 pump_dump_trace 정합. 상장 직후 고점 대비 -96.3%. 반복 스파이크 후 소멸 패턴. 영구 제외.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace"],
+
+  "charts": {
+    "1m": "charts/BIOUSDT/20260521/BIOUSDT_1m.png",
+    "1w": "charts/BIOUSDT/20260521/BIOUSDT_1w.png",
+    "1d": "charts/BIOUSDT/20260521/BIOUSDT_1d.png"
+  }
+}

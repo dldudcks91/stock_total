@@ -1,0 +1,124 @@
+{
+  "symbol": "COSTUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:07:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 1094.78,
+      "bars": 13,
+      "date_range": "2026-03-02 ~ 2026-05-25",
+      "ma10": 1013.788,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0799, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0799},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.991,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.0179,
+        "upper_wick_pct": 0.036,
+        "lower_wick_pct": 0.383,
+        "vol_rank_30d": 0.077,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0011,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 960.0, "resistance": 1100.0},
+      "pattern": "new_high_breakout",
+      "recent_action": "1W 기준 13봉 이력이지만 시각상 일관적 우상향. 최근 강한 양봉으로 역대 최고점 수준(고점 대비 -0.1%). range_position=0.991."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "acceleration",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 1094.78,
+      "bars": 79,
+      "date_range": "2026-03-02 ~ 2026-05-19",
+      "ma10": 1042.338,
+      "ma20": 1026.7185,
+      "ma50": 1012.3558,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "tight",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0503, "ma20_pct": 0.0663, "ma50_pct": 0.0814},
+      "dist_from_ma_atr": {"ma10_atr": 2.834, "ma20_atr": 3.678, "ma50_atr": 4.454},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0503},
+      "atr": 18.503952,
+      "atr_pct": 0.0169,
+      "adx": 20.67,
+      "range_position": 0.991,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.0179,
+        "upper_wick_pct": 0.036,
+        "lower_wick_pct": 0.383,
+        "vol_rank_30d": 0.767,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 2.856, "price_range_5bar_pct": 0.0538, "accumulation_score": 0.6},
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.0211,
+        "vol_rank": 0.967,
+        "close": 1075.14,
+        "max_retrace_pct": 0.012,
+        "current_retrace_pct": -0.0183,
+        "holding": true
+      },
+      "ret_30d": 0.0976,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0011,
+      "vol_avg_recent_vs_prior": 0.816
+    },
+    "observations": {
+      "key_levels": {"support": 1010.0, "resistance": 1100.0},
+      "pattern": "breakout_acceleration",
+      "recent_action": "1D MA 완전 정배열, ATR 거리 MA10 기준 2.8 ATR로 신고가 돌파 가속 중. 5봉 매집점수 0.6. 고점 대비 -0.1% 로 사실상 ATH."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W/1D 모두 A2 정합, MA 정배열+신고가 근방. 단 MA10 대비 +5%, MA50 대비 +8% 이격 + 이력 79일 short. 신고가 권역에서 페러볼릭 리스크 존재, 풀백 후 재매수 검토.",
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1w": "charts/COSTUSDT/20260521/COSTUSDT_1w.png",
+    "1d": "charts/COSTUSDT/20260521/COSTUSDT_1d.png"
+  }
+}

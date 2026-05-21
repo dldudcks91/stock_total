@@ -1,0 +1,75 @@
+{
+  "symbol": "INDAUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:46:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "dry",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 47.37,
+      "bars": 41,
+      "date_range": "2026-04-09 ~ 2026-05-19",
+      "ma10": 48.155,
+      "ma20": 48.77,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0163, "ma20_pct": -0.0287, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.87, "ma20_atr": -1.552, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0163},
+      "atr": 0.901843,
+      "atr_pct": 0.019,
+      "adx": 24.73,
+      "range_position": 0.033,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0106,
+        "upper_wick_pct": 0.369,
+        "lower_wick_pct": 0.146,
+        "vol_rank_30d": 0.4,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.306,
+        "price_range_5bar_pct": 0.031,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.0708,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0855,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 47.0, "resistance": 52.0},
+      "pattern": "new_coin_downtrend",
+      "recent_action": "상장 41일차 신규 코인. 4월 중순 고점(~52) 후 하락 중이며 MA10/20 하향 기울기. 고점 대비 -9%. 거래량이 초기 대비 급감하며 관심 감소. MA10 아래 유지 중."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "skip",
+  "verdict_confidence": "low",
+  "verdict_reason": "신규 코인(41일) — 1D만 채점 가능(low_history). 상장 후 고점 하락 B2 국면. MA10/20 아래 + 거래량 급감. 데이터 부족으로 신뢰도 low.",
+
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1d": "charts/INDAUSDT/20260521/INDAUSDT_1d.png"
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "symbol": "AKTUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:05:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.7487,
+      "bars": 22,
+      "date_range": "2024-08-31 ~ 2026-05-31",
+      "ma10": 0.61656,
+      "ma20": 1.30128,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.2143, "ma20_pct": -0.4246, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.265, "ma20_atr": -1.107, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.2143},
+      "atr": 0.499376,
+      "atr_pct": 0.667,
+      "adx": null,
+      "range_position": 0.378,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.3216,
+        "upper_wick_pct": 0.441,
+        "lower_wick_pct": 0.01,
+        "vol_rank_30d": 0.818,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8492,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.50, "resistance": 1.20},
+      "pattern": "long_term_downtrend",
+      "recent_action": "월봉 기준 2025년 1월 5.0 피크 이후 하락 중. 최근 단봉 강양봉 출현. 월봉 MA20(1.3) 아래 포지션."
+    }
+  },
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": "bounce_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.7487,
+      "bars": 91,
+      "date_range": "2024-09-02 ~ 2026-05-25",
+      "ma10": 0.59052,
+      "ma20": 0.486495,
+      "ma50": 0.736816,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.2679, "ma20_pct": 0.539, "ma50_pct": 0.0161},
+      "dist_from_ma_atr": {"ma10_atr": 1.057, "ma20_atr": 1.751, "ma50_atr": 0.079},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.0161},
+      "atr": 0.149706,
+      "atr_pct": 0.2,
+      "adx": 25.33,
+      "range_position": 0.719,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.054,
+        "upper_wick_pct": 0.416,
+        "lower_wick_pct": 0.028,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.845, "price_range_5bar_pct": 0.6555, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 3,
+        "body_pct": 0.2309,
+        "vol_rank": 0.7,
+        "close": 0.6283,
+        "max_retrace_pct": 0.0748,
+        "current_retrace_pct": -0.1916,
+        "holding": true
+      },
+      "ret_30d": -0.0187,
+      "ret_90d": -0.6977,
+      "from_period_high_pct": -0.8492,
+      "vol_avg_recent_vs_prior": 2.114
+    },
+    "observations": {
+      "key_levels": {"support": 0.60, "resistance": 1.0},
+      "pattern": "recovery_above_ma50",
+      "recent_action": "주봉 MA10/20 우상향 전환. 가격이 MA10/20/50 전체 위로 돌파. 최근 강양봉 후 현재 소폭 눌림. B4 상승 첫 확인."
+    }
+  },
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.7487,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.78623,
+      "ma20": 0.70283,
+      "ma50": 0.562988,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0477, "ma20_pct": 0.0653, "ma50_pct": 0.3299},
+      "dist_from_ma_atr": {"ma10_atr": -0.473, "ma20_atr": 0.578, "ma50_atr": 2.339},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0477},
+      "atr": 0.079407,
+      "atr_pct": 0.1061,
+      "adx": 41.66,
+      "range_position": 0.635,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.054,
+        "upper_wick_pct": 0.416,
+        "lower_wick_pct": 0.028,
+        "vol_rank_30d": 0.667,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.269, "price_range_5bar_pct": 0.221, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.0781,
+        "vol_rank": 0.8,
+        "close": 0.7891,
+        "max_retrace_pct": 0.0537,
+        "current_retrace_pct": 0.0512,
+        "holding": false
+      },
+      "ret_30d": 0.6575,
+      "ret_90d": 1.3633,
+      "from_period_high_pct": -0.2051,
+      "vol_avg_recent_vs_prior": 0.918
+    },
+    "observations": {
+      "key_levels": {"support": 0.65, "resistance": 0.92},
+      "pattern": "uptrend_pullback",
+      "recent_action": "일봉 MA10/20/50 완전 정배열 우상향. 0.30에서 0.92까지 급등 후 MA10(0.79) 풀백 중. 90일 수익률 +136%. parabolic 주의."
+    }
+  },
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1D A2 정합 상승이나 1W/1M은 더 큰 다운트렌드 후 반등. parabolic 플래그(1D ret_90d +136%). MA10 풀백 지지 확인 후 재진입 검토 필요.",
+  "risk_flags": ["parabolic", "drawdown_deep", "low_history"],
+  "charts": {
+    "1m": "charts/AKTUSDT/20260521/AKTUSDT_1m.png",
+    "1w": "charts/AKTUSDT/20260521/AKTUSDT_1w.png",
+    "1d": "charts/AKTUSDT/20260521/AKTUSDT_1d.png"
+  }
+}

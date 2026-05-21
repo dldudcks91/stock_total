@@ -1,0 +1,129 @@
+{
+  "symbol": "BARDUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:13:30+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.2243,
+      "bars": 36,
+      "date_range": "2025-09-22 ~ 2026-05-25",
+      "ma10": 0.30708,
+      "ma20": 0.587125,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2696, "ma20_pct": -0.618, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.38, "ma20_atr": -1.667, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.2696},
+      "atr": 0.217712,
+      "atr_pct": 0.9706,
+      "adx": 17.18,
+      "range_position": 0.002,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.016,
+        "upper_wick_pct": 0.484,
+        "lower_wick_pct": 0.23,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.102,
+        "price_range_5bar_pct": 0.4904,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.6549,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8678,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.20, "resistance": 0.35},
+      "pattern": "post_pump_bleed",
+      "recent_action": "1W: 2026-03 급등($1.6) 후 즉시 거래량 소멸. 이후 일관 하락. 현재 바닥권 소음봉."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.2243,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.25949,
+      "ma20": 0.26902,
+      "ma50": 0.295452,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1356, "ma20_pct": -0.1662, "ma50_pct": -0.2408},
+      "dist_from_ma_atr": {"ma10_atr": -2.07, "ma20_atr": -2.63, "ma50_atr": -4.185},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1356},
+      "atr": 0.017003,
+      "atr_pct": 0.0758,
+      "adx": 32.26,
+      "range_position": 0.011,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.016,
+        "upper_wick_pct": 0.484,
+        "lower_wick_pct": 0.23,
+        "vol_rank_30d": 0.267,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.811,
+        "price_range_5bar_pct": 0.2345,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.236,
+      "ret_90d": -0.7046,
+      "from_period_high_pct": -0.8678,
+      "vol_avg_recent_vs_prior": 0.187
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.20, "resistance": 0.30},
+      "pattern": "ma_reverse_collapse",
+      "recent_action": "1D MA 완전 역배열+하향. vol_avg 0.187 극단 낮음. ADX 32 하락 지속. 3개월 수익률 -70%."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "1W/1D B2 정합. 고점 대비 -87%, MA 역배열+하향, vol_avg 0.187, P&D 흔적 명확. 매집 신호 없음.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace"],
+
+  "charts": {
+    "1w": "charts/BARDUSDT/20260521/BARDUSDT_1w.png",
+    "1d": "charts/BARDUSDT/20260521/BARDUSDT_1d.png"
+  }
+}

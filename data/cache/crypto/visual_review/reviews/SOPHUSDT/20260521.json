@@ -1,0 +1,179 @@
+{
+  "symbol": "SOPHUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:31:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.00752,
+      "bars": 13,
+      "date_range": "2025-05-31 ~ 2026-05-31",
+      "ma10": 0.015449,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.5132, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.5132},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.001,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.1503,
+        "upper_wick_pct": 0.535,
+        "lower_wick_pct": 0.02,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.92,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.005, "resistance": 0.015},
+      "pattern": "stair_down",
+      "recent_action": "1M에서 상장 이후 매월 계단식 하락. 현재가 MA10 대비 -51%, 거래량 소멸."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.00752,
+      "bars": 52,
+      "date_range": "2025-06-02 ~ 2026-05-25",
+      "ma10": 0.008591,
+      "ma20": 0.009448,
+      "ma50": 0.02022,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1247, "ma20_pct": -0.204, "ma50_pct": -0.6281},
+      "dist_from_ma_atr": {"ma10_atr": -0.277, "ma20_atr": -0.499, "ma50_atr": -3.288},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1247},
+      "atr": 0.003862,
+      "atr_pct": 0.5136,
+      "adx": 27.33,
+      "range_position": 0.002,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0306,
+        "upper_wick_pct": 0.308,
+        "lower_wick_pct": 0.103,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.182, "price_range_5bar_pct": 0.3378, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.7348,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.92,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.006, "resistance": 0.010},
+      "pattern": "sustained_decline",
+      "recent_action": "1W 역배열 지속 하락, from_high -92%. 최근 거래량 완전 소멸."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.00752,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.008614,
+      "ma20": 0.008723,
+      "ma50": 0.008651,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.127, "ma20_pct": -0.1379, "ma50_pct": -0.1308},
+      "dist_from_ma_atr": {"ma10_atr": -2.206, "ma20_atr": -2.426, "ma50_atr": -2.281},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.127},
+      "atr": 0.000496,
+      "atr_pct": 0.0659,
+      "adx": 24.01,
+      "range_position": 0.02,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0306,
+        "upper_wick_pct": 0.308,
+        "lower_wick_pct": 0.103,
+        "vol_rank_30d": 0.067,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.686, "price_range_5bar_pct": 0.1862, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 9,
+        "body_pct": 0.0506,
+        "vol_rank": 1.0,
+        "close": 0.00968,
+        "max_retrace_pct": 0.2283,
+        "current_retrace_pct": 0.2231,
+        "holding": false
+      },
+      "ret_30d": -0.1101,
+      "ret_90d": -0.1808,
+      "from_period_high_pct": -0.7247,
+      "vol_avg_recent_vs_prior": 0.76
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.0065, "resistance": 0.0095},
+      "pattern": "dead_cat_bounce",
+      "recent_action": "1D에서 9봉 전 강양봉(+5%) 출현 후 현재가 -22% 리트레이스로 반등 실패. MA 역배열 전 TF 유지."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF B2 역배열 정합. 피크 -92%, 반등 시도 실패(holding=false), 거래량 소멸. 매매 회피.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "zombie"],
+
+  "charts": {
+    "1m": "charts/SOPHUSDT/20260521/SOPHUSDT_1m.png",
+    "1w": "charts/SOPHUSDT/20260521/SOPHUSDT_1w.png",
+    "1d": "charts/SOPHUSDT/20260521/SOPHUSDT_1d.png"
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "symbol": "POLYXUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:37:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.0533,
+      "bars": 32,
+      "date_range": "2023-10-31 ~ 2026-05-31",
+      "ma10": 0.068682,
+      "ma20": 0.131981,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.224, "ma20_pct": -0.5962, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.186, "ma20_atr": -0.951, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.224},
+      "atr": 0.082766,
+      "atr_pct": 1.5528,
+      "adx": 22.93,
+      "range_position": 0.111,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.1191,
+        "upper_wick_pct": 0.629,
+        "lower_wick_pct": 0.006,
+        "vol_rank_30d": 0.6,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.73,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9297,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.04, "resistance": 0.08},
+      "pattern": "sustained_decline",
+      "recent_action": "2024-03월 고점 0.7에서 현재 -93% 붕괴. 1M 30봉 기준으로 역사 있으나 하락 일관. 2026-04월 거래량 스파이크 발생."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "bounce_ma10",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.0533,
+      "bars": 135,
+      "date_range": "2023-10-30 ~ 2026-05-25",
+      "ma10": 0.049548,
+      "ma20": 0.048794,
+      "ma50": 0.082941,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0757, "ma20_pct": 0.0923, "ma50_pct": -0.3574},
+      "dist_from_ma_atr": {"ma10_atr": 0.35, "ma20_atr": 0.42, "ma50_atr": -2.766},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0757},
+      "atr": 0.010717,
+      "atr_pct": 0.2011,
+      "adx": 23.27,
+      "range_position": 0.291,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.0246,
+        "upper_wick_pct": 0.423,
+        "lower_wick_pct": 0.116,
+        "vol_rank_30d": 0.233,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.469, "price_range_5bar_pct": 0.3306, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.3889,
+      "ret_90d": -0.7481,
+      "from_period_high_pct": -0.9297,
+      "vol_avg_recent_vs_prior": 4.523
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.040, "resistance": 0.065},
+      "pattern": "vol_spike_recovery",
+      "recent_action": "2026-03월 1W vol 4.5배 대량 거래 발생 후 가격이 MA10/20 위로 반등. 현재 MA10/20 위 양봉으로 마감. B3 전환 시도 중."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.0533,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.053693,
+      "ma20": 0.051747,
+      "ma50": 0.050445,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0073, "ma20_pct": 0.03, "ma50_pct": 0.0566},
+      "dist_from_ma_atr": {"ma10_atr": -0.111, "ma20_atr": 0.44, "ma50_atr": 0.808},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0073},
+      "atr": 0.003531,
+      "atr_pct": 0.0663,
+      "adx": 37.64,
+      "range_position": 0.491,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.0246,
+        "upper_wick_pct": 0.423,
+        "lower_wick_pct": 0.116,
+        "vol_rank_30d": 0.867,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.3,
+        "distribution_candle_score": 0.3
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 9.744, "price_range_5bar_pct": 0.2636, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 0,
+        "body_pct": 0.0246,
+        "vol_rank": 0.9,
+        "close": 0.0533,
+        "max_retrace_pct": 0.0,
+        "current_retrace_pct": 0.0,
+        "holding": true
+      },
+      "ret_30d": 0.0783,
+      "ret_90d": 0.2338,
+      "from_period_high_pct": -0.4205,
+      "vol_avg_recent_vs_prior": 0.518
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.048, "resistance": 0.065},
+      "pattern": "stair_step_recovery",
+      "recent_action": "1D MA10/20/50 정배열+전부 상향. ADX 37.6 강한 추세. 2026-03월 vol 폭증 후 계단식 상승 진행 중. 최근봉 강양봉(bars_ago=0, vol_rank=0.9)."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1M B2, 1W B3, 1D B4 충돌. 1D 정배열+강한 ADX+거래량 폭증으로 긍정적. 그러나 1W/1M 큰 그림 아직 B3 이하. 1W B4 확정 시 pass 격상 가능.",
+
+  "risk_flags": ["drawdown_deep", "accumulation_suspect"],
+
+  "charts": {
+    "1m": "charts/POLYXUSDT/20260521/POLYXUSDT_1m.png",
+    "1w": "charts/POLYXUSDT/20260521/POLYXUSDT_1w.png",
+    "1d": "charts/POLYXUSDT/20260521/POLYXUSDT_1d.png"
+  }
+}

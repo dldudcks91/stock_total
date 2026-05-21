@@ -1,0 +1,137 @@
+{
+  "symbol": "LDOUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T13:03:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.3511,
+      "bars": 171,
+      "date_range": "2023-02-20 ~ 2026-05-25",
+      "ma10": 0.35329,
+      "ma20": 0.377485,
+      "ma50": 0.702328,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0062, "ma20_pct": -0.0699, "ma50_pct": -0.5001},
+      "dist_from_ma_atr": {"ma10_atr": -0.021, "ma20_atr": -0.251, "ma50_atr": -3.343},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0062},
+      "atr": 0.105076,
+      "atr_pct": 0.2993,
+      "adx": 29.75,
+      "range_position": 0.118,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.01,
+        "upper_wick_pct": 0.5,
+        "lower_wick_pct": 0.176,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.902,
+        "price_range_5bar_pct": 0.3802,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 2,
+        "body_pct": 0.092,
+        "vol_rank": 0.833,
+        "close": 0.4089,
+        "max_retrace_pct": 0.1773,
+        "current_retrace_pct": 0.1414,
+        "holding": false
+      },
+      "ret_30d": -0.6265,
+      "ret_90d": -0.6714,
+      "from_period_high_pct": -0.9131,
+      "vol_avg_recent_vs_prior": 0.581
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.30, "resistance": 0.45},
+      "pattern": "bear_dead_cat",
+      "recent_action": "2주 전 강양봉 후 되돌림. 현재 MA10 바로 아래에서 도지 형성. MA50 대비 -50% 역배열 지속."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.3511,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.37637,
+      "ma20": 0.378015,
+      "ma50": 0.366114,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0671, "ma20_pct": -0.0712, "ma50_pct": -0.041},
+      "dist_from_ma_atr": {"ma10_atr": -0.932, "ma20_atr": -0.993, "ma50_atr": -0.554},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.041},
+      "atr": 0.027117,
+      "atr_pct": 0.0772,
+      "adx": 29.32,
+      "range_position": 0.395,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.01,
+        "upper_wick_pct": 0.5,
+        "lower_wick_pct": 0.176,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.387,
+        "price_range_5bar_pct": 0.1589,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.0193,
+      "ret_90d": 0.0672,
+      "from_period_high_pct": -0.6229,
+      "vol_avg_recent_vs_prior": 1.862
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.32, "resistance": 0.42},
+      "pattern": "flat_base",
+      "recent_action": "3월~5월 사이 0.32~0.42 박스권 다지기. MAs 타이트하게 수렴, 방향 돌파 대기 중."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W B2 역배열(-91%), 1D B3 박스 다지기. TF 충돌. 1D는 관망 구간, 1W 큰 그림은 여전히 하락 추세. 돌파 확인 전 skip에 가까운 watch.",
+
+  "risk_flags": ["drawdown_deep"],
+
+  "charts": {
+    "1w": "charts/LDOUSDT/20260521/LDOUSDT_1w.png",
+    "1d": "charts/LDOUSDT/20260521/LDOUSDT_1d.png"
+  }
+}

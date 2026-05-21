@@ -1,0 +1,183 @@
+{
+  "symbol": "STOUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "C1",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.06944,
+      "bars": 14,
+      "date_range": "2025-04-30 ~ 2026-05-31",
+      "ma10": 0.102782,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3244, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.3244},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.011,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.2849,
+        "upper_wick_pct": 0.143,
+        "lower_wick_pct": 0.148,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9652,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.06, "resistance": 0.12},
+      "pattern": "pump_dump",
+      "recent_action": "1M 히스토리 극히 짧음. from_high -96.5% 극단적 하락. 전형적 펌프&덤프 흔적."
+    }
+  },
+
+  "tf_1w": {
+    "state": "C1",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.06944,
+      "bars": 60,
+      "date_range": "2025-04-07 ~ 2026-05-25",
+      "ma10": 0.099797,
+      "ma20": 0.084795,
+      "ma50": 0.098678,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3042, "ma20_pct": -0.1811, "ma50_pct": -0.2963},
+      "dist_from_ma_atr": {"ma10_atr": -0.287, "ma20_atr": -0.145, "ma50_atr": -0.276},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.1811},
+      "atr": 0.10589,
+      "atr_pct": 1.5249,
+      "adx": 55.79,
+      "range_position": 0.011,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0045,
+        "upper_wick_pct": 0.69,
+        "lower_wick_pct": 0.192,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.374,
+        "price_range_5bar_pct": 0.8018,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.597,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9652,
+      "vol_avg_recent_vs_prior": 0.746
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.06, "resistance": 0.12},
+      "pattern": "pump_dump_aftermath",
+      "recent_action": "1W에서 2026년 3월 말 극단적 스파이크(2.0 인근) 후 즉시 붕괴. 현재 ATR 극단적 크기(1.52). 완전한 펌프&덤프 패턴."
+    }
+  },
+
+  "tf_1d": {
+    "state": "C1",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.06944,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.077532,
+      "ma20": 0.083043,
+      "ma50": 0.112501,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1044, "ma20_pct": -0.1638, "ma50_pct": -0.3828},
+      "dist_from_ma_atr": {"ma10_atr": -0.65, "ma20_atr": -1.093, "ma50_atr": -3.459},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1044},
+      "atr": 0.012449,
+      "atr_pct": 0.1793,
+      "adx": 61.72,
+      "range_position": 0.002,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0045,
+        "upper_wick_pct": 0.69,
+        "lower_wick_pct": 0.192,
+        "vol_rank_30d": 0.033,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.272,
+        "price_range_5bar_pct": 0.2121,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.2299,
+      "ret_90d": 0.3033,
+      "from_period_high_pct": -0.9652,
+      "vol_avg_recent_vs_prior": 0.131
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.06, "resistance": 0.10},
+      "pattern": "pump_dump_dead",
+      "recent_action": "1D 기준 3월 말 단봉 스파이크(2.0) 후 거래량 즉시 소멸, vol_avg 0.131 좀비화. ADX=61.72 강한 하락추세. range_position=0.002 역사적 최저점."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF C1 정합. 3월 말 전형적 펌프&덤프(1봉 스파이크 후 거래량 즉시 소멸), from_high -96.5%, 거래량 dead. reject 확정.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace"],
+
+  "charts": {
+    "1m": "charts/STOUSDT/20260521/STOUSDT_1m.png",
+    "1w": "charts/STOUSDT/20260521/STOUSDT_1w.png",
+    "1d": "charts/STOUSDT/20260521/STOUSDT_1d.png"
+  }
+}

@@ -1,0 +1,199 @@
+{
+  "symbol": "SAGAUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.02037,
+      "bars": 26,
+      "date_range": "2024-04-30 ~ 2026-05-31",
+      "ma10": 0.080868,
+      "ma20": 0.483804,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.7481, "ma20_pct": -0.9579, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.063, "ma20_atr": -0.483, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.7481},
+      "atr": 0.959976,
+      "atr_pct": 47.127,
+      "adx": null,
+      "range_position": 0.012,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.1645,
+        "upper_wick_pct": 0.933,
+        "lower_wick_pct": 0.001,
+        "vol_rank_30d": 0.962,
+        "vol_anomaly": "breakout",
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.3
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9973,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.015, "resistance": 0.08},
+      "pattern": "parabolic_dump_collapse",
+      "recent_action": "2024년 상장 직후 7달러 급등 후 0.02달러대로 붕괴. ATH 대비 -99.7% 수준에서 저거래량 횡보 중. 최근 대형 양봉 거래량 폭증(breakout)은 단발성 이상거래 의심."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.02037,
+      "bars": 111,
+      "date_range": "2024-04-15 ~ 2026-05-25",
+      "ma10": 0.023574,
+      "ma20": 0.031344,
+      "ma50": 0.117558,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1359, "ma20_pct": -0.3501, "ma50_pct": -0.8267},
+      "dist_from_ma_atr": {"ma10_atr": -0.141, "ma20_atr": -0.483, "ma50_atr": -4.281},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1359},
+      "atr": 0.0227,
+      "atr_pct": 1.1144,
+      "adx": 30.82,
+      "range_position": 0.035,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0736,
+        "upper_wick_pct": 0.192,
+        "lower_wick_pct": 0.069,
+        "vol_rank_30d": 0.233,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 12.096,
+        "price_range_5bar_pct": 2.5371,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 2,
+        "body_pct": 0.3271,
+        "vol_rank": 1.0,
+        "close": 0.02605,
+        "max_retrace_pct": 0.2246,
+        "current_retrace_pct": 0.218,
+        "holding": false
+      },
+      "ret_30d": -0.8129,
+      "ret_90d": -0.9839,
+      "from_period_high_pct": -0.9973,
+      "vol_avg_recent_vs_prior": 5.699
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.015, "resistance": 0.03},
+      "pattern": "persistent_downtrend",
+      "recent_action": "주봉 완전 역배열 ADX 31 — 강한 하락 추세 지속. 2주 전 강양봉(vol_rank 1.0) 발생 후 되돌림 22% 완료, 지지 불가."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.02037,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.025628,
+      "ma20": 0.021857,
+      "ma50": 0.023068,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2052, "ma20_pct": -0.068, "ma50_pct": -0.117},
+      "dist_from_ma_atr": {"ma10_atr": -0.992, "ma20_atr": -0.281, "ma50_atr": -0.509},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.068},
+      "atr": 0.0053,
+      "atr_pct": 0.2602,
+      "adx": 43.2,
+      "range_position": 0.075,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0736,
+        "upper_wick_pct": 0.192,
+        "lower_wick_pct": 0.069,
+        "vol_rank_30d": 0.6,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.602,
+        "price_range_5bar_pct": 0.3549,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 7,
+        "body_pct": 0.4108,
+        "vol_rank": 1.0,
+        "close": 0.04421,
+        "max_retrace_pct": 0.5431,
+        "current_retrace_pct": 0.5392,
+        "holding": false
+      },
+      "ret_30d": 0.1089,
+      "ret_90d": -0.3734,
+      "from_period_high_pct": -0.8396,
+      "vol_avg_recent_vs_prior": 13.032
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.015, "resistance": 0.045},
+      "pattern": "spike_and_collapse",
+      "recent_action": "일봉상 4월 말 0.044달러 급등봉(vol_rank 1.0) 후 54% 되돌림 완료. 현재 MA20/MA50 혼재 구간 하단 박스 형성 중. pump_dump 패턴 의심."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "1M/1W 모두 B2 강한 하락 추세, ATH 대비 -99.7% 붕괴. 단발성 거래량 급등(pump_dump) 이후 지속 되돌림. 1D만 B3 가능성 있으나 pump_dump_trace 플래그로 신뢰 불가.",
+
+  "risk_flags": ["drawdown_deep", "pump_dump_trace"],
+
+  "charts": {
+    "1m": "charts/SAGAUSDT/20260521/SAGAUSDT_1m.png",
+    "1w": "charts/SAGAUSDT/20260521/SAGAUSDT_1w.png",
+    "1d": "charts/SAGAUSDT/20260521/SAGAUSDT_1d.png"
+  }
+}

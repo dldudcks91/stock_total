@@ -1,0 +1,183 @@
+{
+  "symbol": "SUNUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:32:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.01967,
+      "bars": 22,
+      "date_range": "2024-08-31 ~ 2026-05-31",
+      "ma10": 0.019792,
+      "ma20": 0.019582,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0061, "ma20_pct": 0.0045, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.013, "ma20_atr": 0.009, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.0045},
+      "atr": 0.009431,
+      "atr_pct": 0.4795,
+      "adx": null,
+      "range_position": 0.19,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.0627,
+        "upper_wick_pct": 0.407,
+        "lower_wick_pct": 0.116,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.5603,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.015, "resistance": 0.025},
+      "pattern": "flat_range",
+      "recent_action": "월봉 22봉 데이터 부족, 피크 -56% 수준에서 0.02달러 박스. 거래량 매우 얇음."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.01967,
+      "bars": 92,
+      "date_range": "2024-08-26 ~ 2026-05-25",
+      "ma10": 0.018747,
+      "ma20": 0.018299,
+      "ma50": 0.020172,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0492, "ma20_pct": 0.0749, "ma50_pct": -0.0249},
+      "dist_from_ma_atr": {"ma10_atr": 0.521, "ma20_atr": 0.774, "ma50_atr": -0.283},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0249},
+      "atr": 0.001773,
+      "atr_pct": 0.0901,
+      "adx": 17.26,
+      "range_position": 0.593,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.006,
+        "upper_wick_pct": 0.477,
+        "lower_wick_pct": 0.232,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.178,
+        "price_range_5bar_pct": 0.1345,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.1447,
+      "ret_90d": -0.3834,
+      "from_period_high_pct": -0.5603,
+      "vol_avg_recent_vs_prior": 0.091
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.016, "resistance": 0.025},
+      "pattern": "low_volume_box",
+      "recent_action": "주봉 거래량이 과거 대비 9% 수준으로 극도로 마름. MA 수렴 구간에서 방향성 미확정 횡보."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.01967,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.01995,
+      "ma20": 0.019667,
+      "ma50": 0.018704,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.014, "ma20_pct": 0.0002, "ma50_pct": 0.0516},
+      "dist_from_ma_atr": {"ma10_atr": -0.66, "ma20_atr": 0.008, "ma50_atr": 2.276},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.0002},
+      "atr": 0.000424,
+      "atr_pct": 0.0216,
+      "adx": 43.2,
+      "range_position": 0.728,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.006,
+        "upper_wick_pct": 0.477,
+        "lower_wick_pct": 0.232,
+        "vol_rank_30d": 0.167,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.64,
+        "price_range_5bar_pct": 0.037,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0945,
+      "ret_90d": 0.1394,
+      "from_period_high_pct": -0.1467,
+      "vol_avg_recent_vs_prior": 0.574
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.018, "resistance": 0.022},
+      "pattern": "ma_align_recovery",
+      "recent_action": "일봉은 2026년 3월 저점(약 0.016)에서 반등하여 MA10/20/50 정배열 형성. 현재 MA20 근접 테스트 중이나 돌파 확정 미완."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1D B4(상승 첫 시도) vs 1W/1M 거래량 극감 B3/B2. 일봉 단기 복구 흐름 있으나 주봉 volume=dry 상태라 momentum 신뢰 낮음. 변곡 확인 대기.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1m": "charts/SUNUSDT/20260521/SUNUSDT_1m.png",
+    "1w": "charts/SUNUSDT/20260521/SUNUSDT_1w.png",
+    "1d": "charts/SUNUSDT/20260521/SUNUSDT_1d.png"
+  }
+}

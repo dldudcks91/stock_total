@@ -1,0 +1,137 @@
+{
+  "symbol": "LLYUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T13:09:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": "bounce_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 1018.08,
+      "bars": 28,
+      "date_range": "2025-11-17 ~ 2026-05-25",
+      "ma10": 939.444,
+      "ma20": 989.8835,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0837, "ma20_pct": 0.0285, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 1.147, "ma20_atr": 0.411, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.0285},
+      "atr": 68.585452,
+      "atr_pct": 0.0674,
+      "adx": null,
+      "range_position": 0.586,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.027,
+        "upper_wick_pct": 0.128,
+        "lower_wick_pct": 0.118,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1037,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 900.0, "resistance": 1130.0},
+      "pattern": "recovery_attempt",
+      "recent_action": "3~4월 하락 후 최근 900~1000 구간에서 반등. MA20 위로 복귀 중. 28봉 데이터로 신뢰도 제한."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "riding",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 1018.08,
+      "bars": 190,
+      "date_range": "2025-11-11 ~ 2026-05-19",
+      "ma10": 995.368,
+      "ma20": 979.6055,
+      "ma50": 943.7802,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0228, "ma20_pct": 0.0393, "ma50_pct": 0.0787},
+      "dist_from_ma_atr": {"ma10_atr": 0.896, "ma20_atr": 1.519, "ma50_atr": 2.933},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0228},
+      "atr": 25.336257,
+      "atr_pct": 0.0249,
+      "adx": 19.68,
+      "range_position": 0.946,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.027,
+        "upper_wick_pct": 0.128,
+        "lower_wick_pct": 0.118,
+        "vol_rank_30d": 0.633,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 2.055,
+        "price_range_5bar_pct": 0.0425,
+        "accumulation_score": 1.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 6,
+        "body_pct": 0.022,
+        "vol_rank": 0.9,
+        "close": 1014.11,
+        "max_retrace_pct": 0.0342,
+        "current_retrace_pct": -0.0039,
+        "holding": true
+      },
+      "ret_30d": 0.0986,
+      "ret_90d": -0.0062,
+      "from_period_high_pct": -0.1037,
+      "vol_avg_recent_vs_prior": 1.313
+    },
+
+    "observations": {
+      "key_levels": {"support": 940.0, "resistance": 1130.0},
+      "pattern": "stair_step_up",
+      "recent_action": "1D MA10/20/50 완전 정배열 우상향. accumulation_score 1.0(거래량 2배 + 가격 4% 범위 수렴). 피크(-10%) 근처에서 계단식 상승 중."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "pass",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1D A2 정배열+accumulation_score 1.0+강양봉 holding. 1W B4 복귀 시도. TF 분리지만 1D 강세 신호 명확. low_history 감안 medium 신뢰도.",
+
+  "risk_flags": ["low_history", "accumulation_suspect"],
+
+  "charts": {
+    "1w": "charts/LLYUSDT/20260521/LLYUSDT_1w.png",
+    "1d": "charts/LLYUSDT/20260521/LLYUSDT_1d.png"
+  }
+}

@@ -1,0 +1,191 @@
+{
+  "symbol": "BERAUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:33:30+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.3788,
+      "bars": 16,
+      "date_range": "2025-02-28 ~ 2026-05-31",
+      "ma10": 1.0848,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.6508, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.183, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.6508},
+      "atr": 3.849254,
+      "atr_pct": 10.1617,
+      "adx": null,
+      "range_position": 0.016,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0525,
+        "upper_wick_pct": 0.599,
+        "lower_wick_pct": 0.157,
+        "vol_rank_30d": 0.375,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9733,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.30, "resistance": 1.0},
+      "pattern": "pump_dump_collapse",
+      "recent_action": "2025년 2월 상장 직후 14 고점에서 97% 이상 붕괴. 16봉(low_history)으로 신뢰도 낮음."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.3788,
+      "bars": 68,
+      "date_range": "2025-02-10 ~ 2026-05-25",
+      "ma10": 0.40674,
+      "ma20": 0.508055,
+      "ma50": 1.263728,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0687, "ma20_pct": -0.2544, "ma50_pct": -0.7003},
+      "dist_from_ma_atr": {"ma10_atr": -0.1, "ma20_atr": -0.461, "ma50_atr": -3.156},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0687},
+      "atr": 0.28038,
+      "atr_pct": 0.7402,
+      "adx": 10.91,
+      "range_position": 0.028,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0203,
+        "upper_wick_pct": 0.389,
+        "lower_wick_pct": 0.232,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.441,
+        "price_range_5bar_pct": 0.2154,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.7815,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9733,
+      "vol_avg_recent_vs_prior": 2.687
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.30, "resistance": 0.50},
+      "pattern": "sustained_collapse",
+      "recent_action": "2026년 1월/2월 간헐적 거래량 증가 후 재하락. ADX=10.9로 횡보이나 여전히 역배열 내 하락 압력."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "bounce_ma20",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.3788,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.3904,
+      "ma20": 0.38427,
+      "ma50": 0.396426,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "down"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0297, "ma20_pct": -0.0142, "ma50_pct": -0.0445},
+      "dist_from_ma_atr": {"ma10_atr": -0.44, "ma20_atr": -0.208, "ma50_atr": -0.669},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0142},
+      "atr": 0.02636,
+      "atr_pct": 0.0696,
+      "adx": 10.77,
+      "range_position": 0.139,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0203,
+        "upper_wick_pct": 0.389,
+        "lower_wick_pct": 0.232,
+        "vol_rank_30d": 0.7,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.819,
+        "price_range_5bar_pct": 0.1695,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.0704,
+        "vol_rank": 0.967,
+        "close": 0.3865,
+        "max_retrace_pct": 0.0321,
+        "current_retrace_pct": 0.0199,
+        "holding": true
+      },
+      "ret_30d": -0.0307,
+      "ret_90d": -0.3717,
+      "from_period_high_pct": -0.7961,
+      "vol_avg_recent_vs_prior": 1.116
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.35, "resistance": 0.42},
+      "pattern": "bounce_attempt",
+      "recent_action": "1봉전 강양봉(7% 몸통, vol 상위 97%, holding=true). MA20 근처에서 반등 시도. 5봉 거래량 평균 1.82배 증가. B4 상승 첫 시도 확인 중."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "1M/1W B2 pump_dump vs 1D B4 충돌. 1D 직전 강양봉 holding=true로 반등 시도 중이나 큰 그림 low_history+drawdown_deep 리스크 있음. 관망 후 1D MA20 위 안착 확인 시 재검토.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace"],
+
+  "charts": {
+    "1m": "charts/BERAUSDT/20260521/BERAUSDT_1m.png",
+    "1w": "charts/BERAUSDT/20260521/BERAUSDT_1w.png",
+    "1d": "charts/BERAUSDT/20260521/BERAUSDT_1d.png"
+  }
+}

@@ -1,0 +1,191 @@
+{
+  "symbol": "BATUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.099,
+      "bars": 43,
+      "date_range": "2022-11-30 ~ 2026-05-31",
+      "ma10": 0.14585,
+      "ma20": 0.163135,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3212, "ma20_pct": -0.3931, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.717, "ma20_atr": -0.982, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.3212},
+      "atr": 0.065328,
+      "atr_pct": 0.6599,
+      "adx": 14.77,
+      "range_position": 0.045,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0273,
+        "upper_wick_pct": 0.737,
+        "lower_wick_pct": 0.138,
+        "vol_rank_30d": 0.067,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.839,
+        "price_range_5bar_pct": 1.4919,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.5565,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.7421,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.085, "resistance": 0.165},
+      "pattern": "sustained_downtrend",
+      "recent_action": "2022년 이후 고점 0.35에서 현재 0.099까지 지속 하락. MA10/20 역배열 우하향 중이며 가격은 MA 훨씬 아래에 위치."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.099,
+      "bars": 183,
+      "date_range": "2022-11-28 ~ 2026-05-25",
+      "ma10": 0.10128,
+      "ma20": 0.11947,
+      "ma50": 0.152486,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0225, "ma20_pct": -0.1713, "ma50_pct": -0.3508},
+      "dist_from_ma_atr": {"ma10_atr": -0.093, "ma20_atr": -0.838, "ma50_atr": -2.189},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0225},
+      "atr": 0.024429,
+      "atr_pct": 0.2468,
+      "adx": 23.53,
+      "range_position": 0.045,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.0202,
+        "upper_wick_pct": 0.306,
+        "lower_wick_pct": 0.139,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.181,
+        "price_range_5bar_pct": 0.2192,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.4217,
+      "ret_90d": -0.4007,
+      "from_period_high_pct": -0.7421,
+      "vol_avg_recent_vs_prior": 1.634
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.09, "resistance": 0.12},
+      "pattern": "downtrend_continuation",
+      "recent_action": "MA 3선 역배열 완전 우하향. 거래량은 최근 증가했으나 여전히 약한 수준. 2025년 10월 대량 음봉 이후 반등 실패하고 신저점 갱신 중."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.099,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.10324,
+      "ma20": 0.103605,
+      "ma50": 0.10142,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0411, "ma20_pct": -0.0444, "ma50_pct": -0.0239},
+      "dist_from_ma_atr": {"ma10_atr": -0.797, "ma20_atr": -0.865, "ma50_atr": -0.455},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0239},
+      "atr": 0.005321,
+      "atr_pct": 0.0537,
+      "adx": 20.97,
+      "range_position": 0.373,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.0202,
+        "upper_wick_pct": 0.306,
+        "lower_wick_pct": 0.139,
+        "vol_rank_30d": 0.6,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.707,
+        "price_range_5bar_pct": 0.1364,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 9,
+        "body_pct": 0.0329,
+        "vol_rank": 0.9,
+        "close": 0.1124,
+        "max_retrace_pct": 0.1699,
+        "current_retrace_pct": 0.1192,
+        "holding": false
+      },
+      "ret_30d": 0.0196,
+      "ret_90d": -0.1892,
+      "from_period_high_pct": -0.6713,
+      "vol_avg_recent_vs_prior": 0.708
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.093, "resistance": 0.110},
+      "pattern": "tight_consolidation",
+      "recent_action": "2025년 말 0.30 고점에서 하락 후 MA 3선 수렴. 최근 9봉전 강양봉이 있었으나 현재 12% 되돌림으로 holding 실패. 거래량 급감으로 zombie 징후."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF B2 정합. 역배열+하락 지속, zombie 거래량. 1D 수렴 중이나 반등 확인 불가.",
+
+  "risk_flags": ["drawdown_deep", "zombie"],
+
+  "charts": {
+    "1m": "charts/BATUSDT/20260521/BATUSDT_1m.png",
+    "1w": "charts/BATUSDT/20260521/BATUSDT_1w.png",
+    "1d": "charts/BATUSDT/20260521/BATUSDT_1d.png"
+  }
+}

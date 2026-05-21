@@ -1,0 +1,75 @@
+{
+  "symbol": "BASEDUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:14:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.0707,
+      "bars": 51,
+      "date_range": "2026-03-30 ~ 2026-05-19",
+      "ma10": 0.08528,
+      "ma20": 0.092145,
+      "ma50": 0.09406,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.171, "ma20_pct": -0.2327, "ma50_pct": -0.2484},
+      "dist_from_ma_atr": {"ma10_atr": -0.892, "ma20_atr": -1.312, "ma50_atr": -1.429},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.171},
+      "atr": 0.016349,
+      "atr_pct": 0.2312,
+      "adx": 32.76,
+      "range_position": 0.076,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0099,
+        "upper_wick_pct": 0.548,
+        "lower_wick_pct": 0.286,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.281,
+        "price_range_5bar_pct": 0.3168,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.1789,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.7843,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.065, "resistance": 0.100},
+      "pattern": "pump_dump_collapse",
+      "recent_action": "1D: 4월 중순 폭등봉($0.17~$0.30 수준) 후 즉시 거래량 소멸 및 지속 하락. 51봉 히스토리만. MA 역배열+하향."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1D만 가용(신규코인). 51봉 히스토리로 1M/1W 없음. 1D B2 확인, ADX 33 하락 추세, -78% 붕괴. P&D 흔적 시각 확인.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace"],
+
+  "charts": {
+    "1d": "charts/BASEDUSDT/20260521/BASEDUSDT_1d.png"
+  }
+}

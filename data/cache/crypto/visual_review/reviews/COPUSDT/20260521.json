@@ -1,0 +1,116 @@
+{
+  "symbol": "COPUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:06:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "C1",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "low",
+    "context": {
+      "last_close": 125.59,
+      "bars": 11,
+      "date_range": "2026-03-16 ~ 2026-05-25",
+      "ma10": 124.761,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0066, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0066},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.549,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.008,
+        "upper_wick_pct": 0.52,
+        "lower_wick_pct": 0.219,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0806,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 113.0, "resistance": 137.0},
+      "pattern": "range_bound",
+      "recent_action": "11봉 이력 극도 부족. 1W 시각상 113~137 박스 형성. 거래량 30봉 최하위(0.0) 극도 낮음."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A3",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "medium",
+    "context": {
+      "last_close": 125.59,
+      "bars": 69,
+      "date_range": "2026-03-12 ~ 2026-05-19",
+      "ma10": 120.147,
+      "ma20": 120.454,
+      "ma50": 122.4932,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "down"},
+      "ma_spread": "tight",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0453, "ma20_pct": 0.0426, "ma50_pct": 0.0253},
+      "dist_from_ma_atr": {"ma10_atr": 1.804, "ma20_atr": 1.703, "ma50_atr": 1.027},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.0253},
+      "atr": 3.01651,
+      "atr_pct": 0.024,
+      "adx": 18.23,
+      "range_position": 0.549,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.008,
+        "upper_wick_pct": 0.52,
+        "lower_wick_pct": 0.219,
+        "vol_rank_30d": 0.5,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.277, "price_range_5bar_pct": 0.0679, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0709,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0806,
+      "vol_avg_recent_vs_prior": 0.278
+    },
+    "observations": {
+      "key_levels": {"support": 113.0, "resistance": 137.0},
+      "pattern": "topping_range",
+      "recent_action": "1D 가격이 MA 위에 있으나 MA 모두 flat. ADX 18.2 추세 없음. 거래량 평균 대비 27.8%로 zombie 경고. 1D 차트에서 3월 급등 후 박스 횡보."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "low_history+zombie 자동 플래그. 1D 거래량 평균 대비 28% 수준, ADX 18로 추세 없음. 이력 69일로 짧고 zombie 판정. 단기 박스 횡보로 사이클 판정 모호.",
+  "risk_flags": ["low_history", "zombie"],
+
+  "charts": {
+    "1w": "charts/COPUSDT/20260521/COPUSDT_1w.png",
+    "1d": "charts/COPUSDT/20260521/COPUSDT_1d.png"
+  }
+}

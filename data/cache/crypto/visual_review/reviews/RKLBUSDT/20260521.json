@@ -1,0 +1,74 @@
+{
+  "symbol": "RKLBUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "A3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 126.15,
+      "bars": 41,
+      "date_range": "2026-04-09 ~ 2026-05-19",
+      "ma10": 123.162,
+      "ma20": 104.576,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0243, "ma20_pct": 0.2063, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.319, "ma20_atr": 2.304, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0243},
+      "atr": 9.363112,
+      "atr_pct": 0.0742,
+      "adx": 67.82,
+      "range_position": 0.828,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0373,
+        "upper_wick_pct": 0.029,
+        "lower_wick_pct": 0.674,
+        "vol_rank_30d": 0.833,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 2.111, "price_range_5bar_pct": 0.183, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 5, "body_pct": 0.0614, "vol_rank": 0.867, "close": 132.63,
+        "max_retrace_pct": 0.1292, "current_retrace_pct": 0.0489, "holding": false
+      },
+      "ret_30d": 0.495,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0897,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 115.0, "resistance": 140.0},
+      "pattern": "topping_high_vol",
+      "recent_action": "상장 41일만에 고점 $140 부근 도달 후 박스권 횡보 진입. 최근 봉은 큰 아래꼬리 도지 — 신고가 실패 후 매물 소화 중."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "신규 상장 후 빠른 상승(+49% 30일), 고점권 박스 횡보. low_history로 큰 그림 불명확하나 ADX 67·range_position 0.83 — 고점권 횡보 A3 판정. 풀백 후 재확인 필요.",
+
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1d": "charts/RKLBUSDT/20260521/RKLBUSDT_1d.png"
+  }
+}

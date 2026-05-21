@@ -1,0 +1,171 @@
+{
+  "symbol": "SHIBUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 6e-06,
+      "bars": 55,
+      "date_range": "2021-11-30 ~ 2026-05-31",
+      "ma10": 8e-06,
+      "ma20": 1.2e-05,
+      "ma50": 1.2e-05,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2867, "ma20_pct": -0.5274, "ma50_pct": -0.5441},
+      "dist_from_ma_atr": {"ma10_atr": -0.466, "ma20_atr": -1.295, "ma50_atr": -1.384},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.2867},
+      "atr": 5e-06,
+      "atr_pct": 0.862,
+      "adx": 24.78,
+      "range_position": 0.056,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0941,
+        "upper_wick_pct": 0.425,
+        "lower_wick_pct": 0.099,
+        "vol_rank_30d": 0.333,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.055, "price_range_5bar_pct": 0.8799, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.3144,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8953,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 5e-06, "resistance": 1e-05},
+      "pattern": "sustained_downtrend",
+      "recent_action": "2021년 고점 대비 -90% 하락 지속. MA10/20/50 완전 역배열 우하향, 가격은 전 MA 아래 머물며 회복 조짐 없음."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 6e-06,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 6e-06,
+      "ma20": 6e-06,
+      "ma50": 9e-06,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0555, "ma20_pct": -0.105, "ma50_pct": -0.3775},
+      "dist_from_ma_atr": {"ma10_atr": -0.326, "ma20_atr": -0.65, "ma50_atr": -3.36},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0555},
+      "atr": 1e-06,
+      "atr_pct": 0.1805,
+      "adx": 19.93,
+      "range_position": 0.115,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0109,
+        "upper_wick_pct": 0.345,
+        "lower_wick_pct": 0.209,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.684, "price_range_5bar_pct": 0.1977, "accumulation_score": 0.0},
+      "recent_strong_bull": {"bars_ago": 2, "body_pct": 0.0619, "vol_rank": 0.733, "close": 7e-06, "max_retrace_pct": 0.1548, "current_retrace_pct": 0.138, "holding": false},
+      "ret_30d": -0.4523,
+      "ret_90d": -0.5833,
+      "from_period_high_pct": -0.8759,
+      "vol_avg_recent_vs_prior": 0.671
+    },
+
+    "observations": {
+      "key_levels": {"support": 5e-06, "resistance": 8e-06},
+      "pattern": "bear_downtrend",
+      "recent_action": "주봉 2봉 전 강양봉(vol_rank 0.73) 발생했으나 이후 -15% 되돌려 holding=false. 역배열 구조 유지, 바닥 다지기 미확인."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 6e-06,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 6e-06,
+      "ma20": 6e-06,
+      "ma50": 6e-06,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0739, "ma20_pct": -0.0855, "ma50_pct": -0.0685},
+      "dist_from_ma_atr": {"ma10_atr": -1.815, "ma20_atr": -2.126, "ma50_atr": -1.672},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0685},
+      "atr": 0.0,
+      "atr_pct": 0.044,
+      "adx": 28.39,
+      "range_position": 0.099,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0109,
+        "upper_wick_pct": 0.345,
+        "lower_wick_pct": 0.209,
+        "vol_rank_30d": 0.1,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.982, "price_range_5bar_pct": 0.1437, "accumulation_score": 0.0},
+      "recent_strong_bull": {"bars_ago": 9, "body_pct": 0.0365, "vol_rank": 0.967, "close": 7e-06, "max_retrace_pct": 0.1561, "current_retrace_pct": 0.1393, "holding": false},
+      "ret_30d": -0.0348,
+      "ret_90d": -0.0967,
+      "from_period_high_pct": -0.4502,
+      "vol_avg_recent_vs_prior": 1.023
+    },
+
+    "observations": {
+      "key_levels": {"support": 5.5e-06, "resistance": 7e-06},
+      "pattern": "tight_box_base",
+      "recent_action": "일봉 3 MA가 수렴·평탄화되어 박스 형성 시도 중. 9봉 전 강양봉 이후 -15% 되돌림으로 holding 실패, 추세 전환 미확인."
+    }
+  },
+
+  "tf_consistency": "이",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "1M/1W 완전 역배열 B2 하락 지속, 1D만 소폭 박스(B3) 시도. 큰 그림은 명확한 하락 추세이며 바닥 확인 신호 없음.",
+
+  "risk_flags": ["drawdown_deep"],
+
+  "charts": {
+    "1m": "charts/SHIBUSDT/20260521/SHIBUSDT_1m.png",
+    "1w": "charts/SHIBUSDT/20260521/SHIBUSDT_1w.png",
+    "1d": "charts/SHIBUSDT/20260521/SHIBUSDT_1d.png"
+  }
+}

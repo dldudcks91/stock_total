@@ -1,0 +1,167 @@
+{
+  "symbol": "ALICEUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:08:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.1292,
+      "bars": 23,
+      "date_range": "2024-07-31 ~ 2026-05-31",
+      "ma10": 0.19674,
+      "ma20": 0.470035,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3433, "ma20_pct": -0.7251, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.318, "ma20_atr": -1.607, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.3433},
+      "atr": 0.212122,
+      "atr_pct": 1.6418,
+      "adx": null,
+      "range_position": 0.057,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.1215,
+        "upper_wick_pct": 0.427,
+        "lower_wick_pct": 0.213,
+        "vol_rank_30d": 0.13,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9328,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.10, "resistance": 0.20},
+      "pattern": "sustained_downtrend",
+      "recent_action": "2024년 12월 2.0 피크 후 지속 하락. 현재 0.13 부근에서 사상 최저권 형성. 월봉 MA10/20 하향."
+    }
+  },
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.1292,
+      "bars": 96,
+      "date_range": "2024-07-29 ~ 2026-05-25",
+      "ma10": 0.13087,
+      "ma20": 0.133105,
+      "ma50": 0.248988,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0128, "ma20_pct": -0.0293, "ma50_pct": -0.4811},
+      "dist_from_ma_atr": {"ma10_atr": -0.034, "ma20_atr": -0.081, "ma50_atr": -2.472},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0128},
+      "atr": 0.048449,
+      "atr_pct": 0.375,
+      "adx": 16.92,
+      "range_position": 0.123,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0673,
+        "upper_wick_pct": 0.143,
+        "lower_wick_pct": 0.126,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.233, "price_range_5bar_pct": 0.5604, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.5941,
+      "ret_90d": -0.8674,
+      "from_period_high_pct": -0.9328,
+      "vol_avg_recent_vs_prior": 0.841
+    },
+    "observations": {
+      "key_levels": {"support": 0.10, "resistance": 0.15},
+      "pattern": "downtrend_base",
+      "recent_action": "주봉 역배열 지속. MA10만 소폭 상향 전환 시도. 가격 MA10 직하방. 30일 -59% 낙폭. 최저권 다지기."
+    }
+  },
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.1292,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.13856,
+      "ma20": 0.14272,
+      "ma50": 0.13426,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0676, "ma20_pct": -0.0947, "ma50_pct": -0.0377},
+      "dist_from_ma_atr": {"ma10_atr": -0.722, "ma20_atr": -1.043, "ma50_atr": -0.391},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0377},
+      "atr": 0.012957,
+      "atr_pct": 0.1003,
+      "adx": 42.09,
+      "range_position": 0.176,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0673,
+        "upper_wick_pct": 0.143,
+        "lower_wick_pct": 0.126,
+        "vol_rank_30d": 0.5,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.237, "price_range_5bar_pct": 0.2245, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.0892,
+        "vol_rank": 0.867,
+        "close": 0.1379,
+        "max_retrace_pct": 0.074,
+        "current_retrace_pct": 0.0631,
+        "holding": false
+      },
+      "ret_30d": -0.1387,
+      "ret_90d": 0.2052,
+      "from_period_high_pct": -0.6411,
+      "vol_avg_recent_vs_prior": 0.334
+    },
+    "observations": {
+      "key_levels": {"support": 0.11, "resistance": 0.16},
+      "pattern": "base_building",
+      "recent_action": "일봉 0.11 부근에서 바닥 다지기. 최근 강양봉 1개 후 눌림. MA50 우상향이나 MA10/20 하향. 거래량 크게 감소."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "1M/1W/1D 모두 B2/B3 하락 추세. 역배열 전 TF. 피크 대비 -93%. 추세 전환 증거 없음.",
+  "risk_flags": ["drawdown_deep", "low_history"],
+  "charts": {
+    "1m": "charts/ALICEUSDT/20260521/ALICEUSDT_1m.png",
+    "1w": "charts/ALICEUSDT/20260521/ALICEUSDT_1w.png",
+    "1d": "charts/ALICEUSDT/20260521/ALICEUSDT_1d.png"
+  }
+}

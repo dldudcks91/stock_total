@@ -1,0 +1,75 @@
+{
+  "symbol": "CCUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.14822,
+      "bars": 26,
+      "date_range": "2026-04-24 ~ 2026-05-19",
+      "ma10": 0.155484,
+      "ma20": 0.151973,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0467, "ma20_pct": -0.0247, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.907, "ma20_atr": -0.469, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0247},
+      "atr": 0.008006,
+      "atr_pct": 0.054,
+      "adx": null,
+      "range_position": 0.179,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0047,
+        "upper_wick_pct": 0.669,
+        "lower_wick_pct": 0.181,
+        "vol_rank_30d": 0.269,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1364,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.145, "resistance": 0.170},
+      "pattern": "post_spike_pullback",
+      "recent_action": "신규 상장 26봉. Apr 24 상장 후 0.148→0.170 급등 후 현재 0.148 풀백. MA10/20 모두 위에 있으며 상향 중. 데이터 너무 적어 패턴 판정 불확실."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "1D 만 존재, 26봉 low_history. 신규 상장 코인으로 빅픽처 판단 불가. 1D 상 MA10/20 상향 중이나 가격은 풀백 진행. B4 가능성 있으나 데이터 부족으로 신뢰 낮음. 추가 history 축적 후 재판정 필요.",
+
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1d": "charts/CCUSDT/20260521/CCUSDT_1d.png"
+  }
+}

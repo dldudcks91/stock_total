@@ -1,0 +1,75 @@
+{
+  "symbol": "BEUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:34:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "B1",
+    "micro_action": "breaking",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 262.65,
+      "bars": 28,
+      "date_range": "2026-04-22 ~ 2026-05-19",
+      "ma10": 277.521,
+      "ma20": 279.5815,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0536, "ma20_pct": -0.0606, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.807, "ma20_atr": -0.919, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0536},
+      "atr": 18.428542,
+      "atr_pct": 0.0702,
+      "adx": null,
+      "range_position": 0.497,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0099,
+        "upper_wick_pct": 0.222,
+        "lower_wick_pct": 0.677,
+        "vol_rank_30d": 0.929,
+        "vol_anomaly": "spike",
+        "accumulation_candle_score": 0.6,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1513,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 248.0, "resistance": 308.0},
+      "pattern": "high_vol_doji",
+      "recent_action": "4월 말 급등 후 MA 아래로 하락. 마지막 봉이 거래량 폭증(상위 93%) + 아래꼬리 68%로 매집봉 점수 0.6. 단기 지지 가능성이나 28봉 극소 데이터로 신뢰도 낮음."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "신규 코인(28봉, low_history). 1D만 채점. 마지막 봉 accumulation_candle_score=0.6(매집봉 의심)이나 데이터 부족. watch로 추가 확인 필요.",
+
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1d": "charts/BEUSDT/20260521/BEUSDT_1d.png"
+  }
+}

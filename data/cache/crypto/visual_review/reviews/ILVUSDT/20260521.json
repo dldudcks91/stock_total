@@ -1,0 +1,183 @@
+{
+  "symbol": "ILVUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:42:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 4.36,
+      "bars": 10,
+      "date_range": "2025-08-31 ~ 2026-05-31",
+      "ma10": 7.1129,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.387, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.387},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.056,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0599,
+        "upper_wick_pct": 0.718,
+        "lower_wick_pct": 0.039,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8237,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 3.5, "resistance": 8.0},
+      "pattern": "collapse_low_history",
+      "recent_action": "월봉 10개로 데이터 극히 부족. 상장 후 고점(~24) 대비 -82%. 현재 4~5 구간에서 소폭 안정화 중이나 MA10(7.1) 훨씬 아래."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "dry",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 4.36,
+      "bars": 42,
+      "date_range": "2025-08-11 ~ 2026-05-25",
+      "ma10": 4.2918,
+      "ma20": 4.36085,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0159, "ma20_pct": -0.0002, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.047, "ma20_atr": -0.001, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0002},
+      "atr": 1.465418,
+      "atr_pct": 0.3361,
+      "adx": 23.5,
+      "range_position": 0.119,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.033,
+        "upper_wick_pct": 0.115,
+        "lower_wick_pct": 0.135,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.374,
+        "price_range_5bar_pct": 0.2663,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.6281,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8237,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 3.8, "resistance": 6.0},
+      "pattern": "base_near_ma20",
+      "recent_action": "1W에서 MA20(4.36)과 가격이 거의 동일. MA10(4.29) 위. 4~5 구간에서 수주간 소폭 횡보 중. 거래량 극히 낮아 방향 미결."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 4.36,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 4.8091,
+      "ma20": 4.80595,
+      "ma50": 4.50732,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0934, "ma20_pct": -0.0928, "ma50_pct": -0.0327},
+      "dist_from_ma_atr": {"ma10_atr": -1.403, "ma20_atr": -1.393, "ma50_atr": -0.46},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0327},
+      "atr": 0.320146,
+      "atr_pct": 0.0734,
+      "adx": 37.12,
+      "range_position": 0.424,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.033,
+        "upper_wick_pct": 0.115,
+        "lower_wick_pct": 0.135,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.603,
+        "price_range_5bar_pct": 0.18,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.016,
+      "ret_90d": 0.1547,
+      "from_period_high_pct": -0.673,
+      "vol_avg_recent_vs_prior": 0.5
+    },
+
+    "observations": {
+      "key_levels": {"support": 4.0, "resistance": 5.0},
+      "pattern": "ma_cluster_pullback",
+      "recent_action": "1D MA10/20(4.8)이 평탄하며 MA50(4.51)은 상향. 가격은 MA50 아래(-3.3%). 3월 반등 후 4~5 구간에서 박스 형성 중. 거래량은 절반 수준(0.5x)."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1M은 B2(데이터 부족), 1W는 B3(MA20 근접), 1D는 B3(MA50 아래). 고점 대비 -82%로 drawdown_deep. 1D ADX 37이나 거래량 부족. 바닥 형성 중이나 돌파 신호 없음.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1m": "charts/ILVUSDT/20260521/ILVUSDT_1m.png",
+    "1w": "charts/ILVUSDT/20260521/ILVUSDT_1w.png",
+    "1d": "charts/ILVUSDT/20260521/ILVUSDT_1d.png"
+  }
+}

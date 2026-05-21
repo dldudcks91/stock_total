@@ -1,0 +1,112 @@
+{
+  "symbol": "GMEUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 22.14,
+      "bars": 37,
+      "date_range": "2025-09-15 ~ 2026-05-25",
+      "ma10": 23.181,
+      "ma20": 23.4605,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0449, "ma20_pct": -0.0563, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.486, "ma20_atr": -0.617, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0449},
+      "atr": 2.140429,
+      "atr_pct": 0.0967,
+      "adx": 20.78,
+      "range_position": 0.249,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.0104,
+        "upper_wick_pct": 0.143,
+        "lower_wick_pct": 0.446,
+        "vol_rank_30d": 0.167,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.838, "price_range_5bar_pct": 0.3351, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.0752,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.2334,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 20.0, "resistance": 26.0},
+      "pattern": "volatile_range",
+      "recent_action": "20~27 구간 박스권 형성 중. 최근 주봉에서 고점 도달 후 현재 MA10 아래로 하락. 아래꼬리 긴 양봉으로 지지 시도."
+    }
+  },
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 22.14,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 22.233,
+      "ma20": 23.8655,
+      "ma50": 23.9916,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0042, "ma20_pct": -0.0723, "ma50_pct": -0.0772},
+      "dist_from_ma_atr": {"ma10_atr": -0.087, "ma20_atr": -1.613, "ma50_atr": -1.731},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0042},
+      "atr": 1.069578,
+      "atr_pct": 0.0483,
+      "adx": 21.88,
+      "range_position": 0.092,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.0104,
+        "upper_wick_pct": 0.143,
+        "lower_wick_pct": 0.446,
+        "vol_rank_30d": 0.367,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.335, "price_range_5bar_pct": 0.0343, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.0896,
+      "ret_90d": -0.0744,
+      "from_period_high_pct": -0.2334,
+      "vol_avg_recent_vs_prior": 1.857
+    },
+    "observations": {
+      "key_levels": {"support": 20.5, "resistance": 25.0},
+      "pattern": "ma_resistance_rejection",
+      "recent_action": "4월 말 고점 ~28 급등 후 MA10/20/50 역배열 상태로 급락. 현재 MA10 근처에서 아래꼬리 양봉으로 지지 탐색 중. 거래량 증가(vol_avg 1.857) 주목."
+    }
+  },
+  "tf_consistency": "분리",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1D 역배열 하락 추세. 1W는 박스권 하단 테스트 중. GME 밈코인 특성상 급등락 반복. low_history로 추세 판단 제한. 거래량 증가는 주목이나 방향 미결정.",
+  "risk_flags": ["low_history"],
+  "charts": {
+    "1w": "charts/GMEUSDT/20260521/GMEUSDT_1w.png",
+    "1d": "charts/GMEUSDT/20260521/GMEUSDT_1d.png"
+  }
+}

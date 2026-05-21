@@ -1,0 +1,171 @@
+{
+  "symbol": "IOSTUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:35:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.001039,
+      "bars": 50,
+      "date_range": "2022-04-30 ~ 2026-05-31",
+      "ma10": 0.001822,
+      "ma20": 0.003331,
+      "ma50": 0.007377,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.4298, "ma20_pct": -0.6881, "ma50_pct": -0.8591},
+      "dist_from_ma_atr": {"ma10_atr": -0.408, "ma20_atr": -1.194, "ma50_atr": -3.301},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.4298},
+      "atr": 0.00192,
+      "atr_pct": 1.8478,
+      "adx": 9.48,
+      "range_position": 0.009,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0096,
+        "upper_wick_pct": 0.917,
+        "lower_wick_pct": 0.041,
+        "vol_rank_30d": 0.067,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.611, "price_range_5bar_pct": 0.9981, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.8862,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9686,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.001, "resistance": 0.002},
+      "pattern": "multi_year_downtrend",
+      "recent_action": "월봉 역배열 완전 붕괴. 2022년 고점 대비 -97% 하락. 최근 월봉 -88% 급락. 모든 MA 훨씬 위에 있는 극단적 하락세."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.001039,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 0.001092,
+      "ma20": 0.001214,
+      "ma50": 0.002183,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0489, "ma20_pct": -0.1445, "ma50_pct": -0.524},
+      "dist_from_ma_atr": {"ma10_atr": -0.214, "ma20_atr": -0.705, "ma50_atr": -4.591},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0489},
+      "atr": 0.000249,
+      "atr_pct": 0.2398,
+      "adx": 21.34,
+      "range_position": 0.027,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0298,
+        "upper_wick_pct": 0.128,
+        "lower_wick_pct": 0.077,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.252, "price_range_5bar_pct": 0.2329, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.5658,
+      "ret_90d": -0.7895,
+      "from_period_high_pct": -0.9394,
+      "vol_avg_recent_vs_prior": 0.968
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.001, "resistance": 0.00125},
+      "pattern": "persistent_bear_capitulation",
+      "recent_action": "주봉 완전 역배열. 4년 지속 하락. 30일 -57%, 90일 -79% 극단적 하락. 신저가 갱신 지속."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.001039,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.001132,
+      "ma20": 0.00111,
+      "ma50": 0.001099,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.082, "ma20_pct": -0.0643, "ma50_pct": -0.0543},
+      "dist_from_ma_atr": {"ma10_atr": -1.733, "ma20_atr": -1.334, "ma50_atr": -1.114},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0543},
+      "atr": 5.4e-05,
+      "atr_pct": 0.0515,
+      "adx": 18.52,
+      "range_position": 0.15,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0298,
+        "upper_wick_pct": 0.128,
+        "lower_wick_pct": 0.077,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.507, "price_range_5bar_pct": 0.1482, "accumulation_score": 0.0},
+      "recent_strong_bull": {"bars_ago": 8, "body_pct": 0.0409, "vol_rank": 0.967, "close": 0.001248, "max_retrace_pct": 0.1755, "current_retrace_pct": 0.1675, "holding": false},
+      "ret_30d": -0.0272,
+      "ret_90d": -0.1539,
+      "from_period_high_pct": -0.5874,
+      "vol_avg_recent_vs_prior": 0.7
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.001, "resistance": 0.00125},
+      "pattern": "low_box_near_bottom",
+      "recent_action": "일봉 기준 MA tight 수렴 후 가격이 아래로 빠짐. 강양봉 이후 retrace holding=false로 실패. 바닥권 박스 다지기이나 반등력 부재."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "1M/1W 완전 역배열 B2 지속 하락. 4년 장기 하락추세. 고점 대비 -94~97%. 1D B3 횡보는 있으나 큰 그림 하락 지배. 반등 신호 없음.",
+
+  "risk_flags": ["drawdown_deep"],
+
+  "charts": {
+    "1m": "charts/IOSTUSDT/20260521/IOSTUSDT_1m.png",
+    "1w": "charts/IOSTUSDT/20260521/IOSTUSDT_1w.png",
+    "1d": "charts/IOSTUSDT/20260521/IOSTUSDT_1d.png"
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "symbol": "CETUSUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.02588,
+      "bars": 19,
+      "date_range": "2024-11-30 ~ 2026-05-31",
+      "ma10": 0.037117,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3027, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.112, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.3027},
+      "atr": 0.100184,
+      "atr_pct": 3.8711,
+      "adx": null,
+      "range_position": 0.09,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0672,
+        "upper_wick_pct": 0.866,
+        "lower_wick_pct": 0.011,
+        "vol_rank_30d": 0.053,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9481,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.020, "resistance": 0.040},
+      "pattern": "downtrend_collapse",
+      "recent_action": "1M 차트에서 고점 대비 -94.8% 붕괴. 봉 수 19개로 low_history, MA20/50 미계산. 역배열 하락 지속 중."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.02588,
+      "bars": 81,
+      "date_range": "2024-11-11 ~ 2026-05-25",
+      "ma10": 0.025344,
+      "ma20": 0.022337,
+      "ma50": 0.0511,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0211, "ma20_pct": 0.1586, "ma50_pct": -0.4935},
+      "dist_from_ma_atr": {"ma10_atr": 0.056, "ma20_atr": 0.368, "ma50_atr": -2.618},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0211},
+      "atr": 0.009633,
+      "atr_pct": 0.3722,
+      "adx": 22.01,
+      "range_position": 0.314,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0386,
+        "upper_wick_pct": 0.239,
+        "lower_wick_pct": 0.015,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.564, "price_range_5bar_pct": 0.6271, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 4,
+        "body_pct": 0.1232,
+        "vol_rank": 0.733,
+        "close": 0.02947,
+        "max_retrace_pct": 0.1272,
+        "current_retrace_pct": 0.1218,
+        "holding": false
+      },
+      "ret_30d": -0.494,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9481,
+      "vol_avg_recent_vs_prior": 0.961
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.019, "resistance": 0.035},
+      "pattern": "downtrend_weak_bounce",
+      "recent_action": "1W 전체 하락 추세. MA50 크게 하회. 최근 MA10/MA20 수렴 구간이지만 MA50과의 갭 여전히 크다. 4봉 전 반등 강양봉 있었으나 hold 안 됨."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.02588,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.030327,
+      "ma20": 0.029656,
+      "ma50": 0.025405,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.1466, "ma20_pct": -0.1273, "ma50_pct": 0.0187},
+      "dist_from_ma_atr": {"ma10_atr": -1.635, "ma20_atr": -1.388, "ma50_atr": 0.175},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.0187},
+      "atr": 0.002721,
+      "atr_pct": 0.1051,
+      "adx": 33.11,
+      "range_position": 0.378,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0386,
+        "upper_wick_pct": 0.239,
+        "lower_wick_pct": 0.015,
+        "vol_rank_30d": 0.267,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.51, "price_range_5bar_pct": 0.233, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.2324,
+      "ret_90d": 0.5675,
+      "from_period_high_pct": -0.4615,
+      "vol_avg_recent_vs_prior": 0.406
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.024, "resistance": 0.035},
+      "pattern": "recovery_pullback",
+      "recent_action": "1D는 정배열 우상향 중이나 최근 고점 0.040 이후 MA10/MA20 아래로 풀백. MA50 근처에서 지지 여부 확인 중."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1D 정배열 상승 시도(B4)이나 1W/1M 완전 역배열 하락(B2) 충돌. 고점 대비 -94.8% 붕괴 종목으로 단기 반등 이후 추가 하락 가능성 우세. 1D MA50 지지 여부 확인 후 재판정 필요.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1m": "charts/CETUSUSDT/20260521/CETUSUSDT_1m.png",
+    "1w": "charts/CETUSUSDT/20260521/CETUSUSDT_1w.png",
+    "1d": "charts/CETUSUSDT/20260521/CETUSUSDT_1d.png"
+  }
+}

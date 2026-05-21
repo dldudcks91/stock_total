@@ -1,0 +1,145 @@
+{
+  "symbol": "QUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "A3",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.020726,
+      "bars": 38,
+      "date_range": "2025-09-08 ~ 2026-05-25",
+      "ma10": 0.012581,
+      "ma20": 0.0153,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.6474, "ma20_pct": 0.3546, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 1.042, "ma20_atr": 0.694, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.3546},
+      "atr": 0.007814,
+      "atr_pct": 0.377,
+      "adx": 29.89,
+      "range_position": 0.481,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.087,
+        "upper_wick_pct": 0.05,
+        "lower_wick_pct": 0.123,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.014,
+        "price_range_5bar_pct": 0.8802,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.3655,
+        "vol_rank": 0.967,
+        "close": 0.02253,
+        "max_retrace_pct": 0.092,
+        "current_retrace_pct": 0.0801,
+        "holding": false
+      },
+      "ret_30d": -0.2059,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.6123,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.013, "resistance": 0.025},
+      "pattern": "post_pump_retrace",
+      "recent_action": "초기 폭등 후 현재 MA 위 유지이나 되돌림 진행 중. 38봉 이력 부족으로 전체 구조 판단 어려움."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.020726,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.020405,
+      "ma20": 0.015783,
+      "ma50": 0.011859,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0157, "ma20_pct": 0.3132, "ma50_pct": 0.7476},
+      "dist_from_ma_atr": {"ma10_atr": 0.112, "ma20_atr": 1.722, "ma50_atr": 3.089},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0157},
+      "atr": 0.00287,
+      "atr_pct": 0.1385,
+      "adx": 47.3,
+      "range_position": 0.753,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.087,
+        "upper_wick_pct": 0.05,
+        "lower_wick_pct": 0.123,
+        "vol_rank_30d": 0.467,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.512,
+        "price_range_5bar_pct": 0.2874,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 2,
+        "body_pct": 0.1126,
+        "vol_rank": 0.7,
+        "close": 0.024839,
+        "max_retrace_pct": 0.193,
+        "current_retrace_pct": 0.1656,
+        "holding": false
+      },
+      "ret_30d": 1.2465,
+      "ret_90d": 0.0106,
+      "from_period_high_pct": -0.4558,
+      "vol_avg_recent_vs_prior": 1.512
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.020, "resistance": 0.025},
+      "pattern": "parabolic_retrace",
+      "recent_action": "1D ret_30d +125% 페러볼릭 급등 후 강한 되돌림 진행. 강양봉 무너짐. 토핑 횡보 A3."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "parabolic 급등 후 되돌림 A3. 두 TF 모두 MA 위이나 고점 대비 -46%, 단기 ret +125%로 페러볼릭 위험. low_history+parabolic 동시.",
+
+  "risk_flags": ["parabolic", "drawdown_deep", "low_history"],
+
+  "charts": {
+    "1w": "charts/QUSDT/20260521/QUSDT_1w.png",
+    "1d": "charts/QUSDT/20260521/QUSDT_1d.png"
+  }
+}

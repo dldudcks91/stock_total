@@ -1,0 +1,191 @@
+{
+  "symbol": "PENGUUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "C1",
+    "micro_action": "riding",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.008689,
+      "bars": 18,
+      "date_range": "2024-12-31 ~ 2026-05-31",
+      "ma10": 0.013425,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3528, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.366, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.3528},
+      "atr": 0.012956,
+      "atr_pct": 1.4911,
+      "adx": null,
+      "range_position": 0.083,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.1463,
+        "upper_wick_pct": 0.499,
+        "lower_wick_pct": 0.168,
+        "vol_rank_30d": 0.333,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8152,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.006, "resistance": 0.015},
+      "pattern": "post_pump_decline",
+      "recent_action": "상장 직후 고점 후 즉시 하락. 2025년 두 차례 반등 모두 실패. 고점 대비 -81.5%."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.008689,
+      "bars": 75,
+      "date_range": "2024-12-23 ~ 2026-05-25",
+      "ma10": 0.008209,
+      "ma20": 0.00818,
+      "ma50": 0.01658,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0585, "ma20_pct": 0.0623, "ma50_pct": -0.4759},
+      "dist_from_ma_atr": {"ma10_atr": 0.182, "ma20_atr": 0.193, "ma50_atr": -2.99},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0585},
+      "atr": 0.002639,
+      "atr_pct": 0.3037,
+      "adx": 19.84,
+      "range_position": 0.203,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0112,
+        "upper_wick_pct": 0.194,
+        "lower_wick_pct": 0.525,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.947,
+        "price_range_5bar_pct": 0.5087,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 4,
+        "body_pct": 0.2724,
+        "vol_rank": 0.933,
+        "close": 0.010319,
+        "max_retrace_pct": 0.2201,
+        "current_retrace_pct": 0.158,
+        "holding": false
+      },
+      "ret_30d": -0.5938,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8152,
+      "vol_avg_recent_vs_prior": 0.386
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.007, "resistance": 0.012},
+      "pattern": "low_base",
+      "recent_action": "MA10/20 수렴. ADX 19 횡보권. 4주전 강한 반등봉 후 재하락 중. 거래량 감소."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.008689,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.009136,
+      "ma20": 0.009712,
+      "ma50": 0.008349,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0489, "ma20_pct": -0.1053, "ma50_pct": 0.0407},
+      "dist_from_ma_atr": {"ma10_atr": -0.681, "ma20_atr": -1.56, "ma50_atr": 0.519},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.0407},
+      "atr": 0.000656,
+      "atr_pct": 0.0755,
+      "adx": 28.24,
+      "range_position": 0.458,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0112,
+        "upper_wick_pct": 0.194,
+        "lower_wick_pct": 0.525,
+        "vol_rank_30d": 0.067,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.525,
+        "price_range_5bar_pct": 0.1296,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.2502,
+      "ret_90d": 0.2842,
+      "from_period_high_pct": -0.5304,
+      "vol_avg_recent_vs_prior": 1.822
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.0075, "resistance": 0.0115},
+      "pattern": "base_building",
+      "recent_action": "MA50 근처 수렴. 4월 말 반등 시도 후 재하락. MA 혼합으로 방향성 불확실."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1M C1(pump_dump), 1W/1D B3. drawdown_deep + low_history. 큰 그림 펌프&덤프 흔적. 바닥 다지기 중이나 신뢰도 낮음.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace"],
+
+  "charts": {
+    "1m": "charts/PENGUUSDT/20260521/PENGUUSDT_1m.png",
+    "1w": "charts/PENGUUSDT/20260521/PENGUUSDT_1w.png",
+    "1d": "charts/PENGUUSDT/20260521/PENGUUSDT_1d.png"
+  }
+}

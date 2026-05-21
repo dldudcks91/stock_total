@@ -1,0 +1,179 @@
+{
+  "symbol": "MAVUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:35:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.01378,
+      "bars": 36,
+      "date_range": "2023-06-30 ~ 2026-05-31",
+      "ma10": 0.029543,
+      "ma20": 0.071425,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.5336, "ma20_pct": -0.8071, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.249, "ma20_atr": -0.91, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.5336},
+      "atr": 0.063353,
+      "atr_pct": 4.5974,
+      "adx": 23.54,
+      "range_position": 0.037,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0864,
+        "upper_wick_pct": 0.627,
+        "lower_wick_pct": 0.122,
+        "vol_rank_30d": 0.5,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.466, "price_range_5bar_pct": 1.3665, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.1363,
+        "vol_rank": 0.8,
+        "close": 0.01497,
+        "max_retrace_pct": 0.1182,
+        "current_retrace_pct": 0.0795,
+        "holding": false
+      },
+      "ret_30d": -0.9516,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9832,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.01, "resistance": 0.025},
+      "pattern": "pump_dump_collapse",
+      "recent_action": "2024년 고점($0.83) 이후 지속 하락. 1M 차트에서 2025년 거래량 폭증 후 즉시 소멸 패턴 확인."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.01378,
+      "bars": 152,
+      "date_range": "2023-07-03 ~ 2026-05-25",
+      "ma10": 0.014633,
+      "ma20": 0.016771,
+      "ma50": 0.034175,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0583, "ma20_pct": -0.1783, "ma50_pct": -0.5968},
+      "dist_from_ma_atr": {"ma10_atr": -0.156, "ma20_atr": -0.545, "ma50_atr": -3.719},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0583},
+      "atr": 0.005484,
+      "atr_pct": 0.398,
+      "adx": 20.99,
+      "range_position": 0.048,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0087,
+        "upper_wick_pct": 0.222,
+        "lower_wick_pct": 0.511,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.215, "price_range_5bar_pct": 0.344, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.631,
+      "ret_90d": -0.9335,
+      "from_period_high_pct": -0.9832,
+      "vol_avg_recent_vs_prior": 0.573
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.012, "resistance": 0.018},
+      "pattern": "dump_after_pump",
+      "recent_action": "1W에서 2025년 7~11월 거래량 폭증 후 거래량 즉시 소멸. 전형적 pump_dump 흔적."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.01378,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.015178,
+      "ma20": 0.015336,
+      "ma50": 0.015107,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0921, "ma20_pct": -0.1015, "ma50_pct": -0.0878},
+      "dist_from_ma_atr": {"ma10_atr": -1.442, "ma20_atr": -1.605, "ma50_atr": -1.368},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0878},
+      "atr": 0.00097,
+      "atr_pct": 0.0704,
+      "adx": 33.99,
+      "range_position": 0.291,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0087,
+        "upper_wick_pct": 0.222,
+        "lower_wick_pct": 0.511,
+        "vol_rank_30d": 0.4,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.507, "price_range_5bar_pct": 0.188, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.0874,
+      "ret_90d": -0.1541,
+      "from_period_high_pct": -0.7118,
+      "vol_avg_recent_vs_prior": 0.81
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.013, "resistance": 0.017},
+      "pattern": "flat_base",
+      "recent_action": "1D 관점에서 3~5월 0.013~0.020 박스 형성. MA들이 tight하게 수렴 중이나 가격은 모든 MA 아래."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "1M/1W에서 pump_dump_trace 명확 시각 확인. 2025년 거래량 폭증 후 즉시 소멸 패턴. drawdown_deep(-98.3%). 영구 제외.",
+
+  "risk_flags": ["drawdown_deep", "pump_dump_trace"],
+
+  "charts": {
+    "1m": "charts/MAVUSDT/20260521/MAVUSDT_1m.png",
+    "1w": "charts/MAVUSDT/20260521/MAVUSDT_1w.png",
+    "1d": "charts/MAVUSDT/20260521/MAVUSDT_1d.png"
+  }
+}

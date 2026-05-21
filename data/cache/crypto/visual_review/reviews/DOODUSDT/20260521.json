@@ -1,0 +1,179 @@
+{
+  "symbol": "DOODUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:35:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.002647,
+      "bars": 13,
+      "date_range": "2025-05-31 ~ 2026-05-31",
+      "ma10": 0.004223,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3731, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.3731},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.04,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.2014,
+        "upper_wick_pct": 0.434,
+        "lower_wick_pct": 0.044,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8505,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.002, "resistance": 0.006},
+      "pattern": "decline_after_spike",
+      "recent_action": "1M 13봉 low_history. 2025년 9~10월 고점 이후 급락 지속. 현재 피크 대비 -85%."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.002647,
+      "bars": 55,
+      "date_range": "2025-05-12 ~ 2026-05-25",
+      "ma10": 0.003065,
+      "ma20": 0.003522,
+      "ma50": 0.004124,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1364, "ma20_pct": -0.2484, "ma50_pct": -0.3581},
+      "dist_from_ma_atr": {"ma10_atr": -0.383, "ma20_atr": -0.801, "ma50_atr": -1.352},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1364},
+      "atr": 0.001092,
+      "atr_pct": 0.4126,
+      "adx": 22.1,
+      "range_position": 0.007,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0393,
+        "upper_wick_pct": 0.146,
+        "lower_wick_pct": 0.095,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.11, "price_range_5bar_pct": 0.3861, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.6358,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8505,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.002, "resistance": 0.004},
+      "pattern": "zombie_decline",
+      "recent_action": "1W 완전 역배열. 30일 -64% 하락. 2026년 2월 이후 거래량 거의 消滅(박스 하단 0.007). 좀비 상태."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.002647,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.002995,
+      "ma20": 0.003107,
+      "ma50": 0.003093,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1161, "ma20_pct": -0.1481, "ma50_pct": -0.1441},
+      "dist_from_ma_atr": {"ma10_atr": -1.698, "ma20_atr": -2.246, "ma50_atr": -2.175},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1161},
+      "atr": 0.000205,
+      "atr_pct": 0.0774,
+      "adx": 25.35,
+      "range_position": 0.044,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0393,
+        "upper_wick_pct": 0.146,
+        "lower_wick_pct": 0.095,
+        "vol_rank_30d": 0.167,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.022, "price_range_5bar_pct": 0.1711, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 9,
+        "body_pct": 0.0677,
+        "vol_rank": 0.767,
+        "close": 0.003529,
+        "max_retrace_pct": 0.2627,
+        "current_retrace_pct": 0.2499,
+        "holding": false
+      },
+      "ret_30d": -0.1197,
+      "ret_90d": -0.2448,
+      "from_period_high_pct": -0.692,
+      "vol_avg_recent_vs_prior": 0.684
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.0025, "resistance": 0.0035},
+      "pattern": "persistent_decline",
+      "recent_action": "1D 전 MA 아래, ADX 25.35 하락 추세 유지. 9일 전 반등 후 25% retrace(holding=false). 거래량 감소 추세."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF B2 하락 정합. 1W/1D 거래량 극감(좀비). 피크 대비 -85% 낙폭에 바닥 신호 없음. 거래량 완전 소멸로 reject 대상.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "zombie"],
+
+  "charts": {
+    "1m": "charts/DOODUSDT/20260521/DOODUSDT_1m.png",
+    "1w": "charts/DOODUSDT/20260521/DOODUSDT_1w.png",
+    "1d": "charts/DOODUSDT/20260521/DOODUSDT_1d.png"
+  }
+}

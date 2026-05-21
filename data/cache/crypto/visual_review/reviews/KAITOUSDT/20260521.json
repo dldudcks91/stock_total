@@ -1,0 +1,191 @@
+{
+  "symbol": "KAITOUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.4444,
+      "bars": 16,
+      "date_range": "2025-02-28 ~ 2026-05-31",
+      "ma10": 0.66555,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3323, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.232, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.3323},
+      "atr": 0.953931,
+      "atr_pct": 2.1466,
+      "adx": null,
+      "range_position": 0.099,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0214,
+        "upper_wick_pct": 0.742,
+        "lower_wick_pct": 0.171,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8434,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.35, "resistance": 0.80},
+      "pattern": "downtrend_persistent",
+      "recent_action": "2025-Feb 상장 고점(~2.5) 대비 -84% 지속 하락. MA10 훨씬 위에 있고 최근 2~3개월 0.40~0.55 박스에서 소폭 횡보."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.4444,
+      "bars": 66,
+      "date_range": "2025-02-24 ~ 2026-05-25",
+      "ma10": 0.43969,
+      "ma20": 0.414365,
+      "ma50": 0.809292,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0107, "ma20_pct": 0.0725, "ma50_pct": -0.4509},
+      "dist_from_ma_atr": {"ma10_atr": 0.037, "ma20_atr": 0.235, "ma50_atr": -2.854},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0107},
+      "atr": 0.127837,
+      "atr_pct": 0.2877,
+      "adx": 11.83,
+      "range_position": 0.195,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0902,
+        "upper_wick_pct": 0.179,
+        "lower_wick_pct": 0.014,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.232,
+        "price_range_5bar_pct": 0.3351,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.6049,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8434,
+      "vol_avg_recent_vs_prior": 0.386
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.35, "resistance": 0.60},
+      "pattern": "bear_flag_potential",
+      "recent_action": "상장 이후 일방적 하락 추세. MA10/MA20 하향, MA50은 훨씬 위에서 압력. ADX=11.83 횡보권 진입으로 바닥 탐색 가능성. 최근 음봉+거래량 감소."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.4444,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.47008,
+      "ma20": 0.48003,
+      "ma50": 0.44548,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0546, "ma20_pct": -0.0742, "ma50_pct": -0.0024},
+      "dist_from_ma_atr": {"ma10_atr": -0.732, "ma20_atr": -1.016, "ma50_atr": -0.031},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0024},
+      "atr": 0.03507,
+      "atr_pct": 0.0789,
+      "adx": 31.33,
+      "range_position": 0.505,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0902,
+        "upper_wick_pct": 0.179,
+        "lower_wick_pct": 0.014,
+        "vol_rank_30d": 0.933,
+        "vol_anomaly": "breakout",
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.3
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 3.144,
+        "price_range_5bar_pct": 0.2084,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 2,
+        "body_pct": 0.0987,
+        "vol_rank": 1.0,
+        "close": 0.4904,
+        "max_retrace_pct": 0.0952,
+        "current_retrace_pct": 0.0938,
+        "holding": false
+      },
+      "ret_30d": 0.0649,
+      "ret_90d": 0.4672,
+      "from_period_high_pct": -0.5927,
+      "vol_avg_recent_vs_prior": 0.873
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.35, "resistance": 0.52},
+      "pattern": "base_attempt",
+      "recent_action": "0.35~0.50 박스에서 바닥 다지기 시도. 최근 강양봉(bars_ago=2) 후 즉시 음봉+고거래량으로 무너져 distribution 우려. MA50(0.445) 근처에서 지지 여부 확인 필요."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "1m/1w 모두 B2 지속 하락. 1d B3 바닥 시도 중이나 최근 강양봉 후 분배 음봉+고거래량으로 재하락. 고점 대비 -84% drawdown. 바닥 확정 전까지 skip.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1m": "charts/KAITOUSDT/20260521/KAITOUSDT_1m.png",
+    "1w": "charts/KAITOUSDT/20260521/KAITOUSDT_1w.png",
+    "1d": "charts/KAITOUSDT/20260521/KAITOUSDT_1d.png"
+  }
+}

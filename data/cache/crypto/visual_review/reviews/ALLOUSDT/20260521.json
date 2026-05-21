@@ -1,0 +1,112 @@
+{
+  "symbol": "ALLOUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:09:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 0.0843,
+      "bars": 28,
+      "date_range": "2025-11-17 ~ 2026-05-25",
+      "ma10": 0.10355,
+      "ma20": 0.099495,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1859, "ma20_pct": -0.1527, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.214, "ma20_atr": -0.169, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.1527},
+      "atr": 0.089877,
+      "atr_pct": 1.0662,
+      "adx": null,
+      "range_position": 0.063,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.019,
+        "upper_wick_pct": 0.491,
+        "lower_wick_pct": 0.208,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8736,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.07, "resistance": 0.12},
+      "pattern": "post_launch_dump",
+      "recent_action": "2025년 11월 상장 직후 0.65 피크, 현재 0.084로 급락. 주봉 28봉, MA10 위에 가격 없음."
+    }
+  },
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.0843,
+      "bars": 190,
+      "date_range": "2025-11-11 ~ 2026-05-19",
+      "ma10": 0.0881,
+      "ma20": 0.100965,
+      "ma50": 0.106194,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0431, "ma20_pct": -0.1651, "ma50_pct": -0.2062},
+      "dist_from_ma_atr": {"ma10_atr": -0.489, "ma20_atr": -2.144, "ma50_atr": -2.817},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0431},
+      "atr": 0.007772,
+      "atr_pct": 0.0922,
+      "adx": 21.56,
+      "range_position": 0.071,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.019,
+        "upper_wick_pct": 0.491,
+        "lower_wick_pct": 0.208,
+        "vol_rank_30d": 0.6,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.8, "price_range_5bar_pct": 0.1151, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.1468,
+      "ret_90d": -0.1013,
+      "from_period_high_pct": -0.8736,
+      "vol_avg_recent_vs_prior": 1.379
+    },
+    "observations": {
+      "key_levels": {"support": 0.07, "resistance": 0.10},
+      "pattern": "flat_base",
+      "recent_action": "일봉 2026년 3월 이후 0.08~0.10 박스권. 역배열 유지. 거래량 매우 낮아 관심 이탈 중. MA10 근처 박스 하단."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W/1D 모두 B2/B3 역배열 지속. 상장 이후 -87% 낙폭. 거래량 빠짐. low_history. 추세 전환 증거 없음.",
+  "risk_flags": ["drawdown_deep", "low_history"],
+  "charts": {
+    "1w": "charts/ALLOUSDT/20260521/ALLOUSDT_1w.png",
+    "1d": "charts/ALLOUSDT/20260521/ALLOUSDT_1d.png"
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "symbol": "HOLOUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:34:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.07906,
+      "bars": 37,
+      "date_range": "2025-09-15 ~ 2026-05-25",
+      "ma10": 0.06481,
+      "ma20": 0.064245,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.2199, "ma20_pct": 0.2306, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.249, "ma20_atr": 0.259, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.2199},
+      "atr": 0.057309,
+      "atr_pct": 0.7249,
+      "adx": 47.64,
+      "range_position": 0.294,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0072,
+        "upper_wick_pct": 0.193,
+        "lower_wick_pct": 0.595,
+        "vol_rank_30d": 0.033,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.512, "price_range_5bar_pct": 0.3977, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 2,
+        "body_pct": 0.2042,
+        "vol_rank": 0.7,
+        "close": 0.0817,
+        "max_retrace_pct": 0.1304,
+        "current_retrace_pct": 0.0323,
+        "holding": false
+      },
+      "ret_30d": -0.4843,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8935,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.065, "resistance": 0.095},
+      "pattern": "bounce_from_floor",
+      "recent_action": "상장 직후 0.75까지 급등 후 급락. 현재 MA10 위에서 박스 형성 중이나 거래량 급감. 1W ADX 47.6으로 추세 강도 있음."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A1",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.07906,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.078669,
+      "ma20": 0.073121,
+      "ma50": 0.06427,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.005, "ma20_pct": 0.0812, "ma50_pct": 0.2301},
+      "dist_from_ma_atr": {"ma10_atr": 0.077, "ma20_atr": 1.171, "ma50_atr": 2.917},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.005},
+      "atr": 0.00507,
+      "atr_pct": 0.0641,
+      "adx": 49.83,
+      "range_position": 0.746,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0072,
+        "upper_wick_pct": 0.193,
+        "lower_wick_pct": 0.595,
+        "vol_rank_30d": 0.567,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.28, "price_range_5bar_pct": 0.1079, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 2,
+        "body_pct": 0.0553,
+        "vol_rank": 0.7,
+        "close": 0.07904,
+        "max_retrace_pct": 0.0337,
+        "current_retrace_pct": -0.0003,
+        "holding": true
+      },
+      "ret_30d": 0.401,
+      "ret_90d": 0.3662,
+      "from_period_high_pct": -0.3942,
+      "vol_avg_recent_vs_prior": 1.416
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.073, "resistance": 0.095},
+      "pattern": "stair_step_up",
+      "recent_action": "1D 정배열 완성, 30일 +40% 상승. MA10 근처에서 풀백 후 holding 중. ADX 49.8로 추세 강함."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1D A1(상승 변곡) vs 1W B3(바닥 박스)로 분리. 1D 강세 신호(정배열, ADX 50, 강양봉 holding) 긍정적이나 1W 레벨에서는 여전히 MA20 아래 역배열. drawdown_deep(-89%)와 low_history 리스크 존재. 1W MA10/MA20 위 안착 확인 시 pass 재검토.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1w": "charts/HOLOUSDT/20260521/HOLOUSDT_1w.png",
+    "1d": "charts/HOLOUSDT/20260521/HOLOUSDT_1d.png"
+  }
+}

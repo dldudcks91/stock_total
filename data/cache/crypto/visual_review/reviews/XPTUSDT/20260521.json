@@ -1,0 +1,129 @@
+{
+  "symbol": "XPTUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:34:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 1934.74,
+      "bars": 17,
+      "date_range": "2026-02-02 ~ 2026-05-25",
+      "ma10": 1998.786,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.032, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.229, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.032},
+      "atr": 280.037038,
+      "atr_pct": 0.1447,
+      "adx": null,
+      "range_position": 0.284,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.032,
+        "upper_wick_pct": 0.046,
+        "lower_wick_pct": 0.114,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.2071,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 1850.0, "resistance": 2200.0},
+      "pattern": "range_box",
+      "recent_action": "1W 17봉 신규. 2400에서 1800까지 하락 후 1900~2200 박스 형성 중. MA10(~2000) 바로 아래."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 1934.74,
+      "bars": 110,
+      "date_range": "2026-01-30 ~ 2026-05-19",
+      "ma10": 2043.546,
+      "ma20": 2028.258,
+      "ma50": 2031.0752,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "up"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0532, "ma20_pct": -0.0461, "ma50_pct": -0.0474},
+      "dist_from_ma_atr": {"ma10_atr": -1.695, "ma20_atr": -1.457, "ma50_atr": -1.501},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0461},
+      "atr": 64.198137,
+      "atr_pct": 0.0332,
+      "adx": 17.87,
+      "range_position": 0.432,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.032,
+        "upper_wick_pct": 0.046,
+        "lower_wick_pct": 0.114,
+        "vol_rank_30d": 0.367,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.753, "price_range_5bar_pct": 0.0756, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 8,
+        "body_pct": 0.051,
+        "vol_rank": 0.933,
+        "close": 2150.83,
+        "max_retrace_pct": 0.1044,
+        "current_retrace_pct": 0.1005,
+        "holding": false
+      },
+      "ret_30d": -0.071,
+      "ret_90d": -0.0712,
+      "from_period_high_pct": -0.2071,
+      "vol_avg_recent_vs_prior": 0.605
+    },
+
+    "observations": {
+      "key_levels": {"support": 1850.0, "resistance": 2200.0},
+      "pattern": "range_box",
+      "recent_action": "1D 차트에서 1800~2400 범위의 박스 횡보 확인. MA10/20/50이 2000~2050 수렴. 현재가 2000 MA 군 아래로 눌린 상태, 강양봉 8봉 전 발생했으나 holding=false."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W/1D B3 바닥 다지기 정합. MA 수렴 중이나 아직 돌파 미확인. 피크 -20.7%. 2000 MA군 돌파 확인 후 진입 고려.",
+
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1w": "charts/XPTUSDT/20260521/XPTUSDT_1w.png",
+    "1d": "charts/XPTUSDT/20260521/XPTUSDT_1d.png"
+  }
+}

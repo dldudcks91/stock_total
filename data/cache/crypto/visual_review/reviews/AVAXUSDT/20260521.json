@@ -1,0 +1,191 @@
+{
+  "symbol": "AVAXUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:45:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 9.099,
+      "bars": 57,
+      "date_range": "2021-09-30 ~ 2026-05-31",
+      "ma10": 14.3943,
+      "ma20": 20.3588,
+      "ma50": 22.308,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3679, "ma20_pct": -0.5531, "ma50_pct": -0.5921},
+      "dist_from_ma_atr": {"ma10_atr": -0.576, "ma20_atr": -1.225, "ma50_atr": -1.438},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.3679},
+      "atr": 9.188751,
+      "atr_pct": 1.0099,
+      "adx": 14.23,
+      "range_position": 0.055,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0012,
+        "upper_wick_pct": 0.898,
+        "lower_wick_pct": 0.095,
+        "vol_rank_30d": 0.4,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.935,
+        "price_range_5bar_pct": 0.8151,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.5747,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.938,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 5.0, "resistance": 20.0},
+      "pattern": "long_term_downtrend",
+      "recent_action": "1M 기준 ATH ~145 대비 -94% 붕괴. 역배열 MA 완성. 2024년 두 번의 반등 사이클(~$60) 이후 신저점 갱신 중."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 9.099,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 9.3075,
+      "ma20": 9.83625,
+      "ma50": 16.26776,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0224, "ma20_pct": -0.075, "ma50_pct": -0.4407},
+      "dist_from_ma_atr": {"ma10_atr": -0.109, "ma20_atr": -0.386, "ma50_atr": -3.758},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0224},
+      "atr": 1.907526,
+      "atr_pct": 0.2096,
+      "adx": 34.32,
+      "range_position": 0.121,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0152,
+        "upper_wick_pct": 0.252,
+        "lower_wick_pct": 0.289,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.505,
+        "price_range_5bar_pct": 0.1731,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.5521,
+      "ret_90d": -0.593,
+      "from_period_high_pct": -0.8609,
+      "vol_avg_recent_vs_prior": 0.415
+    },
+
+    "observations": {
+      "key_levels": {"support": 7.0, "resistance": 12.0},
+      "pattern": "persistent_downtrend",
+      "recent_action": "1W ADX 34의 강한 하락 추세. 2025년 말 단기 반등($38) 이후 재차 하락. MA10 직하단 $9 근방에서 횡보 중. 거래량 감소."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 9.099,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 9.618,
+      "ma20": 9.50755,
+      "ma50": 9.35254,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.054, "ma20_pct": -0.043, "ma50_pct": -0.0271},
+      "dist_from_ma_atr": {"ma10_atr": -1.274, "ma20_atr": -1.003, "ma50_atr": -0.623},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0271},
+      "atr": 0.407256,
+      "atr_pct": 0.0448,
+      "adx": 15.93,
+      "range_position": 0.346,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0152,
+        "upper_wick_pct": 0.252,
+        "lower_wick_pct": 0.289,
+        "vol_rank_30d": 0.067,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.068,
+        "price_range_5bar_pct": 0.1119,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 9,
+        "body_pct": 0.0258,
+        "vol_rank": 0.967,
+        "close": 10.221,
+        "max_retrace_pct": 0.1251,
+        "current_retrace_pct": 0.1098,
+        "holding": false
+      },
+      "ret_30d": 0.0112,
+      "ret_90d": 0.0284,
+      "from_period_high_pct": -0.5211,
+      "vol_avg_recent_vs_prior": 1.036
+    },
+
+    "observations": {
+      "key_levels": {"support": 8.5, "resistance": 10.5},
+      "pattern": "base_tight",
+      "recent_action": "1D에서 MA10/20/50이 $9.3~9.6 tight하게 수렴. ADX 15.93으로 추세 약함 — 횡보 국면. 9일 전 강양봉 후 10% 풀백(holding=false)으로 돌파 의지 미확인."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "1M/1W B2 역배열 강한 하락 추세(ADX 34). 1D B3 횡보 전환 흔적이나 상위 TF 압도적. ATH -86~94% 하락. drawdown_deep 플래그. 상위 TF 반전 확인 전 회피.",
+
+  "risk_flags": ["drawdown_deep"],
+
+  "charts": {
+    "1m": "charts/AVAXUSDT/20260521/AVAXUSDT_1m.png",
+    "1w": "charts/AVAXUSDT/20260521/AVAXUSDT_1w.png",
+    "1d": "charts/AVAXUSDT/20260521/AVAXUSDT_1d.png"
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "symbol": "FFUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:15:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.08872,
+      "bars": 35,
+      "date_range": "2025-09-29 ~ 2026-05-25",
+      "ma10": 0.07412,
+      "ma20": 0.0773,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.197, "ma20_pct": 0.1477, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.3, "ma20_atr": 0.235, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.1477},
+      "atr": 0.048686, "atr_pct": 0.5488, "adx": 55.55,
+      "range_position": 0.25,
+      "last_candle": {
+        "type": "doji", "body_pct": 0.0392,
+        "upper_wick_pct": 0.758, "lower_wick_pct": 0.013,
+        "vol_rank_30d": 0.367, "vol_anomaly": null,
+        "accumulation_candle_score": 0.0, "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.458, "price_range_5bar_pct": 0.4414, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 1, "body_pct": 0.1647, "vol_rank": 0.933, "close": 0.08524,
+        "max_retrace_pct": 0.0022, "current_retrace_pct": -0.0408, "holding": true
+      },
+      "ret_30d": -0.4673, "ret_90d": 0.0,
+      "from_period_high_pct": -0.8109,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.07, "resistance": 0.12},
+      "pattern": "pump_dump_collapse",
+      "recent_action": "출시 직후 0.4 펌프 후 지속 하락. 최근 1D에서 0.162 스파이크 발생 후 즉시 소멸 패턴. 현재 MA 위에 있으나 MA 방향 하락."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.08872,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.081701,
+      "ma20": 0.072541,
+      "ma50": 0.073245,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0859, "ma20_pct": 0.223, "ma50_pct": 0.2113},
+      "dist_from_ma_atr": {"ma10_atr": 0.911, "ma20_atr": 2.1, "ma50_atr": 2.009},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0859},
+      "atr": 0.007704, "atr_pct": 0.0868, "adx": 48.06,
+      "range_position": 0.25,
+      "last_candle": {
+        "type": "doji", "body_pct": 0.0392,
+        "upper_wick_pct": 0.758, "lower_wick_pct": 0.013,
+        "vol_rank_30d": 0.767, "vol_anomaly": null,
+        "accumulation_candle_score": 0.0, "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 5.199, "price_range_5bar_pct": 0.2489, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 4, "body_pct": 0.117, "vol_rank": 1.0, "close": 0.08909,
+        "max_retrace_pct": 0.0609, "current_retrace_pct": 0.0042, "holding": true
+      },
+      "ret_30d": 0.2264, "ret_90d": 0.115,
+      "from_period_high_pct": -0.4834,
+      "vol_avg_recent_vs_prior": 0.792
+    },
+    "observations": {
+      "key_levels": {"support": 0.065, "resistance": 0.165},
+      "pattern": "spike_reversal",
+      "recent_action": "3월 말 0.162 단기 스파이크 후 즉시 거래량 소멸. 현재 0.089 MA10 위 횡보. 스파이크 패턴이 1W 하락 추세 맥락에서 pump_dump 의심."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W B2(하락) vs 1D B4(상승 시도) 충돌. 단기 스파이크 후 거래량 소멸 패턴으로 pump_dump_trace 의심. 히스토리 부족(1W 35봉).",
+
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace"],
+
+  "charts": {
+    "1w": "charts/FFUSDT/20260521/FFUSDT_1w.png",
+    "1d": "charts/FFUSDT/20260521/FFUSDT_1d.png"
+  }
+}

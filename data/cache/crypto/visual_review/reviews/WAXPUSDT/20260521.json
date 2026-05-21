@@ -1,0 +1,170 @@
+{
+  "symbol": "WAXPUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.006228,
+      "bars": 32,
+      "date_range": "2023-10-31 ~ 2026-05-31",
+      "ma10": 0.009829,
+      "ma20": 0.020125,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3664, "ma20_pct": -0.6905, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.35, "ma20_atr": -1.35, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.3664},
+      "atr": 0.010292,
+      "atr_pct": 1.6525,
+      "adx": 16.45,
+      "range_position": 0.025,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0539,
+        "upper_wick_pct": 0.692,
+        "lower_wick_pct": 0.011,
+        "vol_rank_30d": 0.833,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.9,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9496,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.005, "resistance": 0.010},
+      "pattern": "multi_year_decline",
+      "recent_action": "1M: 2024년 고점 0.12 대비 -95% 하락. 2026년 4월 대량 매도(거래량 폭증) 확인."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.006228,
+      "bars": 136,
+      "date_range": "2023-10-23 ~ 2026-05-25",
+      "ma10": 0.006677,
+      "ma20": 0.006926,
+      "ma50": 0.012327,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0673, "ma20_pct": -0.1007, "ma50_pct": -0.4948},
+      "dist_from_ma_atr": {"ma10_atr": -0.369, "ma20_atr": -0.573, "ma50_atr": -5.007},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0673},
+      "atr": 0.001218,
+      "atr_pct": 0.1956,
+      "adx": 33.67,
+      "range_position": 0.066,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0263,
+        "upper_wick_pct": 0.119,
+        "lower_wick_pct": 0.065,
+        "vol_rank_30d": 0.267,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.605, "price_range_5bar_pct": 0.1819, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 2, "body_pct": 0.0909, "vol_rank": 0.8, "close": 0.007273,
+        "max_retrace_pct": 0.1455, "current_retrace_pct": 0.1437, "holding": false
+      },
+      "ret_30d": -0.5314,
+      "ret_90d": -0.788,
+      "from_period_high_pct": -0.9496,
+      "vol_avg_recent_vs_prior": 1.9
+    },
+    "observations": {
+      "key_levels": {"support": 0.0055, "resistance": 0.0075},
+      "pattern": "volume_spike_bottom",
+      "recent_action": "1W: 2026년 2월 돌연 대량 거래량 스파이크(녹색봉) 발생 후 가격 안정. 하락 지속이나 vol_avg 1.9로 매집 의심."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.006228,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.006689,
+      "ma20": 0.006745,
+      "ma50": 0.006668,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0689, "ma20_pct": -0.0767, "ma50_pct": -0.0659},
+      "dist_from_ma_atr": {"ma10_atr": -1.879, "ma20_atr": -2.109, "ma50_atr": -1.792},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0659},
+      "atr": 0.000245,
+      "atr_pct": 0.0394,
+      "adx": 20.01,
+      "range_position": 0.042,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0263,
+        "upper_wick_pct": 0.119,
+        "lower_wick_pct": 0.065,
+        "vol_rank_30d": 0.767,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 3.15, "price_range_5bar_pct": 0.0936, "accumulation_score": 0.3},
+      "recent_strong_bull": {
+        "bars_ago": 9, "body_pct": 0.0251, "vol_rank": 0.967, "close": 0.007288,
+        "max_retrace_pct": 0.1472, "current_retrace_pct": 0.1454, "holding": false
+      },
+      "ret_30d": -0.0384,
+      "ret_90d": -0.0757,
+      "from_period_high_pct": -0.5282,
+      "vol_avg_recent_vs_prior": 0.298
+    },
+    "observations": {
+      "key_levels": {"support": 0.0060, "resistance": 0.0075},
+      "pattern": "tight_consolidation",
+      "recent_action": "1D: 2026년 2월 이후 0.006~0.0075 좁은 박스. MA 수렴. 2월 거래량 스파이크 후 평평. ADX 20 추세 약함. 누적 거래량 3.15배 이상."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1D B3(박스 다지기) + 거래량 스파이크 매집 의심. 1W B2 하락 추세 잔존. 1W/1D 충돌. 바닥 형성 가능성, 돌파 확인 후 재평가.",
+  "risk_flags": ["drawdown_deep", "zombie", "accumulation_suspect"],
+
+  "charts": {
+    "1m": "charts/WAXPUSDT/20260521/WAXPUSDT_1m.png",
+    "1w": "charts/WAXPUSDT/20260521/WAXPUSDT_1w.png",
+    "1d": "charts/WAXPUSDT/20260521/WAXPUSDT_1d.png"
+  }
+}

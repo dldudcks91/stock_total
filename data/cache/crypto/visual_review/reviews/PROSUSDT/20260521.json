@@ -1,0 +1,71 @@
+{
+  "symbol": "PROSUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "B1",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.5743,
+      "bars": 21,
+      "date_range": "2026-04-29 ~ 2026-05-19",
+      "ma10": 0.73261,
+      "ma20": 0.719775,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2161, "ma20_pct": -0.2021, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -1.126, "ma20_atr": -1.034, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.2021},
+      "atr": 0.140652,
+      "atr_pct": 0.2449,
+      "adx": null,
+      "range_position": 0.022,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.1057,
+        "upper_wick_pct": 0.161,
+        "lower_wick_pct": 0.141,
+        "vol_rank_30d": 0.286,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.4899,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.50, "resistance": 0.80},
+      "pattern": "pump_reversal",
+      "recent_action": "5/9 대형 양봉(거래량 폭증) 후 가격 즉각 반락. 현재 고점 -49%로 MA 전체 아래. 21봉으로 역사 매우 부족."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "low",
+  "verdict_reason": "21봉 신규, 1D만 채점 가능. 상장 직후 펌프 후 B1 하락 전환 패턴. low_history로 신뢰도 낮음.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace"],
+
+  "charts": {
+    "1d": "charts/PROSUSDT/20260521/PROSUSDT_1d.png"
+  }
+}

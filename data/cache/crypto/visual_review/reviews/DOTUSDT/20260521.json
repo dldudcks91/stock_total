@@ -1,0 +1,171 @@
+{
+  "symbol": "DOTUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:40:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 1.224,
+      "bars": 70,
+      "date_range": "2020-08-31 ~ 2026-05-31",
+      "ma10": 2.1407,
+      "ma20": 3.56055,
+      "ma50": 5.33146,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.4282, "ma20_pct": -0.6562, "ma50_pct": -0.7704},
+      "dist_from_ma_atr": {"ma10_atr": -0.516, "ma20_atr": -1.315, "ma50_atr": -2.311},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.4282},
+      "atr": 1.777401,
+      "atr_pct": 1.4521,
+      "adx": 11.51,
+      "range_position": 0.07,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0172,
+        "upper_wick_pct": 0.87,
+        "lower_wick_pct": 0.045,
+        "vol_rank_30d": 0.533,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.984, "price_range_5bar_pct": 1.0147, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.7764,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9778,
+      "vol_avg_recent_vs_prior": 6.253
+    },
+
+    "observations": {
+      "key_levels": {"support": 1.0, "resistance": 3.0},
+      "pattern": "multi_year_downtrend",
+      "recent_action": "1M 차트상 2021년 고점(~55) 이후 장기 하락 추세. 최근 30일 -78% 급락. 현재가 MA10 대비 -43% 아래. 역대급 낙폭."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 1.224,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 1.2702,
+      "ma20": 1.4395,
+      "ma50": 2.54122,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0364, "ma20_pct": -0.1497, "ma50_pct": -0.5183},
+      "dist_from_ma_atr": {"ma10_atr": -0.144, "ma20_atr": -0.672, "ma50_atr": -4.107},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0364},
+      "atr": 0.320749,
+      "atr_pct": 0.2621,
+      "adx": 29.53,
+      "range_position": 0.051,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0221,
+        "upper_wick_pct": 0.227,
+        "lower_wick_pct": 0.159,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.557, "price_range_5bar_pct": 0.2141, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.6098,
+      "ret_90d": -0.7089,
+      "from_period_high_pct": -0.8972,
+      "vol_avg_recent_vs_prior": 0.878
+    },
+
+    "observations": {
+      "key_levels": {"support": 1.0, "resistance": 1.5},
+      "pattern": "sustained_downtrend",
+      "recent_action": "1W 완전 역배열, ADX 29.53 하락 추세 명확. 30일 -61%, 90일 -71% 급격한 하락. 피크 대비 -90%."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 1.224,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 1.3074,
+      "ma20": 1.2883,
+      "ma50": 1.26808,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0638, "ma20_pct": -0.0499, "ma50_pct": -0.0348},
+      "dist_from_ma_atr": {"ma10_atr": -1.241, "ma20_atr": -0.957, "ma50_atr": -0.656},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0348},
+      "atr": 0.067218,
+      "atr_pct": 0.0549,
+      "adx": 19.25,
+      "range_position": 0.223,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0221,
+        "upper_wick_pct": 0.227,
+        "lower_wick_pct": 0.159,
+        "vol_rank_30d": 0.167,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.804, "price_range_5bar_pct": 0.1315, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.0113,
+      "ret_90d": -0.0642,
+      "from_period_high_pct": -0.6526,
+      "vol_avg_recent_vs_prior": 0.709
+    },
+
+    "observations": {
+      "key_levels": {"support": 1.15, "resistance": 1.35},
+      "pattern": "tight_consolidation",
+      "recent_action": "1D 차트상 1.20~1.35 박스권. MA들이 tight하게 수렴하며 방향 모색. ADX 19(횡보) + MA50 근접 지지 테스트."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "1M/1W B2 강한 하락 정합, 1D만 B3 박스권. 상위 TF의 하락 추세가 압도적. 피크 대비 -90%(1M 기준 -98%). 1D MA 회복 및 1W 역배열 해소 전까지 매매 회피.",
+
+  "risk_flags": ["drawdown_deep"],
+
+  "charts": {
+    "1m": "charts/DOTUSDT/20260521/DOTUSDT_1m.png",
+    "1w": "charts/DOTUSDT/20260521/DOTUSDT_1w.png",
+    "1d": "charts/DOTUSDT/20260521/DOTUSDT_1d.png"
+  }
+}

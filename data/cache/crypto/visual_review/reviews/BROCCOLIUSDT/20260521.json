@@ -1,0 +1,171 @@
+{
+  "symbol": "BROCCOLIUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:09:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "C1",
+    "micro_action": "riding",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.01415,
+      "bars": 16,
+      "date_range": "2025-02-28 ~ 2026-05-31",
+      "ma10": 0.017286,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1814, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.043, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1814},
+      "atr": 0.072459,
+      "atr_pct": 5.1207,
+      "adx": null,
+      "range_position": 0.112,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.2834,
+        "upper_wick_pct": 0.313,
+        "lower_wick_pct": 0.083,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9278,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.01, "resistance": 0.02},
+      "pattern": "pump_dump_aftermath",
+      "recent_action": "2025-02 상장 직후 0.18 펌프 → 0.014 붕괴. 1M 16봉 low_history. 고점 대비 -92.8%."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.01415,
+      "bars": 67,
+      "date_range": "2025-02-17 ~ 2026-05-25",
+      "ma10": 0.015067,
+      "ma20": 0.015631,
+      "ma50": 0.022207,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0609, "ma20_pct": -0.0947, "ma50_pct": -0.3628},
+      "dist_from_ma_atr": {"ma10_atr": -0.13, "ma20_atr": -0.209, "ma50_atr": -1.138},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0609},
+      "atr": 0.007081,
+      "atr_pct": 0.5004,
+      "adx": 41.57,
+      "range_position": 0.049,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0127,
+        "upper_wick_pct": 0.437,
+        "lower_wick_pct": 0.187,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.302, "price_range_5bar_pct": 0.6382, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.3818,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9278,
+      "vol_avg_recent_vs_prior": 1.109
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.01, "resistance": 0.02},
+      "pattern": "post_pump_decline",
+      "recent_action": "1W ADX 41.57 강한 하락 추세. range_position 0.049 극하단. 2025-12 일시 폭등 후 즉각 소멸 패턴 반복."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.01415,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.015711,
+      "ma20": 0.016967,
+      "ma50": 0.015472,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0994, "ma20_pct": -0.166, "ma50_pct": -0.0855},
+      "dist_from_ma_atr": {"ma10_atr": -1.146, "ma20_atr": -2.067, "ma50_atr": -0.97},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0855},
+      "atr": 0.001363,
+      "atr_pct": 0.0963,
+      "adx": 33.69,
+      "range_position": 0.243,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0127,
+        "upper_wick_pct": 0.437,
+        "lower_wick_pct": 0.187,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.345, "price_range_5bar_pct": 0.1781, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0136,
+      "ret_90d": 0.0374,
+      "from_period_high_pct": -0.8202,
+      "vol_avg_recent_vs_prior": 0.737
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.012, "resistance": 0.02},
+      "pattern": "sideways_base",
+      "recent_action": "1D 2025-12 급등(펌프) 후 하락 수렴 중. 최근 MA50 근처 박스. ADX 33 추세 하락 잔존. 방향성 미결정."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "reject",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1M 상장 직후 펌프&덤프 패턴 명확. 1W ADX 41 강한 하락. 1D B3 박스이나 상위 TF 구조 손상. from_high -93%. low_history + pump_dump_trace.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace"],
+
+  "charts": {
+    "1m": "charts/BROCCOLIUSDT/20260521/BROCCOLIUSDT_1m.png",
+    "1w": "charts/BROCCOLIUSDT/20260521/BROCCOLIUSDT_1w.png",
+    "1d": "charts/BROCCOLIUSDT/20260521/BROCCOLIUSDT_1d.png"
+  }
+}

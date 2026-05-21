@@ -1,0 +1,183 @@
+{
+  "symbol": "MUBARAKUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "C1",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.01363,
+      "bars": 15,
+      "date_range": "2025-03-31 ~ 2026-05-31",
+      "ma10": 0.018107,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2473, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.064, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.2473},
+      "atr": 0.069723,
+      "atr_pct": 5.1154,
+      "adx": null,
+      "range_position": 0.166,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.022,
+        "upper_wick_pct": 0.892,
+        "lower_wick_pct": 0.052,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9384,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.012, "resistance": 0.020},
+      "pattern": "pump_dump",
+      "recent_action": "상장 직후 0.22까지 급등 후 지속 하락, 현재 0.014. 거래량 소멸과 함께 전형적인 펌프&덤프 패턴."
+    }
+  },
+
+  "tf_1w": {
+    "state": "C1",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.01363,
+      "bars": 63,
+      "date_range": "2025-03-17 ~ 2026-05-25",
+      "ma10": 0.013834,
+      "ma20": 0.015343,
+      "ma50": 0.023262,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0147, "ma20_pct": -0.1116, "ma50_pct": -0.4141},
+      "dist_from_ma_atr": {"ma10_atr": -0.037, "ma20_atr": -0.311, "ma50_atr": -1.749},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0147},
+      "atr": 0.005508,
+      "atr_pct": 0.4041,
+      "adx": 11.37,
+      "range_position": 0.193,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0337,
+        "upper_wick_pct": 0.213,
+        "lower_wick_pct": 0.173,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.241,
+        "price_range_5bar_pct": 0.4101,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.414,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9384,
+      "vol_avg_recent_vs_prior": 0.396
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.012, "resistance": 0.020},
+      "pattern": "zombie_decline",
+      "recent_action": "역배열 전 MA 하향, 거래량 극히 감소(vol_avg 0.396). 피크 대비 -93.8% 상태에서 추세적 하락 지속."
+    }
+  },
+
+  "tf_1d": {
+    "state": "C1",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.01363,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.015106,
+      "ma20": 0.015233,
+      "ma50": 0.013795,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0977, "ma20_pct": -0.1052, "ma50_pct": -0.012},
+      "dist_from_ma_atr": {"ma10_atr": -1.203, "ma20_atr": -1.306, "ma50_atr": -0.135},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.012},
+      "atr": 0.001227,
+      "atr_pct": 0.09,
+      "adx": 27.35,
+      "range_position": 0.374,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0337,
+        "upper_wick_pct": 0.213,
+        "lower_wick_pct": 0.173,
+        "vol_rank_30d": 0.133,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.425,
+        "price_range_5bar_pct": 0.2142,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.021,
+      "ret_90d": -0.1689,
+      "from_period_high_pct": -0.4661,
+      "vol_avg_recent_vs_prior": 0.926
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.012, "resistance": 0.020},
+      "pattern": "pump_dump",
+      "recent_action": "전 TF에서 지속 하락, 1D 기준 반등 시도 흔적 있으나 모두 실패. 피크 대비 -93.8%."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF C1 pump&dump 패턴 명확. 상장 직후 폭등 후 지속 하락, 피크 -93.8%, 거래량 소멸. 영구 제외 대상.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace"],
+
+  "charts": {
+    "1m": "charts/MUBARAKUSDT/20260521/MUBARAKUSDT_1m.png",
+    "1w": "charts/MUBARAKUSDT/20260521/MUBARAKUSDT_1w.png",
+    "1d": "charts/MUBARAKUSDT/20260521/MUBARAKUSDT_1d.png"
+  }
+}

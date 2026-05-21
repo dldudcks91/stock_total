@@ -1,0 +1,121 @@
+{
+  "symbol": "SKRUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.014305,
+      "bars": 18,
+      "date_range": "2026-01-26 ~ 2026-05-25",
+      "ma10": 0.016649,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1408, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.143, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1408},
+      "atr": 0.016396,
+      "atr_pct": 1.1461,
+      "adx": null,
+      "range_position": 0.088,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0023,
+        "upper_wick_pct": 0.907,
+        "lower_wick_pct": 0.056,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.7489,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.013, "resistance": 0.02},
+      "pattern": "low_history_drop",
+      "recent_action": "1W 18봉 신규 코인. 상장 후 급락, MA10 이하 유지. 데이터 부족으로 정확한 사이클 판단 어려움."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.014305,
+      "bars": 119,
+      "date_range": "2026-01-21 ~ 2026-05-19",
+      "ma10": 0.015609,
+      "ma20": 0.016009,
+      "ma50": 0.016494,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0836, "ma20_pct": -0.1064, "ma50_pct": -0.1327},
+      "dist_from_ma_atr": {"ma10_atr": -1.192, "ma20_atr": -1.558, "ma50_atr": -2.002},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0836},
+      "atr": 0.001094,
+      "atr_pct": 0.0765,
+      "adx": 21.81,
+      "range_position": 0.061,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0023,
+        "upper_wick_pct": 0.907,
+        "lower_wick_pct": 0.056,
+        "vol_rank_30d": 0.833,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.366, "price_range_5bar_pct": 0.1739, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.0808,
+      "ret_90d": -0.2298,
+      "from_period_high_pct": -0.7489,
+      "vol_avg_recent_vs_prior": 4.027
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.013, "resistance": 0.018},
+      "pattern": "stair_step_down",
+      "recent_action": "상장 직후(2026년 1월) 급등 후 지속 하락. 최근 일봉 MA 역배열 유지, 가격은 레인지 하단. vol_avg 4x 상승은 거래량 이상 신호."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "신규 상장 후 하락 추세 지속(low_history). 1W/1D 모두 역배열 B2~B3 구간. 바닥 다지기 여부 불명확.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1w": "charts/SKRUSDT/20260521/SKRUSDT_1w.png",
+    "1d": "charts/SKRUSDT/20260521/SKRUSDT_1d.png"
+  }
+}

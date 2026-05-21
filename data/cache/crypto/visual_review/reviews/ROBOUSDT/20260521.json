@@ -1,0 +1,124 @@
+{
+  "symbol": "ROBOUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.02115,
+      "bars": 13,
+      "date_range": "2026-03-02 ~ 2026-05-25",
+      "ma10": 0.020994,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0074, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0074},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.111,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0109,
+        "upper_wick_pct": 0.534,
+        "lower_wick_pct": 0.361,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.6614,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.019, "resistance": 0.025},
+      "pattern": "low_history_box",
+      "recent_action": "상장 13주만의 1W 차트. 초기 고점 $0.06 이후 $0.02대에서 수렴 횡보 중. 거래량 급격 감소."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.02115,
+      "bars": 82,
+      "date_range": "2026-02-27 ~ 2026-05-19",
+      "ma10": 0.021144,
+      "ma20": 0.020741,
+      "ma50": 0.020038,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "down", "ma50": "down"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0003, "ma20_pct": 0.0197, "ma50_pct": 0.0555},
+      "dist_from_ma_atr": {"ma10_atr": 0.003, "ma20_atr": 0.188, "ma50_atr": 0.511},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0003},
+      "atr": 0.002175,
+      "atr_pct": 0.1028,
+      "adx": 30.46,
+      "range_position": 0.486,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0109,
+        "upper_wick_pct": 0.534,
+        "lower_wick_pct": 0.361,
+        "vol_rank_30d": 0.6,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.914, "price_range_5bar_pct": 0.1768, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 2, "body_pct": 0.0698, "vol_rank": 0.867, "close": 0.02135,
+        "max_retrace_pct": 0.0571, "current_retrace_pct": 0.0094, "holding": true
+      },
+      "ret_30d": 0.1457,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.6614,
+      "vol_avg_recent_vs_prior": 0.772
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.019, "resistance": 0.025},
+      "pattern": "ma_convergence_test",
+      "recent_action": "1D에서 MA10·20·50이 좁게 수렴, 가격이 모든 MA 위에서 보합. 2일 전 강양봉 이후 보유 중(holding=true). B4 상승 첫 시도 단계."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "1W low_history로 큰 그림 불명확. 1D에서 B4(상승 첫 시도) 신호이나 고점 -66% 깊은 드로다운 + 신규 코인. 상승 확정 재확인 후 진입 고려.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1w": "charts/ROBOUSDT/20260521/ROBOUSDT_1w.png",
+    "1d": "charts/ROBOUSDT/20260521/ROBOUSDT_1d.png"
+  }
+}

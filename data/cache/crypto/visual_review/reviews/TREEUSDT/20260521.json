@@ -1,0 +1,159 @@
+{
+  "symbol": "TREEUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "dry",
+    "confidence": "low",
+    "context": {
+      "last_close": 0.06006,
+      "bars": 11,
+      "date_range": "2025-07-31 ~ 2026-05-31",
+      "ma10": 0.1315,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.5433, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.5433},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.004,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.1141,
+        "upper_wick_pct": 0.588,
+        "lower_wick_pct": 0.063,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9542,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.05, "resistance": 0.13},
+      "pattern": "pump_dump_collapse",
+      "recent_action": "1M 차트 11봉으로 데이터 극히 부족. 초기 고점(~1.3) 후 단계적 붕괴, 현재 0.06 근처 바닥 수준. 거래량 고갈."
+    }
+  },
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "dry",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.06006,
+      "bars": 43,
+      "date_range": "2025-08-04 ~ 2026-05-25",
+      "ma10": 0.065085,
+      "ma20": 0.071768,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0772, "ma20_pct": -0.1631, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.08, "ma20_atr": -0.187, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0772},
+      "atr": 0.062608,
+      "atr_pct": 1.0424,
+      "adx": 22.11,
+      "range_position": 0.031,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0356,
+        "upper_wick_pct": 0.014,
+        "lower_wick_pct": 0.023,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.427, "price_range_5bar_pct": 0.5047, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.6661,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9542,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.05, "resistance": 0.08},
+      "pattern": "steady_decline",
+      "recent_action": "1W에서 초기 폭등 이후 지속 하락. MA10/MA20 역배열 하향. 거래량이 최근 수개월간 극히 낮음."
+    }
+  },
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "dry",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.06006,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.067336,
+      "ma20": 0.068314,
+      "ma50": 0.066183,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1081, "ma20_pct": -0.1208, "ma50_pct": -0.0925},
+      "dist_from_ma_atr": {"ma10_atr": -1.585, "ma20_atr": -1.798, "ma50_atr": -1.334},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0925},
+      "atr": 0.004591,
+      "atr_pct": 0.0764,
+      "adx": 41.14,
+      "range_position": 0.15,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0356,
+        "upper_wick_pct": 0.014,
+        "lower_wick_pct": 0.023,
+        "vol_rank_30d": 0.133,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.519, "price_range_5bar_pct": 0.1991, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.0706,
+      "ret_90d": -0.1541,
+      "from_period_high_pct": -0.6948,
+      "vol_avg_recent_vs_prior": 0.499
+    },
+    "observations": {
+      "key_levels": {"support": 0.055, "resistance": 0.08},
+      "pattern": "downtrend_persistent",
+      "recent_action": "1D 차트 전 구간 MA 아래 역배열. 0.06 근처에서 단기 박스 시도 중이나 강한 상승 신호 없음. 거래량 평균 대비 절반 수준."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF B2 하락 추세 정합. 피크 대비 -95% 붕괴. 거래량 고갈. low_history 신규 코인. 변환 신호 전무.",
+  "risk_flags": ["drawdown_deep", "low_history"],
+  "charts": {
+    "1m": "charts/TREEUSDT/20260521/TREEUSDT_1m.png",
+    "1w": "charts/TREEUSDT/20260521/TREEUSDT_1w.png",
+    "1d": "charts/TREEUSDT/20260521/TREEUSDT_1d.png"
+  }
+}

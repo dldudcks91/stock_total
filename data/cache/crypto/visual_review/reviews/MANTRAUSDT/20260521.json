@@ -1,0 +1,129 @@
+{
+  "symbol": "MANTRAUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:33:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.00891,
+      "bars": 12,
+      "date_range": "2026-03-09 ~ 2026-05-25",
+      "ma10": 0.010523,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1533, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1533},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.004,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0393,
+        "upper_wick_pct": 0.22,
+        "lower_wick_pct": 0.08,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.6659,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.0085, "resistance": 0.012},
+      "pattern": "new_low_drift",
+      "recent_action": "12봉(3개월) 데이터만 존재. 시작 이후 지속 하락하여 고점 대비 -66.6%."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.00891,
+      "bars": 77,
+      "date_range": "2026-03-04 ~ 2026-05-19",
+      "ma10": 0.010247,
+      "ma20": 0.010288,
+      "ma50": 0.010486,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1305, "ma20_pct": -0.1339, "ma50_pct": -0.1503},
+      "dist_from_ma_atr": {"ma10_atr": -1.83, "ma20_atr": -1.886, "ma50_atr": -2.157},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1305},
+      "atr": 0.000731,
+      "atr_pct": 0.082,
+      "adx": 25.17,
+      "range_position": 0.015,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0393,
+        "upper_wick_pct": 0.22,
+        "lower_wick_pct": 0.08,
+        "vol_rank_30d": 0.567,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.652, "price_range_5bar_pct": 0.2391, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 9,
+        "body_pct": 0.0233,
+        "vol_rank": 0.767,
+        "close": 0.01117,
+        "max_retrace_pct": 0.2095,
+        "current_retrace_pct": 0.2023,
+        "holding": false
+      },
+      "ret_30d": -0.1273,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.6659,
+      "vol_avg_recent_vs_prior": 1.243
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.0085, "resistance": 0.011},
+      "pattern": "tight_downtrend",
+      "recent_action": "MA 역배열, 가격은 모든 MA 아래 13% 거리. 5월 중순 반등 시도 후 재하락. 역사가 77일뿐이라 판단 불확실."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W/1D B2 정합. 신생 코인(77일)으로 low_history, drawdown_deep 동시 해당. 반등 시도 실패 반복 중. 데이터 축적 전 매매 회피.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1w": "charts/MANTRAUSDT/20260521/MANTRAUSDT_1w.png",
+    "1d": "charts/MANTRAUSDT/20260521/MANTRAUSDT_1d.png"
+  }
+}

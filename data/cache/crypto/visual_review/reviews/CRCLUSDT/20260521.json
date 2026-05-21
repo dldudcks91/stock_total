@@ -1,0 +1,199 @@
+{
+  "symbol": "CRCLUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:35:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 110.94,
+      "bars": 10,
+      "date_range": "2025-08-31 ~ 2026-05-31",
+      "ma10": 99.815,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.1115, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.1115},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.57,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.1761,
+        "upper_wick_pct": 0.597,
+        "lower_wick_pct": 0.004,
+        "vol_rank_30d": 0.6,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.3001,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 60, "resistance": 160},
+      "pattern": "volatile_range",
+      "recent_action": "1M 10봉 데이터. 상장 초기 140~160 구간 이후 60까지 하락했다가 현재 110 수준 회복. 방향성 판정 불충분."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": "bounce_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 110.94,
+      "bars": 40,
+      "date_range": "2025-08-25 ~ 2026-05-25",
+      "ma10": 108.375,
+      "ma20": 94.666,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0237, "ma20_pct": 0.1719, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.131, "ma20_atr": 0.83, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0237},
+      "atr": 19.614597,
+      "atr_pct": 0.1768,
+      "adx": 27.33,
+      "range_position": 0.665,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0084,
+        "upper_wick_pct": 0.512,
+        "lower_wick_pct": 0.357,
+        "vol_rank_30d": 0.133,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.269,
+        "price_range_5bar_pct": 0.4519,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 3,
+        "body_pct": 0.2073,
+        "vol_rank": 0.867,
+        "close": 121.11,
+        "max_retrace_pct": 0.1248,
+        "current_retrace_pct": 0.084,
+        "holding": false
+      },
+      "ret_30d": -0.2209,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.3001,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 85, "resistance": 140},
+      "pattern": "recovery_attempt",
+      "recent_action": "1W에서 2026년 2월 ~58 저점 이후 강한 반등. MA10(108)과 MA20(94) 모두 우상향 전환. 3봉 전 장대양봉(121) 이후 일부 조정 중이나 MA10 위 유지."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 110.94,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 117.915,
+      "ma20": 113.705,
+      "ma50": 103.6062,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0592, "ma20_pct": -0.0243, "ma50_pct": 0.0708},
+      "dist_from_ma_atr": {"ma10_atr": -0.777, "ma20_atr": -0.308, "ma50_atr": 0.817},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0243},
+      "atr": 8.973278,
+      "atr_pct": 0.0809,
+      "adx": 37.75,
+      "range_position": 0.477,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0084,
+        "upper_wick_pct": 0.512,
+        "lower_wick_pct": 0.357,
+        "vol_rank_30d": 0.533,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.71,
+        "price_range_5bar_pct": 0.1445,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 8,
+        "body_pct": 0.1012,
+        "vol_rank": 1.0,
+        "close": 131.38,
+        "max_retrace_pct": 0.1824,
+        "current_retrace_pct": 0.1556,
+        "holding": false
+      },
+      "ret_30d": 0.1019,
+      "ret_90d": 0.7482,
+      "from_period_high_pct": -0.2088,
+      "vol_avg_recent_vs_prior": 0.647
+    },
+
+    "observations": {
+      "key_levels": {"support": 100, "resistance": 135},
+      "pattern": "pullback_in_uptrend",
+      "recent_action": "1D에서 MA 정배열(MA10>MA20>MA50) 복구. 8봉 전 장대양봉(131) 이후 현재 MA20(113) 부근으로 16% 조정. ADX 37.75 추세 강함. B4→B5 전환 주목."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W/1D 모두 B4 상승 시도 단계. 1D MA 정배열 복구 + ADX 37.75로 추세 확인. 8봉 전 장대양봉 이후 MA20(113) 지지 여부 확인 중. MA20 반등 확정 시 B5 전환 → pass 가능. 현재는 watch.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1m": "charts/CRCLUSDT/20260521/CRCLUSDT_1m.png",
+    "1w": "charts/CRCLUSDT/20260521/CRCLUSDT_1w.png",
+    "1d": "charts/CRCLUSDT/20260521/CRCLUSDT_1d.png"
+  }
+}

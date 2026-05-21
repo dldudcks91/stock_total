@@ -1,0 +1,112 @@
+{
+  "symbol": "TRIAUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 0.044735,
+      "bars": 16,
+      "date_range": "2026-02-09 ~ 2026-05-25",
+      "ma10": 0.036215,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.2353, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.777, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.2353},
+      "atr": 0.010965,
+      "atr_pct": 0.2451,
+      "adx": null,
+      "range_position": 0.821,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.003,
+        "upper_wick_pct": 0.529,
+        "lower_wick_pct": 0.433,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.134,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.029, "resistance": 0.052},
+      "pattern": "early_uptrend",
+      "recent_action": "1W 16봉 신규 코인. 2026년 2~3월 수직 상승 후 0.044 근처에서 도지봉 횡보 중. MA10 상향. 데이터 매우 부족."
+    }
+  },
+  "tf_1d": {
+    "state": "A3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.044735,
+      "bars": 103,
+      "date_range": "2026-02-06 ~ 2026-05-19",
+      "ma10": 0.04457,
+      "ma20": 0.042707,
+      "ma50": 0.034232,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0037, "ma20_pct": 0.0475, "ma50_pct": 0.3068},
+      "dist_from_ma_atr": {"ma10_atr": 0.032, "ma20_atr": 0.389, "ma50_atr": 2.017},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0037},
+      "atr": 0.005208,
+      "atr_pct": 0.1164,
+      "adx": 30.19,
+      "range_position": 0.784,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.003,
+        "upper_wick_pct": 0.529,
+        "lower_wick_pct": 0.433,
+        "vol_rank_30d": 0.5,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.44, "price_range_5bar_pct": 0.1635, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.7078,
+      "ret_90d": 1.7813,
+      "from_period_high_pct": -0.134,
+      "vol_avg_recent_vs_prior": 0.358
+    },
+    "observations": {
+      "key_levels": {"support": 0.038, "resistance": 0.052},
+      "pattern": "topping_box",
+      "recent_action": "1D 정배열 유지 중이나 3월 고점 이후 거래량 감소와 함께 0.044~0.050 구간 박스. 최근 MA10 근처에서 도지봉 출현, 토핑 가능성."
+    }
+  },
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1D 정배열 A3 토핑 가능성, 1W는 데이터 부족 A2 추정. parabolic 위험(1D ret_90d +178%). 고점 대비 -13%이나 거래량 감소. 변환 확인 필요.",
+  "risk_flags": ["parabolic", "low_history"],
+  "charts": {
+    "1w": "charts/TRIAUSDT/20260521/TRIAUSDT_1w.png",
+    "1d": "charts/TRIAUSDT/20260521/TRIAUSDT_1d.png"
+  }
+}

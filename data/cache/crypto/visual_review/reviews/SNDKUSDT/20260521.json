@@ -1,0 +1,85 @@
+{
+  "symbol": "SNDKUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 1392.19,
+      "bars": 35,
+      "date_range": "2026-04-15 ~ 2026-05-19",
+      "ma10": 1423.083,
+      "ma20": 1370.5365,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0217, "ma20_pct": 0.0158, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.309, "ma20_atr": 0.217, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.0158},
+      "atr": 99.953317,
+      "atr_pct": 0.0718,
+      "adx": 53.64,
+      "range_position": 0.659,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.0496,
+        "upper_wick_pct": 0.032,
+        "lower_wick_pct": 0.375,
+        "vol_rank_30d": 0.8,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 2.92,
+        "price_range_5bar_pct": 0.1237,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 0,
+        "body_pct": 0.0496,
+        "vol_rank": 0.833,
+        "close": 1392.19,
+        "max_retrace_pct": 0.0,
+        "current_retrace_pct": 0.0,
+        "holding": true
+      },
+      "ret_30d": 0.5415,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1611,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 1300.0, "resistance": 1650.0},
+      "pattern": "impulse_up_consolidating",
+      "recent_action": "상장 직후 4월 말부터 강한 상승. 5월 10일 고점(~1650) 이후 박스권 다지기. 최근 봉은 양봉 + 아래꼬리로 반등 신호."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "1D만 채점 가능한 신규 코인. 강한 상승 추세(ADX 53)이나 parabolic + low_history 위험. 1m/1w 데이터 부족으로 큰 그림 판단 불가.",
+
+  "risk_flags": ["parabolic", "low_history"],
+
+  "charts": {
+    "1m": null,
+    "1w": null,
+    "1d": "charts/SNDKUSDT/20260521/SNDKUSDT_1d.png"
+  }
+}

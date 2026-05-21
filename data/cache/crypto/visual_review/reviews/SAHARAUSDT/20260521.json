@@ -1,0 +1,199 @@
+{
+  "symbol": "SAHARAUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "C1",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.03686,
+      "bars": 12,
+      "date_range": "2025-06-30 ~ 2026-05-31",
+      "ma10": 0.042799,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1388, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1388},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.154,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.4056,
+        "upper_wick_pct": 0.419,
+        "lower_wick_pct": 0.003,
+        "vol_rank_30d": 0.5,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.7792,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.02, "resistance": 0.16},
+      "pattern": "low_history_box",
+      "recent_action": "1M 봉 12개 미만, ATR/ADX 산출 불가. 상장 초기 0.16달러 급등 후 하락세. 판정 불충분."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": "bounce_ma10",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.03686,
+      "bars": 48,
+      "date_range": "2025-06-30 ~ 2026-05-25",
+      "ma10": 0.02689,
+      "ma20": 0.024189,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.3708, "ma20_pct": 0.5239, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.942, "ma20_atr": 1.198, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.3708},
+      "atr": 0.010581,
+      "atr_pct": 0.2871,
+      "adx": 23.36,
+      "range_position": 0.331,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.1145,
+        "upper_wick_pct": 0.211,
+        "lower_wick_pct": 0.071,
+        "vol_rank_30d": 0.433,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.233,
+        "price_range_5bar_pct": 0.7227,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 2,
+        "body_pct": 0.3339,
+        "vol_rank": 0.9,
+        "close": 0.03645,
+        "max_retrace_pct": 0.116,
+        "current_retrace_pct": -0.0112,
+        "holding": false
+      },
+      "ret_30d": -0.5344,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.7792,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.025, "resistance": 0.055},
+      "pattern": "v_shape_recovery",
+      "recent_action": "2026년 2월 저점 0.02달러 전후 후 V자 반등 시도 중. MA10 상향 돌파하며 위에 위치. 강양봉(vol_rank 0.9) 2주 전 출현 후 현재 -1% 유지로 홀딩 경계."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A1",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.03686,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.038108,
+      "ma20": 0.032278,
+      "ma50": 0.026258,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0327, "ma20_pct": 0.142, "ma50_pct": 0.4037},
+      "dist_from_ma_atr": {"ma10_atr": -0.285, "ma20_atr": 1.046, "ma50_atr": 2.421},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0327},
+      "atr": 0.00438,
+      "atr_pct": 0.1188,
+      "adx": 49.06,
+      "range_position": 0.605,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.1145,
+        "upper_wick_pct": 0.211,
+        "lower_wick_pct": 0.071,
+        "vol_rank_30d": 0.733,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.204,
+        "price_range_5bar_pct": 0.2165,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 0,
+        "body_pct": 0.1145,
+        "vol_rank": 0.767,
+        "close": 0.03686,
+        "max_retrace_pct": 0.0,
+        "current_retrace_pct": 0.0,
+        "holding": true
+      },
+      "ret_30d": 0.7469,
+      "ret_90d": 1.3904,
+      "from_period_high_pct": -0.5657,
+      "vol_avg_recent_vs_prior": 1.706
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.032, "resistance": 0.055},
+      "pattern": "impulse_breakout",
+      "recent_action": "일봉 MA 완전 정배열, ADX 49 강한 추세. 30일 +75%, 90일 +139% 급등 중. 당일 강양봉(bars_ago=0) MA10 아래 소폭 위치하나 추세 유효."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1D는 A1 정배열 상승 추세이나 30일 +75%, 90일 +139%의 단기 급등 — parabolic 위험. 1W는 B4 회복 초기. 1M은 데이터 부족(low_history). 신코인으로 추세 신뢰도 제한적.",
+
+  "risk_flags": ["parabolic", "drawdown_deep", "low_history"],
+
+  "charts": {
+    "1m": "charts/SAHARAUSDT/20260521/SAHARAUSDT_1m.png",
+    "1w": "charts/SAHARAUSDT/20260521/SAHARAUSDT_1w.png",
+    "1d": "charts/SAHARAUSDT/20260521/SAHARAUSDT_1d.png"
+  }
+}

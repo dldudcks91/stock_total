@@ -1,0 +1,106 @@
+{
+  "symbol": "FIGHTUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:25:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.004684,
+      "bars": 18,
+      "date_range": "2026-01-26 ~ 2026-05-25",
+      "ma10": 0.00377,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.2425, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.202, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.2425},
+      "atr": 0.004516, "atr_pct": 0.9642, "adx": null,
+      "range_position": 0.088,
+      "last_candle": {
+        "type": "bull", "body_pct": 0.1787,
+        "upper_wick_pct": 0.298, "lower_wick_pct": 0.001,
+        "vol_rank_30d": 0.333, "vol_anomaly": null,
+        "accumulation_candle_score": 0.0, "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0, "ret_90d": 0.0,
+      "from_period_high_pct": -0.8415,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.003, "resistance": 0.007},
+      "pattern": "launch_pump_dump",
+      "recent_action": "2026-1월 상장 후 0.030 펌프, 즉시 하락. 고점 대비 -84%. 18봉 히스토리 매우 짧아 신뢰도 낮음."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "low",
+    "context": {
+      "last_close": 0.004684,
+      "bars": 117,
+      "date_range": "2026-01-23 ~ 2026-05-19",
+      "ma10": 0.0042,
+      "ma20": 0.004359,
+      "ma50": 0.003799,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.1154, "ma20_pct": 0.0746, "ma50_pct": 0.2329},
+      "dist_from_ma_atr": {"ma10_atr": 0.786, "ma20_atr": 0.527, "ma50_atr": 1.436},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.0746},
+      "atr": 0.000616, "atr_pct": 0.1316, "adx": 36.1,
+      "range_position": 0.691,
+      "last_candle": {
+        "type": "bull", "body_pct": 0.1787,
+        "upper_wick_pct": 0.298, "lower_wick_pct": 0.001,
+        "vol_rank_30d": 0.967, "vol_anomaly": "breakout",
+        "accumulation_candle_score": 0.3, "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.671, "price_range_5bar_pct": 0.3102, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 0, "body_pct": 0.1787, "vol_rank": 1.0, "close": 0.004684,
+        "max_retrace_pct": 0.0, "current_retrace_pct": 0.0, "holding": true
+      },
+      "ret_30d": 0.5734, "ret_90d": -0.281,
+      "from_period_high_pct": -0.8415,
+      "vol_avg_recent_vs_prior": 0.972
+    },
+    "observations": {
+      "key_levels": {"support": 0.003, "resistance": 0.006},
+      "pattern": "volatility_spike",
+      "recent_action": "당일 강양봉(body=0.179, vol_rank=1.0) 발생. 1M 30일 +57% 상승 직후. 이벤트성 단기 급등이나 1W 하락 추세 맥락에서 지속성 의심."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "1W launch-pump-dump 패턴, 1D 당일 급등봉. 신규 코인 + low_history + parabolic + drawdown_deep. 1D 급등 지속 여부 관망 필요.",
+
+  "risk_flags": ["parabolic", "drawdown_deep", "low_history", "pump_dump_trace"],
+
+  "charts": {
+    "1w": "charts/FIGHTUSDT/20260521/FIGHTUSDT_1w.png",
+    "1d": "charts/FIGHTUSDT/20260521/FIGHTUSDT_1d.png"
+  }
+}

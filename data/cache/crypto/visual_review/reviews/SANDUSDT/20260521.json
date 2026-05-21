@@ -1,0 +1,191 @@
+{
+  "symbol": "SANDUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.07016,
+      "bars": 54,
+      "date_range": "2021-12-31 ~ 2026-05-31",
+      "ma10": 0.140785,
+      "ma20": 0.253165,
+      "ma50": 0.484914,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.5017, "ma20_pct": -0.7229, "ma50_pct": -0.8553},
+      "dist_from_ma_atr": {"ma10_atr": -0.371, "ma20_atr": -0.961, "ma50_atr": -2.179},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.5017},
+      "atr": 0.190359,
+      "atr_pct": 2.7132,
+      "adx": 20.15,
+      "range_position": 0.006,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0311,
+        "upper_wick_pct": 0.768,
+        "lower_wick_pct": 0.103,
+        "vol_rank_30d": 0.567,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 2.221,
+        "price_range_5bar_pct": 1.548,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.8283,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9899,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.05, "resistance": 0.2},
+      "pattern": "multi_year_downtrend",
+      "recent_action": "2021년 말 ATH 이후 4년 이상 지속 하락. 전체 MA 완전 역배열, 가격이 모든 MA 하방. ATH 대비 -98.9%로 사실상 무너진 상태."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.07016,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 0.076527,
+      "ma20": 0.087918,
+      "ma50": 0.173146,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0832, "ma20_pct": -0.202, "ma50_pct": -0.5948},
+      "dist_from_ma_atr": {"ma10_atr": -0.299, "ma20_atr": -0.833, "ma50_atr": -4.828},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0832},
+      "atr": 0.02133,
+      "atr_pct": 0.304,
+      "adx": 29.38,
+      "range_position": 0.011,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0331,
+        "upper_wick_pct": 0.116,
+        "lower_wick_pct": 0.193,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.731,
+        "price_range_5bar_pct": 0.2546,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.6729,
+      "ret_90d": -0.7195,
+      "from_period_high_pct": -0.951,
+      "vol_avg_recent_vs_prior": 1.039
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.055, "resistance": 0.1},
+      "pattern": "stair_step_down",
+      "recent_action": "주봉 완전 역배열, ADX 29. 30일 -67%, 90일 -72% 급락 중. 거래량 최저점(vol_rank 0.0) — 추가 하락 또는 종말 하락 패턴."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.07016,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.076095,
+      "ma20": 0.075707,
+      "ma50": 0.077044,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.078, "ma20_pct": -0.0733, "ma50_pct": -0.0894},
+      "dist_from_ma_atr": {"ma10_atr": -1.379, "ma20_atr": -1.288, "ma50_atr": -1.599},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0733},
+      "atr": 0.004305,
+      "atr_pct": 0.0614,
+      "adx": 16.71,
+      "range_position": 0.096,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0331,
+        "upper_wick_pct": 0.116,
+        "lower_wick_pct": 0.193,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.798,
+        "price_range_5bar_pct": 0.1605,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 9,
+        "body_pct": 0.0416,
+        "vol_rank": 0.733,
+        "close": 0.08322,
+        "max_retrace_pct": 0.1776,
+        "current_retrace_pct": 0.1569,
+        "holding": false
+      },
+      "ret_30d": -0.0901,
+      "ret_90d": -0.1657,
+      "from_period_high_pct": -0.6722,
+      "vol_avg_recent_vs_prior": 2.205
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.065, "resistance": 0.09},
+      "pattern": "tight_box_bottom",
+      "recent_action": "일봉 MA 3개가 0.075~0.077 수렴 박스 — ADX 17 횡보. 거래량 최저(vol_rank 0.0). 1월 급등 후 완전 소화 중. 진짜 바닥 다지기 또는 추가 하락 갈림길."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "1M/1W 모두 B2 강한 하락 추세 정합. 1D는 B3 박스이나 거래량 고갈로 상승 동력 없음. ATH 대비 -95% 이상으로 회복 가능성 불명확. 바닥 확인 전 관망.",
+
+  "risk_flags": ["drawdown_deep"],
+
+  "charts": {
+    "1m": "charts/SANDUSDT/20260521/SANDUSDT_1m.png",
+    "1w": "charts/SANDUSDT/20260521/SANDUSDT_1w.png",
+    "1d": "charts/SANDUSDT/20260521/SANDUSDT_1d.png"
+  }
+}

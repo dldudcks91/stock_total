@@ -1,0 +1,121 @@
+{
+  "symbol": "SKYUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "A3",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.06899,
+      "bars": 37,
+      "date_range": "2025-09-15 ~ 2026-05-25",
+      "ma10": 0.076145,
+      "ma20": 0.071461,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.094, "ma20_pct": -0.0346, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.67, "ma20_atr": -0.231, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0346},
+      "atr": 0.010678,
+      "atr_pct": 0.1548,
+      "adx": 20.65,
+      "range_position": 0.576,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0096,
+        "upper_wick_pct": 0.202,
+        "lower_wick_pct": 0.437,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.327, "price_range_5bar_pct": 0.3215, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.1691,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.2347,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.065, "resistance": 0.09},
+      "pattern": "topping_pullback",
+      "recent_action": "1W에서 2026년 4월 고점(~0.09) 형성 후 하락 전환. MA10/20 여전히 우상향이나 가격은 MA20 아래 진입 중."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A4",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.06899,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.072297,
+      "ma20": 0.07622,
+      "ma50": 0.077618,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0457, "ma20_pct": -0.0949, "ma50_pct": -0.1112},
+      "dist_from_ma_atr": {"ma10_atr": -0.991, "ma20_atr": -2.166, "ma50_atr": -2.585},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0457},
+      "atr": 0.003337,
+      "atr_pct": 0.0484,
+      "adx": 21.0,
+      "range_position": 0.12,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0096,
+        "upper_wick_pct": 0.202,
+        "lower_wick_pct": 0.437,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.831, "price_range_5bar_pct": 0.0803, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.0831,
+      "ret_90d": 0.0483,
+      "from_period_high_pct": -0.2347,
+      "vol_avg_recent_vs_prior": 0.828
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.065, "resistance": 0.08},
+      "pattern": "high_pullback",
+      "recent_action": "일봉 MA10/20/50 역배열로 전환, 가격이 전 MA 아래 하락 중. 4월 고점 이후 첫 본격 하락 구간. 바닥 미확인."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W는 A3(토핑), 1D는 A4(하락 첫 시도)로 고점 이탈 진행 중. low_history로 큰 그림 불명확하나 단기는 하락 위험. 풀백 완료 후 재확인 필요.",
+
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1w": "charts/SKYUSDT/20260521/SKYUSDT_1w.png",
+    "1d": "charts/SKYUSDT/20260521/SKYUSDT_1d.png"
+  }
+}

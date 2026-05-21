@@ -1,0 +1,175 @@
+{
+  "symbol": "GOOGLUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+  "tf_1m": {
+    "state": "A2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 388.2,
+      "bars": 10,
+      "date_range": "2025-08-31 ~ 2026-05-31",
+      "ma10": 308.308,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.2591, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.2591},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.899,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0079,
+        "upper_wick_pct": 0.7,
+        "lower_wick_pct": 0.196,
+        "vol_rank_30d": 0.2,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0503,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 300.0, "resistance": 410.0},
+      "pattern": "uptrend_early",
+      "recent_action": "월봉 10개만 존재, 2025년 8월부터 $215→$388 우상향 중. 고점 -5% 내 위치. 의미있는 판단 어려움."
+    }
+  },
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 388.2,
+      "bars": 39,
+      "date_range": "2025-09-01 ~ 2026-05-25",
+      "ma10": 344.531,
+      "ma20": 332.516,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.1267, "ma20_pct": 0.1675, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 1.967, "ma20_atr": 2.508, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.1267},
+      "atr": 22.198226,
+      "atr_pct": 0.0572,
+      "adx": 37.91,
+      "range_position": 0.856,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0274,
+        "upper_wick_pct": 0.265,
+        "lower_wick_pct": 0.097,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.491, "price_range_5bar_pct": 0.199, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 3,
+        "body_pct": 0.0792,
+        "vol_rank": 0.767,
+        "close": 382.75,
+        "max_retrace_pct": 0.0009,
+        "current_retrace_pct": -0.0142,
+        "holding": true
+      },
+      "ret_30d": 0.4359,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0503,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 340.0, "resistance": 410.0},
+      "pattern": "strong_uptrend",
+      "recent_action": "주봉 30일 +44%, MA10/20 모두 상향 기울기. 3봉 전 강양봉 후 거의 되돌림 없이(holding=true) 신고가 경신 중. ADX 38 추세 강함."
+    }
+  },
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 388.2,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 395.626,
+      "ma20": 393.6345,
+      "ma50": 352.8266,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0188, "ma20_pct": -0.0138, "ma50_pct": 0.1003},
+      "dist_from_ma_atr": {"ma10_atr": -0.782, "ma20_atr": -0.572, "ma50_atr": 3.725},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0138},
+      "atr": 9.496475,
+      "atr_pct": 0.0245,
+      "adx": 48.52,
+      "range_position": 0.85,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0274,
+        "upper_wick_pct": 0.265,
+        "lower_wick_pct": 0.097,
+        "vol_rank_30d": 0.867,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.3
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.084, "price_range_5bar_pct": 0.0571, "accumulation_score": 0.3},
+      "recent_strong_bull": {
+        "bars_ago": 6,
+        "body_pct": 0.0344,
+        "vol_rank": 0.7,
+        "close": 403.55,
+        "max_retrace_pct": 0.042,
+        "current_retrace_pct": 0.038,
+        "holding": true
+      },
+      "ret_30d": 0.1493,
+      "ret_90d": 0.2729,
+      "from_period_high_pct": -0.0503,
+      "vol_avg_recent_vs_prior": 0.999
+    },
+    "observations": {
+      "key_levels": {"support": 380.0, "resistance": 410.0},
+      "pattern": "pullback_in_uptrend",
+      "recent_action": "MA 완전 정배열. ADX 48.5로 강한 추세. 6일 전 강양봉 이후 MA20 풀백 중(현재 -1.4%). distribution_candle_score 0.3 주의. 고점 -5% 내."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1M/1W/1D 모두 A2 상승 추세 정합. 1D MA20 풀백 진행 중으로 반등 확인 시 pass 승격 가능. low_history(1M 10봉)로 완전 확신 어려움. 분배 신호 0.3 주의.",
+  "risk_flags": ["low_history"],
+  "charts": {
+    "1m": "charts/GOOGLUSDT/20260521/GOOGLUSDT_1m.png",
+    "1w": "charts/GOOGLUSDT/20260521/GOOGLUSDT_1w.png",
+    "1d": "charts/GOOGLUSDT/20260521/GOOGLUSDT_1d.png"
+  }
+}

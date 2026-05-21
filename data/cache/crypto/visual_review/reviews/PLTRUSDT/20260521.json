@@ -1,0 +1,121 @@
+{
+  "symbol": "PLTRUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:33:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 134.91,
+      "bars": 37,
+      "date_range": "2025-09-15 ~ 2026-05-25",
+      "ma10": 141.415,
+      "ma20": 147.364,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.046, "ma20_pct": -0.0845, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.382, "ma20_atr": -0.732, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.046},
+      "atr": 17.006979,
+      "atr_pct": 0.1261,
+      "adx": 22.92,
+      "range_position": 0.127,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0016,
+        "upper_wick_pct": 0.664,
+        "lower_wick_pct": 0.289,
+        "vol_rank_30d": 0.133,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.443, "price_range_5bar_pct": 0.1782, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.2862,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.3812,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 120.0, "resistance": 155.0},
+      "pattern": "downtrend_stabilizing",
+      "recent_action": "1W 고점 218에서 현재 135까지 -38% 하락 후 130~145 박스권 수렴 시도. ADX 22.9로 추세 약화 중."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "bounce_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 134.91,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 134.323,
+      "ma20": 137.034,
+      "ma50": 140.265,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0044, "ma20_pct": -0.0155, "ma50_pct": -0.0382},
+      "dist_from_ma_atr": {"ma10_atr": 0.124, "ma20_atr": -0.449, "ma50_atr": -1.133},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0044},
+      "atr": 4.727091,
+      "atr_pct": 0.035,
+      "adx": 8.86,
+      "range_position": 0.307,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0016,
+        "upper_wick_pct": 0.664,
+        "lower_wick_pct": 0.289,
+        "vol_rank_30d": 0.267,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.513, "price_range_5bar_pct": 0.0539, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.071,
+      "ret_90d": -0.0093,
+      "from_period_high_pct": -0.3812,
+      "vol_avg_recent_vs_prior": 0.898
+    },
+
+    "observations": {
+      "key_levels": {"support": 125.0, "resistance": 145.0},
+      "pattern": "range_doji",
+      "recent_action": "1D ADX 8.9 극단적 횡보. 가격이 MA10 위에 위치하나 역배열 유지. 2026-03~04월 강한 음봉 하락 후 130~145 박스 수렴 중."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W/1D B3 정합. ADX 극히 낮아 박스 수렴 중. 1D MA10 위 회복은 긍정적이나 반등 확정 미흡. 돌파 대기.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1w": "charts/PLTRUSDT/20260521/PLTRUSDT_1w.png",
+    "1d": "charts/PLTRUSDT/20260521/PLTRUSDT_1d.png"
+  }
+}

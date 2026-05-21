@@ -1,0 +1,120 @@
+{
+  "symbol": "TSMUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 393.87,
+      "bars": 13,
+      "date_range": "2026-03-02 ~ 2026-05-25",
+      "ma10": 373.599,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0543, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0543},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.735,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0082,
+        "upper_wick_pct": 0.152,
+        "lower_wick_pct": 0.613,
+        "vol_rank_30d": 0.077,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0695,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 360.0, "resistance": 425.0},
+      "pattern": "early_recovery",
+      "recent_action": "1W 13봉 극히 신규. 3월 저점 320에서 4월 고점 425까지 상승 후 현재 395 근처 횡보. 데이터 매우 부족."
+    }
+  },
+  "tf_1d": {
+    "state": "A3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 393.87,
+      "bars": 79,
+      "date_range": "2026-03-02 ~ 2026-05-19",
+      "ma10": 402.896,
+      "ma20": 403.711,
+      "ma50": 383.25,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0224, "ma20_pct": -0.0244, "ma50_pct": 0.0277},
+      "dist_from_ma_atr": {"ma10_atr": -0.692, "ma20_atr": -0.755, "ma50_atr": 0.814},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0224},
+      "atr": 13.042487,
+      "atr_pct": 0.0331,
+      "adx": 20.44,
+      "range_position": 0.735,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0082,
+        "upper_wick_pct": 0.152,
+        "lower_wick_pct": 0.613,
+        "vol_rank_30d": 0.433,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.837, "price_range_5bar_pct": 0.0922, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 5,
+        "body_pct": 0.0398,
+        "vol_rank": 0.733,
+        "close": 418.63,
+        "max_retrace_pct": 0.0792,
+        "current_retrace_pct": 0.0591,
+        "holding": false
+      },
+      "ret_30d": 0.0745,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0695,
+      "vol_avg_recent_vs_prior": 1.655
+    },
+    "observations": {
+      "key_levels": {"support": 375.0, "resistance": 425.0},
+      "pattern": "topping_box",
+      "recent_action": "1D에서 4월 고점 425 이후 MA10/MA20 아래로 가격 하락. 400~420 박스 무너지며 하락 중. ADX 20.44로 추세 약함."
+    }
+  },
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "1D A3 토핑 신호, 1W는 데이터 부족으로 판단 제한. low_history 리스크. 신규 코인으로 데이터 충분히 쌓인 후 재평가 권장.",
+  "risk_flags": ["low_history"],
+  "charts": {
+    "1w": "charts/TSMUSDT/20260521/TSMUSDT_1w.png",
+    "1d": "charts/TSMUSDT/20260521/TSMUSDT_1d.png"
+  }
+}

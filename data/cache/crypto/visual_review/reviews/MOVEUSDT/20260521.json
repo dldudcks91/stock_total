@@ -1,0 +1,191 @@
+{
+  "symbol": "MOVEUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:37:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.01611,
+      "bars": 18,
+      "date_range": "2024-12-31 ~ 2026-05-31",
+      "ma10": 0.047178,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.6585, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.133, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.6585},
+      "atr": 0.233162,
+      "atr_pct": 14.4731,
+      "adx": null,
+      "range_position": 0.0,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0596,
+        "upper_wick_pct": 0.848,
+        "lower_wick_pct": 0.006,
+        "vol_rank_30d": 0.333,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9868,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.012, "resistance": 0.025},
+      "pattern": "pump_dump",
+      "recent_action": "월봉 18봉. 상장 직후 1.2 USDT 폭등 후 일방 하락. 현재 0.016. 전형적 시가 이후 소멸."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.01611,
+      "bars": 77,
+      "date_range": "2024-12-09 ~ 2026-05-25",
+      "ma10": 0.018063,
+      "ma20": 0.022341,
+      "ma50": 0.069666,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1081, "ma20_pct": -0.2789, "ma50_pct": -0.7688},
+      "dist_from_ma_atr": {"ma10_atr": -0.185, "ma20_atr": -0.59, "ma50_atr": -5.074},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1081},
+      "atr": 0.010555,
+      "atr_pct": 0.6552,
+      "adx": 41.59,
+      "range_position": 0.001,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0205,
+        "upper_wick_pct": 0.213,
+        "lower_wick_pct": 0.085,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.752,
+        "price_range_5bar_pct": 0.4072,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 2,
+        "body_pct": 0.1528,
+        "vol_rank": 0.8,
+        "close": 0.02081,
+        "max_retrace_pct": 0.2278,
+        "current_retrace_pct": 0.2259,
+        "holding": false
+      },
+      "ret_30d": -0.7919,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9868,
+      "vol_avg_recent_vs_prior": 0.624
+    },
+    "observations": {
+      "key_levels": {"support": 0.012, "resistance": 0.020},
+      "pattern": "downtrend_persistent",
+      "recent_action": "주봉 역배열 완전. ADX 41.59로 강한 하락 추세. 2봉 전 강양봉 발생했으나 22% 즉시 반납(holding=false)."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.01611,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.018105,
+      "ma20": 0.018038,
+      "ma50": 0.018107,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1102, "ma20_pct": -0.1069, "ma50_pct": -0.1103},
+      "dist_from_ma_atr": {"ma10_atr": -1.727, "ma20_atr": -1.669, "ma50_atr": -1.728},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.1069},
+      "atr": 0.001155,
+      "atr_pct": 0.0717,
+      "adx": 27.62,
+      "range_position": 0.004,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0205,
+        "upper_wick_pct": 0.213,
+        "lower_wick_pct": 0.085,
+        "vol_rank_30d": 0.233,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.324,
+        "price_range_5bar_pct": 0.1676,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 9,
+        "body_pct": 0.0463,
+        "vol_rank": 0.9,
+        "close": 0.01965,
+        "max_retrace_pct": 0.1822,
+        "current_retrace_pct": 0.1802,
+        "holding": false
+      },
+      "ret_30d": -0.1476,
+      "ret_90d": -0.3151,
+      "from_period_high_pct": -0.7685,
+      "vol_avg_recent_vs_prior": 1.064
+    },
+    "observations": {
+      "key_levels": {"support": 0.014, "resistance": 0.022},
+      "pattern": "downtrend_retest",
+      "recent_action": "일봉 MA10/20/50 수렴 후 하락. 강양봉 반등 시도(9봉 전)했으나 18% 즉시 반납(holding=false). ADX 27.62 하락 추세 건재."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF B2 역배열 하락 정합. ADX 41.59(1w)/27.62(1d) 강한 하락 추세. 강양봉 모두 실패(holding=false). 고점 -98%. drawdown_deep + low_history.",
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace"],
+  "charts": {
+    "1m": "charts/MOVEUSDT/20260521/MOVEUSDT_1m.png",
+    "1w": "charts/MOVEUSDT/20260521/MOVEUSDT_1w.png",
+    "1d": "charts/MOVEUSDT/20260521/MOVEUSDT_1d.png"
+  }
+}

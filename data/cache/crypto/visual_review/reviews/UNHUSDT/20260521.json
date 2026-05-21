@@ -1,0 +1,124 @@
+{
+  "symbol": "UNHUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 387.43,
+      "bars": 28,
+      "date_range": "2025-11-17 ~ 2026-05-25",
+      "ma10": 335.686,
+      "ma20": 318.006,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.1541, "ma20_pct": 0.2183, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 2.129, "ma20_atr": 2.857, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.1541},
+      "atr": 24.299476,
+      "atr_pct": 0.0627,
+      "adx": null,
+      "range_position": 0.886,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0084,
+        "upper_wick_pct": 0.6,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0421,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 320.0, "resistance": 402.0},
+      "pattern": "strong_uptrend",
+      "recent_action": "주봉 28봉으로 데이터 짧음(low_history). MA10/MA20 우상향, 가격 전 MA 위. range_position 0.886으로 박스 상단권."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 387.43,
+      "bars": 190,
+      "date_range": "2025-11-11 ~ 2026-05-19",
+      "ma10": 386.589,
+      "ma20": 378.212,
+      "ma50": 342.3084,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0022, "ma20_pct": 0.0244, "ma50_pct": 0.1318},
+      "dist_from_ma_atr": {"ma10_atr": 0.089, "ma20_atr": 0.974, "ma50_atr": 4.768},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0022},
+      "atr": 9.463022,
+      "atr_pct": 0.0244,
+      "adx": 56.4,
+      "range_position": 0.886,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0084,
+        "upper_wick_pct": 0.6,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.6,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.93, "price_range_5bar_pct": 0.0828, "accumulation_score": 0.3},
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.0336,
+        "vol_rank": 0.967,
+        "close": 390.69,
+        "max_retrace_pct": 0.0083,
+        "current_retrace_pct": 0.0083,
+        "holding": true
+      },
+      "ret_30d": 0.1975,
+      "ret_90d": 0.3429,
+      "from_period_high_pct": -0.0421,
+      "vol_avg_recent_vs_prior": 0.434
+    },
+    "observations": {
+      "key_levels": {"support": 370.0, "resistance": 405.0},
+      "pattern": "stair_step_up",
+      "recent_action": "일봉 완전 정배열, ADX 56.4 강한 추세. 전일 강양봉(holding true) 후 MA10 바로 위 횡보. 고점 -4.2%로 신고가 임박."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W/1D 모두 A2 정합. ADX 56 과열 + range_position 0.886 고점권. 신고가 돌파 시 pass 전환 가능하나 현재 단기 과열 주의. low_history(1W 28봉).",
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1w": "charts/UNHUSDT/20260521/UNHUSDT_1w.png",
+    "1d": "charts/UNHUSDT/20260521/UNHUSDT_1d.png"
+  }
+}

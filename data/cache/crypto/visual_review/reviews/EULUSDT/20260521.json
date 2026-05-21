@@ -1,0 +1,121 @@
+{
+  "symbol": "EULUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 1.299,
+      "bars": 32,
+      "date_range": "2025-10-20 ~ 2026-05-25",
+      "ma10": 1.1869,
+      "ma20": 1.2953,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0944, "ma20_pct": 0.0029, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.138, "ma20_atr": 0.005, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.0029},
+      "atr": 0.814292,
+      "atr_pct": 0.6269,
+      "adx": 44.54,
+      "range_position": 0.066,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.0316,
+        "upper_wick_pct": 0.016,
+        "lower_wick_pct": 0.344,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.837,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8684,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 1.10, "resistance": 1.55},
+      "pattern": "bottom_range",
+      "recent_action": "피크 대비 -87% 폭락 후 최근 4주 1.1~1.3 박스권에서 바닥 다지기 중. MA10 상향 돌파했으나 MA20 근접 저항."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 1.299,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 1.378,
+      "ma20": 1.39255,
+      "ma50": 1.26662,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0573, "ma20_pct": -0.0672, "ma50_pct": 0.0256},
+      "dist_from_ma_atr": {"ma10_atr": -0.673, "ma20_atr": -0.797, "ma50_atr": 0.276},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.0256},
+      "atr": 0.117435,
+      "atr_pct": 0.0904,
+      "adx": 30.78,
+      "range_position": 0.52,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.0316,
+        "upper_wick_pct": 0.016,
+        "lower_wick_pct": 0.344,
+        "vol_rank_30d": 0.033,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.212, "price_range_5bar_pct": 0.2009, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0898,
+      "ret_90d": 0.4778,
+      "from_period_high_pct": -0.854,
+      "vol_avg_recent_vs_prior": 0.603
+    },
+
+    "observations": {
+      "key_levels": {"support": 1.10, "resistance": 1.40},
+      "pattern": "range_recovery",
+      "recent_action": "장기 하락 후 MA50 위에서 횡보 박스 형성 중. MA10/20은 여전히 하향이라 확정 반전 미확인."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W/1D 모두 B3 바닥 다지기 정합. 피크 -87% 폭락 후 1.1~1.4 박스권 횡보 중. MA10 상향 전환 시작이나 1D MA10/20 여전히 하향, 확정 반전 신호 미확인. low_history + drawdown_deep 리스크.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1w": "charts/EULUSDT/20260521/EULUSDT_1w.png",
+    "1d": "charts/EULUSDT/20260521/EULUSDT_1d.png"
+  }
+}

@@ -1,0 +1,179 @@
+{
+  "symbol": "PIXELUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:32:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.00677,
+      "bars": 28,
+      "date_range": "2024-02-29 ~ 2026-05-31",
+      "ma10": 0.012598,
+      "ma20": 0.052293,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.4626, "ma20_pct": -0.8705, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.086, "ma20_atr": -0.675, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.4626},
+      "atr": 0.0674,
+      "atr_pct": 9.9557,
+      "adx": null,
+      "range_position": 0.051,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.199,
+        "upper_wick_pct": 0.418,
+        "lower_wick_pct": 0.085,
+        "vol_rank_30d": 0.75,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9935,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.005, "resistance": 0.015},
+      "pattern": "sustained_decline",
+      "recent_action": "2024-02월 상장 고점에서 현재 -99%에 달하는 극단적 하락. 2026-03월 일시 대량 거래 스파이크 발생했으나 가격 회복 없이 소멸."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.00677,
+      "bars": 118,
+      "date_range": "2024-02-26 ~ 2026-05-25",
+      "ma10": 0.007709,
+      "ma20": 0.007268,
+      "ma50": 0.017527,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1218, "ma20_pct": -0.0685, "ma50_pct": -0.6137},
+      "dist_from_ma_atr": {"ma10_atr": -0.277, "ma20_atr": -0.147, "ma50_atr": -3.174},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0685},
+      "atr": 0.003389,
+      "atr_pct": 0.5006,
+      "adx": 15.55,
+      "range_position": 0.172,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0304,
+        "upper_wick_pct": 0.109,
+        "lower_wick_pct": 0.117,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.299, "price_range_5bar_pct": 0.3997, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 4,
+        "body_pct": 0.0937,
+        "vol_rank": 0.733,
+        "close": 0.008197,
+        "max_retrace_pct": 0.202,
+        "current_retrace_pct": 0.1741,
+        "holding": false
+      },
+      "ret_30d": -0.6066,
+      "ret_90d": -0.9489,
+      "from_period_high_pct": -0.9935,
+      "vol_avg_recent_vs_prior": 6.747
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.006, "resistance": 0.009},
+      "pattern": "vol_spike_bottom",
+      "recent_action": "2026-03월 주봉 vol 6.7배 급등 스파이크 발생. ADX 15.5 횡보권. 가격 박스권 수렴 시도하나 강양봉 홀딩 실패(holding=false)로 불안정."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.00677,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.007817,
+      "ma20": 0.007946,
+      "ma50": 0.007694,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.134, "ma20_pct": -0.148, "ma50_pct": -0.1201},
+      "dist_from_ma_atr": {"ma10_atr": -1.798, "ma20_atr": -2.018, "ma50_atr": -1.587},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.1201},
+      "atr": 0.000583,
+      "atr_pct": 0.0861,
+      "adx": 28.4,
+      "range_position": 0.143,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0304,
+        "upper_wick_pct": 0.109,
+        "lower_wick_pct": 0.117,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.435, "price_range_5bar_pct": 0.2532, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.0484,
+      "ret_90d": 0.2807,
+      "from_period_high_pct": -0.6169,
+      "vol_avg_recent_vs_prior": 0.25
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.006, "resistance": 0.010},
+      "pattern": "range_bottom",
+      "recent_action": "1D MA10/20/50 수렴하며 박스 시도. vol_avg 0.25로 거래량 급감. 2026-03월 급등 후 되돌림 완료한 저점 구간."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1M B2, 1W/1D B3 분리. 1W 거래량 스파이크는 주목할 만하나 반등 확정 신호 미흡. 거래량 감소 중.",
+
+  "risk_flags": ["drawdown_deep", "accumulation_suspect"],
+
+  "charts": {
+    "1m": "charts/PIXELUSDT/20260521/PIXELUSDT_1m.png",
+    "1w": "charts/PIXELUSDT/20260521/PIXELUSDT_1w.png",
+    "1d": "charts/PIXELUSDT/20260521/PIXELUSDT_1d.png"
+  }
+}

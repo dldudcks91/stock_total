@@ -1,0 +1,199 @@
+{
+  "symbol": "JUPUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:37:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.1949,
+      "bars": 28,
+      "date_range": "2024-02-29 ~ 2026-05-31",
+      "ma10": 0.26311,
+      "ma20": 0.486195,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2592, "ma20_pct": -0.5991, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.278, "ma20_atr": -1.188, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.2592},
+      "atr": 0.245281,
+      "atr_pct": 1.2585,
+      "adx": null,
+      "range_position": 0.153,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0785,
+        "upper_wick_pct": 0.801,
+        "lower_wick_pct": 0.048,
+        "vol_rank_30d": 0.536,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8944,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.15, "resistance": 0.35},
+      "pattern": "secular_bear",
+      "recent_action": "2024년 초 1.75 고점 이후 89% 폭락. MA10 대비 -26%, MA20 대비 -60% 위치."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.1949,
+      "bars": 121,
+      "date_range": "2024-02-05 ~ 2026-05-25",
+      "ma10": 0.18207,
+      "ma20": 0.17872,
+      "ma50": 0.30914,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0705, "ma20_pct": 0.0905, "ma50_pct": -0.3695},
+      "dist_from_ma_atr": {"ma10_atr": 0.256, "ma20_atr": 0.323, "ma50_atr": -2.282},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0705},
+      "atr": 0.050056,
+      "atr_pct": 0.2568,
+      "adx": 22.84,
+      "range_position": 0.191,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0257,
+        "upper_wick_pct": 0.069,
+        "lower_wick_pct": 0.236,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.747,
+        "price_range_5bar_pct": 0.5639,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 2,
+        "body_pct": 0.2881,
+        "vol_rank": 0.967,
+        "close": 0.2499,
+        "max_retrace_pct": 0.2449,
+        "current_retrace_pct": 0.2201,
+        "holding": false
+      },
+      "ret_30d": -0.561,
+      "ret_90d": -0.7371,
+      "from_period_high_pct": -0.8944,
+      "vol_avg_recent_vs_prior": 0.611
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.15, "resistance": 0.28},
+      "pattern": "base_forming",
+      "recent_action": "4월 말 큰 양봉(0.25) 후 22% 하락. MA10/20 위에서 지지 테스트. MA50(0.31)은 아직 위."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.1949,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.21907,
+      "ma20": 0.20868,
+      "ma50": 0.18538,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.1103, "ma20_pct": -0.066, "ma50_pct": 0.0514},
+      "dist_from_ma_atr": {"ma10_atr": -1.531, "ma20_atr": -0.873, "ma50_atr": 0.603},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.0514},
+      "atr": 0.015787,
+      "atr_pct": 0.081,
+      "adx": 30.71,
+      "range_position": 0.412,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0257,
+        "upper_wick_pct": 0.069,
+        "lower_wick_pct": 0.236,
+        "vol_rank_30d": 0.433,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.963,
+        "price_range_5bar_pct": 0.1975,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 9,
+        "body_pct": 0.0582,
+        "vol_rank": 0.933,
+        "close": 0.2645,
+        "max_retrace_pct": 0.2866,
+        "current_retrace_pct": 0.2631,
+        "holding": false
+      },
+      "ret_30d": 0.1553,
+      "ret_90d": 0.2831,
+      "from_period_high_pct": -0.5331,
+      "vol_avg_recent_vs_prior": 2.062
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.18, "resistance": 0.27},
+      "pattern": "spike_retrace",
+      "recent_action": "4월 말 급등(0.26) 후 28.7% 하락. MA20(0.21) 방향으로 풀백 진행. MA50(0.185) 위 지지는 유지."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1m B2 장기 하락 지배, 1w B3 박스, 1d B4 반등 시도로 TF 분열. 피크 -89.4%. 강양봉 후 28.7% 하락(holding=false)으로 안정성 미확인.",
+
+  "risk_flags": ["drawdown_deep"],
+
+  "charts": {
+    "1m": "charts/JUPUSDT/20260521/JUPUSDT_1m.png",
+    "1w": "charts/JUPUSDT/20260521/JUPUSDT_1w.png",
+    "1d": "charts/JUPUSDT/20260521/JUPUSDT_1d.png"
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "symbol": "SHELLUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.03321,
+      "bars": 16,
+      "date_range": "2025-02-28 ~ 2026-05-31",
+      "ma10": 0.061127,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.4567, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.146, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.4567},
+      "atr": 0.191667,
+      "atr_pct": 5.7714,
+      "adx": null,
+      "range_position": 0.039,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0271,
+        "upper_wick_pct": 0.867,
+        "lower_wick_pct": 0.05,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9529,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.025, "resistance": 0.07},
+      "pattern": "pump_dump_aftermath",
+      "recent_action": "2025년 2월 상장 직후 0.7달러 급등 후 0.03달러대로 붕괴(-95%). 월봉 거래량 급감(vol_rank 0.0). 저히스토리."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.03321,
+      "bars": 67,
+      "date_range": "2025-02-17 ~ 2026-05-25",
+      "ma10": 0.03333,
+      "ma20": 0.035067,
+      "ma50": 0.080911,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0036, "ma20_pct": -0.053, "ma50_pct": -0.5895},
+      "dist_from_ma_atr": {"ma10_atr": -0.008, "ma20_atr": -0.118, "ma50_atr": -3.019},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0036},
+      "atr": 0.0158,
+      "atr_pct": 0.4758,
+      "adx": 18.61,
+      "range_position": 0.072,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0265,
+        "upper_wick_pct": 0.145,
+        "lower_wick_pct": 0.248,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.183,
+        "price_range_5bar_pct": 0.3342,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.6658,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9529,
+      "vol_avg_recent_vs_prior": 0.669
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.025, "resistance": 0.04},
+      "pattern": "basing_near_bottom",
+      "recent_action": "주봉 MA10 상향 전환, MA10 바로 아래(-0.36%). ADX 19 횡보 — B3 박스 형성 시도. 그러나 30일 -67% 급락 후 반등이므로 신뢰도 제한적."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.03321,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.036961,
+      "ma20": 0.037442,
+      "ma50": 0.033831,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1015, "ma20_pct": -0.113, "ma50_pct": -0.0183},
+      "dist_from_ma_atr": {"ma10_atr": -1.15, "ma20_atr": -1.297, "ma50_atr": -0.19},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0183},
+      "atr": 0.003262,
+      "atr_pct": 0.0982,
+      "adx": 49.56,
+      "range_position": 0.397,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0265,
+        "upper_wick_pct": 0.145,
+        "lower_wick_pct": 0.248,
+        "vol_rank_30d": 0.067,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.728,
+        "price_range_5bar_pct": 0.2424,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.073,
+      "ret_90d": 0.0881,
+      "from_period_high_pct": -0.7448,
+      "vol_avg_recent_vs_prior": 1.031
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.03, "resistance": 0.045},
+      "pattern": "ma50_support_test",
+      "recent_action": "일봉 MA50 상향, MA10/20 하향. ADX 50 강한 추세. MA50 바로 위(-1.8%) 지지 테스트 중. 4월 0.045달러 급등 후 다시 하락. B4 상승 첫 시도 → MA50 지지 여부 핵심."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1M B2(저히스토리), 1W B3 박스, 1D B4 MA50 지지 테스트. TF 간 분리(하락→박스→회복 시도). low_history 제약, MA50 지지 확인 후 B5 판단 필요.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1m": "charts/SHELLUSDT/20260521/SHELLUSDT_1m.png",
+    "1w": "charts/SHELLUSDT/20260521/SHELLUSDT_1w.png",
+    "1d": "charts/SHELLUSDT/20260521/SHELLUSDT_1d.png"
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "symbol": "CHIPUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.04677,
+      "bars": 29,
+      "date_range": "2026-04-21 ~ 2026-05-19",
+      "ma10": 0.05688,
+      "ma20": 0.059176,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1777, "ma20_pct": -0.2097, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -1.099, "ma20_atr": -1.349, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1777},
+      "atr": 0.009198,
+      "atr_pct": 0.1967,
+      "adx": 22.28,
+      "range_position": 0.008,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0808,
+        "upper_wick_pct": 0.032,
+        "lower_wick_pct": 0.169,
+        "vol_rank_30d": 0.138,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.6665,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.045, "resistance": 0.060},
+      "pattern": "persistent_downtrend",
+      "recent_action": "신규 상장 후 초기 펌프로 0.12~0.14에서 고점 형성 후 급락, MA10/20 모두 하향하며 가격은 꾸준히 우하향 중. range_position 0.008로 최저권에 위치."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1D만 가용. 29봉 신규 종목으로 데이터 짧음. 가격 MA 전체 아래 역배열 구도에서 지속 하락, 고점 대비 -66% 낙폭. B2 단계로 매매 회피.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1d": "charts/CHIPUSDT/20260521/CHIPUSDT_1d.png"
+  }
+}

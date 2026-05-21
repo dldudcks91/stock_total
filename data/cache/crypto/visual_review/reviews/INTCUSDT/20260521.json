@@ -1,0 +1,138 @@
+{
+  "symbol": "INTCUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 111.88,
+      "bars": 38,
+      "date_range": "2025-09-08 ~ 2026-05-25",
+      "ma10": 79.688,
+      "ma20": 62.836,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.404, "ma20_pct": 0.7805, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 2.749, "ma20_atr": 4.189, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.404},
+      "atr": 11.709169,
+      "atr_pct": 0.1047,
+      "adx": 57.42,
+      "range_position": 0.774,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.033,
+        "upper_wick_pct": 0.118,
+        "lower_wick_pct": 0.532,
+        "vol_rank_30d": 0.4,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 5.633,
+        "price_range_5bar_pct": 0.6254,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 2,
+        "body_pct": 0.2554,
+        "vol_rank": 0.967,
+        "close": 128.8,
+        "max_retrace_pct": 0.2036,
+        "current_retrace_pct": 0.1314,
+        "holding": false
+      },
+      "ret_30d": 1.8338,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1712,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 80.0, "resistance": 140.0},
+      "pattern": "parabolic_impulse",
+      "recent_action": "장기 횡보(40~55) 후 2026년 3월부터 폭발적 상승. 1W ret_30d +183%. 고점 129달러에서 풀백 진행."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 111.88,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 114.898,
+      "ma20": 111.354,
+      "ma50": 83.9326,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0263, "ma20_pct": 0.0047, "ma50_pct": 0.333},
+      "dist_from_ma_atr": {"ma10_atr": -0.404, "ma20_atr": 0.07, "ma50_atr": 3.745},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.0047},
+      "atr": 7.462454,
+      "atr_pct": 0.0667,
+      "adx": 55.19,
+      "range_position": 0.755,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.033,
+        "upper_wick_pct": 0.118,
+        "lower_wick_pct": 0.532,
+        "vol_rank_30d": 0.367,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.758,
+        "price_range_5bar_pct": 0.1166,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.657,
+      "ret_90d": 1.4594,
+      "from_period_high_pct": -0.1712,
+      "vol_avg_recent_vs_prior": 2.077
+    },
+
+    "observations": {
+      "key_levels": {"support": 100.0, "resistance": 135.0},
+      "pattern": "stair_step_up",
+      "recent_action": "MA 정배열 강하게 형성. ADX 55 강한 추세. 5월 고점 이후 MA20 근처 풀백 중. 아래꼬리 도지봉으로 지지 확인 신호."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W/1D A2 정합. 강한 추세이나 ret_90d +145%로 parabolic 극단. low_history. 풀백 완료 확인 후 pass 가능.",
+
+  "risk_flags": ["parabolic", "low_history"],
+
+  "charts": {
+    "1m": null,
+    "1w": "charts/INTCUSDT/20260521/INTCUSDT_1w.png",
+    "1d": "charts/INTCUSDT/20260521/INTCUSDT_1d.png"
+  }
+}

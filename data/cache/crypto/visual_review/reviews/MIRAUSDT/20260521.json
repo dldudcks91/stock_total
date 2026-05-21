@@ -1,0 +1,129 @@
+{
+  "symbol": "MIRAUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:10:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.0773,
+      "bars": 35,
+      "date_range": "2025-09-29 ~ 2026-05-25",
+      "ma10": 0.08105,
+      "ma20": 0.091365,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0463, "ma20_pct": -0.1539, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.027, "ma20_atr": -0.102, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0463},
+      "atr": 0.1382,
+      "atr_pct": 1.7878,
+      "adx": 50.22,
+      "range_position": 0.024,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.022,
+        "upper_wick_pct": 0.194,
+        "lower_wick_pct": 0.258,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.218,
+        "price_range_5bar_pct": 0.4295,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.7459,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9595,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.07, "resistance": 0.09},
+      "pattern": "collapse_decline",
+      "recent_action": "1W ADX 50로 강한 하락. 상장 직후 2.0 고점→0.077로 -96%. 최근 1달 -75%."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.0773,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.08234,
+      "ma20": 0.08257,
+      "ma50": 0.082378,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0612, "ma20_pct": -0.0638, "ma50_pct": -0.0616},
+      "dist_from_ma_atr": {"ma10_atr": -1.18, "ma20_atr": -1.234, "ma50_atr": -1.189},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0612},
+      "atr": 0.004272,
+      "atr_pct": 0.0553,
+      "adx": 27.61,
+      "range_position": 0.157,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.022,
+        "upper_wick_pct": 0.194,
+        "lower_wick_pct": 0.258,
+        "vol_rank_30d": 0.067,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.702,
+        "price_range_5bar_pct": 0.119,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.0398,
+      "ret_90d": -0.1285,
+      "from_period_high_pct": -0.7132,
+      "vol_avg_recent_vs_prior": 1.183
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.07, "resistance": 0.085},
+      "pattern": "flatline_low",
+      "recent_action": "1D MA tight 수렴 0.082 주변. 가격 전 MA 아래 -6%. ADX 28 추세 유지. 0.077 극저가 수렴."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "1W/1D B2 정합. ADX 50 강한 하락. -96% 낙폭, low_history + drawdown_deep. 반등 신호 없음.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1w": "charts/MIRAUSDT/20260521/MIRAUSDT_1w.png",
+    "1d": "charts/MIRAUSDT/20260521/MIRAUSDT_1d.png"
+  }
+}

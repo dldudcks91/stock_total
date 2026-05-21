@@ -1,0 +1,130 @@
+{
+  "symbol": "PIEVERSEUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B1",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.72102,
+      "bars": 28,
+      "date_range": "2025-11-17 ~ 2026-05-25",
+      "ma10": 0.674219,
+      "ma20": 0.578508,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0694, "ma20_pct": 0.2463, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.197, "ma20_atr": 0.6, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0694},
+      "atr": 0.237354,
+      "atr_pct": 0.3292,
+      "adx": null,
+      "range_position": 0.325,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.1357,
+        "upper_wick_pct": 0.3,
+        "lower_wick_pct": 0.027,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.591,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.55, "resistance": 1.0},
+      "pattern": "pump_then_decline",
+      "recent_action": "4월 고점(~1.8) 이후 급락. 현재 고점 대비 -59.1%. ATR_pct 32.9% 극단 변동성."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.72102,
+      "bars": 184,
+      "date_range": "2025-11-17 ~ 2026-05-19",
+      "ma10": 0.884857,
+      "ma20": 0.806243,
+      "ma50": 0.703942,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.1852, "ma20_pct": -0.1057, "ma50_pct": 0.0243},
+      "dist_from_ma_atr": {"ma10_atr": -1.387, "ma20_atr": -0.721, "ma50_atr": 0.145},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.0243},
+      "atr": 0.118119,
+      "atr_pct": 0.1638,
+      "adx": 53.5,
+      "range_position": 0.237,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.1357,
+        "upper_wick_pct": 0.3,
+        "lower_wick_pct": 0.027,
+        "vol_rank_30d": 0.2,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.183,
+        "price_range_5bar_pct": 0.4589,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.3911,
+      "ret_90d": 0.8059,
+      "from_period_high_pct": -0.591,
+      "vol_avg_recent_vs_prior": 2.373
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.60, "resistance": 0.90},
+      "pattern": "sharp_pullback",
+      "recent_action": "4월 폭등 이후 급락. MA50(0.70) 근처에서 지지 탐색 중. ADX 53 강한 하락 압력."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W 큰 그림 B1(하락 시작), 1D B2. drawdown_deep + low_history. 극단 변동성 코인, 반등 확인 전 회피.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1m": null,
+    "1w": "charts/PIEVERSEUSDT/20260521/PIEVERSEUSDT_1w.png",
+    "1d": "charts/PIEVERSEUSDT/20260521/PIEVERSEUSDT_1d.png"
+  }
+}

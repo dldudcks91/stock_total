@@ -1,0 +1,183 @@
+{
+  "symbol": "ACXUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:14:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.04142,
+      "bars": 18,
+      "date_range": "2024-12-31 ~ 2026-05-31",
+      "ma10": 0.063485,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3476, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.055, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.3476},
+      "atr": 0.403854,
+      "atr_pct": 9.7502,
+      "adx": null,
+      "range_position": 0.052,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0348,
+        "upper_wick_pct": 0.751,
+        "lower_wick_pct": 0.037,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9763,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.035, "resistance": 0.065},
+      "pattern": "launch_dump",
+      "recent_action": "2024년 말 상장 후 ~1.75 ATH 대비 -97.6% 붕괴. 월봉 18개, 거의 단조 하락."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.04142,
+      "bars": 77,
+      "date_range": "2024-12-09 ~ 2026-05-25",
+      "ma10": 0.043037,
+      "ma20": 0.041885,
+      "ma50": 0.084463,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0376, "ma20_pct": -0.0111, "ma50_pct": -0.5096},
+      "dist_from_ma_atr": {"ma10_atr": -0.116, "ma20_atr": -0.033, "ma50_atr": -3.082},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0111},
+      "atr": 0.013968,
+      "atr_pct": 0.3372,
+      "adx": 17.93,
+      "range_position": 0.208,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0128,
+        "upper_wick_pct": 0.098,
+        "lower_wick_pct": 0.256,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.109,
+        "price_range_5bar_pct": 0.1637,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.4108,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9763,
+      "vol_avg_recent_vs_prior": 2.701
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.035, "resistance": 0.050},
+      "pattern": "base_attempt",
+      "recent_action": "2026년 3-4월 비정상 거래량 폭증(vol_avg 2.701) 후 가격 0.04 근처 박스. ADX 17.93 추세 약함. 바닥 탐색 중인 듯하나 조작 의심."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.04142,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.042964,
+      "ma20": 0.043688,
+      "ma50": 0.043513,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0359, "ma20_pct": -0.0519, "ma50_pct": -0.0481},
+      "dist_from_ma_atr": {"ma10_atr": -0.885, "ma20_atr": -1.3, "ma50_atr": -1.2},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0359},
+      "atr": 0.001745,
+      "atr_pct": 0.0421,
+      "adx": 18.36,
+      "range_position": 0.082,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0128,
+        "upper_wick_pct": 0.098,
+        "lower_wick_pct": 0.256,
+        "vol_rank_30d": 0.033,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.507,
+        "price_range_5bar_pct": 0.0517,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.0336,
+      "ret_90d": 0.1638,
+      "from_period_high_pct": -0.4855,
+      "vol_avg_recent_vs_prior": 0.285
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.035, "resistance": 0.050},
+      "pattern": "tight_ma_base",
+      "recent_action": "3월 이상 거래량 스파이크(0.068 급등) 후 0.04 박스. 일봉 MA10/20/50 tight 수렴 중. ADX 18로 추세 약함. 거래량 거의 없음(vol_avg 0.285)."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W/1D B3 정합이나 pump_dump_trace + 이상 거래량 조작 의심. ATH -97.6%, 거래량 매우 낮음. 바닥 신호 있어도 신뢰도 낮아 skip.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace"],
+
+  "charts": {
+    "1m": "charts/ACXUSDT/20260521/ACXUSDT_1m.png",
+    "1w": "charts/ACXUSDT/20260521/ACXUSDT_1w.png",
+    "1d": "charts/ACXUSDT/20260521/ACXUSDT_1d.png"
+  }
+}

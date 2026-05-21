@@ -1,0 +1,179 @@
+{
+  "symbol": "1MBABYDOGEUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:38:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.000395,
+      "bars": 21,
+      "date_range": "2024-09-30 ~ 2026-05-31",
+      "ma10": 0.000675,
+      "ma20": 0.001232,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.4152, "ma20_pct": -0.6796, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.42, "ma20_atr": -1.254, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.4152},
+      "atr": 0.000668,
+      "atr_pct": 1.6916,
+      "adx": null,
+      "range_position": 0.039,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0504,
+        "upper_wick_pct": 0.76,
+        "lower_wick_pct": 0.04,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9412,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.0003, "resistance": 0.0007},
+      "pattern": "pump_dump_crash",
+      "recent_action": "1M 고점(~0.007) 대비 -94%. 21봉으로 MA50 산출 불가. 밈코인 전형적 패턴."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.000395,
+      "bars": 89,
+      "date_range": "2024-09-16 ~ 2026-05-25",
+      "ma10": 0.000412,
+      "ma20": 0.000444,
+      "ma50": 0.000818,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0422, "ma20_pct": -0.1102, "ma50_pct": -0.5173},
+      "dist_from_ma_atr": {"ma10_atr": -0.166, "ma20_atr": -0.467, "ma50_atr": -4.037},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0422},
+      "atr": 0.000105,
+      "atr_pct": 0.2655,
+      "adx": 27.42,
+      "range_position": 0.073,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0172,
+        "upper_wick_pct": 0.352,
+        "lower_wick_pct": 0.179,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.322, "price_range_5bar_pct": 0.2517, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.6125,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9412,
+      "vol_avg_recent_vs_prior": 0.797
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.00035, "resistance": 0.00045},
+      "pattern": "persistent_downtrend",
+      "recent_action": "1W MA 전체 역배열+하향. 30d -61% 낙폭. 박스 하단권(range_pos 0.073)에서 등락."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.000395,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.000434,
+      "ma20": 0.000433,
+      "ma50": 0.000417,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "up"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.089, "ma20_pct": -0.0884, "ma50_pct": -0.0527},
+      "dist_from_ma_atr": {"ma10_atr": -1.565, "ma20_atr": -1.553, "ma50_atr": -0.89},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0527},
+      "atr": 2.5e-05,
+      "atr_pct": 0.0625,
+      "adx": 21.51,
+      "range_position": 0.222,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0172,
+        "upper_wick_pct": 0.352,
+        "lower_wick_pct": 0.179,
+        "vol_rank_30d": 0.067,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.761, "price_range_5bar_pct": 0.1611, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 9,
+        "body_pct": 0.0382,
+        "vol_rank": 0.767,
+        "close": 0.000479,
+        "max_retrace_pct": 0.1836,
+        "current_retrace_pct": 0.1752,
+        "holding": false
+      },
+      "ret_30d": -0.0266,
+      "ret_90d": 0.0273,
+      "from_period_high_pct": -0.6011,
+      "vol_avg_recent_vs_prior": 1.361
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.00038, "resistance": 0.00048},
+      "pattern": "base_forming",
+      "recent_action": "1D MA 수렴+MA20/50 우상향. 강양봉(9봉 전) 이후 -17% 리트레이스 홀딩 실패. 현재 MA군집 5% 아래 박스권 하단."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W B2 역배열 vs 1D B3 바닥 형성 충돌. 고점 대비 -94%. 1D에서 MA 수렴+우상향 조짐 있으나 1W 하락추세 미전환. 밈코인 특성상 변동성 극심, 추세 전환 확인 없이 진입 불가.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1m": "charts/1MBABYDOGEUSDT/20260521/1MBABYDOGEUSDT_1m.png",
+    "1w": "charts/1MBABYDOGEUSDT/20260521/1MBABYDOGEUSDT_1w.png",
+    "1d": "charts/1MBABYDOGEUSDT/20260521/1MBABYDOGEUSDT_1d.png"
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "symbol": "KWEBUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T13:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 28.347,
+      "bars": 56,
+      "date_range": "2026-03-25 ~ 2026-05-19",
+      "ma10": 29.0348,
+      "ma20": 29.109,
+      "ma50": 29.03074,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0237, "ma20_pct": -0.0262, "ma50_pct": -0.0236},
+      "dist_from_ma_atr": {"ma10_atr": -1.029, "ma20_atr": -1.14, "ma50_atr": -1.023},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0236},
+      "atr": 0.668588,
+      "atr_pct": 0.0236,
+      "adx": 15.75,
+      "range_position": 0.251,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.0095,
+        "upper_wick_pct": 0.248,
+        "lower_wick_pct": 0.143,
+        "vol_rank_30d": 0.533,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.41,
+        "price_range_5bar_pct": 0.0574,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 6,
+        "body_pct": 0.0541,
+        "vol_rank": 1.0,
+        "close": 30.991,
+        "max_retrace_pct": 0.0987,
+        "current_retrace_pct": 0.0853,
+        "holding": false
+      },
+      "ret_30d": -0.068,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0856,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 27.5, "resistance": 30.5},
+      "pattern": "range_compress",
+      "recent_action": "MA10/20/50 이 27~30 구간에서 타이트하게 수렴 중. 6일 전 장대양봉 이후 현재가가 29 아래로 되돌림 진행 중."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "56봉 신규코인, 1D 만 가용. MAs 수렴-횡보(ADX 15.75), 가격이 MA50 소폭 하회. 방향 미확정 watch.",
+
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1d": "charts/KWEBUSDT/20260521/KWEBUSDT_1d.png"
+  }
+}

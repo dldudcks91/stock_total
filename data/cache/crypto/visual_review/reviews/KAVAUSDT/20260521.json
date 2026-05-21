@@ -1,0 +1,167 @@
+{
+  "symbol": "KAVAUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:01:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.05712,
+      "bars": 49,
+      "date_range": "2022-05-31 ~ 2026-05-31",
+      "ma10": 0.129811,
+      "ma20": 0.282176,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.56, "ma20_pct": -0.7976, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.392, "ma20_atr": -1.214, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.56},
+      "atr": 0.185398,
+      "atr_pct": 3.2458,
+      "adx": 17.41,
+      "range_position": 0.027,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0142,
+        "upper_wick_pct": 0.926,
+        "lower_wick_pct": 0.01,
+        "vol_rank_30d": 0.767,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 2.042, "price_range_5bar_pct": 0.921, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.9254,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9822,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.040, "resistance": 0.130},
+      "pattern": "sustained_downtrend",
+      "recent_action": "2022년 고점 3.0 대비 -98% 수준까지 하락. MA10/MA20 모두 우하향이며 최근 월봉 거래량이 급증하는 이례적 패턴 시각 확인."
+    }
+  },
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 0.05712,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 0.058034,
+      "ma20": 0.06174,
+      "ma50": 0.185798,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0157, "ma20_pct": -0.0748, "ma50_pct": -0.6926},
+      "dist_from_ma_atr": {"ma10_atr": -0.052, "ma20_atr": -0.261, "ma50_atr": -7.276},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0157},
+      "atr": 0.017686,
+      "atr_pct": 0.3096,
+      "adx": 41.27,
+      "range_position": 0.081,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0065,
+        "upper_wick_pct": 0.378,
+        "lower_wick_pct": 0.288,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.835, "price_range_5bar_pct": 0.2229, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 3,
+        "body_pct": 0.0645,
+        "vol_rank": 0.867,
+        "close": 0.06493,
+        "max_retrace_pct": 0.1343,
+        "current_retrace_pct": 0.1203,
+        "holding": false
+      },
+      "ret_30d": -0.5986,
+      "ret_90d": -0.8124,
+      "from_period_high_pct": -0.9757,
+      "vol_avg_recent_vs_prior": 1.221
+    },
+    "observations": {
+      "key_levels": {"support": 0.045, "resistance": 0.075},
+      "pattern": "lower_lows",
+      "recent_action": "ADX 41로 강한 하락추세 지속. 3주 전 강양봉 발생 후 되돌림으로 MA10 하회 중."
+    }
+  },
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.05712,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.061832,
+      "ma20": 0.062237,
+      "ma50": 0.058354,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0762, "ma20_pct": -0.0822, "ma50_pct": -0.0211},
+      "dist_from_ma_atr": {"ma10_atr": -1.354, "ma20_atr": -1.47, "ma50_atr": -0.354},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0211},
+      "atr": 0.003481,
+      "atr_pct": 0.0609,
+      "adx": 25.08,
+      "range_position": 0.385,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0065,
+        "upper_wick_pct": 0.378,
+        "lower_wick_pct": 0.288,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.88, "price_range_5bar_pct": 0.1756, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0365,
+      "ret_90d": 0.0917,
+      "from_period_high_pct": -0.7006,
+      "vol_avg_recent_vs_prior": 1.262
+    },
+    "observations": {
+      "key_levels": {"support": 0.050, "resistance": 0.070},
+      "pattern": "base_consolidation",
+      "recent_action": "1D에서 2026년 초 바닥 형성 후 0.05~0.07 박스권 내 횡보. MA50이 소폭 우상향이나 가격은 MA 삼선 모두 하회."
+    }
+  },
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "1M/1W 강한 B2 하락추세(ADX 41), 1D B3 바닥권이나 큰 그림 하락 사이클 미전환. drawdown_deep(-98% from ATH).",
+  "risk_flags": ["drawdown_deep"],
+  "charts": {
+    "1m": "charts/KAVAUSDT/20260521/KAVAUSDT_1m.png",
+    "1w": "charts/KAVAUSDT/20260521/KAVAUSDT_1w.png",
+    "1d": "charts/KAVAUSDT/20260521/KAVAUSDT_1d.png"
+  }
+}

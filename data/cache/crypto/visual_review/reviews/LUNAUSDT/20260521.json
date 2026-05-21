@@ -1,0 +1,187 @@
+{
+  "symbol": "LUNAUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:35:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.06206,
+      "bars": 47,
+      "date_range": "2022-07-31 ~ 2026-05-31",
+      "ma10": 0.086324,
+      "ma20": 0.180497,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2811, "ma20_pct": -0.6562, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.136, "ma20_atr": -0.662, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.2811},
+      "atr": 0.178966,
+      "atr_pct": 2.8838,
+      "adx": 27.51,
+      "range_position": 0.134,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.1146,
+        "upper_wick_pct": 0.584,
+        "lower_wick_pct": 0.046,
+        "vol_rank_30d": 0.8,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.762, "price_range_5bar_pct": 0.806, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.2034,
+        "vol_rank": 0.8,
+        "close": 0.06917,
+        "max_retrace_pct": 0.1157,
+        "current_retrace_pct": 0.1028,
+        "holding": false
+      },
+      "ret_30d": -0.9155,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9922,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.05, "resistance": 0.10},
+      "pattern": "pump_dump",
+      "recent_action": "LUNA(2세대) 1M 차트에서 2022년 첫 거래 후 수년간 지속 하락. 2025년 11월 대량 거래 스파이크(약 4000배 규모) 이후 급격히 거래 소멸. 전형적 펌프덤프 흔적."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.06206,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 0.061936,
+      "ma20": 0.065593,
+      "ma50": 0.103526,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.002, "ma20_pct": -0.0539, "ma50_pct": -0.4005},
+      "dist_from_ma_atr": {"ma10_atr": 0.007, "ma20_atr": -0.208, "ma50_atr": -2.438},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.002},
+      "atr": 0.017011,
+      "atr_pct": 0.2741,
+      "adx": 8.71,
+      "range_position": 0.052,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0324,
+        "upper_wick_pct": 0.071,
+        "lower_wick_pct": 0.131,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.322, "price_range_5bar_pct": 0.3791, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 3,
+        "body_pct": 0.0964,
+        "vol_rank": 0.867,
+        "close": 0.07358,
+        "max_retrace_pct": 0.1687,
+        "current_retrace_pct": 0.1566,
+        "holding": false
+      },
+      "ret_30d": -0.368,
+      "ret_90d": -0.818,
+      "from_period_high_pct": -0.9922,
+      "vol_avg_recent_vs_prior": 8.285
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.05, "resistance": 0.08},
+      "pattern": "pump_dump",
+      "recent_action": "1W에서 2025년 11~12월 거래량 대폭증(vol_avg 8.3배) 이후 급락 재개. 고점 대비 -99% 수준. MA 역배열 완성. 전형적 구제불능 코인 패턴."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.06206,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.066879,
+      "ma20": 0.068955,
+      "ma50": 0.062315,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0721, "ma20_pct": -0.1, "ma50_pct": -0.0041},
+      "dist_from_ma_atr": {"ma10_atr": -1.01, "ma20_atr": -1.444, "ma50_atr": -0.053},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0041},
+      "atr": 0.004774,
+      "atr_pct": 0.0769,
+      "adx": 31.78,
+      "range_position": 0.355,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0324,
+        "upper_wick_pct": 0.071,
+        "lower_wick_pct": 0.131,
+        "vol_rank_30d": 0.033,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.725, "price_range_5bar_pct": 0.1574, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.1194,
+      "ret_90d": -0.0856,
+      "from_period_high_pct": -0.7482,
+      "vol_avg_recent_vs_prior": 3.093
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.055, "resistance": 0.080},
+      "pattern": "post_pump_base",
+      "recent_action": "1D에서 2025년 11~12월 펌프 이후 가격 0.06달러 근방에서 횡보. MA50이 상향이라 단기 지지처럼 보이나 거래량 폭감. 전형적 펌프 이후 잔존 매물 소화 국면."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "LUNA 2세대 코인. 전 TF pump_dump_trace 확인. 1M/1W B2 역배열 + 고점 -99%. 거래량 스파이크 후 즉시 소멸 패턴. 영구 제외.",
+
+  "risk_flags": ["drawdown_deep", "pump_dump_trace"],
+
+  "charts": {
+    "1m": "charts/LUNAUSDT/20260521/LUNAUSDT_1m.png",
+    "1w": "charts/LUNAUSDT/20260521/LUNAUSDT_1w.png",
+    "1d": "charts/LUNAUSDT/20260521/LUNAUSDT_1d.png"
+  }
+}

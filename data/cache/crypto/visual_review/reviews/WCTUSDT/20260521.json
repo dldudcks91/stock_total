@@ -1,0 +1,164 @@
+{
+  "symbol": "WCTUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 0.05992,
+      "bars": 14,
+      "date_range": "2025-04-30 ~ 2026-05-31",
+      "ma10": 0.116578,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.486, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.486},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.03,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.02,
+        "upper_wick_pct": 0.786,
+        "lower_wick_pct": 0.15,
+        "vol_rank_30d": 0.071,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9569,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.04, "resistance": 0.12},
+      "pattern": "launch_crash",
+      "recent_action": "1M: 2025년 5월 상장 후 1.4달러 고점에서 -96% 폭락. 봉 14개로 데이터 부족."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.05992,
+      "bars": 58,
+      "date_range": "2025-04-21 ~ 2026-05-25",
+      "ma10": 0.060975,
+      "ma20": 0.062955,
+      "ma50": 0.161528,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0173, "ma20_pct": -0.0482, "ma50_pct": -0.629},
+      "dist_from_ma_atr": {"ma10_atr": -0.042, "ma20_atr": -0.12, "ma50_atr": -4.028},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0173},
+      "atr": 0.025223,
+      "atr_pct": 0.4209,
+      "adx": 10.17,
+      "range_position": 0.095,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0232,
+        "upper_wick_pct": 0.429,
+        "lower_wick_pct": 0.142,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.321, "price_range_5bar_pct": 0.3112, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.6379,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9569,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.05, "resistance": 0.075},
+      "pattern": "exhaustion_base",
+      "recent_action": "1W: ADX 10 추세 소실. 30일 -64%. MA10 근처로 수렴 시도. 바닥권이나 상승 에너지 미확인."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.05992,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.064741,
+      "ma20": 0.065085,
+      "ma50": 0.06134,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0745, "ma20_pct": -0.0794, "ma50_pct": -0.0231},
+      "dist_from_ma_atr": {"ma10_atr": -1.074, "ma20_atr": -1.151, "ma50_atr": -0.316},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0231},
+      "atr": 0.004488,
+      "atr_pct": 0.0749,
+      "adx": 25.31,
+      "range_position": 0.342,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0232,
+        "upper_wick_pct": 0.429,
+        "lower_wick_pct": 0.142,
+        "vol_rank_30d": 0.333,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.349, "price_range_5bar_pct": 0.1534, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0363,
+      "ret_90d": -0.0028,
+      "from_period_high_pct": -0.6536,
+      "vol_avg_recent_vs_prior": 1.114
+    },
+    "observations": {
+      "key_levels": {"support": 0.055, "resistance": 0.080},
+      "pattern": "range_box",
+      "recent_action": "1D: 2026년 2월 이후 0.055~0.080 박스 형성. MA50 우상향, 가격은 그 아래. 30일 +3.6%로 안정화 신호."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "1D B3 박스 형성, 1W B2 하락 추세 잔존. 분리 상태. 신규 코인(14개월)으로 데이터 부족. 1D MA50 돌파 확인 필요.",
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1m": "charts/WCTUSDT/20260521/WCTUSDT_1m.png",
+    "1w": "charts/WCTUSDT/20260521/WCTUSDT_1w.png",
+    "1d": "charts/WCTUSDT/20260521/WCTUSDT_1d.png"
+  }
+}

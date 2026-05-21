@@ -1,0 +1,120 @@
+{
+  "symbol": "KGENUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:03:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 0.19844,
+      "bars": 33,
+      "date_range": "2025-10-13 ~ 2026-05-25",
+      "ma10": 0.1835,
+      "ma20": 0.196328,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0814, "ma20_pct": 0.0108, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.225, "ma20_atr": 0.032, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.0108},
+      "atr": 0.066309,
+      "atr_pct": 0.3342,
+      "adx": 37.18,
+      "range_position": 0.302,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0359,
+        "upper_wick_pct": 0.402,
+        "lower_wick_pct": 0.111,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.2045,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.7161,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 0.150, "resistance": 0.250},
+      "pattern": "consolidation_box",
+      "recent_action": "2026-01 고점 0.35 후 하락, 현재 0.15~0.25 박스권 내 횡보. 33봉으로 데이터 부족, MA50 없음."
+    }
+  },
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 0.19844,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.227884,
+      "ma20": 0.208329,
+      "ma50": 0.179531,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.1292, "ma20_pct": -0.0475, "ma50_pct": 0.1053},
+      "dist_from_ma_atr": {"ma10_atr": -1.416, "ma20_atr": -0.476, "ma50_atr": 0.909},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0475},
+      "atr": 0.020797,
+      "atr_pct": 0.1048,
+      "adx": 38.14,
+      "range_position": 0.517,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0359,
+        "upper_wick_pct": 0.402,
+        "lower_wick_pct": 0.111,
+        "vol_rank_30d": 0.367,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.111, "price_range_5bar_pct": 0.3182, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 7,
+        "body_pct": 0.0631,
+        "vol_rank": 0.8,
+        "close": 0.24357,
+        "max_retrace_pct": 0.192,
+        "current_retrace_pct": 0.1853,
+        "holding": false
+      },
+      "ret_30d": 0.3004,
+      "ret_90d": 0.1687,
+      "from_period_high_pct": -0.434,
+      "vol_avg_recent_vs_prior": 0.751
+    },
+    "observations": {
+      "key_levels": {"support": 0.175, "resistance": 0.240},
+      "pattern": "pullback_after_spike",
+      "recent_action": "1D MA 정배열 유지, 7일 전 강양봉 후 되돌림으로 MA20 부근 접근 중. MA50(0.18)이 하부 지지선 역할."
+    }
+  },
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W 데이터 부족(33봉)으로 신뢰성 낮음. 1D MA 정배열+반등 후 되돌림 중. MA20(0.208) 지지 여부 확인 필요. low_history+drawdown_deep.",
+  "risk_flags": ["drawdown_deep", "low_history"],
+  "charts": {
+    "1w": "charts/KGENUSDT/20260521/KGENUSDT_1w.png",
+    "1d": "charts/KGENUSDT/20260521/KGENUSDT_1d.png"
+  }
+}

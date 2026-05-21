@@ -1,0 +1,171 @@
+{
+  "symbol": "PROVEUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.2232,
+      "bars": 10,
+      "date_range": "2025-08-31 ~ 2026-05-31",
+      "ma10": 0.44622,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.4998, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.4998},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.009,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.1022,
+        "upper_wick_pct": 0.603,
+        "lower_wick_pct": 0.039,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8718,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.18, "resistance": 0.35},
+      "pattern": "sustained_decline",
+      "recent_action": "1M 10봉 최소 기준. 상장 이후 지속 하락, 현재 고점 -87%."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.2232,
+      "bars": 42,
+      "date_range": "2025-08-11 ~ 2026-05-25",
+      "ma10": 0.23957,
+      "ma20": 0.28617,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0683, "ma20_pct": -0.22, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.134, "ma20_atr": -0.514, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0683},
+      "atr": 0.1224,
+      "atr_pct": 0.5484,
+      "adx": 41.48,
+      "range_position": 0.022,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0323,
+        "upper_wick_pct": 0.076,
+        "lower_wick_pct": 0.238,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.091, "price_range_5bar_pct": 0.2854, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.7251,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8718,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.18, "resistance": 0.28},
+      "pattern": "dead_volume_decline",
+      "recent_action": "1W ADX 41.5 강한 하락추세, 최근 30d -72.5% 급락. 거래량 거의 없어 zombie 수준."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.2232,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.25211,
+      "ma20": 0.25393,
+      "ma50": 0.241814,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1147, "ma20_pct": -0.121, "ma50_pct": -0.077},
+      "dist_from_ma_atr": {"ma10_atr": -2.544, "ma20_atr": -2.705, "ma50_atr": -1.638},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.077},
+      "atr": 0.011362,
+      "atr_pct": 0.0509,
+      "adx": 29.78,
+      "range_position": 0.08,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0323,
+        "upper_wick_pct": 0.076,
+        "lower_wick_pct": 0.238,
+        "vol_rank_30d": 0.333,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.595, "price_range_5bar_pct": 0.1873, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.0102,
+      "ret_90d": -0.2795,
+      "from_period_high_pct": -0.6888,
+      "vol_avg_recent_vs_prior": 0.086
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.20, "resistance": 0.26},
+      "pattern": "zombie_drift",
+      "recent_action": "1D vol_avg 0.086 = 사실상 좀비 수준. MA 전체 아래 하락 중. 3월 일시적 거래량 스파이크(판매) 후 재차 거래 감소."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF B2 하락 정합. 1D vol_avg 0.086 좀비 수준. 1W ADX 41.5 강한 하락추세. 고점 -87%, 거래량 소멸. 매매 완전 회피.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "zombie"],
+
+  "charts": {
+    "1m": "charts/PROVEUSDT/20260521/PROVEUSDT_1m.png",
+    "1w": "charts/PROVEUSDT/20260521/PROVEUSDT_1w.png",
+    "1d": "charts/PROVEUSDT/20260521/PROVEUSDT_1d.png"
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "symbol": "GRIFFAINUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.01103,
+      "bars": 17,
+      "date_range": "2025-01-31 ~ 2026-05-31",
+      "ma10": 0.018213,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3944, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.046, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.3944},
+      "atr": 0.157765,
+      "atr_pct": 14.3032,
+      "adx": null,
+      "range_position": 0.062,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.631,
+        "upper_wick_pct": 0.127,
+        "lower_wick_pct": 0.07,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9828,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.01, "resistance": 0.02},
+      "pattern": "sustained_decline",
+      "recent_action": "상장 직후 0.6 고점 이후 지속 하락, 현재 저점권 고착. MA10 아래 39% 이격."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.01103,
+      "bars": 73,
+      "date_range": "2025-01-06 ~ 2026-05-25",
+      "ma10": 0.014093,
+      "ma20": 0.012948,
+      "ma50": 0.023667,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2173, "ma20_pct": -0.1482, "ma50_pct": -0.5339},
+      "dist_from_ma_atr": {"ma10_atr": -0.439, "ma20_atr": -0.275, "ma50_atr": -1.812},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.1482},
+      "atr": 0.006973,
+      "atr_pct": 0.6322,
+      "adx": 13.33,
+      "range_position": 0.194,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.01,
+        "upper_wick_pct": 0.632,
+        "lower_wick_pct": 0.175,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.459,
+        "price_range_5bar_pct": 1.1532,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.4542,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9828,
+      "vol_avg_recent_vs_prior": 0.92
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.008, "resistance": 0.015},
+      "pattern": "downtrend_stall",
+      "recent_action": "1W 73봉, 피크 -98%에서 현재 하단권 횡보. 거래량 점차 감소하며 ADX 13 횡보 구간 진입."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.01103,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.012245,
+      "ma20": 0.014461,
+      "ma50": 0.015252,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0992, "ma20_pct": -0.2372, "ma50_pct": -0.2768},
+      "dist_from_ma_atr": {"ma10_atr": -0.682, "ma20_atr": -1.926, "ma50_atr": -2.371},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0992},
+      "atr": 0.001781,
+      "atr_pct": 0.1615,
+      "adx": 26.45,
+      "range_position": 0.183,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.01,
+        "upper_wick_pct": 0.632,
+        "lower_wick_pct": 0.175,
+        "vol_rank_30d": 0.033,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.242,
+        "price_range_5bar_pct": 0.1704,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.3375,
+      "ret_90d": 0.2028,
+      "from_period_high_pct": -0.583,
+      "vol_avg_recent_vs_prior": 0.771
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.009, "resistance": 0.014},
+      "pattern": "lower_lows",
+      "recent_action": "1D 역배열 확정. 4월 반등 시도 후 재하락, 현재 MA10 아래 10% 이격으로 약세 지속."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF B2 정합. 상장 직후 펌프&덤프 패턴 후 지속 하락. 1D 역배열+ADX 26 추세 하락 확정. 피크 대비 -98% 수준.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace"],
+
+  "charts": {
+    "1m": "charts/GRIFFAINUSDT/20260521/GRIFFAINUSDT_1m.png",
+    "1w": "charts/GRIFFAINUSDT/20260521/GRIFFAINUSDT_1w.png",
+    "1d": "charts/GRIFFAINUSDT/20260521/GRIFFAINUSDT_1d.png"
+  }
+}

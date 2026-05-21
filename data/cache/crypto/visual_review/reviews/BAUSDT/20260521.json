@@ -1,0 +1,83 @@
+{
+  "symbol": "BAUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:30+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "B1",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 215.38,
+      "bars": 41,
+      "date_range": "2026-04-09 ~ 2026-05-19",
+      "ma10": 228.659,
+      "ma20": 229.116,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0581, "ma20_pct": -0.06, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -1.702, "ma20_atr": -1.761, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0581},
+      "atr": 7.799724,
+      "atr_pct": 0.0362,
+      "adx": 21.5,
+      "range_position": 0.04,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0194,
+        "upper_wick_pct": 0.21,
+        "lower_wick_pct": 0.169,
+        "vol_rank_30d": 0.8,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.818,
+        "price_range_5bar_pct": 0.083,
+        "accumulation_score": 0.3
+      },
+      "recent_strong_bull": {
+        "bars_ago": 6,
+        "body_pct": 0.0303,
+        "vol_rank": 0.933,
+        "close": 244.85,
+        "max_retrace_pct": 0.125,
+        "current_retrace_pct": 0.1204,
+        "holding": false
+      },
+      "ret_30d": -0.0502,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1294,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 210.0, "resistance": 245.0},
+      "pattern": "peak_reversal",
+      "recent_action": "4월 중순 상승 후 245 고점 형성, 이후 6봉 만에 MA 아래로 하락. 강양봉 되돌림 12% 이상으로 holding 실패. 최근 거래량 증가하며 하방 압력 확인."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "신규 코인(41봉, low_history). 1D만 채점 가능. 고점 이후 B1 전환 초기로 판단되나 데이터 부족으로 신뢰도 낮음. 추가 관망 필요.",
+
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1d": "charts/BAUSDT/20260521/BAUSDT_1d.png"
+  }
+}

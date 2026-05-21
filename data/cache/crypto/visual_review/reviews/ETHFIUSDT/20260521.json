@@ -1,0 +1,153 @@
+{
+  "symbol": "ETHFIUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.3705,
+      "bars": 27,
+      "date_range": "2024-03-31 ~ 2026-05-31",
+      "ma10": 0.72203,
+      "ma20": 1.015015,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.4869, "ma20_pct": -0.635, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.271, "ma20_atr": -0.497, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.4869},
+      "atr": 1.296413, "atr_pct": 3.4991, "adx": null,
+      "range_position": 0.04,
+      "last_candle": {
+        "type": "doji", "body_pct": 0.1061,
+        "upper_wick_pct": 0.594, "lower_wick_pct": 0.066,
+        "vol_rank_30d": 0.63, "vol_anomaly": null,
+        "accumulation_candle_score": 0.0, "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0, "ret_90d": 0.0,
+      "from_period_high_pct": -0.9574,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.25, "resistance": 0.80},
+      "pattern": "multi_year_decline",
+      "recent_action": "1M: 2024년 초 8달러 고점 이후 일방 하락, 현재 -96%. MA10/20 역배열로 우하향."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.3705,
+      "bars": 114,
+      "date_range": "2024-03-25 ~ 2026-05-25",
+      "ma10": 0.43833,
+      "ma20": 0.49368,
+      "ma50": 0.834938,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1547, "ma20_pct": -0.2495, "ma50_pct": -0.5563},
+      "dist_from_ma_atr": {"ma10_atr": -0.519, "ma20_atr": -0.942, "ma50_atr": -3.552},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1547},
+      "atr": 0.130746, "atr_pct": 0.3529, "adx": 20.63,
+      "range_position": 0.011,
+      "last_candle": {
+        "type": "bear", "body_pct": 0.0165,
+        "upper_wick_pct": 0.263, "lower_wick_pct": 0.202,
+        "vol_rank_30d": 0.0, "vol_anomaly": null,
+        "accumulation_candle_score": 0.0, "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.847, "price_range_5bar_pct": 0.3158, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 2, "body_pct": 0.0696, "vol_rank": 0.833, "close": 0.4539,
+        "max_retrace_pct": 0.2005, "current_retrace_pct": 0.1837, "holding": false
+      },
+      "ret_30d": -0.6178, "ret_90d": -0.7206,
+      "from_period_high_pct": -0.9574,
+      "vol_avg_recent_vs_prior": 0.424
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.28, "resistance": 0.50},
+      "pattern": "staircase_down",
+      "recent_action": "1W: 역배열 전체 우하향, 1W ret_30d -62%. 최저점 근방 다지기 시도이나 반등 에너지 없음."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.3705,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.41835,
+      "ma20": 0.422255,
+      "ma50": 0.438102,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1144, "ma20_pct": -0.1226, "ma50_pct": -0.1543},
+      "dist_from_ma_atr": {"ma10_atr": -1.813, "ma20_atr": -1.961, "ma50_atr": -2.562},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1144},
+      "atr": 0.026391, "atr_pct": 0.0712, "adx": 18.51,
+      "range_position": 0.028,
+      "last_candle": {
+        "type": "bear", "body_pct": 0.0165,
+        "upper_wick_pct": 0.263, "lower_wick_pct": 0.202,
+        "vol_rank_30d": 0.167, "vol_anomaly": null,
+        "accumulation_candle_score": 0.0, "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.025, "price_range_5bar_pct": 0.2308, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.1816, "ret_90d": -0.1989,
+      "from_period_high_pct": -0.6468,
+      "vol_avg_recent_vs_prior": 1.479
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.32, "resistance": 0.45},
+      "pattern": "persistent_bear",
+      "recent_action": "1D 역배열 3 MA 모두 우하향. range_position 0.028로 박스 최하단. 회복 신호 부재."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF B2 일관, 고점 대비 -96%, MA 역배열 전체 우하향. 매매 회피.",
+
+  "risk_flags": ["drawdown_deep"],
+
+  "charts": {
+    "1m": "charts/ETHFIUSDT/20260521/ETHFIUSDT_1m.png",
+    "1w": "charts/ETHFIUSDT/20260521/ETHFIUSDT_1w.png",
+    "1d": "charts/ETHFIUSDT/20260521/ETHFIUSDT_1d.png"
+  }
+}

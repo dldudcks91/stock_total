@@ -1,0 +1,67 @@
+{
+  "symbol": "EWHUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 23.682,
+      "bars": 41,
+      "date_range": "2026-04-09 ~ 2026-05-19",
+      "ma10": 24.17,
+      "ma20": 24.05015,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0202, "ma20_pct": -0.0153, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.789, "ma20_atr": -0.595, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0153},
+      "atr": 0.618757, "atr_pct": 0.0261, "adx": 18.49,
+      "range_position": 0.401,
+      "last_candle": {
+        "type": "bear", "body_pct": 0.0125,
+        "upper_wick_pct": 0.293, "lower_wick_pct": 0.154,
+        "vol_rank_30d": 0.9, "vol_anomaly": null,
+        "accumulation_candle_score": 0.0, "distribution_candle_score": 0.3
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.733, "price_range_5bar_pct": 0.0413, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 6, "body_pct": 0.0304, "vol_rank": 0.8, "close": 24.791,
+        "max_retrace_pct": 0.0688, "current_retrace_pct": 0.0447, "holding": true
+      },
+      "ret_30d": -0.0248, "ret_90d": 0.0,
+      "from_period_high_pct": -0.0514,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 23.0, "resistance": 25.0},
+      "pattern": "range_pullback",
+      "recent_action": "41일 역사만 가용. 5월 초 신고점 이후 MA10/20 아래로 풀백. 강양봉 holding=true로 구조 유지."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "1D 만 가용(low_history). B4 상승 첫 시도이나 데이터 41일로 신뢰도 제한. MA20 지지 확인 후 판정 갱신 필요.",
+
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1d": "charts/EWHUSDT/20260521/EWHUSDT_1d.png"
+  }
+}

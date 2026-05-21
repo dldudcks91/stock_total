@@ -1,0 +1,80 @@
+{
+  "symbol": "NFLXUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:32:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "bounce_ma20",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 89.1,
+      "bars": 42,
+      "date_range": "2026-04-08 ~ 2026-05-19",
+      "ma10": 87.452,
+      "ma20": 88.8165,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0188, "ma20_pct": 0.0032, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.709, "ma20_atr": 0.122, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.0032},
+      "atr": 2.323529,
+      "atr_pct": 0.0261,
+      "adx": 34.41,
+      "range_position": 0.166,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0068,
+        "upper_wick_pct": 0.64,
+        "lower_wick_pct": 0.136,
+        "vol_rank_30d": 0.933,
+        "vol_anomaly": "spike",
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.3
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.742,
+        "price_range_5bar_pct": 0.0571,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.0318,
+        "vol_rank": 0.7,
+        "close": 89.71,
+        "max_retrace_pct": 0.0109,
+        "current_retrace_pct": 0.0068,
+        "holding": true
+      },
+      "ret_30d": -0.0785,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1823,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 85.0, "resistance": 95.0},
+      "pattern": "pullback_recovery",
+      "recent_action": "고점(109) 이후 하락 후 85 부근 지지 확인. 최근 반등으로 MA20(88.8) 위 복귀. 직전 강양봉 후 수렴 중."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "1D만 42봉 존재. low_history로 상위 TF 없어 판정 불확실. 1D 기준 고점 후 하락 반등 B4 상태. 데이터 부족으로 신뢰도 낮음.",
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1d": "charts/NFLXUSDT/20260521/NFLXUSDT_1d.png"
+  }
+}

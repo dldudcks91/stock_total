@@ -1,0 +1,129 @@
+{
+  "symbol": "APRUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.17426,
+      "bars": 31,
+      "date_range": "2025-10-27 ~ 2026-05-25",
+      "ma10": 0.171517,
+      "ma20": 0.139248,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.016, "ma20_pct": 0.2514, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.025, "ma20_atr": 0.322, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.016},
+      "atr": 0.10883,
+      "atr_pct": 0.6245,
+      "adx": 43.19,
+      "range_position": 0.262,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0582,
+        "upper_wick_pct": 0.24,
+        "lower_wick_pct": 0.433,
+        "vol_rank_30d": 0.4,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.5083,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.7668,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.10, "resistance": 0.22},
+      "pattern": "pump_dump_recovery",
+      "recent_action": "초기 펌프 후 -77% 급락에서 회복 시도 중. 1W 봉수 31개로 history 짧아 패턴 신뢰도 낮음."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "bounce_ma50",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.17426,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.150239,
+      "ma20": 0.157872,
+      "ma50": 0.17527,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.1599, "ma20_pct": 0.1038, "ma50_pct": -0.0058},
+      "dist_from_ma_atr": {"ma10_atr": 1.177, "ma20_atr": 0.803, "ma50_atr": -0.049},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0058},
+      "atr": 0.020415,
+      "atr_pct": 0.1172,
+      "adx": 16.59,
+      "range_position": 0.238,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0582,
+        "upper_wick_pct": 0.24,
+        "lower_wick_pct": 0.433,
+        "vol_rank_30d": 0.933,
+        "vol_anomaly": "breakout",
+        "accumulation_candle_score": 1.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 3.488, "price_range_5bar_pct": 0.2798, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.1652,
+        "vol_rank": 1.0,
+        "close": 0.16412,
+        "max_retrace_pct": 0.0818,
+        "current_retrace_pct": -0.0618,
+        "holding": true
+      },
+      "ret_30d": 0.1916,
+      "ret_90d": 0.9272,
+      "from_period_high_pct": -0.6424,
+      "vol_avg_recent_vs_prior": 0.396
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.13, "resistance": 0.20},
+      "pattern": "v_recovery_attempt",
+      "recent_action": "직전 봉 대형 양봉(+16.5%, vol_rank 1.0) 발생 후 현재 봉 MA50 근처에서 눌림 중. 축적 캔들 스코어 1.0으로 매집 신호 강함."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "1D 강양봉+매집 신호로 B4 전환 가능성 있으나, 1W history 31봉 부족, 전체 down-trend 맥락 유지. low_history+drawdown_deep 리스크 공존. 돌파 확인 후 재평가 필요.",
+
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1w": "charts/APRUSDT/20260521/APRUSDT_1w.png",
+    "1d": "charts/APRUSDT/20260521/APRUSDT_1d.png"
+  }
+}

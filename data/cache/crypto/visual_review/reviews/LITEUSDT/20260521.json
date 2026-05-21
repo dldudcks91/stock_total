@@ -1,0 +1,83 @@
+{
+  "symbol": "LITEUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T13:07:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 895.78,
+      "bars": 35,
+      "date_range": "2026-04-15 ~ 2026-05-19",
+      "ma10": 971.798,
+      "ma20": 956.33,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0782, "ma20_pct": -0.0633, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -1.09, "ma20_atr": -0.868, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0633},
+      "atr": 69.729955,
+      "atr_pct": 0.0778,
+      "adx": 27.33,
+      "range_position": 0.375,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0052,
+        "upper_wick_pct": 0.236,
+        "lower_wick_pct": 0.69,
+        "vol_rank_30d": 0.633,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.443,
+        "price_range_5bar_pct": 0.173,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 6,
+        "body_pct": 0.0571,
+        "vol_rank": 0.893,
+        "close": 1039.8,
+        "max_retrace_pct": 0.1855,
+        "current_retrace_pct": 0.1385,
+        "holding": false
+      },
+      "ret_30d": 0.0038,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1748,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 850.0, "resistance": 1050.0},
+      "pattern": "pullback_after_peak",
+      "recent_action": "5월 초 고점(1050~1080) 후 되돌림. 긴 아래꼬리 도지로 바닥 지지 시도. MA20 하회 중."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "35봉 신규코인, 1D만 가용. MA10/20 상향 기울기인데 가격이 일시 하회. 방향 미확정 watch. 데이터 부족.",
+
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1d": "charts/LITEUSDT/20260521/LITEUSDT_1d.png"
+  }
+}

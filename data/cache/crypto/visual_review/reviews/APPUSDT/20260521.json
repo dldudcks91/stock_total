@@ -1,0 +1,124 @@
+{
+  "symbol": "APPUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:19:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 478.77,
+      "bars": 37,
+      "date_range": "2025-09-15 ~ 2026-05-25",
+      "ma10": 453.412,
+      "ma20": 471.348,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0559, "ma20_pct": 0.0157, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.342, "ma20_atr": 0.1, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.0157},
+      "atr": 74.172657,
+      "atr_pct": 0.1549,
+      "adx": 19.77,
+      "range_position": 0.314,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0327,
+        "upper_wick_pct": 0.294,
+        "lower_wick_pct": 0.167,
+        "vol_rank_30d": 0.133,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.604, "price_range_5bar_pct": 0.1931, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.2555,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.3517,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 380.0, "resistance": 560.0},
+      "pattern": "bottom_consolidation",
+      "recent_action": "1W 기준 12월 고점(~750) 이후 급락 후 400권에서 박스 횡보. MA 수렴 중. ADX 약함."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B5",
+    "micro_action": "bounce_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 478.77,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 483.806,
+      "ma20": 475.8005,
+      "ma50": 448.701,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0104, "ma20_pct": 0.0062, "ma50_pct": 0.067},
+      "dist_from_ma_atr": {"ma10_atr": -0.205, "ma20_atr": 0.121, "ma50_atr": 1.224},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.0062},
+      "atr": 24.566335,
+      "atr_pct": 0.0513,
+      "adx": 34.89,
+      "range_position": 0.729,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0327,
+        "upper_wick_pct": 0.294,
+        "lower_wick_pct": 0.167,
+        "vol_rank_30d": 0.667,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.689, "price_range_5bar_pct": 0.0962, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 4,
+        "body_pct": 0.0318,
+        "vol_rank": 0.833,
+        "close": 498.64,
+        "max_retrace_pct": 0.0496,
+        "current_retrace_pct": 0.0398,
+        "holding": true
+      },
+      "ret_30d": 0.0159,
+      "ret_90d": 0.1733,
+      "from_period_high_pct": -0.3517,
+      "vol_avg_recent_vs_prior": 0.706
+    },
+    "observations": {
+      "key_levels": {"support": 445.0, "resistance": 520.0},
+      "pattern": "MA_stack_recovery",
+      "recent_action": "1D 기준 3~4월 저점 이후 정배열 회복. 4봉 전 강양봉 후 MA20 위 유지(holding=true). 풀백 중이나 구조 건전."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1D B5 정배열+강양봉 holding. 1W B3 큰 그림 바닥 박스. 신규(low_history + drawdown_deep). MA10 반등 시 pass 전환 가능.",
+  "risk_flags": ["drawdown_deep", "low_history"],
+
+  "charts": {
+    "1w": "charts/APPUSDT/20260521/APPUSDT_1w.png",
+    "1d": "charts/APPUSDT/20260521/APPUSDT_1d.png"
+  }
+}

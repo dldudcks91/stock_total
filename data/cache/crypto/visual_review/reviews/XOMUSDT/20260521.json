@@ -1,0 +1,129 @@
+{
+  "symbol": "XOMUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 163.31,
+      "bars": 11,
+      "date_range": "2026-03-16 ~ 2026-05-25",
+      "ma10": 157.449,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0372, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0372},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.614,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0103,
+        "upper_wick_pct": 0.038,
+        "lower_wick_pct": 0.605,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0757,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 150.0, "resistance": 176.0},
+      "pattern": "sideways_recovery",
+      "recent_action": "신규 상장 11봉 뿐으로 추세 판단 매우 제한적. MA10(157) 위에서 doji 형성 중, 아래꼬리 0.6 우세로 하방 지지 신호."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 163.31,
+      "bars": 69,
+      "date_range": "2026-03-12 ~ 2026-05-19",
+      "ma10": 154.891,
+      "ma20": 152.8895,
+      "ma50": 153.449,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "down"},
+      "ma_spread": "tight",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0544, "ma20_pct": 0.0682, "ma50_pct": 0.0643},
+      "dist_from_ma_atr": {"ma10_atr": 2.06, "ma20_atr": 2.55, "ma50_atr": 2.413},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0544},
+      "atr": 4.087238,
+      "atr_pct": 0.025,
+      "adx": 21.36,
+      "range_position": 0.614,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0103,
+        "upper_wick_pct": 0.038,
+        "lower_wick_pct": 0.605,
+        "vol_rank_30d": 0.3,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.049, "price_range_5bar_pct": 0.0761, "accumulation_score": 0.3},
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.0232,
+        "vol_rank": 0.7,
+        "close": 161.63,
+        "max_retrace_pct": 0.0176,
+        "current_retrace_pct": -0.0104,
+        "holding": true
+      },
+      "ret_30d": 0.1031,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0757,
+      "vol_avg_recent_vs_prior": 0.315
+    },
+
+    "observations": {
+      "key_levels": {"support": 150.0, "resistance": 176.0},
+      "pattern": "recovery_bounce",
+      "recent_action": "저점(145 부근)에서 반등해 MA10/20/50(~153) 전부 돌파. 최근 1봉 전 강양봉 후 신고가 갱신 중이며 holding=true. 다만 vol_avg_recent_vs_prior=0.315로 거래량이 극히 낮아 확신도 제한."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "1D에서 MA 돌파 후 B4 회복 시도 중이나 1W는 봉 수 11개로 역사 극히 부족(low_history). 거래량이 전반적으로 매우 낮아 추세 신뢰 제한. 신고가 근접(-7.5%) 중이나 확인 필요.",
+
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1w": "charts/XOMUSDT/20260521/XOMUSDT_1w.png",
+    "1d": "charts/XOMUSDT/20260521/XOMUSDT_1d.png"
+  }
+}

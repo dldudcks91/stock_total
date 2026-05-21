@@ -1,0 +1,187 @@
+{
+  "symbol": "NVDAUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:37:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "A1",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 221.83,
+      "bars": 10,
+      "date_range": "2025-08-31 ~ 2026-05-31",
+      "ma10": 189.283,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.1719, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.1719},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.754,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.0967,
+        "upper_wick_pct": 0.415,
+        "lower_wick_pct": 0.119,
+        "vol_rank_30d": 0.9,
+        "vol_anomaly": "breakout",
+        "accumulation_candle_score": 0.3,
+        "distribution_candle_score": 0.3
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0793,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 170.0, "resistance": 245.0},
+      "pattern": "early_up",
+      "recent_action": "10봉 low_history. 1m 차트에서 $170 바닥 다지기 후 최근 2개월 강한 상승. breakout 신호 발생."
+    }
+  },
+
+  "tf_1w": {
+    "state": "A1",
+    "micro_action": "bounce_ma10",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 221.83,
+      "bars": 40,
+      "date_range": "2025-08-25 ~ 2026-05-25",
+      "ma10": 198.868,
+      "ma20": 192.184,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.1155, "ma20_pct": 0.1543, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 1.374, "ma20_atr": 1.773, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.1155},
+      "atr": 16.71746,
+      "atr_pct": 0.0754,
+      "adx": 20.77,
+      "range_position": 0.754,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0051,
+        "upper_wick_pct": 0.262,
+        "lower_wick_pct": 0.569,
+        "vol_rank_30d": 0.4,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 3.133, "price_range_5bar_pct": 0.2075, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 2,
+        "body_pct": 0.1002,
+        "vol_rank": 0.967,
+        "close": 219.89,
+        "max_retrace_pct": 0.0224,
+        "current_retrace_pct": -0.0088,
+        "holding": true
+      },
+      "ret_30d": 0.1586,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0793,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 180.0, "resistance": 245.0},
+      "pattern": "base_breakout",
+      "recent_action": "1w 차트에서 B3 바닥 $170 이후 MA10/MA20 돌파 성공. 최근 5주 거래량 3.1배 증가로 매집 의심. 신고가(-8%) 임박."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 221.83,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 223.747,
+      "ma20": 214.0085,
+      "ma50": 201.5208,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0086, "ma20_pct": 0.0365, "ma50_pct": 0.1008},
+      "dist_from_ma_atr": {"ma10_atr": -0.267, "ma20_atr": 1.091, "ma50_atr": 2.833},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0086},
+      "atr": 7.168155,
+      "atr_pct": 0.0323,
+      "adx": 47.5,
+      "range_position": 0.754,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0051,
+        "upper_wick_pct": 0.262,
+        "lower_wick_pct": 0.569,
+        "vol_rank_30d": 0.8,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.537, "price_range_5bar_pct": 0.1034, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 5,
+        "body_pct": 0.0432,
+        "vol_rank": 0.967,
+        "close": 237.95,
+        "max_retrace_pct": 0.0838,
+        "current_retrace_pct": 0.0677,
+        "holding": false
+      },
+      "ret_30d": 0.1164,
+      "ret_90d": 0.1793,
+      "from_period_high_pct": -0.0793,
+      "vol_avg_recent_vs_prior": 2.014
+    },
+
+    "observations": {
+      "key_levels": {"support": 200.0, "resistance": 245.0},
+      "pattern": "stair_step_up",
+      "recent_action": "1d 정배열 완성. ADX 47.5 강한 추세 확인. 거래량 2배 증가. MA10 아래 -0.9% 근접 — bounce_ma10 진입 조건 임박. 신고가 근처에서 풀백."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "pass",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF A1/A2 정합. 1d 정배열 ADX 47.5 강한 추세. 거래량 2배 이상 매집 의심. MA10 근접 풀백 중 — trend_pullback 조건 충족. 신고가(-8%) 도전 중.",
+
+  "risk_flags": ["low_history", "accumulation_suspect"],
+
+  "charts": {
+    "1m": "charts/NVDAUSDT/20260521/NVDAUSDT_1m.png",
+    "1w": "charts/NVDAUSDT/20260521/NVDAUSDT_1w.png",
+    "1d": "charts/NVDAUSDT/20260521/NVDAUSDT_1d.png"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "symbol": "TQQQUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "A3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 73.17,
+      "bars": 50,
+      "date_range": "2026-03-31 ~ 2026-05-19",
+      "ma10": 75.725,
+      "ma20": 72.3945,
+      "ma50": 60.8402,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0337, "ma20_pct": 0.0107, "ma50_pct": 0.2027},
+      "dist_from_ma_atr": {"ma10_atr": -0.909, "ma20_atr": 0.276, "ma50_atr": 4.385},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.0107},
+      "atr": 2.811887,
+      "atr_pct": 0.0384,
+      "adx": 40.2,
+      "range_position": 0.842,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0176,
+        "upper_wick_pct": 0.115,
+        "lower_wick_pct": 0.546,
+        "vol_rank_30d": 0.933,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.3,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.598, "price_range_5bar_pct": 0.1122, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.2752,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0826,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 70.0, "resistance": 79.0},
+      "pattern": "stair_step_pullback",
+      "recent_action": "3월 말 40달러 수준에서 5월 중순 79달러까지 급상승(+27.5% 30일). 현재 MA10 위 MA20 위에서 단기 풀백 진행 중. 저점 꼬리 도지봉."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1D 만 채점 가능(low_history). 강한 상승 후 MA10 위 pullback 중. NASDAQ 3배 추적 상품으로 추세 연동. 고점권 진입 여부 확인 필요.",
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1d": "charts/TQQQUSDT/20260521/TQQQUSDT_1d.png"
+  }
+}

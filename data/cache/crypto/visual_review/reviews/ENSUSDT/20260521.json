@@ -1,0 +1,171 @@
+{
+  "symbol": "ENSUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:40:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 6.143,
+      "bars": 49,
+      "date_range": "2022-05-31 ~ 2026-05-31",
+      "ma10": 10.8919,
+      "ma20": 17.76425,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.436, "ma20_pct": -0.6542, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.639, "ma20_atr": -1.564, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.436},
+      "atr": 7.431811,
+      "atr_pct": 1.2098,
+      "adx": 19.55,
+      "range_position": 0.049,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0247,
+        "upper_wick_pct": 0.921,
+        "lower_wick_pct": 0.009,
+        "vol_rank_30d": 0.033,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.521, "price_range_5bar_pct": 1.0982, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.2709,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8786,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 5.0, "resistance": 12.0},
+      "pattern": "declining_from_peak",
+      "recent_action": "2024년 고점 $50 대비 -88%. 월봉 위꼬리 크게(0.921) 분배 압력. MA 역배열 우하향 지속."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 6.143,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 6.1259,
+      "ma20": 6.69945,
+      "ma50": 13.77678,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0028, "ma20_pct": -0.0831, "ma50_pct": -0.5541},
+      "dist_from_ma_atr": {"ma10_atr": 0.011, "ma20_atr": -0.343, "ma50_atr": -4.702},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0028},
+      "atr": 1.623682,
+      "atr_pct": 0.2643,
+      "adx": 32.51,
+      "range_position": 0.119,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0241,
+        "upper_wick_pct": 0.272,
+        "lower_wick_pct": 0.098,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.462, "price_range_5bar_pct": 0.3738, "accumulation_score": 0.0},
+      "recent_strong_bull": {"bars_ago": 2, "body_pct": 0.1667, "vol_rank": 0.767, "close": 7.386, "max_retrace_pct": 0.1825, "current_retrace_pct": 0.1683, "holding": false},
+      "ret_30d": -0.6146,
+      "ret_90d": -0.6535,
+      "from_period_high_pct": -0.8786,
+      "vol_avg_recent_vs_prior": 0.403
+    },
+
+    "observations": {
+      "key_levels": {"support": 5.5, "resistance": 7.5},
+      "pattern": "dead_cat_bounce",
+      "recent_action": "2025년 9월 $25 반등 실패 후 재하락. 현재 MA10 근처 음봉. 강양봉 2주 전 이후 holding=false로 되돌림."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 6.143,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 6.7472,
+      "ma20": 6.55365,
+      "ma50": 6.15742,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0895, "ma20_pct": -0.0627, "ma50_pct": -0.0023},
+      "dist_from_ma_atr": {"ma10_atr": -1.417, "ma20_atr": -0.963, "ma50_atr": -0.034},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0023},
+      "atr": 0.426357,
+      "atr_pct": 0.0694,
+      "adx": 32.71,
+      "range_position": 0.277,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0241,
+        "upper_wick_pct": 0.272,
+        "lower_wick_pct": 0.098,
+        "vol_rank_30d": 0.2,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.895, "price_range_5bar_pct": 0.1786, "accumulation_score": 0.0},
+      "recent_strong_bull": {"bars_ago": 5, "body_pct": 0.0389, "vol_rank": 0.867, "close": 7.088, "max_retrace_pct": 0.1481, "current_retrace_pct": 0.1333, "holding": false},
+      "ret_30d": 0.0678,
+      "ret_90d": -0.0709,
+      "from_period_high_pct": -0.6077,
+      "vol_avg_recent_vs_prior": 1.756
+    },
+
+    "observations": {
+      "key_levels": {"support": 5.8, "resistance": 7.5},
+      "pattern": "support_test",
+      "recent_action": "1D MA10/20/50 모두 우상향인 상태에서 현재 가격이 전체 MA 아래로 이탈. 5월 초 강양봉 이후 holding=false. MA50 지지 테스트 중($6.15)."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1M/1W B2 하락, 1D B3 바닥 다지기. TF 충돌. 1D MA50 지지 테스트 중($6.15 vs $6.143)이 핵심 관전 포인트. 1H에서 spike+accumulation_score=1.0 긍정 신호. 관망 후 MA50 지지 확인 시 재평가.",
+
+  "risk_flags": ["drawdown_deep"],
+
+  "charts": {
+    "1m": "charts/ENSUSDT/20260521/ENSUSDT_1m.png",
+    "1w": "charts/ENSUSDT/20260521/ENSUSDT_1w.png",
+    "1d": "charts/ENSUSDT/20260521/ENSUSDT_1d.png"
+  }
+}

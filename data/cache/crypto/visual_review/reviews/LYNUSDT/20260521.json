@@ -1,0 +1,129 @@
+{
+  "symbol": "LYNUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:37:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.04237,
+      "bars": 33,
+      "date_range": "2025-10-13 ~ 2026-05-25",
+      "ma10": 0.054503,
+      "ma20": 0.116326,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2226, "ma20_pct": -0.6358, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.176, "ma20_atr": -1.075, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.2226},
+      "atr": 0.068821,
+      "atr_pct": 1.6243,
+      "adx": 29.49,
+      "range_position": 0.007,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0076,
+        "upper_wick_pct": 0.671,
+        "lower_wick_pct": 0.255,
+        "vol_rank_30d": 0.233,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.6914,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8887,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.04, "resistance": 0.10},
+      "pattern": "pump_dump",
+      "recent_action": "1W 차트 보면 2026년 3월 초 폭등(0.35 이상)했다가 즉시 급락. 현재 0.04달러로 range_position 0.007 극저점. 고점 대비 -89%."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.04237,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.050004,
+      "ma20": 0.056957,
+      "ma50": 0.057253,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1527, "ma20_pct": -0.2561, "ma50_pct": -0.2599},
+      "dist_from_ma_atr": {"ma10_atr": -0.804, "ma20_atr": -1.537, "ma50_atr": -1.568},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1527},
+      "atr": 0.009493,
+      "atr_pct": 0.224,
+      "adx": 18.37,
+      "range_position": 0.04,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0076,
+        "upper_wick_pct": 0.671,
+        "lower_wick_pct": 0.255,
+        "vol_rank_30d": 0.767,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.496, "price_range_5bar_pct": 0.4824, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 3,
+        "body_pct": 0.1056,
+        "vol_rank": 0.8,
+        "close": 0.05615,
+        "max_retrace_pct": 0.2876,
+        "current_retrace_pct": 0.2454,
+        "holding": false
+      },
+      "ret_30d": -0.158,
+      "ret_90d": -0.8403,
+      "from_period_high_pct": -0.8887,
+      "vol_avg_recent_vs_prior": 0.459
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.035, "resistance": 0.065},
+      "pattern": "post_pump_decline",
+      "recent_action": "1D 차트에서 2026년 3월 폭등 후 즉시 급락. MA10/20/50 역배열 하향. 3일 전 강양봉(0.056)도 무너짐. ret_90d -84%로 펌프 이후 구조적 붕괴 진행 중."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "1W/1D 모두 pump_dump_trace 확인. 2026년 3월 단기 폭등 후 즉시 급락하는 전형적 펌프덤프 패턴. low_history + drawdown_deep. 영구 제외.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace"],
+
+  "charts": {
+    "1w": "charts/LYNUSDT/20260521/LYNUSDT_1w.png",
+    "1d": "charts/LYNUSDT/20260521/LYNUSDT_1d.png"
+  }
+}

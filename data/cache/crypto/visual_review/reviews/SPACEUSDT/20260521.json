@@ -1,0 +1,128 @@
+{
+  "symbol": "SPACEUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:34:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.008725,
+      "bars": 18,
+      "date_range": "2026-01-26 ~ 2026-05-25",
+      "ma10": 0.006875,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.2691, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.2691},
+      "atr": 0.004803,
+      "atr_pct": 0.5505,
+      "adx": null,
+      "range_position": 0.245,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0182,
+        "upper_wick_pct": 0.678,
+        "lower_wick_pct": 0.221,
+        "vol_rank_30d": 0.278,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.6215,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.006, "resistance": 0.012},
+      "pattern": "recovery_from_bottom",
+      "recent_action": "1W에서 초기 고점 0.023 대비 -62%, 저점 이후 반등 중. MA10 +27% 위이나 봉수 부족(18봉)으로 신뢰도 낮음."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A1",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "distribution_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.008725,
+      "bars": 117,
+      "date_range": "2026-01-23 ~ 2026-05-19",
+      "ma10": 0.008009,
+      "ma20": 0.007889,
+      "ma50": 0.006743,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0894, "ma20_pct": 0.106, "ma50_pct": 0.294},
+      "dist_from_ma_atr": {"ma10_atr": 0.642, "ma20_atr": 0.75, "ma50_atr": 1.777},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0894},
+      "atr": 0.001116,
+      "atr_pct": 0.1279,
+      "adx": 46.88,
+      "range_position": 0.619,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0182,
+        "upper_wick_pct": 0.678,
+        "lower_wick_pct": 0.221,
+        "vol_rank_30d": 0.967,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.6
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 2.697, "price_range_5bar_pct": 0.3664, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.1051,
+        "vol_rank": 0.9,
+        "close": 0.008884,
+        "max_retrace_pct": 0.0573,
+        "current_retrace_pct": 0.0179,
+        "holding": true
+      },
+      "ret_30d": 0.5407,
+      "ret_90d": -0.2838,
+      "from_period_high_pct": -0.6215,
+      "vol_avg_recent_vs_prior": 1.963
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.0075, "resistance": 0.012},
+      "pattern": "breakout_suspect",
+      "recent_action": "1D에서 4월 저점 이후 MA 정배열 복구, 최근 강양봉(+10.5%) 출현. 그러나 ret_30d +54% 페러볼릭, distribution_candle_score=0.6 — 분배 의심."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1D 정배열+강양봉이나 ret_30d +54% 페러볼릭 + distribution_candle_score 0.6 경고. 1W 봉수 부족(18봉) low_history. 상승 지속 여부 미확정.",
+
+  "risk_flags": ["parabolic", "drawdown_deep", "low_history", "distribution_suspect"],
+
+  "charts": {
+    "1w": "charts/SPACEUSDT/20260521/SPACEUSDT_1w.png",
+    "1d": "charts/SPACEUSDT/20260521/SPACEUSDT_1d.png"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "symbol": "EDGEUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:15:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "A3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 1.286,
+      "bars": 50,
+      "date_range": "2026-03-31 ~ 2026-05-19",
+      "ma10": 1.29038,
+      "ma20": 1.275065,
+      "ma50": 1.172784,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0034, "ma20_pct": 0.0086, "ma50_pct": 0.0965},
+      "dist_from_ma_atr": {"ma10_atr": -0.039, "ma20_atr": 0.097, "ma50_atr": 1.008},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0034},
+      "atr": 0.112316,
+      "atr_pct": 0.0873,
+      "adx": 22.35,
+      "range_position": 0.756,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0079,
+        "upper_wick_pct": 0.402,
+        "lower_wick_pct": 0.435,
+        "vol_rank_30d": 0.033,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.475, "price_range_5bar_pct": 0.1823, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.046,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1491,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 1.20, "resistance": 1.45},
+      "pattern": "topping_box",
+      "recent_action": "4월 중순 1.45 고점 이후 1.20~1.40 박스권 횡보 중. MA10 평탄, 거래량 급감. 신규 코인으로 50일 데이터만 존재해 판단 제한적."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "신규 코인(50일 데이터). 1D만 채점 가능. MA 정배열이나 기울기 flat, 거래량 급감(vol_rank 0.033), 신고가 갱신 없이 박스. low_history로 판단 유보.",
+
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1d": "charts/EDGEUSDT/20260521/EDGEUSDT_1d.png"
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "symbol": "TSLAUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:34:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 405.19,
+      "bars": 10,
+      "date_range": "2025-08-31 ~ 2026-05-31",
+      "ma10": 411.024,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0142, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0142},
+      "atr": null,
+      "atr_pct": null,
+      "adx": null,
+      "range_position": 0.49,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0577,
+        "upper_wick_pct": 0.659,
+        "lower_wick_pct": 0.023,
+        "vol_rank_30d": 0.3,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1885,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 340, "resistance": 500},
+      "pattern": "volatile_basing",
+      "recent_action": "1M 10봉으로 데이터 매우 짧음. 2025년 상장 이후 340~500 박스권에서 큰 변동. 최근 봉은 고점권(450) 대비 눌려 있으나 방향성 판정 불가."
+    }
+  },
+
+  "tf_1w": {
+    "state": "A4",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 405.19,
+      "bars": 40,
+      "date_range": "2025-08-25 ~ 2026-05-25",
+      "ma10": 386.129,
+      "ma20": 402.014,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0494, "ma20_pct": 0.0079, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.505, "ma20_atr": 0.084, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.0079},
+      "atr": 37.72336,
+      "atr_pct": 0.0931,
+      "adx": 17.98,
+      "range_position": 0.418,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0115,
+        "upper_wick_pct": 0.073,
+        "lower_wick_pct": 0.651,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.376,
+        "price_range_5bar_pct": 0.2201,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.1097,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1885,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 350, "resistance": 490},
+      "pattern": "topping_pullback",
+      "recent_action": "1W에서 2025년 12월 고점(495) 이후 하락. MA10/20 모두 하향 전환. 현재 MA20(402) 바로 위에서 지지 탐색 중이며 하방 압력 지속."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 405.19,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 426.711,
+      "ma20": 413.455,
+      "ma50": 388.2486,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0504, "ma20_pct": -0.02, "ma50_pct": 0.0436},
+      "dist_from_ma_atr": {"ma10_atr": -1.52, "ma20_atr": -0.584, "ma50_atr": 1.197},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.02},
+      "atr": 14.158705,
+      "atr_pct": 0.0349,
+      "adx": 31.13,
+      "range_position": 0.583,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0115,
+        "upper_wick_pct": 0.073,
+        "lower_wick_pct": 0.651,
+        "vol_rank_30d": 0.267,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.504,
+        "price_range_5bar_pct": 0.1215,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0233,
+      "ret_90d": -0.0137,
+      "from_period_high_pct": -0.1885,
+      "vol_avg_recent_vs_prior": 0.437
+    },
+
+    "observations": {
+      "key_levels": {"support": 380, "resistance": 450},
+      "pattern": "pullback_to_ma",
+      "recent_action": "1D에서 3월 바닥(340) 이후 5월 450 근접 반등. MA 정배열 구조 복구 중이나 최근 고점(450)에서 눌려 MA20(413) 밑으로 재하락. 상승 시도(B4) 확정 여부 대기."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1D는 B4 상승 시도 중이나 1W는 A4 하락 첫 시도. TF 충돌 상태. 1D MA 정배열 유지가 관건이며 MA20(413) 지지 확인 시 B5 전환 검토 가능. 4H 매집 score 1.0 참고.",
+
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1m": "charts/TSLAUSDT/20260521/TSLAUSDT_1m.png",
+    "1w": "charts/TSLAUSDT/20260521/TSLAUSDT_1w.png",
+    "1d": "charts/TSLAUSDT/20260521/TSLAUSDT_1d.png"
+  }
+}

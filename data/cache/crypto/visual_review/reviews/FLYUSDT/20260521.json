@@ -1,0 +1,83 @@
+{
+  "symbol": "FLYUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "A1",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 42.32,
+      "bars": 35,
+      "date_range": "2026-04-15 ~ 2026-05-19",
+      "ma10": 40.624,
+      "ma20": 37.7875,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0417, "ma20_pct": 0.1199, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.485, "ma20_atr": 1.296, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0417},
+      "atr": 3.497919,
+      "atr_pct": 0.0827,
+      "adx": 26.96,
+      "range_position": 0.686,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0447,
+        "upper_wick_pct": 0.016,
+        "lower_wick_pct": 0.609,
+        "vol_rank_30d": 0.867,
+        "vol_anomaly": "breakout",
+        "accumulation_candle_score": 0.6,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 2.406,
+        "price_range_5bar_pct": 0.233,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.0939,
+        "vol_rank": 1.0,
+        "close": 44.21,
+        "max_retrace_pct": 0.1122,
+        "current_retrace_pct": 0.0428,
+        "holding": false
+      },
+      "ret_30d": -0.0282,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1104,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 37.0, "resistance": 47.5},
+      "pattern": "v_shape_recovery",
+      "recent_action": "4월 저점(~34) 이후 5월 초 강반등, 전일 대형 양봉(body 9.3%, vol max) 후 현재 소폭 조정. MA10 위에서 다지기 중."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "신규 상장 35봉, 1M/1W PNG 미존재로 큰 그림 TF 부재. 1D만으로 A1 초기 상승 판정하나 history 부족으로 신뢰도 낮음. 전일 강양봉 후 단기 풀백 중, 돌파 여부 확인 필요.",
+
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1d": "charts/FLYUSDT/20260521/FLYUSDT_1d.png"
+  }
+}

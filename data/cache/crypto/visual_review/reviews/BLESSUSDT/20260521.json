@@ -1,0 +1,121 @@
+{
+  "symbol": "BLESSUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:03:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.005292,
+      "bars": 35,
+      "date_range": "2025-09-29 ~ 2026-05-25",
+      "ma10": 0.00822,
+      "ma20": 0.007371,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3562, "ma20_pct": -0.282, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.2, "ma20_atr": -0.142, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.282},
+      "atr": 0.014617,
+      "atr_pct": 2.7621,
+      "adx": 71.01,
+      "range_position": 0.015,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.003,
+        "upper_wick_pct": 0.569,
+        "lower_wick_pct": 0.369,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.316, "price_range_5bar_pct": 0.5416, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.8793,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.977,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.004, "resistance": 0.008},
+      "pattern": "pump_dump_collapse",
+      "recent_action": "ADX 71 강한 하락 추세. 1W chart에서 2026-04 일시 폭등 후 즉시 붕괴 패턴 확인. 고점 대비 -97.7%."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.005292,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.006004,
+      "ma20": 0.006256,
+      "ma50": 0.00714,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1185, "ma20_pct": -0.1541, "ma50_pct": -0.2589},
+      "dist_from_ma_atr": {"ma10_atr": -0.62, "ma20_atr": -0.84, "ma50_atr": -1.61},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1185},
+      "atr": 0.001148,
+      "atr_pct": 0.2169,
+      "adx": 28.23,
+      "range_position": 0.017,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.003,
+        "upper_wick_pct": 0.569,
+        "lower_wick_pct": 0.369,
+        "vol_rank_30d": 0.2,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.233, "price_range_5bar_pct": 0.2574, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.0079,
+      "ret_90d": 0.03,
+      "from_period_high_pct": -0.9396,
+      "vol_avg_recent_vs_prior": 0.255
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.004, "resistance": 0.007},
+      "pattern": "zombie_flat",
+      "recent_action": "vol_avg 0.255 zombie 확정. 1D 역배열. 거래량 일관되게 평균 이하. 2026-04 임시 폭등 후 즉시 소멸, 펌프&덤프 흔적."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "1W ADX 71 강한 하락 추세 + 1D vol_avg 0.255 zombie 확정. 2026-04 펌프&덤프 흔적. from_high -97.7%. 영구 제외 대상.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "zombie", "pump_dump_trace"],
+
+  "charts": {
+    "1w": "charts/BLESSUSDT/20260521/BLESSUSDT_1w.png",
+    "1d": "charts/BLESSUSDT/20260521/BLESSUSDT_1d.png"
+  }
+}

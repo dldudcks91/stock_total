@@ -1,0 +1,137 @@
+{
+  "symbol": "LABUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:42:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "C1",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 4.25375,
+      "bars": 32,
+      "date_range": "2025-10-20 ~ 2026-05-25",
+      "ma10": 1.814893,
+      "ma20": 0.981405,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 1.3438, "ma20_pct": 3.3343, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 2.211, "ma20_atr": 2.966, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 1.3438},
+      "atr": 1.103123,
+      "atr_pct": 0.2593,
+      "adx": 82.02,
+      "range_position": 0.507,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.1213,
+        "upper_wick_pct": 0.05,
+        "lower_wick_pct": 0.605,
+        "vol_rank_30d": 0.067,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 2,
+        "body_pct": 0.668,
+        "vol_rank": 0.862,
+        "close": 4.89664,
+        "max_retrace_pct": 0.4057,
+        "current_retrace_pct": 0.1313,
+        "holding": false
+      },
+      "ret_30d": 22.7839,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.489,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 2.0, "resistance": 6.0},
+      "pattern": "parabolic_spike",
+      "recent_action": "2주 전 극단적 급등(ADX 82, 1M +2,278%) 이후 고점($8.3) 대비 -49% 하락. 주봉 거래량은 급등 시점 이후 급격히 소멸 중(0.067배). 펌프&덤프 패턴의 전형적 흔적."
+    }
+  },
+
+  "tf_1d": {
+    "state": "C1",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 4.25375,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 4.897835,
+      "ma20": 3.850742,
+      "ma50": 1.836963,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.1315, "ma20_pct": 0.1047, "ma50_pct": 1.3156},
+      "dist_from_ma_atr": {"ma10_atr": -0.493, "ma20_atr": 0.308, "ma50_atr": 1.849},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.1047},
+      "atr": 1.306886,
+      "atr_pct": 0.3072,
+      "adx": 69.56,
+      "range_position": 0.5,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.1213,
+        "upper_wick_pct": 0.05,
+        "lower_wick_pct": 0.605,
+        "vol_rank_30d": 0.533,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.374,
+        "price_range_5bar_pct": 0.7301,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 6.9082,
+      "ret_90d": 25.3602,
+      "from_period_high_pct": -0.489,
+      "vol_avg_recent_vs_prior": 3.537
+    },
+
+    "observations": {
+      "key_levels": {"support": 3.0, "resistance": 6.5},
+      "pattern": "parabolic_spike_reversal",
+      "recent_action": "일봉 1D ret_90d +2,536%. 4월 말 폭등 이후 고점 대비 -49% 급락. ADX 69.56으로 여전히 강한 추세(하락) 진행 중. 일봉 거래량 폭증 후 빠른 소멸 패턴 확인. 전형적 펌프&덤프 구조."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF pump_dump_trace 정합. 1D ret_90d +2,536%, ADX 82(주봉)/70(일봉) — 페러볼릭 상승 후 거래량 소멸과 급락 패턴. parabolic+drawdown_deep+low_history 동시. 영구 제외 대상.",
+
+  "risk_flags": ["parabolic", "drawdown_deep", "low_history", "pump_dump_trace"],
+
+  "charts": {
+    "1w": "charts/LABUSDT/20260521/LABUSDT_1w.png",
+    "1d": "charts/LABUSDT/20260521/LABUSDT_1d.png"
+  }
+}

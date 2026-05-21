@@ -1,0 +1,150 @@
+{
+  "symbol": "ERAUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "dry",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.1241,
+      "bars": 11,
+      "date_range": "2025-07-31 ~ 2026-05-31",
+      "ma10": 0.26564,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.5328, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.5328},
+      "atr": null, "atr_pct": null, "adx": null,
+      "range_position": 0.003,
+      "last_candle": {
+        "type": "doji", "body_pct": 0.0983,
+        "upper_wick_pct": 0.676, "lower_wick_pct": 0.06,
+        "vol_rank_30d": 0.091, "vol_anomaly": null,
+        "accumulation_candle_score": 0.0, "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0, "ret_90d": 0.0,
+      "from_period_high_pct": -0.9363,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.10, "resistance": 0.27},
+      "pattern": "persistent_decline",
+      "recent_action": "출시 이래 일방적 하락, 현재 역대 최저점 근방. 거래량 거의 소멸 상태."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.1241,
+      "bars": 45,
+      "date_range": "2025-07-21 ~ 2026-05-25",
+      "ma10": 0.13258,
+      "ma20": 0.15032,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.064, "ma20_pct": -0.1744, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.086, "ma20_atr": -0.265, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.064},
+      "atr": 0.099123, "atr_pct": 0.7987, "adx": 62.27,
+      "range_position": 0.022,
+      "last_candle": {
+        "type": "bear", "body_pct": 0.0161,
+        "upper_wick_pct": 0.357, "lower_wick_pct": 0.167,
+        "vol_rank_30d": 0.0, "vol_anomaly": null,
+        "accumulation_candle_score": 0.0, "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.256, "price_range_5bar_pct": 0.3731, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.6236, "ret_90d": 0.0,
+      "from_period_high_pct": -0.9363,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.10, "resistance": 0.15},
+      "pattern": "waterfall_decline",
+      "recent_action": "1주 ADX 62로 강한 하락 추세. 거래량은 초반 폭증 이후 완전히 소멸되며 좀비화."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.1241,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.1362,
+      "ma20": 0.137165,
+      "ma50": 0.13451,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0888, "ma20_pct": -0.0953, "ma50_pct": -0.0774},
+      "dist_from_ma_atr": {"ma10_atr": -1.565, "ma20_atr": -1.69, "ma50_atr": -1.347},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0774},
+      "atr": 0.00773, "atr_pct": 0.0623, "adx": 26.03,
+      "range_position": 0.099,
+      "last_candle": {
+        "type": "bear", "body_pct": 0.0161,
+        "upper_wick_pct": 0.357, "lower_wick_pct": 0.167,
+        "vol_rank_30d": 0.267, "vol_anomaly": null,
+        "accumulation_candle_score": 0.0, "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.583, "price_range_5bar_pct": 0.1515, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.049, "ret_90d": -0.1973,
+      "from_period_high_pct": -0.635,
+      "vol_avg_recent_vs_prior": 1.429
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.12, "resistance": 0.145},
+      "pattern": "dead_cat_flat",
+      "recent_action": "전 TF MA 아래, 가격 박스 하단권에서 거래량 급감. 단기 MA 수렴 중이나 반등 에너지 부재."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF B2 일관, ADX 62 강한 하락 추세, 고점 대비 -94% 붕괴, 거래량 소멸. 좀비+건조 패턴 완성.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "zombie"],
+
+  "charts": {
+    "1m": "charts/ERAUSDT/20260521/ERAUSDT_1m.png",
+    "1w": "charts/ERAUSDT/20260521/ERAUSDT_1w.png",
+    "1d": "charts/ERAUSDT/20260521/ERAUSDT_1d.png"
+  }
+}

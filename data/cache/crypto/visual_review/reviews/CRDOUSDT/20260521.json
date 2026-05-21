@@ -1,0 +1,75 @@
+{
+  "symbol": "CRDOUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:00:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 170.27,
+      "bars": 22,
+      "date_range": "2026-04-28 ~ 2026-05-19",
+      "ma10": 181.604,
+      "ma20": 184.174,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0624, "ma20_pct": -0.0755, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.83, "ma20_atr": -1.018, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0624},
+      "atr": 13.662396,
+      "atr_pct": 0.0802,
+      "adx": null,
+      "range_position": 0.332,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.0732,
+        "upper_wick_pct": 0.063,
+        "lower_wick_pct": 0.356,
+        "vol_rank_30d": 0.909,
+        "vol_anomaly": "breakout",
+        "accumulation_candle_score": 1.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.1923,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 155.0, "resistance": 185.0},
+      "pattern": "early_downtrend",
+      "recent_action": "MA10/20 모두 하향이고 가격은 전 MA 아래. 마지막 봉은 대형 양봉+고거래량이나 단 22봉으로 신호 신뢰 낮음."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "skip",
+  "verdict_confidence": "low",
+  "verdict_reason": "신규 상장 22봉 — 1D 만 가용. MA 역배열+하향, 가격 MA 아래. 마지막 봉 breakout candle 이나 history 부족으로 사이클 판단 불가.",
+
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1d": "charts/CRDOUSDT/20260521/CRDOUSDT_1d.png"
+  }
+}

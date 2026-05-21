@@ -1,0 +1,129 @@
+{
+  "symbol": "COAIUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.2979,
+      "bars": 35,
+      "date_range": "2025-09-29 ~ 2026-05-25",
+      "ma10": 0.31337,
+      "ma20": 0.324255,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0494, "ma20_pct": -0.0813, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.032, "ma20_atr": -0.055, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0494},
+      "atr": 0.478617,
+      "atr_pct": 1.6066,
+      "adx": 54.34,
+      "range_position": 0.01,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0289,
+        "upper_wick_pct": 0.448,
+        "lower_wick_pct": 0.057,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.285,
+        "price_range_5bar_pct": 0.3572,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.9359,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9851,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.25, "resistance": 0.35},
+      "pattern": "pump_dump_collapse",
+      "recent_action": "상장 초기 20달러 급등 후 0.3달러 수준까지 붕괴, 현재 장기 바닥권 횡보 중 거래량 완전 소멸."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.2979,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.32774,
+      "ma20": 0.34293,
+      "ma50": 0.326182,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.091, "ma20_pct": -0.1313, "ma50_pct": -0.0867},
+      "dist_from_ma_atr": {"ma10_atr": -0.994, "ma20_atr": -1.5, "ma50_atr": -0.942},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0867},
+      "atr": 0.030028,
+      "atr_pct": 0.1008,
+      "adx": 27.83,
+      "range_position": 0.12,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0289,
+        "upper_wick_pct": 0.448,
+        "lower_wick_pct": 0.057,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.46,
+        "price_range_5bar_pct": 0.1984,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.0053,
+      "ret_90d": -0.0751,
+      "from_period_high_pct": -0.8673,
+      "vol_avg_recent_vs_prior": 0.411
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.22, "resistance": 0.35},
+      "pattern": "death_decline_flat",
+      "recent_action": "모든 MA 아래에서 장기 하락 후 0.29-0.30 박스 형성 중, 거래량 극히 저조하며 반등 기미 없음."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF B2 일치, 상장 직후 펌프&덤프 패턴 후 -98.5% 낙폭, 거래량 소멸, 매매 부적합.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace", "zombie"],
+
+  "charts": {
+    "1w": "charts/COAIUSDT/20260521/COAIUSDT_1w.png",
+    "1d": "charts/COAIUSDT/20260521/COAIUSDT_1d.png"
+  }
+}

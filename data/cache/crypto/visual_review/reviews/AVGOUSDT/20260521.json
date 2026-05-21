@@ -1,0 +1,136 @@
+{
+  "symbol": "AVGOUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:02:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 412.02,
+      "bars": 15,
+      "date_range": "2026-02-16 ~ 2026-05-25",
+      "ma10": 380.943,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0816, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0816},
+      "atr": 29.580607,
+      "atr_pct": 0.0718,
+      "adx": null,
+      "range_position": 0.797,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0197,
+        "upper_wick_pct": 0.049,
+        "lower_wick_pct": 0.403,
+        "vol_rank_30d": 0.067,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0697,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 340.0, "resistance": 445.0},
+      "pattern": "uptrend_early",
+      "recent_action": "15봉 밖에 없어 신뢰도 낮음. 가격은 MA10 위에서 박스권 상단."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 412.02,
+      "bars": 98,
+      "date_range": "2026-02-11 ~ 2026-05-19",
+      "ma10": 423.604,
+      "ma20": 422.9675,
+      "ma50": 394.607,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0273, "ma20_pct": -0.0259, "ma50_pct": 0.0441},
+      "dist_from_ma_atr": {"ma10_atr": -0.853, "ma20_atr": -0.806, "ma50_atr": 1.282},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0259},
+      "atr": 13.587871,
+      "atr_pct": 0.033,
+      "adx": 16.68,
+      "range_position": 0.797,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0197,
+        "upper_wick_pct": 0.049,
+        "lower_wick_pct": 0.403,
+        "vol_rank_30d": 0.833,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.163,
+        "price_range_5bar_pct": 0.0894,
+        "accumulation_score": 0.3
+      },
+      "recent_strong_bull": {
+        "bars_ago": 5,
+        "body_pct": 0.0512,
+        "vol_rank": 0.967,
+        "close": 440.37,
+        "max_retrace_pct": 0.0779,
+        "current_retrace_pct": 0.0644,
+        "holding": false
+      },
+      "ret_30d": 0.026,
+      "ret_90d": 0.234,
+      "from_period_high_pct": -0.0697,
+      "vol_avg_recent_vs_prior": 1.288
+    },
+
+    "observations": {
+      "key_levels": {"support": 390.0, "resistance": 445.0},
+      "pattern": "topping_box",
+      "recent_action": "4월 중순 급등 후 440 부근 고점에서 토핑. MA10/20 평탄화, 가격은 MA 아래로 내려옴. ADX 16으로 추세 약화."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1D 정배열 유지이나 A3 토핑 구간 진입. 고점 대비 -7%로 아직 낙폭 크지 않음. 1W 봉수 부족(15봉)으로 큰 그림 불확실. MA20 지지 확인 후 재진입 관망.",
+
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1w": "charts/AVGOUSDT/20260521/AVGOUSDT_1w.png",
+    "1d": "charts/AVGOUSDT/20260521/AVGOUSDT_1d.png"
+  }
+}

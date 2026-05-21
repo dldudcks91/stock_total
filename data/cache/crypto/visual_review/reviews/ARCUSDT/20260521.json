@@ -1,0 +1,179 @@
+{
+  "symbol": "ARCUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:03:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "C1",
+    "micro_action": "riding",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "low",
+
+    "context": {
+      "last_close": 0.06467,
+      "bars": 17,
+      "date_range": "2025-01-31 ~ 2026-05-31",
+      "ma10": 0.040608,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.5925, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.149, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.5925},
+      "atr": 0.161033,
+      "atr_pct": 2.4901,
+      "adx": null,
+      "range_position": 0.468,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.1614,
+        "upper_wick_pct": 0.147,
+        "lower_wick_pct": 0.474,
+        "vol_rank_30d": 0.059,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8993,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.04, "resistance": 0.10},
+      "pattern": "pump_dump_base",
+      "recent_action": "1M 17봉으로 history 극히 짧음. 초기 $0.6 고점 펌프 후 -90% 붕괴. ADX null로 추세 계산 불가."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.06467,
+      "bars": 71,
+      "date_range": "2025-01-20 ~ 2026-05-25",
+      "ma10": 0.063617,
+      "ma20": 0.060833,
+      "ma50": 0.040243,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0166, "ma20_pct": 0.0631, "ma50_pct": 0.607},
+      "dist_from_ma_atr": {"ma10_atr": 0.045, "ma20_atr": 0.162, "ma50_atr": 1.033},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0166},
+      "atr": 0.023655,
+      "atr_pct": 0.3658,
+      "adx": 29.85,
+      "range_position": 0.437,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.021,
+        "upper_wick_pct": 0.268,
+        "lower_wick_pct": 0.403,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.111, "price_range_5bar_pct": 0.551, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 3.4386,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8993,
+      "vol_avg_recent_vs_prior": 0.597
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.05, "resistance": 0.10},
+      "pattern": "recovery_base",
+      "recent_action": "1W MA 정배열로 전환되며 가격 위. 그러나 30d 수익률 +344%는 최근 급등 후 현재 박스 진입 상태. 거래량 감소(vol_rank 0.0)."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.06467,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.065386,
+      "ma20": 0.067937,
+      "ma50": 0.06664,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.011, "ma20_pct": -0.0481, "ma50_pct": -0.0296},
+      "dist_from_ma_atr": {"ma10_atr": -0.088, "ma20_atr": -0.403, "ma50_atr": -0.243},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.011},
+      "atr": 0.008112,
+      "atr_pct": 0.1254,
+      "adx": 20.38,
+      "range_position": 0.518,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.021,
+        "upper_wick_pct": 0.268,
+        "lower_wick_pct": 0.403,
+        "vol_rank_30d": 0.633,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 6.481, "price_range_5bar_pct": 0.4252, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 2,
+        "body_pct": 0.0883,
+        "vol_rank": 0.967,
+        "close": 0.06772,
+        "max_retrace_pct": 0.0697,
+        "current_retrace_pct": 0.045,
+        "holding": true
+      },
+      "ret_30d": -0.0161,
+      "ret_90d": -0.1705,
+      "from_period_high_pct": -0.5116,
+      "vol_avg_recent_vs_prior": 0.767
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.055, "resistance": 0.085},
+      "pattern": "range_consolidation",
+      "recent_action": "1D $0.06~$0.08 구간 박스. 2봉 전 강양봉(+8.8%, vol_rank 0.97) 후 눌림 중. MA 수렴 구간."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "low",
+  "verdict_reason": "1W MA 정배열 전환(B4 시도) vs 1D B3 박스. 1M history 17봉으로 신뢰도 낮음. 펌프덤프 이력+drawdown_deep+low_history 복합 리스크. 1D MA 돌파 확인 후 재평가.",
+
+  "risk_flags": ["drawdown_deep", "low_history", "pump_dump_trace"],
+
+  "charts": {
+    "1m": "charts/ARCUSDT/20260521/ARCUSDT_1m.png",
+    "1w": "charts/ARCUSDT/20260521/ARCUSDT_1w.png",
+    "1d": "charts/ARCUSDT/20260521/ARCUSDT_1d.png"
+  }
+}

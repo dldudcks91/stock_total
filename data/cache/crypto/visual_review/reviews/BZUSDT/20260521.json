@@ -1,0 +1,75 @@
+{
+  "symbol": "BZUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:32:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1d": {
+    "state": "A3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 106.36,
+      "bars": 49,
+      "date_range": "2026-04-01 ~ 2026-05-19",
+      "ma10": 104.049,
+      "ma20": 104.9955,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0222, "ma20_pct": 0.013, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.534, "ma20_atr": 0.315, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.013},
+      "atr": 4.330454,
+      "atr_pct": 0.0407,
+      "adx": 17.01,
+      "range_position": 0.726,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.0133,
+        "upper_wick_pct": 0.364,
+        "lower_wick_pct": 0.046,
+        "vol_rank_30d": 0.3,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.756,
+        "price_range_5bar_pct": 0.058,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.1696,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.0751,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 93, "resistance": 115},
+      "pattern": "range_top_consolidation",
+      "recent_action": "4월 초 88선에서 저점 확인 후 5월 초 114까지 상승. 이후 103~107 박스권에서 횡보 중. ADX 17.01로 추세 약화, MA10 하향 전환되어 토핑 신호 감지."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1D만 가용(49봉). 신규 상장 종목으로 history 짧음. 고점(115) 대비 7.5% 낙폭으로 토핑 횡보 구간. ADX 약화 + MA10 하향으로 A3 판정. MA20 지지 확인 시 재진입 검토.",
+
+  "risk_flags": ["low_history"],
+
+  "charts": {
+    "1d": "charts/BZUSDT/20260521/BZUSDT_1d.png"
+  }
+}

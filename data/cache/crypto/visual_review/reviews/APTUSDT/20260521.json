@@ -1,0 +1,195 @@
+{
+  "symbol": "APTUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:01:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.9295,
+      "bars": 44,
+      "date_range": "2022-10-31 ~ 2026-05-31",
+      "ma10": 2.05972,
+      "ma20": 4.53078,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.5487, "ma20_pct": -0.7948, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.529, "ma20_atr": -1.684, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.5487},
+      "atr": 2.138417,
+      "atr_pct": 2.3006,
+      "adx": 14.97,
+      "range_position": 0.029,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0684,
+        "upper_wick_pct": 0.714,
+        "lower_wick_pct": 0.101,
+        "vol_rank_30d": 0.633,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 2.47, "price_range_5bar_pct": 1.314, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.1021,
+        "vol_rank": 0.733,
+        "close": 0.9931,
+        "max_retrace_pct": 0.0989,
+        "current_retrace_pct": 0.064,
+        "holding": false
+      },
+      "ret_30d": -0.8666,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.9543,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.80, "resistance": 2.0},
+      "pattern": "sustained_downtrend",
+      "recent_action": "2022년 이후 지속 하락, $20 고점에서 -95% 낙폭. MA10/20 역배열 우하향 유지 중."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.9295,
+      "bars": 188,
+      "date_range": "2022-10-24 ~ 2026-05-25",
+      "ma10": 0.95383,
+      "ma20": 1.07303,
+      "ma50": 2.633266,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0255, "ma20_pct": -0.1338, "ma50_pct": -0.647},
+      "dist_from_ma_atr": {"ma10_atr": -0.076, "ma20_atr": -0.449, "ma50_atr": -5.33},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0255},
+      "atr": 0.319685,
+      "atr_pct": 0.3439,
+      "adx": 32.1,
+      "range_position": 0.052,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0197,
+        "upper_wick_pct": 0.27,
+        "lower_wick_pct": 0.111,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.694, "price_range_5bar_pct": 0.3698, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 2,
+        "body_pct": 0.1447,
+        "vol_rank": 0.733,
+        "close": 1.1284,
+        "max_retrace_pct": 0.2069,
+        "current_retrace_pct": 0.1763,
+        "holding": false
+      },
+      "ret_30d": -0.7311,
+      "ret_90d": -0.8535,
+      "from_period_high_pct": -0.9543,
+      "vol_avg_recent_vs_prior": 1.182
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.80, "resistance": 1.10},
+      "pattern": "bear_trend_lower_lows",
+      "recent_action": "전 TF 역배열 유지. 1W ADX 32로 하락 추세 강도 확인. 반등봉 나왔으나 곧 무너짐(holding=false)."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.9295,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 1.01953,
+      "ma20": 1.02003,
+      "ma50": 0.952032,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0883, "ma20_pct": -0.0888, "ma50_pct": -0.0237},
+      "dist_from_ma_atr": {"ma10_atr": -1.429, "ma20_atr": -1.437, "ma50_atr": -0.358},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0237},
+      "atr": 0.062993,
+      "atr_pct": 0.0678,
+      "adx": 28.37,
+      "range_position": 0.287,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0197,
+        "upper_wick_pct": 0.27,
+        "lower_wick_pct": 0.111,
+        "vol_rank_30d": 0.367,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.956, "price_range_5bar_pct": 0.1774, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.0202,
+        "vol_rank": 0.933,
+        "close": 0.9478,
+        "max_retrace_pct": 0.0228,
+        "current_retrace_pct": 0.0193,
+        "holding": true
+      },
+      "ret_30d": 0.0221,
+      "ret_90d": 0.0594,
+      "from_period_high_pct": -0.7284,
+      "vol_avg_recent_vs_prior": 0.852
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.85, "resistance": 1.05},
+      "pattern": "range_bottom",
+      "recent_action": "1D에서 $0.9~$1.0 박스권 다지기 중. MA 수렴하며 방향성 탐색. 약한 강양봉 직후 현재 봉 음봉으로 아직 전환 미확정."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "1M/1W 명확한 B2 역배열 하락추세. 1D에서 B3 박스 다지기 시도 중이나 상위 TF 맥락이 강한 하락. -95% 낙폭으로 drawdown_deep. 돌파 미확인.",
+
+  "risk_flags": ["drawdown_deep"],
+
+  "charts": {
+    "1m": "charts/APTUSDT/20260521/APTUSDT_1m.png",
+    "1w": "charts/APTUSDT/20260521/APTUSDT_1w.png",
+    "1d": "charts/APTUSDT/20260521/APTUSDT_1d.png"
+  }
+}

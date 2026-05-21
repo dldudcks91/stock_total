@@ -1,0 +1,139 @@
+{
+  "symbol": "ZECUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": null,
+
+  "tf_1w": {
+    "state": "A3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 573.58,
+      "bars": 32,
+      "date_range": "2025-10-20 ~ 2026-05-25",
+      "ma10": 385.582,
+      "ma20": 339.0165,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.4876, "ma20_pct": 0.6919, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 1.802, "ma20_atr": 2.248, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.4876},
+      "atr": 104.336837,
+      "atr_pct": 0.1819,
+      "adx": 21.95,
+      "range_position": 0.675,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0182,
+        "upper_wick_pct": 0.276,
+        "lower_wick_pct": 0.398,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 2,
+        "body_pct": 0.2411,
+        "vol_rank": 0.759,
+        "close": 556.52,
+        "max_retrace_pct": 0.1269,
+        "current_retrace_pct": -0.0307,
+        "holding": false
+      },
+      "ret_30d": 0.68,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.2462,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 385.0, "resistance": 720.0},
+      "pattern": "spike_reversal",
+      "recent_action": "30d +68% 급등 후 현재 MA10 대비 +49% 과열 상태. 1w 마지막 봉이 도지로 모멘텀 약화 신호."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 573.58,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 550.307,
+      "ma20": 515.619,
+      "ma50": 397.7876,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0423, "ma20_pct": 0.1124, "ma50_pct": 0.4419},
+      "dist_from_ma_atr": {"ma10_atr": 0.486, "ma20_atr": 1.209, "ma50_atr": 3.668},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0423},
+      "atr": 47.927483,
+      "atr_pct": 0.0836,
+      "adx": 43.89,
+      "range_position": 0.839,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0182,
+        "upper_wick_pct": 0.276,
+        "lower_wick_pct": 0.398,
+        "vol_rank_30d": 0.567,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.989, "price_range_5bar_pct": 0.1684, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.049,
+        "vol_rank": 0.867,
+        "close": 563.13,
+        "max_retrace_pct": 0.0227,
+        "current_retrace_pct": -0.0186,
+        "holding": true
+      },
+      "ret_30d": 0.9024,
+      "ret_90d": 1.1689,
+      "from_period_high_pct": -0.2462,
+      "vol_avg_recent_vs_prior": 1.064
+    },
+
+    "observations": {
+      "key_levels": {"support": 515.0, "resistance": 720.0},
+      "pattern": "parabolic_up",
+      "recent_action": "30d +90% 파라볼릭 상승. 1d MA10 위 4% 수준으로 근접 중이며 도지 출현. 단기 고점 형성 가능성 있음."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1d 정배열 A2이나 30d +90% / 90d +117% 파라볼릭. 1w는 MAs 혼합(혼란), 1d 대비 큰 TF 지지 미확인. 파라볼릭 조건으로 한 단계 보수적 처리.",
+
+  "risk_flags": ["parabolic", "low_history"],
+
+  "charts": {
+    "1w": "charts/ZECUSDT/20260521/ZECUSDT_1w.png",
+    "1d": "charts/ZECUSDT/20260521/ZECUSDT_1d.png"
+  }
+}

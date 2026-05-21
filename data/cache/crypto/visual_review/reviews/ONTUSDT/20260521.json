@@ -1,0 +1,179 @@
+{
+  "symbol": "ONTUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:30:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.06155,
+      "bars": 38,
+      "date_range": "2023-04-30 ~ 2026-05-31",
+      "ma10": 0.078999,
+      "ma20": 0.127424,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2209, "ma20_pct": -0.517, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.264, "ma20_atr": -0.996, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.2209},
+      "atr": 0.066126,
+      "atr_pct": 1.0743,
+      "adx": 27.24,
+      "range_position": 0.126,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.1475,
+        "upper_wick_pct": 0.153,
+        "lower_wick_pct": 0.356,
+        "vol_rank_30d": 0.8,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 6.95, "price_range_5bar_pct": 1.5586, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 2,
+        "body_pct": 0.4731,
+        "vol_rank": 1.0,
+        "close": 0.08246,
+        "max_retrace_pct": 0.3333,
+        "current_retrace_pct": 0.2536,
+        "holding": false
+      },
+      "ret_30d": -0.7255,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.8819,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.050, "resistance": 0.090},
+      "pattern": "pump_dump_trace",
+      "recent_action": "2026년 3월 급등(+47% 강양봉) 후 -33% 급락. 월봉 이전 추세 우하향. 전형적 단기 펌프 후 소멸."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": "bounce_ma20",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.06155,
+      "bars": 164,
+      "date_range": "2023-04-10 ~ 2026-05-25",
+      "ma10": 0.069405,
+      "ma20": 0.059392,
+      "ma50": 0.090143,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.1132, "ma20_pct": 0.0363, "ma50_pct": -0.3172},
+      "dist_from_ma_atr": {"ma10_atr": -0.438, "ma20_atr": 0.12, "ma50_atr": -1.594},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.0363},
+      "atr": 0.017941,
+      "atr_pct": 0.2915,
+      "adx": 28.94,
+      "range_position": 0.237,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0577,
+        "upper_wick_pct": 0.683,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.8,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.413, "price_range_5bar_pct": 0.4172, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.3273,
+      "ret_90d": -0.6292,
+      "from_period_high_pct": -0.8819,
+      "vol_avg_recent_vs_prior": 4.095
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.050, "resistance": 0.080},
+      "pattern": "vol_spike_bounce",
+      "recent_action": "2026년 3월 대규모 거래량 급증(vol_avg 4배). MA10/20 상향 전환. MA20 위 반등 확인. 상승 시도 유의미하나 MA50 역배열."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.06155,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.06105,
+      "ma20": 0.064608,
+      "ma50": 0.075013,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0082, "ma20_pct": -0.0473, "ma50_pct": -0.1795},
+      "dist_from_ma_atr": {"ma10_atr": 0.103, "ma20_atr": -0.63, "ma50_atr": -2.773},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0082},
+      "atr": 0.004856,
+      "atr_pct": 0.0789,
+      "adx": 22.61,
+      "range_position": 0.233,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0577,
+        "upper_wick_pct": 0.683,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.967,
+        "vol_anomaly": "breakout",
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.3
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 2.731, "price_range_5bar_pct": 0.2312, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.1814,
+      "ret_90d": 0.341,
+      "from_period_high_pct": -0.5431,
+      "vol_avg_recent_vs_prior": 0.093
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.055, "resistance": 0.085},
+      "pattern": "vol_surge_retest",
+      "recent_action": "3월 거래량 급증 후 가격 급등 뒤 현재 MA10 근처 하락. vol_anomaly=breakout. 상단 위꼬리 우세로 분배 가능성도 병존."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1M B2 하락+펌프흔적 vs 1W/1D B4 상승 시도. 거래량 급증 시각 확인. 1W MA20 위 반등 확정 신호 있으나 1M 우하향 추세 여전. MA10 안착 및 1D MA20 회복 여부 추가 확인 필요.",
+
+  "risk_flags": ["drawdown_deep", "accumulation_suspect"],
+
+  "charts": {
+    "1m": "charts/ONTUSDT/20260521/ONTUSDT_1m.png",
+    "1w": "charts/ONTUSDT/20260521/ONTUSDT_1w.png",
+    "1d": "charts/ONTUSDT/20260521/ONTUSDT_1d.png"
+  }
+}

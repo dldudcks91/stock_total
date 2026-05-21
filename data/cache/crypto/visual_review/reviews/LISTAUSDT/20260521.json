@@ -1,0 +1,129 @@
+{
+  "symbol": "LISTAUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T13:06:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 0.0778,
+      "bars": 101,
+      "date_range": "2024-06-24 ~ 2026-05-25",
+      "ma10": 0.08453,
+      "ma20": 0.09692,
+      "ma50": 0.187524,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0796, "ma20_pct": -0.1973, "ma50_pct": -0.5851},
+      "dist_from_ma_atr": {"ma10_atr": -0.222, "ma20_atr": -0.631, "ma50_atr": -3.621},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0796},
+      "atr": 0.030305,
+      "atr_pct": 0.3895,
+      "adx": 15.42,
+      "range_position": 0.026,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0193,
+        "upper_wick_pct": 0.1,
+        "lower_wick_pct": 0.525,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.293,
+        "price_range_5bar_pct": 0.3046,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.7326,
+      "ret_90d": -0.7663,
+      "from_period_high_pct": -0.9091,
+      "vol_avg_recent_vs_prior": 0.103
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.07, "resistance": 0.10},
+      "pattern": "zombie_drift",
+      "recent_action": "거래량이 피크 대비 10분의 1 이하로 급감. 역배열 하락 + 거래량 0.103배 zombie 상태. 피크 -90.91%."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 0.0778,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 0.08558,
+      "ma20": 0.085895,
+      "ma50": 0.085818,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0909, "ma20_pct": -0.0942, "ma50_pct": -0.0934},
+      "dist_from_ma_atr": {"ma10_atr": -1.336, "ma20_atr": -1.39, "ma50_atr": -1.377},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0909},
+      "atr": 0.005824,
+      "atr_pct": 0.0749,
+      "adx": 25.86,
+      "range_position": 0.149,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0193,
+        "upper_wick_pct": 0.1,
+        "lower_wick_pct": 0.525,
+        "vol_rank_30d": 0.4,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.592,
+        "price_range_5bar_pct": 0.1799,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.1346,
+      "ret_90d": -0.1057,
+      "from_period_high_pct": -0.7256,
+      "vol_avg_recent_vs_prior": 0.802
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.075, "resistance": 0.095},
+      "pattern": "flat_base_weak",
+      "recent_action": "1D는 MAs 타이트하게 수렴(0.085~0.086). 가격이 전체 MA 하회 중. 거래량 감소세 지속."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "1W B2 역배열+zombie(거래량 0.103배), 1D B3 수렴. 1W 큰 그림은 -90% 낙폭 하락 추세. 매매 회피.",
+
+  "risk_flags": ["drawdown_deep", "zombie"],
+
+  "charts": {
+    "1w": "charts/LISTAUSDT/20260521/LISTAUSDT_1w.png",
+    "1d": "charts/LISTAUSDT/20260521/LISTAUSDT_1d.png"
+  }
+}

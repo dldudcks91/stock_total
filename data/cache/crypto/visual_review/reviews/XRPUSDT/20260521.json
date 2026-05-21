@@ -1,0 +1,191 @@
+{
+  "symbol": "XRPUSDT",
+  "asset": "crypto",
+  "reviewed_at": "2026-05-21T12:38:00+09:00",
+  "data_until": "2026-05-19",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 1.3609,
+      "bars": 82,
+      "date_range": "2019-08-31 ~ 2026-05-31",
+      "ma10": 1.92138,
+      "ma20": 2.03225,
+      "ma50": 1.114245,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.2917, "ma20_pct": -0.3303, "ma50_pct": 0.2214},
+      "dist_from_ma_atr": {"ma10_atr": -0.937, "ma20_atr": -1.122, "ma50_atr": 0.412},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.2214},
+      "atr": 0.59832,
+      "atr_pct": 0.4397,
+      "adx": 32.1,
+      "range_position": 0.096,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0047,
+        "upper_wick_pct": 0.924,
+        "lower_wick_pct": 0.044,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.282,
+        "price_range_5bar_pct": 0.9545,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 1.245,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.6287,
+      "vol_avg_recent_vs_prior": 5.643
+    },
+
+    "observations": {
+      "key_levels": {"support": 0.9, "resistance": 2.0},
+      "pattern": "post_pump_reversion",
+      "recent_action": "2024~2025년 펌프(고점 $3.6) 이후 -62.9% 하락. 현재 MA10/MA20 아래, MA50 위에서 박스권 형성 중. 월봉 거래량 5.6배로 여전히 활발하나 가격은 급락 중."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 1.3609,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 1.38922,
+      "ma20": 1.50103,
+      "ma50": 2.14312,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0204, "ma20_pct": -0.0934, "ma50_pct": -0.365},
+      "dist_from_ma_atr": {"ma10_atr": -0.125, "ma20_atr": -0.618, "ma50_atr": -3.45},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0204},
+      "atr": 0.226751,
+      "atr_pct": 0.1666,
+      "adx": 31.08,
+      "range_position": 0.155,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.021,
+        "upper_wick_pct": 0.173,
+        "lower_wick_pct": 0.191,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.571,
+        "price_range_5bar_pct": 0.1508,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.4831,
+      "ret_90d": 1.4006,
+      "from_period_high_pct": -0.6287,
+      "vol_avg_recent_vs_prior": 0.32
+    },
+
+    "observations": {
+      "key_levels": {"support": 1.1, "resistance": 1.5},
+      "pattern": "persistent_downtrend",
+      "recent_action": "주봉 완전 역배열(MA10/20/50 모두 하향). MA10(1.39)이 바로 위 저항. 1W 거래량 0.32배로 급격히 감소. ADX 31로 추세 강도 있음 — 하락 모멘텀 지속."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 1.3609,
+      "bars": 200,
+      "date_range": "2025-11-01 ~ 2026-05-19",
+      "ma10": 1.4294,
+      "ma20": 1.413855,
+      "ma50": 1.393926,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0479, "ma20_pct": -0.0375, "ma50_pct": -0.0237},
+      "dist_from_ma_atr": {"ma10_atr": -1.293, "ma20_atr": -0.999, "ma50_atr": -0.623},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0237},
+      "atr": 0.052993,
+      "atr_pct": 0.0389,
+      "adx": 18.58,
+      "range_position": 0.305,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.021,
+        "upper_wick_pct": 0.173,
+        "lower_wick_pct": 0.191,
+        "vol_rank_30d": 0.433,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.129,
+        "price_range_5bar_pct": 0.1082,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 5,
+        "body_pct": 0.0393,
+        "vol_rank": 1.0,
+        "close": 1.4847,
+        "max_retrace_pct": 0.0892,
+        "current_retrace_pct": 0.0834,
+        "holding": false
+      },
+      "ret_30d": -0.0234,
+      "ret_90d": -0.0423,
+      "from_period_high_pct": -0.4726,
+      "vol_avg_recent_vs_prior": 0.907
+    },
+
+    "observations": {
+      "key_levels": {"support": 1.25, "resistance": 1.50},
+      "pattern": "ma_convergence_flat",
+      "recent_action": "일봉 MA10/20/50이 1.39~1.43으로 수렴하며 저항대 형성. 5일 전 강양봉(1.4847) 후 -8.3% 되돌림(holding 실패). 현재 1.36~1.39 박스권 하단에서 지지 모색."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "1M/1W B2(완전 역배열), 1D B3 충돌. 큰 TF 하락 추세 지속. 1W 거래량 0.32배로 관심 급감. drawdown_deep(-62.9%). 강양봉 후 되돌림 실패. B3 확인 전 관망.",
+
+  "risk_flags": ["drawdown_deep"],
+
+  "charts": {
+    "1m": "charts/XRPUSDT/20260521/XRPUSDT_1m.png",
+    "1w": "charts/XRPUSDT/20260521/XRPUSDT_1w.png",
+    "1d": "charts/XRPUSDT/20260521/XRPUSDT_1d.png"
+  }
+}
