@@ -1,0 +1,190 @@
+{
+  "symbol": "051910",
+  "asset": "kr",
+  "reviewed_at": "2026-05-21T10:00:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 332000.0,
+      "bars": 148,
+      "date_range": "2014-02-28 ~ 2026-05-31",
+      "ma10": 341600.0,
+      "ma20": 295340.0,
+      "ma50": 440456.0,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0281, "ma20_pct": 0.1241, "ma50_pct": -0.2462},
+      "dist_from_ma_atr": {"ma10_atr": -0.114, "ma20_atr": 0.435, "ma50_atr": -1.287},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0281},
+      "atr": 84245.058883,
+      "atr_pct": 0.2538,
+      "adx": 21.86,
+      "range_position": 0.567,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.2395,
+        "upper_wick_pct": 0.233,
+        "lower_wick_pct": 0.054,
+        "vol_rank_30d": 0.1,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.138,
+        "price_range_5bar_pct": 0.4503,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.2078,
+        "vol_rank": 0.767,
+        "close": 397000.0,
+        "max_retrace_pct": 0.1788,
+        "current_retrace_pct": 0.1637,
+        "holding": false
+      },
+      "ret_30d": -0.3373,
+      "ret_90d": -0.0391,
+      "from_period_high_pct": -0.6838,
+      "vol_avg_recent_vs_prior": 1.115
+    },
+
+    "observations": {
+      "key_levels": {"support": 280000, "resistance": 450000},
+      "pattern": "long_base_recovery",
+      "recent_action": "2020년 100만원 피크 이후 장기 하락. 현재 피크 대비 -68%. 월봉 MA10 근방에서 바닥 다지기 시도. 지난달 강양봉(39.7만) 이후 16% 조정."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 332000.0,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 357150.0,
+      "ma20": 342675.0,
+      "ma50": 323190.0,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0704, "ma20_pct": -0.0312, "ma50_pct": 0.0273},
+      "dist_from_ma_atr": {"ma10_atr": -0.578, "ma20_atr": -0.246, "ma50_atr": 0.203},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.0273},
+      "atr": 43478.285204,
+      "atr_pct": 0.131,
+      "adx": 27.01,
+      "range_position": 0.294,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.113,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.138,
+        "vol_rank_30d": 0.067,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.888,
+        "price_range_5bar_pct": 0.3358,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.1782,
+      "ret_90d": -0.0235,
+      "from_period_high_pct": -0.6126,
+      "vol_avg_recent_vs_prior": 1.061
+    },
+
+    "observations": {
+      "key_levels": {"support": 320000, "resistance": 360000},
+      "pattern": "recovery_attempt",
+      "recent_action": "주봉 MA10/20 아래이나 MA50(32만) 위 유지. 2025년 저점(20만원) 이후 반등 시도. MA 간격 좁아지며 수렴 중."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "distribution_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 332000.0,
+      "bars": 200,
+      "date_range": "2025-07-24 ~ 2026-05-20",
+      "ma10": 390950.0,
+      "ma20": 395225.0,
+      "ma50": 351420.0,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1508, "ma20_pct": -0.16, "ma50_pct": -0.0553},
+      "dist_from_ma_atr": {"ma10_atr": -2.426, "ma20_atr": -2.602, "ma50_atr": -0.799},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0553},
+      "atr": 24301.043523,
+      "atr_pct": 0.0732,
+      "adx": 32.65,
+      "range_position": 0.294,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0648,
+        "upper_wick_pct": 0.018,
+        "lower_wick_pct": 0.214,
+        "vol_rank_30d": 0.867,
+        "vol_anomaly": "breakout",
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.3
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.835,
+        "price_range_5bar_pct": 0.2515,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0473,
+      "ret_90d": 0.0107,
+      "from_period_high_pct": -0.2411,
+      "vol_avg_recent_vs_prior": 0.838
+    },
+
+    "observations": {
+      "key_levels": {"support": 320000, "resistance": 395000},
+      "pattern": "breakdown_with_volume",
+      "recent_action": "일봉 가격 모든 MA 아래. 마지막 봉 breakout 거래량(vol_rank=0.867)에 음봉 발생 - 분배 의심. distribution_candle_score=0.3."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1D B2 하락, breakout 거래량 음봉으로 distribution_suspect. 1W B4 회복 시도이나 1D 에서 꺾임. 1M B3 장기 바닥권. drawdown_deep. 단기 하락 압력 우세.",
+  "risk_flags": ["drawdown_deep", "distribution_suspect"],
+
+  "charts": {
+    "1m": "charts/051910/20260521/051910_1m.png",
+    "1w": "charts/051910/20260521/051910_1w.png",
+    "1d": "charts/051910/20260521/051910_1d.png"
+  }
+}

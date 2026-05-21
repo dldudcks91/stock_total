@@ -1,0 +1,171 @@
+{
+  "symbol": "001570",
+  "asset": "kr",
+  "reviewed_at": "2026-05-21T10:30:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "low",
+    "context": {
+      "last_close": 9900.0,
+      "bars": 148,
+      "date_range": "2014-02-28 ~ 2026-05-31",
+      "ma10": 9900.0,
+      "ma20": 14060.5,
+      "ma50": 43546.0,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0, "ma20_pct": -0.2959, "ma50_pct": -0.7727},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": -0.28, "ma50_atr": -2.265},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0},
+      "atr": 14852.136222,
+      "atr_pct": 1.5002,
+      "adx": 29.14,
+      "range_position": 0.5,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 1.0,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.9228,
+      "ret_90d": 2.89,
+      "from_period_high_pct": -0.949,
+      "vol_avg_recent_vs_prior": 0.216
+    },
+    "observations": {
+      "key_levels": {"support": 9900, "resistance": 25000},
+      "pattern": "pump_dump_collapsed",
+      "recent_action": "2022년 200K 급등 후 현재 9900원으로 collapse. 1M PNG에서 극단적 펌프&덤프 패턴 명확."
+    }
+  },
+  "tf_1w": {
+    "state": "C1",
+    "micro_action": "riding",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+    "context": {
+      "last_close": 9900.0,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 9900.0,
+      "ma20": 9900.0,
+      "ma50": 9900.0,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0},
+      "atr": 9870.006408,
+      "atr_pct": 0.997,
+      "adx": 60.86,
+      "range_position": 0.5,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 1.0,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": -0.7909,
+      "from_period_high_pct": -0.949,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 9900, "resistance": 9900},
+      "pattern": "suspended_flat_line",
+      "recent_action": "주봉 OHLCV 전체 9900 고정, 거래량 0 — 거래정지 또는 데이터 오류 상태. 실질 가격 변동 없음."
+    }
+  },
+  "tf_1d": {
+    "state": "C1",
+    "micro_action": "riding",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+    "context": {
+      "last_close": 9900.0,
+      "bars": 200,
+      "date_range": "2025-07-24 ~ 2026-05-20",
+      "ma10": 9900.0,
+      "ma20": 9900.0,
+      "ma50": 9900.0,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0},
+      "atr": 9899.999994,
+      "atr_pct": 1.0,
+      "adx": 65.37,
+      "range_position": 0.5,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 1.0,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": 0.0,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 9900, "resistance": 9900},
+      "pattern": "suspended_flat_line",
+      "recent_action": "일봉 PNG 전체 9900 flat + 거래량 0. 거래정지 종목 또는 심각한 데이터 오류 상태. 실질 채점 불가."
+    }
+  },
+  "tf_consistency": "분리",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "1M 극단적 펌프&덤프(200K→9900, -95%). 1W/1D 데이터 flat(OHLC=9900, vol=0) — 거래정지 의심. 매매 제외.",
+  "risk_flags": ["drawdown_deep", "pump_dump_trace"],
+  "charts": {
+    "1m": "charts/001570/20260521/001570_1m.png",
+    "1w": "charts/001570/20260521/001570_1w.png",
+    "1d": "charts/001570/20260521/001570_1d.png"
+  }
+}

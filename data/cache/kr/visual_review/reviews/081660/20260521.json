@@ -1,0 +1,199 @@
+{
+  "symbol": "081660",
+  "asset": "kr",
+  "reviewed_at": "2026-05-21T02:00:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 39150.0,
+      "bars": 148,
+      "date_range": "2014-02-28 ~ 2026-05-31",
+      "ma10": 41925.0,
+      "ma20": 39977.5,
+      "ma50": 38047.0,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0662, "ma20_pct": -0.0207, "ma50_pct": 0.029},
+      "dist_from_ma_atr": {"ma10_atr": -0.495, "ma20_atr": -0.148, "ma50_atr": 0.197},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0207},
+      "atr": 5608.939589,
+      "atr_pct": 0.1433,
+      "adx": 13.29,
+      "range_position": 0.279,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0511,
+        "upper_wick_pct": 0.08,
+        "lower_wick_pct": 0.562,
+        "vol_rank_30d": 0.4,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.132,
+        "price_range_5bar_pct": 0.5057,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0235,
+      "ret_90d": -0.2293,
+      "from_period_high_pct": -0.5546,
+      "vol_avg_recent_vs_prior": 0.386
+    },
+
+    "observations": {
+      "key_levels": {"support": 30000, "resistance": 55000},
+      "pattern": "long_term_range",
+      "recent_action": "2019년 급등 이후 장기 하락세를 거쳐 현재 30,000~45,000 박스권에서 횡보 중이며 MA들이 수렴 중."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 39150.0,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 40715.0,
+      "ma20": 44520.0,
+      "ma50": 41349.0,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0384, "ma20_pct": -0.1206, "ma50_pct": -0.0532},
+      "dist_from_ma_atr": {"ma10_atr": -0.454, "ma20_atr": -1.557, "ma50_atr": -0.638},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0384},
+      "atr": 3448.828691,
+      "atr_pct": 0.0881,
+      "adx": 25.51,
+      "range_position": 0.159,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.046,
+        "upper_wick_pct": 0.197,
+        "lower_wick_pct": 0.258,
+        "vol_rank_30d": 0.067,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.171,
+        "price_range_5bar_pct": 0.1852,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.0758,
+        "vol_rank": 0.933,
+        "close": 40900.0,
+        "max_retrace_pct": 0.0636,
+        "current_retrace_pct": 0.0428,
+        "holding": true
+      },
+      "ret_30d": 0.0064,
+      "ret_90d": -0.0656,
+      "from_period_high_pct": -0.2984,
+      "vol_avg_recent_vs_prior": 0.953
+    },
+
+    "observations": {
+      "key_levels": {"support": 35000, "resistance": 48000},
+      "pattern": "failed_recovery_pullback",
+      "recent_action": "2026년 초 급등(55,000까지) 이후 큰 폭 하락하며 현재 MA10 아래에서 MA10에 접근 중이며, 직전 양봉 지지 수준 유지 중."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 39150.0,
+      "bars": 200,
+      "date_range": "2025-07-24 ~ 2026-05-20",
+      "ma10": 38485.0,
+      "ma20": 39785.0,
+      "ma50": 41965.0,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0173, "ma20_pct": -0.016, "ma50_pct": -0.0671},
+      "dist_from_ma_atr": {"ma10_atr": 0.394, "ma20_atr": -0.376, "ma50_atr": -1.669},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.016},
+      "atr": 1686.645147,
+      "atr_pct": 0.0431,
+      "adx": 27.4,
+      "range_position": 0.174,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0447,
+        "upper_wick_pct": 0.088,
+        "lower_wick_pct": 0.298,
+        "vol_rank_30d": 0.4,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.128,
+        "price_range_5bar_pct": 0.143,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 4,
+        "body_pct": 0.0421,
+        "vol_rank": 1.0,
+        "close": 38000.0,
+        "max_retrace_pct": -0.0026,
+        "current_retrace_pct": -0.0303,
+        "holding": true
+      },
+      "ret_30d": -0.0428,
+      "ret_90d": -0.069,
+      "from_period_high_pct": -0.2984,
+      "vol_avg_recent_vs_prior": 0.981
+    },
+
+    "observations": {
+      "key_levels": {"support": 37500, "resistance": 45000},
+      "pattern": "downtrend_ma_resistance",
+      "recent_action": "1D 역배열 상태에서 MA10 위로 약간 올라선 상태이나 MA20 근처에서 저항을 받고 있으며, 4일 전 강양봉 이후 지지 수준 유지 중."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1D 역배열 B2이나 직전 강양봉 후 holding=true로 단기 반등 시도. 1W B4 진입 단계이나 1M 장기 B3 박스. TF 간 분리 상태로 1D MA20 상향 돌파 확인 전 관망.",
+
+  "risk_flags": [],
+
+  "charts": {
+    "1m": "charts/081660/20260521/081660_1m.png",
+    "1w": "charts/081660/20260521/081660_1w.png",
+    "1d": "charts/081660/20260521/081660_1d.png"
+  }
+}

@@ -1,0 +1,199 @@
+{
+  "symbol": "452260",
+  "asset": "kr",
+  "reviewed_at": "2026-05-21T10:25:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "A1",
+    "micro_action": "acceleration",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 2880.0,
+      "bars": 39,
+      "date_range": "2023-03-31 ~ 2026-05-31",
+      "ma10": 1905.9,
+      "ma20": 1549.85,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.5111, "ma20_pct": 0.8582, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 1.451, "ma20_atr": 1.981, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.5111},
+      "atr": 671.495606,
+      "atr_pct": 0.2332,
+      "adx": 32.11,
+      "range_position": 0.603,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0764,
+        "upper_wick_pct": 0.726,
+        "lower_wick_pct": 0.117,
+        "vol_rank_30d": 0.8,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 3.601,
+        "price_range_5bar_pct": 1.0031,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 1.7666,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.301,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 2000, "resistance": 4000},
+      "pattern": "explosive_breakout",
+      "recent_action": "2023~2025년 1K~1.5K 바닥 횡보 후 2026년 폭발 상승. 월봉 MA10 대비 +51% 과열. 위꼬리 우세 도지 출현."
+    }
+  },
+
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 2880.0,
+      "bars": 165,
+      "date_range": "2023-04-03 ~ 2026-05-25",
+      "ma10": 2741.0,
+      "ma20": 2516.95,
+      "ma50": 1708.8,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0507, "ma20_pct": 0.1442, "ma50_pct": 0.6854},
+      "dist_from_ma_atr": {"ma10_atr": 0.282, "ma20_atr": 0.736, "ma50_atr": 2.375},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0507},
+      "atr": 493.062118,
+      "atr_pct": 0.1712,
+      "adx": 62.36,
+      "range_position": 0.603,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0434,
+        "upper_wick_pct": 0.52,
+        "lower_wick_pct": 0.147,
+        "vol_rank_30d": 0.333,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.302,
+        "price_range_5bar_pct": 0.5955,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 4,
+        "body_pct": 0.2888,
+        "vol_rank": 0.9,
+        "close": 3480.0,
+        "max_retrace_pct": 0.2198,
+        "current_retrace_pct": 0.1724,
+        "holding": false
+      },
+      "ret_30d": 1.6471,
+      "ret_90d": 0.9098,
+      "from_period_high_pct": -0.301,
+      "vol_avg_recent_vs_prior": 21.928
+    },
+
+    "observations": {
+      "key_levels": {"support": 2500, "resistance": 4000},
+      "pattern": "parabolic_vol_spike",
+      "recent_action": "주봉 거래량 22배 폭증 후 ADX 62 고추세. 강양봉(3.48K) 후 현재 17% 되돌림. 위꼬리 도지 — 고점권 경고."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 2880.0,
+      "bars": 200,
+      "date_range": "2025-07-24 ~ 2026-05-20",
+      "ma10": 3105.5,
+      "ma20": 3049.5,
+      "ma50": 2738.4,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0726, "ma20_pct": -0.0556, "ma50_pct": 0.0517},
+      "dist_from_ma_atr": {"ma10_atr": -0.736, "ma20_atr": -0.554, "ma50_atr": 0.462},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.0517},
+      "atr": 306.222888,
+      "atr_pct": 0.1063,
+      "adx": 34.01,
+      "range_position": 0.319,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0312,
+        "upper_wick_pct": 0.341,
+        "lower_wick_pct": 0.25,
+        "vol_rank_30d": 0.533,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 2.631,
+        "price_range_5bar_pct": 0.4497,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 3,
+        "body_pct": 0.0282,
+        "vol_rank": 0.733,
+        "close": 3550.0,
+        "max_retrace_pct": 0.2042,
+        "current_retrace_pct": 0.1887,
+        "holding": false
+      },
+      "ret_30d": 0.205,
+      "ret_90d": 1.2222,
+      "from_period_high_pct": -0.301,
+      "vol_avg_recent_vs_prior": 1.555
+    },
+
+    "observations": {
+      "key_levels": {"support": 2700, "resistance": 3600},
+      "pattern": "high_vol_pullback",
+      "recent_action": "일봉 정배열 내 MA10/20 하단 풀백. 강양봉(3.55K) 후 19% 되돌림 진행 중. MA50 지지권 근접."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "전 TF 상승 추세이나 parabolic 리스크 강함(주봉 거래량 22배, 일봉 90일 +122%). 고점 대비 -30% 위치, 추가 되돌림 가능. MA50 지지 확인 후 재판단.",
+
+  "risk_flags": ["parabolic", "drawdown_deep", "pump_dump_trace"],
+
+  "charts": {
+    "1m": "charts/452260/20260521/452260_1m.png",
+    "1w": "charts/452260/20260521/452260_1w.png",
+    "1d": "charts/452260/20260521/452260_1d.png"
+  }
+}

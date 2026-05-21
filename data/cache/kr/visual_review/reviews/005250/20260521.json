@@ -1,0 +1,207 @@
+{
+  "symbol": "005250",
+  "asset": "kr",
+  "reviewed_at": "2026-05-21T10:39:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B3",
+    "micro_action": "bounce_ma50",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 16370.0,
+      "bars": 148,
+      "date_range": "2014-02-28 ~ 2026-05-31",
+      "ma10": 15392.0,
+      "ma20": 15270.0,
+      "ma50": 15920.2,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "down"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0635, "ma20_pct": 0.072, "ma50_pct": 0.0283},
+      "dist_from_ma_atr": {"ma10_atr": 0.405, "ma20_atr": 0.455, "ma50_atr": 0.186},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.0283},
+      "atr": 2415.416611,
+      "atr_pct": 0.1476,
+      "adx": 12.67,
+      "range_position": 0.677,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.1436,
+        "upper_wick_pct": 0.323,
+        "lower_wick_pct": 0.213,
+        "vol_rank_30d": 0.967,
+        "vol_anomaly": "breakout",
+        "accumulation_candle_score": 0.3,
+        "distribution_candle_score": 0.3
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 2.778,
+        "price_range_5bar_pct": 0.3097,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 0,
+        "body_pct": 0.1436,
+        "vol_rank": 1.0,
+        "close": 16370.0,
+        "max_retrace_pct": 0.0,
+        "current_retrace_pct": 0.0,
+        "holding": true
+      },
+      "ret_30d": 0.1098,
+      "ret_90d": -0.3236,
+      "from_period_high_pct": -0.736,
+      "vol_avg_recent_vs_prior": 0.992
+    },
+
+    "observations": {
+      "key_levels": {"support": 13000, "resistance": 20000},
+      "pattern": "volume_surge_bounce_attempt",
+      "recent_action": "월봉 기준 장기 하락(고점 대비 -74%) 후 MA10/20/50 수렴 구간에서 최근 봉 거래량 폭증(vol_rank 0.967) 강양봉 출현. MA50 상방 돌파 시도."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": "bounce_ma50",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 16370.0,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 14217.0,
+      "ma20": 14665.5,
+      "ma50": 15461.6,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.1514, "ma20_pct": 0.1162, "ma50_pct": 0.0588},
+      "dist_from_ma_atr": {"ma10_atr": 1.582, "ma20_atr": 1.252, "ma50_atr": 0.667},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.0588},
+      "atr": 1361.117674,
+      "atr_pct": 0.0831,
+      "adx": 20.13,
+      "range_position": 0.677,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.0837,
+        "upper_wick_pct": 0.384,
+        "lower_wick_pct": 0.169,
+        "vol_rank_30d": 0.933,
+        "vol_anomaly": "breakout",
+        "accumulation_candle_score": 0.3,
+        "distribution_candle_score": 0.3
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 5.865,
+        "price_range_5bar_pct": 0.3097,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 0,
+        "body_pct": 0.0837,
+        "vol_rank": 0.967,
+        "close": 16370.0,
+        "max_retrace_pct": 0.0,
+        "current_retrace_pct": 0.0,
+        "holding": true
+      },
+      "ret_30d": 0.0092,
+      "ret_90d": 0.0206,
+      "from_period_high_pct": -0.2474,
+      "vol_avg_recent_vs_prior": 2.5
+    },
+
+    "observations": {
+      "key_levels": {"support": 14000, "resistance": 18000},
+      "pattern": "volume_breakout_above_all_ma",
+      "recent_action": "주봉 역배열이나 이번 봉 거래량 폭증(5.865배) 강양봉으로 MA10/20/50 전부 상방 돌파. B4 상승 첫 시도 — 확정 여부는 다음 봉 추이 필요."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "acceleration",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 16370.0,
+      "bars": 200,
+      "date_range": "2025-07-24 ~ 2026-05-20",
+      "ma10": 15113.0,
+      "ma20": 14606.5,
+      "ma50": 14190.8,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0832, "ma20_pct": 0.1207, "ma50_pct": 0.1536},
+      "dist_from_ma_atr": {"ma10_atr": 1.139, "ma20_atr": 1.597, "ma50_atr": 1.974},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0832},
+      "atr": 1103.919352,
+      "atr_pct": 0.0674,
+      "adx": 29.47,
+      "range_position": 0.677,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.0819,
+        "upper_wick_pct": 0.468,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.967,
+        "vol_anomaly": "breakout",
+        "accumulation_candle_score": 0.3,
+        "distribution_candle_score": 0.3
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 5.361,
+        "price_range_5bar_pct": 0.1875,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 0,
+        "body_pct": 0.0819,
+        "vol_rank": 1.0,
+        "close": 16370.0,
+        "max_retrace_pct": 0.0,
+        "current_retrace_pct": 0.0,
+        "holding": true
+      },
+      "ret_30d": 0.2072,
+      "ret_90d": 0.0341,
+      "from_period_high_pct": -0.0911,
+      "vol_avg_recent_vs_prior": 4.542
+    },
+
+    "observations": {
+      "key_levels": {"support": 14000, "resistance": 18000},
+      "pattern": "volume_surge_breakout",
+      "recent_action": "일봉 MA10/20/50 정배열 전환, 가격 전 MA 상위. 최근 5봉 거래량 5.4배 폭증하며 장대양봉 출현. 단기 고점 대비 -9% 구간에서 재상승 시도 중."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1D 정배열 전환(B4)+ 거래량 폭증 강양봉으로 1W B4 상승 시도 정합. 1M 장기 B3 박스 탈출 가능성. 단 확정 전 — 다음 봉 확인 후 pass 상향 검토.",
+
+  "risk_flags": ["accumulation_suspect"],
+
+  "charts": {
+    "1m": "charts/005250/20260521/005250_1m.png",
+    "1w": "charts/005250/20260521/005250_1w.png",
+    "1d": "charts/005250/20260521/005250_1d.png"
+  }
+}

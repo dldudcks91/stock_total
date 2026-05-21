@@ -1,0 +1,207 @@
+{
+  "symbol": "009155",
+  "asset": "kr",
+  "reviewed_at": "2026-05-21T01:30:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "A2",
+    "micro_action": "acceleration",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 382000.0,
+      "bars": 148,
+      "date_range": "2014-02-28 ~ 2026-05-31",
+      "ma10": 169110.0,
+      "ma20": 113695.0,
+      "ma50": 87900.0,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 1.2589, "ma20_pct": 2.3599, "ma50_pct": 3.3458},
+      "dist_from_ma_atr": {"ma10_atr": 5.708, "ma20_atr": 7.194, "ma50_atr": 7.885},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 1.2589},
+      "atr": 37298.218285,
+      "atr_pct": 0.0976,
+      "adx": 42.18,
+      "range_position": 0.897,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0733,
+        "upper_wick_pct": 0.475,
+        "lower_wick_pct": 0.171,
+        "vol_rank_30d": 0.867,
+        "vol_anomaly": "breakout",
+        "accumulation_candle_score": 0.3,
+        "distribution_candle_score": 0.3
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 3.669,
+        "price_range_5bar_pct": 0.8021,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.5204,
+        "vol_rank": 1.0,
+        "close": 348000.0,
+        "max_retrace_pct": 0.0216,
+        "current_retrace_pct": -0.0977,
+        "holding": true
+      },
+      "ret_30d": 4.6342,
+      "ret_90d": 6.725,
+      "from_period_high_pct": -0.0894,
+      "vol_avg_recent_vs_prior": 2.339
+    },
+
+    "observations": {
+      "key_levels": {"support": 80000.0, "resistance": 420000.0},
+      "pattern": "parabolic_vertical",
+      "recent_action": "월봉 기준 2025년 이후 수직 상승. MA10 대비 +125% 로 모든 MA와의 거리가 극단적. 직전 강양봉(+52% 월봉) 후 현재 봉은 위꼬리 도지."
+    }
+  },
+
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "acceleration",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 382000.0,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 284300.0,
+      "ma20": 213920.0,
+      "ma50": 138226.0,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.3437, "ma20_pct": 0.7857, "ma50_pct": 1.7636},
+      "dist_from_ma_atr": {"ma10_atr": 2.774, "ma20_atr": 4.773, "ma50_atr": 6.922},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.3437},
+      "atr": 35218.073372,
+      "atr_pct": 0.0922,
+      "adx": 56.85,
+      "range_position": 0.885,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0432,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.716,
+        "vol_rank_30d": 0.067,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.733,
+        "price_range_5bar_pct": 0.3901,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 3,
+        "body_pct": 0.1356,
+        "vol_rank": 0.967,
+        "close": 376000.0,
+        "max_retrace_pct": 0.0944,
+        "current_retrace_pct": -0.016,
+        "holding": true
+      },
+      "ret_30d": 2.8392,
+      "ret_90d": 4.6094,
+      "from_period_high_pct": -0.0894,
+      "vol_avg_recent_vs_prior": 2.193
+    },
+
+    "observations": {
+      "key_levels": {"support": 250000.0, "resistance": 420000.0},
+      "pattern": "vertical_trend",
+      "recent_action": "주봉 ADX 56으로 강한 추세. MA10 대비 +34% 과열 수준. 최근 주봉 하단꼬리 71% 도지로 잠시 조정 흡수 중."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 382000.0,
+      "bars": 200,
+      "date_range": "2025-07-24 ~ 2026-05-20",
+      "ma10": 388600.0,
+      "ma20": 362700.0,
+      "ma50": 258924.0,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.017, "ma20_pct": 0.0532, "ma50_pct": 0.4753},
+      "dist_from_ma_atr": {"ma10_atr": -0.216, "ma20_atr": 0.631, "ma50_atr": 4.027},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.017},
+      "atr": 30563.159324,
+      "atr_pct": 0.08,
+      "adx": 52.7,
+      "range_position": 0.868,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0497,
+        "upper_wick_pct": 0.231,
+        "lower_wick_pct": 0.417,
+        "vol_rank_30d": 0.5,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.688,
+        "price_range_5bar_pct": 0.2068,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 5,
+        "body_pct": 0.068,
+        "vol_rank": 0.7,
+        "close": 397000.0,
+        "max_retrace_pct": 0.1423,
+        "current_retrace_pct": 0.0378,
+        "holding": false
+      },
+      "ret_30d": 1.1791,
+      "ret_90d": 2.1209,
+      "from_period_high_pct": -0.0894,
+      "vol_avg_recent_vs_prior": 1.58
+    },
+
+    "observations": {
+      "key_levels": {"support": 350000.0, "resistance": 420000.0},
+      "pattern": "high_level_consolidation",
+      "recent_action": "일봉 고점 420000 부근에서 박스권 형성. 현재 MA10 바로 아래(-1.7%)에서 도지 형성 중. 전고점 신경쓰이는 토핑 횡보 구간."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "월봉/주봉 A2 강세 지속이나 parabolic 위험 수준(ret_30d 4.6배). 일봉은 A3 토핑 횡보 진입. MA10 풀백 후 반등 확인 시 pass 전환 가능하나 현재는 과열 watch.",
+
+  "risk_flags": ["parabolic"],
+
+  "charts": {
+    "1m": "charts/009155/20260521/009155_1m.png",
+    "1w": "charts/009155/20260521/009155_1w.png",
+    "1d": "charts/009155/20260521/009155_1d.png"
+  }
+}

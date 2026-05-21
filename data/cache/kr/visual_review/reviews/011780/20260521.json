@@ -1,0 +1,207 @@
+{
+  "symbol": "011780",
+  "asset": "kr",
+  "reviewed_at": "2026-05-21T02:10:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 131400.0,
+      "bars": 148,
+      "date_range": "2014-02-28 ~ 2026-05-31",
+      "ma10": 126100.0,
+      "ma20": 119890.0,
+      "ma50": 130358.0,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.042, "ma20_pct": 0.096, "ma50_pct": 0.008},
+      "dist_from_ma_atr": {"ma10_atr": 0.209, "ma20_atr": 0.453, "ma50_atr": 0.041},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.008},
+      "atr": 25389.679863,
+      "atr_pct": 0.1932,
+      "adx": 11.22,
+      "range_position": 0.481,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.137,
+        "upper_wick_pct": 0.225,
+        "lower_wick_pct": 0.088,
+        "vol_rank_30d": 0.167,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.123,
+        "price_range_5bar_pct": 0.398,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.1617,
+        "vol_rank": 0.7,
+        "close": 146600.0,
+        "max_retrace_pct": 0.1194,
+        "current_retrace_pct": 0.1037,
+        "holding": false
+      },
+      "ret_30d": 0.0266,
+      "ret_90d": 0.4252,
+      "from_period_high_pct": -0.5598,
+      "vol_avg_recent_vs_prior": 0.826
+    },
+
+    "observations": {
+      "key_levels": {"support": 90000, "resistance": 165000},
+      "pattern": "long_term_base_bounce",
+      "recent_action": "2020년 고점(30만) 대비 -56% 수준에서 2024년 이후 완만한 반등 시도 중. 현재 MA50 위에서 유지 중이나 추세 힘이 약함(ADX 11)."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 131400.0,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 133910.0,
+      "ma20": 135460.0,
+      "ma50": 123166.0,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0187, "ma20_pct": -0.03, "ma50_pct": 0.0669},
+      "dist_from_ma_atr": {"ma10_atr": -0.18, "ma20_atr": -0.291, "ma50_atr": 0.59},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0187},
+      "atr": 13961.212888,
+      "atr_pct": 0.1062,
+      "adx": 26.24,
+      "range_position": 0.415,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.089,
+        "upper_wick_pct": 0.008,
+        "lower_wick_pct": 0.071,
+        "vol_rank_30d": 0.033,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.163,
+        "price_range_5bar_pct": 0.1994,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 3,
+        "body_pct": 0.0838,
+        "vol_rank": 0.867,
+        "close": 144400.0,
+        "max_retrace_pct": 0.106,
+        "current_retrace_pct": 0.09,
+        "holding": false
+      },
+      "ret_30d": 0.1098,
+      "ret_90d": -0.0444,
+      "from_period_high_pct": -0.2132,
+      "vol_avg_recent_vs_prior": 1.075
+    },
+
+    "observations": {
+      "key_levels": {"support": 120000, "resistance": 150000},
+      "pattern": "failed_breakout_pullback",
+      "recent_action": "144,000원 강양봉 후 MA10/MA20 아래로 되돌림. MA50 지지선(123,000) 위 유지 중으로 상승 시도 미확정."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A4",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 131400.0,
+      "bars": 200,
+      "date_range": "2025-07-24 ~ 2026-05-20",
+      "ma10": 142700.0,
+      "ma20": 141095.0,
+      "ma50": 132624.0,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0792, "ma20_pct": -0.0687, "ma50_pct": -0.0092},
+      "dist_from_ma_atr": {"ma10_atr": -1.292, "ma20_atr": -1.108, "ma50_atr": -0.14},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0092},
+      "atr": 8747.275806,
+      "atr_pct": 0.0666,
+      "adx": 14.54,
+      "range_position": 0.409,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0662,
+        "upper_wick_pct": 0.04,
+        "lower_wick_pct": 0.09,
+        "vol_rank_30d": 0.533,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.667,
+        "price_range_5bar_pct": 0.1591,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 4,
+        "body_pct": 0.0563,
+        "vol_rank": 0.867,
+        "close": 149200.0,
+        "max_retrace_pct": 0.1253,
+        "current_retrace_pct": 0.1193,
+        "holding": false
+      },
+      "ret_30d": 0.0868,
+      "ret_90d": 0.0996,
+      "from_period_high_pct": -0.1904,
+      "vol_avg_recent_vs_prior": 0.925
+    },
+
+    "observations": {
+      "key_levels": {"support": 125000, "resistance": 150000},
+      "pattern": "ma_pullback_test",
+      "recent_action": "149,200원 고점 후 MA50 아래로 풀백 진행 중. 정배열 구조는 유지되나 MA50 지지 테스트 중이며 ADX 14로 추세력 약화."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1D 정배열 유지 중이나 MA50 아래로 첫 음봉(A4). 1W/1M은 아직 하락 추세에서 상승 시도 초입(B4). TF간 사이클 위치 다소 불일치. ADX 전 TF 낮아 추세력 부재. MA50 지지 확인 후 재진입 검토.",
+
+  "risk_flags": [],
+
+  "charts": {
+    "1m": "charts/011780/20260521/011780_1m.png",
+    "1w": "charts/011780/20260521/011780_1w.png",
+    "1d": "charts/011780/20260521/011780_1d.png"
+  }
+}

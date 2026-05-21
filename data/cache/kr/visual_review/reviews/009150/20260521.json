@@ -1,0 +1,207 @@
+{
+  "symbol": "009150",
+  "asset": "kr",
+  "reviewed_at": "2026-05-21T09:25:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "A2",
+    "micro_action": "acceleration",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 1061000.0,
+      "bars": 148,
+      "date_range": "2014-02-28 ~ 2026-05-31",
+      "ma10": 413300.0,
+      "ma20": 270235.0,
+      "ma50": 193830.0,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 1.5671, "ma20_pct": 2.9262, "ma50_pct": 4.4739},
+      "dist_from_ma_atr": {"ma10_atr": 7.031, "ma20_atr": 8.584, "ma50_atr": 9.414},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 1.5671},
+      "atr": 92118.984315,
+      "atr_pct": 0.0868,
+      "adx": 41.05,
+      "range_position": 0.954,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.1904,
+        "upper_wick_pct": 0.179,
+        "lower_wick_pct": 0.016,
+        "vol_rank_30d": 0.767,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.818,
+        "price_range_5bar_pct": 0.804,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 0,
+        "body_pct": 0.1904,
+        "vol_rank": 0.8,
+        "close": 1061000.0,
+        "max_retrace_pct": 0.0,
+        "current_retrace_pct": 0.0,
+        "holding": true
+      },
+      "ret_30d": 6.2821,
+      "ret_90d": 7.805,
+      "from_period_high_pct": -0.0407,
+      "vol_avg_recent_vs_prior": 0.93
+    },
+
+    "observations": {
+      "key_levels": {"support": 413000, "resistance": 1105000},
+      "pattern": "parabolic_acceleration",
+      "recent_action": "월봉 기준 전례 없는 수직 상승. MA10 대비 +157% 이격으로 배치 KOSPI 종목 중 가장 극단적 가속 구간."
+    }
+  },
+
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 1061000.0,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 727050.0,
+      "ma20": 534150.0,
+      "ma50": 329876.0,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.4593, "ma20_pct": 0.9863, "ma50_pct": 2.2164},
+      "dist_from_ma_atr": {"ma10_atr": 3.881, "ma20_atr": 6.123, "ma50_atr": 8.498},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.4593},
+      "atr": 86037.975601,
+      "atr_pct": 0.0811,
+      "adx": 64.64,
+      "range_position": 0.95,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0283,
+        "upper_wick_pct": 0.247,
+        "lower_wick_pct": 0.588,
+        "vol_rank_30d": 0.3,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.214,
+        "price_range_5bar_pct": 0.3959,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.1154,
+        "vol_rank": 1.0,
+        "close": 1031000.0,
+        "max_retrace_pct": 0.1038,
+        "current_retrace_pct": -0.0291,
+        "holding": false
+      },
+      "ret_30d": 3.6433,
+      "ret_90d": 6.3072,
+      "from_period_high_pct": -0.0407,
+      "vol_avg_recent_vs_prior": 1.782
+    },
+
+    "observations": {
+      "key_levels": {"support": 727000, "resistance": 1105000},
+      "pattern": "stair_step_up",
+      "recent_action": "주봉 ADX 64.6 강세 추세. 최근 2주 조정 후 하락꼬리 도지로 지지 확인 중. 신고가 갱신 임박."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 1061000.0,
+      "bars": 200,
+      "date_range": "2025-07-24 ~ 2026-05-20",
+      "ma10": 991200.0,
+      "ma20": 909000.0,
+      "ma50": 653950.0,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0704, "ma20_pct": 0.1672, "ma50_pct": 0.6224},
+      "dist_from_ma_atr": {"ma10_atr": 0.934, "ma20_atr": 2.033, "ma50_atr": 5.445},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0704},
+      "atr": 74751.594514,
+      "atr_pct": 0.0705,
+      "adx": 53.63,
+      "range_position": 0.94,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 0.0877,
+        "upper_wick_pct": 0.247,
+        "lower_wick_pct": 0.242,
+        "vol_rank_30d": 0.933,
+        "vol_anomaly": "breakout",
+        "accumulation_candle_score": 0.3,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.183,
+        "price_range_5bar_pct": 0.1715,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 0,
+        "body_pct": 0.0877,
+        "vol_rank": 0.967,
+        "close": 1061000.0,
+        "max_retrace_pct": 0.0,
+        "current_retrace_pct": 0.0,
+        "holding": true
+      },
+      "ret_30d": 1.2965,
+      "ret_90d": 2.959,
+      "from_period_high_pct": -0.0407,
+      "vol_avg_recent_vs_prior": 1.047
+    },
+
+    "observations": {
+      "key_levels": {"support": 991000, "resistance": 1105000},
+      "pattern": "breakout_continuation",
+      "recent_action": "일봉 고거래량 양봉(breakout) + MA10(99.1만) 위 riding. 피크 대비 -4.1%로 거의 신고가 수준."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "전 TF A2 정합 강세, 일봉 거래량 breakout 신호. 그러나 월봉 MA10 이격 +156%로 배치 중 가장 극단적 과열. ADX 64.6(주봉). 신규 진입보다 보유 종목 트레일링 구간.",
+
+  "risk_flags": ["parabolic"],
+
+  "charts": {
+    "1m": "charts/009150/20260521/009150_1m.png",
+    "1w": "charts/009150/20260521/009150_1w.png",
+    "1d": "charts/009150/20260521/009150_1d.png"
+  }
+}

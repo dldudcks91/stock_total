@@ -1,0 +1,207 @@
+{
+  "symbol": "066570",
+  "asset": "kr",
+  "reviewed_at": "2026-05-21T09:30:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "A1",
+    "micro_action": "riding",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 181000.0,
+      "bars": 148,
+      "date_range": "2014-02-28 ~ 2026-05-31",
+      "ma10": 108690.0,
+      "ma20": 94180.0,
+      "ma50": 98606.0,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.6653, "ma20_pct": 0.9219, "ma50_pct": 0.8356},
+      "dist_from_ma_atr": {"ma10_atr": 2.614, "ma20_atr": 3.138, "ma50_atr": 2.978},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.6653},
+      "atr": 27664.966891,
+      "atr_pct": 0.1528,
+      "adx": 27.49,
+      "range_position": 0.564,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.1923,
+        "upper_wick_pct": 0.677,
+        "lower_wick_pct": 0.047,
+        "vol_rank_30d": 0.933,
+        "vol_anomaly": "breakout",
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.3
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 2.628,
+        "price_range_5bar_pct": 0.9939,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.2143,
+        "vol_rank": 0.933,
+        "close": 140900.0,
+        "max_retrace_pct": 0.0043,
+        "current_retrace_pct": -0.2846,
+        "holding": true
+      },
+      "ret_30d": 0.7624,
+      "ret_90d": 1.4966,
+      "from_period_high_pct": -0.3208,
+      "vol_avg_recent_vs_prior": 0.904
+    },
+
+    "observations": {
+      "key_levels": {"support": 140000, "resistance": 270000},
+      "pattern": "impulse_breakout",
+      "recent_action": "월봉에서 2021년 고점 270,000 대비 장기 조정 후 최근 급등 시작. 최근 2개월 거래량 폭증(2.6배), breakout 볼륨 신호."
+    }
+  },
+
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 181000.0,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 139490.0,
+      "ma20": 125730.0,
+      "ma50": 99494.0,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.2976, "ma20_pct": 0.4396, "ma50_pct": 0.8192},
+      "dist_from_ma_atr": {"ma10_atr": 1.904, "ma20_atr": 2.535, "ma50_atr": 3.739},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.2976},
+      "atr": 21800.614545,
+      "atr_pct": 0.1204,
+      "adx": 43.11,
+      "range_position": 0.533,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.1575,
+        "upper_wick_pct": 0.116,
+        "lower_wick_pct": 0.147,
+        "vol_rank_30d": 0.667,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 2.116,
+        "price_range_5bar_pct": 0.7801,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.2562,
+        "vol_rank": 1.0,
+        "close": 217000.0,
+        "max_retrace_pct": 0.1922,
+        "current_retrace_pct": 0.1659,
+        "holding": false
+      },
+      "ret_30d": 1.0337,
+      "ret_90d": 0.7815,
+      "from_period_high_pct": -0.3208,
+      "vol_avg_recent_vs_prior": 2.613
+    },
+
+    "observations": {
+      "key_levels": {"support": 140000, "resistance": 275000},
+      "pattern": "explosive_breakout",
+      "recent_action": "주봉 완전 정배열, 거래량 2.6배 폭증. 지난주 217,000 강양봉 이후 이번 주 조정(-17%). 급등 후 풀백 단계."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 181000.0,
+      "bars": 200,
+      "date_range": "2025-07-24 ~ 2026-05-20",
+      "ma10": 189850.0,
+      "ma20": 163005.0,
+      "ma50": 134236.0,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0466, "ma20_pct": 0.1104, "ma50_pct": 0.3484},
+      "dist_from_ma_atr": {"ma10_atr": -0.503, "ma20_atr": 1.022, "ma50_atr": 2.656},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0466},
+      "atr": 17606.105329,
+      "atr_pct": 0.0973,
+      "adx": 48.87,
+      "range_position": 0.475,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.047,
+        "upper_wick_pct": 0.041,
+        "lower_wick_pct": 0.385,
+        "vol_rank_30d": 0.733,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 2.043,
+        "price_range_5bar_pct": 0.5039,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 4,
+        "body_pct": 0.0691,
+        "vol_rank": 0.9,
+        "close": 217000.0,
+        "max_retrace_pct": 0.1922,
+        "current_retrace_pct": 0.1659,
+        "holding": false
+      },
+      "ret_30d": 0.6545,
+      "ret_90d": 0.9255,
+      "from_period_high_pct": -0.3208,
+      "vol_avg_recent_vs_prior": 1.647
+    },
+
+    "observations": {
+      "key_levels": {"support": 163000, "resistance": 220000},
+      "pattern": "impulse_pullback",
+      "recent_action": "일봉 완전 정배열, MA10(189,850) 소폭 하향 이탈(-4.7%). 4일 전 고점 217,000 강양봉 이후 -17% 조정. 아래꼬리 음봉으로 지지 시도."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "전 TF A2 정합, 1W 폭발적 거래량 급등 확인이나 parabolic+drawdown_deep 복합 — MA10 지지 반등 확인 후 pass 검토",
+
+  "risk_flags": ["parabolic", "drawdown_deep"],
+
+  "charts": {
+    "1m": "charts/066570/20260521/066570_1m.png",
+    "1w": "charts/066570/20260521/066570_1w.png",
+    "1d": "charts/066570/20260521/066570_1d.png"
+  }
+}

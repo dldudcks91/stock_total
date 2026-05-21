@@ -1,0 +1,201 @@
+{
+  "symbol": "028050",
+  "asset": "kr",
+  "reviewed_at": "2026-05-21T09:30:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 47400.0,
+      "bars": 148,
+      "date_range": "2014-02-28 ~ 2026-05-31",
+      "ma10": 33485.0,
+      "ma20": 26548.5,
+      "ma50": 26201.4,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.4156, "ma20_pct": 0.7854, "ma50_pct": 0.8091},
+      "dist_from_ma_atr": {"ma10_atr": 1.908, "ma20_atr": 2.859, "ma50_atr": 2.907},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.4156},
+      "atr": 7292.620541,
+      "atr_pct": 0.1539,
+      "adx": 34.59,
+      "range_position": 0.569,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.1371,
+        "upper_wick_pct": 0.626,
+        "lower_wick_pct": 0.07,
+        "vol_rank_30d": 0.867,
+        "vol_anomaly": "breakout",
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.3
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 2.33,
+        "price_range_5bar_pct": 0.9314,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.2976,
+        "vol_rank": 1.0,
+        "close": 53100.0,
+        "max_retrace_pct": 0.1356,
+        "current_retrace_pct": 0.1073,
+        "holding": false
+      },
+      "ret_30d": 0.8772,
+      "ret_90d": 1.437,
+      "from_period_high_pct": -0.2957,
+      "vol_avg_recent_vs_prior": 0.786
+    },
+    "observations": {
+      "key_levels": {"support": 25000, "resistance": 70000},
+      "pattern": "breakout_spike",
+      "recent_action": "월봉 기준 2025년 말 고거래량 장대양봉 breakout 후 상단 조정. 최근 봉은 위꼬리 63%의 고거래량 도지로 고점 저항 확인 중."
+    }
+  },
+
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "high",
+    "context": {
+      "last_close": 47400.0,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 47850.0,
+      "ma20": 39592.5,
+      "ma50": 31502.0,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0094, "ma20_pct": 0.1972, "ma50_pct": 0.5047},
+      "dist_from_ma_atr": {"ma10_atr": -0.076, "ma20_atr": 1.324, "ma50_atr": 2.697},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0094},
+      "atr": 5895.217027,
+      "atr_pct": 0.1244,
+      "adx": 49.91,
+      "range_position": 0.549,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0338,
+        "upper_wick_pct": 0.38,
+        "lower_wick_pct": 0.3,
+        "vol_rank_30d": 0.333,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.985,
+        "price_range_5bar_pct": 0.4515,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 4,
+        "body_pct": 0.081,
+        "vol_rank": 0.933,
+        "close": 54300.0,
+        "max_retrace_pct": 0.1547,
+        "current_retrace_pct": 0.1271,
+        "holding": false
+      },
+      "ret_30d": 0.669,
+      "ret_90d": 0.896,
+      "from_period_high_pct": -0.2957,
+      "vol_avg_recent_vs_prior": 2.203
+    },
+    "observations": {
+      "key_levels": {"support": 40000, "resistance": 65000},
+      "pattern": "ma10_test_stair",
+      "recent_action": "주봉 기준 MA10(47,850)에 정확히 접촉하며 도지 출현. ADX 50으로 추세 매우 강함. 4봉 전 강양봉 이후 MA10으로 수렴 완료 단계."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A4",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 47400.0,
+      "bars": 200,
+      "date_range": "2025-07-24 ~ 2026-05-20",
+      "ma10": 54725.0,
+      "ma20": 53917.5,
+      "ma50": 45433.0,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.1339, "ma20_pct": -0.1209, "ma50_pct": 0.0433},
+      "dist_from_ma_atr": {"ma10_atr": -1.829, "ma20_atr": -1.627, "ma50_atr": 0.491},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.0433},
+      "atr": 4005.063696,
+      "atr_pct": 0.0845,
+      "adx": 41.63,
+      "range_position": 0.457,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0042,
+        "upper_wick_pct": 0.306,
+        "lower_wick_pct": 0.612,
+        "vol_rank_30d": 0.133,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.352,
+        "price_range_5bar_pct": 0.2046,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 9,
+        "body_pct": 0.0683,
+        "vol_rank": 1.0,
+        "close": 64400.0,
+        "max_retrace_pct": 0.2873,
+        "current_retrace_pct": 0.264,
+        "holding": false
+      },
+      "ret_30d": 0.0383,
+      "ret_90d": 0.9506,
+      "from_period_high_pct": -0.2957,
+      "vol_avg_recent_vs_prior": 1.593
+    },
+    "observations": {
+      "key_levels": {"support": 45000, "resistance": 56000},
+      "pattern": "ma50_support_test",
+      "recent_action": "일봉 기준 64,400원 고점 이후 MA10/MA20 하방 이탈. 현재 MA50(45,433) 바로 위에서 저거래량 도지로 지지선 확인 중. MA50 이탈 여부가 핵심."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "월봉·주봉 A2 강세이나 일봉 A4 하락 확인. 주봉 MA10 접촉 구간(핵심 지지)에서 반등 확인 시 pass 전환 가능. 일봉 MA50 이탈 여부 모니터링 필요.",
+
+  "risk_flags": [],
+
+  "charts": {
+    "1m": "charts/028050/20260521/028050_1m.png",
+    "1w": "charts/028050/20260521/028050_1w.png",
+    "1d": "charts/028050/20260521/028050_1d.png"
+  }
+}
