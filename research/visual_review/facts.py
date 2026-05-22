@@ -192,18 +192,22 @@ def _range_position(df_full: pd.DataFrame, tf_label: str) -> float:
 
 # ── 단일봉 패턴 ────────────────────────────────────────────────────────
 
-def _accumulation_candle_score(vol_rank: float, close_in_bar: float, lower_wick_pct: float,
-                                range_position: float, from_high: float) -> float:
-    """매집봉 단일봉 점수. vol_rank≥0.85 필수, 나머지 패턴/위치 조합."""
-    if vol_rank < 0.85:
-        return 0.0
-    pattern = sum((close_in_bar >= 0.5, lower_wick_pct >= 0.3))   # 0~2
-    bonus = sum((range_position < 0.4, from_high < -0.10))         # 0~2
-    if pattern == 2 and bonus == 2:
+def _accumulation_candle_score(vol_ratio: float, range_pct: float, body_pct_in_range: float) -> float:
+    """매집봉 단일봉 점수.
+
+    정의: 평소 거래량의 몇 배 + 봉 자체가 크고 + 시가≈종가 (실체 작음).
+    위·아래꼬리 방향은 무관 (일봉 기준 — 주봉이면 위꼬리지만 일봉은 양쪽 다 가능).
+
+    Args:
+        vol_ratio: bar.volume / mean(prior 30 bars' volume)
+        range_pct: (high - low) / open
+        body_pct_in_range: abs(close - open) / max(high - low, eps)
+    """
+    if vol_ratio >= 5.0 and range_pct >= 0.10 and body_pct_in_range <= 0.30:
         return 1.0
-    if pattern == 2 and bonus >= 1:
+    if vol_ratio >= 3.0 and range_pct >= 0.10 and body_pct_in_range <= 0.30:
         return 0.6
-    if pattern >= 1:
+    if vol_ratio >= 3.0 and range_pct >= 0.07 and body_pct_in_range <= 0.40:
         return 0.3
     return 0.0
 
@@ -224,8 +228,63 @@ def _distribution_candle_score(vol_rank: float, close_in_bar: float, upper_wick_
     return 0.0
 
 
+def _accumulation_lookback_score(df_full: pd.DataFrame, lookback_bars: int = 60) -> dict:
+    """1d 전용 — 최근 lookback_bars(기본 60봉) 중 최대 매집봉 점수.
+
+    각 후보 봉을 _accumulation_candle_score 로 채점하여 최댓값 반환.
+    동점일 때는 최신 봉 우선. bars_ago / vol_ratio 도 함께 반환.
+    """
+    n = len(df_full)
+    if n < 32:
+        return {"score": 0.0, "bars_ago": None, "vol_ratio": None}
+
+    start = max(31, n - lookback_bars)
+
+    best_score = 0.0
+    best_bars_ago: Optional[int] = None
+    best_vol_ratio: Optional[float] = None
+
+    for i in range(start, n):
+        bar = df_full.iloc[i]
+        v = bar["Volume"]
+        o, h, l, c = bar["Open"], bar["High"], bar["Low"], bar["Close"]
+        if v is None or pd.isna(v) or o is None or o <= 0:
+            continue
+
+        prior_vols = df_full["Volume"].iloc[max(0, i - 30):i].dropna()
+        if len(prior_vols) < 5:
+            continue
+        mean_vol = float(prior_vols.mean())
+        if mean_vol <= 0:
+            continue
+        vol_ratio = float(v) / mean_vol
+
+        bar_range = float(h - l)
+        if bar_range <= 0:
+            continue
+        range_pct = bar_range / float(o)
+        body_pct_in_range = abs(float(c) - float(o)) / bar_range
+
+        score = _accumulation_candle_score(vol_ratio, range_pct, body_pct_in_range)
+        # 동점이면 최신 봉을 채택 (>= 로 갱신)
+        if score >= best_score and score > 0:
+            best_score = score
+            best_bars_ago = n - 1 - i
+            best_vol_ratio = round(vol_ratio, 2)
+
+    return {
+        "score": best_score,
+        "bars_ago": best_bars_ago,
+        "vol_ratio": best_vol_ratio,
+    }
+
+
 def _last_candle(df: pd.DataFrame, df_full: pd.DataFrame, tf_label: str, range_pos: float) -> dict:
-    """마지막 봉 정보. 매집·분배 점수 자동 포함."""
+    """마지막 봉 정보. 매집·분배 점수 자동 포함.
+
+    매집봉 점수는 1d 한정으로 최근 60봉 lookback max 로 산출 (단일 1봉이 아님).
+    그 외 TF 는 기존 1봉 로직 유지.
+    """
     last = df.iloc[-1]
     o, h, l, c, v = last["Open"], last["High"], last["Low"], last["Close"], last["Volume"]
     rng = max(h - l, 1e-9)
@@ -261,7 +320,15 @@ def _last_candle(df: pd.DataFrame, df_full: pd.DataFrame, tf_label: str, range_p
     period_high = float(df["High"].max())
     from_high = float(c / period_high - 1) if period_high > 0 else 0.0
 
-    acc = _accumulation_candle_score(rank, close_in_bar, lower_wick_pct, range_pos, from_high)
+    if tf_label == "1d":
+        acc_info = _accumulation_lookback_score(df_full, lookback_bars=60)
+        acc = acc_info["score"]
+        acc_bars_ago = acc_info["bars_ago"]
+    else:
+        # 매집봉은 1d 전용 — 다른 TF 는 0 (점수에 영향 없음)
+        acc = 0.0
+        acc_bars_ago = None
+
     dist = _distribution_candle_score(rank, close_in_bar, upper_wick_pct, range_pos, from_high)
 
     return {
@@ -272,6 +339,7 @@ def _last_candle(df: pd.DataFrame, df_full: pd.DataFrame, tf_label: str, range_p
         "vol_rank_30d": round(rank, 3),
         "vol_anomaly": vol_anomaly,
         "accumulation_candle_score": acc,
+        "accumulation_bars_ago": acc_bars_ago,
         "distribution_candle_score": dist,
     }
 
