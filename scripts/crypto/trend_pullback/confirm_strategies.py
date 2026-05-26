@@ -35,8 +35,8 @@ Outputs (under run_dir/output/):
     compare.csv       — A/B/C/D/E head-to-head (best combo each)
 
 Run:
-    .venv/Scripts/python.exe -m scripts.trend_pullback.confirm_strategies \\
-        --config scripts/trend_pullback/runs/<ts>_<name>/config.json
+    .venv/Scripts/python.exe -m scripts.crypto.trend_pullback.confirm_strategies \\
+        --config scripts/crypto/trend_pullback/runs/<ts>_<name>/config.json
 """
 from __future__ import annotations
 
@@ -50,7 +50,7 @@ import pandas as pd
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
 CACHE_1H = PROJECT_ROOT / "data" / "cache" / "crypto" / "1h"
 
 DEFAULTS = {

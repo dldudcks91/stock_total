@@ -7,8 +7,8 @@
 4-group (tier_final) 별 분해.
 
 사용:
-    .venv/Scripts/python.exe -m scripts.ma20w_short.baseline \
-        --config scripts/ma20w_short/runs/20260518-2140_crypto_baseline/config.json
+    .venv/Scripts/python.exe -m scripts.crypto.ma20w_short.baseline \
+        --config scripts/crypto/ma20w_short/runs/20260518-2140_crypto_baseline/config.json
 """
 from __future__ import annotations
 
@@ -24,12 +24,12 @@ try:
 except Exception:
     pass
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from scripts._common.run_helper import parse_args, update_config, resolve_config_path  # noqa: E402
-from scripts.ma20w_short._common import (  # noqa: E402
+from scripts.crypto.ma20w_short._common import (  # noqa: E402
     load_weekly, add_ma_slope, extract_trades,
     load_classification, summarize_trades,
 )

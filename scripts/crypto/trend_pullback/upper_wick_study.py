@@ -9,7 +9,7 @@ For each upper-wick bin, reports n, MEAN and MEDIAN of fwd_*_imp at each
 horizon (1h, 6h, 24h, 72h, 168h). All from impulse close (= purchase moment).
 
 Run:
-  .venv/Scripts/python.exe -m scripts.trend_pullback.upper_wick_study
+  .venv/Scripts/python.exe -m scripts.crypto.trend_pullback.upper_wick_study
 """
 from __future__ import annotations
 
@@ -22,7 +22,7 @@ import pandas as pd
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
 CACHE_DIR = PROJECT_ROOT / "data" / "cache" / "crypto" / "1h"
 
 HORIZONS = [1, 6, 24, 72, 168]
@@ -72,7 +72,7 @@ def main():
     events_path = out_dir / "events.parquet"
     if not events_path.exists():
         print(f"events parquet not found: {events_path}")
-        print("run scripts.trend_pullback.angle_study with the same --config first")
+        print("run scripts.crypto.trend_pullback.angle_study with the same --config first")
         return 1
     events = pd.read_parquet(events_path)
     print(f"loaded {len(events)} events")

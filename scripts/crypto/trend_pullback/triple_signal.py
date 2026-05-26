@@ -1,7 +1,7 @@
 """facts + trend_pullback + reviews 세 시그널 합산 추천."""
 from __future__ import annotations
 import sys, warnings, time
-sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parents[2]))
+sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parents[3]))
 sys.stdout.reconfigure(encoding='utf-8')
 warnings.filterwarnings('ignore')
 

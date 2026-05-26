@@ -1,6 +1,6 @@
 # ma20w_short 연구 계획
 
-> 위치: `scripts/ma20w_short/PLAN.md` (group 루트 · 모든 run 공유)
+> 위치: `scripts/crypto/ma20w_short/PLAN.md` (group 루트 · 모든 run 공유)
 > 작성: 2026-05-18 KST · 마스터 플랜 (모든 후속 run 의 상위 계약)
 
 ## 0. 큰 질문
@@ -92,7 +92,7 @@ Layer 1 의 top-K (5개) 룰에 청산만 그리드.
 ## 3. 폴더 매핑
 
 ```
-scripts/ma20w_short/
+scripts/crypto/ma20w_short/
 ├── _common.py       # MA20w / rebound / RSI / regime 헬퍼 (모든 run 공유)
 ├── baseline.py      # Layer 0
 ├── entry_grid.py    # Layer 1
@@ -108,8 +108,8 @@ scripts/ma20w_short/
 
 ## 4. 다음 즉시 액션
 
-1. `scripts/ma20w_short/_common.py` — MA20w / 주봉 리샘플 / RSI / Lower-High 헬퍼
-2. `scripts/ma20w_short/baseline.py` — Layer 0 분석 모듈 (config.json 받아 output/ 에 events·summary 저장)
+1. `scripts/crypto/ma20w_short/_common.py` — MA20w / 주봉 리샘플 / RSI / Lower-High 헬퍼
+2. `scripts/crypto/ma20w_short/baseline.py` — Layer 0 분석 모듈 (config.json 받아 output/ 에 events·summary 저장)
 3. 결과 보고 Layer 1 진입. 만약 baseline 의 평균 기대값이 0 이하 → 가설 폐기, 룰 자체를 재정의.
 
 ## 5. 폐기 조건 (가설을 버려야 할 때)

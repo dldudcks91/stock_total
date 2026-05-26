@@ -30,26 +30,26 @@
 # 2. config.json 의 params 채우기 (impulse_min, vol_mult_min, touch_pad 등)
 
 # 3. 이벤트 수집 (이게 다른 분석의 입력)
-.venv/Scripts/python.exe -m scripts.trend_pullback.angle_study \
-    --config scripts/trend_pullback/runs/{ts}_{name}/config.json
+.venv/Scripts/python.exe -m scripts.crypto.trend_pullback.angle_study \
+    --config scripts/crypto/trend_pullback/runs/{ts}_{name}/config.json
 
 # 4. cross-tab 분석들
-.venv/Scripts/python.exe -m scripts.trend_pullback.full_grid \
-    --config scripts/trend_pullback/runs/{ts}_{name}/config.json
-.venv/Scripts/python.exe -m scripts.trend_pullback.upper_wick_study \
-    --config scripts/trend_pullback/runs/{ts}_{name}/config.json
+.venv/Scripts/python.exe -m scripts.crypto.trend_pullback.full_grid \
+    --config scripts/crypto/trend_pullback/runs/{ts}_{name}/config.json
+.venv/Scripts/python.exe -m scripts.crypto.trend_pullback.upper_wick_study \
+    --config scripts/crypto/trend_pullback/runs/{ts}_{name}/config.json
 # ... 등
 
 # 5. 시각화 (특정 cell)
-.venv/Scripts/python.exe -m scripts.trend_pullback.visualize \
-    --out-dir scripts/trend_pullback/runs/{ts}_{name}/ \
+.venv/Scripts/python.exe -m scripts.crypto.trend_pullback.visualize \
+    --out-dir scripts/crypto/trend_pullback/runs/{ts}_{name}/ \
     --bars-lo 1 --bars-hi 3 \
     --angle-lo -0.0773 --angle-hi -0.0345 \
     --wick-lo -1.0 --wick-hi 0.01 \
     --label "W_low_bars1-3_Q4" --title "W_low × bars 1-3 × Q4" --all
 
 # 6. 마감
-/study finalize scripts/trend_pullback/runs/{ts}_{name}/
+/study finalize scripts/crypto/trend_pullback/runs/{ts}_{name}/
 ```
 
 ## runs/

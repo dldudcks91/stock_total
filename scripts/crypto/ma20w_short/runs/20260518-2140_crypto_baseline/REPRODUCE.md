@@ -9,8 +9,8 @@
 ## 2. 같은 결과 받기
 ```bash
 cd <project_root>
-.venv/Scripts/python.exe -m scripts.ma20w_short.baseline \
-    --config scripts/ma20w_short/runs/20260518-2140_crypto_baseline/config.json
+.venv/Scripts/python.exe -m scripts.crypto.ma20w_short.baseline \
+    --config scripts/crypto/ma20w_short/runs/20260518-2140_crypto_baseline/config.json
 ```
 
 (스모크 5심볼만: 위 명령에 `--limit-symbols 5` 추가)

@@ -2,7 +2,7 @@
 
 - 생성: 2026-05-18 14:27 KST · 재실행: 2026-05-18 14:55 KST (sweep 10 combos)
 - Group: trend_pullback
-- Module: `scripts.trend_pullback.retest_confirm_grid`
+- Module: `scripts.crypto.trend_pullback.retest_confirm_grid`
 - Git: 0066b6f (main, **dirty**)
 
 ## 목적

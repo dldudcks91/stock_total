@@ -9,8 +9,8 @@
 
 ```bash
 cd <project_root>
-.venv/Scripts/python.exe -m scripts.trend_pullback.retest_confirm_grid \
-    --config scripts/trend_pullback/runs/20260518-1427_retest_confirm_grid/config.json
+.venv/Scripts/python.exe -m scripts.crypto.trend_pullback.retest_confirm_grid \
+    --config scripts/crypto/trend_pullback/runs/20260518-1427_retest_confirm_grid/config.json
 ```
 
 ## 3. 검증

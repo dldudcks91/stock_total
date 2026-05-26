@@ -6,7 +6,7 @@ Forward horizons: 1h, 4h, 8h, 24h, 72h (3d), 168h (7d).
 Entry: impulse bar close. Returns measured from there.
 
 Run:
-  .venv/Scripts/python.exe -m scripts.trend_pullback.size_table
+  .venv/Scripts/python.exe -m scripts.crypto.trend_pullback.size_table
 """
 from __future__ import annotations
 
@@ -21,7 +21,7 @@ import pandas as pd
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
 CACHE_DIR = PROJECT_ROOT / "data" / "cache" / "crypto" / "1h"
 
 HORIZONS = [1, 4, 8, 24, 72, 168]

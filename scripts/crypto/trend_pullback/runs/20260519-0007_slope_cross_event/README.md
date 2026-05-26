@@ -2,7 +2,7 @@
 
 - 생성: 2026-05-19 00:07 KST
 - Group: trend_pullback
-- Module: `scripts.trend_pullback.slope_cross_event`
+- Module: `scripts.crypto.trend_pullback.slope_cross_event`
 - Git: 0066b6f (main, **dirty**)
 
 ## 목적

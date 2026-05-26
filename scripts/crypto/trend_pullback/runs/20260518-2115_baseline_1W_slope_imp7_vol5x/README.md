@@ -2,7 +2,7 @@
 
 - 생성: 2026-05-18 21:15 KST
 - Group: trend_pullback
-- Module: `scripts.trend_pullback.angle_study`
+- Module: `scripts.crypto.trend_pullback.angle_study`
 - Git: d1ff82d (main, **dirty**)
 
 ## 목적

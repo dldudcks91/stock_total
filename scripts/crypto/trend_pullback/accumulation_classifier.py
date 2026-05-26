@@ -23,8 +23,8 @@ Forward returns are computed two ways:
 Univariate quintile sweep + winner/loser group means.
 
 Run:
-  .venv/Scripts/python.exe -m scripts.trend_pullback.accumulation_classifier \\
-      --config scripts/trend_pullback/runs/<ts>_<name>/config.json
+  .venv/Scripts/python.exe -m scripts.crypto.trend_pullback.accumulation_classifier \\
+      --config scripts/crypto/trend_pullback/runs/<ts>_<name>/config.json
 """
 from __future__ import annotations
 
@@ -39,7 +39,7 @@ import pandas as pd
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
 CACHE_1H = PROJECT_ROOT / "data" / "cache" / "crypto" / "1h"
 
 
@@ -238,7 +238,7 @@ def main():
         ap.add_argument("--post-confirm-bars", type=int, default=None)
 
     out_dir, params, args = parse_args(add_args, {
-        "input_events": "scripts/trend_pullback/runs/20260519-0300_strong_breakout/output/events_B.parquet",
+        "input_events": "scripts/crypto/trend_pullback/runs/20260519-0300_strong_breakout/output/events_B.parquet",
         "filter": "body_ret_min=0.03 AND vol_ratio_min=3.0 AND pullback_timeout_h=24",
         "n_quantiles": 5,
         "winner_threshold_pct": 0.05,

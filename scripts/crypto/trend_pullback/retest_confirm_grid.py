@@ -19,8 +19,8 @@ Outputs (under <run_dir>/output/):
   sweep_top_cells.csv           — combo × top-K 1D cells by win @ 168h (n>=100)
 
 Run:
-  .venv/Scripts/python.exe -m scripts.trend_pullback.retest_confirm_grid \\
-      --config scripts/trend_pullback/runs/<ts>_<name>/config.json
+  .venv/Scripts/python.exe -m scripts.crypto.trend_pullback.retest_confirm_grid \\
+      --config scripts/crypto/trend_pullback/runs/<ts>_<name>/config.json
 """
 from __future__ import annotations
 
@@ -35,7 +35,7 @@ import pandas as pd
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
 CACHE_DIR = PROJECT_ROOT / "data" / "cache" / "crypto" / "1h"
 
 DEFAULTS = {

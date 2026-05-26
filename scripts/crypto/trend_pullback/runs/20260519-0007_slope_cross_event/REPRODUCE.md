@@ -8,8 +8,8 @@
 ## 2. 같은 결과 받기
 
 ```bash
-.venv/Scripts/python.exe -m scripts.trend_pullback.slope_cross_event \
-    --config scripts/trend_pullback/runs/20260519-0007_slope_cross_event/config.json
+.venv/Scripts/python.exe -m scripts.crypto.trend_pullback.slope_cross_event \
+    --config scripts/crypto/trend_pullback/runs/20260519-0007_slope_cross_event/config.json
 ```
 
 ## 3. 검증

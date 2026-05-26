@@ -5,12 +5,12 @@ day-D 정의/룩어헤드 회피 규약 (facts_top10_hit_rate.py 와 동일):
   - day-D return = Close[D] / Close[D-1] - 1
   - facts/strategy 는 index < D 09:00 KST 데이터로 계산
 
-Facts 점수: scripts.misc.rec_now.entry_score (production multi-TF).
+Facts 점수: scripts.crypto._common.rec_now.entry_score (production multi-TF).
 """
 from __future__ import annotations
 import sys
 from pathlib import Path
-sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 sys.stdout.reconfigure(encoding="utf-8")
 
 import warnings
@@ -22,7 +22,7 @@ import pandas as pd
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from research.visual_review.facts import compute_facts_tf, _normalize, _resample, RESAMPLE_RULE
-from scripts.misc.rec_now import entry_score as entry_score_multi_tf
+from scripts.crypto._common.rec_now import entry_score as entry_score_multi_tf
 from backtest.strategies import trend_pullback
 from backtest.strategies import cascading_pullback as cascading
 

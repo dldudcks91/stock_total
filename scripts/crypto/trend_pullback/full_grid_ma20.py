@@ -8,7 +8,7 @@ bars:      1-3 / 4-6 / 7-10
 angle:     Q5 steepest .. Q1 flattest (per-bars-group quantile)
 
 Run:
-  .venv/Scripts/python.exe -m scripts.trend_pullback.full_grid
+  .venv/Scripts/python.exe -m scripts.crypto.trend_pullback.full_grid
 """
 from __future__ import annotations
 
@@ -21,7 +21,7 @@ import pandas as pd
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
 CACHE_DIR = PROJECT_ROOT / "data" / "cache" / "crypto" / "1h"
 
 HORIZONS = [1, 6, 24, 72, 168]

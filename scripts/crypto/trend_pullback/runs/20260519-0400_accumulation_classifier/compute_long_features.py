@@ -5,7 +5,7 @@ import numpy as np
 import pandas as pd
 from data.resample import load as load_resampled
 
-L3_OUT = 'scripts/trend_pullback/runs/20260519-0400_accumulation_classifier/output'
+L3_OUT = 'scripts/crypto/trend_pullback/runs/20260519-0400_accumulation_classifier/output'
 ev = pd.read_parquet(f'{L3_OUT}/events_with_features.parquet')
 ev = ev[ev['post_confirm_bars']==4].reset_index(drop=True)
 print(f'starting events: {len(ev)}')

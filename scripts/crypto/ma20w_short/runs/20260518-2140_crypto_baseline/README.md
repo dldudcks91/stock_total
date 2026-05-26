@@ -2,7 +2,7 @@
 
 - 생성: 2026-05-18 21:40 KST
 - Group: ma20w_short
-- Module: `scripts.ma20w_short.baseline`
+- Module: `scripts.crypto.ma20w_short.baseline`
 - Git: d1ff82d (main, **dirty** — 정확한 재현 보장 X. 커밋 후 재실행 권장)
 - Finalized: 2026-05-18 23:35 KST
 

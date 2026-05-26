@@ -11,8 +11,8 @@
 프로젝트 루트에서:
 
 ```bash
-.venv/Scripts/python.exe -m scripts.trend_pullback.angle_study \
-    --config scripts/trend_pullback/runs/20260518-2115_baseline_1W_slope_imp7_vol5x/config.json
+.venv/Scripts/python.exe -m scripts.crypto.trend_pullback.angle_study \
+    --config scripts/crypto/trend_pullback/runs/20260518-2115_baseline_1W_slope_imp7_vol5x/config.json
 ```
 
 `--config` 만 넘기면 모든 params 와 출력 위치 (`<RUN_DIR>/output/`) 가 자동 결정.

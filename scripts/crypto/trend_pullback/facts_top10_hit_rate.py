@@ -16,7 +16,7 @@ Facts at start of day D:
 from __future__ import annotations
 import sys
 from pathlib import Path
-sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 sys.stdout.reconfigure(encoding="utf-8")
 
 import warnings
@@ -28,7 +28,7 @@ import pandas as pd
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
 from research.visual_review.facts import compute_facts_tf, _normalize
-from scripts.misc.backtest_facts_vs_strat import entry_score_1d
+from scripts.crypto.trend_pullback.facts_comparison_backtest import entry_score_1d
 
 CACHE_1D = Path("data/cache/crypto/1d")
 WORKERS = 8

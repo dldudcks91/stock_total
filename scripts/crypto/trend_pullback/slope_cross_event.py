@@ -23,8 +23,8 @@ Output (under <run_dir>/output/):
     per_symbol_n.csv     — symbol × n events (sanity)
 
 Run:
-    .venv/Scripts/python.exe -m scripts.trend_pullback.slope_cross_event \\
-        --config scripts/trend_pullback/runs/<ts>_<name>/config.json
+    .venv/Scripts/python.exe -m scripts.crypto.trend_pullback.slope_cross_event \\
+        --config scripts/crypto/trend_pullback/runs/<ts>_<name>/config.json
 """
 from __future__ import annotations
 
@@ -39,7 +39,7 @@ import pandas as pd
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
 CACHE_1H = PROJECT_ROOT / "data" / "cache" / "crypto" / "1h"
 CACHE_1D = PROJECT_ROOT / "data" / "cache" / "crypto" / "1d"
 

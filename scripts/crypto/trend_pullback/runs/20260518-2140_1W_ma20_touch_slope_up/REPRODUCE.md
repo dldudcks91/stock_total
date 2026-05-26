@@ -11,8 +11,8 @@
 
 ```bash
 cd <project_root>
-.venv/Scripts/python.exe -m scripts.trend_pullback.ma20_touch_entry \
-    --config scripts/trend_pullback/runs/20260518-2140_1W_ma20_touch_slope_up/config.json
+.venv/Scripts/python.exe -m scripts.crypto.trend_pullback.ma20_touch_entry \
+    --config scripts/crypto/trend_pullback/runs/20260518-2140_1W_ma20_touch_slope_up/config.json
 ```
 
 ## 3. 검증

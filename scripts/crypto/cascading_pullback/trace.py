@@ -1,7 +1,7 @@
 """NIL/ONDO/FIDA 에 대해 최근 10일 cascading_pullback 상태 추적."""
 import sys
 from pathlib import Path
-sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
+sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 sys.stdout.reconfigure(encoding="utf-8")
 
 import pandas as pd

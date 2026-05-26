@@ -4,7 +4,7 @@ from datetime import datetime, timezone, timedelta
 
 KST = timezone(timedelta(hours=9))
 CUTOFF = int(datetime(2025,1,1,tzinfo=KST).timestamp()*1000)
-OUT = 'scripts/trend_pullback/runs/20260519-0500_confirm_strategies/output'
+OUT = 'scripts/crypto/trend_pullback/runs/20260519-0500_confirm_strategies/output'
 
 horizons = [4, 24, 72, 168, 336, 672]
 

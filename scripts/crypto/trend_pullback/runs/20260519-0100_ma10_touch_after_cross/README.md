@@ -2,7 +2,7 @@
 
 - 생성: 2026-05-19 01:00 KST
 - Group: trend_pullback
-- Module: `scripts.trend_pullback.ma10_touch_after_cross`
+- Module: `scripts.crypto.trend_pullback.ma10_touch_after_cross`
 - Git: 0066b6f (main, **dirty**)
 
 ## 목적

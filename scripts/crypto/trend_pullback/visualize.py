@@ -1,7 +1,7 @@
 """Visualize a bars × angle-quantile cell. Args select which cell.
 
 Run:
-  .venv/Scripts/python.exe -m scripts.trend_pullback.visualize \
+  .venv/Scripts/python.exe -m scripts.crypto.trend_pullback.visualize \
       --bars-lo 1 --bars-hi 3 --angle-lo -0.1214 --angle-hi -0.0773 \
       --label "bars1-3_q4" --title "bars 1-3 x Q4"
 """
@@ -19,7 +19,7 @@ import pandas as pd
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
 CACHE_DIR = PROJECT_ROOT / "data" / "cache" / "crypto" / "1h"
 
 # Plot window

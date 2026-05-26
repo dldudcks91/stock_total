@@ -1,6 +1,6 @@
 # trend_pullback 연구 계획
 
-> 위치: `scripts/trend_pullback/PLAN.md`
+> 위치: `scripts/crypto/trend_pullback/PLAN.md`
 > 작성: 2026-05-18 KST · 마스터 플랜 (모든 후속 run 의 상위 계약)
 
 ## 0. 큰 질문
@@ -162,7 +162,7 @@ L1 통과 cell 발견 시에만 진행. 후보:
 ## 5. 다음 즉시 액션
 
 1. `/study init trend_pullback retest_confirm_grid`
-2. `scripts/trend_pullback/retest_confirm_grid.py` 모듈 작성
+2. `scripts/crypto/trend_pullback/retest_confirm_grid.py` 모듈 작성
 3. 실행 → `output/` 결과
 4. `/study finalize`
 5. README "핵심 결과" 손으로 채움 → L2 진행 여부 판정

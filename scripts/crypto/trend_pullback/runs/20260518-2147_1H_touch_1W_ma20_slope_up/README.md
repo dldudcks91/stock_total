@@ -2,7 +2,7 @@
 
 - 생성: 2026-05-18 21:47 KST
 - Group: trend_pullback
-- Module: `scripts.trend_pullback.ma20_touch_1h_entry`
+- Module: `scripts.crypto.trend_pullback.ma20_touch_1h_entry`
 - Git: d1ff82d (main, **dirty**)
 
 ## 목적

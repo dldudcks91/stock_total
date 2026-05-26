@@ -2,7 +2,7 @@
 
 - 생성: 2026-05-19 02:00 KST
 - Group: trend_pullback
-- Module: `scripts.trend_pullback.breakout_mtf_stack`
+- Module: `scripts.crypto.trend_pullback.breakout_mtf_stack`
 - Git: 0066b6f (main, dirty)
 
 ## 목적

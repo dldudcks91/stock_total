@@ -8,8 +8,8 @@
 ## 2. 같은 결과 받기
 ```bash
 cd <project_root>
-.venv/Scripts/python.exe -m scripts.trend_pullback.ma20_touch_1h_entry \
-    --config scripts/trend_pullback/runs/20260518-2147_1H_touch_1W_ma20_slope_up/config.json
+.venv/Scripts/python.exe -m scripts.crypto.trend_pullback.ma20_touch_1h_entry \
+    --config scripts/crypto/trend_pullback/runs/20260518-2147_1H_touch_1W_ma20_slope_up/config.json
 ```
 
 ## 3. 검증

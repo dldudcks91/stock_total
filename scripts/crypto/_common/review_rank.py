@@ -1,7 +1,7 @@
 """리뷰 점수 기준 추천."""
 from __future__ import annotations
 import sys, warnings
-sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parents[2]))
+sys.path.insert(0, str(__import__('pathlib').Path(__file__).resolve().parents[3]))
 sys.stdout.reconfigure(encoding='utf-8')
 warnings.filterwarnings('ignore')
 import pandas as pd

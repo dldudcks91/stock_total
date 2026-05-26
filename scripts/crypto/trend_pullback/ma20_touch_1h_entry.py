@@ -20,8 +20,8 @@ Outputs (under <run_dir>/output/):
   btc_slice.csv
 
 Run:
-  .venv/Scripts/python.exe -m scripts.trend_pullback.ma20_touch_1h_entry \
-      --config scripts/trend_pullback/runs/<ts>_<name>/config.json
+  .venv/Scripts/python.exe -m scripts.crypto.trend_pullback.ma20_touch_1h_entry \
+      --config scripts/crypto/trend_pullback/runs/<ts>_<name>/config.json
 """
 from __future__ import annotations
 
@@ -36,7 +36,7 @@ import pandas as pd
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
 CACHE_DIR = PROJECT_ROOT / "data" / "cache" / "crypto" / "1h"
 
 DEFAULTS = {

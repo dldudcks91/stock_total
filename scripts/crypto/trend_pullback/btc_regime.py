@@ -9,7 +9,7 @@ Forward returns measured from impulse close (= fwd_*_imp columns already
 present in events parquet).
 
 Run:
-  .venv/Scripts/python.exe -m scripts.trend_pullback.btc_regime
+  .venv/Scripts/python.exe -m scripts.crypto.trend_pullback.btc_regime
 """
 from __future__ import annotations
 
@@ -22,7 +22,7 @@ import pandas as pd
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
 
 HORIZONS = [1, 6, 24, 72, 168]
 SIZE_BINS = [0.10, 0.12, 0.15, 0.20, np.inf]

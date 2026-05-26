@@ -28,8 +28,8 @@ Outputs:
     sweep_gate_strict.csv
 
 Run:
-    .venv/Scripts/python.exe -m scripts.trend_pullback.ma10_touch_after_cross \\
-        --config scripts/trend_pullback/runs/<ts>_<name>/config.json
+    .venv/Scripts/python.exe -m scripts.crypto.trend_pullback.ma10_touch_after_cross \\
+        --config scripts/crypto/trend_pullback/runs/<ts>_<name>/config.json
 """
 from __future__ import annotations
 
@@ -44,7 +44,7 @@ import pandas as pd
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
 
 DEFAULTS = {
     "ma_period_weekly": 20,

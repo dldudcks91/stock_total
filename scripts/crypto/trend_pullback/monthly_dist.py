@@ -1,7 +1,7 @@
 """Monthly distribution of impulses passing 1W MA20 slope>0 gate.
 
 Run:
-  .venv/Scripts/python.exe -m scripts.trend_pullback.monthly_dist
+  .venv/Scripts/python.exe -m scripts.crypto.trend_pullback.monthly_dist
 """
 from __future__ import annotations
 
@@ -14,7 +14,7 @@ import pandas as pd
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
-PROJECT_ROOT = Path(__file__).resolve().parents[2]
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
 
 
 def main():
