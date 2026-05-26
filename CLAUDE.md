@@ -62,11 +62,12 @@ dashboards/              # Streamlit 멀티페이지
     ├── 5_NASDAQ.py      # US 표
     └── 6_Mobile.py      # 모바일 보기
 
-scripts/                 # 단발/배치 스크립트 (자세히: scripts/README.md)
-├── quiet_bottom/        # quiet_bottom 전략 분석·검증·플롯 (서로 import)
-├── spring/              # spring 패턴 스캔 (실험)
-├── misc/                # 수집·마이그레이션·스모크·벤치 등
-├── out/                 # 결과물 (CSV·PNG·log, git tracked)
+scripts/                 # 자산별 분석·추천·백테스트 (자세히: scripts/README.md)
+├── _common/             # 자산 무관 유틸 (indicators / backtest_runner / facts_loader / run_helper)
+├── kr/                  # KOSPI: recommend_all + backtest_all + {trend_pullback, trend_chase, ...}/scoring|backtest|recommend
+├── crypto/              # Bitget: {trend_pullback, ma20w_short, cascading_pullback, _common}/...
+├── nasdaq/              # NASDAQ: 빈 strategy 폴더만 (향후)
+├── out/                 # 일회성 결과물 (CSV·PNG·log)
 └── README.md
 
 docs/                    # 영구 문서
@@ -198,21 +199,26 @@ Get-CimInstance Win32_Process -Filter "Name='python.exe'" | Select-Object Proces
 | `broker-consensus` | 한경 컨센서스 수집·요약 (KR) |
 | `fundamentals-deep` | DART 분기 실적 (KR) |
 
-## 분석 run 폴더 표준 (scripts/<group>/runs/)
+## 분석 run 폴더 표준 (scripts/<asset>/<strategy>/runs/)
 
-scripts/ 안의 자유 분석은 다음 폴더 규약을 따른다 (재현성 보장).
+scripts/ 는 최상위가 **자산** (kr / crypto / nasdaq), 그 아래가 **strategy** (trend_pullback / trend_chase / quiet_bottom / cascading_pullback / ma20w_short).
+strategy 폴더 안에서만 `runs/` 가 생성된다.
 
 ```
-scripts/<group>/                          # 큰 틀 (예: trend_pullback)
-├── *.py                                   # 재사용 가능한 분석 모듈
-├── README.md                              # 그룹 설명 (선택)
-└── runs/                                  # 각 분석 실행 결과 (git tracked)
-    └── {YYYYMMDD-HHMM}_{name}/            # KST 타임스탬프 + snake_case 이름
-        ├── README.md                      # 사람용: 목적·방법·핵심 결과
-        ├── REPRODUCE.md                   # 재현 명령 한 줄
-        ├── config.json                    # 기계용: params + git + data + outputs
-        ├── env.txt                        # python/pandas/git 버전
-        └── output/                        # 산출물 (parquet/csv/png)
+scripts/<asset>/<strategy>/              # 예: scripts/crypto/trend_pullback/
+├── scoring.py                            # 점수 함수 (df → Series, numeric)
+├── scoring_label.py                      # 선택: visual label + facts 점수
+├── backtest.py                           # _common.backtest_runner 호출
+├── recommend.py                          # 해당 strategy 단독 추천
+├── *.py                                  # 추가 분석 모듈
+├── PLAN.md / README.md                   # 그룹 설명 (선택)
+└── runs/                                 # 각 분석 실행 결과 (git tracked)
+    └── {YYYYMMDD-HHMM}_{name}/           # KST 타임스탬프 + snake_case 이름
+        ├── README.md                     # 사람용: 목적·방법·핵심 결과
+        ├── REPRODUCE.md                  # 재현 명령 한 줄
+        ├── config.json                   # 기계용: params + git + data + outputs
+        ├── env.txt                       # python/pandas/git 버전
+        └── output/                       # 산출물 (parquet/csv/png)
 ```
 
 ### 워크플로우

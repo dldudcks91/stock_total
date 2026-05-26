@@ -10,8 +10,8 @@ description: 분석 run 폴더를 생성·마감하는 단일 스킬. `init` 으
 ## 트리거 예시
 
 - `/study init trend_pullback 1W_slope_imp10`
-- `/study init trend_pullback W_mid_1to3_Q4 --module scripts.trend_pullback.full_grid`
-- `/study finalize scripts/trend_pullback/runs/20260518-1925_1W_slope_imp10/`
+- `/study init trend_pullback W_mid_1to3_Q4 --module scripts.crypto.trend_pullback.full_grid`
+- `/study finalize scripts/crypto/trend_pullback/runs/20260518-1925_1W_slope_imp10/`
 
 ## 사전 단계 — PLAN.md (모든 전략 / 그룹 필수)
 
@@ -74,7 +74,7 @@ description: 분석 run 폴더를 생성·마감하는 단일 스킬. `init` 으
 **입력**:
 - `group` (필수): 큰 틀 폴더 이름 (예: `trend_pullback`). `scripts/<group>/` 가 없으면 생성한다.
 - `name` (필수): run 식별자. `^[a-z0-9_]+$`, 길이 ≤ 50. 예: `1W_slope_imp10_volX`.
-- `module` (선택): 메인 분석 모듈 경로 (예: `scripts.trend_pullback.angle_study`). 생략하면 빈 문자열.
+- `module` (선택): 메인 분석 모듈 경로 (예: `scripts.crypto.trend_pullback.angle_study`). 생략하면 빈 문자열.
 - `description` (선택): 한 줄 설명. 생략하면 README "목적" 섹션의 자리 표시자를 그대로 두고, finalize 전에 직접 채우게 한다 (스킬 도중 별도 prompt 없음).
 
 **Claude 단계**:
@@ -196,7 +196,7 @@ description: 분석 run 폴더를 생성·마감하는 단일 스킬. `init` 으
 
 8. **출력**: 만들어진 폴더의 절대경로 + 다음 액션 안내:
    ```
-   scripts/trend_pullback/runs/20260518-1925_1W_slope_imp10/
+   scripts/crypto/trend_pullback/runs/20260518-1925_1W_slope_imp10/
 
    다음 단계:
    1) config.json 의 params / data 채우기
