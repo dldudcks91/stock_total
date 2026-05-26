@@ -1,0 +1,13 @@
+{
+  "symbol": "TAGUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B4", "micro_action": null, "volume_flag": "normal", "note": "11 bars, base then green impulse current month"},
+  "tf_1w": {"state": "B5", "micro_action": null, "volume_flag": "normal", "note": "long base, big breakout candle then small pullback retest"},
+  "tf_1d": {"state": "A3", "micro_action": "pullback_ma20", "volume_flag": "pump_dump_trace", "note": "impulse to 0.0022 with huge volume, faded back to MA10/20 cluster"},
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_reason": "1W B5 breakout retest constructive but 1D shows pump trace; needs clean MA20 hold",
+  "charts": {"1m": "charts/TAGUSDT/20260520/TAGUSDT_1m.png", "1w": "charts/TAGUSDT/20260520/TAGUSDT_1w.png", "1d": "charts/TAGUSDT/20260520/TAGUSDT_1d.png"},
+  "schema_version": 1
+}

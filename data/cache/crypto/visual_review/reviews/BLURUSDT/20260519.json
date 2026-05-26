@@ -1,0 +1,17 @@
+{
+  "symbol": "BLURUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "1M 장기 하락 좀비, MA10/20 우하향" },
+  "tf_1w": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "MA 역배열, 좀비 하락 지속" },
+  "tf_1d": { "state": "A5", "micro_action": null, "volume_flag": "normal", "note": "단기 반등 후 다시 MA10/20 음 기울기, 상승 실패" },
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "1M/1W B2 좀비, 1D 반등 실패",
+  "charts": {
+    "1m": "charts/BLURUSDT/20260519/BLURUSDT_1m.png",
+    "1w": "charts/BLURUSDT/20260519/BLURUSDT_1w.png",
+    "1d": "charts/BLURUSDT/20260519/BLURUSDT_1d.png"
+  },
+  "schema_version": 1
+}

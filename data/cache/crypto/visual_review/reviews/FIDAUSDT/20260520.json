@@ -1,0 +1,17 @@
+{
+  "symbol": "FIDAUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "월봉 장기 하락 0.3→0.02, 마지막 거래량 급증" },
+  "tf_1w": { "state": "B4", "micro_action": null, "volume_flag": "normal", "note": "주봉 마지막 거래량 폭증 + 양봉, MA20 돌파 미확정" },
+  "tf_1d": { "state": "A1", "micro_action": "breaking", "volume_flag": "normal", "note": "일봉 base 후 큰 양봉 + 거래량 폭증" },
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_reason": "큰TF(1M) B2, 1D 신호는 신선하나 1M 좀비라 보수적",
+  "charts": {
+    "1m": "charts/FIDAUSDT/20260520/FIDAUSDT_1m.png",
+    "1w": "charts/FIDAUSDT/20260520/FIDAUSDT_1w.png",
+    "1d": "charts/FIDAUSDT/20260520/FIDAUSDT_1d.png"
+  },
+  "schema_version": 1
+}

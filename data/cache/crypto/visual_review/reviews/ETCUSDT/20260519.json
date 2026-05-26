@@ -1,0 +1,17 @@
+{
+  "symbol": "ETCUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "1M MA10/20/50 역배열·우하향, 좀비 하락" },
+  "tf_1w": { "state": "B3", "micro_action": null, "volume_flag": "normal", "note": "MA10/20/50 평탄 수렴 base 시도, 가격 MA10 부근" },
+  "tf_1d": { "state": "B5", "micro_action": "pullback_ma10", "volume_flag": "normal", "note": "MA20 위 양봉 retest, MA20 양 기울기 시작, 정배열 회복 진행" },
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_reason": "1W=B3 base + 1D=B5 정배열 회복 -> 변환 진행 중, 한 단계 보수적 watch",
+  "charts": {
+    "1m": "charts/ETCUSDT/20260519/ETCUSDT_1m.png",
+    "1w": "charts/ETCUSDT/20260519/ETCUSDT_1w.png",
+    "1d": "charts/ETCUSDT/20260519/ETCUSDT_1d.png"
+  },
+  "schema_version": 1
+}

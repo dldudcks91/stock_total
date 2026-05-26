@@ -1,0 +1,13 @@
+{
+  "symbol": "MEMEUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state":"B2","micro_action":null,"volume_flag":"normal","note":"고점 후 장기 좀비 하락, 거의 0으로 수렴"},
+  "tf_1w": {"state":"B2","micro_action":null,"volume_flag":"dry","note":"장기 하락 zombie, MA 정배열 데드"},
+  "tf_1d": {"state":"B2","micro_action":null,"volume_flag":"dry","note":"지속 하락, 거래량 dry"},
+  "tf_consistency":"정합",
+  "verdict":"reject",
+  "verdict_reason":"volume_flag=dry + B2 좀비 - override reject",
+  "charts":{"1m":"charts/MEMEUSDT/20260520/MEMEUSDT_1m.png","1w":"charts/MEMEUSDT/20260520/MEMEUSDT_1w.png","1d":"charts/MEMEUSDT/20260520/MEMEUSDT_1d.png"},
+  "schema_version":1
+}

@@ -1,0 +1,13 @@
+{
+  "symbol": "CATIUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B2", "micro_action": null, "volume_flag": "dry", "note": "long bleed from 1.0 to 0.05, MAs flat near 0"},
+  "tf_1w": {"state": "B2", "micro_action": null, "volume_flag": "dry", "note": "persistent decline, all MAs flat near 0.06"},
+  "tf_1d": {"state": "A4", "micro_action": null, "volume_flag": "normal", "note": "had rally to 0.075 with MAs golden-cross, now MA20 cracked from above"},
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_reason": "big TF B2 zombie; 1D ran +50% then broke MA20",
+  "charts": {"1m": "charts/CATIUSDT/20260520/CATIUSDT_1m.png", "1w": "charts/CATIUSDT/20260520/CATIUSDT_1w.png", "1d": "charts/CATIUSDT/20260520/CATIUSDT_1d.png"},
+  "schema_version": 1
+}

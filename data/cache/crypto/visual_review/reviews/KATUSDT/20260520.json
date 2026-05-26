@@ -1,0 +1,17 @@
+{
+  "symbol": "KATUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "C1", "micro_action": null, "volume_flag": null, "note": "PNG 없음 (신규/단기 토큰)"},
+  "tf_1w": {"state": "C1", "micro_action": null, "volume_flag": null, "note": "PNG 없음"},
+  "tf_1d": {"state": "C1", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "4월 말 거대 거래량 펌프 후 즉시 덤프, MA에 수렴"},
+  "tf_consistency": "분리",
+  "verdict": "reject",
+  "verdict_reason": "1d 펌프덤프 흔적 뚜렷, 1m/1w 데이터 부재로 검증 불가",
+  "charts": {
+    "1m": "charts/KATUSDT/20260520/KATUSDT_1m.png",
+    "1w": "charts/KATUSDT/20260520/KATUSDT_1w.png",
+    "1d": "charts/KATUSDT/20260520/KATUSDT_1d.png"
+  },
+  "schema_version": 1
+}

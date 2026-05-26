@@ -1,0 +1,199 @@
+{
+  "symbol": "002420",
+  "asset": "kr",
+  "reviewed_at": "2026-05-21T09:00:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 6070.0,
+      "bars": 148,
+      "date_range": "2014-02-28 ~ 2026-05-31",
+      "ma10": 5369.0,
+      "ma20": 5305.25,
+      "ma50": 6594.78,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.1306, "ma20_pct": 0.1441, "ma50_pct": -0.0796},
+      "dist_from_ma_atr": {"ma10_atr": 0.427, "ma20_atr": 0.466, "ma50_atr": -0.32},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0796},
+      "atr": 1641.343957,
+      "atr_pct": 0.2704,
+      "adx": 40.27,
+      "range_position": 0.443,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.1054,
+        "upper_wick_pct": 0.398,
+        "lower_wick_pct": 0.253,
+        "vol_rank_30d": 0.567,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.789,
+        "price_range_5bar_pct": 0.5832,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.0872,
+      "ret_90d": -0.5773,
+      "from_period_high_pct": -0.7651,
+      "vol_avg_recent_vs_prior": 2.082
+    },
+
+    "observations": {
+      "key_levels": {"support": 5000, "resistance": 7000},
+      "pattern": "base_forming",
+      "recent_action": "2019년 이후 하락세 지속 후 5000~6500 박스권 형성 시도. 월봉 MA10/20 상향 반전 시작. 2025년 말부터 거래량 급증."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B5",
+    "micro_action": "bounce_ma10",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 6070.0,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 5544.0,
+      "ma20": 5371.75,
+      "ma50": 5436.8,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "flat", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0949, "ma20_pct": 0.13, "ma50_pct": 0.1165},
+      "dist_from_ma_atr": {"ma10_atr": 0.621, "ma20_atr": 0.825, "ma50_atr": 0.748},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0949},
+      "atr": 846.476069,
+      "atr_pct": 0.1395,
+      "adx": 44.36,
+      "range_position": 0.443,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0741,
+        "upper_wick_pct": 0.497,
+        "lower_wick_pct": 0.197,
+        "vol_rank_30d": 0.567,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.248,
+        "price_range_5bar_pct": 0.3023,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 5,
+        "body_pct": 0.112,
+        "vol_rank": 0.833,
+        "close": 6160.0,
+        "max_retrace_pct": 0.194,
+        "current_retrace_pct": 0.0146,
+        "holding": false
+      },
+      "ret_30d": 0.1117,
+      "ret_90d": -0.0288,
+      "from_period_high_pct": -0.4219,
+      "vol_avg_recent_vs_prior": 16.883
+    },
+
+    "observations": {
+      "key_levels": {"support": 5300, "resistance": 6500},
+      "pattern": "ma_recovery",
+      "recent_action": "주봉 기준 가격이 MA10/20/50 위로 상승. 거래량 급증(16.9배) 동반 상승 확인. B5 반등 확정 후 눌림 중."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B5",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 6070.0,
+      "bars": 200,
+      "date_range": "2025-07-24 ~ 2026-05-20",
+      "ma10": 5349.0,
+      "ma20": 5509.0,
+      "ma50": 5531.1,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.1348, "ma20_pct": 0.1018, "ma50_pct": 0.0974},
+      "dist_from_ma_atr": {"ma10_atr": 1.845, "ma20_atr": 1.436, "ma50_atr": 1.379},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.0974},
+      "atr": 390.692444,
+      "atr_pct": 0.0644,
+      "adx": 20.89,
+      "range_position": 0.362,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.1203,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.298,
+        "vol_rank_30d": 0.933,
+        "vol_anomaly": "breakout",
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.3
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.181,
+        "price_range_5bar_pct": 0.2949,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 2,
+        "body_pct": 0.0801,
+        "vol_rank": 0.833,
+        "close": 5620.0,
+        "max_retrace_pct": 0.0516,
+        "current_retrace_pct": -0.0801,
+        "holding": true
+      },
+      "ret_30d": 0.214,
+      "ret_90d": 0.1367,
+      "from_period_high_pct": -0.2598,
+      "vol_avg_recent_vs_prior": 0.242
+    },
+
+    "observations": {
+      "key_levels": {"support": 5300, "resistance": 6500},
+      "pattern": "breakout_retest",
+      "recent_action": "일봉 기준 MA 군집(5300~5530) 위로 돌파 후 상승 중. 최근 강양봉 holding=true. 2026년 5월 거래량 급증 동반."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W/1D B5 정합이나 1M은 B3 아직 전환 미확정. 주봉 거래량 폭증+MA 회복은 긍정. 그러나 일봉 역배열 MA 아직 하향 중 — 눌림 확인 후 진입 검토.",
+
+  "risk_flags": ["drawdown_deep", "accumulation_suspect"],
+
+  "charts": {
+    "1m": "charts/002420/20260521/002420_1m.png",
+    "1w": "charts/002420/20260521/002420_1w.png",
+    "1d": "charts/002420/20260521/002420_1d.png"
+  }
+}

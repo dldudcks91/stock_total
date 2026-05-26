@@ -1,0 +1,17 @@
+{
+  "symbol": "MOVEUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "$1.2 → $0.02 98% 폭락. 데이터 18 bars 짧음, MA10 가파른 우하향 지속" },
+  "tf_1w": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "MA10/20/50 모두 우하향 역배열, 가격 신저가 영역" },
+  "tf_1d": { "state": "B2", "micro_action": null, "volume_flag": "dry", "note": "0.02 base 형성이지만 MA50 여전히 우하향, 거래량 미미" },
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_reason": "전 TF B2 + 1D dry. 좀비 추세 + 거래량 dry",
+  "charts": {
+    "1m": "charts/MOVEUSDT/20260519/MOVEUSDT_1m.png",
+    "1w": "charts/MOVEUSDT/20260519/MOVEUSDT_1w.png",
+    "1d": "charts/MOVEUSDT/20260519/MOVEUSDT_1d.png"
+  },
+  "schema_version": 1
+}

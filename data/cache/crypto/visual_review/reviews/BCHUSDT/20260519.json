@@ -1,0 +1,17 @@
+{
+  "symbol": "BCHUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "A3", "micro_action": null, "volume_flag": "normal", "note": "2023 저점 이후 상승 후 최근 신고가 못 가고 $400~600 박스 topping, MA10 미세 우하향 전환" },
+  "tf_1w": { "state": "A4", "micro_action": null, "volume_flag": "normal", "note": "MA10 우하향 전환 + MA20 평탄, 최근 음봉으로 MA20 아래 진입 시도 — 하락 시도" },
+  "tf_1d": { "state": "A5", "micro_action": null, "volume_flag": "normal", "note": "$650 peak 후 하락 진행, MA10/20/50 우하향, 최근 MA 아래에서 retest 음봉 — 사이클 A 끝" },
+  "tf_consistency": "분리",
+  "verdict": "skip",
+  "verdict_reason": "큰 TF(1M) A3 topping, 1W A4 하락시도, 1D A5 retest 확정 — 상승 사이클 종료, 매수 부적합",
+  "charts": {
+    "1m": "charts/BCHUSDT/20260519/BCHUSDT_1m.png",
+    "1w": "charts/BCHUSDT/20260519/BCHUSDT_1w.png",
+    "1d": "charts/BCHUSDT/20260519/BCHUSDT_1d.png"
+  },
+  "schema_version": 1
+}

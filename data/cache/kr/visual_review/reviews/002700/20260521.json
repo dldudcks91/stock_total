@@ -1,0 +1,195 @@
+{
+  "symbol": "002700",
+  "asset": "kr",
+  "reviewed_at": "2026-05-21T09:35:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "dry",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 1331.0,
+      "bars": 148,
+      "date_range": "2014-02-28 ~ 2026-05-31",
+      "ma10": 1348.2,
+      "ma20": 1404.65,
+      "ma50": 1701.0,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0128, "ma20_pct": -0.0524, "ma50_pct": -0.2175},
+      "dist_from_ma_atr": {"ma10_atr": -0.117, "ma20_atr": -0.501, "ma50_atr": -2.517},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0128},
+      "atr": 147.012278,
+      "atr_pct": 0.1105,
+      "adx": 16.04,
+      "range_position": 0.168,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.1112,
+        "upper_wick_pct": 0.115,
+        "lower_wick_pct": 0.11,
+        "vol_rank_30d": 0.667,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.916, "price_range_5bar_pct": 0.1803, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.059,
+        "vol_rank": 0.833,
+        "close": 1474.0,
+        "max_retrace_pct": 0.1113,
+        "current_retrace_pct": 0.097,
+        "holding": false
+      },
+      "ret_30d": -0.2984,
+      "ret_90d": -0.0177,
+      "from_period_high_pct": -0.5556,
+      "vol_avg_recent_vs_prior": 0.223
+    },
+
+    "observations": {
+      "key_levels": {"support": 1200, "resistance": 1800},
+      "pattern": "sideways_descent",
+      "recent_action": "월봉 역배열 하향 추세. 최근 30일 -30% 급락 후 전봉(1봉 전) 강양봉 반등 시도가 있었으나 현재 다시 하락."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 1331.0,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 1406.6,
+      "ma20": 1382.95,
+      "ma50": 1371.2,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "down"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0537, "ma20_pct": -0.0376, "ma50_pct": -0.0293},
+      "dist_from_ma_atr": {"ma10_atr": -1.181, "ma20_atr": -0.812, "ma50_atr": -0.628},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0293},
+      "atr": 63.99419,
+      "atr_pct": 0.0481,
+      "adx": 22.58,
+      "range_position": 0.344,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0518,
+        "upper_wick_pct": 0.159,
+        "lower_wick_pct": 0.196,
+        "vol_rank_30d": 0.2,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.279, "price_range_5bar_pct": 0.1435, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.0293,
+        "vol_rank": 0.867,
+        "close": 1401.0,
+        "max_retrace_pct": 0.065,
+        "current_retrace_pct": 0.05,
+        "holding": true
+      },
+      "ret_30d": 0.0215,
+      "ret_90d": -0.084,
+      "from_period_high_pct": -0.4058,
+      "vol_avg_recent_vs_prior": 0.506
+    },
+
+    "observations": {
+      "key_levels": {"support": 1250, "resistance": 1500},
+      "pattern": "base_attempt",
+      "recent_action": "주봉 1봉 전 거래량 동반 강양봉(holding=true) 확인. MA 수렴 구간에서 바닥 다지기 시도. 2025년 6월 대형 거래량 스파이크 후 안정권 탐색."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "distribution_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 1331.0,
+      "bars": 200,
+      "date_range": "2025-07-24 ~ 2026-05-20",
+      "ma10": 1394.6,
+      "ma20": 1429.7,
+      "ma50": 1407.72,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0456, "ma20_pct": -0.069, "ma50_pct": -0.0545},
+      "dist_from_ma_atr": {"ma10_atr": -1.676, "ma20_atr": -2.601, "ma50_atr": -2.022},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0456},
+      "atr": 37.947011,
+      "atr_pct": 0.0285,
+      "adx": 18.94,
+      "range_position": 0.292,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0398,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.284,
+        "vol_rank_30d": 0.867,
+        "vol_anomaly": "breakout",
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.3
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.941, "price_range_5bar_pct": 0.0954, "accumulation_score": 0.0},
+      "recent_strong_bull": {
+        "bars_ago": 5,
+        "body_pct": 0.0366,
+        "vol_rank": 0.967,
+        "close": 1422.0,
+        "max_retrace_pct": 0.0788,
+        "current_retrace_pct": 0.064,
+        "holding": false
+      },
+      "ret_30d": -0.0369,
+      "ret_90d": 0.0176,
+      "from_period_high_pct": -0.1133,
+      "vol_avg_recent_vs_prior": 1.314
+    },
+
+    "observations": {
+      "key_levels": {"support": 1280, "resistance": 1450},
+      "pattern": "bounce_fail_retest",
+      "recent_action": "일봉 5일 전 강양봉(1,422)과 최근 거래량 폭증 음봉(breakout) 패턴. 상승 시도 후 재하락으로 B4 상태이나 분배 캔들 신호 주의."
+    }
+  },
+
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W B3에서 holding=true 강양봉(매집 의심)이 있고 1D B4 상승 시도 중이나, 1M 역배열 하향 + 1D 분배 캔들 동시 출현으로 불확실. 1D MA10(1,395) 복귀 확인 시 재검토.",
+
+  "risk_flags": ["drawdown_deep", "accumulation_suspect"],
+
+  "charts": {
+    "1m": "charts/002700/20260521/002700_1m.png",
+    "1w": "charts/002700/20260521/002700_1w.png",
+    "1d": "charts/002700/20260521/002700_1d.png"
+  }
+}

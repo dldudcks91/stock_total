@@ -1,0 +1,17 @@
+{
+  "symbol": "SEIUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "dry", "note": "1.2 peak → 0.07 부근 좀비, MA들 우하향" },
+  "tf_1w": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "MA10/20/50 역배열 우하향, 신저점 부근" },
+  "tf_1d": { "state": "B4", "micro_action": null, "volume_flag": "normal", "note": "최근 작은 양봉 + 거래량 증가, MA10/20 위 진입 시도(미확정)" },
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_reason": "1M dry 좀비 + 1W B2 강한 하락. 1D B4 시도는 미확정이라 보수적 skip.",
+  "charts": {
+    "1m": "charts/SEIUSDT/20260519/SEIUSDT_1m.png",
+    "1w": "charts/SEIUSDT/20260519/SEIUSDT_1w.png",
+    "1d": "charts/SEIUSDT/20260519/SEIUSDT_1d.png"
+  },
+  "schema_version": 1
+}

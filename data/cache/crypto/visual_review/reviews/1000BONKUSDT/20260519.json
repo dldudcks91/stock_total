@@ -1,0 +1,17 @@
+{
+  "symbol": "1000BONKUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "2025-Jun 펌프 후 지속 하락, MA 우하향. 거래량 패턴 펌프&덤프" },
+  "tf_1w": { "state": "B2", "micro_action": null, "volume_flag": null, "note": "MA 역배열 우하향, 0.008 부근 신저점" },
+  "tf_1d": { "state": "A4", "micro_action": null, "volume_flag": null, "note": "최근 0.008 위로 반등하나 다시 약화. MA50 위 돌파 후 음봉" },
+  "tf_consistency": "충돌",
+  "verdict": "reject",
+  "verdict_reason": "1M pump_dump 흔적 + 전 TF 좀비 하락 진행. 1D 약한 반등은 확정 안 됨",
+  "charts": {
+    "1m": "charts/1000BONKUSDT/20260519/1000BONKUSDT_1m.png",
+    "1w": "charts/1000BONKUSDT/20260519/1000BONKUSDT_1w.png",
+    "1d": "charts/1000BONKUSDT/20260519/1000BONKUSDT_1d.png"
+  },
+  "schema_version": 1
+}

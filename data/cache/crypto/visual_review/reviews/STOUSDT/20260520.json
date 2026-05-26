@@ -1,0 +1,13 @@
+{
+  "symbol": "STOUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "C1", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "단발 위꼬리(2.0) 펌프 흔적 외 박스"},
+  "tf_1w": {"state": "C1", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "3월 위꼬리 펌프 후 즉시 원위치, 펌프&덤프 패턴"},
+  "tf_1d": {"state": "A5", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "0.5 펌프 후 -80% 붕괴, retest 실패"},
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_reason": "전 TF pump_dump_trace override",
+  "charts": {"1m": "charts/STOUSDT/20260520/STOUSDT_1m.png", "1w": "charts/STOUSDT/20260520/STOUSDT_1w.png", "1d": "charts/STOUSDT/20260520/STOUSDT_1d.png"},
+  "schema_version": 1
+}

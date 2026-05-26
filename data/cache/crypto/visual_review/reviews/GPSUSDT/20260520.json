@@ -1,0 +1,17 @@
+{
+  "symbol": "GPSUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B2", "micro_action": null, "volume_flag": "dry", "note": "0.15→0.008 좀비 하락, 거래량 감소"},
+  "tf_1w": {"state": "B2", "micro_action": null, "volume_flag": "distribution_suspect", "note": "역배열, 단발 펌프 시도 후 다시 하락"},
+  "tf_1d": {"state": "A3", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "2026-02 펌프(0.006→0.016) 후 MA20/50 깨고 하락 topping"},
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_reason": "Pump-dump 흔적 + 토핑 후 하락 중",
+  "charts": {
+    "1m": "charts/GPSUSDT/20260520/GPSUSDT_1m.png",
+    "1w": "charts/GPSUSDT/20260520/GPSUSDT_1w.png",
+    "1d": "charts/GPSUSDT/20260520/GPSUSDT_1d.png"
+  },
+  "schema_version": 1
+}

@@ -1,0 +1,17 @@
+{
+  "symbol": "ORDIUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "장기 하락, MA 역배열·우하향 지속" },
+  "tf_1w": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "1W MA 역배열, 좀비 하락 지속" },
+  "tf_1d": { "state": "C1", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "4월말 2->10 폭등 후 4로 급락, 펌프&덤프 트레이스" },
+  "tf_consistency": "충돌",
+  "verdict": "reject",
+  "verdict_reason": "1D 펌프&덤프 트레이스 명확 (volume_flag=pump_dump_trace)",
+  "charts": {
+    "1m": "charts/ORDIUSDT/20260519/ORDIUSDT_1m.png",
+    "1w": "charts/ORDIUSDT/20260519/ORDIUSDT_1w.png",
+    "1d": "charts/ORDIUSDT/20260519/ORDIUSDT_1d.png"
+  },
+  "schema_version": 1
+}

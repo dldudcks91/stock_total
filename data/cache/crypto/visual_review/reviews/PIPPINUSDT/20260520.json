@@ -1,0 +1,13 @@
+{
+  "symbol": "PIPPINUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "A5", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "0.8 펌프 후 0.05로 붕괴, 명백한 펌프&덤프"},
+  "tf_1w": {"state": "A5", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "고점 대비 -90% 하락, MA10/20/50 모두 하회"},
+  "tf_1d": {"state": "A5", "micro_action": null, "volume_flag": "dry", "note": "지속 하락 retest, 거래량 고갈"},
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_reason": "pump_dump_trace override, 전 TF A5",
+  "charts": {"1m": "charts/PIPPINUSDT/20260520/PIPPINUSDT_1m.png", "1w": "charts/PIPPINUSDT/20260520/PIPPINUSDT_1w.png", "1d": "charts/PIPPINUSDT/20260520/PIPPINUSDT_1d.png"},
+  "schema_version": 1
+}

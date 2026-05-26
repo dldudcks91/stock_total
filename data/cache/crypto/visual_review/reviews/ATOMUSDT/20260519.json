@@ -1,0 +1,17 @@
+{
+  "symbol": "ATOMUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "1M 장기 하락, MA 역배열·우하향 지속" },
+  "tf_1w": { "state": "B3", "micro_action": null, "volume_flag": "normal", "note": "MA10/20 수렴 평탄, $2 부근 base" },
+  "tf_1d": { "state": "B5", "micro_action": "pullback_ma10", "volume_flag": "normal", "note": "MA20 위 양봉 retest, MA50 돌파, 우상향 회복 시작" },
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_reason": "1W=B3 base, 1D=B5 정배열 회복 -> 변환 진행, 보수적 watch",
+  "charts": {
+    "1m": "charts/ATOMUSDT/20260519/ATOMUSDT_1m.png",
+    "1w": "charts/ATOMUSDT/20260519/ATOMUSDT_1w.png",
+    "1d": "charts/ATOMUSDT/20260519/ATOMUSDT_1d.png"
+  },
+  "schema_version": 1
+}

@@ -1,0 +1,17 @@
+{
+  "symbol": "FETUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "3.5 peak → 0.2 부근 지속 하락, MA10/20 우하향" },
+  "tf_1w": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "MA10/20/50 역배열 우하향 유지" },
+  "tf_1d": { "state": "B3", "micro_action": null, "volume_flag": "normal", "note": "0.15~0.25 박스, MA10/20/50 평탄해지며 수렴" },
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "큰 TF B2 유지, 1D는 base 단계지만 상승 시그널 미확정.",
+  "charts": {
+    "1m": "charts/FETUSDT/20260519/FETUSDT_1m.png",
+    "1w": "charts/FETUSDT/20260519/FETUSDT_1w.png",
+    "1d": "charts/FETUSDT/20260519/FETUSDT_1d.png"
+  },
+  "schema_version": 1
+}

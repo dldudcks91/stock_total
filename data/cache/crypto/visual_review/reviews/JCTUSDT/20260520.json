@@ -1,0 +1,17 @@
+{
+  "symbol": "JCTUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": { "state": null, "micro_action": null, "volume_flag": null, "note": "1M chart 부재 (신규)" },
+  "tf_1w": { "state": "A1", "micro_action": "riding", "volume_flag": "normal", "note": "주봉 cup-bottom 후 MA10/20 위 회복, 거래량 동반" },
+  "tf_1d": { "state": "A2", "micro_action": "pullback_ma20", "volume_flag": "normal", "note": "일봉 spike 후 MA20 부근 base, 재차 회복" },
+  "tf_consistency": "정합",
+  "verdict": "pass",
+  "verdict_reason": "큰TF(1W) A1 + 1D A2 정합, micro pullback",
+  "charts": {
+    "1m": null,
+    "1w": "charts/JCTUSDT/20260520/JCTUSDT_1w.png",
+    "1d": "charts/JCTUSDT/20260520/JCTUSDT_1d.png"
+  },
+  "schema_version": 1
+}

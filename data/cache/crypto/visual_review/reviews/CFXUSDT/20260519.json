@@ -1,0 +1,17 @@
+{
+  "symbol": "CFXUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "장기 하락, MA 우하향" },
+  "tf_1w": { "state": "B3", "micro_action": null, "volume_flag": null, "note": "0.08 부근 base 시작, MA10/20 평탄·수렴 진입" },
+  "tf_1d": { "state": "B5", "micro_action": null, "volume_flag": null, "note": "MA10/20/50 우상향 전환, 가격 MA50 위. 상승 retest 확정" },
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_reason": "1M B2 좀비. 1W B3 + 1D B5 변환 진행 중이나 큰 TF가 받쳐주지 않음 — 보수적 skip",
+  "charts": {
+    "1m": "charts/CFXUSDT/20260519/CFXUSDT_1m.png",
+    "1w": "charts/CFXUSDT/20260519/CFXUSDT_1w.png",
+    "1d": "charts/CFXUSDT/20260519/CFXUSDT_1d.png"
+  },
+  "schema_version": 1
+}

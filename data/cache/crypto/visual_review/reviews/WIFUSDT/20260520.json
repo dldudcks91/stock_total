@@ -1,0 +1,13 @@
+{
+  "symbol": "WIFUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B2", "micro_action": null, "volume_flag": "distribution_suspect", "note": "고점 5 → 0.2, 2년 좀비. 25년6~11월 거래량 폭증은 분배"},
+  "tf_1w": {"state": "B3", "micro_action": null, "volume_flag": "dry", "note": "0.2 근처 5개월 베이스 형성, MA10/20 횡보 수렴"},
+  "tf_1d": {"state": "B3", "micro_action": null, "volume_flag": "dry", "note": "MA10/20/50 수렴 횡보, 바닥 형성 중"},
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "B3 베이스이긴 하나 dry override, 신호 부재",
+  "charts": {"1m": "charts/WIFUSDT/20260520/WIFUSDT_1m.png", "1w": "charts/WIFUSDT/20260520/WIFUSDT_1w.png", "1d": "charts/WIFUSDT/20260520/WIFUSDT_1d.png"},
+  "schema_version": 1
+}

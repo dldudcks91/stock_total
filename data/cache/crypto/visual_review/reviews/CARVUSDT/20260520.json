@@ -1,0 +1,17 @@
+{
+  "symbol": "CARVUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B2", "micro_action": null, "volume_flag": "normal", "note": "장기 하락 지속, base 미형성"},
+  "tf_1w": {"state": "B2", "micro_action": null, "volume_flag": "normal", "note": "MA 역배열, 하락 추세 지속"},
+  "tf_1d": {"state": "B2", "micro_action": null, "volume_flag": "normal", "note": "하락 좀비, 최근 양봉 약함"},
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "전 TF B2 하락 지속, 반전 신호 부재",
+  "charts": {
+    "1m": "charts/CARVUSDT/20260520/CARVUSDT_1m.png",
+    "1w": "charts/CARVUSDT/20260520/CARVUSDT_1w.png",
+    "1d": "charts/CARVUSDT/20260520/CARVUSDT_1d.png"
+  },
+  "schema_version": 1
+}

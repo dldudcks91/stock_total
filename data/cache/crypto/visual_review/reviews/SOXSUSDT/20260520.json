@@ -1,0 +1,17 @@
+{
+  "symbol": "SOXSUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "C1", "micro_action": null, "volume_flag": null, "note": "PNG 없음 (신규 상장)"},
+  "tf_1w": {"state": "C1", "micro_action": null, "volume_flag": null, "note": "PNG 없음"},
+  "tf_1d": {"state": "B4", "micro_action": null, "volume_flag": "normal", "note": "급락 지속 후 마지막 큰 거래량 양봉 + MA20 근접"},
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_reason": "1d B4 회복 첫 신호 있으나 상위 TF 검증 불가, 마지막 봉 단일 의존",
+  "charts": {
+    "1m": "charts/SOXSUSDT/20260520/SOXSUSDT_1m.png",
+    "1w": "charts/SOXSUSDT/20260520/SOXSUSDT_1w.png",
+    "1d": "charts/SOXSUSDT/20260520/SOXSUSDT_1d.png"
+  },
+  "schema_version": 1
+}

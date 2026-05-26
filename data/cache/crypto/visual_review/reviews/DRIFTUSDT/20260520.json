@@ -1,0 +1,17 @@
+{
+  "symbol": "DRIFTUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B2", "micro_action": null, "volume_flag": "distribution_suspect", "note": "2.0→0.04 지속 하락, 최근 대량 거래 분산 의심"},
+  "tf_1w": {"state": "B2", "micro_action": null, "volume_flag": "distribution_suspect", "note": "역배열 가파른 하락, MA10<20<50"},
+  "tf_1d": {"state": "B2", "micro_action": null, "volume_flag": "normal", "note": "역배열 지속, 0.04 좀비"},
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "지속 하락 B2, 분산 의심",
+  "charts": {
+    "1m": "charts/DRIFTUSDT/20260520/DRIFTUSDT_1m.png",
+    "1w": "charts/DRIFTUSDT/20260520/DRIFTUSDT_1w.png",
+    "1d": "charts/DRIFTUSDT/20260520/DRIFTUSDT_1d.png"
+  },
+  "schema_version": 1
+}

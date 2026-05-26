@@ -1,0 +1,171 @@
+{
+  "symbol": "020760",
+  "asset": "kr",
+  "reviewed_at": "2026-05-25T13:05:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "C1",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 902.0,
+      "bars": 148,
+      "date_range": "2014-02-28 ~ 2026-05-31",
+      "ma10": 903.9,
+      "ma20": 879.7,
+      "ma50": 1141.54,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0021, "ma20_pct": 0.0253, "ma50_pct": -0.2098},
+      "dist_from_ma_atr": {"ma10_atr": -0.003, "ma20_atr": 0.038, "ma50_atr": -0.409},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0021},
+      "atr": 585.568774,
+      "atr_pct": 0.6492,
+      "adx": 14.23,
+      "range_position": 0.701,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 1.0,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.1732,
+      "ret_90d": -0.6757,
+      "from_period_high_pct": -0.936,
+      "vol_avg_recent_vs_prior": 0.49
+    },
+
+    "observations": {
+      "key_levels": {"support": 800, "resistance": 1000},
+      "pattern": "flat_zombie",
+      "recent_action": "월봉 기준 2024년 이후 900원대에서 사실상 고정. 거래량 0에 수렴."
+    }
+  },
+
+  "tf_1w": {
+    "state": "C1",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 902.0,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 902.0,
+      "ma20": 902.0,
+      "ma50": 903.7,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "up"},
+      "ma_spread": "tight",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0, "ma20_pct": 0.0, "ma50_pct": -0.0019},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": -0.002},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0},
+      "atr": 852.265669,
+      "atr_pct": 0.9449,
+      "adx": 37.44,
+      "range_position": 0.5,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 1.0,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": -0.1319,
+      "from_period_high_pct": -0.6234,
+      "vol_avg_recent_vs_prior": 0.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 800, "resistance": 1000},
+      "pattern": "flat_zombie",
+      "recent_action": "주봉 기준 약 1년 이상 902원 고정. MA10/20 모두 902원에 수렴. 거래량 0. 거래정지 상태."
+    }
+  },
+
+  "tf_1d": {
+    "state": "C1",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 902.0,
+      "bars": 200,
+      "date_range": "2025-07-24 ~ 2026-05-20",
+      "ma10": 902.0,
+      "ma20": 902.0,
+      "ma50": 902.0,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0},
+      "atr": 901.99585,
+      "atr_pct": 1.0,
+      "adx": 73.68,
+      "range_position": 0.5,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 1.0,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.2986,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 902, "resistance": 902},
+      "pattern": "flat_zombie",
+      "recent_action": "일봉 전 구간 902원 고정, MA 전부 902원 수렴. 거래량 전무. 실질적 거래정지 상태로 판단."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF 가격 902원 고정 + 거래량 0. 거래정지 또는 사실상 좀비 상태. 매매 불가.",
+
+  "risk_flags": ["drawdown_deep", "zombie"],
+
+  "charts": {
+    "1m": "charts/020760/20260521/020760_1m.png",
+    "1w": "charts/020760/20260521/020760_1w.png",
+    "1d": "charts/020760/20260521/020760_1d.png"
+  }
+}

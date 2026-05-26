@@ -1,0 +1,17 @@
+{
+  "symbol": "XLMUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "A5", "micro_action": null, "volume_flag": "normal", "note": "월봉 2024.11 펌프 후 retest 확정 하락, MA20 음 기울기 진입" },
+  "tf_1w": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "주봉 펌프 이후 지속 하락, MA 역배열, 가격 0.15$" },
+  "tf_1d": { "state": "B3", "micro_action": null, "volume_flag": "normal", "note": "1d MA들 수렴 평탄, base 다지기. 최근 미약 반등 시도" },
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "1M A5 변환 하락 확정, 1W B2 지속 하락",
+  "charts": {
+    "1m": "charts/XLMUSDT/20260519/XLMUSDT_1m.png",
+    "1w": "charts/XLMUSDT/20260519/XLMUSDT_1w.png",
+    "1d": "charts/XLMUSDT/20260519/XLMUSDT_1d.png"
+  },
+  "schema_version": 1
+}

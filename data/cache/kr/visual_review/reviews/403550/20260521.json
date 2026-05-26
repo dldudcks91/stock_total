@@ -1,0 +1,207 @@
+{
+  "symbol": "403550",
+  "asset": "kr",
+  "reviewed_at": "2026-05-24T14:45:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 12530.0,
+      "bars": 46,
+      "date_range": "2022-08-31 ~ 2026-05-31",
+      "ma10": 12382.0,
+      "ma20": 13878.5,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.012, "ma20_pct": -0.0972, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.052, "ma20_atr": -0.475, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.012},
+      "atr": 2839.591875,
+      "atr_pct": 0.2266,
+      "adx": 27.92,
+      "range_position": 0.19,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.652,
+        "upper_wick_pct": 0.035,
+        "lower_wick_pct": 0.016,
+        "vol_rank_30d": 0.967,
+        "vol_anomaly": "breakout",
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.3
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.794,
+        "price_range_5bar_pct": 0.8348,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.3391,
+        "vol_rank": 0.767,
+        "close": 17810.0,
+        "max_retrace_pct": 0.3043,
+        "current_retrace_pct": 0.2965,
+        "holding": false
+      },
+      "ret_30d": -0.2055,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.5767,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 11000, "resistance": 17000},
+      "pattern": "spike_and_crash",
+      "recent_action": "1M 최근 대형 양봉(17810) 직후 대형 음봉(12530) 출현. 거래량 폭발 후 급락. 펌프&덤프 패턴 의심."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "distribution_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 12530.0,
+      "bars": 197,
+      "date_range": "2022-08-22 ~ 2026-05-25",
+      "ma10": 12672.0,
+      "ma20": 12198.0,
+      "ma50": 12223.4,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "down"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0112, "ma20_pct": 0.0272, "ma50_pct": 0.0251},
+      "dist_from_ma_atr": {"ma10_atr": -0.072, "ma20_atr": 0.169, "ma50_atr": 0.156},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0112},
+      "atr": 1964.167724,
+      "atr_pct": 0.1568,
+      "adx": 38.46,
+      "range_position": 0.19,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.095,
+        "upper_wick_pct": 0.153,
+        "lower_wick_pct": 0.089,
+        "vol_rank_30d": 0.867,
+        "vol_anomaly": "breakout",
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.3
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 17.996,
+        "price_range_5bar_pct": 0.7462,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 4,
+        "body_pct": 0.1273,
+        "vol_rank": 0.967,
+        "close": 13350.0,
+        "max_retrace_pct": 0.0719,
+        "current_retrace_pct": 0.0614,
+        "holding": false
+      },
+      "ret_30d": 0.0839,
+      "ret_90d": -0.3416,
+      "from_period_high_pct": -0.5767,
+      "vol_avg_recent_vs_prior": 7.848
+    },
+
+    "observations": {
+      "key_levels": {"support": 11500, "resistance": 16000},
+      "pattern": "vol_spike_reversal",
+      "recent_action": "주봉 vol_5bar_vs_30bar 17.9배 거래량 급증하며 21K 고점 후 12K로 급락. distribution_candle_score 0.3. 고점 대비 -58%."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B1",
+    "micro_action": "breaking",
+    "volume_flag": "distribution_suspect",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 12530.0,
+      "bars": 200,
+      "date_range": "2025-07-24 ~ 2026-05-20",
+      "ma10": 14592.0,
+      "ma20": 14161.0,
+      "ma50": 12411.4,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.1413, "ma20_pct": -0.1152, "ma50_pct": 0.0096},
+      "dist_from_ma_atr": {"ma10_atr": -1.262, "ma20_atr": -0.998, "ma50_atr": 0.073},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.0096},
+      "atr": 1634.5327,
+      "atr_pct": 0.1304,
+      "adx": 41.21,
+      "range_position": 0.19,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0431,
+        "upper_wick_pct": 0.32,
+        "lower_wick_pct": 0.14,
+        "vol_rank_30d": 0.7,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 3.154,
+        "price_range_5bar_pct": 0.6872,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 5,
+        "body_pct": 0.1739,
+        "vol_rank": 0.967,
+        "close": 17140.0,
+        "max_retrace_pct": 0.2771,
+        "current_retrace_pct": 0.269,
+        "holding": false
+      },
+      "ret_30d": 0.0962,
+      "ret_90d": 0.0347,
+      "from_period_high_pct": -0.4033,
+      "vol_avg_recent_vs_prior": 10.747
+    },
+
+    "observations": {
+      "key_levels": {"support": 12000, "resistance": 17000},
+      "pattern": "pump_dump",
+      "recent_action": "일봉 21K 급등 후 단 며칠 만에 12K로 붕괴. vol_avg_recent_vs_prior 10.7배. MA10/20 모두 하회. 고점 대비 -40%. 전형적 펌프&덤프 흔적."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "1M/1W/1D 모두 급등 후 거래량 폭발과 함께 붕괴. pump_dump_trace + distribution_suspect 신호. drawdown_deep -58%. 1M/1W distribution_candle. reject.",
+
+  "risk_flags": ["drawdown_deep", "pump_dump_trace", "distribution_suspect"],
+
+  "charts": {
+    "1m": "charts/403550/20260521/403550_1m.png",
+    "1w": "charts/403550/20260521/403550_1w.png",
+    "1d": "charts/403550/20260521/403550_1d.png"
+  }
+}

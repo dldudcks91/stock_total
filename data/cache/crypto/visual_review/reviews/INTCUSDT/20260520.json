@@ -1,0 +1,13 @@
+{
+  "symbol": "INTCUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": null, "micro_action": null, "volume_flag": null, "note": "1M PNG 없음"},
+  "tf_1w": {"state": "A3", "micro_action": null, "volume_flag": "distribution_suspect", "note": "급등 후 직전봉 장대음봉, 거래량 폭증 — topping 의심"},
+  "tf_1d": {"state": "A2", "micro_action": "pullback_ma20", "volume_flag": "normal", "note": "정배열, MA20까지 눌림 진행"},
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_reason": "1D 정배열 눌림이지만 1W topping 신호 강함, distribution 의심 — 한 단계 보수적",
+  "charts": {"1m": null, "1w": "charts/INTCUSDT/20260520/INTCUSDT_1w.png", "1d": "charts/INTCUSDT/20260520/INTCUSDT_1d.png"},
+  "schema_version": 1
+}

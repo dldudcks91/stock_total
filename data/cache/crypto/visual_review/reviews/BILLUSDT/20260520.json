@@ -1,0 +1,17 @@
+{
+  "symbol": "BILLUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": null, "micro_action": null, "volume_flag": null, "note": "PNG 없음 (신규)"},
+  "tf_1w": {"state": null, "micro_action": null, "volume_flag": null, "note": "PNG 없음 (신규)"},
+  "tf_1d": {"state": "A3", "micro_action": null, "volume_flag": "distribution_suspect", "note": "13bars 신규. 약 3배 급등 후 MA10 위에서 topping/하락 전환, 거래량 분산 의심"},
+  "tf_consistency": "분리",
+  "verdict": "skip",
+  "verdict_reason": "신규 상장 13bars, 1d 토핑 국면 + 1m/1w 데이터 부재로 추세 검증 불가",
+  "charts": {
+    "1m": "charts/BILLUSDT/20260520/BILLUSDT_1m.png",
+    "1w": "charts/BILLUSDT/20260520/BILLUSDT_1w.png",
+    "1d": "charts/BILLUSDT/20260520/BILLUSDT_1d.png"
+  },
+  "schema_version": 1
+}

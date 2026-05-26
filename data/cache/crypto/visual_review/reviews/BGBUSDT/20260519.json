@@ -1,0 +1,17 @@
+{
+  "symbol": "BGBUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "장기 하락 진행, MA10/20 우하향, 가격 MA 아래" },
+  "tf_1w": { "state": "B2", "micro_action": null, "volume_flag": null, "note": "MA 역배열 우하향, 가격 MA50 아래 지속" },
+  "tf_1d": { "state": "B3", "micro_action": null, "volume_flag": null, "note": "2.0 부근 base, MA10/20/50 수렴·평탄" },
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_reason": "큰 TF B2 좀비 하락. 1D base 다지기 시작 — 변환 신호 부재",
+  "charts": {
+    "1m": "charts/BGBUSDT/20260519/BGBUSDT_1m.png",
+    "1w": "charts/BGBUSDT/20260519/BGBUSDT_1w.png",
+    "1d": "charts/BGBUSDT/20260519/BGBUSDT_1d.png"
+  },
+  "schema_version": 1
+}

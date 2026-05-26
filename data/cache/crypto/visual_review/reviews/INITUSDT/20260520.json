@@ -1,0 +1,13 @@
+{
+  "symbol": "INITUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state":"B2","micro_action":null,"volume_flag":"normal","note":"신규(14봉), 첫 봉 후 지속 하락, 펌프 흔적 거래량"},
+  "tf_1w": {"state":"B3","micro_action":null,"volume_flag":"pump_dump_trace","note":"하락 후 평탄 base, 펌프&덤프 거래량 흔적"},
+  "tf_1d": {"state":"B3","micro_action":null,"volume_flag":"pump_dump_trace","note":"base, 펌프&덤프 거래량 spike"},
+  "tf_consistency":"정합",
+  "verdict":"reject",
+  "verdict_reason":"pump_dump_trace 강함 + B2/B3 - override reject",
+  "charts":{"1m":"charts/INITUSDT/20260520/INITUSDT_1m.png","1w":"charts/INITUSDT/20260520/INITUSDT_1w.png","1d":"charts/INITUSDT/20260520/INITUSDT_1d.png"},
+  "schema_version":1
+}

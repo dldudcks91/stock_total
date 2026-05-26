@@ -1,0 +1,13 @@
+{
+  "symbol": "AVNTUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state":"C1","micro_action":null,"volume_flag":null,"note":"PNG missing - 1M 차트 없음 (신규)"},
+  "tf_1w": {"state":"B2","micro_action":null,"volume_flag":"dry","note":"신규, 첫 봉 후 지속 하락, 거래량 dry"},
+  "tf_1d": {"state":"B2","micro_action":null,"volume_flag":"dry","note":"지속 하락, dry"},
+  "tf_consistency":"정합",
+  "verdict":"reject",
+  "verdict_reason":"volume_flag=dry + 좀비 - override reject",
+  "charts":{"1m":null,"1w":"charts/AVNTUSDT/20260520/AVNTUSDT_1w.png","1d":"charts/AVNTUSDT/20260520/AVNTUSDT_1d.png"},
+  "schema_version":1
+}

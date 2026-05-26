@@ -1,0 +1,13 @@
+{
+  "symbol": "FUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "C1", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "Pump to $0.04 Sep-Oct then dumped back, now flatline at $0.005"},
+  "tf_1w": {"state": "C1", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "Clear pump-dump signature with two big green spike weeks then sustained red"},
+  "tf_1d": {"state": "B2", "micro_action": "pullback_ma10", "volume_flag": "dry", "note": "Slow grind down post-dump, MA10/20/50 sloping down, volume drying"},
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_reason": "Pump-dump 흔적 명확 — reject",
+  "charts": {"1m": "charts/FUSDT/20260520/FUSDT_1m.png", "1w": "charts/FUSDT/20260520/FUSDT_1w.png", "1d": "charts/FUSDT/20260520/FUSDT_1d.png"},
+  "schema_version": 1
+}

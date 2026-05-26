@@ -1,0 +1,171 @@
+{
+  "symbol": "027740",
+  "asset": "kr",
+  "reviewed_at": "2026-05-25T13:35:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "C1",
+    "micro_action": "acceleration",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 1523.0,
+      "bars": 148,
+      "date_range": "2014-02-28 ~ 2026-05-31",
+      "ma10": 877.8,
+      "ma20": 876.75,
+      "ma50": 1122.72,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.735, "ma20_pct": 0.7371, "ma50_pct": 0.3565},
+      "dist_from_ma_atr": {"ma10_atr": 2.138, "ma20_atr": 2.141, "ma50_atr": 1.326},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.3565},
+      "atr": 301.835794,
+      "atr_pct": 0.1982,
+      "adx": 15.47,
+      "range_position": 0.943,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 1.0,
+        "upper_wick_pct": 0.057,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.384, "price_range_5bar_pct": 1.0604, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.4314,
+      "ret_90d": -0.5793,
+      "from_period_high_pct": -0.8136,
+      "vol_avg_recent_vs_prior": 0.533
+    },
+
+    "observations": {
+      "key_levels": {"support": 800, "resistance": 2000},
+      "pattern": "spike_reversal",
+      "recent_action": "월봉 기준 장기 하락 중 갑작스러운 급등(1523). MA 역배열 상태에서 MA 모두 위로 치솟음. 비이상적 움직임."
+    }
+  },
+
+  "tf_1w": {
+    "state": "C1",
+    "micro_action": "acceleration",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 1523.0,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 961.3,
+      "ma20": 881.45,
+      "ma50": 854.1,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.5843, "ma20_pct": 0.7278, "ma50_pct": 0.7832},
+      "dist_from_ma_atr": {"ma10_atr": 1.914, "ma20_atr": 2.186, "ma50_atr": 2.279},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.5843},
+      "atr": 293.470629,
+      "atr_pct": 0.1927,
+      "adx": 27.78,
+      "range_position": 0.943,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0217,
+        "upper_wick_pct": 0.371,
+        "lower_wick_pct": 0.421,
+        "vol_rank_30d": 0.267,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.332, "price_range_5bar_pct": 1.0604, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.8966,
+      "ret_90d": 0.5094,
+      "from_period_high_pct": -0.0803,
+      "vol_avg_recent_vs_prior": 0.16
+    },
+
+    "observations": {
+      "key_levels": {"support": 800, "resistance": 1700},
+      "pattern": "pump_spike",
+      "recent_action": "주봉 기준 장기 하락 바닥(700원대)에서 수주 만에 1700원 수준 급등. 거래량은 평균 대비 0.16으로 극히 낮음. 작전성 급등 의심."
+    }
+  },
+
+  "tf_1d": {
+    "state": "C1",
+    "micro_action": "acceleration",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 1523.0,
+      "bars": 200,
+      "date_range": "2025-07-24 ~ 2026-05-20",
+      "ma10": 1041.5,
+      "ma20": 931.45,
+      "ma50": 862.9,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.4623, "ma20_pct": 0.6351, "ma50_pct": 0.765},
+      "dist_from_ma_atr": {"ma10_atr": 0.971, "ma20_atr": 1.193, "ma50_atr": 1.331},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.4623},
+      "atr": 495.91072,
+      "atr_pct": 0.3256,
+      "adx": 60.53,
+      "range_position": 0.943,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0446,
+        "upper_wick_pct": 0.151,
+        "lower_wick_pct": 0.421,
+        "vol_rank_30d": 0.733,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 1.681, "price_range_5bar_pct": 1.0604, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.8528,
+      "ret_90d": 0.9526,
+      "from_period_high_pct": -0.057,
+      "vol_avg_recent_vs_prior": 0.339
+    },
+
+    "observations": {
+      "key_levels": {"support": 900, "resistance": 1650},
+      "pattern": "vertical_pump",
+      "recent_action": "일봉 기준 2026년 4월 말 ~ 5월 수일 만에 800원 -> 1650원 수직 급등. ADX 61로 매우 강한 추세이나 거래량 평균 0.34로 저조. 급등 후 오늘 음봉 출현."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "medium",
+  "verdict_reason": "전 TF 급등 + 낮은 거래량 = pump_dump_trace 패턴. 일봉 1개월 수익률 85%, 주봉 90%, parabolic 위험. MA 역배열 상태에서 발생한 비이상적 급등. 추격 매수 금지.",
+
+  "risk_flags": ["parabolic", "pump_dump_trace"],
+
+  "charts": {
+    "1m": "charts/027740/20260521/027740_1m.png",
+    "1w": "charts/027740/20260521/027740_1w.png",
+    "1d": "charts/027740/20260521/027740_1d.png"
+  }
+}

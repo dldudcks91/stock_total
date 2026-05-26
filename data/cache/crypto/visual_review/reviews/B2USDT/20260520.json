@@ -1,0 +1,13 @@
+{
+  "symbol": "B2USDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "C1", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "2025-10 펌프 후 분배, 박스 형성"},
+  "tf_1w": {"state": "B2", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "9월 펌프 2$ 후 -70% 분배"},
+  "tf_1d": {"state": "C1", "micro_action": null, "volume_flag": "dry", "note": "0.6~0.8 박스, 거래량 dry"},
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_reason": "pump_dump_trace override — 펌프 후 좀비 박스",
+  "charts": {"1m": "charts/B2USDT/20260520/B2USDT_1m.png", "1w": "charts/B2USDT/20260520/B2USDT_1w.png", "1d": "charts/B2USDT/20260520/B2USDT_1d.png"},
+  "schema_version": 1
+}

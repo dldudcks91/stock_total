@@ -1,0 +1,17 @@
+{
+  "symbol": "TAOUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "1M MA10 음기울기 지속, 가격 MA 아래 좀비 하락" },
+  "tf_1w": { "state": "B3", "micro_action": null, "volume_flag": "normal", "note": "1W MA10/20 평탄·수렴, base 다지기" },
+  "tf_1d": { "state": "A5", "micro_action": null, "volume_flag": "normal", "note": "3월 반등 후 다시 하락, MA20 음기울기 retest, 상승 실패" },
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_reason": "큰 TF 1M=B2 좀비, 1W=B3 base. 1D 단기 반등 실패 A5 -> TF 충돌, 보수적 skip",
+  "charts": {
+    "1m": "charts/TAOUSDT/20260519/TAOUSDT_1m.png",
+    "1w": "charts/TAOUSDT/20260519/TAOUSDT_1w.png",
+    "1d": "charts/TAOUSDT/20260519/TAOUSDT_1d.png"
+  },
+  "schema_version": 1
+}

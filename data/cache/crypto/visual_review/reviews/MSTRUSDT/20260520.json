@@ -1,0 +1,17 @@
+{
+  "symbol": "MSTRUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B4", "micro_action": null, "volume_flag": "normal", "note": "350→130 하락 후 4월 첫 양봉 + 5월 도지, 바닥 형성"},
+  "tf_1w": {"state": "B5", "micro_action": null, "volume_flag": "normal", "note": "MA10>MA20 골든크로스 후 200 부근 retest 양봉, 거래량 점진 증가"},
+  "tf_1d": {"state": "A2", "micro_action": "pullback_ma10", "volume_flag": "normal", "note": "정배열 진입(MA10>20>50), 최근 MA10 부근 눌림목"},
+  "tf_consistency": "정합",
+  "verdict": "pass",
+  "verdict_reason": "토큰화 주식, 1m B4(첫 양봉) + 1w B5(retest) + 1d A2(눌림목) 정합 상승 초입",
+  "charts": {
+    "1m": "charts/MSTRUSDT/20260520/MSTRUSDT_1m.png",
+    "1w": "charts/MSTRUSDT/20260520/MSTRUSDT_1w.png",
+    "1d": "charts/MSTRUSDT/20260520/MSTRUSDT_1d.png"
+  },
+  "schema_version": 1
+}

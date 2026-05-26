@@ -1,0 +1,17 @@
+{
+  "symbol": "FFUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "C1", "micro_action": null, "volume_flag": null, "note": "PNG 없음 (신규 토큰)"},
+  "tf_1w": {"state": "B2", "micro_action": null, "volume_flag": "dry", "note": "장기 하락 후 좀비 base, 거래량 메마름"},
+  "tf_1d": {"state": "B4", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "4월 펌프 후 덤프, 최근 MA20 위 약한 양봉 시도"},
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_reason": "1w dry 좀비 + 1d 펌프덤프 잔재로 신뢰도 낮음",
+  "charts": {
+    "1m": "charts/FFUSDT/20260520/FFUSDT_1m.png",
+    "1w": "charts/FFUSDT/20260520/FFUSDT_1w.png",
+    "1d": "charts/FFUSDT/20260520/FFUSDT_1d.png"
+  },
+  "schema_version": 1
+}

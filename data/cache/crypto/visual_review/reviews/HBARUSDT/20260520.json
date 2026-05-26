@@ -1,0 +1,13 @@
+{
+  "symbol": "HBARUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "A5", "micro_action": null, "volume_flag": "distribution_suspect", "note": "0.40 고점 → 0.09 하락, MA10/20 깸 후 retest 실패"},
+  "tf_1w": {"state": "A5", "micro_action": null, "volume_flag": "distribution_suspect", "note": "0.40 topping 후 MA50 하회 지속, 잔여 분배"},
+  "tf_1d": {"state": "B2", "micro_action": null, "volume_flag": "dry", "note": "지속 하락 후 0.09 약한 횡보, 거래량 고갈"},
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_reason": "큰TF A5 하락 retest + 1D dry override",
+  "charts": {"1m": "charts/HBARUSDT/20260520/HBARUSDT_1m.png", "1w": "charts/HBARUSDT/20260520/HBARUSDT_1w.png", "1d": "charts/HBARUSDT/20260520/HBARUSDT_1d.png"},
+  "schema_version": 1
+}

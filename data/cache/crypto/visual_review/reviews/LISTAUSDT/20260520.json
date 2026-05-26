@@ -1,0 +1,13 @@
+{
+  "symbol": "LISTAUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B2", "micro_action": null, "volume_flag": "distribution_suspect", "note": "0.7→0.1 지속 하락"},
+  "tf_1w": {"state": "B2", "micro_action": null, "volume_flag": "dry", "note": "0.1 부근 바닥 시도, 거래량 위축"},
+  "tf_1d": {"state": "B3", "micro_action": null, "volume_flag": "dry", "note": "0.1 부근 횡보 base"},
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_reason": "dry override + 큰TF B2",
+  "charts": {"1m": "charts/LISTAUSDT/20260520/LISTAUSDT_1m.png", "1w": "charts/LISTAUSDT/20260520/LISTAUSDT_1w.png", "1d": "charts/LISTAUSDT/20260520/LISTAUSDT_1d.png"},
+  "schema_version": 1
+}

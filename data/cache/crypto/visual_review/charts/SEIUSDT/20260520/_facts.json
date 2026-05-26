@@ -1,0 +1,315 @@
+{
+  "symbol": "SEIUSDT",
+  "asset": "crypto",
+  "date_str": "20260520",
+  "generated_at": "2026-05-20T23:39:19.647436+09:00",
+  "tfs": [
+    "1m",
+    "1w",
+    "1d",
+    "4h",
+    "1h"
+  ],
+  "tf_1m": {
+    "last_close": 0.05965,
+    "bars": 34,
+    "date_range": "2023-08-31 ~ 2026-05-31",
+    "ma10": 0.132142,
+    "ma20": 0.22521,
+    "ma50": null,
+    "ma_stack": "혼합",
+    "ma_slopes": {
+      "ma10": "down",
+      "ma20": "down",
+      "ma50": "flat"
+    },
+    "ma_spread": "normal",
+    "price_pos": "below_all",
+    "dist_from_ma": {
+      "ma10_pct": -0.5486,
+      "ma20_pct": -0.7351,
+      "ma50_pct": 0.0
+    },
+    "dist_from_ma_atr": {
+      "ma10_atr": -0.611,
+      "ma20_atr": -1.396,
+      "ma50_atr": 0.0
+    },
+    "nearest_ma": {
+      "ma": "ma10",
+      "dist_pct": -0.5486
+    },
+    "atr": 0.118581,
+    "atr_pct": 1.9879,
+    "adx": 18.83,
+    "range_position": 0.033,
+    "last_candle": {
+      "type": "doji",
+      "body_pct": 0.0411,
+      "upper_wick_pct": 0.883,
+      "lower_wick_pct": 0.01,
+      "vol_rank_30d": 0.467,
+      "vol_anomaly": null,
+      "accumulation_candle_score": 0.0,
+      "distribution_candle_score": 0.0
+    },
+    "accumulation": {
+      "vol_5bar_vs_30bar": 1.0,
+      "price_range_5bar_pct": 0.0,
+      "accumulation_score": 0.0
+    },
+    "recent_strong_bull": null,
+    "ret_30d": -0.7504,
+    "ret_90d": 0.0,
+    "from_period_high_pct": -0.9479,
+    "vol_avg_recent_vs_prior": 1.0
+  },
+  "tf_1w": {
+    "last_close": 0.05965,
+    "bars": 145,
+    "date_range": "2023-08-21 ~ 2026-05-25",
+    "ma10": 0.059336,
+    "ma20": 0.071828,
+    "ma50": 0.168117,
+    "ma_stack": "역배열",
+    "ma_slopes": {
+      "ma10": "down",
+      "ma20": "down",
+      "ma50": "down"
+    },
+    "ma_spread": "spread",
+    "price_pos": "between",
+    "dist_from_ma": {
+      "ma10_pct": 0.0053,
+      "ma20_pct": -0.1695,
+      "ma50_pct": -0.6452
+    },
+    "dist_from_ma_atr": {
+      "ma10_atr": 0.016,
+      "ma20_atr": -0.621,
+      "ma50_atr": -5.529
+    },
+    "nearest_ma": {
+      "ma": "ma10",
+      "dist_pct": 0.0053
+    },
+    "atr": 0.019619,
+    "atr_pct": 0.3289,
+    "adx": 34.87,
+    "range_position": 0.072,
+    "last_candle": {
+      "type": "bear",
+      "body_pct": 0.0293,
+      "upper_wick_pct": 0.118,
+      "lower_wick_pct": 0.09,
+      "vol_rank_30d": 0.0,
+      "vol_anomaly": null,
+      "accumulation_candle_score": 0.0,
+      "distribution_candle_score": 0.0
+    },
+    "accumulation": {
+      "vol_5bar_vs_30bar": 0.635,
+      "price_range_5bar_pct": 0.4052,
+      "accumulation_score": 0.0
+    },
+    "recent_strong_bull": {
+      "bars_ago": 2,
+      "body_pct": 0.229,
+      "vol_rank": 0.833,
+      "close": 0.0759,
+      "max_retrace_pct": 0.2183,
+      "current_retrace_pct": 0.2141,
+      "holding": false
+    },
+    "ret_30d": -0.7027,
+    "ret_90d": -0.7902,
+    "from_period_high_pct": -0.9479,
+    "vol_avg_recent_vs_prior": 0.448
+  },
+  "tf_1d": {
+    "last_close": 0.05965,
+    "bars": 200,
+    "date_range": "2025-11-01 ~ 2026-05-19",
+    "ma10": 0.066331,
+    "ma20": 0.063602,
+    "ma50": 0.059351,
+    "ma_stack": "정배열",
+    "ma_slopes": {
+      "ma10": "up",
+      "ma20": "up",
+      "ma50": "up"
+    },
+    "ma_spread": "normal",
+    "price_pos": "between",
+    "dist_from_ma": {
+      "ma10_pct": -0.1007,
+      "ma20_pct": -0.0621,
+      "ma50_pct": 0.005
+    },
+    "dist_from_ma_atr": {
+      "ma10_atr": -1.746,
+      "ma20_atr": -1.033,
+      "ma50_atr": 0.078
+    },
+    "nearest_ma": {
+      "ma": "ma50",
+      "dist_pct": 0.005
+    },
+    "atr": 0.003826,
+    "atr_pct": 0.0641,
+    "adx": 25.78,
+    "range_position": 0.36,
+    "last_candle": {
+      "type": "bear",
+      "body_pct": 0.0293,
+      "upper_wick_pct": 0.118,
+      "lower_wick_pct": 0.09,
+      "vol_rank_30d": 0.133,
+      "vol_anomaly": null,
+      "accumulation_candle_score": 0.0,
+      "distribution_candle_score": 0.0
+    },
+    "accumulation": {
+      "vol_5bar_vs_30bar": 0.824,
+      "price_range_5bar_pct": 0.137,
+      "accumulation_score": 0.0
+    },
+    "recent_strong_bull": {
+      "bars_ago": 9,
+      "body_pct": 0.0707,
+      "vol_rank": 1.0,
+      "close": 0.07578,
+      "max_retrace_pct": 0.2171,
+      "current_retrace_pct": 0.2129,
+      "holding": false
+    },
+    "ret_30d": 0.1038,
+    "ret_90d": -0.1793,
+    "from_period_high_pct": -0.705,
+    "vol_avg_recent_vs_prior": 1.264
+  },
+  "tf_4h": {
+    "last_close": 0.0605,
+    "bars": 200,
+    "date_range": "2026-04-17 ~ 2026-05-20",
+    "ma10": 0.06041,
+    "ma20": 0.060791,
+    "ma50": 0.064007,
+    "ma_stack": "역배열",
+    "ma_slopes": {
+      "ma10": "flat",
+      "ma20": "down",
+      "ma50": "down"
+    },
+    "ma_spread": "normal",
+    "price_pos": "between",
+    "dist_from_ma": {
+      "ma10_pct": 0.0015,
+      "ma20_pct": -0.0048,
+      "ma50_pct": -0.0548
+    },
+    "dist_from_ma_atr": {
+      "ma10_atr": 0.083,
+      "ma20_atr": -0.267,
+      "ma50_atr": -3.218
+    },
+    "nearest_ma": {
+      "ma": "ma10",
+      "dist_pct": 0.0015
+    },
+    "atr": 0.00109,
+    "atr_pct": 0.018,
+    "adx": 35.19,
+    "range_position": 0.057,
+    "last_candle": {
+      "type": "doji",
+      "body_pct": 0.0048,
+      "upper_wick_pct": 0.283,
+      "lower_wick_pct": 0.402,
+      "vol_rank_30d": 0.5,
+      "vol_anomaly": null,
+      "accumulation_candle_score": 0.0,
+      "distribution_candle_score": 0.0
+    },
+    "accumulation": {
+      "vol_5bar_vs_30bar": 0.45,
+      "price_range_5bar_pct": 0.0284,
+      "accumulation_score": 0.0
+    },
+    "recent_strong_bull": {
+      "bars_ago": 10,
+      "body_pct": 0.0276,
+      "vol_rank": 0.767,
+      "close": 0.06124,
+      "max_retrace_pct": 0.0312,
+      "current_retrace_pct": 0.0121,
+      "holding": true
+    },
+    "ret_30d": -0.0481,
+    "ret_90d": 0.0171,
+    "from_period_high_pct": -0.2419,
+    "vol_avg_recent_vs_prior": 0.372
+  },
+  "tf_1h": {
+    "last_close": 0.0605,
+    "bars": 200,
+    "date_range": "2026-05-12 ~ 2026-05-20",
+    "ma10": 0.060597,
+    "ma20": 0.060211,
+    "ma50": 0.060467,
+    "ma_stack": "혼합",
+    "ma_slopes": {
+      "ma10": "up",
+      "ma20": "flat",
+      "ma50": "flat"
+    },
+    "ma_spread": "tight",
+    "price_pos": "between",
+    "dist_from_ma": {
+      "ma10_pct": -0.0016,
+      "ma20_pct": 0.0048,
+      "ma50_pct": 0.0005
+    },
+    "dist_from_ma_atr": {
+      "ma10_atr": -0.199,
+      "ma20_atr": 0.594,
+      "ma50_atr": 0.067
+    },
+    "nearest_ma": {
+      "ma": "ma50",
+      "dist_pct": 0.0005
+    },
+    "atr": 0.000487,
+    "atr_pct": 0.008,
+    "adx": 19.83,
+    "range_position": 0.239,
+    "last_candle": {
+      "type": "doji",
+      "body_pct": 0.0058,
+      "upper_wick_pct": 0.217,
+      "lower_wick_pct": 0.402,
+      "vol_rank_30d": 0.933,
+      "vol_anomaly": "spike",
+      "accumulation_candle_score": 0.3,
+      "distribution_candle_score": 0.3
+    },
+    "accumulation": {
+      "vol_5bar_vs_30bar": 1.17,
+      "price_range_5bar_pct": 0.0152,
+      "accumulation_score": 0.3
+    },
+    "recent_strong_bull": null,
+    "ret_30d": -0.0129,
+    "ret_90d": -0.0326,
+    "from_period_high_pct": -0.1894,
+    "vol_avg_recent_vs_prior": 0.549
+  },
+  "auto_risk_flags": [
+    "drawdown_deep"
+  ],
+  "global_nearest_ma": {
+    "tf": "1h",
+    "ma": "ma50",
+    "dist_pct": 0.0005
+  }
+}

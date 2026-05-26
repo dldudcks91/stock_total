@@ -1,0 +1,13 @@
+{
+  "symbol": "ALTUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B2", "micro_action": null, "volume_flag": "distribution_suspect", "note": "0.7 → 0.007, 2년 좀비 하락. 25년5월 거래량 폭증 분배"},
+  "tf_1w": {"state": "B3", "micro_action": null, "volume_flag": "dry", "note": "0.007 바닥 8개월 횡보, MA10/20 수렴"},
+  "tf_1d": {"state": "B3", "micro_action": null, "volume_flag": "dry", "note": "0.007 근처 베이스, MA수렴, 거래량 평이"},
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "B3 dry override, 명확한 추세 전환 신호 부재",
+  "charts": {"1m": "charts/ALTUSDT/20260520/ALTUSDT_1m.png", "1w": "charts/ALTUSDT/20260520/ALTUSDT_1w.png", "1d": "charts/ALTUSDT/20260520/ALTUSDT_1d.png"},
+  "schema_version": 1
+}

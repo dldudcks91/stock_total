@@ -1,0 +1,17 @@
+{
+  "symbol": "TIAUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "월봉 2023.12 출시 후 -97% 절벽 좀비" },
+  "tf_1w": { "state": "B3", "micro_action": null, "volume_flag": "normal", "note": "주봉 MA들 수렴 평탄, 0.4$ base 시작" },
+  "tf_1d": { "state": "B4", "micro_action": null, "volume_flag": "normal", "note": "1d MA10/20/50 돌파 후 가격 위, MA50 위 양봉 시도" },
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_reason": "1M B2 좀비, 1D는 B4 시도 — 큰 TF 우선으로 skip",
+  "charts": {
+    "1m": "charts/TIAUSDT/20260519/TIAUSDT_1m.png",
+    "1w": "charts/TIAUSDT/20260519/TIAUSDT_1w.png",
+    "1d": "charts/TIAUSDT/20260519/TIAUSDT_1d.png"
+  },
+  "schema_version": 1
+}

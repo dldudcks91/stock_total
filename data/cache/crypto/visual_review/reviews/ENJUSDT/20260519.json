@@ -1,0 +1,17 @@
+{
+  "symbol": "ENJUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "C1", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "장기 좀비, 마지막 1M 봉 거대 거래량 spike with 펌프&덤프 자국" },
+  "tf_1w": { "state": "C1", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "마지막 1W 거대 거래량 spike + 음봉 dump" },
+  "tf_1d": { "state": "C1", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "0.02->0.10 폭등 후 0.04로 덤프, 명확한 펌프&덤프" },
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_reason": "전 TF 펌프&덤프 트레이스 명확",
+  "charts": {
+    "1m": "charts/ENJUSDT/20260519/ENJUSDT_1m.png",
+    "1w": "charts/ENJUSDT/20260519/ENJUSDT_1w.png",
+    "1d": "charts/ENJUSDT/20260519/ENJUSDT_1d.png"
+  },
+  "schema_version": 1
+}

@@ -1,0 +1,183 @@
+{
+  "symbol": "008500",
+  "asset": "kr",
+  "reviewed_at": "2026-05-21T10:02:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 2075.0,
+      "bars": 148,
+      "date_range": "2014-02-28 ~ 2026-05-31",
+      "ma10": 3224.9,
+      "ma20": 2916.45,
+      "ma50": 3245.66,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3566, "ma20_pct": -0.2885, "ma50_pct": -0.3607},
+      "dist_from_ma_atr": {"ma10_atr": -0.885, "ma20_atr": -0.648, "ma50_atr": -0.901},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.2885},
+      "atr": 1299.25389,
+      "atr_pct": 0.6261,
+      "adx": 34.76,
+      "range_position": 0.291,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.2723,
+        "upper_wick_pct": 0.135,
+        "lower_wick_pct": 0.104,
+        "vol_rank_30d": 0.4,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.583,
+        "price_range_5bar_pct": 1.7783,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.3083,
+      "ret_90d": -0.5482,
+      "from_period_high_pct": -0.7944,
+      "vol_avg_recent_vs_prior": 4.975
+    },
+
+    "observations": {
+      "key_levels": {"support": 1800, "resistance": 3200},
+      "pattern": "pump_dump_collapse",
+      "recent_action": "2025년 급등(~9500)→즉각 폭락, 현재 고점 대비 -79%. 월봉에서 전형적인 펌프&덤프 패턴. MA 역배열이나 월봉 MAs는 펌프로 인해 왜곡."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "pump_dump_trace",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 2075.0,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 2569.5,
+      "ma20": 2812.5,
+      "ma50": 2931.6,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1924, "ma20_pct": -0.2622, "ma50_pct": -0.2922},
+      "dist_from_ma_atr": {"ma10_atr": -0.946, "ma20_atr": -1.411, "ma50_atr": -1.639},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1924},
+      "atr": 522.68428,
+      "atr_pct": 0.2519,
+      "adx": 38.25,
+      "range_position": 0.479,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0289,
+        "upper_wick_pct": 0.581,
+        "lower_wick_pct": 0.235,
+        "vol_rank_30d": 0.033,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.115,
+        "price_range_5bar_pct": 0.507,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.3908,
+      "ret_90d": -0.2205,
+      "from_period_high_pct": -0.709,
+      "vol_avg_recent_vs_prior": 0.351
+    },
+
+    "observations": {
+      "key_levels": {"support": 2000, "resistance": 2600},
+      "pattern": "downtrend_weak_vol",
+      "recent_action": "주봉 MA 완전 역배열, 거래량 급감(vol_avg 0.35). 펌프 후 거래량 즉시 소멸 — 전형적 pump_dump 잔재."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 2075.0,
+      "bars": 200,
+      "date_range": "2025-07-24 ~ 2026-05-20",
+      "ma10": 2337.0,
+      "ma20": 2523.75,
+      "ma50": 2640.6,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1121, "ma20_pct": -0.1778, "ma50_pct": -0.2142},
+      "dist_from_ma_atr": {"ma10_atr": -1.349, "ma20_atr": -2.31, "ma50_atr": -2.911},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1121},
+      "atr": 194.271184,
+      "atr_pct": 0.0936,
+      "adx": 17.47,
+      "range_position": 0.633,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0578,
+        "upper_wick_pct": 0.048,
+        "lower_wick_pct": 0.372,
+        "vol_rank_30d": 0.867,
+        "vol_anomaly": "breakout",
+        "accumulation_candle_score": 0.3,
+        "distribution_candle_score": 0.3
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.042,
+        "price_range_5bar_pct": 0.2395,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.2371,
+      "ret_90d": -0.2978,
+      "from_period_high_pct": -0.709,
+      "vol_avg_recent_vs_prior": 0.438
+    },
+
+    "observations": {
+      "key_levels": {"support": 1900, "resistance": 2400},
+      "pattern": "ma_downtrend",
+      "recent_action": "일봉 전체 MA 역배열 하향. ADX 17로 추세 약화. 전일 거래량 급증+음봉(breakout vol) — 추가 하락 가능성."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF B2 정합. 1M/1W에서 명백한 pump_dump_trace 확인. 고점 대비 -79%, 거래량 소멸. 영구 제외 대상.",
+
+  "risk_flags": ["drawdown_deep", "pump_dump_trace"],
+
+  "charts": {
+    "1m": "charts/008500/20260521/008500_1m.png",
+    "1w": "charts/008500/20260521/008500_1w.png",
+    "1d": "charts/008500/20260521/008500_1d.png"
+  }
+}

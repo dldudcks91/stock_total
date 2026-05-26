@@ -1,0 +1,183 @@
+{
+  "symbol": "005110",
+  "asset": "kr",
+  "reviewed_at": "2026-05-25T10:20:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "C1",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 1254.0,
+      "bars": 148,
+      "date_range": "2014-02-28 ~ 2026-05-31",
+      "ma10": 1254.0,
+      "ma20": 1254.0,
+      "ma50": 1953.36,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0, "ma20_pct": 0.0, "ma50_pct": -0.358},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": -0.568},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0},
+      "atr": 1230.229416,
+      "atr_pct": 0.981,
+      "adx": 9.7,
+      "range_position": 0.5,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 1.0,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.0048,
+      "ret_90d": -0.7693,
+      "from_period_high_pct": -0.9475,
+      "vol_avg_recent_vs_prior": 0.141
+    },
+
+    "observations": {
+      "key_levels": {"support": 1254, "resistance": 1254},
+      "pattern": "zombie_flat",
+      "recent_action": "월봉 장기 고점 대비 -95% 이상 붕괴 후 거래 정지 상태. ATR이 가격과 동일하고 모든 지표가 0 또는 flat. 사실상 거래 불가 종목."
+    }
+  },
+
+  "tf_1w": {
+    "state": "C1",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 1254.0,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 1254.0,
+      "ma20": 1254.0,
+      "ma50": 1254.0,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0},
+      "atr": 1253.787571,
+      "atr_pct": 0.9998,
+      "adx": 91.39,
+      "range_position": 0.5,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 1.0,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.756,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 1254, "resistance": 1254},
+      "pattern": "zombie_flat",
+      "recent_action": "주봉 전체가 1254 고정. MA 모두 동일 가격에 수렴. ADX 91(비정상)은 데이터 이상. 거래 정지/관리종목 유사 상태."
+    }
+  },
+
+  "tf_1d": {
+    "state": "C1",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 1254.0,
+      "bars": 200,
+      "date_range": "2025-07-24 ~ 2026-05-20",
+      "ma10": 1254.0,
+      "ma20": 1254.0,
+      "ma50": 1254.0,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0},
+      "atr": 1254.0,
+      "atr_pct": 1.0,
+      "adx": 18.32,
+      "range_position": 0.5,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 1.0,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": 0.0,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 1254, "resistance": 1254},
+      "pattern": "zombie_flat",
+      "recent_action": "일봉 차트에서 모든 봉이 동일 가격(1254)에 고정. 거래량 0. 사실상 거래 정지 상태로 분석 대상 불가."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF에서 가격 고정, 거래량 0, ATR 비정상. 좀비 종목 확정. auto_risk_flags zombie 포함. 영구 제외.",
+
+  "risk_flags": ["drawdown_deep", "zombie"],
+
+  "charts": {
+    "1m": "charts/005110/20260521/005110_1m.png",
+    "1w": "charts/005110/20260521/005110_1w.png",
+    "1d": "charts/005110/20260521/005110_1d.png"
+  }
+}

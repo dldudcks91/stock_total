@@ -1,0 +1,13 @@
+{
+  "symbol": "GRTUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B2", "micro_action": null, "volume_flag": "distribution_suspect", "note": "0.5→0.025 지속 하락"},
+  "tf_1w": {"state": "B2", "micro_action": null, "volume_flag": "normal", "note": "MA10/20/50 정렬 하락 지속"},
+  "tf_1d": {"state": "B3", "micro_action": null, "volume_flag": "dry", "note": "0.025 부근 base, 거래량 위축"},
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_reason": "dry override + 1M/1W B2",
+  "charts": {"1m": "charts/GRTUSDT/20260520/GRTUSDT_1m.png", "1w": "charts/GRTUSDT/20260520/GRTUSDT_1w.png", "1d": "charts/GRTUSDT/20260520/GRTUSDT_1d.png"},
+  "schema_version": 1
+}

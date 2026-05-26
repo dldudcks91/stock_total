@@ -1,0 +1,13 @@
+{
+  "symbol": "TIAUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state":"B2","micro_action":null,"volume_flag":"normal","note":"고점 후 2년 지속 하락 - 좀비"},
+  "tf_1w": {"state":"B2","micro_action":null,"volume_flag":null,"note":"MA10/20/50 정배열 데드 - 지속 하락"},
+  "tf_1d": {"state":"B5","micro_action":null,"volume_flag":null,"note":"바닥 만들고 MA20/50 위로 상승 retest"},
+  "tf_consistency":"충돌",
+  "verdict":"skip",
+  "verdict_reason":"큰 TF(1M=B2) 좀비 지속 하락 - skip",
+  "charts":{"1m":"charts/TIAUSDT/20260520/TIAUSDT_1m.png","1w":"charts/TIAUSDT/20260520/TIAUSDT_1w.png","1d":"charts/TIAUSDT/20260520/TIAUSDT_1d.png"},
+  "schema_version":1
+}

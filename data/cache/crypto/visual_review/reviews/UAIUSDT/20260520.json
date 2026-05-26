@@ -1,0 +1,13 @@
+{
+  "symbol": "UAIUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": null, "micro_action": null, "volume_flag": null, "note": "1M PNG 없음"},
+  "tf_1w": {"state": "A2", "micro_action": "pullback_ma10", "volume_flag": "dry", "note": "0.15 → 0.40 상승 후 MA10 눌림, 거래량 약함"},
+  "tf_1d": {"state": "A2", "micro_action": "pullback_ma20", "volume_flag": "normal", "note": "정배열 유지하며 MA20 근접 눌림"},
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_reason": "1W A2 정배열이나 거래량 dry → 한 단계 보수적",
+  "charts": {"1m": null, "1w": "charts/UAIUSDT/20260520/UAIUSDT_1w.png", "1d": "charts/UAIUSDT/20260520/UAIUSDT_1d.png"},
+  "schema_version": 1
+}

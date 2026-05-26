@@ -1,0 +1,17 @@
+{
+  "symbol": "ATHUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "월봉 0.08→0.013 좀비" },
+  "tf_1w": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "주봉 MA 하향 정렬 반대 지속" },
+  "tf_1d": { "state": "B3", "micro_action": null, "volume_flag": "normal", "note": "일봉 MA10/20/50 수렴 base, 평탄" },
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_reason": "큰TF B2, 1D만 B3로 약한 base",
+  "charts": {
+    "1m": "charts/ATHUSDT/20260520/ATHUSDT_1m.png",
+    "1w": "charts/ATHUSDT/20260520/ATHUSDT_1w.png",
+    "1d": "charts/ATHUSDT/20260520/ATHUSDT_1d.png"
+  },
+  "schema_version": 1
+}

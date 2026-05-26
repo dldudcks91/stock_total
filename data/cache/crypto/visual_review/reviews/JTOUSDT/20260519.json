@@ -1,0 +1,17 @@
+{
+  "symbol": "JTOUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "5달러 peak → 0.4 부근 지속 하락, MA10/20 우하향 역배열" },
+  "tf_1w": { "state": "B3", "micro_action": null, "volume_flag": "normal", "note": "0.3~0.5 박스 base, MA10/20 평탄 수렴" },
+  "tf_1d": { "state": "B5", "micro_action": null, "volume_flag": "normal", "note": "큰 양봉 + 거래량 spike 후 MA10/20/50 정배열 회복, MA20 위 retest 확정" },
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_reason": "1D B5 강한 전환 시그널 + 1W B3 base. 1M B2 큰 추세 미전환이라 watch.",
+  "charts": {
+    "1m": "charts/JTOUSDT/20260519/JTOUSDT_1m.png",
+    "1w": "charts/JTOUSDT/20260519/JTOUSDT_1w.png",
+    "1d": "charts/JTOUSDT/20260519/JTOUSDT_1d.png"
+  },
+  "schema_version": 1
+}

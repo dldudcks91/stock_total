@@ -1,0 +1,13 @@
+{
+  "symbol": "FLUXUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B2", "micro_action": null, "volume_flag": "distribution_suspect", "note": "long decline from 0.8 to 0.07"},
+  "tf_1w": {"state": "B2", "micro_action": null, "volume_flag": "dry", "note": "MAs flat-down at floor"},
+  "tf_1d": {"state": "B3", "micro_action": "pullback_ma20", "volume_flag": "normal", "note": "shallow base 0.06-0.09, weak curl"},
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "big TF zombie / distribution",
+  "charts": {"1m": "charts/FLUXUSDT/20260520/FLUXUSDT_1m.png", "1w": "charts/FLUXUSDT/20260520/FLUXUSDT_1w.png", "1d": "charts/FLUXUSDT/20260520/FLUXUSDT_1d.png"},
+  "schema_version": 1
+}

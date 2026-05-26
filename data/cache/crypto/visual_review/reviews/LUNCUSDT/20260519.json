@@ -1,0 +1,17 @@
+{
+  "symbol": "LUNCUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B4", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "장기 하락 후 마지막 월봉 큰 양봉. 과거 펌프&덤프 흔적 다수, 좀비코인 특성" },
+  "tf_1w": { "state": "B4", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "주봉도 첫 양봉 + 거래량 폭증. 위로 솟구침" },
+  "tf_1d": { "state": "A1", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "0.00004 → 0.00012 3배 급등 후 풀백. 최근 음봉 강함, 펌프 후 덤프 가능성" },
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_reason": "volume_flag=pump_dump_trace + 좀비코인. 룰에 의해 reject",
+  "charts": {
+    "1m": "charts/LUNCUSDT/20260519/LUNCUSDT_1m.png",
+    "1w": "charts/LUNCUSDT/20260519/LUNCUSDT_1w.png",
+    "1d": "charts/LUNCUSDT/20260519/LUNCUSDT_1d.png"
+  },
+  "schema_version": 1
+}

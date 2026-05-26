@@ -1,0 +1,13 @@
+{
+  "symbol": "RESOLVUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B2", "micro_action": "pullback_ma10", "volume_flag": "normal", "note": "Steady downtrend from $0.40 to $0.03, monthly closes red consistently"},
+  "tf_1w": {"state": "B2", "micro_action": "pullback_ma10", "volume_flag": "normal", "note": "Persistent downtrend with weak bounces, MA10/20 sloping down"},
+  "tf_1d": {"state": "B2", "micro_action": "pullback_ma10", "volume_flag": "dry", "note": "MA align bearish (50>20>10>price), price grinding down, volume thinning"},
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "전체 TF B2 좀비 다운트렌드 지속",
+  "charts": {"1m": "charts/RESOLVUSDT/20260520/RESOLVUSDT_1m.png", "1w": "charts/RESOLVUSDT/20260520/RESOLVUSDT_1w.png", "1d": "charts/RESOLVUSDT/20260520/RESOLVUSDT_1d.png"},
+  "schema_version": 1
+}

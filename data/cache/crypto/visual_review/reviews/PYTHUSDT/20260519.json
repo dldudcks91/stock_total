@@ -1,0 +1,17 @@
+{
+  "symbol": "PYTHUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "1.2 피크 후 0.04까지 좀비 하락. 2025-Jul 대량 거래 spike 후 dry" },
+  "tf_1w": { "state": "B2", "micro_action": null, "volume_flag": null, "note": "MA 역배열 우하향, 가격 거의 신저점" },
+  "tf_1d": { "state": "B2", "micro_action": null, "volume_flag": null, "note": "MA50 우하향 지속, 최근 0.06 부근 약한 반등 후 다시 약화" },
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_reason": "전 TF 좀비 하락 + 1M pump_dump 흔적. 매수 부적합",
+  "charts": {
+    "1m": "charts/PYTHUSDT/20260519/PYTHUSDT_1m.png",
+    "1w": "charts/PYTHUSDT/20260519/PYTHUSDT_1w.png",
+    "1d": "charts/PYTHUSDT/20260519/PYTHUSDT_1d.png"
+  },
+  "schema_version": 1
+}

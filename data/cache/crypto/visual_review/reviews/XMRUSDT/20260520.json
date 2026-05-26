@@ -1,0 +1,17 @@
+{
+  "symbol": "XMRUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": { "state": null, "micro_action": null, "volume_flag": null, "note": "1M chart 부재 (신규)" },
+  "tf_1w": { "state": "B3", "micro_action": "pullback_ma20", "volume_flag": "normal", "note": "급등 후 base 다지기, MA10/20 수렴" },
+  "tf_1d": { "state": "A1", "micro_action": "riding", "volume_flag": "normal", "note": "MA10/20/50 위 회복, 우상향 정배열 시작" },
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_reason": "큰TF(1W) B3 base 후 1D A1 회복 진행, 돌파 확인 필요",
+  "charts": {
+    "1m": null,
+    "1w": "charts/XMRUSDT/20260520/XMRUSDT_1w.png",
+    "1d": "charts/XMRUSDT/20260520/XMRUSDT_1d.png"
+  },
+  "schema_version": 1
+}

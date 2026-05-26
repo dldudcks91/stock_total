@@ -1,0 +1,13 @@
+{
+  "symbol": "AWEUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "C1", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "0.12 펌프 후 0.05 복귀 - 박스/펌프&덤프"},
+  "tf_1w": {"state": "C1", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "두 번 펌프 후 복귀 패턴 - 펌프&덤프"},
+  "tf_1d": {"state": "B3", "micro_action": null, "volume_flag": "dry", "note": "0.055 부근 횡보 base, 거래량 위축"},
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_reason": "pump_dump_trace override (1M/1W 박스+펌프)",
+  "charts": {"1m": "charts/AWEUSDT/20260520/AWEUSDT_1m.png", "1w": "charts/AWEUSDT/20260520/AWEUSDT_1w.png", "1d": "charts/AWEUSDT/20260520/AWEUSDT_1d.png"},
+  "schema_version": 1
+}

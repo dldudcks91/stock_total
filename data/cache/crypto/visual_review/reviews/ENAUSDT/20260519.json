@@ -1,0 +1,17 @@
+{
+  "symbol": "ENAUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "1M MA10/20 역배열·우하향, 좀비 하락" },
+  "tf_1w": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "1W MA 역배열 지속, 바닥권 좀비" },
+  "tf_1d": { "state": "B3", "micro_action": null, "volume_flag": "normal", "note": "MA10/20 평탄, 0.10 부근 base 다지기 시작" },
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "큰 TF 1M=B2, 1W=B2 좀비 하락 -> skip",
+  "charts": {
+    "1m": "charts/ENAUSDT/20260519/ENAUSDT_1m.png",
+    "1w": "charts/ENAUSDT/20260519/ENAUSDT_1w.png",
+    "1d": "charts/ENAUSDT/20260519/ENAUSDT_1d.png"
+  },
+  "schema_version": 1
+}

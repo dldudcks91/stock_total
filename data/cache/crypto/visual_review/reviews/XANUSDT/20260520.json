@@ -1,0 +1,13 @@
+{
+  "symbol": "XANUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state":"C1","micro_action":null,"volume_flag":null,"note":"PNG missing - 1M 차트 없음"},
+  "tf_1w": {"state":"C1","micro_action":null,"volume_flag":"pump_dump_trace","note":"신규, 첫 봉 후 급락, 펌프&덤프 후 평탄 base"},
+  "tf_1d": {"state":"B3","micro_action":null,"volume_flag":"pump_dump_trace","note":"펌프 후 base, 거래량 dry"},
+  "tf_consistency":"정합",
+  "verdict":"reject",
+  "verdict_reason":"pump_dump_trace 강함 - override reject",
+  "charts":{"1m":null,"1w":"charts/XANUSDT/20260520/XANUSDT_1w.png","1d":"charts/XANUSDT/20260520/XANUSDT_1d.png"},
+  "schema_version":1
+}

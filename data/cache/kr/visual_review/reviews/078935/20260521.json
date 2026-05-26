@@ -1,0 +1,183 @@
+{
+  "symbol": "078935",
+  "asset": "kr",
+  "reviewed_at": "2026-05-21T09:30:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 55800.0,
+      "bars": 148,
+      "date_range": "2014-02-28 ~ 2026-05-31",
+      "ma10": 50275.0,
+      "ma20": 44535.0,
+      "ma50": 39530.0,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.1099, "ma20_pct": 0.2529, "ma50_pct": 0.4116},
+      "dist_from_ma_atr": {"ma10_atr": 1.034, "ma20_atr": 2.109, "ma50_atr": 3.046},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.1099},
+      "atr": 5341.020893,
+      "atr_pct": 0.0957,
+      "adx": 52.93,
+      "range_position": 0.674,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0466,
+        "upper_wick_pct": 0.357,
+        "lower_wick_pct": 0.179,
+        "vol_rank_30d": 0.033,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.485,
+        "price_range_5bar_pct": 0.2867,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.5652,
+      "ret_90d": 0.496,
+      "from_period_high_pct": -0.1213,
+      "vol_avg_recent_vs_prior": 4.037
+    },
+
+    "observations": {
+      "key_levels": {"support": 40000, "resistance": 65000},
+      "pattern": "stair_step_up",
+      "recent_action": "월봉 완전 정배열 우상향, ADX 52로 강한 추세 확인. 최근 달 상승폭 +56%. MA10과의 거리 약 11%로 조정 가능성."
+    }
+  },
+
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 55800.0,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 55270.0,
+      "ma20": 54635.0,
+      "ma50": 48811.0,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0096, "ma20_pct": 0.0213, "ma50_pct": 0.1432},
+      "dist_from_ma_atr": {"ma10_atr": 0.168, "ma20_atr": 0.37, "ma50_atr": 2.219},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0096},
+      "atr": 3149.623965,
+      "atr_pct": 0.0564,
+      "adx": 36.07,
+      "range_position": 0.639,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0179,
+        "upper_wick_pct": 0.13,
+        "lower_wick_pct": 0.435,
+        "vol_rank_30d": 0.1,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.839,
+        "price_range_5bar_pct": 0.1057,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.2386,
+      "ret_90d": 0.3223,
+      "from_period_high_pct": -0.1213,
+      "vol_avg_recent_vs_prior": 0.811
+    },
+
+    "observations": {
+      "key_levels": {"support": 52000, "resistance": 65000},
+      "pattern": "uptrend_ma10_touch",
+      "recent_action": "주봉 MA10 바로 위(+0.96%)에서 마감, 아래꼬리 길어 반등 지지력 시사. ADX 36 추세 지속 중."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A3",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 55800.0,
+      "bars": 200,
+      "date_range": "2025-07-24 ~ 2026-05-20",
+      "ma10": 56720.0,
+      "ma20": 56885.0,
+      "ma50": 55238.0,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0162, "ma20_pct": -0.0191, "ma50_pct": 0.0102},
+      "dist_from_ma_atr": {"ma10_atr": -0.505, "ma20_atr": -0.595, "ma50_atr": 0.308},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.0102},
+      "atr": 1823.46185,
+      "atr_pct": 0.0327,
+      "adx": 15.13,
+      "range_position": 0.438,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0108,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.625,
+        "vol_rank_30d": 0.767,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.102,
+        "price_range_5bar_pct": 0.1004,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.043,
+      "ret_90d": 0.1411,
+      "from_period_high_pct": -0.1213,
+      "vol_avg_recent_vs_prior": 0.763
+    },
+
+    "observations": {
+      "key_levels": {"support": 54000, "resistance": 63000},
+      "pattern": "topping_box",
+      "recent_action": "일봉 1월 64000 고점 이후 55000~60000 박스 형성. MA10/20 모두 하향, ADX 15로 추세 약화. MA50(55238) 지지 확인 중."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "월봉·주봉 A2 강세이나 일봉은 A3 토핑 박스. 큰 추세는 건재하나 단기 고점 후 조정 구간. 주봉 MA10 지지 확인 후 재상승 여부 대기.",
+
+  "risk_flags": [],
+
+  "charts": {
+    "1m": "charts/078935/20260521/078935_1m.png",
+    "1w": "charts/078935/20260521/078935_1w.png",
+    "1d": "charts/078935/20260521/078935_1d.png"
+  }
+}

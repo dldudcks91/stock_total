@@ -1,0 +1,17 @@
+{
+  "symbol": "METUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "C1", "micro_action": null, "volume_flag": null, "note": "PNG 없음 (신규 토큰)"},
+  "tf_1w": {"state": "B2", "micro_action": null, "volume_flag": "dry", "note": "장기 좀비 지속, 거래량 메마름"},
+  "tf_1d": {"state": "B2", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "장기 하락, 단발 펌프 후 다시 하락"},
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "B2 좀비 지속 + dry, 매수 신호 부재",
+  "charts": {
+    "1m": "charts/METUSDT/20260520/METUSDT_1m.png",
+    "1w": "charts/METUSDT/20260520/METUSDT_1w.png",
+    "1d": "charts/METUSDT/20260520/METUSDT_1d.png"
+  },
+  "schema_version": 1
+}

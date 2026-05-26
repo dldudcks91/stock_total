@@ -1,0 +1,13 @@
+{
+  "symbol": "SUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B2", "micro_action": null, "volume_flag": "distribution_suspect", "note": "0.7 → 0.05, 1년 연속 좀비 하락, 25년 중반 거래량 폭증 분배"},
+  "tf_1w": {"state": "B3", "micro_action": null, "volume_flag": "dry", "note": "0.05 바닥에서 3개월 횡보, MA10/20 우하향 수렴"},
+  "tf_1d": {"state": "B3", "micro_action": null, "volume_flag": "dry", "note": "0.05 바닥 베이스 형성, MA수렴, 거래량 감소"},
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "B3 dry override, 명확한 추세 전환 신호 부재",
+  "charts": {"1m": "charts/SUSDT/20260520/SUSDT_1m.png", "1w": "charts/SUSDT/20260520/SUSDT_1w.png", "1d": "charts/SUSDT/20260520/SUSDT_1d.png"},
+  "schema_version": 1
+}

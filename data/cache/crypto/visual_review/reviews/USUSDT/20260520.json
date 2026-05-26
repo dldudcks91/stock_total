@@ -1,0 +1,13 @@
+{
+  "symbol": "USUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "C1", "micro_action": null, "volume_flag": null, "note": "1M PNG 없음, 신규 토큰 데이터 부족"},
+  "tf_1w": {"state": "B4", "micro_action": null, "volume_flag": "normal", "note": "런칭 후 급락→베이스→MA10 위 회복 시도"},
+  "tf_1d": {"state": "A1", "micro_action": "pullback_ma20", "volume_flag": "pump_dump_trace", "note": "베이스 후 첫 양봉 발생, MA10/20/50 정배열 진입, 5/12 거대 거래량"},
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_reason": "신규 토큰, 베이스에서 첫 양봉·정배열 시작이나 1M 데이터 부족",
+  "charts": {"1m": "charts/USUSDT/20260520/USUSDT_1m.png", "1w": "charts/USUSDT/20260520/USUSDT_1w.png", "1d": "charts/USUSDT/20260520/USUSDT_1d.png"},
+  "schema_version": 1
+}

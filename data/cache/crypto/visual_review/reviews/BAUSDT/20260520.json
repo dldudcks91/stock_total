@@ -1,0 +1,13 @@
+{
+  "symbol": "BAUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "C1", "micro_action": null, "volume_flag": null, "note": "1M PNG 없음, 신규 토큰 데이터 부족"},
+  "tf_1w": {"state": "C1", "micro_action": null, "volume_flag": null, "note": "1W PNG 없음, 신규 토큰 데이터 부족"},
+  "tf_1d": {"state": "A3", "micro_action": null, "volume_flag": "distribution_suspect", "note": "40일만 데이터, 5월 고점 245 후 거대 음봉·고거래량 분배 의심, MA10 깸"},
+  "tf_consistency": "분리",
+  "verdict": "skip",
+  "verdict_reason": "신규 토큰 1M/1W 부재, 1D는 토핑·분배 의심",
+  "charts": {"1m": "charts/BAUSDT/20260520/BAUSDT_1m.png", "1w": "charts/BAUSDT/20260520/BAUSDT_1w.png", "1d": "charts/BAUSDT/20260520/BAUSDT_1d.png"},
+  "schema_version": 1
+}

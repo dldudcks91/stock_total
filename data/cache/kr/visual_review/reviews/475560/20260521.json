@@ -1,0 +1,171 @@
+{
+  "symbol": "475560",
+  "asset": "kr",
+  "reviewed_at": "2026-05-21T10:10:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "low",
+    "context": {
+      "last_close": 18100.0,
+      "bars": 19,
+      "date_range": "2024-11-30 ~ 2026-05-31",
+      "ma10": 23260.0,
+      "ma20": null,
+      "ma50": null,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.2218, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": -0.554, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.2218},
+      "atr": 9315.229911,
+      "atr_pct": 0.5147,
+      "adx": null,
+      "range_position": 0.002,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.1547,
+        "upper_wick_pct": 0.051,
+        "lower_wick_pct": 0.007,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.7194,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": {"support": 17000, "resistance": 30000},
+      "pattern": "ipo_decline",
+      "recent_action": "상장 후 60k+ 고점에서 지속 하락. 19봉만 있어 MA20/50 미형성. 월봉 데이터 부족."
+    }
+  },
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+    "context": {
+      "last_close": 18100.0,
+      "bars": 81,
+      "date_range": "2024-11-11 ~ 2026-05-25",
+      "ma10": 20320.0,
+      "ma20": 21862.5,
+      "ma50": 24348.0,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1093, "ma20_pct": -0.1721, "ma50_pct": -0.2566},
+      "dist_from_ma_atr": {"ma10_atr": -1.996, "ma20_atr": -3.382, "ma50_atr": -5.617},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1093},
+      "atr": 1112.435531,
+      "atr_pct": 0.0615,
+      "adx": 19.58,
+      "range_position": 0.002,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0133,
+        "upper_wick_pct": 0.714,
+        "lower_wick_pct": 0.022,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.58,
+        "price_range_5bar_pct": 0.1779,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.276,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.7194,
+      "vol_avg_recent_vs_prior": 0.512
+    },
+    "observations": {
+      "key_levels": {"support": 17000, "resistance": 25000},
+      "pattern": "ipo_sustained_decline",
+      "recent_action": "상장 직후 고점 대비 -72% 지속 하락. 역배열 전선 하향. 거래량 급감. vol_rank 0점."
+    }
+  },
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+    "context": {
+      "last_close": 18100.0,
+      "bars": 200,
+      "date_range": "2025-07-24 ~ 2026-05-20",
+      "ma10": 19312.0,
+      "ma20": 20146.0,
+      "ma50": 20809.4,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0628, "ma20_pct": -0.1016, "ma50_pct": -0.1302},
+      "dist_from_ma_atr": {"ma10_atr": -2.878, "ma20_atr": -4.858, "ma50_atr": -6.433},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0628},
+      "atr": 421.14025,
+      "atr_pct": 0.0233,
+      "adx": 37.63,
+      "range_position": 0.003,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0227,
+        "upper_wick_pct": 0.317,
+        "lower_wick_pct": 0.032,
+        "vol_rank_30d": 0.7,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.964,
+        "price_range_5bar_pct": 0.0779,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.1319,
+      "ret_90d": -0.2642,
+      "from_period_high_pct": -0.3726,
+      "vol_avg_recent_vs_prior": 0.626
+    },
+    "observations": {
+      "key_levels": {"support": 17000, "resistance": 21000},
+      "pattern": "relentless_decline",
+      "recent_action": "ADX=37.63 강한 하락 추세. 역배열 전선 하향. range_position 0.003 극단 하단. 박스 최저권."
+    }
+  },
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF B2 정합. IPO 이후 지속 하락(-72%). 역배열 + 거래량 감소 + ADX 강한 하락 추세. drawdown_deep 플래그. 매매 부적합.",
+  "risk_flags": ["drawdown_deep", "low_history"],
+  "charts": {
+    "1m": "charts/475560/20260521/475560_1m.png",
+    "1w": "charts/475560/20260521/475560_1w.png",
+    "1d": "charts/475560/20260521/475560_1d.png"
+  }
+}

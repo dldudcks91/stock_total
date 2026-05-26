@@ -1,0 +1,13 @@
+{
+  "symbol": "EPICUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B3", "micro_action": null, "volume_flag": "dry", "note": "3.0 → 0.4 큰 하락 후 평탄"},
+  "tf_1w": {"state": "B3", "micro_action": null, "volume_flag": "dry", "note": "MA10/20 평탄 수렴, base 형성"},
+  "tf_1d": {"state": "B4", "micro_action": null, "volume_flag": "normal", "note": "0.3 부근 횡보, MA20 위 첫 양봉 시도"},
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_reason": "큰TF dry override, B3 base 누적",
+  "charts": {"1m": "charts/EPICUSDT/20260520/EPICUSDT_1m.png", "1w": "charts/EPICUSDT/20260520/EPICUSDT_1w.png", "1d": "charts/EPICUSDT/20260520/EPICUSDT_1d.png"},
+  "schema_version": 1
+}

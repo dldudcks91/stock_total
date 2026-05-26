@@ -1,0 +1,13 @@
+{
+  "symbol": "HOTUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B2", "micro_action": "pullback_ma10", "volume_flag": "normal", "note": "Long downtrend from $0.005 to $0.0005 area, monthly bearish"},
+  "tf_1w": {"state": "B3", "micro_action": "pullback_ma10", "volume_flag": "normal", "note": "Sideways base at lows, MA align bearish but flatter recently"},
+  "tf_1d": {"state": "B3", "micro_action": "pullback_ma10", "volume_flag": "normal", "note": "Daily base ~$0.0004, MA10/20/50 tightly entangled flat, no clear breakout"},
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "B2/B3 좀비 base, breakout 신호 미발생",
+  "charts": {"1m": "charts/HOTUSDT/20260520/HOTUSDT_1m.png", "1w": "charts/HOTUSDT/20260520/HOTUSDT_1w.png", "1d": "charts/HOTUSDT/20260520/HOTUSDT_1d.png"},
+  "schema_version": 1
+}

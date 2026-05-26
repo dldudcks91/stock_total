@@ -1,0 +1,17 @@
+{
+  "symbol": "ETHFIUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "월봉 8→0.5 장기 하락, MA 전부 하향" },
+  "tf_1w": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "주봉 우하향 지속, 좀비" },
+  "tf_1d": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "일봉 신저가 갱신, MA 하향 정렬 반대" },
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "큰TF B2, 모든 TF 하락 지속",
+  "charts": {
+    "1m": "charts/ETHFIUSDT/20260520/ETHFIUSDT_1m.png",
+    "1w": "charts/ETHFIUSDT/20260520/ETHFIUSDT_1w.png",
+    "1d": "charts/ETHFIUSDT/20260520/ETHFIUSDT_1d.png"
+  },
+  "schema_version": 1
+}

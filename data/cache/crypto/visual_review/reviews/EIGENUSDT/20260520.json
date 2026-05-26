@@ -1,0 +1,13 @@
+{
+  "symbol": "EIGENUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B2", "micro_action": null, "volume_flag": "distribution_suspect", "note": "지속 하락, 5→0.2 폭락 후 미반등"},
+  "tf_1w": {"state": "B3", "micro_action": null, "volume_flag": "dry", "note": "0.2 부근 바닥 base 형성, 거래량 위축"},
+  "tf_1d": {"state": "B3", "micro_action": null, "volume_flag": "dry", "note": "MA 수렴 base, 거래량 매우 위축"},
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_reason": "dry override + 1M B2",
+  "charts": {"1m": "charts/EIGENUSDT/20260520/EIGENUSDT_1m.png", "1w": "charts/EIGENUSDT/20260520/EIGENUSDT_1w.png", "1d": "charts/EIGENUSDT/20260520/EIGENUSDT_1d.png"},
+  "schema_version": 1
+}

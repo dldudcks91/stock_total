@@ -1,0 +1,17 @@
+{
+  "symbol": "AMZNUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "C1", "micro_action": null, "volume_flag": "normal", "note": "토큰화 주식, 데이터 짧음 — 박스권"},
+  "tf_1w": {"state": "A2", "micro_action": "pullback_ma10", "volume_flag": "normal", "note": "급반등 후 MA10 살짝 눌림"},
+  "tf_1d": {"state": "A2", "micro_action": "pullback_ma20", "volume_flag": "normal", "note": "정배열 후 MA20 근처 눌림목"},
+  "tf_consistency": "정합",
+  "verdict": "pass",
+  "verdict_reason": "AMZN 토큰화 주식, 1w/1d A2 정합 — 단 거래량 얕음 주의",
+  "charts": {
+    "1m": "charts/AMZNUSDT/20260520/AMZNUSDT_1m.png",
+    "1w": "charts/AMZNUSDT/20260520/AMZNUSDT_1w.png",
+    "1d": "charts/AMZNUSDT/20260520/AMZNUSDT_1d.png"
+  },
+  "schema_version": 1
+}

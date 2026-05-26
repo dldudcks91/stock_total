@@ -1,0 +1,13 @@
+{
+  "symbol": "HOMEUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B2", "micro_action": "pullback_ma10", "volume_flag": "dry", "note": "초기 펌프 후 지속 하락"},
+  "tf_1w": {"state": "B2", "micro_action": "pullback_ma10", "volume_flag": "dry", "note": "장기 하락, 거래량 고갈"},
+  "tf_1d": {"state": "B2", "micro_action": "pullback_ma10", "volume_flag": "normal", "note": "MA20 아래 약한 반등, 신저가 갱신 후 회복"},
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "다운트렌드 지속 좀비",
+  "charts": {"1m": "charts/HOMEUSDT/20260520/HOMEUSDT_1m.png", "1w": "charts/HOMEUSDT/20260520/HOMEUSDT_1w.png", "1d": "charts/HOMEUSDT/20260520/HOMEUSDT_1d.png"},
+  "schema_version": 1
+}

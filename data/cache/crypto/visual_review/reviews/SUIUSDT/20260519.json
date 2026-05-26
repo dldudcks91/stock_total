@@ -1,0 +1,17 @@
+{
+  "symbol": "SUIUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "5달러 peak → 1달러 부근 하락, MA10/20 우하향 역배열" },
+  "tf_1w": { "state": "B3", "micro_action": null, "volume_flag": "normal", "note": "MA10/20 평탄해지며 1달러 부근 base 다지기" },
+  "tf_1d": { "state": "B4", "micro_action": null, "volume_flag": "normal", "note": "최근 큰 양봉 + 거래량 폭증, MA10/20 위 첫 양봉(미확정, retest 필요)" },
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_reason": "1D B4 상승 시도 + 1W B3 base. 1M B2 큰 추세 미전환이라 watch.",
+  "charts": {
+    "1m": "charts/SUIUSDT/20260519/SUIUSDT_1m.png",
+    "1w": "charts/SUIUSDT/20260519/SUIUSDT_1w.png",
+    "1d": "charts/SUIUSDT/20260519/SUIUSDT_1d.png"
+  },
+  "schema_version": 1
+}

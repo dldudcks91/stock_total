@@ -1,0 +1,17 @@
+{
+  "symbol": "STORJUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "월봉 2024 이후 지속 하락 좀비, MA10/20 역배열" },
+  "tf_1w": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "주봉 우하향 지속, MA 역배열" },
+  "tf_1d": { "state": "B4", "micro_action": null, "volume_flag": "normal", "note": "1d 최근 MA10/20/50 위 양봉 시도, 거래량 동반" },
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_reason": "1M/1W B2 좀비, 1D B4 시도이나 큰 TF 우선",
+  "charts": {
+    "1m": "charts/STORJUSDT/20260519/STORJUSDT_1m.png",
+    "1w": "charts/STORJUSDT/20260519/STORJUSDT_1w.png",
+    "1d": "charts/STORJUSDT/20260519/STORJUSDT_1d.png"
+  },
+  "schema_version": 1
+}

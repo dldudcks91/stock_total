@@ -1,0 +1,17 @@
+{
+  "symbol": "REZUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "0.2 → 0.005 수직 하락. 신규 코인 펌프&덤프 흔적" },
+  "tf_1w": { "state": "B2", "micro_action": null, "volume_flag": null, "note": "MA 완전 역배열 우하향, 가격 거의 0" },
+  "tf_1d": { "state": "B5", "micro_action": null, "volume_flag": null, "note": "0.004 → 0.007 반등, MA10/20/50 우상향, 가격 MA50 위. 단 큰 TF 좀비" },
+  "tf_consistency": "충돌",
+  "verdict": "reject",
+  "verdict_reason": "1M pump_dump 흔적. 1D 강한 반등 있으나 큰 TF 좀비 하락 + 신규 코인 위험",
+  "charts": {
+    "1m": "charts/REZUSDT/20260519/REZUSDT_1m.png",
+    "1w": "charts/REZUSDT/20260519/REZUSDT_1w.png",
+    "1d": "charts/REZUSDT/20260519/REZUSDT_1d.png"
+  },
+  "schema_version": 1
+}

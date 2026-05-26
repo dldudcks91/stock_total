@@ -1,0 +1,17 @@
+{
+  "symbol": "CCUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": null, "micro_action": null, "volume_flag": null, "note": "PNG 없음 (상장 25일, 신규)"},
+  "tf_1w": {"state": null, "micro_action": null, "volume_flag": null, "note": "PNG 없음 (상장 25일, 신규)"},
+  "tf_1d": {"state": "C1", "micro_action": null, "volume_flag": "distribution_suspect", "note": "0.145-0.165 박스, 단발 거래량 스파이크, 신규 25bars"},
+  "tf_consistency": "분리",
+  "verdict": "skip",
+  "verdict_reason": "신규 상장 25bars, 박스 패턴, 추세 검증 불가",
+  "charts": {
+    "1m": "charts/CCUSDT/20260520/CCUSDT_1m.png",
+    "1w": "charts/CCUSDT/20260520/CCUSDT_1w.png",
+    "1d": "charts/CCUSDT/20260520/CCUSDT_1d.png"
+  },
+  "schema_version": 1
+}

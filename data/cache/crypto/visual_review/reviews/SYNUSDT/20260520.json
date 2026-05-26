@@ -1,0 +1,17 @@
+{
+  "symbol": "SYNUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "월봉 1.0→0.05 좀비" },
+  "tf_1w": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "주봉 우하향 지속, 1회 pump spike" },
+  "tf_1d": { "state": "B3", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "일봉 pump&dump 후 base, MA10/20 미약 회복" },
+  "tf_consistency": "충돌",
+  "verdict": "reject",
+  "verdict_reason": "pump_dump_trace override + 큰TF B2",
+  "charts": {
+    "1m": "charts/SYNUSDT/20260520/SYNUSDT_1m.png",
+    "1w": "charts/SYNUSDT/20260520/SYNUSDT_1w.png",
+    "1d": "charts/SYNUSDT/20260520/SYNUSDT_1d.png"
+  },
+  "schema_version": 1
+}

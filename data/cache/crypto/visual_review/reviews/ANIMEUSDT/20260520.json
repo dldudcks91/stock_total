@@ -1,0 +1,13 @@
+{
+  "symbol": "ANIMEUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B2", "micro_action": null, "volume_flag": "distribution_suspect", "note": "0.1 → 0.005, 1년 좀비 하락. 25년12월 거래량 폭증 분배"},
+  "tf_1w": {"state": "B2", "micro_action": null, "volume_flag": "normal", "note": "MA10/20/50 데드, 신저가 지속 갱신"},
+  "tf_1d": {"state": "B2", "micro_action": null, "volume_flag": "normal", "note": "MA50 아래 지속, 0.005 신저가권"},
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "전 TF B2 좀비, 신저가 갱신 중",
+  "charts": {"1m": "charts/ANIMEUSDT/20260520/ANIMEUSDT_1m.png", "1w": "charts/ANIMEUSDT/20260520/ANIMEUSDT_1w.png", "1d": "charts/ANIMEUSDT/20260520/ANIMEUSDT_1d.png"},
+  "schema_version": 1
+}

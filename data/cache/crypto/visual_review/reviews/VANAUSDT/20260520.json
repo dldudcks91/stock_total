@@ -1,0 +1,17 @@
+{
+  "symbol": "VANAUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B2", "micro_action": null, "volume_flag": "normal", "note": "상장 후 90% 폭락 추세 지속"},
+  "tf_1w": {"state": "B3", "micro_action": null, "volume_flag": "normal", "note": "장기 하락 끝 base 형성 초기"},
+  "tf_1d": {"state": "B4", "micro_action": null, "volume_flag": "normal", "note": "MA20 위 첫 양봉 다수, 단기 반등"},
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_reason": "상위 TF 하락 추세 진행, 1d 반등은 단기 데드캣 가능성",
+  "charts": {
+    "1m": "charts/VANAUSDT/20260520/VANAUSDT_1m.png",
+    "1w": "charts/VANAUSDT/20260520/VANAUSDT_1w.png",
+    "1d": "charts/VANAUSDT/20260520/VANAUSDT_1d.png"
+  },
+  "schema_version": 1
+}

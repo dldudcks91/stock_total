@@ -1,0 +1,17 @@
+{
+  "symbol": "HIVEUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "dry", "note": "history 짧음(18 bars). 0.7 peak → 0.06 부근 좀비, MA10 우하향" },
+  "tf_1w": { "state": "B2", "micro_action": null, "volume_flag": "dry", "note": "MA10/20/50 우하향 역배열, 좀비 상태 지속" },
+  "tf_1d": { "state": "B2", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "4월말 단발성 거대 spike 후 즉시 dump, 그 후 거래량 dry" },
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_reason": "1M/1W dry 좀비 + 1D pump_dump_trace. volume_flag 로 reject.",
+  "charts": {
+    "1m": "charts/HIVEUSDT/20260519/HIVEUSDT_1m.png",
+    "1w": "charts/HIVEUSDT/20260519/HIVEUSDT_1w.png",
+    "1d": "charts/HIVEUSDT/20260519/HIVEUSDT_1d.png"
+  },
+  "schema_version": 1
+}

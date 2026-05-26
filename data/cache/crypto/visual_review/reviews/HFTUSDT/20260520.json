@@ -1,0 +1,13 @@
+{
+  "symbol": "HFTUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state":"B2","micro_action":null,"volume_flag":"dry","note":"신규(11봉), 첫 봉부터 지속 하락 zombie, 거래량 dry"},
+  "tf_1w": {"state":"B2","micro_action":null,"volume_flag":"dry","note":"좀비 하락, 거래량 dry"},
+  "tf_1d": {"state":"B2","micro_action":null,"volume_flag":"dry","note":"지속 하락, 거래량 dry"},
+  "tf_consistency":"정합",
+  "verdict":"reject",
+  "verdict_reason":"volume_flag=dry + B2 좀비 - override reject",
+  "charts":{"1m":"charts/HFTUSDT/20260520/HFTUSDT_1m.png","1w":"charts/HFTUSDT/20260520/HFTUSDT_1w.png","1d":"charts/HFTUSDT/20260520/HFTUSDT_1d.png"},
+  "schema_version":1
+}

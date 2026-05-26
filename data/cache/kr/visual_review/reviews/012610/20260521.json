@@ -1,0 +1,207 @@
+{
+  "symbol": "012610",
+  "asset": "kr",
+  "reviewed_at": "2026-05-24T12:05:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "A1",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 5550.0,
+      "bars": 148,
+      "date_range": "2014-02-28 ~ 2026-05-31",
+      "ma10": 4063.5,
+      "ma20": 3541.0,
+      "ma50": 4063.2,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.3658, "ma20_pct": 0.5674, "ma50_pct": 0.3659},
+      "dist_from_ma_atr": {"ma10_atr": 1.878, "ma20_atr": 2.538, "ma50_atr": 1.878},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.3658},
+      "atr": 791.655935,
+      "atr_pct": 0.1426,
+      "adx": 26.77,
+      "range_position": 0.805,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0721,
+        "upper_wick_pct": 0.576,
+        "lower_wick_pct": 0.085,
+        "vol_rank_30d": 0.9,
+        "vol_anomaly": "breakout",
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.6
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 3.927,
+        "price_range_5bar_pct": 0.473,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.224,
+        "vol_rank": 0.933,
+        "close": 5090.0,
+        "max_retrace_pct": 0.0079,
+        "current_retrace_pct": -0.0904,
+        "holding": true
+      },
+      "ret_30d": 0.4702,
+      "ret_90d": -0.0297,
+      "from_period_high_pct": -0.4955,
+      "vol_avg_recent_vs_prior": 1.86
+    },
+
+    "observations": {
+      "key_levels": {"support": 4000, "resistance": 6500},
+      "pattern": "breakout_upthrust",
+      "recent_action": "월봉 기준 2019~2025 저점 구간에서 탈출 시도. 2026년 초 강한 상승으로 전 MA 상단 돌파. 현재 5550으로 전 고점 10000 대비 -50% 수준이나 MA 전환 양호."
+    }
+  },
+
+  "tf_1w": {
+    "state": "A2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 5550.0,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 4783.5,
+      "ma20": 4653.5,
+      "ma50": 3851.7,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.1602, "ma20_pct": 0.1927, "ma50_pct": 0.4409},
+      "dist_from_ma_atr": {"ma10_atr": 1.221, "ma20_atr": 1.428, "ma50_atr": 2.705},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.1602},
+      "atr": 627.782762,
+      "atr_pct": 0.1131,
+      "adx": 43.69,
+      "range_position": 0.805,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0,
+        "upper_wick_pct": 0.375,
+        "lower_wick_pct": 0.625,
+        "vol_rank_30d": 0.367,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.141,
+        "price_range_5bar_pct": 0.3658,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 3,
+        "body_pct": 0.1385,
+        "vol_rank": 0.767,
+        "close": 5630.0,
+        "max_retrace_pct": 0.103,
+        "current_retrace_pct": 0.0142,
+        "holding": false
+      },
+      "ret_30d": 0.8469,
+      "ret_90d": 0.6818,
+      "from_period_high_pct": -0.1106,
+      "vol_avg_recent_vs_prior": 22.918
+    },
+
+    "observations": {
+      "key_levels": {"support": 4500, "resistance": 6500},
+      "pattern": "strong_uptrend",
+      "recent_action": "주봉 완전 정배열(MA50<MA20<MA10), 전 MA 상단 위치. ADX 44 강한 추세. 90일 수익률 +68%. 주봉 vol_avg 22.9배로 거래량 급증 동반 상승. 6500 전고점 부근에서 소화 중."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 5550.0,
+      "bars": 200,
+      "date_range": "2025-07-24 ~ 2026-05-20",
+      "ma10": 5448.0,
+      "ma20": 5169.75,
+      "ma50": 4524.5,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0187, "ma20_pct": 0.0736, "ma50_pct": 0.2267},
+      "dist_from_ma_atr": {"ma10_atr": 0.212, "ma20_atr": 0.789, "ma50_atr": 2.127},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0187},
+      "atr": 482.191731,
+      "atr_pct": 0.0869,
+      "adx": 57.54,
+      "range_position": 0.741,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0306,
+        "upper_wick_pct": 0.375,
+        "lower_wick_pct": 0.321,
+        "vol_rank_30d": 0.667,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.946,
+        "price_range_5bar_pct": 0.182,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 7,
+        "body_pct": 0.0815,
+        "vol_rank": 0.967,
+        "close": 5770.0,
+        "max_retrace_pct": 0.1144,
+        "current_retrace_pct": 0.0381,
+        "holding": false
+      },
+      "ret_30d": 0.384,
+      "ret_90d": 0.1923,
+      "from_period_high_pct": -0.1091,
+      "vol_avg_recent_vs_prior": 3.126
+    },
+
+    "observations": {
+      "key_levels": {"support": 5000, "resistance": 6200},
+      "pattern": "stair_step_up",
+      "recent_action": "일봉 정배열, 전 MA 상단. ADX 57.5 강한 추세. MA10(5448) 근처 소화 중. 7일 전 5770 강양봉 이후 현재가로 소폭 되돌림이나 상승 추세 훼손 없음."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "pass",
+  "verdict_confidence": "high",
+  "verdict_reason": "전 TF A2 정합(주봉/일봉), 월봉 A1 변곡 확인. 정배열 완성 + 강한 ADX + 거래량 동반 상승. MA10 풀백 구간으로 진입 적합.",
+
+  "risk_flags": [],
+
+  "charts": {
+    "1m": "charts/012610/20260521/012610_1m.png",
+    "1w": "charts/012610/20260521/012610_1w.png",
+    "1d": "charts/012610/20260521/012610_1d.png"
+  }
+}

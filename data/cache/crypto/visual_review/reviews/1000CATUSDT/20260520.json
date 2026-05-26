@@ -1,0 +1,17 @@
+{
+  "symbol": "1000CATUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B2", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "상장 후 -95% 폭락, 25년 펌프덤프"},
+  "tf_1w": {"state": "B3", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "장기 base 진행, 거래량 spike 후 평탄"},
+  "tf_1d": {"state": "B4", "micro_action": null, "volume_flag": "normal", "note": "MA20 위 회복 후 약간 눌림, 정배열 진입 시도"},
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_reason": "1d B4 회복 양호하나 1m/1w 펌프덤프 흔적, 추가 확인 필요",
+  "charts": {
+    "1m": "charts/1000CATUSDT/20260520/1000CATUSDT_1m.png",
+    "1w": "charts/1000CATUSDT/20260520/1000CATUSDT_1w.png",
+    "1d": "charts/1000CATUSDT/20260520/1000CATUSDT_1d.png"
+  },
+  "schema_version": 1
+}

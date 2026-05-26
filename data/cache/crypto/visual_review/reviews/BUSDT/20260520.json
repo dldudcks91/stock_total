@@ -1,0 +1,13 @@
+{
+  "symbol": "BUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B4", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "장기 하락 후 마지막 봉 거대 위꼬리, 펌프 흔적"},
+  "tf_1w": {"state": "B4", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "긴 베이스 후 단일 주봉 폭등→큰 위꼬리 후 회수"},
+  "tf_1d": {"state": "A4", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "0.18→0.8 폭등 후 MA10 깨고 급락 진행"},
+  "tf_consistency": "충돌",
+  "verdict": "reject",
+  "verdict_reason": "전형적 펌프덤프 패턴, 위꼬리·하락 진행",
+  "charts": {"1m": "charts/BUSDT/20260520/BUSDT_1m.png", "1w": "charts/BUSDT/20260520/BUSDT_1w.png", "1d": "charts/BUSDT/20260520/BUSDT_1d.png"},
+  "schema_version": 1
+}

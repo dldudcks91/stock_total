@@ -1,0 +1,17 @@
+{
+  "symbol": "AKTUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B4", "micro_action": null, "volume_flag": "normal", "note": "월봉 22 bars, 2024.12 이후 하락 base 후 최근 양봉 시도, 거래량 동반" },
+  "tf_1w": { "state": "B5", "micro_action": null, "volume_flag": "normal", "note": "주봉 base 후 최근 MA10/20 위 양 기울기 retest 확정" },
+  "tf_1d": { "state": "A2", "micro_action": "pullback_ma20", "volume_flag": "normal", "note": "1d MA10/20/50 정배열 우상향, 0.3$→0.9$ 3배 상승 후 MA20 풀백 중" },
+  "tf_consistency": "정합",
+  "verdict": "pass",
+  "verdict_reason": "1W B5 (상승 retest 확정) + 1D A2 정배열 추세 진행 — 가장 강한 종목",
+  "charts": {
+    "1m": "charts/AKTUSDT/20260519/AKTUSDT_1m.png",
+    "1w": "charts/AKTUSDT/20260519/AKTUSDT_1w.png",
+    "1d": "charts/AKTUSDT/20260519/AKTUSDT_1d.png"
+  },
+  "schema_version": 1
+}

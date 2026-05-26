@@ -1,0 +1,17 @@
+{
+  "symbol": "AVAXUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "장기 좀비 하락, MA 역배열, 가격 MA50 아래 지속" },
+  "tf_1w": { "state": "B2", "micro_action": null, "volume_flag": null, "note": "고점 60 → 10 부근 진행, MA 우하향" },
+  "tf_1d": { "state": "B3", "micro_action": null, "volume_flag": null, "note": "9~10 base, MA10/20/50 평탄·수렴 진입" },
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_reason": "큰 TF 좀비 하락(B2). 1D base 다지기는 있으나 변환 신호 부재",
+  "charts": {
+    "1m": "charts/AVAXUSDT/20260519/AVAXUSDT_1m.png",
+    "1w": "charts/AVAXUSDT/20260519/AVAXUSDT_1w.png",
+    "1d": "charts/AVAXUSDT/20260519/AVAXUSDT_1d.png"
+  },
+  "schema_version": 1
+}

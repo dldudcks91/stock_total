@@ -1,0 +1,199 @@
+{
+  "symbol": "002787",
+  "asset": "kr",
+  "reviewed_at": "2026-05-25T09:30:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 8000.0,
+      "bars": 148,
+      "date_range": "2014-02-28 ~ 2026-05-31",
+      "ma10": 8177.0,
+      "ma20": 8780.0,
+      "ma50": 11324.4,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0216, "ma20_pct": -0.0888, "ma50_pct": -0.2936},
+      "dist_from_ma_atr": {"ma10_atr": -0.13, "ma20_atr": -0.572, "ma50_atr": -2.436},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0216},
+      "atr": 1364.819531,
+      "atr_pct": 0.1706,
+      "adx": 19.98,
+      "range_position": 0.402,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.065,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.49,
+        "vol_rank_30d": 0.067,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.886,
+        "price_range_5bar_pct": 0.3825,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.0518,
+        "vol_rank": 0.833,
+        "close": 8490.0,
+        "max_retrace_pct": 0.1166,
+        "current_retrace_pct": 0.0577,
+        "holding": false
+      },
+      "ret_30d": -0.3394,
+      "ret_90d": -0.4224,
+      "from_period_high_pct": -0.6867,
+      "vol_avg_recent_vs_prior": 0.672
+    },
+
+    "observations": {
+      "key_levels": {"support": 7000, "resistance": 10000},
+      "pattern": "post_peak_decline",
+      "recent_action": "2022년 15,000+ 고점 이후 하락 추세. 현재 8,000권. MA 역배열. 최근 강양봉(bars_ago=1) 이나 holding=false."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B3",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 8000.0,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 8175.0,
+      "ma20": 8309.5,
+      "ma50": 8130.8,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "flat", "ma50": "down"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0214, "ma20_pct": -0.0372, "ma50_pct": -0.0161},
+      "dist_from_ma_atr": {"ma10_atr": -0.273, "ma20_atr": -0.483, "ma50_atr": -0.204},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0161},
+      "atr": 641.054891,
+      "atr_pct": 0.0801,
+      "adx": 17.21,
+      "range_position": 0.402,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0425,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.595,
+        "vol_rank_30d": 0.367,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.526,
+        "price_range_5bar_pct": 0.1625,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 4,
+        "body_pct": 0.0692,
+        "vol_rank": 0.867,
+        "close": 8670.0,
+        "max_retrace_pct": 0.1349,
+        "current_retrace_pct": 0.0773,
+        "holding": false
+      },
+      "ret_30d": -0.0291,
+      "ret_90d": -0.3333,
+      "from_period_high_pct": -0.5518,
+      "vol_avg_recent_vs_prior": 0.484
+    },
+
+    "observations": {
+      "key_levels": {"support": 7500, "resistance": 9000},
+      "pattern": "base_forming",
+      "recent_action": "주봉 MA tight 수렴(8,130~8,309). ADX=17 추세 소멸. 2024년 대폭락 이후 7,500~9,000 박스권 형성 중."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B3",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 8000.0,
+      "bars": 200,
+      "date_range": "2025-07-24 ~ 2026-05-20",
+      "ma10": 8256.0,
+      "ma20": 8288.5,
+      "ma50": 8151.0,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.031, "ma20_pct": -0.0348, "ma50_pct": -0.0185},
+      "dist_from_ma_atr": {"ma10_atr": -1.143, "ma20_atr": -1.289, "ma50_atr": -0.674},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0185},
+      "atr": 223.903721,
+      "atr_pct": 0.028,
+      "adx": 21.61,
+      "range_position": 0.402,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.025,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.6,
+        "vol_rank_30d": 0.867,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.6,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.63,
+        "price_range_5bar_pct": 0.105,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0063,
+      "from_period_high_pct": -0.1862,
+      "vol_avg_recent_vs_prior": 0.331
+    },
+
+    "observations": {
+      "key_levels": {"support": 7500, "resistance": 8700},
+      "pattern": "box_base",
+      "recent_action": "1D acc_score=0.6 (긴 아래꼬리+vol_rank=0.867). MA tight 수렴. 박스 하단에서 거래량 동반 받침 봉 출현."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1M B2 하락이나 1W/1D B3 바닥 형성. 1D acc_score=0.6 매집봉 신호. 큰 TF 미해소이나 단중기 바닥 매집 주시 가치. 관망.",
+
+  "risk_flags": ["drawdown_deep", "accumulation_suspect"],
+
+  "charts": {
+    "1m": "charts/002787/20260521/002787_1m.png",
+    "1w": "charts/002787/20260521/002787_1w.png",
+    "1d": "charts/002787/20260521/002787_1d.png"
+  }
+}

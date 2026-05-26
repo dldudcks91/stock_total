@@ -1,0 +1,183 @@
+{
+  "symbol": "101140",
+  "asset": "kr",
+  "reviewed_at": "2026-05-21T10:33:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 6570.0,
+      "bars": 148,
+      "date_range": "2014-02-28 ~ 2026-05-31",
+      "ma10": 10536.0,
+      "ma20": 10263.0,
+      "ma50": 16426.38,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.3764, "ma20_pct": -0.3598, "ma50_pct": -0.6},
+      "dist_from_ma_atr": {"ma10_atr": -0.602, "ma20_atr": -0.561, "ma50_atr": -1.497},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.3598},
+      "atr": 6583.925402,
+      "atr_pct": 1.0021,
+      "adx": 24.0,
+      "range_position": 0.028,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.3409,
+        "upper_wick_pct": 0.092,
+        "lower_wick_pct": 0.085,
+        "vol_rank_30d": 0.433,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.981,
+        "price_range_5bar_pct": 1.1263,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.4385,
+      "ret_90d": -0.9296,
+      "from_period_high_pct": -0.9664,
+      "vol_avg_recent_vs_prior": 0.346
+    },
+
+    "observations": {
+      "key_levels": {"support": 5000, "resistance": 12000},
+      "pattern": "parabolic_collapse",
+      "recent_action": "2020년 고점 약 200000원에서 급락 후 현재 6570원으로 거의 전 고점 -97%. 최근 2~3년은 5000~15000원 박스권 하단에서 등락. 거래량 급감(vol_avg 0.35)."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 6570.0,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 8380.0,
+      "ma20": 9633.5,
+      "ma50": 10811.8,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.216, "ma20_pct": -0.318, "ma50_pct": -0.3923},
+      "dist_from_ma_atr": {"ma10_atr": -1.129, "ma20_atr": -1.911, "ma50_atr": -2.647},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.216},
+      "atr": 1602.751076,
+      "atr_pct": 0.2439,
+      "adx": 16.98,
+      "range_position": 0.029,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0457,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.412,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.691,
+        "price_range_5bar_pct": 0.4673,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.4827,
+      "ret_90d": -0.4385,
+      "from_period_high_pct": -0.8987,
+      "vol_avg_recent_vs_prior": 0.314
+    },
+
+    "observations": {
+      "key_levels": {"support": 5000, "resistance": 10000},
+      "pattern": "dead_cat",
+      "recent_action": "주봉 MA10/20/50 완전 역배열 우하향. 30주 수익률 -48%, 90주 -44%. 최근 거래량 vol_rank=0.0(최저)로 완전 건조. 좀비 특성."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 6570.0,
+      "bars": 200,
+      "date_range": "2025-07-24 ~ 2026-05-20",
+      "ma10": 7094.0,
+      "ma20": 7853.0,
+      "ma50": 8623.0,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0739, "ma20_pct": -0.1634, "ma50_pct": -0.2381},
+      "dist_from_ma_atr": {"ma10_atr": -0.934, "ma20_atr": -2.288, "ma50_atr": -3.661},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0739},
+      "atr": 560.761711,
+      "atr_pct": 0.0854,
+      "adx": 23.63,
+      "range_position": 0.033,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0183,
+        "upper_wick_pct": 0.571,
+        "lower_wick_pct": 0.184,
+        "vol_rank_30d": 0.067,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.322,
+        "price_range_5bar_pct": 0.1233,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.2405,
+      "ret_90d": -0.4557,
+      "from_period_high_pct": -0.5406,
+      "vol_avg_recent_vs_prior": 0.62
+    },
+
+    "observations": {
+      "key_levels": {"support": 6000, "resistance": 8000},
+      "pattern": "persistent_downtrend",
+      "recent_action": "일봉 기준 MA10/20/50 완전 역배열 하향. 박스 최하단(range_position 0.03)에 위치. 거래량 극히 저조하며 반등 시그널 없음."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_confidence": "high",
+  "verdict_reason": "1M/1W/1D 모두 B2 정합. MA 역배열 우하향, 거래량 극도로 건조. 좀비 특성 명확. 추세 전환 시그널 없으며 매매 부적합.",
+
+  "risk_flags": ["drawdown_deep", "zombie"],
+
+  "charts": {
+    "1m": "charts/101140/20260521/101140_1m.png",
+    "1w": "charts/101140/20260521/101140_1w.png",
+    "1d": "charts/101140/20260521/101140_1d.png"
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "symbol": "WDCUSDT",
+  "asset": "crypto",
+  "date_str": "20260520",
+  "generated_at": "2026-05-20T23:39:42.715779+09:00",
+  "tfs": [
+    "1h"
+  ],
+  "tf_1h": {
+    "last_close": 459.98,
+    "bars": 30,
+    "date_range": "2026-05-19 ~ 2026-05-20",
+    "ma10": 462.167,
+    "ma20": 459.3275,
+    "ma50": null,
+    "ma_stack": "혼합",
+    "ma_slopes": {
+      "ma10": "up",
+      "ma20": "up",
+      "ma50": "flat"
+    },
+    "ma_spread": "normal",
+    "price_pos": "between",
+    "dist_from_ma": {
+      "ma10_pct": -0.0047,
+      "ma20_pct": 0.0014,
+      "ma50_pct": 0.0
+    },
+    "dist_from_ma_atr": {
+      "ma10_atr": -0.394,
+      "ma20_atr": 0.118,
+      "ma50_atr": 0.0
+    },
+    "nearest_ma": {
+      "ma": "ma20",
+      "dist_pct": 0.0014
+    },
+    "atr": 5.544321,
+    "atr_pct": 0.0121,
+    "adx": 56.05,
+    "range_position": 0.603,
+    "last_candle": {
+      "type": "bear",
+      "body_pct": 0.0194,
+      "upper_wick_pct": 0.5,
+      "lower_wick_pct": 0.0,
+      "vol_rank_30d": 0.933,
+      "vol_anomaly": null,
+      "accumulation_candle_score": 0.0,
+      "distribution_candle_score": 1.0
+    },
+    "accumulation": {
+      "vol_5bar_vs_30bar": 1.0,
+      "price_range_5bar_pct": 0.0,
+      "accumulation_score": 0.0
+    },
+    "recent_strong_bull": null,
+    "ret_30d": 0.0,
+    "ret_90d": 0.0,
+    "from_period_high_pct": -0.0374,
+    "vol_avg_recent_vs_prior": 1.0
+  },
+  "auto_risk_flags": [
+    "low_history"
+  ],
+  "global_nearest_ma": {
+    "tf": "1h",
+    "ma": "ma20",
+    "dist_pct": 0.0014
+  }
+}

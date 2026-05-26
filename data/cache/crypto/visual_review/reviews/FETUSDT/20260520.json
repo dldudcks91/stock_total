@@ -1,0 +1,17 @@
+{
+  "symbol": "FETUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B2", "micro_action": null, "volume_flag": "dry", "note": "3.5→0.2 장기 하락 후 좀비 지속, 거래량 감소"},
+  "tf_1w": {"state": "B2", "micro_action": null, "volume_flag": "dry", "note": "MA10/20/50 정배열 하락, 0.2 부근에서 좀비"},
+  "tf_1d": {"state": "C1", "micro_action": null, "volume_flag": "dry", "note": "0.15-0.30 박스, MA 수렴 횡보"},
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "장기 좀비 하락 + 거래량 dry, B2 패턴",
+  "charts": {
+    "1m": "charts/FETUSDT/20260520/FETUSDT_1m.png",
+    "1w": "charts/FETUSDT/20260520/FETUSDT_1w.png",
+    "1d": "charts/FETUSDT/20260520/FETUSDT_1d.png"
+  },
+  "schema_version": 1
+}

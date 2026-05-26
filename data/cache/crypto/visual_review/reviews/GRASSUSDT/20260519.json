@@ -1,0 +1,17 @@
+{
+  "symbol": "GRASSUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "1M 봉 적음, 상장 이후 장기 하락 좀비" },
+  "tf_1w": { "state": "B3", "micro_action": null, "volume_flag": "normal", "note": "MA10/20 평탄 수렴, 0.3~0.4 부근 base 다지기" },
+  "tf_1d": { "state": "A5", "micro_action": null, "volume_flag": "normal", "note": "3-4월 반등 후 다시 MA10/20 음 기울기로, 상승 실패 retest" },
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_reason": "1W=B3 base이나 1D 반등 실패 A5, 보수적 skip",
+  "charts": {
+    "1m": "charts/GRASSUSDT/20260519/GRASSUSDT_1m.png",
+    "1w": "charts/GRASSUSDT/20260519/GRASSUSDT_1w.png",
+    "1d": "charts/GRASSUSDT/20260519/GRASSUSDT_1d.png"
+  },
+  "schema_version": 1
+}

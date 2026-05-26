@@ -1,0 +1,17 @@
+{
+  "symbol": "XOMUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "C1", "micro_action": null, "volume_flag": null, "note": "PNG 없음 (신규 토큰화 주식)"},
+  "tf_1w": {"state": "C1", "micro_action": null, "volume_flag": "normal", "note": "초기 상승 후 박스권 횡보"},
+  "tf_1d": {"state": "B4", "micro_action": null, "volume_flag": "normal", "note": "조정 후 MA20 위 첫 양봉, 회복 시도"},
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_reason": "XOM 토큰화 주식, 1d B4 회복 신호 있으나 1m 부재로 보수적",
+  "charts": {
+    "1m": "charts/XOMUSDT/20260520/XOMUSDT_1m.png",
+    "1w": "charts/XOMUSDT/20260520/XOMUSDT_1w.png",
+    "1d": "charts/XOMUSDT/20260520/XOMUSDT_1d.png"
+  },
+  "schema_version": 1
+}

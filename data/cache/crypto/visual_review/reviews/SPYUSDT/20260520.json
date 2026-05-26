@@ -1,0 +1,17 @@
+{
+  "symbol": "SPYUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": null, "micro_action": null, "volume_flag": null, "note": "PNG 없음 (상장 신규)"},
+  "tf_1w": {"state": "A1", "micro_action": "riding", "volume_flag": "normal", "note": "640→740 강상승, 거래량 점진 증가"},
+  "tf_1d": {"state": "A2", "micro_action": "pullback_ma10", "volume_flag": "normal", "note": "정배열(MA10>20>50), 최근 MA10 근처 미세 눌림"},
+  "tf_consistency": "정합",
+  "verdict": "pass",
+  "verdict_reason": "토큰화 주식 SPY. 1w 강상승, 1d 정배열 + MA10 눌림목으로 추가 상승 여력",
+  "charts": {
+    "1m": "charts/SPYUSDT/20260520/SPYUSDT_1m.png",
+    "1w": "charts/SPYUSDT/20260520/SPYUSDT_1w.png",
+    "1d": "charts/SPYUSDT/20260520/SPYUSDT_1d.png"
+  },
+  "schema_version": 1
+}

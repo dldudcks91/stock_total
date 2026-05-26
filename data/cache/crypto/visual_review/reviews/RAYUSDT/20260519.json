@@ -1,0 +1,17 @@
+{
+  "symbol": "RAYUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "$8 → $0.8 90% 폭락. 데이터 20 bars 짧음, MA10 우하향 지속" },
+  "tf_1w": { "state": "B3", "micro_action": null, "volume_flag": "normal", "note": "0.7~0.8 base 6개월. MA10/20 평탄해지기 시작, MA50은 여전히 우하향" },
+  "tf_1d": { "state": "A1", "micro_action": "pullback_ma20", "volume_flag": "normal", "note": "0.6→1.0 반등 후 MA20 풀백. MA 정배열 형성" },
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_reason": "1M B2 지속 하락. 1W B3 base + 1D 정배열은 긍정적이나 큰 TF 약세로 보수적",
+  "charts": {
+    "1m": "charts/RAYUSDT/20260519/RAYUSDT_1m.png",
+    "1w": "charts/RAYUSDT/20260519/RAYUSDT_1w.png",
+    "1d": "charts/RAYUSDT/20260519/RAYUSDT_1d.png"
+  },
+  "schema_version": 1
+}

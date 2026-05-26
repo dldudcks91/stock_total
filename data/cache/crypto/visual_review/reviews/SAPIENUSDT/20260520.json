@@ -1,0 +1,13 @@
+{
+  "symbol": "SAPIENUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state":"B3","micro_action":null,"volume_flag":"dry","note":"신규, 첫 봉 하락 후 base, 최근 작은 양봉 - 거래량 dry"},
+  "tf_1w": {"state":"B3","micro_action":null,"volume_flag":"dry","note":"하락 후 평탄 base, 거래량 거의 없음"},
+  "tf_1d": {"state":"A2","micro_action":"pullback_ma10","note":"바닥에서 MA10/20/50 정배열로 회복, 거래량은 dry"},
+  "tf_consistency":"분리",
+  "verdict":"reject",
+  "verdict_reason":"volume_flag=dry (1M/1W) - override reject",
+  "charts":{"1m":"charts/SAPIENUSDT/20260520/SAPIENUSDT_1m.png","1w":"charts/SAPIENUSDT/20260520/SAPIENUSDT_1w.png","1d":"charts/SAPIENUSDT/20260520/SAPIENUSDT_1d.png"},
+  "schema_version":1
+}

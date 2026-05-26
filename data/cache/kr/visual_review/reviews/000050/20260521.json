@@ -1,0 +1,187 @@
+{
+  "symbol": "000050",
+  "asset": "kr",
+  "reviewed_at": "2026-05-21T10:14:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+  "tf_1m": {
+    "state": "B4",
+    "micro_action": "riding",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+    "context": {
+      "last_close": 9730.0,
+      "bars": 148,
+      "date_range": "2014-02-28 ~ 2026-05-31",
+      "ma10": 8580.0,
+      "ma20": 7646.5,
+      "ma50": 9014.8,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.134, "ma20_pct": 0.2725, "ma50_pct": 0.0793},
+      "dist_from_ma_atr": {"ma10_atr": 0.612, "ma20_atr": 1.109, "ma50_atr": 0.381},
+      "nearest_ma": {"ma": "ma50", "dist_pct": 0.0793},
+      "atr": 1879.527847,
+      "atr_pct": 0.1932,
+      "adx": 41.09,
+      "range_position": 0.392,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0432,
+        "upper_wick_pct": 0.35,
+        "lower_wick_pct": 0.393,
+        "vol_rank_30d": 0.667,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 3.074,
+        "price_range_5bar_pct": 0.7307,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.0861,
+        "vol_rank": 0.767,
+        "close": 10100.0,
+        "max_retrace_pct": 0.1,
+        "current_retrace_pct": 0.0366,
+        "holding": false
+      },
+      "ret_30d": 0.1262,
+      "ret_90d": -0.1351,
+      "from_period_high_pct": -0.6328,
+      "vol_avg_recent_vs_prior": 11.886
+    },
+    "observations": {
+      "key_levels": {"support": 7000, "resistance": 14000},
+      "pattern": "bottom_reversal_breakout",
+      "recent_action": "수년간 하락 바닥(~6,000)에서 최근 대형 거래량 수반 급등(10k~14k). MA10/20 우상향. 매집 의심 거래량 폭증."
+    }
+  },
+  "tf_1w": {
+    "state": "A1",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "high",
+    "context": {
+      "last_close": 9730.0,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 9706.0,
+      "ma20": 9568.5,
+      "ma50": 8409.6,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "flat", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0025, "ma20_pct": 0.0169, "ma50_pct": 0.157},
+      "dist_from_ma_atr": {"ma10_atr": 0.022, "ma20_atr": 0.148, "ma50_atr": 1.209},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0025},
+      "atr": 1092.050482,
+      "atr_pct": 0.1122,
+      "adx": 50.47,
+      "range_position": 0.392,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0802,
+        "upper_wick_pct": 0.181,
+        "lower_wick_pct": 0.147,
+        "vol_rank_30d": 0.133,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.217,
+        "price_range_5bar_pct": 0.1675,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.433,
+      "ret_90d": 0.4878,
+      "from_period_high_pct": -0.3603,
+      "vol_avg_recent_vs_prior": 1.274
+    },
+    "observations": {
+      "key_levels": {"support": 9000, "resistance": 14000},
+      "pattern": "new_uptrend_start",
+      "recent_action": "주봉 정배열 진입. ADX=50 강한 추세. 최근 급등 후 MA10(~9,706) 근접 조정. 거래량 대형 스파이크 발생 후 정상화."
+    }
+  },
+  "tf_1d": {
+    "state": "A3",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+    "context": {
+      "last_close": 9730.0,
+      "bars": 200,
+      "date_range": "2025-07-24 ~ 2026-05-20",
+      "ma10": 9819.0,
+      "ma20": 9939.5,
+      "ma50": 9605.0,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "down", "ma20": "up", "ma50": "flat"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0091, "ma20_pct": -0.0211, "ma50_pct": 0.013},
+      "dist_from_ma_atr": {"ma10_atr": -0.202, "ma20_atr": -0.476, "ma50_atr": 0.284},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0091},
+      "atr": 440.261067,
+      "atr_pct": 0.0452,
+      "adx": 20.24,
+      "range_position": 0.496,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0555,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.239,
+        "vol_rank_30d": 0.667,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.815,
+        "price_range_5bar_pct": 0.1398,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 2,
+        "body_pct": 0.0565,
+        "vol_rank": 1.0,
+        "close": 10620.0,
+        "max_retrace_pct": 0.0998,
+        "current_retrace_pct": 0.0838,
+        "holding": false
+      },
+      "ret_30d": 0.0847,
+      "ret_90d": 0.1236,
+      "from_period_high_pct": -0.3603,
+      "vol_avg_recent_vs_prior": 0.695
+    },
+    "observations": {
+      "key_levels": {"support": 9000, "resistance": 11000},
+      "pattern": "peak_pullback",
+      "recent_action": "1월~2월 14k 고점 이후 하락. 현재 MA10/MA20 사이에서 횡보. MA50 위는 유지. 박스 중간권 위치."
+    }
+  },
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "1W A1(새 상승 출발, ADX 50 강한 추세)이나 1D는 고점 조정 중(A3 성격). 큰그림 긍정적이나 단기 조정 완료 확인 필요. MA10 주봉 지지 확인 시 pass 전환 가능. drawdown_deep 플래그.",
+  "risk_flags": ["drawdown_deep", "accumulation_suspect"],
+  "charts": {
+    "1m": "charts/000050/20260521/000050_1m.png",
+    "1w": "charts/000050/20260521/000050_1w.png",
+    "1d": "charts/000050/20260521/000050_1d.png"
+  }
+}

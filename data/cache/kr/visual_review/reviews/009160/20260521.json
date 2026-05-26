@@ -1,0 +1,207 @@
+{
+  "symbol": "009160",
+  "asset": "kr",
+  "reviewed_at": "2026-05-21T10:00:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B3",
+    "micro_action": "riding",
+    "volume_flag": "accumulation_suspect",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 5400.0,
+      "bars": 148,
+      "date_range": "2014-02-28 ~ 2026-05-31",
+      "ma10": 4980.5,
+      "ma20": 4592.5,
+      "ma50": 4831.3,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "down"},
+      "ma_spread": "normal",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0842, "ma20_pct": 0.1758, "ma50_pct": 0.1177},
+      "dist_from_ma_atr": {"ma10_atr": 0.498, "ma20_atr": 0.959, "ma50_atr": 0.675},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0842},
+      "atr": 842.043094,
+      "atr_pct": 0.1559,
+      "adx": 14.85,
+      "range_position": 0.446,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0926,
+        "upper_wick_pct": 0.621,
+        "lower_wick_pct": 0.068,
+        "vol_rank_30d": 0.833,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.166,
+        "price_range_5bar_pct": 0.4444,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 1,
+        "body_pct": 0.1465,
+        "vol_rank": 0.9,
+        "close": 5870.0,
+        "max_retrace_pct": 0.0988,
+        "current_retrace_pct": 0.0801,
+        "holding": false
+      },
+      "ret_30d": 0.4958,
+      "ret_90d": 1.1687,
+      "from_period_high_pct": -0.4529,
+      "vol_avg_recent_vs_prior": 0.297
+    },
+
+    "observations": {
+      "key_levels": {"support": 3000, "resistance": 10000},
+      "pattern": "base_recovery",
+      "recent_action": "월봉 기준 2020~2021년 급등 후 장기 하락. 최근 2025년 대규모 거래량(60M 이상) 동반 급등 후 조정. 현재 MA 위에 위치하나 이전 고점 대비 여전히 낮은 수준."
+    }
+  },
+
+  "tf_1w": {
+    "state": "B5",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 5400.0,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 5614.0,
+      "ma20": 5331.5,
+      "ma50": 5043.8,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.0381, "ma20_pct": 0.0128, "ma50_pct": 0.0706},
+      "dist_from_ma_atr": {"ma10_atr": -0.383, "ma20_atr": 0.122, "ma50_atr": 0.637},
+      "nearest_ma": {"ma": "ma20", "dist_pct": 0.0128},
+      "atr": 559.385824,
+      "atr_pct": 0.1036,
+      "adx": 22.0,
+      "range_position": 0.375,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.1111,
+        "upper_wick_pct": 0.066,
+        "lower_wick_pct": 0.145,
+        "vol_rank_30d": 0.2,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 2.343,
+        "price_range_5bar_pct": 0.3056,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 3,
+        "body_pct": 0.0823,
+        "vol_rank": 1.0,
+        "close": 6440.0,
+        "max_retrace_pct": 0.1786,
+        "current_retrace_pct": 0.1615,
+        "holding": false
+      },
+      "ret_30d": 0.138,
+      "ret_90d": 0.3776,
+      "from_period_high_pct": -0.2732,
+      "vol_avg_recent_vs_prior": 1.295
+    },
+
+    "observations": {
+      "key_levels": {"support": 5000, "resistance": 6500},
+      "pattern": "pullback_after_surge",
+      "recent_action": "주봉 정배열 진입 완료. 2025년 대거래량 급등 후 MA10 아래로 조정. MA20(5332) 지지 여부 관찰 중. ADX 22 약한 추세."
+    }
+  },
+
+  "tf_1d": {
+    "state": "A4",
+    "micro_action": "pullback_ma50",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 5400.0,
+      "bars": 200,
+      "date_range": "2025-07-24 ~ 2026-05-20",
+      "ma10": 6213.0,
+      "ma20": 6018.0,
+      "ma50": 5459.7,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1309, "ma20_pct": -0.1027, "ma50_pct": -0.0109},
+      "dist_from_ma_atr": {"ma10_atr": -1.925, "ma20_atr": -1.463, "ma50_atr": -0.141},
+      "nearest_ma": {"ma": "ma50", "dist_pct": -0.0109},
+      "atr": 422.430585,
+      "atr_pct": 0.0782,
+      "adx": 37.71,
+      "range_position": 0.375,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0593,
+        "upper_wick_pct": 0.157,
+        "lower_wick_pct": 0.216,
+        "vol_rank_30d": 0.467,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.861,
+        "price_range_5bar_pct": 0.2556,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 7,
+        "body_pct": 0.0404,
+        "vol_rank": 0.867,
+        "close": 6680.0,
+        "max_retrace_pct": 0.2081,
+        "current_retrace_pct": 0.1916,
+        "holding": false
+      },
+      "ret_30d": 0.0506,
+      "ret_90d": 0.1054,
+      "from_period_high_pct": -0.2174,
+      "vol_avg_recent_vs_prior": 1.702
+    },
+
+    "observations": {
+      "key_levels": {"support": 5200, "resistance": 6800},
+      "pattern": "deep_pullback",
+      "recent_action": "일봉 정배열이나 가격 MA10/MA20/MA50 전부 아래. ADX 37로 하락 힘 강함. MA50(5460) 지지 테스트 중. 고점 6680 대비 -19% 조정."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "월봉 B3(바닥), 주봉 B5(상승 retest), 일봉 A4(첫 하락). 주봉 MA20 지지 유효하나 일봉 깊은 풀백. MA50 지지 확인 후 재판단 필요.",
+
+  "risk_flags": ["drawdown_deep"],
+
+  "charts": {
+    "1m": "charts/009160/20260521/009160_1m.png",
+    "1w": "charts/009160/20260521/009160_1w.png",
+    "1d": "charts/009160/20260521/009160_1d.png"
+  }
+}

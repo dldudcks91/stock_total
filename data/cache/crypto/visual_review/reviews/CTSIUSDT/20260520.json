@@ -1,0 +1,17 @@
+{
+  "symbol": "CTSIUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B3", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "장기 하락 후 base + 펌프 흔적"},
+  "tf_1w": {"state": "B3", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "장기 base 진행, 거래량 spike 후 다시 평탄"},
+  "tf_1d": {"state": "B3", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "3월말 펌프 후 가격 다시 base 회귀, MA50 위 유지 중"},
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "B3 base + 반복적 펌프덤프 흔적으로 신뢰도 낮음",
+  "charts": {
+    "1m": "charts/CTSIUSDT/20260520/CTSIUSDT_1m.png",
+    "1w": "charts/CTSIUSDT/20260520/CTSIUSDT_1w.png",
+    "1d": "charts/CTSIUSDT/20260520/CTSIUSDT_1d.png"
+  },
+  "schema_version": 1
+}

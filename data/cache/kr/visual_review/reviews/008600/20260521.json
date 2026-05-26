@@ -1,0 +1,183 @@
+{
+  "symbol": "008600",
+  "asset": "kr",
+  "reviewed_at": "2026-05-21T10:35:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 2620.0,
+      "bars": 148,
+      "date_range": "2014-02-28 ~ 2026-05-31",
+      "ma10": 3128.1,
+      "ma20": 4438.9,
+      "ma50": 5830.46,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.1624, "ma20_pct": -0.4098, "ma50_pct": -0.5506},
+      "dist_from_ma_atr": {"ma10_atr": -0.25, "ma20_atr": -0.895, "ma50_atr": -1.58},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.1624},
+      "atr": 2031.591152,
+      "atr_pct": 0.7754,
+      "adx": 12.11,
+      "range_position": 0.446,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 1.0,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.937,
+        "price_range_5bar_pct": 2.1473,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.6312,
+      "ret_90d": -0.8241,
+      "from_period_high_pct": -0.9391,
+      "vol_avg_recent_vs_prior": 1.252
+    },
+
+    "observations": {
+      "key_levels": {"support": 2000, "resistance": 5000},
+      "pattern": "long_term_collapse",
+      "recent_action": "2016년 40000원 고점 이후 장기 하락. 고점 대비 -93.9% 하락. 최근 봉 body_pct=1.0 이상 패턴은 거래 정지 후 재거래 의심."
+    }
+  },
+
+  "tf_1w": {
+    "state": "C1",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 2620.0,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 2620.0,
+      "ma20": 2861.1,
+      "ma50": 3404.32,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0, "ma20_pct": -0.0843, "ma50_pct": -0.2304},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": -0.155, "ma50_atr": -0.505},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0},
+      "atr": 1554.111076,
+      "atr_pct": 0.5932,
+      "adx": 22.0,
+      "range_position": 0.466,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 1.0,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.2276,
+      "ret_90d": -0.4369,
+      "from_period_high_pct": -0.774,
+      "vol_avg_recent_vs_prior": 0.356
+    },
+
+    "observations": {
+      "key_levels": {"support": 2620, "resistance": 3500},
+      "pattern": "trading_halt_suspected",
+      "recent_action": "주봉 최근 봉 vol=0, body_pct=1.0, 5bar vol=0. 거래 정지 의심. 1D에서 확인 시 2026-03 이후 모든 봉 2620원 고정."
+    }
+  },
+
+  "tf_1d": {
+    "state": "C1",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 2620.0,
+      "bars": 200,
+      "date_range": "2025-07-24 ~ 2026-05-20",
+      "ma10": 2620.0,
+      "ma20": 2620.0,
+      "ma50": 2639.4,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "down"},
+      "ma_spread": "tight",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0, "ma20_pct": 0.0, "ma50_pct": -0.0074},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": -0.008},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0},
+      "atr": 2493.485281,
+      "atr_pct": 0.9517,
+      "adx": 60.92,
+      "range_position": 0.82,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 1.0,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": -0.1983,
+      "from_period_high_pct": -0.5343,
+      "vol_avg_recent_vs_prior": 0.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 2620, "resistance": 2620},
+      "pattern": "trading_halt",
+      "recent_action": "1D 차트에서 2026년 3월 이후 가격이 2620원에 완전 고정. ret_30d=0, vol=0, body_pct=1.0. 거래 정지 확인. 매매 불가."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "1D에서 거래 정지 패턴 명확(2620원 고정, 거래량 0). 1M -93.9% 하락, dry+zombie 패턴. C1+dry 판정으로 reject.",
+
+  "risk_flags": ["drawdown_deep", "zombie"],
+
+  "charts": {
+    "1m": "charts/008600/20260521/008600_1m.png",
+    "1w": "charts/008600/20260521/008600_1w.png",
+    "1d": "charts/008600/20260521/008600_1d.png"
+  }
+}

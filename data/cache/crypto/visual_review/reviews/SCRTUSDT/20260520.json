@@ -1,0 +1,17 @@
+{
+  "symbol": "SCRTUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B2", "micro_action": null, "volume_flag": "dry", "note": "0.8→0.1 장기 좀비 하락"},
+  "tf_1w": {"state": "B2", "micro_action": null, "volume_flag": "dry", "note": "역배열, 0.1 부근 베이스"},
+  "tf_1d": {"state": "C1", "micro_action": null, "volume_flag": "dry", "note": "0.1-0.13 박스, MA 수렴 횡보"},
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "좀비 B2, dry, 박스",
+  "charts": {
+    "1m": "charts/SCRTUSDT/20260520/SCRTUSDT_1m.png",
+    "1w": "charts/SCRTUSDT/20260520/SCRTUSDT_1w.png",
+    "1d": "charts/SCRTUSDT/20260520/SCRTUSDT_1d.png"
+  },
+  "schema_version": 1
+}

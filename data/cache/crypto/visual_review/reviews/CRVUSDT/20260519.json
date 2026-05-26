@@ -1,0 +1,17 @@
+{
+  "symbol": "CRVUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "월봉 2022~ 지속 우하향 좀비, 0.3$ 신저가권" },
+  "tf_1w": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "주봉 MA 역배열 우하향" },
+  "tf_1d": { "state": "B4", "micro_action": null, "volume_flag": "normal", "note": "1d 최근 MA10/20 돌파 시도, 짧은 반등 후 살짝 후퇴" },
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_reason": "1M/1W B2 좀비 지속 하락, 1D B4 시도 — 큰 TF 우선",
+  "charts": {
+    "1m": "charts/CRVUSDT/20260519/CRVUSDT_1m.png",
+    "1w": "charts/CRVUSDT/20260519/CRVUSDT_1w.png",
+    "1d": "charts/CRVUSDT/20260519/CRVUSDT_1d.png"
+  },
+  "schema_version": 1
+}

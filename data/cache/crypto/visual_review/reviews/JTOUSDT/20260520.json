@@ -1,0 +1,13 @@
+{
+  "symbol": "JTOUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B2", "micro_action": null, "volume_flag": "distribution_suspect", "note": "2024 피크 후 -90% 폭락 좀비"},
+  "tf_1w": {"state": "B3", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "최근 큰 양봉 거래량 폭증 - 펌프 흔적"},
+  "tf_1d": {"state": "A4", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "4월 큰 양봉 + 음봉 거래량 — 펌프 후 분배"},
+  "tf_consistency": "충돌",
+  "verdict": "reject",
+  "verdict_reason": "1D pump_dump_trace override — 펌프 후 분배 신호",
+  "charts": {"1m": "charts/JTOUSDT/20260520/JTOUSDT_1m.png", "1w": "charts/JTOUSDT/20260520/JTOUSDT_1w.png", "1d": "charts/JTOUSDT/20260520/JTOUSDT_1d.png"},
+  "schema_version": 1
+}

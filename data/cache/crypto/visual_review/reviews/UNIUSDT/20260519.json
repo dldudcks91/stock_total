@@ -1,0 +1,32 @@
+{
+  "symbol": "UNIUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": null,
+    "volume_flag": "normal",
+    "note": "2021 피크($40+) 후 지속 하락. MA10/20/50 역배열 + 우하향, 가격 MA 아래. 최근 신저가 영역 진입."
+  },
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": null,
+    "volume_flag": "normal",
+    "note": "2025년 두 차례 랠리($14, $11) 후 다시 하락. MA 역배열 우하향, 가격 MA10 아래."
+  },
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": null,
+    "volume_flag": "normal",
+    "note": "4월 말~5월 MA20 위로 첫 양봉, MA10/20 골든크로스 시도. 단 MA50은 아직 위에서 저항. 변환 시도 단계."
+  },
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_reason": "큰 TF(1M/1W) B2 지속 하락 추세. 1D만 B4 변환 시도지만 충돌 → 한 단계 보수적. 추세 전환 확정(MA50 돌파 + retest) 후 재검토.",
+  "charts": {
+    "1m": "charts/UNIUSDT/20260519/UNIUSDT_1m.png",
+    "1w": "charts/UNIUSDT/20260519/UNIUSDT_1w.png",
+    "1d": "charts/UNIUSDT/20260519/UNIUSDT_1d.png"
+  },
+  "schema_version": 1
+}

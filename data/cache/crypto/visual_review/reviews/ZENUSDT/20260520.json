@@ -1,0 +1,17 @@
+{
+  "symbol": "ZENUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B3", "micro_action": "pullback_ma20", "volume_flag": "distribution_suspect", "note": "30→6 하락 후 2025년 11월 펌프 후 다시 하락, 베이스 시도"},
+  "tf_1w": {"state": "B2", "micro_action": null, "volume_flag": "dry", "note": "역배열 하락 지속, MA10<20<50, 거래량 감소"},
+  "tf_1d": {"state": "C1", "micro_action": null, "volume_flag": "dry", "note": "5-7 박스 횡보, MA 수렴"},
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_reason": "1m 베이스 시도지만 1w 역배열 하락, 거래량 dry로 보수적 skip",
+  "charts": {
+    "1m": "charts/ZENUSDT/20260520/ZENUSDT_1m.png",
+    "1w": "charts/ZENUSDT/20260520/ZENUSDT_1w.png",
+    "1d": "charts/ZENUSDT/20260520/ZENUSDT_1d.png"
+  },
+  "schema_version": 1
+}

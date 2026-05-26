@@ -1,0 +1,17 @@
+{
+  "symbol": "SAGAUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "C1", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "마지막 1M 봉 거대 거래량(4000M+) 펌프 트레이스 + 99% 폭락 후 dead chart" },
+  "tf_1w": { "state": "C1", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "마지막 1W 음봉에 거대 거래량 spike -> 펌프&덤프 트레이스" },
+  "tf_1d": { "state": "C1", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "4월말 거대 거래량 spike 후 즉시 급락, 명확한 펌프&덤프" },
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_reason": "전 TF 펌프&덤프 트레이스, 거의 dead chart",
+  "charts": {
+    "1m": "charts/SAGAUSDT/20260519/SAGAUSDT_1m.png",
+    "1w": "charts/SAGAUSDT/20260519/SAGAUSDT_1w.png",
+    "1d": "charts/SAGAUSDT/20260519/SAGAUSDT_1d.png"
+  },
+  "schema_version": 1
+}

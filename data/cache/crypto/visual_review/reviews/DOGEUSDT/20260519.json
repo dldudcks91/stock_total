@@ -1,0 +1,32 @@
+{
+  "symbol": "DOGEUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "note": "2024말 0.48 피크 후 지속 하락. MA10/MA20 우하향, 가격 MA10 근처에 머묾. 역배열 형성."
+  },
+  "tf_1w": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "note": "MA10/20/50 역배열 + 모두 우하향. 가격 MA10 부근. 하락 추세 지속."
+  },
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": null,
+    "volume_flag": "normal",
+    "note": "장기 하락 후 4월말부터 반등. MA10/MA20 위 양봉 + MA50 돌파 시도, 단 확정 안 됨."
+  },
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_reason": "큰 TF(1M/1W) 모두 B2 하락 지속. 1D B4 반등 시도 있으나 큰 흐름 미전환 — 보수적으로 skip.",
+  "charts": {
+    "1m": "charts/DOGEUSDT/20260519/DOGEUSDT_1m.png",
+    "1w": "charts/DOGEUSDT/20260519/DOGEUSDT_1w.png",
+    "1d": "charts/DOGEUSDT/20260519/DOGEUSDT_1d.png"
+  },
+  "schema_version": 1
+}

@@ -1,0 +1,17 @@
+{
+  "symbol": "APEUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "dry", "note": "20달러 → 0.15달러 지속적 폭락, 좀비 상태, MA들 우하향 역배열" },
+  "tf_1w": { "state": "B2", "micro_action": null, "volume_flag": "dry", "note": "MA10/20/50 역배열 우하향 유지, 좀비" },
+  "tf_1d": { "state": "C1", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "4월말 거대 spike 후 즉시 dump (pump&dump 흔적), 정상 추세 분류 불가" },
+  "tf_consistency": "충돌",
+  "verdict": "reject",
+  "verdict_reason": "1M/1W 좀비 + 1D pump&dump 흔적. volume_flag pump_dump_trace 로 reject.",
+  "charts": {
+    "1m": "charts/APEUSDT/20260519/APEUSDT_1m.png",
+    "1w": "charts/APEUSDT/20260519/APEUSDT_1w.png",
+    "1d": "charts/APEUSDT/20260519/APEUSDT_1d.png"
+  },
+  "schema_version": 1
+}

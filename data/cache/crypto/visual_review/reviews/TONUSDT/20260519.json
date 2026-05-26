@@ -1,0 +1,32 @@
+{
+  "symbol": "TONUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": {
+    "state": "B4",
+    "micro_action": null,
+    "volume_flag": "normal",
+    "note": "history 37 bars로 짧음. 2024 피크 후 하락 지속, 단 마지막 봉 강한 양봉 + 거래량 폭증. MA20 아래에서 상승 시도."
+  },
+  "tf_1w": {
+    "state": "B4",
+    "micro_action": null,
+    "volume_flag": "normal",
+    "note": "장기 하락 base 후 최근 강한 양봉 + 거래량 큰 폭증. MA20 위로 첫 돌파 시도, 단 확정 안 됨."
+  },
+  "tf_1d": {
+    "state": "B4",
+    "micro_action": null,
+    "volume_flag": "normal",
+    "note": "1.25~1.35 base 후 4월말 강한 폭등 + 거래량 폭증. MA10/20/50 모두 돌파. 단 직후 풀백 진행 중."
+  },
+  "tf_consistency": "정합",
+  "verdict": "watch",
+  "verdict_reason": "전 TF B4 상승 시도. 1D 강한 거래량 동반 돌파 + 1W 양봉 확인, 단 retest(B5) 확정 전. MA20 위 안착 여부 관찰.",
+  "charts": {
+    "1m": "charts/TONUSDT/20260519/TONUSDT_1m.png",
+    "1w": "charts/TONUSDT/20260519/TONUSDT_1w.png",
+    "1d": "charts/TONUSDT/20260519/TONUSDT_1d.png"
+  },
+  "schema_version": 1
+}

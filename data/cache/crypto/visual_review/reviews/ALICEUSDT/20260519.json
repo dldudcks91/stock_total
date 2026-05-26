@@ -1,0 +1,17 @@
+{
+  "symbol": "ALICEUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "$2 → $0.15 지속 하락. 데이터 23 bars, MA들 우하향" },
+  "tf_1w": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "MA10/20/50 모두 우하향 역배열, 가격 MA 아래에서 신저가 영역" },
+  "tf_1d": { "state": "A4", "micro_action": null, "volume_flag": "normal", "note": "최근 $0.14→$0.25 펌프 후 다시 풀백, MA20 아래로 하향. 미니 변환 실패" },
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "큰 TF B2 좀비 추세 지속. 1D 단기 펌프 후 실패",
+  "charts": {
+    "1m": "charts/ALICEUSDT/20260519/ALICEUSDT_1m.png",
+    "1w": "charts/ALICEUSDT/20260519/ALICEUSDT_1w.png",
+    "1d": "charts/ALICEUSDT/20260519/ALICEUSDT_1d.png"
+  },
+  "schema_version": 1
+}

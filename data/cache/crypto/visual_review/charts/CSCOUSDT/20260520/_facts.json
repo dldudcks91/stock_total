@@ -1,0 +1,71 @@
+{
+  "symbol": "CSCOUSDT",
+  "asset": "crypto",
+  "date_str": "20260520",
+  "generated_at": "2026-05-20T23:38:03.520756+09:00",
+  "tfs": [
+    "1h"
+  ],
+  "tf_1h": {
+    "last_close": 115.99,
+    "bars": 30,
+    "date_range": "2026-05-19 ~ 2026-05-20",
+    "ma10": 115.542,
+    "ma20": 115.611,
+    "ma50": null,
+    "ma_stack": "혼합",
+    "ma_slopes": {
+      "ma10": "flat",
+      "ma20": "flat",
+      "ma50": "flat"
+    },
+    "ma_spread": "normal",
+    "price_pos": "above_all",
+    "dist_from_ma": {
+      "ma10_pct": 0.0039,
+      "ma20_pct": 0.0033,
+      "ma50_pct": 0.0
+    },
+    "dist_from_ma_atr": {
+      "ma10_atr": 0.658,
+      "ma20_atr": 0.556,
+      "ma50_atr": 0.0
+    },
+    "nearest_ma": {
+      "ma": "ma20",
+      "dist_pct": 0.0033
+    },
+    "atr": 0.681314,
+    "atr_pct": 0.0059,
+    "adx": 40.38,
+    "range_position": 0.348,
+    "last_candle": {
+      "type": "doji",
+      "body_pct": 0.0036,
+      "upper_wick_pct": 0.382,
+      "lower_wick_pct": 0.453,
+      "vol_rank_30d": 0.967,
+      "vol_anomaly": "spike",
+      "accumulation_candle_score": 0.6,
+      "distribution_candle_score": 0.3
+    },
+    "accumulation": {
+      "vol_5bar_vs_30bar": 1.0,
+      "price_range_5bar_pct": 0.0,
+      "accumulation_score": 0.0
+    },
+    "recent_strong_bull": null,
+    "ret_30d": 0.0,
+    "ret_90d": 0.0,
+    "from_period_high_pct": -0.0247,
+    "vol_avg_recent_vs_prior": 1.0
+  },
+  "auto_risk_flags": [
+    "low_history"
+  ],
+  "global_nearest_ma": {
+    "tf": "1h",
+    "ma": "ma20",
+    "dist_pct": 0.0033
+  }
+}

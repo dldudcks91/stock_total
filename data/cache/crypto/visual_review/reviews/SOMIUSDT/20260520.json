@@ -1,0 +1,13 @@
+{
+  "symbol": "SOMIUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state":"B2","micro_action":null,"volume_flag":"dry","note":"신규(10봉), 첫 봉부터 지속 하락, 거래량 dry"},
+  "tf_1w": {"state":"B2","micro_action":null,"volume_flag":"dry","note":"지속 하락, 거래량 거의 없음"},
+  "tf_1d": {"state":"B2","micro_action":null,"volume_flag":"dry","note":"바닥 형성 시도하나 계속 하락, dry"},
+  "tf_consistency":"정합",
+  "verdict":"reject",
+  "verdict_reason":"volume_flag=dry 전 TF + 좀비 하락 - override reject",
+  "charts":{"1m":"charts/SOMIUSDT/20260520/SOMIUSDT_1m.png","1w":"charts/SOMIUSDT/20260520/SOMIUSDT_1w.png","1d":"charts/SOMIUSDT/20260520/SOMIUSDT_1d.png"},
+  "schema_version":1
+}

@@ -1,0 +1,17 @@
+{
+  "symbol": "CHILLGUYUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B3", "micro_action": null, "volume_flag": "dry", "note": "0.7→0.015 좀비, 거래량 감소 중 첫 양봉"},
+  "tf_1w": {"state": "B3", "micro_action": null, "volume_flag": "dry", "note": "역배열, 0.015 부근 베이스"},
+  "tf_1d": {"state": "B4", "micro_action": null, "volume_flag": "normal", "note": "MA10>20>50 골든, 0.01→0.015 회복, 거래량 정상"},
+  "tf_consistency": "분리",
+  "verdict": "watch",
+  "verdict_reason": "1d B4 첫 양봉이지만 1w 역배열 지속. 보수적 watch",
+  "charts": {
+    "1m": "charts/CHILLGUYUSDT/20260520/CHILLGUYUSDT_1m.png",
+    "1w": "charts/CHILLGUYUSDT/20260520/CHILLGUYUSDT_1w.png",
+    "1d": "charts/CHILLGUYUSDT/20260520/CHILLGUYUSDT_1d.png"
+  },
+  "schema_version": 1
+}

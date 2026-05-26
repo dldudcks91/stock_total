@@ -1,0 +1,17 @@
+{
+  "symbol": "ZKUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "dry", "note": "1M 장기 하락 좀비, 최근 거래량 매우 dry" },
+  "tf_1w": { "state": "B2", "micro_action": null, "volume_flag": "dry", "note": "MA 역배열 + 우하향, 좀비 하락, 최근 거래량 dry" },
+  "tf_1d": { "state": "B2", "micro_action": null, "volume_flag": "dry", "note": "MA 역배열·우하향 좀비, 최근 거래량 매우 dry" },
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_reason": "전 TF 좀비 하락 + 거래량 dry",
+  "charts": {
+    "1m": "charts/ZKUSDT/20260519/ZKUSDT_1m.png",
+    "1w": "charts/ZKUSDT/20260519/ZKUSDT_1w.png",
+    "1d": "charts/ZKUSDT/20260519/ZKUSDT_1d.png"
+  },
+  "schema_version": 1
+}

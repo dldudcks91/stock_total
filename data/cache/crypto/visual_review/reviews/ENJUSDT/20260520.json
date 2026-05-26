@@ -1,0 +1,13 @@
+{
+  "symbol": "ENJUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B2", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "장기 하락 지속 중, 최근 거래량 폭증은 펌프 흔적"},
+  "tf_1w": {"state": "B2", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "지속 하락, 바닥 시도 거래량만 폭증"},
+  "tf_1d": {"state": "A4", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "0.1 펌프 후 MA10/20 깸 - 펌프&덤프 후 조정"},
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_reason": "pump_dump_trace override (큰TF B2도 skip 대상)",
+  "charts": {"1m": "charts/ENJUSDT/20260520/ENJUSDT_1m.png", "1w": "charts/ENJUSDT/20260520/ENJUSDT_1w.png", "1d": "charts/ENJUSDT/20260520/ENJUSDT_1d.png"},
+  "schema_version": 1
+}

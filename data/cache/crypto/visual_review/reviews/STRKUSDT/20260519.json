@@ -1,0 +1,17 @@
+{
+  "symbol": "STRKUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "dry", "note": "2.5 peak → 0.05 부근 99% 폭락, 좀비, MA들 우하향" },
+  "tf_1w": { "state": "B2", "micro_action": null, "volume_flag": "dry", "note": "MA들 우하향 역배열 유지, 좀비 상태 지속" },
+  "tf_1d": { "state": "B3", "micro_action": null, "volume_flag": "normal", "note": "0.04~0.05 매우 좁은 박스, MA들 평탄 수렴, 거래량 spike 1회 후 다시 dry" },
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "1M/1W B2 좀비. 1D base지만 큰 추세 변화 없음.",
+  "charts": {
+    "1m": "charts/STRKUSDT/20260519/STRKUSDT_1m.png",
+    "1w": "charts/STRKUSDT/20260519/STRKUSDT_1w.png",
+    "1d": "charts/STRKUSDT/20260519/STRKUSDT_1d.png"
+  },
+  "schema_version": 1
+}

@@ -1,0 +1,13 @@
+{
+  "symbol": "PROMUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B2", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "10$ → 2$ 크래시 후 좀비, 펌프 흔적 + 분배"},
+  "tf_1w": {"state": "B2", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "급락 후 작은 반등 큰 양봉 — 펌프 흔적"},
+  "tf_1d": {"state": "A4", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "4월 펌프 거래량 폭증 후 MA20 깸 — 분배 시그널"},
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_reason": "pump_dump_trace override (전TF) — 분배 후 하방 재진입",
+  "charts": {"1m": "charts/PROMUSDT/20260520/PROMUSDT_1m.png", "1w": "charts/PROMUSDT/20260520/PROMUSDT_1w.png", "1d": "charts/PROMUSDT/20260520/PROMUSDT_1d.png"},
+  "schema_version": 1
+}

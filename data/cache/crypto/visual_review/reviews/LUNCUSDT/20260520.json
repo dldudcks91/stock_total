@@ -1,0 +1,13 @@
+{
+  "symbol": "LUNCUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state":"B4","micro_action":null,"volume_flag":"normal","note":"장기 하락 후 마지막 봉 MA20 위 양봉 미확정"},
+  "tf_1w": {"state":"B5","micro_action":null,"volume_flag":null,"note":"바닥에서 펌프 후 retest 확정 - 가격 MA10/20 위"},
+  "tf_1d": {"state":"A2","micro_action":"pullback_ma20","note":"정배열 라이딩 후 MA20 부근 pullback - 4월말 큰 폭 펌프 후 조정"},
+  "tf_consistency":"분리",
+  "verdict":"watch",
+  "verdict_reason":"1M=B4 (MA20 위 첫양봉 미확정) → watch, 1W는 B5 retest 확정, 1D는 펌프 후 pullback - 큰 TF 미확정 단계로 한 단계 보수적",
+  "charts":{"1m":"charts/LUNCUSDT/20260520/LUNCUSDT_1m.png","1w":"charts/LUNCUSDT/20260520/LUNCUSDT_1w.png","1d":"charts/LUNCUSDT/20260520/LUNCUSDT_1d.png"},
+  "schema_version":1
+}

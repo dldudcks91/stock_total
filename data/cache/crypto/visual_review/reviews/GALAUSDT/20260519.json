@@ -1,0 +1,17 @@
+{
+  "symbol": "GALAUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "1M 장기 하락 좀비, MA 역배열" },
+  "tf_1w": { "state": "B3", "micro_action": null, "volume_flag": "normal", "note": "1W MA들 평탄·수렴, 0.005 부근 base" },
+  "tf_1d": { "state": "B3", "micro_action": null, "volume_flag": "normal", "note": "MA10/20/50 수렴, 0.004 부근 base, 약한 반등 후 다시 조정" },
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "큰 TF B2/B3 base, 변환 시도 없음",
+  "charts": {
+    "1m": "charts/GALAUSDT/20260519/GALAUSDT_1m.png",
+    "1w": "charts/GALAUSDT/20260519/GALAUSDT_1w.png",
+    "1d": "charts/GALAUSDT/20260519/GALAUSDT_1d.png"
+  },
+  "schema_version": 1
+}

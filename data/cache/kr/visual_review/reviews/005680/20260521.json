@@ -1,0 +1,199 @@
+{
+  "symbol": "005680",
+  "asset": "kr",
+  "reviewed_at": "2026-05-21T09:09:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "A2",
+    "micro_action": "pullback_ma10",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 12740.0,
+      "bars": 148,
+      "date_range": "2014-02-28 ~ 2026-05-31",
+      "ma10": 11956.0,
+      "ma20": 11184.0,
+      "ma50": 10228.6,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "above_all",
+      "dist_from_ma": {"ma10_pct": 0.0656, "ma20_pct": 0.1391, "ma50_pct": 0.2455},
+      "dist_from_ma_atr": {"ma10_atr": 0.454, "ma20_atr": 0.902, "ma50_atr": 1.455},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0656},
+      "atr": 1725.675496,
+      "atr_pct": 0.1355,
+      "adx": 36.64,
+      "range_position": 0.385,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.2323,
+        "upper_wick_pct": 0.138,
+        "lower_wick_pct": 0.105,
+        "vol_rank_30d": 0.5,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.023,
+        "price_range_5bar_pct": 0.5424,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 2,
+        "body_pct": 0.2095,
+        "vol_rank": 0.867,
+        "close": 15180.0,
+        "max_retrace_pct": 0.1877,
+        "current_retrace_pct": 0.1607,
+        "holding": false
+      },
+      "ret_30d": 0.5632,
+      "ret_90d": 0.0233,
+      "from_period_high_pct": -0.3,
+      "vol_avg_recent_vs_prior": 1.459
+    },
+
+    "observations": {
+      "key_levels": {"support": 9000, "resistance": 18000},
+      "pattern": "uptrend_pullback",
+      "recent_action": "월봉 정배열 ADX 37. 2봉 전 장대양봉(+21%, vol_rank 0.867) 후 -16% 조정 중(holding=false). MA10 대비 +7% 위 — A2 풀백."
+    }
+  },
+
+  "tf_1w": {
+    "state": "A3",
+    "micro_action": "pullback_ma20",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 12740.0,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 14749.0,
+      "ma20": 13158.0,
+      "ma50": 11707.2,
+      "ma_stack": "정배열",
+      "ma_slopes": {"ma10": "up", "ma20": "up", "ma50": "up"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": -0.1362, "ma20_pct": -0.0318, "ma50_pct": 0.0882},
+      "dist_from_ma_atr": {"ma10_atr": -1.597, "ma20_atr": -0.332, "ma50_atr": 0.821},
+      "nearest_ma": {"ma": "ma20", "dist_pct": -0.0318},
+      "atr": 1257.657411,
+      "atr_pct": 0.0987,
+      "adx": 30.03,
+      "range_position": 0.385,
+      "last_candle": {
+        "type": "bear",
+        "body_pct": 0.0463,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.41,
+        "vol_rank_30d": 0.233,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 1.218,
+        "price_range_5bar_pct": 0.3438,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": {
+        "bars_ago": 3,
+        "body_pct": 0.0559,
+        "vol_rank": 0.933,
+        "close": 15750.0,
+        "max_retrace_pct": 0.2171,
+        "current_retrace_pct": 0.1911,
+        "holding": false
+      },
+      "ret_30d": 0.1764,
+      "ret_90d": 0.4494,
+      "from_period_high_pct": -0.2506,
+      "vol_avg_recent_vs_prior": 2.508
+    },
+
+    "observations": {
+      "key_levels": {"support": 11000, "resistance": 17000},
+      "pattern": "high_vol_spike_pullback",
+      "recent_action": "주봉 정배열 유지이나 3봉 전 고점(15750) 이후 MA20(-3%) 까지 풀백. 아래꼬리 41% — MA20 지지 시도."
+    }
+  },
+
+  "tf_1d": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "normal",
+    "confidence": "medium",
+
+    "context": {
+      "last_close": 12740.0,
+      "bars": 200,
+      "date_range": "2025-07-24 ~ 2026-05-20",
+      "ma10": 14081.0,
+      "ma20": 14667.5,
+      "ma50": 14707.6,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "up"},
+      "ma_spread": "normal",
+      "price_pos": "below_all",
+      "dist_from_ma": {"ma10_pct": -0.0952, "ma20_pct": -0.1314, "ma50_pct": -0.1338},
+      "dist_from_ma_atr": {"ma10_atr": -1.759, "ma20_atr": -2.529, "ma50_atr": -2.582},
+      "nearest_ma": {"ma": "ma10", "dist_pct": -0.0952},
+      "atr": 762.16734,
+      "atr_pct": 0.0598,
+      "adx": 22.46,
+      "range_position": 0.282,
+      "last_candle": {
+        "type": "doji",
+        "body_pct": 0.0071,
+        "upper_wick_pct": 0.242,
+        "lower_wick_pct": 0.621,
+        "vol_rank_30d": 0.4,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.625,
+        "price_range_5bar_pct": 0.1656,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.158,
+      "ret_90d": 0.2238,
+      "from_period_high_pct": -0.2506,
+      "vol_avg_recent_vs_prior": 0.581
+    },
+
+    "observations": {
+      "key_levels": {"support": 11500, "resistance": 15000},
+      "pattern": "correction_below_ma",
+      "recent_action": "일봉 MA10/20 역배열 하락. 2026년 3월 고점(17000) 이후 조정 지속. 마지막 봉 아래꼬리 도지 — 단기 지지 시도이나 추세 전환 미확인."
+    }
+  },
+
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_confidence": "medium",
+  "verdict_reason": "월봉 A2(강한 추세), 주봉 A3(고점 조정), 일봉 B2(단기 역배열) — TF 충돌. 주봉 MA20(-3%) 지지 확인 시 watch→pass 검토. 현재는 일봉 역배열로 watch 유지.",
+
+  "risk_flags": [],
+
+  "charts": {
+    "1m": "charts/005680/20260521/005680_1m.png",
+    "1w": "charts/005680/20260521/005680_1w.png",
+    "1d": "charts/005680/20260521/005680_1d.png"
+  }
+}

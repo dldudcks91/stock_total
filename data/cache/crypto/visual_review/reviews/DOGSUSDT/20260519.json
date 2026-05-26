@@ -1,0 +1,17 @@
+{
+  "symbol": "DOGSUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B4", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "월봉 22 bars만, 출시 후 90% 하락. 마지막 봉 거대 거래량 + 양봉 시도. pump 흔적" },
+  "tf_1w": { "state": "B4", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "주봉 1년+ base 후 마지막 1주 거대 양봉 + 거래량 폭증. 펌프 의심" },
+  "tf_1d": { "state": "B5", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "1d 4월말 5배 급등 후 후퇴. MA들 위로 올라왔으나 변동성 극심" },
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_reason": "전 TF에 pump_dump_trace 의심 — 거대 단일봉 + 거래량 스파이크",
+  "charts": {
+    "1m": "charts/DOGSUSDT/20260519/DOGSUSDT_1m.png",
+    "1w": "charts/DOGSUSDT/20260519/DOGSUSDT_1w.png",
+    "1d": "charts/DOGSUSDT/20260519/DOGSUSDT_1d.png"
+  },
+  "schema_version": 1
+}

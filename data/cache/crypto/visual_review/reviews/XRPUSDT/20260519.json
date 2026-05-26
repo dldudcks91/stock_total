@@ -1,0 +1,17 @@
+{
+  "symbol": "XRPUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "A5", "micro_action": null, "volume_flag": "normal", "note": "2024년 말 $0.5 → $3.5 급등 후 MA20 음 기울기로 풀백 막힘, 사이클 A 종료" },
+  "tf_1w": { "state": "B2", "micro_action": "riding", "volume_flag": "normal", "note": "$3.6 고점 후 MA10/20/50 우하향 역배열 진행, 가격이 MA10 아래 안정 하락" },
+  "tf_1d": { "state": "B3", "micro_action": null, "volume_flag": "normal", "note": "$1.4 베이스, MA10/20/50 수렴 평탄 — 바닥 다지기" },
+  "tf_consistency": "분리",
+  "verdict": "skip",
+  "verdict_reason": "1M 사이클 A 종료(A5) + 1W B2 하락. 1D 베이스 다지기는 있지만 큰 TF 가 약세, 변환 신호 없음",
+  "charts": {
+    "1m": "charts/XRPUSDT/20260519/XRPUSDT_1m.png",
+    "1w": "charts/XRPUSDT/20260519/XRPUSDT_1w.png",
+    "1d": "charts/XRPUSDT/20260519/XRPUSDT_1d.png"
+  },
+  "schema_version": 1
+}

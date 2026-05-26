@@ -1,0 +1,171 @@
+{
+  "symbol": "002210",
+  "asset": "kr",
+  "reviewed_at": "2026-05-21T09:25:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 973.0,
+      "bars": 148,
+      "date_range": "2014-02-28 ~ 2026-05-31",
+      "ma10": 973.0,
+      "ma20": 1382.6,
+      "ma50": 2386.76,
+      "ma_stack": "역배열",
+      "ma_slopes": {"ma10": "down", "ma20": "down", "ma50": "down"},
+      "ma_spread": "spread",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0, "ma20_pct": -0.2963, "ma50_pct": -0.5923},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": -0.504, "ma50_atr": -1.738},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0},
+      "atr": 813.378804,
+      "atr_pct": 0.8359,
+      "adx": 23.54,
+      "range_position": 0.69,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 1.0,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": -0.682,
+      "ret_90d": -0.9167,
+      "from_period_high_pct": -0.9605,
+      "vol_avg_recent_vs_prior": 0.494
+    },
+
+    "observations": {
+      "key_levels": {"support": 900, "resistance": 1500},
+      "pattern": "zombie_floor",
+      "recent_action": "월봉 2018년 고점 대비 -96% 수준에서 수년간 횡보. 최근 거래량 완전 소멸(vol_rank 0.0), 가격이 MA10에 수렴."
+    }
+  },
+
+  "tf_1w": {
+    "state": "C1",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 973.0,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 973.0,
+      "ma20": 973.0,
+      "ma50": 989.68,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "down"},
+      "ma_spread": "tight",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0, "ma20_pct": 0.0, "ma50_pct": -0.0169},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": -0.017},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0},
+      "atr": 966.041997,
+      "atr_pct": 0.9928,
+      "adx": 12.98,
+      "range_position": 0.5,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 1.0,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": -0.5714,
+      "from_period_high_pct": -0.7796,
+      "vol_avg_recent_vs_prior": 0.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 900, "resistance": 1000},
+      "pattern": "flatline_zombie",
+      "recent_action": "주봉 MA10=MA20=종가 973원, 거래량 0에 수렴. 2025년 중반 이후 사실상 거래 정지 수준으로 차트가 완전 수평."
+    }
+  },
+
+  "tf_1d": {
+    "state": "C1",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+
+    "context": {
+      "last_close": 973.0,
+      "bars": 200,
+      "date_range": "2025-07-24 ~ 2026-05-20",
+      "ma10": 973.0,
+      "ma20": 973.0,
+      "ma50": 973.0,
+      "ma_stack": "혼합",
+      "ma_slopes": {"ma10": "flat", "ma20": "flat", "ma50": "flat"},
+      "ma_spread": "tight",
+      "price_pos": "between",
+      "dist_from_ma": {"ma10_pct": 0.0, "ma20_pct": 0.0, "ma50_pct": 0.0},
+      "dist_from_ma_atr": {"ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0},
+      "nearest_ma": {"ma": "ma10", "dist_pct": 0.0},
+      "atr": 973.000018,
+      "atr_pct": 1.0,
+      "adx": 6.99,
+      "range_position": 0.5,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 1.0,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {"vol_5bar_vs_30bar": 0.0, "price_range_5bar_pct": 0.0, "accumulation_score": 0.0},
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": 0.0,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+
+    "observations": {
+      "key_levels": {"support": 973, "resistance": 973},
+      "pattern": "flatline",
+      "recent_action": "일봉 차트가 완전 수평 평탄화. MA 전부 동일값(973), vol=0. 거래 정지 혹은 상장폐지 진행 중으로 판단."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "1W/1D C1 좀비 + dry 판정. 일봉 거래량 완전 소멸, MA 전부 동일값 973원. 월봉 역배열 -96% 하락 후 사실상 거래불능 상태. 영구 제외.",
+
+  "risk_flags": ["drawdown_deep", "zombie"],
+
+  "charts": {
+    "1m": "charts/002210/20260521/002210_1m.png",
+    "1w": "charts/002210/20260521/002210_1w.png",
+    "1d": "charts/002210/20260521/002210_1d.png"
+  }
+}

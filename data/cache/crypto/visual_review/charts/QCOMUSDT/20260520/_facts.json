@@ -1,0 +1,71 @@
+{
+  "symbol": "QCOMUSDT",
+  "asset": "crypto",
+  "date_str": "20260520",
+  "generated_at": "2026-05-20T23:39:11.668641+09:00",
+  "tfs": [
+    "1h"
+  ],
+  "tf_1h": {
+    "last_close": 197.06,
+    "bars": 30,
+    "date_range": "2026-05-19 ~ 2026-05-20",
+    "ma10": 199.044,
+    "ma20": 197.7915,
+    "ma50": null,
+    "ma_stack": "혼합",
+    "ma_slopes": {
+      "ma10": "up",
+      "ma20": "flat",
+      "ma50": "flat"
+    },
+    "ma_spread": "normal",
+    "price_pos": "below_all",
+    "dist_from_ma": {
+      "ma10_pct": -0.01,
+      "ma20_pct": -0.0037,
+      "ma50_pct": 0.0
+    },
+    "dist_from_ma_atr": {
+      "ma10_atr": -0.928,
+      "ma20_atr": -0.342,
+      "ma50_atr": 0.0
+    },
+    "nearest_ma": {
+      "ma": "ma20",
+      "dist_pct": -0.0037
+    },
+    "atr": 2.138144,
+    "atr_pct": 0.0109,
+    "adx": 29.94,
+    "range_position": 0.456,
+    "last_candle": {
+      "type": "bear",
+      "body_pct": 0.0198,
+      "upper_wick_pct": 0.079,
+      "lower_wick_pct": 0.289,
+      "vol_rank_30d": 0.867,
+      "vol_anomaly": null,
+      "accumulation_candle_score": 0.0,
+      "distribution_candle_score": 0.3
+    },
+    "accumulation": {
+      "vol_5bar_vs_30bar": 1.0,
+      "price_range_5bar_pct": 0.0,
+      "accumulation_score": 0.0
+    },
+    "recent_strong_bull": null,
+    "ret_30d": 0.0,
+    "ret_90d": 0.0,
+    "from_period_high_pct": -0.0318,
+    "vol_avg_recent_vs_prior": 1.0
+  },
+  "auto_risk_flags": [
+    "low_history"
+  ],
+  "global_nearest_ma": {
+    "tf": "1h",
+    "ma": "ma20",
+    "dist_pct": -0.0037
+  }
+}

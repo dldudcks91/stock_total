@@ -1,0 +1,17 @@
+{
+  "symbol": "PEPEUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "월봉 정점 2024.12 이후 지속 하락, MA10/20 역배열 우하향" },
+  "tf_1w": { "state": "B3", "micro_action": null, "volume_flag": "normal", "note": "주봉 MA10/20/50 수렴, 가격은 MA 아래로 침강 후 횡보 base 다지기" },
+  "tf_1d": { "state": "B3", "micro_action": null, "volume_flag": "normal", "note": "1d MA10/20/50 수렴, 횡보 후 최근 미세 반등하다 다시 약세" },
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "1M B2 좀비/지속 하락, 1W/1D B3 base. 큰 TF 하락 확정으로 skip",
+  "charts": {
+    "1m": "charts/PEPEUSDT/20260519/PEPEUSDT_1m.png",
+    "1w": "charts/PEPEUSDT/20260519/PEPEUSDT_1w.png",
+    "1d": "charts/PEPEUSDT/20260519/PEPEUSDT_1d.png"
+  },
+  "schema_version": 1
+}

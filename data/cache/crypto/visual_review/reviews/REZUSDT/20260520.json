@@ -1,0 +1,17 @@
+{
+  "symbol": "REZUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "월봉 0.2→0.005 좀비" },
+  "tf_1w": { "state": "B2", "micro_action": null, "volume_flag": "dry", "note": "주봉 바닥 평탄, 거래량 메마름" },
+  "tf_1d": { "state": "A2", "micro_action": "riding", "volume_flag": "normal", "note": "일봉 base 후 돌파, MA10/20 위" },
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_reason": "큰TF B2 좀비, 1D 신호만으로 부족",
+  "charts": {
+    "1m": "charts/REZUSDT/20260520/REZUSDT_1m.png",
+    "1w": "charts/REZUSDT/20260520/REZUSDT_1w.png",
+    "1d": "charts/REZUSDT/20260520/REZUSDT_1d.png"
+  },
+  "schema_version": 1
+}

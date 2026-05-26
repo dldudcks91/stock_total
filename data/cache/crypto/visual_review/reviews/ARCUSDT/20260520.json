@@ -1,0 +1,17 @@
+{
+  "symbol": "ARCUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B4", "micro_action": null, "volume_flag": "normal", "note": "0.3→0.02 폭락 후 베이스, 2025-12 부터 양봉 연속, 점진 상승"},
+  "tf_1w": {"state": "B5", "micro_action": null, "volume_flag": "normal", "note": "MA10>MA20 골든, 0.08 부근 retest 후 횡보"},
+  "tf_1d": {"state": "A2", "micro_action": "pullback_ma20", "volume_flag": "normal", "note": "정배열 회복(MA10>20>50), 0.07 부근 MA20 눌림"},
+  "tf_consistency": "정합",
+  "verdict": "pass",
+  "verdict_reason": "1m B4 + 1w B5 + 1d A2 정합 상승 초입, 거래량 정상",
+  "charts": {
+    "1m": "charts/ARCUSDT/20260520/ARCUSDT_1m.png",
+    "1w": "charts/ARCUSDT/20260520/ARCUSDT_1w.png",
+    "1d": "charts/ARCUSDT/20260520/ARCUSDT_1d.png"
+  },
+  "schema_version": 1
+}

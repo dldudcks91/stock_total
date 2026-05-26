@@ -1,0 +1,13 @@
+{
+  "symbol": "PIUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B2", "micro_action": "pullback_ma10", "volume_flag": "dry", "note": "런칭 후 16개월 좀비 하락 지속"},
+  "tf_1w": {"state": "B2", "micro_action": "pullback_ma10", "volume_flag": "dry", "note": "거래량 고갈, 전형적 좀비"},
+  "tf_1d": {"state": "B2", "micro_action": "pullback_ma10", "volume_flag": "dry", "note": "MA20 아래 지속, 최근 신저가"},
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "전형적 좀비 다운트렌드, 거래량 고갈",
+  "charts": {"1m": "charts/PIUSDT/20260520/PIUSDT_1m.png", "1w": "charts/PIUSDT/20260520/PIUSDT_1w.png", "1d": "charts/PIUSDT/20260520/PIUSDT_1d.png"},
+  "schema_version": 1
+}

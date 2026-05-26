@@ -1,0 +1,177 @@
+{
+  "symbol": "140910",
+  "asset": "kr",
+  "reviewed_at": "2026-05-21T09:40:00+09:00",
+  "data_until": "2026-05-20",
+  "scorer": {
+    "model": "claude-sonnet-4-6",
+    "agent_id": "crypto-visual-reviewer",
+    "schema_version": 2.1
+  },
+
+  "tf_1m": {
+    "state": "B2",
+    "micro_action": "breaking",
+    "volume_flag": "dry",
+    "confidence": "high",
+    "context": {
+      "last_close": 3130.0,
+      "bars": 148,
+      "date_range": "2014-02-28 ~ 2026-05-31",
+      "ma10": 3130.0,
+      "ma20": 3130.0,
+      "ma50": 3647.5,
+      "ma_stack": "혼합",
+      "ma_slopes": { "ma10": "flat", "ma20": "flat", "ma50": "down" },
+      "ma_spread": "normal",
+      "price_pos": "between",
+      "dist_from_ma": { "ma10_pct": 0.0, "ma20_pct": 0.0, "ma50_pct": -0.1419 },
+      "dist_from_ma_atr": { "ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": -0.181 },
+      "nearest_ma": { "ma": "ma10", "dist_pct": 0.0 },
+      "atr": 2858.883299,
+      "atr_pct": 0.9134,
+      "adx": 23.26,
+      "range_position": 0.5,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 1.0,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": -0.1306,
+      "ret_90d": -0.2375,
+      "from_period_high_pct": -0.837,
+      "vol_avg_recent_vs_prior": 0.022
+    },
+    "observations": {
+      "key_levels": { "support": 2500, "resistance": 10000 },
+      "pattern": "post_peak_collapse",
+      "recent_action": "2021년 20000 피크 후 지속 하락. 최근 거래 거의 없음(vol 0.022x). 월봉 후반부 거래정지 상태로 진입."
+    }
+  },
+
+  "tf_1w": {
+    "state": "C1",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+    "context": {
+      "last_close": 3130.0,
+      "bars": 200,
+      "date_range": "2022-08-01 ~ 2026-05-25",
+      "ma10": 3130.0,
+      "ma20": 3130.0,
+      "ma50": 3130.0,
+      "ma_stack": "혼합",
+      "ma_slopes": { "ma10": "flat", "ma20": "flat", "ma50": "flat" },
+      "ma_spread": "tight",
+      "price_pos": "between",
+      "dist_from_ma": { "ma10_pct": 0.0, "ma20_pct": 0.0, "ma50_pct": 0.0 },
+      "dist_from_ma_atr": { "ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0 },
+      "nearest_ma": { "ma": "ma10", "dist_pct": 0.0 },
+      "atr": 3129.642579,
+      "atr_pct": 0.9999,
+      "adx": 96.01,
+      "range_position": 0.5,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 1.0,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": -0.4704,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": { "support": 2500, "resistance": 5000 },
+      "pattern": "trading_halt",
+      "recent_action": "주봉에서 2024년 초부터 거래정지 상태. 모든 MA가 3130원으로 동결. 거래량 0. 비정상 상태."
+    }
+  },
+
+  "tf_1d": {
+    "state": "C1",
+    "micro_action": "riding",
+    "volume_flag": "dry",
+    "confidence": "high",
+    "context": {
+      "last_close": 3130.0,
+      "bars": 200,
+      "date_range": "2025-07-24 ~ 2026-05-20",
+      "ma10": 3130.0,
+      "ma20": 3130.0,
+      "ma50": 3130.0,
+      "ma_stack": "혼합",
+      "ma_slopes": { "ma10": "flat", "ma20": "flat", "ma50": "flat" },
+      "ma_spread": "tight",
+      "price_pos": "between",
+      "dist_from_ma": { "ma10_pct": 0.0, "ma20_pct": 0.0, "ma50_pct": 0.0 },
+      "dist_from_ma_atr": { "ma10_atr": 0.0, "ma20_atr": 0.0, "ma50_atr": 0.0 },
+      "nearest_ma": { "ma": "ma10", "dist_pct": 0.0 },
+      "atr": 3130.0,
+      "atr_pct": 1.0,
+      "adx": 18.32,
+      "range_position": 0.5,
+      "last_candle": {
+        "type": "bull",
+        "body_pct": 1.0,
+        "upper_wick_pct": 0.0,
+        "lower_wick_pct": 0.0,
+        "vol_rank_30d": 0.0,
+        "vol_anomaly": null,
+        "accumulation_candle_score": 0.0,
+        "distribution_candle_score": 0.0
+      },
+      "accumulation": {
+        "vol_5bar_vs_30bar": 0.0,
+        "price_range_5bar_pct": 0.0,
+        "accumulation_score": 0.0
+      },
+      "recent_strong_bull": null,
+      "ret_30d": 0.0,
+      "ret_90d": 0.0,
+      "from_period_high_pct": 0.0,
+      "vol_avg_recent_vs_prior": 1.0
+    },
+    "observations": {
+      "key_levels": { "support": 3130, "resistance": 3130 },
+      "pattern": "trading_halt",
+      "recent_action": "일봉 차트 전체가 3130원으로 고착, 거래량 0. 거래정지 상태."
+    }
+  },
+
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_confidence": "high",
+  "verdict_reason": "1W/1D 거래정지(가격·거래량 완전 고착). 1M vol 0.022x 극단적 유동성 소멸. drawdown -84%. 매매 불가. 영구 제외.",
+
+  "risk_flags": ["drawdown_deep", "zombie"],
+
+  "charts": {
+    "1m": "charts/140910/20260521/140910_1m.png",
+    "1w": "charts/140910/20260521/140910_1w.png",
+    "1d": "charts/140910/20260521/140910_1d.png"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "symbol": "ZBTUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": null, "micro_action": null, "volume_flag": null, "note": "PNG 없음 (상장 31주, 1M 데이터 부족)"},
+  "tf_1w": {"state": "B4", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "12월 단일 펌프, 4월 두번째 펌프 후 다시 하락. MA20 근처에서 횡보"},
+  "tf_1d": {"state": "A4", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "4월 말 폭등 후 MA20/MA50 깨고 하락 retest, distribution 의심"},
+  "tf_consistency": "분리",
+  "verdict": "reject",
+  "verdict_reason": "Pump-dump 흔적 강함, 1w/1d 모두 거래량 패턴 비정상",
+  "charts": {
+    "1m": "charts/ZBTUSDT/20260520/ZBTUSDT_1m.png",
+    "1w": "charts/ZBTUSDT/20260520/ZBTUSDT_1w.png",
+    "1d": "charts/ZBTUSDT/20260520/ZBTUSDT_1d.png"
+  },
+  "schema_version": 1
+}

@@ -1,0 +1,17 @@
+{
+  "symbol": "ASTERUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": { "state": null, "micro_action": null, "volume_flag": null, "note": "1M chart 부재 (신규)" },
+  "tf_1w": { "state": "B3", "micro_action": "pullback_ma20", "volume_flag": "dry", "note": "장기 하락 후 0.7 부근 base, MA10/20 수렴" },
+  "tf_1d": { "state": "B3", "micro_action": "pullback_ma20", "volume_flag": "dry", "note": "MA 전부 수렴, 거래량 메마름" },
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_reason": "거래량 dry override",
+  "charts": {
+    "1m": null,
+    "1w": "charts/ASTERUSDT/20260520/ASTERUSDT_1w.png",
+    "1d": "charts/ASTERUSDT/20260520/ASTERUSDT_1d.png"
+  },
+  "schema_version": 1
+}

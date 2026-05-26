@@ -1,0 +1,17 @@
+{
+  "symbol": "NMRUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "C1", "micro_action": null, "volume_flag": "normal", "note": "박스 + 펌프 1회 후 다시 박스"},
+  "tf_1w": {"state": "B4", "micro_action": null, "volume_flag": "normal", "note": "펌프 후 하락, 최근 MA10 위 회복 시도"},
+  "tf_1d": {"state": "A2", "micro_action": "pullback_ma10", "volume_flag": "normal", "note": "MA10/20/50 정배열, 신규 추세 형성, 짧은 눌림"},
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_reason": "1d A2 정배열 진행 vs 1w B4, 1m C1 — 단기 추세 강함이나 상위TF 보수적",
+  "charts": {
+    "1m": "charts/NMRUSDT/20260520/NMRUSDT_1m.png",
+    "1w": "charts/NMRUSDT/20260520/NMRUSDT_1w.png",
+    "1d": "charts/NMRUSDT/20260520/NMRUSDT_1d.png"
+  },
+  "schema_version": 1
+}

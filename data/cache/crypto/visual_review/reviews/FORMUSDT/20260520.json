@@ -1,0 +1,13 @@
+{
+  "symbol": "FORMUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "A3", "micro_action": null, "volume_flag": "distribution_suspect", "note": "2 → 4 펌프 → 0.3 폭락, topping 후 분배 패턴"},
+  "tf_1w": {"state": "B2", "micro_action": null, "volume_flag": "distribution_suspect", "note": "MA10/20/50 모두 우하향, 0.3 근처 좀비"},
+  "tf_1d": {"state": "B3", "micro_action": null, "volume_flag": "normal", "note": "0.3 베이스 5개월 횡보, MA수렴"},
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "1m A3 topping 후 분배, 큰 TF B2 좀비. 1d 베이스도 신호 약함",
+  "charts": {"1m": "charts/FORMUSDT/20260520/FORMUSDT_1m.png", "1w": "charts/FORMUSDT/20260520/FORMUSDT_1w.png", "1d": "charts/FORMUSDT/20260520/FORMUSDT_1d.png"},
+  "schema_version": 1
+}

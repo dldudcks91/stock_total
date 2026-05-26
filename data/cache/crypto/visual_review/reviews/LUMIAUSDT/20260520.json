@@ -1,0 +1,13 @@
+{
+  "symbol": "LUMIAUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B3", "micro_action": "pullback_ma10", "volume_flag": "normal", "note": "Long downtrend now in low base ~$0.1, monthly flatlining"},
+  "tf_1w": {"state": "B3", "micro_action": "pullback_ma10", "volume_flag": "normal", "note": "Base formation after big decline, MA10/20 flat at lows, slight uptick"},
+  "tf_1d": {"state": "A4", "micro_action": null, "volume_flag": "distribution_suspect", "note": "Recent pump to $0.2 then sharp drop below MA20 — top broken, distribution"},
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_reason": "1W B3 base vs 1D A4 펌프후 하락 — 충돌, 단기 펌프 실패로 보수적 skip",
+  "charts": {"1m": "charts/LUMIAUSDT/20260520/LUMIAUSDT_1m.png", "1w": "charts/LUMIAUSDT/20260520/LUMIAUSDT_1w.png", "1d": "charts/LUMIAUSDT/20260520/LUMIAUSDT_1d.png"},
+  "schema_version": 1
+}

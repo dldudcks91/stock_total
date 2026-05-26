@@ -1,0 +1,13 @@
+{
+  "symbol": "LSKUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B2", "micro_action": null, "volume_flag": "distribution_suspect", "note": "2 → 0.13, 2년 좀비 하락. 25년10월 거래량 폭증 분배"},
+  "tf_1w": {"state": "B3", "micro_action": null, "volume_flag": "dry", "note": "0.13 바닥 5개월 횡보, MA10/20 수렴, 거래량 급감"},
+  "tf_1d": {"state": "B3", "micro_action": null, "volume_flag": "dry", "note": "0.13 베이스, MA수렴 횡보, 거래량 거의 없음"},
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "B3 dry override, 신호 부재",
+  "charts": {"1m": "charts/LSKUSDT/20260520/LSKUSDT_1m.png", "1w": "charts/LSKUSDT/20260520/LSKUSDT_1w.png", "1d": "charts/LSKUSDT/20260520/LSKUSDT_1d.png"},
+  "schema_version": 1
+}

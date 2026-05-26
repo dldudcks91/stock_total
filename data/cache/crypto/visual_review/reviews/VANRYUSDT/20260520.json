@@ -1,0 +1,13 @@
+{
+  "symbol": "VANRYUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B2", "micro_action": null, "volume_flag": "distribution_suspect", "note": "0.3→0.005 지속 하락"},
+  "tf_1w": {"state": "B2", "micro_action": null, "volume_flag": "distribution_suspect", "note": "지속 하락, 매물 출회"},
+  "tf_1d": {"state": "B3", "micro_action": null, "volume_flag": "dry", "note": "0.005 부근 base, 거래량 위축"},
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_reason": "dry override + 큰TF B2",
+  "charts": {"1m": "charts/VANRYUSDT/20260520/VANRYUSDT_1m.png", "1w": "charts/VANRYUSDT/20260520/VANRYUSDT_1w.png", "1d": "charts/VANRYUSDT/20260520/VANRYUSDT_1d.png"},
+  "schema_version": 1
+}

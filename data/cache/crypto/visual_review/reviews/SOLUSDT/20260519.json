@@ -1,0 +1,17 @@
+{
+  "symbol": "SOLUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "A5", "micro_action": null, "volume_flag": "normal", "note": "1M 큰 사이클: 2024 고점 후 하락 retest, MA들 음 기울기, 현재 100$ 부근 약세" },
+  "tf_1w": { "state": "B3", "micro_action": null, "volume_flag": "normal", "note": "주봉 우하향 감속, MA10/20 평탄화 시도. 큰 추세는 여전히 하락이나 base 다지기 진입" },
+  "tf_1d": { "state": "B3", "micro_action": null, "volume_flag": "normal", "note": "1d MA들 약하게 수렴 평탄, 80~95$ 박스. 거래량 미약" },
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "1M state A5 (하락 retest 확정) - 큰 추세 음. 1W/1D는 base 다지기지만 1M 확정 약세로 skip",
+  "charts": {
+    "1m": "charts/SOLUSDT/20260519/SOLUSDT_1m.png",
+    "1w": "charts/SOLUSDT/20260519/SOLUSDT_1w.png",
+    "1d": "charts/SOLUSDT/20260519/SOLUSDT_1d.png"
+  },
+  "schema_version": 1
+}

@@ -1,0 +1,13 @@
+{
+  "symbol": "PLUMEUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B3", "micro_action": null, "volume_flag": "dry", "note": "상장 후 -90% 하락 후 0.015 횡보"},
+  "tf_1w": {"state": "B3", "micro_action": null, "volume_flag": "dry", "note": "0.20 → 0.015 큰 하락 후 평탄 base"},
+  "tf_1d": {"state": "B3", "micro_action": null, "volume_flag": "normal", "note": "MA10/20/50 수렴 평탄, 살짝 반등 시도"},
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_reason": "큰TF dry override, B3 base 누적",
+  "charts": {"1m": "charts/PLUMEUSDT/20260520/PLUMEUSDT_1m.png", "1w": "charts/PLUMEUSDT/20260520/PLUMEUSDT_1w.png", "1d": "charts/PLUMEUSDT/20260520/PLUMEUSDT_1d.png"},
+  "schema_version": 1
+}

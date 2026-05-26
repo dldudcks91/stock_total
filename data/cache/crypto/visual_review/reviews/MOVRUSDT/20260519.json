@@ -1,0 +1,17 @@
+{
+  "symbol": "MOVRUSDT",
+  "reviewed_at": "2026-05-19T00:00:00+09:00",
+  "data_until": "2026-05-17",
+  "tf_1m": { "state": "B2", "micro_action": null, "volume_flag": "normal", "note": "15 peak → 2.5 부근 하락, MA10/20 우하향, 최근 큰 양봉 1회" },
+  "tf_1w": { "state": "B5", "micro_action": null, "volume_flag": "normal", "note": "큰 양봉 spike 후 MA50 위에서 횡보, MA10/20 우상향 시작, 거래량 폭증" },
+  "tf_1d": { "state": "A3", "micro_action": null, "volume_flag": "distribution_suspect", "note": "spike(4월말) 후 2.5~2.7 횡보, MA들 평탄해지며 모멘텀 둔화, 분배 의심" },
+  "tf_consistency": "충돌",
+  "verdict": "watch",
+  "verdict_reason": "1W B5 강한 전환 시그널이지만 spike 직후 1D topping(A3) + 분배 의심. 보수적 watch.",
+  "charts": {
+    "1m": "charts/MOVRUSDT/20260519/MOVRUSDT_1m.png",
+    "1w": "charts/MOVRUSDT/20260519/MOVRUSDT_1w.png",
+    "1d": "charts/MOVRUSDT/20260519/MOVRUSDT_1d.png"
+  },
+  "schema_version": 1
+}

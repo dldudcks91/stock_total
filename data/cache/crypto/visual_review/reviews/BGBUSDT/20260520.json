@@ -1,0 +1,13 @@
+{
+  "symbol": "BGBUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "A3", "micro_action": null, "volume_flag": "distribution_suspect", "note": "1→8 펌프 후 4~5 박스 1년 → 2 하락, topping/배분 의심"},
+  "tf_1w": {"state": "B2", "micro_action": null, "volume_flag": "normal", "note": "MA50 데드, 4.5→2 하락 후 1개월 횡보"},
+  "tf_1d": {"state": "B4", "micro_action": null, "volume_flag": "normal", "note": "2.0 바닥에서 MA10/20 위로 첫 회복 양봉, 거래량 살짝 증가"},
+  "tf_consistency": "충돌",
+  "verdict": "skip",
+  "verdict_reason": "1d B4 회복 시도이나 1w 여전히 B2 좀비, 1m topping 후. 보수적 skip",
+  "charts": {"1m": "charts/BGBUSDT/20260520/BGBUSDT_1m.png", "1w": "charts/BGBUSDT/20260520/BGBUSDT_1w.png", "1d": "charts/BGBUSDT/20260520/BGBUSDT_1d.png"},
+  "schema_version": 1
+}

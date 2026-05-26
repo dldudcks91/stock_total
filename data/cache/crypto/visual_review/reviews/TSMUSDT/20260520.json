@@ -1,0 +1,13 @@
+{
+  "symbol": "TSMUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": null, "micro_action": null, "volume_flag": null, "note": "1M PNG 없음 (토큰화 자산)"},
+  "tf_1w": {"state": "A1", "micro_action": "riding", "volume_flag": "normal", "note": "330 저점에서 4주 강한 임펄스 → 400 안착, 1차 상승"},
+  "tf_1d": {"state": "A2", "micro_action": "pullback_ma10", "volume_flag": "normal", "note": "MA10>20>50 정배열, 최근 MA10 살짝 이탈 후 눌림"},
+  "tf_consistency": "정합",
+  "verdict": "pass",
+  "verdict_reason": "1w A1 + 1d A2 정배열, 거래량 정상",
+  "charts": {"1m": null, "1w": "charts/TSMUSDT/20260520/TSMUSDT_1w.png", "1d": "charts/TSMUSDT/20260520/TSMUSDT_1d.png"},
+  "schema_version": 1
+}

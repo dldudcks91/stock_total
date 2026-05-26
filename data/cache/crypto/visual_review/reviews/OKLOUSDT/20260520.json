@@ -1,0 +1,17 @@
+{
+  "symbol": "OKLOUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": { "state": null, "micro_action": null, "volume_flag": null, "note": "1M chart 부재 (신규)" },
+  "tf_1w": { "state": null, "micro_action": null, "volume_flag": null, "note": "1W chart 부재 (신규)" },
+  "tf_1d": { "state": "C1", "micro_action": null, "volume_flag": "distribution_suspect", "note": "21봉만, 신규상장 후 75→60 하락, 거래량 음봉 우세" },
+  "tf_consistency": "정합",
+  "verdict": "reject",
+  "verdict_reason": "큰TF 부재 + 신규상장 하락, distribution",
+  "charts": {
+    "1m": null,
+    "1w": null,
+    "1d": "charts/OKLOUSDT/20260520/OKLOUSDT_1d.png"
+  },
+  "schema_version": 1
+}

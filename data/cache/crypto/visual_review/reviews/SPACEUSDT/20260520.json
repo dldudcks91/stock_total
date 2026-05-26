@@ -1,0 +1,17 @@
+{
+  "symbol": "SPACEUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "C1", "micro_action": null, "volume_flag": null, "note": "PNG 없음 (신규 토큰)"},
+  "tf_1w": {"state": "B3", "micro_action": null, "volume_flag": "pump_dump_trace", "note": "초기 펌프덤프 후 평탄 base, 최근 MA10 위 약한 반등"},
+  "tf_1d": {"state": "B4", "micro_action": null, "volume_flag": "dry", "note": "MA20 위 약한 회복 시도, 거래량 매우 얕음"},
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "B3 base + 거래량 dry, 펌프덤프 이력으로 신뢰성 낮음",
+  "charts": {
+    "1m": "charts/SPACEUSDT/20260520/SPACEUSDT_1m.png",
+    "1w": "charts/SPACEUSDT/20260520/SPACEUSDT_1w.png",
+    "1d": "charts/SPACEUSDT/20260520/SPACEUSDT_1d.png"
+  },
+  "schema_version": 1
+}

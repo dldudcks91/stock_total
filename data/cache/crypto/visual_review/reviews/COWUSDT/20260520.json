@@ -1,0 +1,17 @@
+{
+  "symbol": "COWUSDT",
+  "reviewed_at": "2026-05-20T00:00:00+09:00",
+  "data_until": "2026-05-19",
+  "tf_1m": {"state": "B2", "micro_action": null, "volume_flag": "dry", "note": "1.2→0.2 좀비, 거래량 감소"},
+  "tf_1w": {"state": "B2", "micro_action": null, "volume_flag": "dry", "note": "역배열, 0.2 부근 베이스"},
+  "tf_1d": {"state": "A4", "micro_action": null, "volume_flag": "normal", "note": "1월 0.28 펌프 후 MA20/50 깨고 0.17까지 하락, 박스 하단 이탈"},
+  "tf_consistency": "정합",
+  "verdict": "skip",
+  "verdict_reason": "장기 좀비 + 단기 MA 이탈 하락 중",
+  "charts": {
+    "1m": "charts/COWUSDT/20260520/COWUSDT_1m.png",
+    "1w": "charts/COWUSDT/20260520/COWUSDT_1w.png",
+    "1d": "charts/COWUSDT/20260520/COWUSDT_1d.png"
+  },
+  "schema_version": 1
+}
