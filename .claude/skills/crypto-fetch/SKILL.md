@@ -71,6 +71,12 @@ df_1w = load("BTCUSDT", "1w")  # 1d 우선, 없으면 1h
 1. 첫 실행이면 `--since 2020-01-01` (1h) / `--since 2017-01-01` (1d) 권장
 2. 이후엔 인자 없이 (증분), `--granularity` 만 바꿔서 호출
 3. 완료 후 `ls data/cache/crypto/1h | wc -l`, `ls data/cache/crypto/1d | wc -l` 로 카운트 확인
+4. **RWA 심볼 캐시 갱신** (신규 상장 자동 반영):
+   ```
+   .venv/Scripts/python.exe -m data.sources.bitget_rwa
+   ```
+   → `data/cache/crypto/_rwa_symbols.json` 에 `isRwa=YES` 종목 목록 저장.
+   추천 시그널(`scripts.crypto._common.mtf_recs`) 에서 자동 제외 블랙리스트로 사용.
 
 ## 주의
 

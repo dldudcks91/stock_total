@@ -50,6 +50,10 @@ def score_chase_1d_core(df_1d: pd.DataFrame) -> pd.Series:
       - ret_30d / ret_90d 임계값 ×2 (crypto 변동성)
       - dist_ma10 페널티 임계값 ×1.5
       - today_chg 페널티 임계값 ×2
+
+    2026-05-27 v2 — fresh 게이트 복구 (backtest/strategies/trend_chase.py 의 원본 로직).
+      "이미 큰 추세가 누적된 종목" 컷 — 추격은 추세의 *초입*만 의미가 있음.
+      crypto 스케일 ×2 (KR 0.05/0.30 → crypto 0.10/0.50).
     """
     sc = pd.Series(0.0, index=df_1d.index)
 
@@ -102,6 +106,30 @@ def score_chase_1d_core(df_1d: pd.DataFrame) -> pd.Series:
     sc += np.where(df_1d["dist_ma10"].between(0.45, 0.60), -8, 0)
     sc += np.where(df_1d["bear_stack"] == 1, -25, 0)
     sc += np.where(df_1d["Close"] < df_1d["ma10"], -10, 0)
+
+    # ─── Fresh 게이트 (2026-05-27 추가) ───────────────────────────────
+    # 추격은 추세 초입만 의미 있음. "이미 한참 올랐다" 두 조건 OR 충족 시 강제 0점.
+    # (a) base_lookback(60봉) 내 +fresh_big_th 이상 양봉이 1개 초과면 컷
+    # (b) base_lookback 봉 전 종가 대비 어제 종가 누적 상승이 max_prior_ext 초과면 컷
+    # crypto 임계 = KR backtest 의 ×2 (KR 0.05/0.30 → crypto 0.10/0.50).
+    FRESH_BIG_TH = 0.10           # +10% 단봉 이상을 "큰 양봉" 으로 간주
+    MAX_PRIOR_BIG_COUNT = 1       # 60봉 내 큰 양봉 1개까지 허용
+    BASE_LOOKBACK = 60
+    MAX_PRIOR_EXTENSION = 0.50    # 60봉 전 대비 어제 종가 +50% 이하
+
+    close = df_1d["Close"]
+    ret = close.pct_change()
+    big_move = ret >= FRESH_BIG_TH
+    prior_big_count = big_move.shift(1).rolling(BASE_LOOKBACK, min_periods=1).sum().fillna(0)
+    fresh_a = prior_big_count <= MAX_PRIOR_BIG_COUNT
+
+    prior_close = close.shift(1)
+    base_ref = close.shift(BASE_LOOKBACK)
+    prior_ext = prior_close / base_ref - 1.0
+    fresh_b = (prior_ext <= MAX_PRIOR_EXTENSION).fillna(False)
+
+    fresh = (fresh_a & fresh_b).fillna(False)
+    sc = sc.where(fresh, 0.0)
 
     return sc
 
@@ -227,6 +255,172 @@ def score_chase_crypto(
 
 # 점수 최대값 (페널티 제외, 보수적)
 CH_CRYPTO_MAX = 115
+
+
+# ─────────────────────────────────────────────────────────────
+# v3 — TF 무관 vectorized chase 점수 Series (1h/4h/1d 공통 인터페이스)
+# ─────────────────────────────────────────────────────────────
+# 위의 score_chase_crypto 는 1d primary + 1h/4h alignment 보너스 (싱글 호출용).
+# 이 함수는 임의 TF df 를 받아 그 TF 시계열 전체의 score Series 를 반환 — mtf_recs 처럼
+# 1h, 4h, 1d 를 각각 채점한 뒤 합산하는 용도.
+# ─────────────────────────────────────────────────────────────
+def score_chase_crypto_tf(df: pd.DataFrame) -> pd.Series:
+    """crypto OHLCV (lowercase) 또는 KR style (uppercase) df → score_chase_1d_core Series.
+
+    입력 df 의 timeframe 은 자동으로 해석됨. compute_indicators 가 add 하는 rolling
+    윈도우 (10/30/252 bars) 가 TF 별로 다른 시간 의미를 가짐 — 의도된 동작.
+
+    Args:
+      df : OHLCV. crypto 캐시 (timestamp + lowercase) 또는 KR style 둘 다 OK.
+
+    Returns:
+      pd.Series, index = df 의 DatetimeIndex, dtype=float64.
+    """
+    if df is None or df.empty:
+        return pd.Series(dtype="float64")
+
+    if "Close" not in df.columns:
+        df_kr = to_kr_schema(df)
+    else:
+        df_kr = df.copy()
+        if not isinstance(df_kr.index, pd.DatetimeIndex) and "timestamp" in df_kr.columns:
+            df_kr = to_kr_schema(df_kr)
+    if df_kr.empty or "Close" not in df_kr.columns:
+        return pd.Series(dtype="float64", index=df.index)
+
+    df_ind = compute_indicators(df_kr)
+    sc = score_chase_1d_core(df_ind)
+    # 음수는 0 으로 floor — pullback 과 일관성 유지
+    return sc.clip(lower=0).fillna(0)
+
+
+# ═════════════════════════════════════════════════════════════════════════════
+# v3 (2026-05-27) — MTF MA10 bounce 추세 타기
+# ═════════════════════════════════════════════════════════════════════════════
+# 사용자 설계 의도: "1h+4h+1d MA10>MA20 정배열이고 1h MA10 위에서 2~3번 튕기는 자리"
+#   - 강양봉/거래량 폭증 컴포넌트 제거
+#   - MA10 bounce 횟수 (1h, 48h lookback, debounce 적용) 가 메인 점수
+#   - 1h+4h+1d 정배열 + 1d fresh 게이트 (모두 통과해야 점수 살아남음)
+# ═════════════════════════════════════════════════════════════════════════════
+
+
+def _ma10_bounces_1h(df_1h_ind: pd.DataFrame, lookback_bars: int = 48,
+                     touch_pct: float = 0.005, debounce_bars: int = 4) -> pd.Series:
+    """1h 봉에서 MA10 터치 + close>MA10 회복 한 bounce 의 trailing lookback 카운트.
+
+    Args:
+      df_1h_ind : compute_indicators 적용된 1h KR-style df (ma10 컬럼 필수)
+      lookback_bars : trailing 윈도우 (48h 기본)
+      touch_pct : low <= ma10 * (1 + touch_pct) 면 터치로 인정 (0.5%)
+      debounce_bars : 이 봉 수 안에 이미 bounce 있었으면 같은 클러스터 (1회로 처리)
+    """
+    low = df_1h_ind["Low"]
+    close = df_1h_ind["Close"]
+    ma10 = df_1h_ind["ma10"]
+    touched = low <= ma10 * (1.0 + touch_pct)
+    recovered = close > ma10
+    bounce = (touched & recovered).fillna(False)
+    prev_cluster = (bounce.rolling(debounce_bars, min_periods=1).max()
+                          .shift(1).fillna(0).astype(bool))
+    bounce_first = bounce & ~prev_cluster
+    return bounce_first.rolling(lookback_bars, min_periods=1).sum()
+
+
+def _fresh_gate_1d(df_1d_ind: pd.DataFrame, fresh_big_th: float = 0.10,
+                   max_prior_big_count: int = 1, base_lookback: int = 60,
+                   max_prior_ext: float = 0.50) -> pd.Series:
+    """기존 score_chase_1d_core 의 fresh 게이트 — boolean Series (1d index)."""
+    close = df_1d_ind["Close"]
+    ret = close.pct_change()
+    big_move = ret >= fresh_big_th
+    prior_big_count = big_move.shift(1).rolling(base_lookback, min_periods=1).sum().fillna(0)
+    fresh_a = prior_big_count <= max_prior_big_count
+    prior_ext = close.shift(1) / close.shift(base_lookback) - 1.0
+    fresh_b = (prior_ext <= max_prior_ext).fillna(False)
+    return (fresh_a & fresh_b).fillna(False)
+
+
+def score_chase_mtf(
+    df_1h: pd.DataFrame,
+    df_4h: pd.DataFrame,
+    df_1d: pd.DataFrame,
+    *,
+    bounce_lookback_1h: int = 48,
+) -> pd.Series:
+    """v3 chase — MTF MA10 bounce 추세 타기. 1h index Series 반환 (0~100).
+
+    하드 게이트 (전부 충족해야 점수 0 이상):
+      1) 1h MA10 > MA20  (정배열 = bull_stack 의 약식, MA10>MA20만 봄)
+      2) 4h MA10 > MA20
+      3) 1d MA10 > MA20 > MA50  (full bull_stack)
+      4) 1d fresh (60일 누적 +50% 이하 + 60일내 +10% 큰양봉 1개 이하)
+
+    점수 컴포넌트 (게이트 통과 시):
+      (a) 1h MA10 bounce 횟수 (48h)         : 2~3회 +60, 1회 +20, 4+회 +30
+      (b) 현재 1h close > MA10               : +20
+      (c) 1h MA10 slope > 0 (5봉 변화율)     : +10
+      (d) 4h close > MA10                    : +10
+      → max 100, 게이트 통과 시 실효 분포 ≈ 20~100
+
+    Returns: pd.Series, 1h DatetimeIndex.
+    """
+    if df_1h is None or df_1h.empty:
+        return pd.Series(dtype="float64")
+
+    # Schema normalize
+    df_1h_kr = to_kr_schema(df_1h) if "Close" not in df_1h.columns else df_1h
+    df_4h_kr = to_kr_schema(df_4h) if "Close" not in df_4h.columns else df_4h
+    df_1d_kr = to_kr_schema(df_1d) if "Close" not in df_1d.columns else df_1d
+
+    # 데이터 길이 컷
+    if len(df_1h_kr) < 100 or len(df_4h_kr) < 50 or len(df_1d_kr) < 70:
+        return pd.Series(0.0, index=df_1h_kr.index)
+
+    # 지표 add
+    df_1h_ind = compute_indicators(df_1h_kr)
+    df_4h_ind = compute_indicators(df_4h_kr)
+    df_1d_ind = compute_indicators(df_1d_kr)
+
+    # 게이트 — 1h+4h+1d 정배열
+    bull_1h = (df_1h_ind["ma10"] > df_1h_ind["ma20"]).fillna(False)
+    bull_4h = (df_4h_ind["ma10"] > df_4h_ind["ma20"]).fillna(False) \
+              .reindex(df_1h_ind.index, method="ffill").fillna(False)
+    bull_1d = (df_1d_ind["bull_stack"] == 1).fillna(False) \
+              .reindex(df_1h_ind.index, method="ffill").fillna(False)
+
+    # 게이트 — 1d fresh
+    fresh_1d = _fresh_gate_1d(df_1d_ind) \
+               .reindex(df_1h_ind.index, method="ffill").fillna(False)
+
+    gates_pass = bull_1h & bull_4h & bull_1d & fresh_1d
+
+    # 컴포넌트 점수
+    bounces = _ma10_bounces_1h(df_1h_ind, lookback_bars=bounce_lookback_1h)
+    sc = pd.Series(0.0, index=df_1h_ind.index)
+
+    # (a) bounce 카운트 — 2~3회 sweet, 1회 약함, 4+회는 횡보 가능성
+    sc = sc + np.where(bounces.between(2, 3), 60, 0)
+    sc = sc + np.where(bounces == 1, 20, 0)
+    sc = sc + np.where(bounces >= 4, 30, 0)
+
+    # (b) 현재 close > 1h MA10 (지금 위에 있나)
+    sc = sc + np.where(df_1h_ind["Close"] > df_1h_ind["ma10"], 20, 0)
+
+    # (c) 1h MA10 slope 상승
+    sc = sc + np.where(df_1h_ind["ma10_slope"] > 0, 10, 0)
+
+    # (d) 4h close > 4h MA10
+    above_ma10_4h = (df_4h_ind["Close"] > df_4h_ind["ma10"]).fillna(False) \
+                    .reindex(df_1h_ind.index, method="ffill").fillna(False)
+    sc = sc + np.where(above_ma10_4h, 10, 0)
+
+    # 하드 게이트 적용
+    sc = sc.where(gates_pass, 0.0)
+    return sc.clip(lower=0).fillna(0)
+
+
+# 점수 max (페널티 X)
+CH_MTF_MAX = 100
 
 
 # ═════════════════════════════════════════════════════════════════════════════
