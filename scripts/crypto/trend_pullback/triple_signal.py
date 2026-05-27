@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from research.visual_review.facts import _normalize
+from scripts._common.visual_review.facts import _normalize
 from backtest.strategies import trend_pullback
 
 CACHE_1D = Path("data/cache/crypto/1d")

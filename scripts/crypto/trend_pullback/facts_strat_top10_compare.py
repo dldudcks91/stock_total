@@ -21,7 +21,7 @@ import numpy as np
 import pandas as pd
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-from research.visual_review.facts import compute_facts_tf, _normalize, _resample, RESAMPLE_RULE
+from scripts._common.visual_review.facts import compute_facts_tf, _normalize, _resample, RESAMPLE_RULE
 from scripts.crypto._common.rec_now import entry_score as entry_score_multi_tf
 from backtest.strategies import trend_pullback
 from backtest.strategies import cascading_pullback as cascading

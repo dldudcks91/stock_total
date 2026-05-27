@@ -4,12 +4,12 @@
 
 사용 예 (모듈):
 
-    from research.visual_review.universe import top_by_volume
+    from scripts._common.visual_review.universe import top_by_volume
     syms = top_by_volume(100, lookback_days=30, exclude_junk=True)
 
 CLI:
 
-    .venv/Scripts/python.exe -m research.visual_review.universe top 100
+    .venv/Scripts/python.exe -m scripts._common.visual_review.universe top 100
 """
 from __future__ import annotations
 import argparse, sys
@@ -18,7 +18,7 @@ from typing import Optional
 
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 CRYPTO_1D = ROOT / "data" / "cache" / "crypto" / "1d"
 CLASSIFICATION = ROOT / "data" / "cache" / "crypto" / "classification.parquet"
 

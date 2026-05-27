@@ -5,13 +5,13 @@
 
 사용 예 (모듈):
 
-    from research.visual_review.store import aggregate_state, load_review
+    from scripts._common.visual_review.store import aggregate_state, load_review
     aggregate_state("20260519")
     review = load_review("BTCUSDT", "20260519")
 
 CLI:
 
-    .venv/Scripts/python.exe -m research.visual_review.store aggregate 20260519
+    .venv/Scripts/python.exe -m scripts._common.visual_review.store aggregate 20260519
 """
 from __future__ import annotations
 import argparse, json, sys
@@ -22,7 +22,7 @@ from zoneinfo import ZoneInfo
 
 import pandas as pd
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 KST = ZoneInfo("Asia/Seoul")
 
 

@@ -19,7 +19,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import numpy as np
 import pandas as pd
 
-from research.visual_review.facts import compute_facts_all_tfs
+from scripts._common.visual_review.facts import compute_facts_all_tfs
 
 CACHE_1D = Path("data/cache/crypto/1d")
 OUT_DIR  = Path("data/cache/crypto/visual_review")

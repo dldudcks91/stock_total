@@ -4,12 +4,12 @@
 
 사용 예 (모듈):
 
-    from research.visual_review.render import render_charts
+    from scripts._common.visual_review.render import render_charts
     render_charts(["BTCUSDT", "TRXUSDT"], tfs=["1m", "1w", "1d"])
 
 CLI:
 
-    .venv/Scripts/python.exe -m research.visual_review.render BTCUSDT TRXUSDT --tfs 1m,1w,1d
+    .venv/Scripts/python.exe -m scripts._common.visual_review.render BTCUSDT TRXUSDT --tfs 1m,1w,1d
 """
 from __future__ import annotations
 import argparse, json, sys, time
@@ -22,9 +22,9 @@ import pandas as pd
 import mplfinance as mpf
 
 from data.loader import load_ohlcv
-from research.visual_review.facts import compute_facts_tf, auto_risk_flags
+from scripts._common.visual_review.facts import compute_facts_tf, auto_risk_flags
 
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 KST = ZoneInfo("Asia/Seoul")
 BARS = 200
 # TF → 소스 캐시 + 리샘플 룰. None = 소스 그대로.
@@ -142,7 +142,7 @@ def render_symbol(symbol: str, tfs: Sequence[str], date_str: str, bars: int = BA
         out_paths[tf_l] = out
     # _facts.json 저장
     if facts_per_tf:
-        from research.visual_review.facts import _global_nearest_ma
+        from scripts._common.visual_review.facts import _global_nearest_ma
         facts_doc = {
             "symbol": symbol,
             "asset": asset,

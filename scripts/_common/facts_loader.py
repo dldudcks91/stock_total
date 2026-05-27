@@ -1,6 +1,6 @@
 """visual_review.facts 캐시 wrapper — 임의 cutoff 시점 facts + today metrics.
 
-`research/visual_review/facts.compute_facts_tf` 를 1d/1w/1m TF 에 호출해
+`scripts/_common/visual_review/facts.compute_facts_tf` 를 1d/1w/1m TF 에 호출해
 (facts dict by TF, today metrics) 를 반환. cutoff 까지 자른 캐시 기준.
 
 사용처:
@@ -9,7 +9,7 @@
   - scripts/kr/trend_chase/recommend.py
 
 자산별 캐시 경로 / 컬럼 스키마 차이는 호출자가 흡수
-(KR/US 대문자 → research.visual_review.facts._normalize 가 받아 처리).
+(KR/US 대문자 → scripts._common.visual_review.facts._normalize 가 받아 처리).
 """
 from __future__ import annotations
 
@@ -18,7 +18,7 @@ from typing import Optional
 
 import pandas as pd
 
-from research.visual_review.facts import (  # type: ignore
+from scripts._common.visual_review.facts import (  # type: ignore
     compute_facts_tf,
     _resample,
     _normalize,

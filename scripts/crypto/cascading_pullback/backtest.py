@@ -16,7 +16,7 @@ import time
 import pandas as pd
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-from research.visual_review.facts import _normalize
+from scripts._common.visual_review.facts import _normalize
 from backtest.strategies import cascading_pullback as cp
 
 CACHE_1H = Path("data/cache/crypto/1h")

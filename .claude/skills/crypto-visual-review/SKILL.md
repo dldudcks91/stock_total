@@ -501,7 +501,7 @@ lookback (TF 별):
 ## 12. 헬퍼 모듈
 
 ```
-research/visual_review/
+scripts/_common/visual_review/
 ├── __init__.py
 ├── facts.py           # 객관 사실 자동 계산 (compute_facts_all_tfs, auto_risk_flags)
 ├── render.py          # PNG + _facts.json 출력 (render_charts)
@@ -512,34 +512,34 @@ research/visual_review/
 
 ```powershell
 # review 용 차트 + facts.json (1M+1W+1D)
-.venv/Scripts/python.exe -m research.visual_review.render BTCUSDT ETHUSDT --tfs 1m,1w,1d --asset crypto
+.venv/Scripts/python.exe -m scripts._common.visual_review.render BTCUSDT ETHUSDT --tfs 1m,1w,1d --asset crypto
 
 # entry 용 facts (1D+4H+1H, PNG 도 같이 생성됨)
-.venv/Scripts/python.exe -m research.visual_review.render BTCUSDT --tfs 1d,4h,1h --asset crypto
+.venv/Scripts/python.exe -m scripts._common.visual_review.render BTCUSDT --tfs 1d,4h,1h --asset crypto
 
 # 풀 — 5 TF 전체
-.venv/Scripts/python.exe -m research.visual_review.render BTCUSDT --tfs 1m,1w,1d,4h,1h --asset crypto
+.venv/Scripts/python.exe -m scripts._common.visual_review.render BTCUSDT --tfs 1m,1w,1d,4h,1h --asset crypto
 
 # 집계 (reviews/*/<date>.json → coin_state.parquet)
-.venv/Scripts/python.exe -m research.visual_review.store aggregate 20260520 --asset crypto
+.venv/Scripts/python.exe -m scripts._common.visual_review.store aggregate 20260520 --asset crypto
 
 # 현재 상태 표시
-.venv/Scripts/python.exe -m research.visual_review.store show --asset crypto
+.venv/Scripts/python.exe -m scripts._common.visual_review.store show --asset crypto
 ```
 
 ### Python
 
 ```python
-from research.visual_review.render import render_charts
+from scripts._common.visual_review.render import render_charts
 # review 용 (큰 그림 정성 채점용)
 render_charts(["BTCUSDT", "ETHUSDT"], tfs=["1m","1w","1d"], asset="crypto")
 
 # entry 용 (PNG 없이 facts 만 — Claude 채점 안 함, 정량 트리거 전용)
-from research.visual_review.facts import compute_facts_all_tfs
+from scripts._common.visual_review.facts import compute_facts_all_tfs
 facts = compute_facts_all_tfs("BTCUSDT", asset="crypto", tfs=["1d","4h","1h"])
 # facts["global_nearest_ma"] / facts["tf_1h"]["nearest_ma"] / recent_strong_bull 활용
 
-from research.visual_review.store import aggregate_state
+from scripts._common.visual_review.store import aggregate_state
 aggregate_state("20260520", asset="crypto")
 ```
 

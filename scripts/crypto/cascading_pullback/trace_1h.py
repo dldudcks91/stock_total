@@ -15,7 +15,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 import pandas as pd
-from research.visual_review.facts import _normalize
+from scripts._common.visual_review.facts import _normalize
 from backtest.strategies import cascading_pullback as cp
 
 SYMS = ["NILUSDT", "ONDOUSDT", "FIDAUSDT"]

@@ -32,7 +32,7 @@
   compute_cascade(df_1h_norm, df_1d_norm=None, params=None) -> dict
 
   df_*_norm 은 capitalized columns (Open/High/Low/Close/Volume) + DatetimeIndex
-  (research.visual_review.facts._normalize 결과 형태).
+  (scripts._common.visual_review.facts._normalize 결과 형태).
 """
 from __future__ import annotations
 from typing import Optional

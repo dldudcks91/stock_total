@@ -27,7 +27,7 @@ data/cache/{asset}/visual_review/charts/{SYMBOL}/{date_str}/
 └── {SYMBOL}_1d.png
 ```
 
-PNG·facts 가 이미 렌더되어 있다고 **가정**. 렌더는 호출자가 사전에 `research.visual_review.render` 로 끝낸 상태.
+PNG·facts 가 이미 렌더되어 있다고 **가정**. 렌더는 호출자가 사전에 `scripts._common.visual_review.render` 로 끝낸 상태.
 
 ## 출력 계약
 

@@ -4,7 +4,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[3]))
 sys.stdout.reconfigure(encoding="utf-8")
 
 import pandas as pd
-from research.visual_review.facts import _normalize
+from scripts._common.visual_review.facts import _normalize
 from backtest.strategies import cascading_pullback as cp
 
 for sym in ["NILUSDT", "ONDOUSDT", "FIDAUSDT", "BTCUSDT", "ETHUSDT"]:

@@ -27,7 +27,7 @@ import numpy as np
 import pandas as pd
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-from research.visual_review.facts import compute_facts_tf, _normalize
+from scripts._common.visual_review.facts import compute_facts_tf, _normalize
 from scripts.crypto.trend_pullback.facts_comparison_backtest import entry_score_1d
 
 CACHE_1D = Path("data/cache/crypto/1d")

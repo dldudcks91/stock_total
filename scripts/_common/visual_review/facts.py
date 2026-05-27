@@ -14,7 +14,7 @@ entry 용  (진입 트리거 정량): 1d / 4h / 1h
 
 사용 예:
 
-    from research.visual_review.facts import compute_facts_all_tfs
+    from scripts._common.visual_review.facts import compute_facts_all_tfs
     # review 용
     facts = compute_facts_all_tfs("BTCUSDT", asset="crypto", tfs=["1m","1w","1d"])
     # entry 용

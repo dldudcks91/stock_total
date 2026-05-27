@@ -29,8 +29,8 @@ ADX/ATR/MA 패턴이 가장 안정적이다. 1w/1m TF 입력도 동작은 하지
 
 사용 예
 -------
-    from research.visual_review.facts import compute_facts_all_tfs
-    from research.visual_review.setup_scores import trend_chase, trend_pullback
+    from scripts._common.visual_review.facts import compute_facts_all_tfs
+    from scripts._common.visual_review.setup_scores import trend_chase, trend_pullback
 
     facts = compute_facts_all_tfs("BTCUSDT", asset="crypto", tfs=["1d"])
     risk_flags = facts.get("auto_risk_flags", [])

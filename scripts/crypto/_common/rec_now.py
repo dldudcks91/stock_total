@@ -7,7 +7,7 @@ sys.stdout.reconfigure(encoding="utf-8")
 
 import pandas as pd
 import numpy as np
-from research.visual_review.facts import compute_facts_all_tfs
+from scripts._common.visual_review.facts import compute_facts_all_tfs
 
 REVIEW_DATE = "2026-05-21"
 
