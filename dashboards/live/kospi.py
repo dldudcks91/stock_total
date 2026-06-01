@@ -24,14 +24,12 @@ from data.loader import load_ohlcv
 from data.sources.naver_kr import SNAPSHOT_PATH, load_snapshot
 from dashboards._precompute import load_recs, load_refs, precompute_status
 from dashboards._stock_grid import (
-    DEFAULT_HL_LOOKBACK,
-    DEFAULT_MA_INTERVAL,
-    HL_LOOKBACK_OPTIONS,
-    MA_INTERVAL_OPTIONS,
     PERIODS_D,
     STOCK_PAGE_CSS,
+    add_tag_columns,
     apply_current_prices,
     build_stock_grid_options,
+    collect_tag_changes,
     load_notes,
     render_chart_memo,
     render_chart_title,
@@ -287,7 +285,7 @@ def render(st: Any) -> None:
 
         st.caption(fetched_at_caption(df))
 
-        f1, f2, f3, f4, f5 = st.columns([3, 1, 2, 2, 3])
+        f1, f2, f3 = st.columns([3, 1, 2])
         with f1:
             search = st.text_input("Name / code contains", value="", key="kospi_search").strip()
         with f2:
@@ -304,26 +302,6 @@ def render(st: Any) -> None:
                 format_func=lambda k: _COLUMN_LABELS.get(k, k),
                 key="kospi_sort",
             )
-        with f4:
-            ma_interval = st.segmented_control(
-                "MA Interval",
-                options=MA_INTERVAL_OPTIONS,
-                default=DEFAULT_MA_INTERVAL,
-                key="kospi_ma_interval",
-                help="MA10/MA20 봉 단위. 거래소 표준 — 차트의 1d/1w/1M MA 라인과 동일.",
-            )
-            if not ma_interval:
-                ma_interval = DEFAULT_MA_INTERVAL
-        with f5:
-            hl_lookback = st.segmented_control(
-                "HL Lookback",
-                options=HL_LOOKBACK_OPTIONS,
-                default=DEFAULT_HL_LOOKBACK,
-                key="kospi_hl_lookback",
-                help="High/Low Δ% 기간 (캘린더일). 1y = 최근 1년 최고가/최저가 대비.",
-            )
-            if not hl_lookback:
-                hl_lookback = DEFAULT_HL_LOOKBACK
 
         codes_all = df["itemCode"].dropna().astype(str).tolist()
         if codes_all:
@@ -377,7 +355,7 @@ def render(st: Any) -> None:
             return
 
         notes = st.session_state.setdefault("kospi_notes", load_notes(_NOTES_PATH))
-        df["note"] = df["itemCode"].astype(str).map(notes).fillna("")
+        df = add_tag_columns(df, "itemCode", notes)
 
         SEL_KEY = "kospi_sel_code"
         selected_symbol: Optional[str] = st.session_state.get(SEL_KEY)
@@ -386,7 +364,7 @@ def render(st: Any) -> None:
             selected_symbol = None
 
         df_grid, grid_options = build_stock_grid_options(
-            df, ma_interval, hl_lookback, selected_symbol,
+            df, selected_symbol,
             symbol_col="itemCode", symbol_header="Code",
             name_col="stockName", name_header="Name",
             price_col="closePrice", price_header="Price", price_format="int",
@@ -394,34 +372,22 @@ def render(st: Any) -> None:
             volume_format="millions",
             market_cap_col="marketValue", market_cap_header="시총",
             market_cap_format="millions",
-            pct_header_suffix="",
         )
-        grid_key = f"kospi_grid::v3::{top_n}::{search}::{sort_col_key}::{ma_interval}::{hl_lookback}"
+        grid_key = f"kospi_grid::v4::{top_n}::{search}::{sort_col_key}"
         grid_resp = AgGrid(
             df_grid,
             gridOptions=grid_options,
             update_mode=GridUpdateMode.SELECTION_CHANGED | GridUpdateMode.VALUE_CHANGED,
             allow_unsafe_jscode=True,
-            fit_columns_on_grid_load=True,
+            fit_columns_on_grid_load=False,  # flex 레이아웃이 폭을 자동 분배
             height=580,
             theme="streamlit",
             key=grid_key,
         )
 
         edited_df = grid_resp.get("data")
-        if edited_df is not None and "note" in edited_df.columns:
-            notes_changed = False
-            for code, new_val in zip(edited_df["itemCode"].astype(str), edited_df["note"].astype(str)):
-                new_val = (new_val or "").strip()
-                cur_val = notes.get(code, "")
-                if new_val != cur_val:
-                    if new_val:
-                        notes[code] = new_val
-                    else:
-                        notes.pop(code, None)
-                    notes_changed = True
-            if notes_changed:
-                save_notes(_NOTES_PATH, notes)
+        if edited_df is not None and collect_tag_changes(edited_df, "itemCode", notes):
+            save_notes(_NOTES_PATH, notes)
 
         sel_rows = grid_resp.get("selected_rows")
         new_sel: Optional[str] = None

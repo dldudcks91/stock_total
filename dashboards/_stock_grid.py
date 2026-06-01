@@ -62,6 +62,14 @@ DEFAULT_HL_LOOKBACK: str = "1y"
 
 MA_PERIODS: tuple[int, int] = (10, 20)
 
+# A/B/C 라벨 태그 — 메모 컬럼을 대체. 종목별로 여러 개 독립 토글 가능
+# (multi-select). 저장은 notes dict 에 ``"A,C"`` 같은 쉼표결합 문자열로
+# (_notes.json 경로 재사용). df 에는 ``tag_A`` / ``tag_B`` / ``tag_C`` bool
+# 컬럼으로 풀어서 각 셀을 체크박스로 토글한다.
+TAG_LABELS: tuple[str, ...] = ("A", "B", "C")
+# 라벨별 체크 시 셀 배경색 (A 초록 / B 주황 / C 회색).
+TAG_BG: dict[str, str] = {"A": "#E6F4EA", "B": "#FEF3E2", "C": "#ECEFF1"}
+
 # Tail size handed to the cache loader. 5y (≈ 1260 trading days) covers the
 # longest HL lookback; 20 monthly bars (≈ 440 trading days) for 1M MA20 fits
 # comfortably under this.
@@ -310,6 +318,22 @@ function(params) {
 }
 """)
 
+# Custom sort comparator: sort by |value| instead of signed value, so clicking
+# an MA gap column header surfaces the biggest gaps (positive AND negative) at
+# the top. Nulls/NaN always sink to the bottom. (Bitget grid imports this.)
+JS_ABS_COMPARATOR = JsCode("""
+function(valueA, valueB, nodeA, nodeB, isDescending) {
+  const aNull = valueA == null || Number.isNaN(valueA);
+  const bNull = valueB == null || Number.isNaN(valueB);
+  if (aNull && bNull) return 0;
+  if (aNull) return isDescending ? -1 : 1;
+  if (bNull) return isDescending ? 1 : -1;
+  const a = Math.abs(valueA);
+  const b = Math.abs(valueB);
+  return a < b ? -1 : (a > b ? 1 : 0);
+}
+""")
+
 JS_FMT_PCT = JsCode("""
 function(params) {
   const v = params.value;
@@ -319,6 +343,32 @@ function(params) {
   return sign + pct.toFixed(1) + '%';
 }
 """)
+
+
+def apply_flex_layout(opts: dict) -> None:
+    """``width`` 기반 컬럼 폭을 ``flex`` 비율로 변환 (in-place).
+
+    AgGrid 의 ``sizeColumnsToFit`` / ``fit_columns_on_grid_load`` 은 호출 시점의
+    컨테이너 폭을 한 번 측정해 컬럼 폭을 **고정**한다. Streamlit fragment 리런
+    (체크박스 토글 등) 이나 ``st.dialog`` (차트 팝업) 가 iframe 폭을 ~1프레임
+    좁게 보고하는 순간 그 값으로 굳어 "표가 작아지는" 문제가 생긴다.
+
+    ``flex`` 는 CSS flexbox 처럼 **렌더 시마다 현재 컨테이너 폭을 비율로 분배**
+    하므로 좁은 폭으로 굳지 않는다. 각 컬럼의 기존 ``width`` 를 그대로 flex 비율로
+    옮겨 (width=72 → flex=72) 폭 비율은 유지하면서 자동 반응성을 얻는다.
+
+    pinned (좌측 고정 Symbol) 과 hidden 컬럼은 고정 폭을 유지해야 하므로 제외.
+    """
+    # st_aggrid 가 기본으로 주입하는 ``autoSizeStrategy`` (fitCellContents) 는
+    # 로드 시 컬럼을 셀 내용 길이에 맞춰 고정해 flex 를 무력화하므로 제거한다.
+    opts.pop("autoSizeStrategy", None)
+    for cd in opts.get("columnDefs", []):
+        if cd.get("pinned") or cd.get("hide"):
+            continue
+        w = cd.get("width")
+        if w:
+            cd["flex"] = w
+            cd.pop("width", None)
 
 # Stock prices: thousands separator with up to 2 decimals (US) — KR is integer KRW.
 JS_FMT_PRICE_INT = JsCode("""
@@ -354,50 +404,43 @@ function(params) {
 }
 """)
 
-# Recommendation cell — "추격d 95" style label with a score, color by strategy.
-# Falls back to "—" when no active signal at the >=80 threshold.
+# MA20 추세 게이트 셀 — 통과 시 초록 ●, 미통과 공백.
+# 게이트: 일봉 close>MA20 AND 주봉 close>MA20 AND 주봉 slope_4w(MA20)>=0
+# (dashboards._recommendation._gate_pass → _recs.parquet.gate_pass)
 JS_FMT_REC = JsCode("""
 function(params) {
   const d = params.data || {};
-  const label = d.rec_label;
-  const score = d.rec_score;
-  if (!label || score == null || Number.isNaN(score)) return '—';
-  return label + ' ' + Math.round(score);
+  return d.gate_pass ? '●' : '';
 }
 """)
 
 JS_STYLE_REC = JsCode("""
 function(params) {
   const d = params.data || {};
-  const kind = d.rec_kind;
-  if (!kind) return {color: '#888'};
-  // 추격 = 빨강(강한 모멘텀), 눌림 = 주황(관망), 바닥 = 파랑(회복)
-  const palette = {
-    chase:    {color: '#D62828', fontWeight: '700'},
-    pullback: {color: '#F77F00', fontWeight: '700'},
-    quiet:    {color: '#1D4ED8', fontWeight: '700'},
-  };
-  return palette[kind] || {color: '#888'};
+  return d.gate_pass
+    ? {color: '#16A34A', fontWeight: '700', textAlign: 'center'}
+    : {textAlign: 'center'};
 }
 """)
-
-
-def js_window_value_getter(field_prefix: str, window_label: str) -> JsCode:
-    """JsCode that returns ``row[`{prefix}__{window}`]`` — lets window-toggle
-    flip column values purely client-side."""
-    return JsCode(
-        f"function(params) {{ return params.data['{field_prefix}__{window_label}']; }}"
-    )
 
 
 # ---------------------------------------------------------------------------
 # AgGrid options builder (stock variant)
 # ---------------------------------------------------------------------------
 
+# TF × MA 고정 컬럼 — (interval, period) 6쌍. apply_current_prices 가 만드는
+# ``pct_ma{period}__{interval}`` (price vs MA 갭 %) 을 직접 읽는다. 주식은 1h/4h
+# 봉이 없어 1D/1W/1M 만 (헤더는 모두 대문자).
+_STOCK_TF_MA_SPECS: list[tuple[str, int]] = [
+    ("1d", 10), ("1d", 20),
+    ("1w", 10), ("1w", 20),
+    ("1M", 10), ("1M", 20),
+]
+_STOCK_IV_HEADER = {"1d": "1D", "1w": "1W", "1M": "1M"}
+
+
 def build_stock_grid_options(
     df: pd.DataFrame,
-    ma_interval: str,
-    hl_lookback: str,
     selected_symbol: Optional[str],
     *,
     symbol_col: str,                 # e.g. "itemCode" or "symbolCode"
@@ -413,30 +456,22 @@ def build_stock_grid_options(
     market_cap_col: Optional[str] = "marketValue",
     market_cap_header: str = "시총",
     market_cap_format: str = "int",  # "int" or "millions"
-    pct_header_suffix: str = "%",    # appended to period / High / Low headers
-    short_ma: int = MA_PERIODS[0],
-    long_ma: int = MA_PERIODS[1],
-    periods_d: list[int] = PERIODS_D,
 ) -> tuple[pd.DataFrame, dict]:
     """Build (reordered df, gridOptions) matching the Bitget layout for stocks.
 
     Visible column order (left → right):
         ▸ Symbol (pinned + checkbox), Name, Last, 거래대금, 시총,
-          1d%, 3d%, 7d%, 14d%, 28d%, 56d%, 140d%,
-          MA10 Δ% (ma_interval), MA20 Δ% (ma_interval),
-          High Δ% (hl_lookback), Low Δ% (hl_lookback),
-          메모
+          1D-MA10, 1D-MA20, 1W-MA10, 1W-MA20, 1M-MA10, 1M-MA20
+            (각 TF×MA 의 price vs MA 갭 %),
+          MA20(게이트), 메모
 
-    ``ma_interval`` ∈ {1d, 1w, 1M} selects which resampled bar the MA columns
-    read from; ``hl_lookback`` ∈ {7d, 28d, 90d, 1y, 5y} selects the calendar
-    window for the High/Low columns. Both flip values purely client-side via
-    JsCode valueGetter — no server recompute.
+    이전의 MA Interval / HL Lookback 토글, 기간 수익률(1d~140d %), High/Low%
+    컬럼은 모두 제거됨. 6개 TF×MA 갭 컬럼은 토글 없이 항상 표시된다 (값은
+    ``pct_ma{p}__{iv}`` df 컬럼을 그대로 field 로 읽음). 주식은 1h/4h 봉이
+    없어 1D/1W/1M 만 — crypto(_bitget_grid) 의 1h/4h/1d/1w 와 같은 방식.
     """
-    SHORT_KEY = f"_ma{short_ma}"
-    LONG_KEY = f"_ma{long_ma}"
-    HIGH_KEY = "_high_pct"
-    LOW_KEY = "_low_pct"
-    REC_KEY = "_rec"   # display-only column; reads rec_label/rec_score/rec_kind via JS
+    REC_KEY = "_rec"   # display-only column; reads gate_pass via JS (MA20 게이트)
+    MA_COLS = [f"pct_ma{p}__{iv}" for iv, p in _STOCK_TF_MA_SPECS]
 
     visible_order: list[str] = [symbol_col]
     if name_col:
@@ -446,13 +481,17 @@ def build_stock_grid_options(
         visible_order.append(volume_col)
     if market_cap_col:
         visible_order.append(market_cap_col)
-    visible_order.extend(f"pct_{n}d" for n in periods_d)
-    visible_order.extend([SHORT_KEY, LONG_KEY, HIGH_KEY, LOW_KEY, REC_KEY, "note"])
+    TAG_COLS = [f"tag_{L}" for L in TAG_LABELS]
+    visible_order.extend(MA_COLS)
+    visible_order.extend([REC_KEY, *TAG_COLS])
 
     df_grid = df.copy()
-    for placeholder in (SHORT_KEY, LONG_KEY, HIGH_KEY, LOW_KEY, REC_KEY):
+    for placeholder in (*MA_COLS, REC_KEY):
         if placeholder not in df_grid.columns:
             df_grid[placeholder] = None
+    for tcol in TAG_COLS:
+        if tcol not in df_grid.columns:
+            df_grid[tcol] = False
 
     visible_present = [c for c in visible_order if c in df_grid.columns]
     hidden_present = [c for c in df_grid.columns if c not in visible_present]
@@ -462,14 +501,18 @@ def build_stock_grid_options(
     gob.configure_default_column(
         resizable=True, sortable=True, filter=False,
         editable=False, suppressMovable=False,
+        # Hide the per-column header menu (hamburger ☰, 가로줄 3개) on every
+        # column so it doesn't cover the header label. Both keys for AG Grid
+        # v28 (suppressMenu) and v32+ (suppressHeaderMenuButton) — matches
+        # _bitget_grid so KOSPI/NASDAQ behave like Bitget.
+        suppressMenu=True, suppressHeaderMenuButton=True,
         cellStyle={"display": "flex", "alignItems": "center"},
     )
 
     # All columns use plain ``width`` — column auto-fit is handled at the
-    # AgGrid call site via ``fit_columns_on_grid_load=True``. Since the
-    # grid_key includes ma_interval / hl_lookback, AgGrid remounts on every
-    # interval click and re-runs fit_columns, so the grid always exactly
-    # fills its container width (no horizontal scroll, no trailing gap).
+    # AgGrid call site via ``fit_columns_on_grid_load=True`` plus the
+    # onGridSizeChanged handler below, so the grid always exactly fills its
+    # container width (no horizontal scroll, no trailing gap).
     gob.configure_column(
         symbol_col, headerName=symbol_header, pinned="left",
         width=110, minWidth=70,
@@ -477,7 +520,16 @@ def build_stock_grid_options(
     )
 
     if name_col:
-        gob.configure_column(name_col, headerName=name_header, width=160, minWidth=80)
+        # 긴 종목명(특히 NASDAQ 영문명)이 칸을 넘지 않도록 말줄임(…) 처리.
+        # 기본 cellStyle 의 display:flex 를 빼고 lineHeight 로 수직 가운데 정렬해
+        # ag-grid 의 text-overflow:ellipsis 가 정상 동작하게 한다.
+        gob.configure_column(
+            name_col, headerName=name_header, width=160, minWidth=80,
+            cellStyle=JsCode(
+                "function(params){ return {lineHeight:'34px', whiteSpace:'nowrap',"
+                " overflow:'hidden', textOverflow:'ellipsis'}; }"
+            ),
+        )
 
     price_fmt = JS_FMT_PRICE_INT if price_format == "int" else JS_FMT_PRICE_DEC
     gob.configure_column(
@@ -500,56 +552,40 @@ def build_stock_grid_options(
             valueFormatter=mcap_fmt, type=["numericColumn"],
         )
 
-    # ── Fixed period % columns ──
-    for n in periods_d:
+    # ── TF × MA 갭 % (6 고정 컬럼) ──
+    # 각 컬럼은 df 의 ``pct_ma{p}__{iv}`` 를 그대로 읽는다 (토글 없음).
+    # 헤더 클릭 정렬은 |value| 기준 (부호 무시, 가장 큰 갭이 위로) — Bitget 과 동일.
+    for iv, p in _STOCK_TF_MA_SPECS:
+        col = f"pct_ma{p}__{iv}"
         gob.configure_column(
-            f"pct_{n}d", headerName=f"{n}d{pct_header_suffix}", width=68, minWidth=45,
+            col, headerName=f"{_STOCK_IV_HEADER[iv]}-MA{p}", width=72, minWidth=52,
             valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
-            type=["numericColumn"],
+            type=["numericColumn"], comparator=JS_ABS_COMPARATOR,
         )
 
-    # ── MA columns (valueGetter reads `__{ma_interval}` from row data) ──
+    # ── MA20 게이트 (display-only) ──
+    # gate_pass 컬럼이 row data 에 있어야 ● 표시됨. 없으면 공백.
     gob.configure_column(
-        SHORT_KEY, headerName=f"MA{short_ma}", width=72, minWidth=50,
-        valueGetter=js_window_value_getter(f"pct_ma{short_ma}", ma_interval),
-        valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
-        type=["numericColumn"],
-    )
-    gob.configure_column(
-        LONG_KEY, headerName=f"MA{long_ma}", width=72, minWidth=50,
-        valueGetter=js_window_value_getter(f"pct_ma{long_ma}", ma_interval),
-        valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
-        type=["numericColumn"],
-    )
-    # ── HL columns (valueGetter reads `__{hl_lookback}` from row data) ──
-    gob.configure_column(
-        HIGH_KEY, headerName=f"High{pct_header_suffix}", width=72, minWidth=50,
-        valueGetter=js_window_value_getter("pct_off_high", hl_lookback),
-        valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
-        type=["numericColumn"],
-    )
-    gob.configure_column(
-        LOW_KEY, headerName=f"Low{pct_header_suffix}", width=72, minWidth=50,
-        valueGetter=js_window_value_getter("pct_off_low", hl_lookback),
-        valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
-        type=["numericColumn"],
-    )
-
-    # ── 추천 (전략 점수, display-only) ──
-    # rec_label / rec_score / rec_kind 컬럼이 row data 에 있어야 표시됨.
-    # 없으면 모든 셀이 "—" 로 렌더링.
-    gob.configure_column(
-        REC_KEY, headerName="추천", width=98, minWidth=70,
+        REC_KEY, headerName="MA20", width=64, minWidth=48,
         valueFormatter=JS_FMT_REC, cellStyle=JS_STYLE_REC,
-        tooltipField="rec_detail",
     )
 
-    # ── Memo (editable, last column) ──
-    gob.configure_column(
-        "note", headerName="메모", width=180, minWidth=100, editable=True,
-        cellEditor="agLargeTextCellEditor",
-        cellEditorParams={"maxLength": 500, "rows": 3, "cols": 40},
-    )
+    # ── A/B/C 태그 (멀티 체크박스, 메모 대체) ──
+    # 각 라벨은 독립 토글 — 한 종목에 여러 개 체크 가능. 단일클릭 토글
+    # (opts.singleClickEdit). 체크 시 라벨별 배경색 (TAG_BG).
+    for L in TAG_LABELS:
+        gob.configure_column(
+            f"tag_{L}", headerName=L, width=46, minWidth=36, editable=True,
+            cellRenderer="agCheckboxCellRenderer",
+            cellEditor="agCheckboxCellEditor",
+            cellStyle=JsCode(
+                "function(params){"
+                "  var s={display:'flex',alignItems:'center',justifyContent:'center'};"
+                f"  if(params.value) s.backgroundColor='{TAG_BG[L]}';"
+                "  return s;"
+                "}"
+            ),
+        )
 
     # ── Hide everything else ──
     visible_set = set(visible_order)
@@ -569,25 +605,18 @@ def build_stock_grid_options(
     opts.update({
         "rowHeight": 34,
         "headerHeight": 36,
-        "suppressMenuHide": True,
         "domLayout": "normal",
         "animateRows": False,
         "suppressRowClickSelection": True,
         "rowSelection": "single",
         "enableCellTextSelection": True,
-        # Auto-fit columns to grid width on every container resize. Fires
-        # whenever the AgGrid root resizes (window resize, sidebar toggle,
-        # Streamlit dialog open/close that briefly toggles body scrollbar,
-        # fragment reruns, …) — guarantees columns always fill grid width
-        # exactly, no horizontal scroll, no trailing whitespace. Unlike
-        # ``fit_columns_on_grid_load`` which fires only once at mount time.
-        "onGridSizeChanged": JsCode(
-            "function(params){ params.api.sizeColumnsToFit(); }"
-        ),
-        "onFirstDataRendered": JsCode(
-            "function(params){ params.api.sizeColumnsToFit(); }"
-        ),
+        # A/B/C 태그 체크박스를 한 번 클릭으로 토글 (더블클릭 불필요).
+        "singleClickEdit": True,
     })
+    # flex 레이아웃으로 컬럼 폭을 컨테이너에 자동 분배 — sizeColumnsToFit 처럼
+    # "한 시점 폭으로 고정"하지 않으므로 fragment 리런·차트 다이얼로그 reflow 때
+    # 좁은 폭으로 굳지 않는다. (자세히: _apply_flex_layout)
+    apply_flex_layout(opts)
     return df_grid, opts
 
 
@@ -612,16 +641,10 @@ def render_tv_chart_stock(
 
     d = cdf.copy().sort_index()
 
-    # Standard exchange-style visible bar count per interval. Indicators
-    # below compute on the FULL series first, then we slice — so MAs/RSI
-    # in the visible window already include "warmup" values.
-    #
-    # We slice (rather than relying on ``timeScale.barSpacing`` for an
-    # initial viewport) because streamlit-lightweight-charts auto-fits
-    # to the full data range on first render and ignores our barSpacing,
-    # which made 1d / 1w / 1M all show the same calendar period.
-    VISIBLE_BARS = {"1d": 150, "1w": 100, "1M": 60}.get(interval, 150)
-
+    # 데이터는 자르지 않고 전체 기간을 그대로 차트에 넘긴다 — 과거 데이터가 있으면
+    # 모두 표시·스크롤된다. (streamlit-lightweight-charts 는 받은 데이터 전체에
+    # timeScale().fitContent() 로 화면을 맞추므로 초기 화면 = 전체 기간. 최근 구간만
+    # 확대해 보려면 차트에서 마우스 휠 줌 / 드래그 스크롤.)
     ma_specs = [
         (10, "#F0B90B", "MA10", "sma"),
         (20, "#F6465D", "MA20", "sma"),
@@ -646,11 +669,6 @@ def render_tv_chart_stock(
     avg_loss = loss.ewm(alpha=1 / 14, adjust=False).mean()
     rs = avg_gain / avg_loss.where(avg_loss != 0)
     rsi_full = 100 - (100 / (1 + rs))
-
-    # Slice to visible window after indicator computation.
-    d = d.tail(VISIBLE_BARS)
-    ma_full = {label: s.reindex(d.index) for label, s in ma_full.items()}
-    rsi_full = rsi_full.reindex(d.index)
 
     idx = pd.DatetimeIndex(d.index)
     t = (idx.tz_localize("UTC").astype("int64") // 10**9).astype("int64")
@@ -819,6 +837,57 @@ def save_notes(path: Path, notes: dict) -> None:
         json.dumps(notes, ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
+
+
+# ---------------------------------------------------------------------------
+# A/B/C tag helpers (memo column → multi-select checkbox tags)
+# ---------------------------------------------------------------------------
+
+def parse_tags(val: Any) -> set:
+    """``"A,C"`` (notes 값) → ``{"A", "C"}`` (유효 라벨만)."""
+    if not isinstance(val, str):
+        return set()
+    return {t.strip() for t in val.split(",") if t.strip() in TAG_LABELS}
+
+
+def tags_to_str(tags: "set | list") -> str:
+    """라벨 집합 → ``"A,C"`` 정규 문자열 (TAG_LABELS 순서)."""
+    return ",".join(L for L in TAG_LABELS if L in set(tags))
+
+
+def add_tag_columns(df: pd.DataFrame, code_col: str, notes: dict) -> pd.DataFrame:
+    """df 에 ``tag_A`` / ``tag_B`` / ``tag_C`` bool 컬럼을 채워 반환.
+
+    각 종목코드의 notes 값(``"A,C"``)을 파싱해 라벨 포함 여부를 bool 로 푼다.
+    """
+    codes = df[code_col].astype(str)
+    tagsets = codes.map(lambda c: parse_tags(notes.get(c, "")))
+    for L in TAG_LABELS:
+        df[f"tag_{L}"] = tagsets.map(lambda s, _L=L: _L in s)
+    return df
+
+
+def collect_tag_changes(edited_df: pd.DataFrame, code_col: str, notes: dict) -> bool:
+    """그리드에서 토글된 ``tag_*`` 체크 상태를 notes dict 에 반영.
+
+    Returns ``True`` 면 변경이 있어 저장이 필요하다.
+    """
+    tag_cols = [f"tag_{L}" for L in TAG_LABELS]
+    if code_col not in edited_df.columns or not all(c in edited_df.columns for c in tag_cols):
+        return False
+    changed = False
+    series = [edited_df[c] for c in tag_cols]
+    for code, *flags in zip(edited_df[code_col].astype(str), *series):
+        selected = [L for L, fl in zip(TAG_LABELS, flags) if bool(fl)]
+        new_val = tags_to_str(selected)
+        cur_val = tags_to_str(parse_tags(notes.get(code, "")))
+        if new_val != cur_val:
+            if new_val:
+                notes[code] = new_val
+            else:
+                notes.pop(code, None)
+            changed = True
+    return changed
 
 
 def render_chart_title(st: Any, title: str) -> None:

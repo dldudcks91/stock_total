@@ -19,8 +19,14 @@ import pandas as pd
 
 from st_aggrid import GridOptionsBuilder, JsCode
 
-from dashboards._stock_grid import JS_FMT_REC, JS_STYLE_REC
-from dashboards.live._crypto_compute import MA_PERIODS
+from dashboards._stock_grid import (
+    JS_ABS_COMPARATOR,
+    JS_FMT_REC,
+    JS_STYLE_REC,
+    TAG_BG,
+    TAG_LABELS,
+    apply_flex_layout,
+)
 
 
 # ---------------------------------------------------------------------------
@@ -39,12 +45,10 @@ COLUMN_LABELS: dict[str, str] = {
     "marketCap": "시가총액",
     "baseVolume": "Base Vol",
     "usdtVolume": "USDT Vol",
-    "fundingRate": "Funding",
     "holdingAmount": "OI (coin)",
     "indexPrice": "Index",
     "askPr": "Ask",
     "bidPr": "Bid",
-    "note": "메모",
 }
 
 
@@ -72,17 +76,6 @@ function(params) {
 }
 """)
 
-# Signed angle in degrees — flat MA = 0°, ±sign carries direction.
-# Source value is already in degrees (see ``_slope_deg`` in _crypto_compute).
-JS_FMT_DEG = JsCode("""
-function(params) {
-  const v = params.value;
-  if (v == null || Number.isNaN(v)) return '—';
-  const sign = v > 0 ? '+' : (v < 0 ? '' : '');
-  return sign + v.toFixed(1) + '°';
-}
-""")
-
 JS_FMT_PRICE = JsCode("""
 function(params) {
   const v = params.value;
@@ -96,22 +89,6 @@ function(params) {
   const v = params.value;
   if (v == null || Number.isNaN(v)) return '—';
   return Math.round(v).toLocaleString('en-US');
-}
-""")
-
-# Custom sort comparator: sort by |value| instead of signed value. Lets
-# the user surface "biggest movers" (positive AND negative) at the top by
-# clicking any signed column header. Nulls/NaN sink to bottom always.
-JS_ABS_COMPARATOR = JsCode("""
-function(valueA, valueB, nodeA, nodeB, isDescending) {
-  const aNull = valueA == null || Number.isNaN(valueA);
-  const bNull = valueB == null || Number.isNaN(valueB);
-  if (aNull && bNull) return 0;
-  if (aNull) return isDescending ? -1 : 1;
-  if (bNull) return isDescending ? 1 : -1;
-  const a = Math.abs(valueA);
-  const b = Math.abs(valueB);
-  return a < b ? -1 : (a > b ? 1 : 0);
 }
 """)
 
@@ -129,74 +106,59 @@ function(params) {
 """)
 
 
-def js_window_value_getter(field_prefix: str, window_label: str) -> JsCode:
-    """JsCode that returns ``row[`{prefix}__{window}`]``.
-
-    Lets the grid keep four visible window-dependent columns (MA10, MA20,
-    High%, Low%) while the row data carries values for all windows. Switching
-    window = re-evaluating valueGetter on the same row data; no server work.
-    """
-    return JsCode(
-        f"function(params) {{ return params.data['{field_prefix}__{window_label}']; }}"
-    )
-
-
 # ---------------------------------------------------------------------------
 # Grid options builder
 # ---------------------------------------------------------------------------
 
+#  TF × MA 고정 컬럼 — (interval, period) 8쌍. apply_current_prices 가
+#  만드는 ``pct_ma{period}__{interval}`` (price vs MA 갭 %) 을 직접 읽는다.
+#  헤더 라벨: 1h/4h 소문자, 1D/1W 대문자.
+_TF_MA_SPECS: list[tuple[str, int]] = [
+    ("1h", 10), ("1h", 20),
+    ("4h", 10), ("4h", 20),
+    ("1d", 10), ("1d", 20),
+    ("1w", 10), ("1w", 20),
+]
+_IV_HEADER = {"1h": "1h", "4h": "4h", "1d": "1D", "1w": "1W"}
+
+
 def build_grid_options(
     df: pd.DataFrame,
-    ma_interval: str,
-    hl_lookback: str,
     selected_symbol: Optional[str],
-    *,
-    short_ma: int = MA_PERIODS[0],
-    long_ma: int = MA_PERIODS[1],
 ) -> tuple[pd.DataFrame, dict]:
     """Construct (df_reordered, gridOptions) for the Bitget AgGrid.
 
     Column order (left → right, displayed):
-        ▸ checkbox + Symbol (pinned), Mark, 거래대금, 시총, Funding,
-          MA10갭, MA10∠, MA20갭, MA20∠ (all read ``__{ma_interval}``),
-          High% (hl_lookback), Low% (hl_lookback),
-          추천, 메모
+        ▸ checkbox + Symbol (pinned), Mark, 거래대금, 시총,
+          1h-MA10, 1h-MA20, 4h-MA10, 4h-MA20,
+          1D-MA10, 1D-MA20, 1W-MA10, 1W-MA20  (각 TF×MA 의 price vs MA 갭 %),
+          MA20(게이트), 메모
 
-    Fixed-period % columns (1h/4h/24h/3d/7d/14d) were removed in favor of
-    MA-centric columns: gap % (price vs MA, signed) + slope ° (MA trend
-    angle, signed). Trend angle is price-independent — flat MA = 0° even if
-    price gaps; the two columns answer different questions.
-
-    ``ma_interval`` ∈ ``MA_INTERVAL_OPTIONS_CRYPTO`` selects which __{iv}
-    suffix the MA columns read; ``hl_lookback`` ∈ ``HL_LOOKBACK_OPTIONS_CRYPTO``
-    selects the suffix for the H/L columns. Both flip purely client-side via
-    JsCode valueGetter — no server recompute when the user changes window.
+    이전의 MA Interval / HL Lookback 토글, MA10∠/MA20∠ slope, High/Low%,
+    Funding 컬럼은 모두 제거됨. 8개 TF×MA 갭 컬럼은 토글 없이 항상 표시된다
+    (값은 ``pct_ma{p}__{iv}`` df 컬럼을 그대로 field 로 읽음).
     """
-    SHORT_KEY = f"_ma{short_ma}"             # MA10 gap %
-    SHORT_SLOPE_KEY = f"_slope{short_ma}"    # MA10 angle (°)
-    LONG_KEY = f"_ma{long_ma}"               # MA20 gap %
-    LONG_SLOPE_KEY = f"_slope{long_ma}"      # MA20 angle (°)
-    HIGH_KEY = "_high_pct"
-    LOW_KEY = "_low_pct"
-    REC_KEY = "_rec"   # display-only; reads rec_label/rec_score/rec_kind via JS
+    REC_KEY = "_rec"   # display-only; reads gate_pass via JS (MA20 게이트)
+    MA_COLS = [f"pct_ma{p}__{iv}" for iv, p in _TF_MA_SPECS]
+    TAG_COLS = [f"tag_{L}" for L in TAG_LABELS]
 
     VISIBLE_ORDER = [
         "symbol",
-        "markPrice", "quoteVolume", "marketCap", "fundingRate",
-        SHORT_KEY, SHORT_SLOPE_KEY, LONG_KEY, LONG_SLOPE_KEY,
-        HIGH_KEY, LOW_KEY,
-        REC_KEY, "note",
+        "markPrice", "quoteVolume", "marketCap",
+        *MA_COLS,
+        REC_KEY, *TAG_COLS,
     ]
 
     df_grid = df.copy()
-    for placeholder in (SHORT_KEY, SHORT_SLOPE_KEY, LONG_KEY, LONG_SLOPE_KEY,
-                        HIGH_KEY, LOW_KEY, REC_KEY):
+    for placeholder in (*MA_COLS, REC_KEY):
         if placeholder not in df_grid.columns:
             df_grid[placeholder] = None
+    for tcol in TAG_COLS:
+        if tcol not in df_grid.columns:
+            df_grid[tcol] = False
 
-    # Signed numeric columns always sort by |value| — gap%, slope°, High/Low%,
-    # fundingRate. Sign matters for the cell color but the user wants to rank
-    # by magnitude (biggest movers, biggest gaps), not by sign.
+    # Signed numeric columns always sort by |value| — gap%. Sign matters for the
+    # cell color but the user wants to rank by magnitude (biggest gaps), not sign.
     signed_kw = {"comparator": JS_ABS_COMPARATOR}
 
     visible_present = [c for c in VISIBLE_ORDER if c in df_grid.columns]
@@ -221,7 +183,7 @@ def build_grid_options(
         checkboxSelection=True, headerCheckboxSelection=False,
     )
 
-    # ── Mark / 거래대금 / 시가총액 / Funding ──
+    # ── Mark / 거래대금 / 시가총액 ──
     gob.configure_column(
         "markPrice", headerName="Mark", width=95,
         valueFormatter=JS_FMT_PRICE, type=["numericColumn"],
@@ -234,70 +196,39 @@ def build_grid_options(
         "marketCap", headerName="시가총액", width=80,
         valueFormatter=JS_FMT_MCAP, type=["numericColumn"],
     )
-    gob.configure_column(
-        "fundingRate", headerName="Funding", width=62,
-        valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
-        type=["numericColumn"], **signed_kw,
-    )
 
-    # ── MA gap % + slope ° columns ──
-    # Each MA gets a pair: gap % (price vs MA, signed) and slope ° (MA trend
-    # angle, signed, price-independent). Both valueGetters key off the same
-    # ma_interval suffix → flipping the MA Interval picker swaps all 4 cells
-    # client-side in one shot.
-    gob.configure_column(
-        SHORT_KEY, headerName=f"MA{short_ma}갭", width=66,
-        valueGetter=js_window_value_getter(f"pct_ma{short_ma}", ma_interval),
-        valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
-        type=["numericColumn"], **signed_kw,
-    )
-    gob.configure_column(
-        SHORT_SLOPE_KEY, headerName=f"MA{short_ma}∠", width=66,
-        valueGetter=js_window_value_getter(f"slope{short_ma}", ma_interval),
-        valueFormatter=JS_FMT_DEG, cellStyle=JS_SIGNED_COLOR,
-        type=["numericColumn"], **signed_kw,
-    )
-    gob.configure_column(
-        LONG_KEY, headerName=f"MA{long_ma}갭", width=66,
-        valueGetter=js_window_value_getter(f"pct_ma{long_ma}", ma_interval),
-        valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
-        type=["numericColumn"], **signed_kw,
-    )
-    gob.configure_column(
-        LONG_SLOPE_KEY, headerName=f"MA{long_ma}∠", width=66,
-        valueGetter=js_window_value_getter(f"slope{long_ma}", ma_interval),
-        valueFormatter=JS_FMT_DEG, cellStyle=JS_SIGNED_COLOR,
-        type=["numericColumn"], **signed_kw,
-    )
-    # ── HL columns (valueGetter reads `__{hl_lookback}` from row data) ──
-    gob.configure_column(
-        HIGH_KEY, headerName="High", width=58,
-        valueGetter=js_window_value_getter("pct_off_high", hl_lookback),
-        valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
-        type=["numericColumn"], **signed_kw,
-    )
-    gob.configure_column(
-        LOW_KEY, headerName="Low", width=58,
-        valueGetter=js_window_value_getter("pct_off_low", hl_lookback),
-        valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
-        type=["numericColumn"], **signed_kw,
-    )
+    # ── TF × MA 갭 % (8 고정 컬럼) ──
+    # 각 컬럼은 df 의 ``pct_ma{p}__{iv}`` 를 그대로 읽는다 (토글 없음).
+    for iv, p in _TF_MA_SPECS:
+        col = f"pct_ma{p}__{iv}"
+        gob.configure_column(
+            col, headerName=f"{_IV_HEADER[iv]}-MA{p}", width=64, minWidth=52,
+            valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
+            type=["numericColumn"], **signed_kw,
+        )
 
-    # ── 추천 (전략 점수, display-only) ──
-    # rec_label / rec_score / rec_kind 컬럼이 row data 에 있어야 표시됨.
-    # 크립토는 아직 recs 미계산 → 모든 셀이 "—" 로 렌더링 (자리만 잡아둠).
+    # ── MA20 게이트 (display-only) ──
+    # gate_pass 컬럼이 row data 에 있어야 ● 표시됨. 없으면 공백.
     gob.configure_column(
-        REC_KEY, headerName="추천", width=98, minWidth=70,
+        REC_KEY, headerName="MA20", width=64, minWidth=48,
         valueFormatter=JS_FMT_REC, cellStyle=JS_STYLE_REC,
-        tooltipField="rec_detail",
     )
 
-    # ── Memo (editable, last column, wider) ──
-    gob.configure_column(
-        "note", headerName="메모", width=220, editable=True,
-        cellEditor="agLargeTextCellEditor",
-        cellEditorParams={"maxLength": 500, "rows": 3, "cols": 40},
-    )
+    # ── A/B/C 태그 (멀티 체크박스, 메모 대체) ──
+    # 각 라벨 독립 토글 — 한 종목에 여러 개 체크 가능. 단일클릭 토글.
+    for L in TAG_LABELS:
+        gob.configure_column(
+            f"tag_{L}", headerName=L, width=46, minWidth=36, editable=True,
+            cellRenderer="agCheckboxCellRenderer",
+            cellEditor="agCheckboxCellEditor",
+            cellStyle=JsCode(
+                "function(params){"
+                "  var s={display:'flex',alignItems:'center',justifyContent:'center'};"
+                f"  if(params.value) s.backgroundColor='{TAG_BG[L]}';"
+                "  return s;"
+                "}"
+            ),
+        )
 
     # ── Hide everything not in VISIBLE_ORDER ──
     visible_set = set(VISIBLE_ORDER)
@@ -323,35 +254,13 @@ def build_grid_options(
         "suppressRowClickSelection": True,
         "rowSelection": "single",
         "enableCellTextSelection": True,
-        # Auto-fit columns whenever the grid container resizes — fires on
-        # window resize, sidebar toggle, and the layout shifts caused by
-        # ``st.dialog`` opening/closing.
-        #
-        # While the chart dialog is open, the parent document briefly
-        # reflows the iframe to a transient (narrower) width. If we re-fit
-        # at that transient width, the columns get squeezed and stay
-        # squeezed once the dialog closes — visually it looks like
-        # "opening the chart shrinks the grid". Guard by checking the
-        # parent document for an open Streamlit dialog and skipping the
-        # fit while one is present. When the dialog closes, the iframe
-        # restores to its real width and onGridSizeChanged fires again
-        # (this time with no dialog) to re-fit correctly.
-        "onGridSizeChanged": JsCode("""
-function(params) {
-  try {
-    const top = window.parent && window.parent.document;
-    if (top && (top.querySelector('[data-testid="stDialog"]') ||
-                top.querySelector('div[role="dialog"]'))) {
-      return;
-    }
-  } catch (e) {}
-  params.api.sizeColumnsToFit();
-}
-"""),
-        "onFirstDataRendered": JsCode(
-            "function(params){ params.api.sizeColumnsToFit(); }"
-        ),
+        # A/B/C 태그 체크박스를 한 번 클릭으로 토글 (더블클릭 불필요).
+        "singleClickEdit": True,
     })
+    # flex 레이아웃으로 컬럼 폭을 컨테이너에 자동 분배 — sizeColumnsToFit 처럼
+    # "한 시점 폭으로 고정"하지 않으므로 fragment 리런·차트 다이얼로그 reflow 때
+    # 좁은 폭으로 굳지 않는다 (차트 팝업으로 표가 작아지던 문제 포함).
+    apply_flex_layout(opts)
     return df_grid, opts
 
 

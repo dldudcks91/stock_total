@@ -36,6 +36,7 @@ import pandas as pd
 from data.loader import load_ohlcv
 from data.sources.bitget_live import SNAPSHOT_PATH, load_snapshot
 from dashboards._precompute import load_recs, load_refs, precompute_status
+from dashboards._stock_grid import add_tag_columns, collect_tag_changes
 from dashboards.live._bitget_grid import (
     BITGET_PAGE_CSS,
     COLUMN_LABELS,
@@ -50,10 +51,6 @@ from dashboards.live._common import (
 )
 from dashboards.live._crypto_compute import (
     CANDLE_FETCH_CAP,
-    DEFAULT_HL_LOOKBACK_CRYPTO,
-    DEFAULT_MA_INTERVAL_CRYPTO,
-    HL_LOOKBACK_OPTIONS_CRYPTO,
-    MA_INTERVAL_OPTIONS_CRYPTO,
     apply_current_prices,
 )
 
@@ -312,9 +309,10 @@ def render(st: Any) -> None:
 
         st.caption(fetched_at_caption(df))
 
-        # Filter bar — 5 cols. Signed numeric columns always sort by |value|
-        # (no toggle); see _bitget_grid.JS_ABS_COMPARATOR.
-        f1, f2, f3, f4, f5 = st.columns([3, 1, 2, 2, 3])
+        # Filter bar — 3 cols. Signed numeric columns always sort by |value|
+        # (no toggle); see _bitget_grid.JS_ABS_COMPARATOR. MA Interval / HL
+        # Lookback 토글은 제거됨 — 8개 TF×MA 갭 컬럼이 항상 표시된다.
+        f1, f2, f3 = st.columns([3, 1, 2])
         with f1:
             search = st.text_input("Symbol contains", value="", key="flt_search").strip()
         with f2:
@@ -331,27 +329,6 @@ def render(st: Any) -> None:
                 format_func=lambda k: COLUMN_LABELS.get(k, k),
                 key="flt_sort",
             )
-        with f4:
-            ma_interval = st.segmented_control(
-                "MA Interval",
-                options=MA_INTERVAL_OPTIONS_CRYPTO,
-                default=DEFAULT_MA_INTERVAL_CRYPTO,
-                key="flt_ma_interval",
-                help="MA10/MA20 봉 단위. 1h/4h → 1H 캐시, 1d/1w → 1D 캐시 stride 샘플링.",
-            )
-            if not ma_interval:
-                ma_interval = DEFAULT_MA_INTERVAL_CRYPTO
-        with f5:
-            hl_lookback = st.segmented_control(
-                "HL Lookback",
-                options=HL_LOOKBACK_OPTIONS_CRYPTO,
-                default=DEFAULT_HL_LOOKBACK_CRYPTO,
-                key="flt_hl_lookback",
-                help="High/Low Δ% 기간 (wall-clock anchored). "
-                     "24h → 1H 캐시 24봉, 그 외 → 1D 캐시.",
-            )
-            if not hl_lookback:
-                hl_lookback = DEFAULT_HL_LOOKBACK_CRYPTO
 
         # Apply filter / sort / top_n (always descending — Top N + sort-by-volume).
         if search:
@@ -411,7 +388,7 @@ def render(st: Any) -> None:
 
         # Per-symbol notes (memo column).
         notes = st.session_state.setdefault("bitget_notes", _load_notes())
-        df["note"] = df["symbol"].astype(str).map(notes).fillna("")
+        df = add_tag_columns(df, "symbol", notes)
 
         SEL_KEY = "bitget_sel_symbol"
         selected_symbol: Optional[str] = st.session_state.get(SEL_KEY)
@@ -419,45 +396,28 @@ def render(st: Any) -> None:
             st.session_state.pop(SEL_KEY, None)
             selected_symbol = None
 
-        df_grid, grid_options = build_grid_options(
-            df, ma_interval, hl_lookback, selected_symbol,
-        )
-        # Re-key the grid on every visible-state change including MA Interval
-        # and HL Lookback. Without these in the grid_key, streamlit-aggrid
-        # reuses the existing component with cached gridOptions and the JsCode
-        # valueGetter doesn't pick up the new state — so cells show stale
-        # values even though df_grid carries the right columns. Matches the
-        # stock-side strategy in _stock_grid.py.
+        df_grid, grid_options = build_grid_options(df, selected_symbol)
+        # Re-key the grid on every visible-state change. v4 = TF×MA 8-col layout
+        # (MA Interval / HL Lookback 토글 제거). 8개 갭 컬럼은 df 의 고정 field 라
+        # valueGetter 토글이 없어 grid_key 에 window 상태가 빠진다.
         grid_key = (
-            f"bitget_grid::v3::{top_n}::{search}::{sort_col_key}"
-            f"::{ma_interval}::{hl_lookback}"
+            f"bitget_grid::v4::{top_n}::{search}::{sort_col_key}"
         )
         grid_resp = AgGrid(
             df_grid,
             gridOptions=grid_options,
             update_mode=GridUpdateMode.SELECTION_CHANGED | GridUpdateMode.VALUE_CHANGED,
             allow_unsafe_jscode=True,
-            fit_columns_on_grid_load=True,
+            fit_columns_on_grid_load=False,  # flex 레이아웃이 폭을 자동 분배
             height=580,
             theme="streamlit",
             key=grid_key,
         )
 
-        # Persist memo edits (silent, no rerun).
+        # Persist A/B/C tag edits (silent, no rerun).
         edited_df = grid_resp.get("data")
-        if edited_df is not None and "note" in edited_df.columns:
-            notes_changed = False
-            for sym, new_val in zip(edited_df["symbol"].astype(str), edited_df["note"].astype(str)):
-                new_val = (new_val or "").strip()
-                cur_val = notes.get(sym, "")
-                if new_val != cur_val:
-                    if new_val:
-                        notes[sym] = new_val
-                    else:
-                        notes.pop(sym, None)
-                    notes_changed = True
-            if notes_changed:
-                _save_notes(notes)
+        if edited_df is not None and collect_tag_changes(edited_df, "symbol", notes):
+            _save_notes(notes)
 
         # Selection → chart panel.
         sel_rows = grid_resp.get("selected_rows")

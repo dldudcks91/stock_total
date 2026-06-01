@@ -28,16 +28,10 @@ def render_tv_chart(symbol: str, interval: str, cdf: pd.DataFrame) -> None:
     d["t"] = (pd.to_numeric(d["timestamp"]) // 1000).astype("int64")
     d = d.sort_values("t").drop_duplicates(subset="t", keep="last").reset_index(drop=True)
 
-    # Standard exchange-style visible bar count per interval. Indicators
-    # below compute on the FULL series first, then we slice — so MAs/RSI
-    # in the visible window already include "warmup" values.
-    #
-    # We slice (rather than relying on ``timeScale.barSpacing`` for an
-    # initial viewport) because streamlit-lightweight-charts auto-fits
-    # to the full data range on first render and ignores our barSpacing,
-    # which made 1d / 1w / 1M all show the same calendar period.
-    VISIBLE_BARS = {"1d": 150, "1w": 100, "1M": 60, "1h": 150, "4h": 150}.get(interval, 150)
-
+    # 데이터는 자르지 않고 전체 기간을 그대로 차트에 넘긴다 — 과거 데이터가 있으면
+    # 모두 표시·스크롤된다. (streamlit-lightweight-charts 는 받은 데이터 전체에
+    # timeScale().fitContent() 로 화면을 맞추므로 초기 화면 = 전체 기간. 최근 구간만
+    # 확대해 보려면 차트에서 마우스 휠 줌 / 드래그 스크롤.)
     # (period, color, label, kind)  kind: "sma" | "vwma"
     ma_specs = [
         (10, "#F0B90B", "MA10", "sma"),    # 노란색
@@ -64,11 +58,6 @@ def render_tv_chart(symbol: str, interval: str, cdf: pd.DataFrame) -> None:
     rs = avg_gain / avg_loss.where(avg_loss != 0)
     rsi_full = 100 - (100 / (1 + rs))
 
-    # Slice to visible window after indicator computation.
-    d = d.tail(VISIBLE_BARS).reset_index(drop=True)
-    ma_full = {label: s.tail(VISIBLE_BARS).reset_index(drop=True)
-               for label, s in ma_full.items()}
-    rsi_full = rsi_full.tail(VISIBLE_BARS).reset_index(drop=True)
 
     candles = [
         {"time": int(t), "open": float(o), "high": float(h),
