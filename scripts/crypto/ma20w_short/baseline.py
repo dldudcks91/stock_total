@@ -1,14 +1,18 @@
-"""ma20w_short Layer 0 — baseline.
+"""ma20w_short Layer 0 — baseline (sanity check).
 
-진입: 주봉 slope_4w(t) < 0  →  t+1 주 시가 숏
-청산: 주봉 slope_4w(t) ≥ 0  →  t+1 주 시가
+진입 룰: 다운트렌드 게이트 (close_1w<MA20w & slope_4w<0) + 일봉 high>=MA20w 첫 봉
+청산 룰: 일봉 close >= MA20w(rolling latest completed weekly) → 다음 일봉 시가
+비용: 진입+청산 fee 10bps + 슬리피지 5bps = 15bps round-trip
+4 그룹 (trend/follower/whale/junk) 동일 파라미터.
 
-전 553 심볼 루프, 트레이드 단위 short return 집계.
-4-group (tier_final) 별 분해.
+출력:
+  output/trades.parquet         — 전체 trades (symbol, group, entry/exit, ret_net, ...)
+  output/summary_by_group.csv   — 그룹별 통계 (wide)
+  output/summary.json           — 전체 + 그룹별 핵심 메트릭
 
 사용:
-    .venv/Scripts/python.exe -m scripts.crypto.ma20w_short.baseline \
-        --config scripts/crypto/ma20w_short/runs/20260518-2140_crypto_baseline/config.json
+  .venv/Scripts/python.exe -m scripts.crypto.ma20w_short.baseline \
+      --config scripts/crypto/ma20w_short/runs/20260528-2236_baseline/config.json
 """
 from __future__ import annotations
 
@@ -16,193 +20,217 @@ import json
 import sys
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
-# UTF-8 stdout (Windows cp949 한글 깨짐 방지)
+# Windows 한글 깨짐 방지
 try:
     sys.stdout.reconfigure(encoding="utf-8")
 except Exception:
     pass
 
-ROOT = Path(__file__).resolve().parents[3]
-if str(ROOT) not in sys.path:
-    sys.path.insert(0, str(ROOT))
-
-from scripts._common.run_helper import parse_args, update_config, resolve_config_path  # noqa: E402
-from scripts.crypto.ma20w_short._common import (  # noqa: E402
-    load_weekly, add_ma_slope, extract_trades,
-    load_classification, summarize_trades,
-)
+from scripts._common.run_helper import parse_args, update_config, resolve_config_path
+from scripts.crypto.ma20w_short._common import backtest_symbol, load_4groups
 
 
-CACHE_DIR = ROOT / "data" / "cache" / "crypto" / "1d"
-CLS_PATH = ROOT / "data" / "cache" / "crypto" / "classification.parquet"
+# ============================================================
+# Summary stats
+# ============================================================
+
+def summarize_trades(trades: pd.DataFrame) -> dict:
+    """trades DataFrame → 핵심 메트릭 dict."""
+    if trades.empty:
+        return {
+            "n_trades": 0, "mean_ret": None, "median_ret": None, "std_ret": None,
+            "win_rate": None, "payoff": None, "var_adj_ex": None,
+            "mdd": None, "sharpe": None, "avg_holding_days": None,
+        }
+
+    r = trades["ret_net"].astype(float)
+    wins = r[r > 0]
+    losses = r[r <= 0]
+
+    win_rate = len(wins) / len(r) if len(r) > 0 else None
+    avg_win = float(wins.mean()) if len(wins) > 0 else 0.0
+    avg_loss = float(losses.mean()) if len(losses) > 0 else 0.0
+    payoff = abs(avg_win / avg_loss) if avg_loss < 0 else (float("inf") if avg_win > 0 else None)
+
+    mean = float(r.mean())
+    std = float(r.std(ddof=1)) if len(r) > 1 else 0.0
+    var_adj = mean - 1.65 * std
+
+    # Equity-based MDD (trades 순서대로 누적, 동일 비중 가정)
+    sorted_trades = trades.sort_values("exit_dt").reset_index(drop=True)
+    eq = (1 + sorted_trades["ret_net"].astype(float)).cumprod()
+    peak = eq.cummax()
+    dd = (eq / peak - 1).min()
+
+    # Annualized Sharpe (per-trade, 연간 환산 = 252 / avg_holding_days)
+    avg_hd = float(sorted_trades["holding_days"].mean())
+    if avg_hd > 0 and std > 0:
+        trades_per_year = 252.0 / avg_hd
+        sharpe = (mean / std) * np.sqrt(trades_per_year)
+    else:
+        sharpe = None
+
+    return {
+        "n_trades": int(len(r)),
+        "mean_ret": mean,
+        "median_ret": float(r.median()),
+        "std_ret": std,
+        "win_rate": win_rate,
+        "payoff": payoff,
+        "var_adj_ex": var_adj,
+        "mdd": float(dd),
+        "sharpe": sharpe,
+        "avg_holding_days": avg_hd,
+    }
 
 
-def list_symbols() -> list:
-    return sorted(p.stem for p in CACHE_DIR.glob("*.parquet"))
-
+# ============================================================
+# Main
+# ============================================================
 
 def main():
     def add_args(ap):
-        ap.add_argument("--ma-window", type=int, default=None)
-        ap.add_argument("--slope-window", type=int, default=None)
-        ap.add_argument("--fees-bps-roundtrip", type=float, default=None)
-        ap.add_argument("--funding-bps-per-week", type=float, default=None)
-        ap.add_argument("--min-symbol-weeks", type=int, default=None)
-        ap.add_argument("--limit-symbols", type=int, default=None,
-                        help="Debug: process only N symbols")
+        ap.add_argument("--date-from", type=str, default=None)
+        ap.add_argument("--date-to", type=str, default=None)
+        ap.add_argument("--cooldown-days", type=int, default=None)
+        ap.add_argument("--min-obs", type=int, default=None,
+                        help="classification min_obs filter")
 
-    out_dir, params, args = parse_args(
-        add_args,
-        defaults={
-            "ma_window": 20,
-            "slope_window": 4,
-            "fees_bps_roundtrip": 15.0,
-            "funding_bps_per_week": None,
-            "min_symbol_weeks": 30,
+    defaults = {
+        "gate": {"close_lt_ma20w": True, "slope_4w_lt": 0.0},
+        "entry": {
+            "rule": "intraday_high_ge_ma20w",
+            "fill_price": "ma20w_limit",
+            "cooldown_weeks": 4,
         },
-        description="ma20w_short Layer 0 baseline: short when MA20w slope_4w < 0",
-    )
-    ma_window = int(params["ma_window"])
-    slope_window = int(params["slope_window"])
-    fees = float(params["fees_bps_roundtrip"])
-    funding = params.get("funding_bps_per_week")
-    funding = float(funding) if funding is not None else None
-    min_weeks = int(params["min_symbol_weeks"])
+        "exit": {"rule": "close_1d_ge_ma20w"},
+        "cost": {"fee_bps_per_side": 5, "slippage_bps": 5, "funding_cost": None},
+        "side": "short",
+    }
 
-    symbols = list_symbols()
-    if args.limit_symbols:
-        symbols = symbols[: args.limit_symbols]
-    print(f"[baseline] symbols={len(symbols)} ma={ma_window} slope_w={slope_window} "
-          f"fees_bps={fees} funding_bps/w={funding}")
+    out_dir, params, args = parse_args(add_args, defaults, "ma20w_short baseline (Layer 0)")
+    cfg_path = resolve_config_path(args)
 
-    cls_map = load_classification(CLS_PATH).set_index("symbol")["tier_final"].to_dict()
+    # Resolve runtime knobs
+    date_from = args.date_from or (cfg_path and json.loads(cfg_path.read_text(encoding="utf-8"))
+                                     .get("data", {}).get("date_from"))
+    date_to = args.date_to or (cfg_path and json.loads(cfg_path.read_text(encoding="utf-8"))
+                                 .get("data", {}).get("date_to"))
+    cooldown_weeks = (params.get("entry") or {}).get("cooldown_weeks", 4)
+    cooldown_days = args.cooldown_days or (cooldown_weeks * 7)
+    min_obs = args.min_obs or 300
+    cost = params.get("cost", {}) or {}
+    fee_bps = float(cost.get("fee_bps_per_side", 5))
+    slip_bps = float(cost.get("slippage_bps", 5))
 
+    print(f"[ma20w_short baseline] date={date_from}..{date_to} cooldown={cooldown_days}d "
+          f"fee={fee_bps}bps/side slip={slip_bps}bps min_obs={min_obs}")
+
+    # Load 4 groups
+    groups = load_4groups(min_obs=min_obs)
+    total = sum(len(v) for v in groups.values())
+    print(f"[universe] total symbols: {total}")
+    for g, syms in groups.items():
+        print(f"  {g}: {len(syms):>4d}  (e.g. {syms[:3]})")
+
+    # Backtest each symbol
     all_trades = []
-    skipped = 0
-    for i, sym in enumerate(symbols, 1):
-        try:
-            w = load_weekly(sym)
-        except Exception as e:
-            print(f"  [skip] {sym}: load error {e}")
-            skipped += 1
-            continue
-        if len(w) < max(min_weeks, ma_window + slope_window + 2):
-            skipped += 1
-            continue
-        w = add_ma_slope(w, ma_window=ma_window, slope_window=slope_window)
-        tr = extract_trades(w, fees_bps_roundtrip=fees, funding_bps_per_week=funding)
-        if tr.empty:
-            continue
-        tr.insert(0, "symbol", sym)
-        tr["tier"] = cls_map.get(sym, "unknown")
-        all_trades.append(tr)
-        if i % 50 == 0:
-            print(f"  ...{i}/{len(symbols)}  trades={sum(len(t) for t in all_trades)}")
+    for group, syms in groups.items():
+        print(f"\n[backtest] group={group}  symbols={len(syms)}")
+        n_done = 0
+        for sym in syms:
+            t = backtest_symbol(
+                sym,
+                date_from=date_from,
+                date_to=date_to,
+                cooldown_days=cooldown_days,
+                fee_bps_per_side=fee_bps,
+                slippage_bps=slip_bps,
+            )
+            if not t.empty:
+                t["group"] = group
+                all_trades.append(t)
+            n_done += 1
+            if n_done % 50 == 0:
+                print(f"    {n_done}/{len(syms)} processed")
 
     if not all_trades:
-        print("[baseline] no trades — abort")
+        print("\n[!] No trades produced. Check cache / date range / gate logic.")
         return
+
     trades = pd.concat(all_trades, ignore_index=True)
-    print(f"[baseline] total trades={len(trades)} skipped_symbols={skipped}")
+    print(f"\n[trades] total {len(trades)} trades from {trades['symbol'].nunique()} symbols")
 
-    # 미청산(오픈) vs 청산 트레이드 분리: hold_weeks==0 또는 exit_idx == last index 식별은 표본 외 → flag
-    # 단순화: exit_dt == last bar 인 경우만 open 으로 가정. 여기서는 모두 포함하되 별도 컬럼으로 표기 가능.
-    # (현 구현에선 마지막 미청산도 포함 — Layer 0 분포 확인이 목적)
-
-    # 저장
+    # Save raw trades
     trades_path = out_dir / "trades.parquet"
     trades.to_parquet(trades_path, index=False)
-    print(f"[baseline] wrote {trades_path.relative_to(ROOT)}  ({len(trades)} rows)")
+    print(f"[save] {trades_path} ({len(trades)} rows)")
 
-    # 전체 summary
-    overall = summarize_trades(trades)
-    overall["n_symbols"] = int(trades["symbol"].nunique())
+    # Summary by group
+    rows = []
+    for group in ("trend", "follower", "whale", "junk"):
+        sub = trades[trades["group"] == group]
+        s = summarize_trades(sub)
+        s["group"] = group
+        s["n_symbols"] = int(sub["symbol"].nunique()) if not sub.empty else 0
+        rows.append(s)
+    rows.append({"group": "ALL", **summarize_trades(trades),
+                 "n_symbols": int(trades["symbol"].nunique())})
 
-    # tier 별 summary
-    by_tier_rows = []
-    for tier, g in trades.groupby("tier"):
-        s = summarize_trades(g)
-        s["tier"] = tier
-        s["n_symbols"] = int(g["symbol"].nunique())
-        by_tier_rows.append(s)
-    by_tier = pd.DataFrame(by_tier_rows).set_index("tier").sort_index()
-    by_tier_path = out_dir / "summary_by_tier.csv"
-    by_tier.to_csv(by_tier_path)
-    print(f"[baseline] wrote {by_tier_path.relative_to(ROOT)}")
+    summary_df = pd.DataFrame(rows).set_index("group").reindex(
+        ["trend", "follower", "whale", "junk", "ALL"]
+    )
+    summary_path = out_dir / "summary_by_group.csv"
+    summary_df.to_csv(summary_path)
+    print(f"[save] {summary_path}")
 
-    # 전체 summary JSON
-    summary = {
-        "overall": overall,
-        "by_tier": by_tier.reset_index().to_dict(orient="records"),
+    # JSON summary
+    summary_json = {
         "params": {
-            "ma_window": ma_window,
-            "slope_window": slope_window,
-            "fees_bps_roundtrip": fees,
-            "funding_bps_per_week": funding,
-            "min_symbol_weeks": min_weeks,
+            "date_from": date_from, "date_to": date_to,
+            "cooldown_days": cooldown_days,
+            "fee_bps_per_side": fee_bps, "slippage_bps": slip_bps,
+            "min_obs": min_obs,
         },
+        "groups": summary_df.reset_index().to_dict(orient="records"),
     }
-    summary_path = out_dir / "summary.json"
-    summary_path.write_text(json.dumps(summary, indent=2, ensure_ascii=False, default=str),
-                            encoding="utf-8")
-    print(f"[baseline] wrote {summary_path.relative_to(ROOT)}")
+    json_path = out_dir / "summary.json"
+    json_path.write_text(json.dumps(summary_json, indent=2, ensure_ascii=False,
+                                      allow_nan=False, default=str), encoding="utf-8")
+    print(f"[save] {json_path}")
 
-    # 콘솔 표
-    print("\n=== Overall ===")
-    for k in ("n_trades", "n_symbols", "mean", "median", "std", "win_rate",
-              "payoff", "var95", "var99", "max_loss", "max_gain",
-              "var_adj_expectancy", "avg_hold_weeks", "total_pnl"):
-        v = overall.get(k)
-        if isinstance(v, float):
-            print(f"  {k:22s} {v:+.4f}")
-        else:
-            print(f"  {k:22s} {v}")
-
-    print("\n=== By tier ===")
-    cols = ["n_trades", "n_symbols", "mean", "win_rate", "payoff", "var95",
-            "var_adj_expectancy", "avg_hold_weeks"]
-    fmt = by_tier[cols].copy()
-    for c in ("mean", "win_rate", "payoff", "var95", "var_adj_expectancy"):
-        fmt[c] = fmt[c].map(lambda x: f"{x:+.4f}" if pd.notna(x) else "—")
-    fmt["avg_hold_weeks"] = fmt["avg_hold_weeks"].map(lambda x: f"{x:.2f}" if pd.notna(x) else "—")
-    print(fmt.to_string())
-
-    # config.json 업데이트
-    cfg_path = resolve_config_path(args)
+    # update config
     if cfg_path:
-        # JSON 호환성을 위해 NaN/inf 제거
-        def _clean(d):
-            from math import isnan, isinf
-            out = {}
-            for k, v in d.items():
-                if isinstance(v, float):
-                    if isnan(v) or isinf(v):
-                        out[k] = None
-                        continue
-                out[k] = v
-            return out
+        results = {
+            f"{g}_mean_ret": (summary_df.loc[g, "mean_ret"] if g in summary_df.index else None)
+            for g in ("trend", "follower", "whale", "junk", "ALL")
+        }
+        results.update({
+            f"{g}_n_trades": (int(summary_df.loc[g, "n_trades"]) if g in summary_df.index else 0)
+            for g in ("trend", "follower", "whale", "junk", "ALL")
+        })
         update_config(
             cfg_path,
-            data={"symbol_count_processed": int(trades["symbol"].nunique()),
-                  "symbols_skipped": skipped},
-            results_summary={
-                "n_trades": overall["n_trades"],
-                "mean_short_return": overall["mean"],
-                "median_short_return": overall["median"],
-                "win_rate": overall["win_rate"],
-                "payoff": overall["payoff"],
-                "var95": overall["var95"],
-                "var_adj_expectancy": overall["var_adj_expectancy"],
-                "avg_hold_weeks": overall["avg_hold_weeks"],
-                "total_pnl": overall["total_pnl"],
-                "by_tier_mean": {r["tier"]: r["mean"] for r in summary["by_tier"]},
-                "by_tier_win_rate": {r["tier"]: r["win_rate"] for r in summary["by_tier"]},
-                "by_tier_n_trades": {r["tier"]: r["n_trades"] for r in summary["by_tier"]},
-            },
+            data={"symbol_count": int(total), "groups_n_symbols":
+                    {g: len(syms) for g, syms in groups.items()}},
+            results_summary=results,
         )
-        print(f"\n[baseline] updated {cfg_path.relative_to(ROOT)}")
+        print(f"[update_config] {cfg_path}")
+
+    # Print summary table
+    print("\n=== Baseline summary (per group) ===")
+    cols = ["n_symbols", "n_trades", "mean_ret", "median_ret", "win_rate",
+            "payoff", "var_adj_ex", "mdd", "sharpe", "avg_holding_days"]
+    view = summary_df[cols].copy()
+    for c in ("mean_ret", "median_ret", "win_rate", "var_adj_ex", "mdd"):
+        view[c] = view[c].astype(float).round(4)
+    view["payoff"] = view["payoff"].astype(float).round(2)
+    view["sharpe"] = view["sharpe"].astype(float).round(2)
+    view["avg_holding_days"] = view["avg_holding_days"].astype(float).round(1)
+    print(view.to_string())
 
 
 if __name__ == "__main__":

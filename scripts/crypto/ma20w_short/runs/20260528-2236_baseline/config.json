@@ -1,0 +1,70 @@
+{
+  "group": "crypto/ma20w_short",
+  "name": "baseline",
+  "created_at": "2026-05-28T22:36:56+09:00",
+  "module": "scripts.crypto.ma20w_short.baseline",
+  "git_commit": "d1d7cbb",
+  "git_dirty": true,
+  "git_branch": "main",
+  "params": {
+    "gate": {
+      "close_lt_ma20w": true,
+      "slope_4w_lt": 0.0
+    },
+    "entry": {
+      "rule": "intraday_high_ge_ma20w",
+      "fill_price": "ma20w_limit",
+      "cooldown_weeks": 4,
+      "lookahead_guard": "last_completed_weekly_ma20w"
+    },
+    "exit": {
+      "rule": "close_1d_ge_ma20w"
+    },
+    "cost": {
+      "fee_bps_per_side": 5,
+      "slippage_bps": 5,
+      "funding_cost": null
+    },
+    "side": "short"
+  },
+  "data": {
+    "asset": "crypto",
+    "interval_signal": "1w",
+    "interval_exec": "1d",
+    "cache_dir": "data/cache/crypto/1d",
+    "classification": "data/cache/crypto/classification.parquet",
+    "symbol_count": 289,
+    "groups": [
+      "trend",
+      "follower",
+      "whale",
+      "junk"
+    ],
+    "date_from": "2021-01-01",
+    "date_to": "2026-05-28",
+    "groups_n_symbols": {
+      "trend": 126,
+      "follower": 93,
+      "whale": 30,
+      "junk": 40
+    }
+  },
+  "results_summary": {
+    "trend_mean_ret": 0.0009347502525416562,
+    "follower_mean_ret": 0.013339385014074267,
+    "whale_mean_ret": 0.023861810636518592,
+    "junk_mean_ret": 0.036014584345853105,
+    "ALL_mean_ret": 0.01027187549167658,
+    "trend_n_trades": 682,
+    "follower_n_trades": 606,
+    "whale_n_trades": 131,
+    "junk_n_trades": 106,
+    "ALL_n_trades": 1525
+  },
+  "outputs": [
+    "output/summary.json",
+    "output/summary_by_group.csv",
+    "output/trades.parquet"
+  ],
+  "finalized_at": "2026-05-28T22:42:22+09:00"
+}
