@@ -344,6 +344,7 @@ def score_chase_mtf(
     df_1h: pd.DataFrame,
     df_4h: pd.DataFrame,
     df_1d: pd.DataFrame,
+    df_1w: Optional[pd.DataFrame] = None,
     *,
     bounce_lookback_1h: int = 48,
 ) -> pd.Series:
@@ -352,8 +353,9 @@ def score_chase_mtf(
     하드 게이트 (전부 충족해야 점수 0 이상):
       1) 1h MA10 > MA20  (정배열 = bull_stack 의 약식, MA10>MA20만 봄)
       2) 4h MA10 > MA20
-      3) 1d MA10 > MA20 > MA50  (full bull_stack)
-      4) 1d fresh (60일 누적 +50% 이하 + 60일내 +10% 큰양봉 1개 이하)
+      3) 1d MA10 > MA20  (MA50 정배열 요구 제거, 2026-05-27)
+      4) 1w MA10 > MA20  (주봉 정배열, 2026-05-27 추가)
+      (구 fresh 게이트 제거 — 2026-05-27 사용자 지시)
 
     점수 컴포넌트 (게이트 통과 시):
       (a) 1h MA10 bounce 횟수 (48h)         : 2~3회 +60, 1회 +20, 4+회 +30
@@ -381,18 +383,29 @@ def score_chase_mtf(
     df_4h_ind = compute_indicators(df_4h_kr)
     df_1d_ind = compute_indicators(df_1d_kr)
 
-    # 게이트 — 1h+4h+1d 정배열
+    # 게이트 — 1h+4h+1d 정배열 (1d 도 MA10>MA20 만, 2026-05-27 사용자 지시로 MA50 제거)
     bull_1h = (df_1h_ind["ma10"] > df_1h_ind["ma20"]).fillna(False)
     bull_4h = (df_4h_ind["ma10"] > df_4h_ind["ma20"]).fillna(False) \
               .reindex(df_1h_ind.index, method="ffill").fillna(False)
-    bull_1d = (df_1d_ind["bull_stack"] == 1).fillna(False) \
+    bull_1d = (df_1d_ind["ma10"] > df_1d_ind["ma20"]).fillna(False) \
               .reindex(df_1h_ind.index, method="ffill").fillna(False)
 
-    # 게이트 — 1d fresh
-    fresh_1d = _fresh_gate_1d(df_1d_ind) \
-               .reindex(df_1h_ind.index, method="ffill").fillna(False)
+    gates_pass = bull_1h & bull_4h & bull_1d
 
-    gates_pass = bull_1h & bull_4h & bull_1d & fresh_1d
+    # 1w 게이트 (2026-05-27 추가) — 주봉 MA10>MA20. df_1w 가 None 또는 데이터 부족시 통과 처리 X.
+    if df_1w is not None and not df_1w.empty:
+        df_1w_kr = to_kr_schema(df_1w) if "Close" not in df_1w.columns else df_1w
+        if len(df_1w_kr) >= 30:
+            ma10_w = df_1w_kr["Close"].rolling(10).mean()
+            ma20_w = df_1w_kr["Close"].rolling(20).mean()
+            bull_1w = (ma10_w > ma20_w).fillna(False) \
+                      .reindex(df_1h_ind.index, method="ffill").fillna(False)
+            gates_pass = gates_pass & bull_1w
+        else:
+            gates_pass = pd.Series(False, index=df_1h_ind.index)
+    else:
+        # df_1w 없으면 보수적으로 전부 컷 (사용자가 명시적으로 1w 게이트 요구한 상태)
+        gates_pass = pd.Series(False, index=df_1h_ind.index)
 
     # 컴포넌트 점수
     bounces = _ma10_bounces_1h(df_1h_ind, lookback_bars=bounce_lookback_1h)

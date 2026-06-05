@@ -155,11 +155,17 @@ def _symbol_scores(sym: str, end_ts: pd.Timestamp,
 
     df_4h = _resample_to_4h(df_1h)
 
+    # 1w 리샘플 (1d 캐시 → W-MON, label='left', closed='left' — CLAUDE.md 시간 표준)
+    agg_w = {"open": "first", "high": "max", "low": "min", "close": "last", "volume": "sum"}
+    if "amount" in df_1d.columns:
+        agg_w["amount"] = "sum"
+    df_1w = df_1d.resample("W-MON", label="left", closed="left").agg(agg_w).dropna(subset=["close"])
+
     out = {}
 
-    # chase — MTF v3 (단일 함수가 1h+4h+1d 모두 받아 1h Series 반환)
+    # chase — MTF v3 (1h+4h+1d+1w 게이트 통과 시 점수 살아남음)
     try:
-        s_chase = score_chase_mtf(df_1h, df_4h, df_1d).fillna(0.0)
+        s_chase = score_chase_mtf(df_1h, df_4h, df_1d, df_1w).fillna(0.0)
     except Exception:
         s_chase = pd.Series(0.0, index=df_1h.index)
     out["chase"] = s_chase.loc[(s_chase.index >= start_ts) & (s_chase.index <= end_ts)]
