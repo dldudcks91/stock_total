@@ -74,6 +74,16 @@ HL_LOOKBACK_SPECS: dict[str, tuple[str, int]] = {
     "1y": ("1d", 365),
 }
 
+# 그리드 표시용 6개 슬로프 (% per bar). KR/US 와 동일한 1d/1w/1M 기준으로
+# 통일했다 — 사용자가 모든 자산에 같은 잣대로 추세 방향(▲/■/▼)을 보고 싶어함.
+# 1M 은 1d 캐시에서 30 일 stride 로 근사 (월별 28-31일 차이는 추세 방향
+# 판정에 영향 미미). 1h/4h 의 ``slope{p}__{label}`` 각도 컬럼과는 별도.
+SLOPE_SPECS_STOCK_GRAIN: dict[str, tuple[str, int]] = {
+    "1d": ("1d", 1),
+    "1w": ("1d", 7),
+    "1M": ("1d", 30),
+}
+
 HOUR_MS = 3_600_000
 DAY_MS = 86_400_000
 
@@ -239,6 +249,14 @@ def compute_reference_levels(
             need_h = max(need_h, req)
         else:
             need_d = max(need_d, req)
+    # slope_pct (1d/1w/1M MA × short/long) — 1M = stride 30 × MA20 = 600 일
+    # 이라 daily 캐시 tail 이 1y(365) 보다 훨씬 길어야 함.
+    for (gran, stride) in SLOPE_SPECS_STOCK_GRAIN.values():
+        req = (max_ma + slope_lookback) * stride + 2
+        if gran == "1h":
+            need_h = max(need_h, req)
+        else:
+            need_d = max(need_d, req)
 
     prev_keys_h = [f"prev_{n}h" for n in periods_h]
     prev_keys_d = [f"prev_{n}d" for n in periods_d]
@@ -248,10 +266,18 @@ def compute_reference_levels(
     for (label, _, _) in parsed_ma:
         ma_cols.extend([f"ma{short}__{label}", f"ma{long_}__{label}"])
         slope_cols.extend([f"slope{short}__{label}", f"slope{long_}__{label}"])
+    # 그리드 표시용 slope_pct (% per bar). 1d/1w/1M 6개.
+    slope_pct_cols: list[str] = []
+    for label in SLOPE_SPECS_STOCK_GRAIN.keys():
+        slope_pct_cols.extend([
+            f"slope_pct_ma{short}__{label}", f"slope_pct_ma{long_}__{label}",
+        ])
     hl_cols: list[str] = []
     for (label, _, _) in parsed_hl:
         hl_cols.extend([f"high__{label}", f"low__{label}"])
-    none_cols = prev_keys_h + prev_keys_d + ma_cols + slope_cols + hl_cols
+    none_cols = (
+        prev_keys_h + prev_keys_d + ma_cols + slope_cols + slope_pct_cols + hl_cols
+    )
 
     rows = []
     for sym in symbols:
@@ -319,6 +345,40 @@ def compute_reference_levels(
                             ma_l, ma_l_back, slope_lookback,
                         )
 
+        # ── Slope % per bar (1d/1w/1M MA10/20) — KR/US 와 동일 잣대 ──
+        # MA[t] / MA[t-1] 차분을 직전 MA 로 정규화. ▲(양) / ■(평탄) / ▼(음)
+        # 셀 표시는 _bitget_grid 의 임계값 (일 ±0.10 / 주 ±0.30 / 월 ±0.80) 기준.
+        for label, (gran, stride) in SLOPE_SPECS_STOCK_GRAIN.items():
+            arrs = arrs_h if gran == "1h" else arrs_d
+            bar_ms = HOUR_MS if gran == "1h" else DAY_MS
+            if arrs is None or arrs["close"].size == 0:
+                continue
+            ts_a = arrs["timestamp"]
+            closes_a = arrs["close"]
+            if now_ms - int(ts_a[-1]) > 2 * bar_ms:
+                continue
+            sampled_sp: list[float] = []
+            for k in range(max_ma + slope_lookback):
+                target = now_ms - k * stride * bar_ms - bar_ms
+                val = _close_at_or_before(ts_a, closes_a, target, bar_ms)
+                if val is None:
+                    break
+                sampled_sp.append(val)
+            for p in (short, long_):
+                if len(sampled_sp) >= p + slope_lookback:
+                    ma_now = sum(sampled_sp[:p]) / p
+                    ma_back = sum(
+                        sampled_sp[slope_lookback : slope_lookback + p]
+                    ) / p
+                    if (
+                        ma_back != 0
+                        and math.isfinite(ma_now)
+                        and math.isfinite(ma_back)
+                    ):
+                        row[f"slope_pct_ma{p}__{label}"] = (
+                            (ma_now - ma_back) / ma_back * 100.0 / slope_lookback
+                        )
+
         # ── HL per HL Lookback (raw max/min, price-free) ──
         for (label, gran, num_bars) in parsed_hl:
             arrs = arrs_h if gran == "1h" else arrs_d
@@ -381,12 +441,18 @@ def apply_current_prices(
     for label in ma_intervals:
         out[f"pct_ma{short}__{label}"] = _pct(f"ma{short}__{label}")
         out[f"pct_ma{long_}__{label}"] = _pct(f"ma{long_}__{label}")
-        # Slope is price-independent; pass through from refs unchanged so it
-        # rides along in the same merged frame the grid reads.
+        # Slope (deg, legacy 1h/4h/1d/1w) is price-independent — pass through.
         for p in (short, long_):
             slope_col = f"slope{p}__{label}"
             if slope_col in refs.columns:
                 out[slope_col] = refs[slope_col].values
+    # slope_pct (% per bar, 1d/1w/1M) — 그리드 표시용. ma_intervals 와 분리되어
+    # 있어 항상 통과시킨다.
+    for label in SLOPE_SPECS_STOCK_GRAIN.keys():
+        for p in (short, long_):
+            sc = f"slope_pct_ma{p}__{label}"
+            if sc in refs.columns:
+                out[sc] = refs[sc].values
     for label in hl_lookbacks:
         hi_col, lo_col = f"high__{label}", f"low__{label}"
         if hi_col in refs.columns:

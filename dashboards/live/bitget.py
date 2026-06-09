@@ -36,7 +36,6 @@ import pandas as pd
 from data.loader import load_ohlcv
 from data.sources.bitget_live import SNAPSHOT_PATH, load_snapshot
 from dashboards._precompute import load_recs, load_refs, precompute_status
-from dashboards._stock_grid import add_tag_columns, collect_tag_changes
 from dashboards.live._bitget_grid import (
     BITGET_PAGE_CSS,
     COLUMN_LABELS,
@@ -388,7 +387,6 @@ def render(st: Any) -> None:
 
         # Per-symbol notes (memo column).
         notes = st.session_state.setdefault("bitget_notes", _load_notes())
-        df = add_tag_columns(df, "symbol", notes)
 
         SEL_KEY = "bitget_sel_symbol"
         selected_symbol: Optional[str] = st.session_state.get(SEL_KEY)
@@ -413,11 +411,6 @@ def render(st: Any) -> None:
             theme="streamlit",
             key=grid_key,
         )
-
-        # Persist A/B/C tag edits (silent, no rerun).
-        edited_df = grid_resp.get("data")
-        if edited_df is not None and collect_tag_changes(edited_df, "symbol", notes):
-            _save_notes(notes)
 
         # Selection → chart panel.
         sel_rows = grid_resp.get("selected_rows")

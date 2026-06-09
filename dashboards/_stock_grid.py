@@ -62,13 +62,10 @@ DEFAULT_HL_LOOKBACK: str = "1y"
 
 MA_PERIODS: tuple[int, int] = (10, 20)
 
-# A/B/C 라벨 태그 — 메모 컬럼을 대체. 종목별로 여러 개 독립 토글 가능
-# (multi-select). 저장은 notes dict 에 ``"A,C"`` 같은 쉼표결합 문자열로
-# (_notes.json 경로 재사용). df 에는 ``tag_A`` / ``tag_B`` / ``tag_C`` bool
-# 컬럼으로 풀어서 각 셀을 체크박스로 토글한다.
-TAG_LABELS: tuple[str, ...] = ("A", "B", "C")
-# 라벨별 체크 시 셀 배경색 (A 초록 / B 주황 / C 회색).
-TAG_BG: dict[str, str] = {"A": "#E6F4EA", "B": "#FEF3E2", "C": "#ECEFF1"}
+# 슬로프 임계값 (% per bar). |slope_pct| ≤ 임계 → ■(평탄), > +임계 → ▲(양),
+# < -임계 → ▼(음). MA 1봉 차분을 직전 MA 로 나눠 정규화한 값이라 자산 무관.
+# 사용자 합의: 차트로 직접 검증하므로 ▲/■/▼ 분류만 적절히 되면 됨.
+SLOPE_THRESHOLDS: dict[str, float] = {"1d": 0.10, "1w": 0.30, "1M": 0.80}
 
 # Tail size handed to the cache loader. 5y (≈ 1260 trading days) covers the
 # longest HL lookback; 20 monthly bars (≈ 440 trading days) for 1M MA20 fits
@@ -181,12 +178,14 @@ def compute_reference_levels(
 
     prev_keys = [f"prev_{n}d" for n in periods_d]
     ma_cols: list[str] = []
+    slope_cols: list[str] = []
     for iv in ma_intervals:
         ma_cols.extend([f"ma{short}__{iv}", f"ma{long_}__{iv}"])
+        slope_cols.extend([f"slope_pct_ma{short}__{iv}", f"slope_pct_ma{long_}__{iv}"])
     hl_cols: list[str] = []
     for lb in hl_lookbacks:
         hl_cols.extend([f"high__{lb}", f"low__{lb}"])
-    none_cols = prev_keys + ma_cols + hl_cols
+    none_cols = prev_keys + ma_cols + slope_cols + hl_cols
 
     rows: list[dict[str, Any]] = []
     for sym in symbols:
@@ -239,10 +238,24 @@ def compute_reference_levels(
                 ma_s = float(bar_close[-short:].mean())
                 if np.isfinite(ma_s):
                     row[f"ma{short}__{iv}"] = ma_s
+                    # slope_pct = (MA[t] − MA[t-1]) / MA[t-1] × 100 (% per bar).
+                    # MA[t-1] = SMA over bars [-short-1 .. -1] (한 봉 뒤 시점).
+                    if bar_close.size >= short + 1:
+                        ma_s_back = float(bar_close[-short - 1:-1].mean())
+                        if np.isfinite(ma_s_back) and ma_s_back != 0:
+                            row[f"slope_pct_ma{short}__{iv}"] = (
+                                (ma_s - ma_s_back) / ma_s_back * 100.0
+                            )
             if bar_close.size >= long_:
                 ma_l = float(bar_close[-long_:].mean())
                 if np.isfinite(ma_l):
                     row[f"ma{long_}__{iv}"] = ma_l
+                    if bar_close.size >= long_ + 1:
+                        ma_l_back = float(bar_close[-long_ - 1:-1].mean())
+                        if np.isfinite(ma_l_back) and ma_l_back != 0:
+                            row[f"slope_pct_ma{long_}__{iv}"] = (
+                                (ma_l - ma_l_back) / ma_l_back * 100.0
+                            )
 
         # ── Per-lookback High/Low (now_ts-anchored calendar window) ──
         for lb in hl_lookbacks:
@@ -293,6 +306,12 @@ def apply_current_prices(
     for iv in ma_intervals:
         out[f"pct_ma{short}__{iv}"] = _pct(f"ma{short}__{iv}")
         out[f"pct_ma{long_}__{iv}"] = _pct(f"ma{long_}__{iv}")
+        # Slope is price-independent — pass through unchanged so it travels
+        # alongside in the merged frame the grid reads.
+        for p in (short, long_):
+            sc = f"slope_pct_ma{p}__{iv}"
+            if sc in refs.columns:
+                out[sc] = refs[sc].values
     for lb in hl_lookbacks:
         hi_col, lo_col = f"high__{lb}", f"low__{lb}"
         if hi_col in refs.columns:
@@ -424,6 +443,34 @@ function(params) {
 """)
 
 
+# Slope cell — ▲ (양) / ■ (평탄) / ▼ (음). threshold 는 % per bar 기준이며
+# 컬럼별로 다른 값이 들어가야 하므로 (일/주/월) 헬퍼로 생성한다.
+
+def js_fmt_slope_arrow(threshold: float) -> JsCode:
+    return JsCode(
+        "function(params){"
+        "  const v=params.value;"
+        "  if(v==null||Number.isNaN(v)) return '—';"
+        f"  if(v > {threshold})  return '▲';"
+        f"  if(v < -{threshold}) return '▼';"
+        "  return '■';"
+        "}"
+    )
+
+
+def js_style_slope(threshold: float) -> JsCode:
+    return JsCode(
+        "function(params){"
+        "  const v=params.value;"
+        "  const base={textAlign:'center',fontWeight:'700'};"
+        "  if(v==null||Number.isNaN(v)) return Object.assign({},base,{color:'#888',fontWeight:'400'});"
+        f"  if(v > {threshold})  return Object.assign({{}},base,{{color:'#2A9D8F'}});"
+        f"  if(v < -{threshold}) return Object.assign({{}},base,{{color:'#E63946'}});"
+        "  return Object.assign({},base,{color:'#888',fontWeight:'400'});"
+        "}"
+    )
+
+
 # ---------------------------------------------------------------------------
 # AgGrid options builder (stock variant)
 # ---------------------------------------------------------------------------
@@ -437,6 +484,10 @@ _STOCK_TF_MA_SPECS: list[tuple[str, int]] = [
     ("1M", 10), ("1M", 20),
 ]
 _STOCK_IV_HEADER = {"1d": "1D", "1w": "1W", "1M": "1M"}
+
+# 슬로프 6개 — TF×MA 갭% 와 같은 6쌍을 그대로 재사용. 헤더는 한국어 약어
+# (일/주/월) + MA10/20 으로 좁은 컬럼에 맞춤. ▲/■/▼ 표시는 셀 렌더러 담당.
+_SLOPE_IV_HEADER = {"1d": "일", "1w": "주", "1M": "월"}
 
 
 def build_stock_grid_options(
@@ -463,7 +514,9 @@ def build_stock_grid_options(
         ▸ Symbol (pinned + checkbox), Name, Last, 거래대금, 시총,
           1D-MA10, 1D-MA20, 1W-MA10, 1W-MA20, 1M-MA10, 1M-MA20
             (각 TF×MA 의 price vs MA 갭 %),
-          MA20(게이트), 메모
+          MA20(게이트),
+          일MA10, 일MA20, 주MA10, 주MA20, 월MA10, 월MA20
+            (각 MA 의 기울기 — ▲/■/▼ + 색)
 
     이전의 MA Interval / HL Lookback 토글, 기간 수익률(1d~140d %), High/Low%
     컬럼은 모두 제거됨. 6개 TF×MA 갭 컬럼은 토글 없이 항상 표시된다 (값은
@@ -472,6 +525,7 @@ def build_stock_grid_options(
     """
     REC_KEY = "_rec"   # display-only column; reads gate_pass via JS (MA20 게이트)
     MA_COLS = [f"pct_ma{p}__{iv}" for iv, p in _STOCK_TF_MA_SPECS]
+    SLOPE_COLS = [f"slope_pct_ma{p}__{iv}" for iv, p in _STOCK_TF_MA_SPECS]
 
     visible_order: list[str] = [symbol_col]
     if name_col:
@@ -481,17 +535,14 @@ def build_stock_grid_options(
         visible_order.append(volume_col)
     if market_cap_col:
         visible_order.append(market_cap_col)
-    TAG_COLS = [f"tag_{L}" for L in TAG_LABELS]
     visible_order.extend(MA_COLS)
-    visible_order.extend([REC_KEY, *TAG_COLS])
+    visible_order.append(REC_KEY)
+    visible_order.extend(SLOPE_COLS)
 
     df_grid = df.copy()
-    for placeholder in (*MA_COLS, REC_KEY):
+    for placeholder in (*MA_COLS, REC_KEY, *SLOPE_COLS):
         if placeholder not in df_grid.columns:
             df_grid[placeholder] = None
-    for tcol in TAG_COLS:
-        if tcol not in df_grid.columns:
-            df_grid[tcol] = False
 
     visible_present = [c for c in visible_order if c in df_grid.columns]
     hidden_present = [c for c in df_grid.columns if c not in visible_present]
@@ -570,21 +621,20 @@ def build_stock_grid_options(
         valueFormatter=JS_FMT_REC, cellStyle=JS_STYLE_REC,
     )
 
-    # ── A/B/C 태그 (멀티 체크박스, 메모 대체) ──
-    # 각 라벨은 독립 토글 — 한 종목에 여러 개 체크 가능. 단일클릭 토글
-    # (opts.singleClickEdit). 체크 시 라벨별 배경색 (TAG_BG).
-    for L in TAG_LABELS:
+    # ── MA10/MA20 슬로프 6개 (일/주/월 × MA10/MA20) ──
+    # 각 셀은 ▲(양) / ■(평탄) / ▼(음) + 색상. 임계값 (% per bar):
+    # 일봉 ±0.10 / 주봉 ±0.30 / 월봉 ±0.80. 셀 내부는 슬로프 값(% per bar)을
+    # numeric 으로 들고 있으므로 헤더 클릭 정렬은 signed 값 기준 (양수 큰 게 위).
+    for iv, p in _STOCK_TF_MA_SPECS:
+        col = f"slope_pct_ma{p}__{iv}"
+        th = SLOPE_THRESHOLDS[iv]
         gob.configure_column(
-            f"tag_{L}", headerName=L, width=46, minWidth=36, editable=True,
-            cellRenderer="agCheckboxCellRenderer",
-            cellEditor="agCheckboxCellEditor",
-            cellStyle=JsCode(
-                "function(params){"
-                "  var s={display:'flex',alignItems:'center',justifyContent:'center'};"
-                f"  if(params.value) s.backgroundColor='{TAG_BG[L]}';"
-                "  return s;"
-                "}"
-            ),
+            col, headerName=f"{_SLOPE_IV_HEADER[iv]}MA{p}", width=44, minWidth=34,
+            valueFormatter=js_fmt_slope_arrow(th),
+            cellStyle=js_style_slope(th),
+            type=["numericColumn"],
+            headerTooltip=f"{_SLOPE_IV_HEADER[iv]}봉 MA{p} 기울기 (% per bar, "
+                          f"|±{th:g}| 이내 평탄)",
         )
 
     # ── Hide everything else ──
@@ -610,8 +660,6 @@ def build_stock_grid_options(
         "suppressRowClickSelection": True,
         "rowSelection": "single",
         "enableCellTextSelection": True,
-        # A/B/C 태그 체크박스를 한 번 클릭으로 토글 (더블클릭 불필요).
-        "singleClickEdit": True,
     })
     # flex 레이아웃으로 컬럼 폭을 컨테이너에 자동 분배 — sizeColumnsToFit 처럼
     # "한 시점 폭으로 고정"하지 않으므로 fragment 리런·차트 다이얼로그 reflow 때
@@ -837,57 +885,6 @@ def save_notes(path: Path, notes: dict) -> None:
         json.dumps(notes, ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
-
-
-# ---------------------------------------------------------------------------
-# A/B/C tag helpers (memo column → multi-select checkbox tags)
-# ---------------------------------------------------------------------------
-
-def parse_tags(val: Any) -> set:
-    """``"A,C"`` (notes 값) → ``{"A", "C"}`` (유효 라벨만)."""
-    if not isinstance(val, str):
-        return set()
-    return {t.strip() for t in val.split(",") if t.strip() in TAG_LABELS}
-
-
-def tags_to_str(tags: "set | list") -> str:
-    """라벨 집합 → ``"A,C"`` 정규 문자열 (TAG_LABELS 순서)."""
-    return ",".join(L for L in TAG_LABELS if L in set(tags))
-
-
-def add_tag_columns(df: pd.DataFrame, code_col: str, notes: dict) -> pd.DataFrame:
-    """df 에 ``tag_A`` / ``tag_B`` / ``tag_C`` bool 컬럼을 채워 반환.
-
-    각 종목코드의 notes 값(``"A,C"``)을 파싱해 라벨 포함 여부를 bool 로 푼다.
-    """
-    codes = df[code_col].astype(str)
-    tagsets = codes.map(lambda c: parse_tags(notes.get(c, "")))
-    for L in TAG_LABELS:
-        df[f"tag_{L}"] = tagsets.map(lambda s, _L=L: _L in s)
-    return df
-
-
-def collect_tag_changes(edited_df: pd.DataFrame, code_col: str, notes: dict) -> bool:
-    """그리드에서 토글된 ``tag_*`` 체크 상태를 notes dict 에 반영.
-
-    Returns ``True`` 면 변경이 있어 저장이 필요하다.
-    """
-    tag_cols = [f"tag_{L}" for L in TAG_LABELS]
-    if code_col not in edited_df.columns or not all(c in edited_df.columns for c in tag_cols):
-        return False
-    changed = False
-    series = [edited_df[c] for c in tag_cols]
-    for code, *flags in zip(edited_df[code_col].astype(str), *series):
-        selected = [L for L, fl in zip(TAG_LABELS, flags) if bool(fl)]
-        new_val = tags_to_str(selected)
-        cur_val = tags_to_str(parse_tags(notes.get(code, "")))
-        if new_val != cur_val:
-            if new_val:
-                notes[code] = new_val
-            else:
-                notes.pop(code, None)
-            changed = True
-    return changed
 
 
 def render_chart_title(st: Any, title: str) -> None:

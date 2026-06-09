@@ -28,10 +28,8 @@ from dashboards._precompute import load_recs, load_refs, precompute_status
 from dashboards._stock_grid import (
     PERIODS_D,
     STOCK_PAGE_CSS,
-    add_tag_columns,
     apply_current_prices,
     build_stock_grid_options,
-    collect_tag_changes,
     load_notes,
     render_chart_memo,
     render_chart_title,
@@ -309,7 +307,6 @@ def render(st: Any) -> None:
             return
 
         notes = st.session_state.setdefault("nas_notes", load_notes(_NOTES_PATH))
-        df = add_tag_columns(df, "symbolCode", notes)
 
         SEL_KEY = "nas_sel_symbol"
         selected_symbol: Optional[str] = st.session_state.get(SEL_KEY)
@@ -336,10 +333,6 @@ def render(st: Any) -> None:
             theme="streamlit",
             key=grid_key,
         )
-
-        edited_df = grid_resp.get("data")
-        if edited_df is not None and collect_tag_changes(edited_df, "symbolCode", notes):
-            save_notes(_NOTES_PATH, notes)
 
         sel_rows = grid_resp.get("selected_rows")
         new_sel: Optional[str] = None

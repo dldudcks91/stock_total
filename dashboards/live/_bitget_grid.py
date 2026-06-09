@@ -23,9 +23,10 @@ from dashboards._stock_grid import (
     JS_ABS_COMPARATOR,
     JS_FMT_REC,
     JS_STYLE_REC,
-    TAG_BG,
-    TAG_LABELS,
+    SLOPE_THRESHOLDS,
     apply_flex_layout,
+    js_fmt_slope_arrow,
+    js_style_slope,
 )
 
 
@@ -121,6 +122,15 @@ _TF_MA_SPECS: list[tuple[str, int]] = [
 ]
 _IV_HEADER = {"1h": "1h", "4h": "4h", "1d": "1D", "1w": "1W"}
 
+# 슬로프 6개 (KR/US 와 동일한 1d/1w/1M × MA10/20). 임계값/표시는 _stock_grid 와
+# 공유 — js_fmt_slope_arrow / js_style_slope 가 ▲/■/▼ + 색을 담당.
+_SLOPE_TF_MA_SPECS: list[tuple[str, int]] = [
+    ("1d", 10), ("1d", 20),
+    ("1w", 10), ("1w", 20),
+    ("1M", 10), ("1M", 20),
+]
+_SLOPE_IV_HEADER = {"1d": "일", "1w": "주", "1M": "월"}
+
 
 def build_grid_options(
     df: pd.DataFrame,
@@ -132,30 +142,26 @@ def build_grid_options(
         ▸ checkbox + Symbol (pinned), Mark, 거래대금, 시총,
           1h-MA10, 1h-MA20, 4h-MA10, 4h-MA20,
           1D-MA10, 1D-MA20, 1W-MA10, 1W-MA20  (각 TF×MA 의 price vs MA 갭 %),
-          MA20(게이트), 메모
-
-    이전의 MA Interval / HL Lookback 토글, MA10∠/MA20∠ slope, High/Low%,
-    Funding 컬럼은 모두 제거됨. 8개 TF×MA 갭 컬럼은 토글 없이 항상 표시된다
-    (값은 ``pct_ma{p}__{iv}`` df 컬럼을 그대로 field 로 읽음).
+          MA20(게이트),
+          일MA10, 일MA20, 주MA10, 주MA20, 월MA10, 월MA20
+            (각 MA 의 기울기 — ▲/■/▼ + 색)
     """
     REC_KEY = "_rec"   # display-only; reads gate_pass via JS (MA20 게이트)
     MA_COLS = [f"pct_ma{p}__{iv}" for iv, p in _TF_MA_SPECS]
-    TAG_COLS = [f"tag_{L}" for L in TAG_LABELS]
+    SLOPE_COLS = [f"slope_pct_ma{p}__{iv}" for iv, p in _SLOPE_TF_MA_SPECS]
 
     VISIBLE_ORDER = [
         "symbol",
         "markPrice", "quoteVolume", "marketCap",
         *MA_COLS,
-        REC_KEY, *TAG_COLS,
+        REC_KEY,
+        *SLOPE_COLS,
     ]
 
     df_grid = df.copy()
-    for placeholder in (*MA_COLS, REC_KEY):
+    for placeholder in (*MA_COLS, REC_KEY, *SLOPE_COLS):
         if placeholder not in df_grid.columns:
             df_grid[placeholder] = None
-    for tcol in TAG_COLS:
-        if tcol not in df_grid.columns:
-            df_grid[tcol] = False
 
     # Signed numeric columns always sort by |value| — gap%. Sign matters for the
     # cell color but the user wants to rank by magnitude (biggest gaps), not sign.
@@ -214,20 +220,19 @@ def build_grid_options(
         valueFormatter=JS_FMT_REC, cellStyle=JS_STYLE_REC,
     )
 
-    # ── A/B/C 태그 (멀티 체크박스, 메모 대체) ──
-    # 각 라벨 독립 토글 — 한 종목에 여러 개 체크 가능. 단일클릭 토글.
-    for L in TAG_LABELS:
+    # ── MA10/MA20 슬로프 6개 (일/주/월 × MA10/MA20) ──
+    # ▲(양) / ■(평탄) / ▼(음) + 색. 임계값 % per bar: 일 ±0.10 / 주 ±0.30 /
+    # 월 ±0.80. 헤더 클릭 정렬은 signed 값 기준 (양수 큰 게 위).
+    for iv, p in _SLOPE_TF_MA_SPECS:
+        col = f"slope_pct_ma{p}__{iv}"
+        th = SLOPE_THRESHOLDS[iv]
         gob.configure_column(
-            f"tag_{L}", headerName=L, width=46, minWidth=36, editable=True,
-            cellRenderer="agCheckboxCellRenderer",
-            cellEditor="agCheckboxCellEditor",
-            cellStyle=JsCode(
-                "function(params){"
-                "  var s={display:'flex',alignItems:'center',justifyContent:'center'};"
-                f"  if(params.value) s.backgroundColor='{TAG_BG[L]}';"
-                "  return s;"
-                "}"
-            ),
+            col, headerName=f"{_SLOPE_IV_HEADER[iv]}MA{p}", width=44, minWidth=34,
+            valueFormatter=js_fmt_slope_arrow(th),
+            cellStyle=js_style_slope(th),
+            type=["numericColumn"],
+            headerTooltip=f"{_SLOPE_IV_HEADER[iv]}봉 MA{p} 기울기 (% per bar, "
+                          f"|±{th:g}| 이내 평탄)",
         )
 
     # ── Hide everything not in VISIBLE_ORDER ──
@@ -254,8 +259,6 @@ def build_grid_options(
         "suppressRowClickSelection": True,
         "rowSelection": "single",
         "enableCellTextSelection": True,
-        # A/B/C 태그 체크박스를 한 번 클릭으로 토글 (더블클릭 불필요).
-        "singleClickEdit": True,
     })
     # flex 레이아웃으로 컬럼 폭을 컨테이너에 자동 분배 — sizeColumnsToFit 처럼
     # "한 시점 폭으로 고정"하지 않으므로 fragment 리런·차트 다이얼로그 reflow 때
