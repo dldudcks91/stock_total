@@ -1,7 +1,8 @@
-# Strategies v2 — 단순화 설계 (확정)
+# Strategies v2 — ma_touch 단일 룰 (운영 중)
 
-> **상태**: 사용자 합의 완료. PLAN 골격대로 구현 진행.
-> 사용자 신조: **"시작 전 무조건 찍고 간다"** — MA 터치 자리만 잡음. 추격은 후순위.
+> **상태**: 코드 본체 적용 완료 + 3 자산 (KR/Crypto/NASDAQ) `_ma_touch.parquet` 재생성 완료. 다운스트림(대시보드/alerts) 정리 미완.
+> **사용자 신조**: **"시작 전 무조건 찍고 간다"** — MA 터치 자리만 잡음. 추격은 후순위.
+> **최신 commit**: `06096c5` (origin/main).
 
 ## 0. 배경
 
@@ -13,215 +14,205 @@
 - TF 가 일봉 한 차원 — 사용자가 원하는 주봉/월봉/분기봉/년봉 자리 검출 불가
 - pullback 과 chase 의 핵심 룰(MA10·20 터치) 겹쳐 점수 분리 약함
 
-## 1. 자리 정의 — `ma_touch` ("정배열 + MA10/20 터치")
+## 1. ma_touch 룰 (운영 표준)
 
-5 TF (1D / 1W / 1M / 1Q / 1Y) 각각에서 정배열 차트의 MA10 또는 MA20 터치.
-
-**트레이더 원칙**: 어떤 종목이든 진입 전 MA10 또는 MA20 을 한 번 찍는다. 찍지 않고 가속하는 자리(추격)는 ma_touch 대상 X — 별도 자리(추후 `trend_strong`) 로 분리.
-
-## 2. TF 평가 룰
-
-**모든 TF 동시 평가** — 종목별로 가능한 모든 TF (1D~1Y) 에서 시그널 검사. dominant TF 안 박음. 사용자가 차트 보면서 자기 카테고리(BTC=1M, 삼성=1M, DOGE=1W 등) 직관 적용.
-
-### TF별 평가 종류 자동 분기
-
-| TF | MA20 가능 조건 → **full 평가** | MA10 만 가능 → **partial 평가** | 부가 의미 |
-|---|---|---|---|
-| **1D** | 일봉 ≥ 20봉 | (1D 는 partial 사실상 X) | 단기 자리 |
-| **1W** | 주봉 ≥ 20봉 (~5개월 상장+) | 주봉 10~20 (~2~5개월 상장) | 중기 자리 |
-| **1M** | 월봉 ≥ 20봉 (~20개월+) | 월봉 10~20 (~10~20개월) | 큰 흐름 자리 |
-| **1Q** | 분기봉 ≥ 20봉 (5년+) | 분기봉 10~20 (2.5~5년) | **매우 강한 자리** |
-| **1Y** | 년봉 ≥ 20봉 (20년+, 거의 없음) | 년봉 ≥ 10봉 (10년+) | **압도적 강한 자리** (큰 사이클 시작) |
-
-> **의미**: 1Q / 1Y 의 MA 터치는 5~10년 사이클의 진입 자리 — 매우 강한 기회. 의도적으로 평가에 포함.
-
-## 3. ma_touch FULL 시그널 (MA10 + MA20 둘 다 존재)
-
-> **의미**: 정배열 추세 안에서 MA 터치 = 가장 보편적인 진입 자리.
-
-게이트 (모두 만족):
-
-| # | 조건 | 의미 |
-|---|---|---|
-| 1 | `close > ma10 > ma20` | 정배열 |
-| 2 | `slope_pct_ma10 > 0` AND `slope_pct_ma20 > 0` | 두 선 모두 상승 중 |
-| 3 | `\|dist_to_ma10\| < 3%` OR `\|dist_to_ma20\| < 3%` | 어느 한 선에 터치 |
-
-→ 통과 시 `signal_ma_touch_{TF}_full = True`.
-
-부가 (게이트 X, 출력 라벨만):
-- `angle_strength_label_{TF}` — MA20 각도 기반
-  - `weak` (<15°) / `medium` (15~30°) / `strong` (≥30°)
-
-## 4. ma_touch PARTIAL 시그널 (MA10 만 존재)
-
-> **의미**: 신생주가 큰 TF (월/주/분기/년) MA10 위에서 안 깨고 노는 = 큰 사이클의 **시작점**.
-
-게이트 (모두 만족):
-
-| # | 조건 | 의미 |
-|---|---|---|
-| 1 | `close > ma10` | MA10 위에 있음 |
-| 2 | `slope_pct_ma10 > 0` | MA10 우상향 |
-| 3 | `\|dist_to_ma10\| < 3%` | MA10 근접 (full 과 동일 임계) |
-| 4 | `close > ma10` 최근 **3봉 연속** 유지 | 한 번 깼다 다시 올라온 케이스 제외 — 강한 흐름 확인 |
-
-→ 통과 시 `signal_ma_touch_{TF}_partial = True`.
-
-> **해석**: partial=True 종목은 MA20 만들지 못한 신생주 — 사용자가 차트 한 번 더 보고 "진짜 추세 시작인지 펌프&덤프인지" 판단. 자동 필터링은 partial 컬럼만 사용.
-
-## 5. 출력 row 스키마
-
-> **의미**: 한 종목 × 한 평가시점에서 모든 TF 의 시그널 + 정량 위치 + 각도 정보가 다 박힘. 사용자가 한눈에 어느 TF 가 잡혔는지 + 큰 흐름 (1M/1Q/1Y angle) 도 같이 확인.
-
-### 기본 컬럼
-
-| 컬럼 (풀네임) | 타입 | 의미 |
-|---|---|---|
-| `symbol` | str | 종목 코드 (KR 6자리, US 티커, Crypto Bitget 심볼) |
-| `asset` | str | "kr" / "us" / "crypto" |
-| `close_price` | float | 최신 종가 (원/USD/USDT) |
-| `evaluated_at_kst` | str | 평가 시각 KST ISO |
-
-### TF별 컬럼 (5 TF × 8 컬럼 = 40 컬럼)
-
-각 TF ∈ {1D, 1W, 1M, 1Q, 1Y} 에 대해:
-
-| 컬럼 | 타입 | 의미 |
-|---|---|---|
-| `signal_ma_touch_{TF}_full` | bool / NaN | MA20 가능 + full 룰 통과 |
-| `signal_ma_touch_{TF}_partial` | bool / NaN | MA10 만 + partial 룰 통과 |
-| `ma10_{TF}_price` | float / NaN | TF MA10 종가 기준 |
-| `ma20_{TF}_price` | float / NaN | TF MA20 종가 기준 (1Y 는 NaN 빈도 높음) |
-| `dist_to_ma10_{TF}_pct` | float | (close/ma10 − 1) × 100 |
-| `dist_to_ma20_{TF}_pct` | float | (close/ma20 − 1) × 100 |
-| `angle_ma10_{TF}_degree` | float | `degrees(arctan(slope_ma10 / 5))` — 5봉 윈도우 봉당 기울기 |
-| `angle_ma20_{TF}_degree` | float | `degrees(arctan(slope_ma20 / 5))` |
-| `angle_strength_label_{TF}` | str | MA20 각도 기반 — weak/medium/strong |
-
-### 파생 라벨 (cross-TF 종합)
-
-| 컬럼 | 타입 | 의미 |
-|---|---|---|
-| `signal_ma_touch_timeframes_passed` | str | 통과 TF 콤마 조인 (예: `"1W,1M,1Q"`) |
-| `count_signal_ma_touch_total` | int | 통과한 TF 수 (full + partial) |
-| `count_angle_positive_ma20` | int | MA20 각도 양수인 TF 수 (큰 흐름 정합도) |
-
-## 6. 데이터 흐름
+### 1-1. TF 선정 (자동 분기)
 
 ```
-[자산별 raw load]              [자산 무관 normalize]
-data.loader.load_ohlcv          normalize_columns
-   (asset, symbol, "1d")    →   (소문자 close, volume, ...)  →   df_d_norm
-                                                                    │
-                       ┌────────────┬────────────┬────────────┬─────┴──────┐
-                       ▼            ▼            ▼            ▼            ▼
-                   resample("W") resample("M") resample("Q") resample("Y") (그대로)
-                       │            │            │            │            │
-                     df_w         df_m         df_q         df_y         df_d
-                       │            │            │            │            │
-                       └────────────┴────────────┴────────────┴────────────┘
-                                              ▼
-                            mtf_indicators.compute(df_each)
-                            → MA10/20, slope_pct, angle_deg, dist_to_ma10/20
-                                              ▼
-                       per TF:  signal_ma_touch(df_tf)
-                               → full / partial / None  (데이터 길이 자동 분기)
-                                              ▼
-                                     row dict 조립 (40+ 컬럼)
+if 월봉 봉수 ≥ 10  (≈ 10개월+ 상장):
+    평가 TF = [1W, 1M, 1Q, 1Y]    ← 1D 제외 (단기 노이즈 차단)
+else:
+    평가 TF = [1D, 1W, 1M, 1Q, 1Y]
 ```
 
-자산별 차이는 **load 단계** (대소문자 normalize) 에서만 흡수. 그 외 자산 무관 동일 코드.
+**의미**: 큰 흐름 잡힌 안정 종목은 1D 단기 자리 패스. 신생주만 1D 도 본다.
 
-## 7. 모듈 배치
+### 1-2. 정배열 (B 정의)
 
-### 공통 (자산 무관)
+```
+정배열 = MA10 > MA20  AND  close > MA20
+```
+
+> **(A) 3선 정배열** (`close > MA10 > MA20`) 보다 풀림. close 가 MA10 아래로 잠시 빠지는 wick 자리 (예: STG 6/6 1W) 도 catch 하기 위함.
+
+### 1-3. 상승 추세
+
+```
+slope_pct_MA10 > 0  AND  slope_pct_MA20 > 0
+slope_pct = MA.pct_change(5)   (5봉 윈도우)
+```
+
+### 1-4. MA 터치 (롱 부등식)
+
+```
+임계        = 0.2 × range_7
+range_7    = 최근 7봉 (high − low) 평균 (절대값, 그 TF 기준)
+today_low  = 일봉 마지막 봉의 low  (모든 TF 평가에 공통 사용)
+
+통과 조건  = (today_low − MA10 ≤ 임계)  OR  (today_low − MA20 ≤ 임계)
+```
+
+**핵심 특성**:
+1. **롱 부등식** — low 가 MA 아래는 무한 OK (가로지름 인정). 위로는 임계 안만 OK.
+2. **today_low 통일** — 1Q/1Y 평가에도 일봉 마지막 봉 low 사용. 큰 TF 봉의 "분기 안 어느 시점의 low" (옛 low) 가 아닌 **현재 시점 매수 자리**.
+   - 효과: 추격 자리 자동 cut (예: 삼성전기 6/11 / 1Q MA10 = 34.7만 vs today_low 169.1만 → cut).
+
+### 1-5. PARTIAL 시그널 (신생주, MA10 만 있는 TF)
+
+```
+① close > MA10
+② slope_MA10 > 0
+③ today_low − MA10 ≤ 임계
+④ close > MA10 가 최근 3봉 연속 유지
+```
+
+## 2. 모듈 구조
 
 ```
 scripts/_common/
-├── mtf_loader.py          # load_ohlcv + normalize + resample(W/M/Q/Y)
-├── tf_selector.py         # 데이터 길이 분기 (TF별 full/partial/skip 결정)
-├── mtf_indicators.py      # compute(df) → df + ma10/20 + slope_pct + angle_deg + dist
-└── signals.py             # signal_ma_touch(df_tf, has_ma20) → (kind, bool)
-```
+├── mtf_loader.py          ← load_normalized_daily + resample_multi_tf (5 TF dict)
+├── tf_selector.py         ← determine_eval_kind (full/partial/skip) + select_eval_tfs
+├── mtf_indicators.py      ← compute_mtf_indicators (MA10/20, slope, angle, dist)
+├── signals.py             ← signal_ma_touch_full / signal_ma_touch_partial / evaluate_tf
+├── recommend_runner.py    ← _row_for_symbol + evaluate_universe + save_recommendations
+├── crypto_filters.py      ← is_stock_token + filter_crypto_universe
+├── build_recs_table.py    ← /recs 스킬 CLI
+└── run_helper.py          ← study skill helper (옛)
 
-기존 `scripts/_common/indicators.py` (대문자 가정 옛 모듈) 는 새 시스템에서 사용 X — 폐기 후보.
-
-### 자산별 (3 폴더)
-
-```
 scripts/{kr,crypto,nasdaq}/ma_touch/
-├── PLAN.md             # 자산별 universe 정의 / 비고
-└── recommend.py        # 전체 universe 스캔 → 결과 list[dict]
+├── PLAN.md                ← 자산별 비고
+├── __init__.py
+└── recommend.py           ← runner wrapper
+
+.claude/skills/recs/
+└── SKILL.md               ← /recs 트리거
 ```
 
-자산별 `recommend.py` 는 wrapper:
-- universe 로드 (KR: kospi 코드 / US: nasdaq 티커 / Crypto: USDT-M 심볼)
-- 종목마다 `_common.mtf_loader.load_and_resample` + `signals.signal_ma_touch` 호출
-- 결과 dict 리스트 → parquet 또는 stdout
+## 3. 출력 스키마 (`_ma_touch.parquet`)
 
-자산별 차이는 universe 와 그 정도. 룰은 동일.
-
-## 8. 자산별 임계값 (모두 동일)
-
-| 파라미터 | 값 | 비고 |
-|---|---|---|
-| `DIST_TH_MA10` | 3% | full + partial 동일 |
-| `DIST_TH_MA20` | 3% | full only |
-| `ANGLE_MEDIUM_DEG` | 15 | medium 라벨 임계 |
-| `ANGLE_STRONG_DEG` | 30 | strong 라벨 임계 |
-| `PARTIAL_CONSEC_BARS` | 3 | close > ma10 연속 봉 수 |
-| `MA10_PERIOD` | 10 | MA10 봉 수 |
-| `MA20_PERIOD` | 20 | MA20 봉 수 |
-| `SLOPE_WINDOW` | 5 | slope_pct 계산 윈도우 (봉 수) |
-
-> **사용자 결정**: "자산별 룰 차이 없음 — 모두 동일". 백테스트/시각 검증 후 자산별 튜닝 필요 시 자산별 PLAN.md 에 override 박음.
-
-## 9. 측정 계획 (D2 — on-demand 최종 결정)
-
-> **목적**: 5 TF × 전체 universe 의 indicator 계산 시간 측정. 충분히 빠르면 on-demand. 느리면 `_refs.parquet` 확장.
-
-스크립트: `scripts/_common/mtf_loader_bench.py` (임시).
-
-측정 항목:
-1. 전체 universe 1회 wall time (KR ~948 / NASDAQ ~수천 / Crypto ~400)
-2. 항목별 breakdown — load / resample / indicator / signal
-3. 기준선: 추천 1회 호출 latency **5초 이내** OK / **30초+** 면 precompute 필요
-
-## 10. 다운스트림 정리 (별도 단계)
-
-| 대상 | 작업 |
+| 컬럼 | 의미 |
 |---|---|
-| `dashboards/_precompute.py` | 5 전략 import 삭제 → 새 `ma_touch` recommend 호출 |
-| `dashboards/_recommendation.py` | 5 전략 import 제거 |
-| `dashboards/pages/{4_KOSPI, 5_NASDAQ, 3_Bitget}.py` | 표 컬럼이 옛 5 전략 점수 — 새 스키마 (40+ 컬럼 중 핵심 노출) 로 교체 |
-| `data/cache/{kr,us}/_recs.parquet` | 옛 스키마 stale — 새 전략 1회 돌려 재생성 |
-| `data/cache/crypto/_recs.parquet` | 없음 — 새로 생성 |
-| `CLAUDE.md` | "현재 전략 목록" / "현재 Skill 목록" 표 업데이트. backtest/strategies/ 표 폐기 |
+| `symbol`, `asset`, `close_price`, `evaluated_at_kst` | 기본 |
+| `signal_ma_touch_{TF}_full` (bool/NaN) | TF 별 full 통과 |
+| `signal_ma_touch_{TF}_partial` (bool/NaN) | TF 별 partial 통과 |
+| `ma10_{TF}_price`, `ma20_{TF}_price` | TF MA |
+| `dist_to_ma10_{TF}_pct`, `dist_to_ma20_{TF}_pct` | close 기준 거리 |
+| `angle_ma10_{TF}_degree`, `angle_ma20_{TF}_degree` | arctan(slope/5) → degree |
+| `angle_strength_label_{TF}` | weak/medium/strong (MA20 기준) |
+| `signal_ma_touch_timeframes_passed` | "1W,1M" 같이 통과 TF 콤마 조인 |
+| `count_signal_ma_touch_total` | 통과 TF 수 |
+| `count_angle_positive_ma20` | MA20 각도 양수인 TF 수 (큰 흐름 정합도) |
 
-## 11. golden_cross (자리 2) — 후순위
+TF = `1D, 1W, 1M, 1Q, 1Y` (5 종류).
 
-ma_touch 안정화 후 별도 단계로 추가. 본질: "하락 후 전환 + 첫 추세 자리" 잡기. ma_touch 의 정배열 게이트가 잘라내는 자리 보완.
+## 4. /recs 스킬
 
-룰 후보 (확정 X):
-- 직전 N봉 안에 `ma10 × ma20` 상향 cross 발생
-- 현재 `close > ma10` 유지
-- `ma10_slope > 0` 전환 확인
+`data/cache/{asset}/_ma_touch.parquet` → 사용자 표 형식:
 
-## 12. 합의 / 미합의 / Open Question
+```
+종목명 | 코드 | 시총(조 or B$) | 거래량(만주 or 코인)
+| 현재가 | vs일봉MA10(%) | vs일봉MA20(%) | vs주봉MA10(%) | vs주봉MA20(%) | vs월봉MA10(%) | vs월봉MA20(%)
+| 통과TF | 큰흐름정합도
+```
 
-### ✅ 합의 (사용자 확정)
-- 5 전략 폐기, ma_touch 1개로 통합 (golden_cross 후순위)
-- 5 TF (1D~1Y) 전부 평가, dominant 안 박음
-- full + partial 시그널 둘 다 (신생주 catch)
-- 1Q/1Y 평가 포함 = 매우 강한 자리
-- 자산별 룰 동일 (임계값 모두 동일)
-- dist 임계값 3%, slope 윈도우 5봉
-- 신조: "시작 전 무조건 찍고 간다" — 추격은 후순위
+호출: `.venv/Scripts/python.exe -m scripts._common.build_recs_table --asset {kr|us|crypto|all} [--tf any|1D|1W|1M|1Q|1Y] [--kind full|partial|both] [--sort marcap|ticker|tf|count_signal] [--top N]`
 
-### 🔜 다음 단계
-1. **자산별 PLAN.md 3개** (kr/crypto/nasdaq × ma_touch)
-2. **공통 모듈 4개** (`mtf_loader`, `tf_selector`, `mtf_indicators`, `signals`)
-3. **자산별 `recommend.py` 3개**
-4. **on-demand 측정** → precompute 여부 결정
-5. **다운스트림 정리**
+## 5. 자산별 메타 처리
+
+| 자산 | 종목명 source | 시총 | 거래량 | universe 필터 |
+|---|---|---|---|---|
+| KR | FDR `StockListing('KRX')` `Name` | `Marcap` (원) → 조 | 만 주 | — |
+| US | FDR `StockListing('NASDAQ')` `Name` | (현재 NaN — 컬럼명 fix 필요) | 만 주 | — |
+| Crypto | Bitget 심볼 | — (생략) | 코인 수 | **주식/ETF 토큰 자동 제외** (`crypto_filters.STOCK_TOKEN_TICKERS`) |
+
+## 6. 검증 결과 — 현재 시점 (2026-06-11 KST 기준)
+
+| 자산 | universe | 통과 (any TF) | 1D | 1W | 1M | 1Q | 1Y |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| **KOSPI** | 948 | **323** | 0 | 81 | 214 | 51 | 0 |
+| **NASDAQ** | 3729 | (재계산 완료) | 62 | 650 | 427 | 276 | 195 |
+| **Crypto** | 578 → 147 (필터) | (재계산 완료) | (신생주) | 다수 | 다수 | 2 | 0 |
+
+KR 시총 TOP 통과: 삼성전기는 today_low 룰로 cut 확인 (이전 옛 룰로는 잘못 통과했음). 현대차 / LG에너지솔루션 / HD현대중공업 / 삼성물산 / 기아 등 대형주 대다수 catch.
+
+## 7. 시각 검증 케이스 (cross-check OK)
+
+- **삼성화재 1D** ✅ (대형주 안정 자리)
+- **메리츠금융지주 1Q** ✅ (5년 사이클 진입 — 1Q MA10 가까이)
+- **이수페타시스 1M** ✅ (큰 흐름 정상 눌림)
+- **삼성전기 1Q** ❌→cut (옛 룰 통과, today_low 룰로 정확히 cut)
+- **ALLO 6/2~6/6** ✅ (KR 가도 같은 자리)
+- **STG 6/6 1W** ✅ (사용자 지정 자리)
+- **VELVET 6/10 1D** ✅ (wick MA10 닿음 — neg 부등식)
+
+## 8. 상수 (signals.py 본체)
+
+```python
+K_DIST_THRESHOLD   = 0.2       # 임계 = K × range_7
+N_ATR_WINDOW       = 7         # range_7 = 최근 7봉 평균
+ANGLE_MEDIUM_DEG   = 15.0      # MA20 각도 라벨 임계
+ANGLE_STRONG_DEG   = 30.0
+PARTIAL_CONSEC_BARS= 3         # close > MA10 연속 봉 수
+MA10_PERIOD        = 10
+MA20_PERIOD        = 20
+SLOPE_WINDOW       = 5
+MIN_BARS_FULL      = 20        # MA20 가능 최소 봉수
+MIN_BARS_PARTIAL   = 10        # MA10 가능 최소 봉수 (= "월봉 MA10 가능" 임계와 동일)
+```
+
+## 9. 다운스트림 (정리 미완 — 깨진 상태)
+
+| 대상 | 상태 |
+|---|---|
+| `dashboards/_precompute.py` | **삭제됨** |
+| `dashboards/_recommendation.py` | **삭제됨** |
+| `dashboards/live/{bitget, kospi, nasdaq}.py` | import 깨짐 (옛 `_recs.parquet` 의존) |
+| `dashboards/_stock_grid.py` | 옛 컬럼 가정 |
+| `dashboards/pages/{3_Live, 6_Mobile}.py` | 옛 표 구조 |
+| `alerts/{scan, state, __init__}.py` | `_recs.parquet` 의존 — 깨짐 |
+| `data/cache/{kr,us,crypto}/_recs.parquet` | 삭제됨 |
+| `data/cache/{kr,us,crypto}/_refs.parquet` | 삭제됨 |
+| `data/cache/{kr,us,crypto}/_ma_touch.parquet` | **신규** (새 룰 결과) |
+| `CLAUDE.md` "현재 전략 목록" 표 | 옛 정보 (5 전략) — 갱신 필요 |
+
+## 10. Open Questions (다음 세션 결정)
+
+### 핵심 결정
+1. **추격 보조 게이트** — KR 1M 통과 14개 (close > MA20 × 1.5) 가 추격 가까움. `close ≤ MA20 × {1.5 / 1.3 / 1.2}` 추가?
+   - 1.3x 적용 시 KR 통과 323 → ~290 정도
+   - 1.2x 적용 시 ~250
+2. **K 값** — 현재 0.2 휴리스틱. 백테스트 인프라 재구축 후 객관 결정?
+3. **NASDAQ 시총 컬럼 NaN** — FDR `StockListing('NASDAQ')` 컬럼명 확인 + fix (10분 작업)
+4. **NASDAQ 시총 컬럼 NaN** — FDR `StockListing('NASDAQ')` 컬럼명 확인 + fix (10분 작업)
+
+### 후순위
+5. **`golden_cross` 자리 본격 추가** — 첫 사용자 정의 자리 2 (하락추세→상승추세 전환). ALLO 5/27 같은 자리.
+6. **추격 자리 (`trend_strong`)** — 사용자 명시 후순위. 별도 자리.
+7. **대시보드 재구성** — 새 스키마 (`signal_ma_touch_{TF}_full/partial` + 40 컬럼) UI 노출
+8. **alerts 재구성** — `_ma_touch.parquet` 기반 신규 진입 알림
+9. **백테스트 인프라 재구축** — 옛 `backtest_runner` 폐기. 새 ma_touch 기반.
+10. **partial 룰 검증** — 신생주 catch 동작 명시 검증 (현재 12 코인 시뮬에서 1~67 통과 확인됨)
+
+## 11. 합의 이력 (요약)
+
+| 결정 | 합의 시점 |
+|---|---|
+| 5 전략 폐기, ma_touch 1개 | 회의 초기 |
+| 5 TF 평가, dominant 안 박음 | 회의 중 |
+| 자산별 룰 동일 (임계값 모두 동일) | 회의 중 |
+| 각도(degree) 출력 컬럼에 포함 | 회의 중 |
+| 정배열 B (close > MA20, MA10 free) | STG 6/6 사례 후 변경 |
+| 롱 부등식 (low ≤ MA + 임계) | VELVET 6/10 사례 후 변경 |
+| 임계 = 0.2 × range_7 | ALLO 6/2 사례 후 변경 |
+| today_low 모든 TF 공통 | 삼성전기 1Q 사례 후 변경 |
+| 월봉 MA10 가능 시 1D 제외 | 사용자 명시 룰 |
+| 주식/ETF 토큰 자동 제외 (Crypto) | crypto_filters 영구화 |
+
+## 12. 사용자 메모리 (`MEMORY.md`) 연동
+
+다음 세션 시작 시 자동 로드되는 메모:
+- `project_ma_touch.md` — 현재 진행 상태 (TODO)
+- `feedback_user_preferences.md` — 자산별 룰 분리 선호, 시각 검증 선호
+- `feedback_kr_recommend_format.md` — KR 추천 분리 출력 (옛 표현, 갱신 필요)
+- `feedback_column_naming.md` — 풀네임 컬럼
+- `feedback_table_presentation.md` — 표 의미·의도·해석 필수

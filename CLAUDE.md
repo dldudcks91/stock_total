@@ -181,14 +181,17 @@ Get-CimInstance Win32_Process -Filter "Name='python.exe'" | Select-Object Proces
 | `plot-chart` | 전 자산 | Bitget 스타일 캔들+MA+거래량+RSI Plotly 차트 |
 | `launch-dashboard` | UI | Streamlit 실행 |
 | `study` | 분석 | scripts/<group>/runs/ 표준 폴더 init/finalize (재현성 보장) |
+| `recs` | 전 자산 | 오늘 기준 ma_touch 통과 종목 표 (KR/Crypto/NASDAQ 분리) — 사용자 지정 12 컬럼 |
 
-### 현재 전략 목록 (`backtest/strategies/`)
+### 현재 전략 목록 (`scripts/{kr,crypto,nasdaq}/ma_touch/`)
 
-| 전략 | 라벨 | 자산 | 용도 | 비고 |
-|---|---|---|---|---|
-| `trend_pullback` | **수렴** | KR / US / Crypto | 추천 시그널 — 1차 상승 후 MA10/MA20 비비적 (눌림목) | Cycle 5 메인. KR 1d Sharpe 24.8 / US 1d 22.1 / Crypto 1h 3.3 (OOS). 청산: trail 0.25 / TP 0.30~0.35 / hold 252d |
-| `trend_chase` | **추격** | KR / US / Crypto | 추천 시그널 — 장대양봉 + 거래량 폭증 | Cycle 5 보조. KR 1d Sharpe 16.0 / US 1d 10.1 (게이트 `fresh_big_th=0.08`). 청산: trail 0.15~0.20 / TP 0.30 / hold 252d |
-| `quiet_bottom` | **조용한 바닥** | KR / US | 추천 시그널 (자동매매 X) — 1w binary | Cycle 5 보조. KR 1w Sharpe 6.8 / US 1w 6.4 (게이트 `dd_avg_max=-0.40`). 6 조건 (close>MA20, slope/accel 양, avg_dd_104w≤-0.45, path_R²_52w≤0.50, ret_4w≤+60%). 자세히: [QUIET_BOTTOM.md](backtest/strategies/QUIET_BOTTOM.md) |
+| 전략 | 라벨 | 자산 | 룰 |
+|---|---|---|---|
+| `ma_touch` | **MA 터치 (단일 룰)** | KR / Crypto / NASDAQ | 정배열(MA10>MA20 + close>MA20) + slope+ + 롱 부등식 터치 (today_low − MA ≤ 0.2 × range_7) |
+
+자세한 룰: [docs/strategies_v2_design.md](docs/strategies_v2_design.md). 본체 코드: `scripts/_common/signals.py`.
+
+> **trader 신조**: "시작 전 무조건 찍고 간다" — MA10/MA20 터치 자리만 진입. 추격 자리 (`trend_strong`) 와 전환 자리 (`golden_cross`) 는 후순위 (미구현).
 
 ### 현재 Agent 목록 (`.claude/agents/`)
 
@@ -201,7 +204,7 @@ Get-CimInstance Win32_Process -Filter "Name='python.exe'" | Select-Object Proces
 
 ## 분석 run 폴더 표준 (scripts/<asset>/<strategy>/runs/)
 
-scripts/ 는 최상위가 **자산** (kr / crypto / nasdaq), 그 아래가 **strategy** (trend_pullback / trend_chase / quiet_bottom / cascading_pullback / ma20w_short).
+scripts/ 는 최상위가 **자산** (kr / crypto / nasdaq), 그 아래가 **strategy** (현재 `ma_touch` 만 — 추후 `golden_cross`/`trend_strong` 추가 예정).
 strategy 폴더 안에서만 `runs/` 가 생성된다.
 
 ```
