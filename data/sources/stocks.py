@@ -16,6 +16,7 @@ CLI:
 from __future__ import annotations
 
 import argparse
+import threading
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
@@ -64,17 +65,30 @@ def cache_path(market: str, symbol: str) -> Path:
 
 
 def _fetch_with_timeout_start(symbol: str, start: str) -> pd.DataFrame:
-    """fetch_one(symbol, start) with hard timeout — same pattern as _fetch_with_timeout."""
-    from concurrent.futures import ThreadPoolExecutor as _TPE, TimeoutError as _TO
-    ex = _TPE(max_workers=1)
-    try:
-        fut = ex.submit(fetch_one, symbol, start)
+    """fetch_one(symbol, start) with hard timeout via daemon thread.
+
+    FDR's underlying HTTP can hang without socket timeout. We run fetch_one in
+    a daemon thread and join with timeout — if it doesn't return, we raise and
+    leave the thread dangling. Because the thread is daemon, the interpreter
+    will kill it on process exit instead of waiting forever.
+    """
+    result: list = [None]
+    error: list = [None]
+
+    def _run():
         try:
-            return fut.result(timeout=FETCH_TIMEOUT_SEC)
-        except _TO:
-            raise TimeoutError(f"fetch_one({symbol}, start={start}) > {FETCH_TIMEOUT_SEC}s")
-    finally:
-        ex.shutdown(wait=False)
+            result[0] = fetch_one(symbol, start)
+        except BaseException as e:
+            error[0] = e
+
+    t = threading.Thread(target=_run, daemon=True)
+    t.start()
+    t.join(timeout=FETCH_TIMEOUT_SEC)
+    if t.is_alive():
+        raise TimeoutError(f"fetch_one({symbol}, start={start}) > {FETCH_TIMEOUT_SEC}s")
+    if error[0] is not None:
+        raise error[0]
+    return result[0]
 
 
 def _fetch_with_timeout(symbol: str) -> pd.DataFrame:

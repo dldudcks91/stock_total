@@ -86,7 +86,7 @@ def _row_for_symbol(asset: str, symbol: str) -> Optional[dict]:
         df_ind = compute_mtf_indicators(df_tf, kind)
         last = df_ind.iloc[-1]
 
-        passed_full, passed_partial, extras = evaluate_tf(df_ind, kind, today_low=today_low)
+        passed_full, passed_partial, extras = evaluate_tf(df_ind, df_d, kind, today_low=today_low)
 
         row[f"signal_ma_touch_{tf}_full"] = passed_full if kind == "full" else None
         row[f"signal_ma_touch_{tf}_partial"] = passed_partial if kind == "partial" else None
