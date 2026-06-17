@@ -56,9 +56,12 @@ DEFAULT_SINCE_BY_GRAN = {
     "1w": "2017-01-01",
 }
 
-# 동시 요청 제한 (Bitget IP 한도 20 req/s — 보수적으로)
+# 동시 요청 제한 (Bitget IP 한도 20 req/s).
+# CONCURRENCY=5 + BATCH_SLEEP_SEC=0.2 → 평균 ~25 req/s 순간 부하, 0.2s sleep 으로
+# 분산되면 정상 처리됨 (429 발생 시 _fetch_window 가 exponential backoff 처리).
+# 0.5 였을 때 6xx 종목 fetch 의 sleep 만으로 60s 이상 손실 → 0.2 로 단축.
 CONCURRENCY = 5
-BATCH_SLEEP_SEC = 0.5
+BATCH_SLEEP_SEC = 0.2
 RETRY_429_MAX = 5
 
 OHLCV_COLS = ["timestamp", "open", "high", "low", "close", "volume", "amount"]
@@ -240,6 +243,11 @@ def _now_aligned_ms(gran: str) -> int:
 
 
 def main() -> None:
+    # CLAUDE.md venv 규칙: 시스템(anaconda) 파이썬으로 실행 금지.
+    # aiohttp ProactorEventLoop 호환성과 의존성 버전 정합을 위해 .venv 강제.
+    from data._venv_guard import require_project_venv
+    require_project_venv()
+
     p = argparse.ArgumentParser()
     p.add_argument("--symbol", help="단일 심볼 (예: BTCUSDT)")
     p.add_argument(

@@ -33,6 +33,23 @@ MARKET_DIR = {"KOSPI": CACHE_ROOT / "kr", "NASDAQ": CACHE_ROOT / "us"}
 DEFAULT_START = "1990-01-01"
 DEFAULT_WORKERS = 20
 
+# 시장별 timezone — 캐시의 naive DatetimeIndex 는 거래소 로컬 영업일을 가리킴.
+# "today" 판정에 UTC 를 쓰면 KST 06:00 ~ 09:00 (= UTC 21:00 ~ 00:00) 사이 날짜
+# 가 어긋나 헛fetch 가 일어남. 시장 시간대로 normalize 해서 캐시 last_date 와
+# 동일 자 기준으로 비교한다.
+MARKET_TZ = {"KOSPI": "Asia/Seoul", "NASDAQ": "America/New_York"}
+
+
+def _market_today(market: str) -> pd.Timestamp:
+    """market 의 timezone 으로 오늘 날짜 (naive, normalized).
+
+    `pd.Timestamp.now(tz=...).tz_localize(None).normalize()` 로 받음. 시장이
+    아직 열리지 않았거나 주말일 수 있지만, ``fetch_and_save`` 는 빈 응답을
+    skip 처리하므로 그 케이스도 자연스럽게 처리됨.
+    """
+    tz = MARKET_TZ.get(market, "UTC")
+    return pd.Timestamp.now(tz=tz).tz_localize(None).normalize()
+
 
 def get_ticker_list(market: str) -> pd.DataFrame:
     """market: 'KOSPI' or 'NASDAQ'. Returns DataFrame with at least Code/Symbol + Name."""
@@ -125,7 +142,7 @@ def fetch_and_save(market: str, symbol: str, refresh: bool) -> Tuple[str, int, s
         existing = pd.read_parquet(path)
         if not existing.empty:
             last_date = pd.to_datetime(existing.index.max()).normalize()
-            today = pd.Timestamp.utcnow().tz_localize(None).normalize()
+            today = _market_today(market)
             if last_date >= today:
                 return symbol, len(existing), "skip"
             start = (last_date + pd.Timedelta(days=1)).strftime("%Y-%m-%d")
@@ -192,6 +209,10 @@ def run_market(market: str, workers: int, refresh: bool) -> dict:
 
 
 def main():
+    # CLAUDE.md venv 규칙: 시스템 파이썬으로 실행 금지.
+    from data._venv_guard import require_project_venv
+    require_project_venv()
+
     p = argparse.ArgumentParser()
     p.add_argument("--market", choices=["KOSPI", "NASDAQ", "ALL"], default="ALL")
     p.add_argument("--workers", type=int, default=DEFAULT_WORKERS)
