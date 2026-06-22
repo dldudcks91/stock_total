@@ -113,6 +113,32 @@ US 티커: 영문 대문자.
 
 대시보드는 (1)+(2)를 cheap merge 하고 라이브 가격을 `apply_current_prices` 로 덧입혀 표시. 무거운 계산은 절대 탭 진입 시점에 일어나지 않는다 — 항상 `_precompute.py` 가 미리 디스크에 써둔다.
 
+## 데이터 업데이트 표준
+
+사용자가 **"데이터 업데이트"** / **"데이터 받아와"** / **"오늘 데이터로 갱신"** 같이 일반적인
+갱신 요청을 하면, **아래 5단계를 모두** 실행한다. 일부만 받고 멈추지 말 것 — 표/차트가
+부분만 최신이 되어 사용자가 혼동한다. 특정 자산만 갱신하라는 명시 요청(예 "KR만 받아",
+"라이브만") 일 때만 해당 단계만 실행.
+
+| 순서 | 자산 | 명령 | 비고 |
+|---|---|---|---|
+| 1 | KR 일봉 | `.venv/Scripts/python.exe -m data.sources.stocks --market KOSPI` | 과거 OHLCV (KST 종가) |
+| 1 | US 일봉 | `.venv/Scripts/python.exe -m data.sources.stocks --market NASDAQ` | 과거 OHLCV (EST 종가). KR 과 병렬 OK |
+| 1 | Crypto 1d | `.venv/Scripts/python.exe -m data.sources.bitget --granularity 1d` | Stocks 와 다른 API라 병렬 OK |
+| 1 | Crypto 1h | `.venv/Scripts/python.exe -m data.sources.bitget --granularity 1h` | 증분 모드에선 1d 와 병렬 OK (cold 모드에선 순차) |
+| 2 | KR 라이브 | `.venv/Scripts/python.exe -m data.sources.naver_kr` | `_live_snapshot.parquet` 갱신, ~수초 |
+| 2 | US 라이브 | `.venv/Scripts/python.exe -m data.sources.naver_us` | 위와 동일 |
+| 2 | Crypto 라이브 | `.venv/Scripts/python.exe -m data.sources.bitget_live` | Bitget tickers + CoinGecko mcap, ~수초 |
+| 3 | 지표 precompute | `.venv/Scripts/python.exe -m dashboards._precompute --asset all` | refs + recs (ma_touch). **반드시 1단계 완료 후**. 인크리멘털 자동. |
+
+**주의**:
+- 1단계 (과거 OHLCV) 와 2단계 (라이브 스냅샷) 는 의존 관계가 없으므로 병렬로 동시 실행 가능.
+- 3단계 (precompute) 는 1단계 결과를 입력으로 쓰므로 **반드시 1단계 완료 후** 실행.
+- 라이브 스냅샷은 1회 endpoint 호출로 끝나는 가벼운 작업 (각 ~수초) — 빠지면 표의 현재가/시총
+  컬럼이 며칠 전 값으로 굳어진다.
+- 자동매매가 아니라 추천만 띄우는 프로젝트 특성상 라이브 스냅샷이 빠지면 의사결정이
+  옛 가격 기준으로 일어나므로 위험. 빼놓고 진행 금지.
+
 ## Python 환경 (venv 필수)
 
 이 프로젝트의 **모든 파이썬 실행은 프로젝트 루트의 `.venv` 를 경유**한다. 시스템(anaconda/global) 파이썬으로 실행 금지 — 의존성 격리와 재현성을 위해.
