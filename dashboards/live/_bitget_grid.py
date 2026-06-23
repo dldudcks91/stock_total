@@ -115,12 +115,11 @@ function(params) {
 #  만드는 ``pct_ma{period}__{interval}`` (price vs MA 갭 %) 을 직접 읽는다.
 #  헤더 라벨: 1h/4h 소문자, 1D/1W 대문자.
 _TF_MA_SPECS: list[tuple[str, int]] = [
-    ("1h", 10), ("1h", 20),
-    ("4h", 10), ("4h", 20),
     ("1d", 10), ("1d", 20),
     ("1w", 10), ("1w", 20),
+    ("1M", 10), ("1M", 20),
 ]
-_IV_HEADER = {"1h": "1h", "4h": "4h", "1d": "1D", "1w": "1W"}
+_IV_HEADER = {"1d": "1d", "1w": "1W", "1M": "1M"}
 
 # 슬로프 6개 (KR/US 와 동일한 1d/1w/1M × MA10/20). 임계값/표시는 _stock_grid 와
 # 공유 — js_fmt_slope_arrow / js_style_slope 가 ▲/■/▼ + 색을 담당.
@@ -129,12 +128,14 @@ _SLOPE_TF_MA_SPECS: list[tuple[str, int]] = [
     ("1w", 10), ("1w", 20),
     ("1M", 10), ("1M", 20),
 ]
-_SLOPE_IV_HEADER = {"1d": "일", "1w": "주", "1M": "월"}
+# 헤더는 D10/D20/W10/W20/M10/M20 (일/주/월 × MA10/20 영문 약어).
+_SLOPE_IV_HEADER = {"1d": "D", "1w": "W", "1M": "M"}
 
 
 def build_grid_options(
     df: pd.DataFrame,
     selected_symbol: Optional[str],
+    star_codes: Optional[set] = None,
 ) -> tuple[pd.DataFrame, dict]:
     """Construct (df_reordered, gridOptions) for the Bitget AgGrid.
 
@@ -146,12 +147,13 @@ def build_grid_options(
           일MA10, 일MA20, 주MA10, 주MA20, 월MA10, 월MA20
             (각 MA 의 기울기 — ▲/■/▼ + 색)
     """
-    REC_KEY = "_rec"   # display-only; reads gate_pass via JS (MA20 게이트)
+    REC_KEY = "_rec"   # display-only; reads gate_pass via JS (ma_touch 게이트)
+    STAR_KEY = "_star"  # display-only ⭐ column (membership in star_codes)
     MA_COLS = [f"pct_ma{p}__{iv}" for iv, p in _TF_MA_SPECS]
     SLOPE_COLS = [f"slope_pct_ma{p}__{iv}" for iv, p in _SLOPE_TF_MA_SPECS]
 
     VISIBLE_ORDER = [
-        "symbol",
+        "symbol", STAR_KEY,
         "markPrice", "quoteVolume", "marketCap",
         *MA_COLS,
         REC_KEY,
@@ -159,6 +161,10 @@ def build_grid_options(
     ]
 
     df_grid = df.copy()
+    star_set = {str(s) for s in (star_codes or set())}
+    df_grid[STAR_KEY] = df_grid["symbol"].astype(str).map(
+        lambda s: "⭐" if s in star_set else ""
+    )
     for placeholder in (*MA_COLS, REC_KEY, *SLOPE_COLS):
         if placeholder not in df_grid.columns:
             df_grid[placeholder] = None
@@ -189,6 +195,15 @@ def build_grid_options(
         checkboxSelection=True, headerCheckboxSelection=False,
     )
 
+    # ── ⭐ 별표 (display-only) — 차트 헤더 토글로 켜고/끄고, 여기선 표시만 ──
+    gob.configure_column(
+        STAR_KEY, headerName="⭐", pinned="left",
+        width=40, minWidth=34, maxWidth=48, sortable=True,
+        cellStyle={"textAlign": "center", "display": "flex",
+                   "alignItems": "center", "justifyContent": "center"},
+        headerTooltip="별표(즐겨찾기) — 차트 헤더의 ⭐ 버튼으로 토글",
+    )
+
     # ── Mark / 거래대금 / 시가총액 ──
     gob.configure_column(
         "markPrice", headerName="Mark", width=95,
@@ -213,10 +228,10 @@ def build_grid_options(
             type=["numericColumn"], **signed_kw,
         )
 
-    # ── MA20 게이트 (display-only) ──
+    # ── ma_touch 게이트 (display-only) ──
     # gate_pass 컬럼이 row data 에 있어야 ● 표시됨. 없으면 공백.
     gob.configure_column(
-        REC_KEY, headerName="MA20", width=64, minWidth=48,
+        REC_KEY, headerName="터치", width=64, minWidth=48,
         valueFormatter=JS_FMT_REC, cellStyle=JS_STYLE_REC,
     )
 
@@ -227,11 +242,11 @@ def build_grid_options(
         col = f"slope_pct_ma{p}__{iv}"
         th = SLOPE_THRESHOLDS[iv]
         gob.configure_column(
-            col, headerName=f"{_SLOPE_IV_HEADER[iv]}MA{p}", width=44, minWidth=34,
+            col, headerName=f"{_SLOPE_IV_HEADER[iv]}{p}", width=44, minWidth=34,
             valueFormatter=js_fmt_slope_arrow(th),
             cellStyle=js_style_slope(th),
             type=["numericColumn"],
-            headerTooltip=f"{_SLOPE_IV_HEADER[iv]}봉 MA{p} 기울기 (% per bar, "
+            headerTooltip=f"{iv} MA{p} 기울기 (% per bar, "
                           f"|±{th:g}| 이내 평탄)",
         )
 
@@ -282,6 +297,28 @@ BITGET_PAGE_CSS = """
   min-height: 0 !important;
   line-height: 1.4 !important;
 }
+/* Chart dialog prev/next (‹ ›) nav buttons — compact, square-ish */
+[class*="chart_nav_prev"] button,
+[class*="chart_nav_next"] button {
+  padding: 0 !important;
+  min-height: 30px !important;
+  height: 30px !important;
+  font-size: 18px !important;
+  line-height: 1 !important;
+  font-weight: 700 !important;
+}
+/* Chart dialog position jump box — compact text_input matching the ‹ › height */
+[class*="_next__pos"] input {
+  padding: 2px 6px !important;
+  height: 30px !important;
+  min-height: 30px !important;
+  text-align: center !important;
+  font-size: 13px !important;
+}
+/* Chart line legend overlay — anchor the absolute legend to the chart's
+   top-left and collapse the gap so the chart sits flush under it. */
+.st-key-chart_legend_wrap { position: relative !important; }
+.st-key-chart_legend_wrap [data-testid="stVerticalBlock"] { gap: 0 !important; }
 /* Nudge dialog X button — small offset from default */
 div[role="dialog"] button[aria-label="Close"],
 [data-testid="stDialog"] button[aria-label="Close"] {

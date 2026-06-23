@@ -36,6 +36,14 @@ import pandas as pd
 from data.loader import load_ohlcv
 from data.sources.bitget_live import SNAPSHOT_PATH, load_snapshot
 from dashboards._precompute import load_recs, load_refs, precompute_status
+from dashboards._stock_grid import (
+    ChartNavigator,
+    fmt_compact_usd,
+    load_stars,
+    render_chart_meta_line,
+    render_chart_star,
+    safe_fragment_rerun,
+)
 from dashboards.live._bitget_grid import (
     BITGET_PAGE_CSS,
     COLUMN_LABELS,
@@ -67,6 +75,7 @@ _FETCH_LOG = _CACHE_DIR / "_fetch.log"
 _LIVE_LOG = _CACHE_DIR / "_live_fetch.log"
 _PRE_LOG = _CACHE_DIR / "_precompute.log"
 _NOTES_PATH = _CACHE_DIR / "_notes.json"
+_STARS_PATH = _CACHE_DIR / "_stars.json"
 
 _ALL_SORT_KEYS = list(COLUMN_LABELS.keys())
 _DEFAULT_SORT = "quoteVolume"
@@ -237,16 +246,30 @@ def render(st: Any) -> None:
         # cache/crypto/{1h,1d}/{SYMBOL}.parquet → 1h/4h/1d/1w (raw or resample)
         return load_ohlcv("crypto", symbol, interval)
 
+    _nav = ChartNavigator(
+        st,
+        codes_key="bitget_nav_codes", names_key="bitget_nav_names",
+        sel_key="bitget_sel_symbol", name_key="bitget_sel_name",
+        shown_key="_chart_dialog_shown_for", btn_prefix="bitget_chart_nav",
+    )
+
     # ── Chart dialog (modal popup) ──
     def _render_inline_chart(symbol: str) -> None:
-        col_left, _spacer = st.columns([2, 3], vertical_alignment="center")
-        with col_left:
+        c_title, c_prev, c_pos, c_next, _spacer, c_star = st.columns(
+            [4, 0.8, 2.0, 0.8, 2.4, 0.7], vertical_alignment="center",
+        )
+        with c_title:
             st.markdown(
                 f"<div style='text-align:left; font-size:17px; font-weight:600; "
                 f"padding-top:0px; margin-top:-6px; line-height:28px; white-space:nowrap; "
                 f"overflow:hidden; text-overflow:ellipsis;'>{symbol}</div>",
                 unsafe_allow_html=True,
             )
+            meta = st.session_state.get("bitget_nav_meta", {}).get(symbol, {})
+            render_chart_meta_line(st, [
+                ("시총", fmt_compact_usd(meta.get("mcap"))),
+                ("거래대금", fmt_compact_usd(meta.get("vol"))),
+            ])
             with st.container(key="chart_iv_picker"):
                 chart_iv = st.segmented_control(
                     "Interval",
@@ -255,6 +278,15 @@ def render(st: Any) -> None:
                     key="chart_iv",
                     label_visibility="collapsed",
                 )
+        with c_prev:
+            _nav.button_prev()
+        with c_pos:
+            _nav.position_input()
+        with c_next:
+            _nav.button_next()
+        with c_star:
+            render_chart_star(st, symbol, _STARS_PATH, "bitget_stars")
+        _nav.inject_keys()
         if not chart_iv:
             chart_iv = "1w"
 
@@ -311,7 +343,9 @@ def render(st: Any) -> None:
         # Filter bar — 3 cols. Signed numeric columns always sort by |value|
         # (no toggle); see _bitget_grid.JS_ABS_COMPARATOR. MA Interval / HL
         # Lookback 토글은 제거됨 — 8개 TF×MA 갭 컬럼이 항상 표시된다.
-        f1, f2, f3 = st.columns([3, 1, 2])
+        stars = st.session_state.setdefault("bitget_stars", load_stars(_STARS_PATH))
+
+        f1, f2, f3, f4 = st.columns([3, 1, 2, 1.2])
         with f1:
             search = st.text_input("Symbol contains", value="", key="flt_search").strip()
         with f2:
@@ -328,8 +362,14 @@ def render(st: Any) -> None:
                 format_func=lambda k: COLUMN_LABELS.get(k, k),
                 key="flt_sort",
             )
+        with f4:
+            star_only = st.checkbox(
+                f"⭐ 별표만 ({len(stars)})", value=False, key="flt_star_only",
+            )
 
         # Apply filter / sort / top_n (always descending — Top N + sort-by-volume).
+        if star_only:
+            df = df[df["symbol"].astype(str).isin(stars)]
         if search:
             df = df[df["symbol"].astype(str).str.contains(search, case=False, na=False)]
         if sort_col_key in df.columns:
@@ -339,7 +379,8 @@ def render(st: Any) -> None:
         df = df.reset_index(drop=True)
 
         if df.empty:
-            st.info("필터 조건에 맞는 심볼이 없습니다.")
+            st.info("⭐ 별표한 심볼이 없습니다." if star_only
+                    else "필터 조건에 맞는 심볼이 없습니다.")
             return
 
         # Disk-precomputed refs (anchored to current hour bucket via
@@ -388,18 +429,32 @@ def render(st: Any) -> None:
         # Per-symbol notes (memo column).
         notes = st.session_state.setdefault("bitget_notes", _load_notes())
 
+        # Display order drives ←/→ chart navigation (follows filter/sort).
+        nav_syms = df["symbol"].astype(str).tolist()
+        st.session_state["bitget_nav_codes"] = nav_syms
+        st.session_state["bitget_nav_names"] = {s: s for s in nav_syms}
+        # 시총/거래대금(USDT) — 차트 헤더 메타 라인용.
+        _vol_col = "quoteVolume" if "quoteVolume" in df.columns else "usdtVolume"
+        st.session_state["bitget_nav_meta"] = {
+            str(r["symbol"]): {
+                "mcap": r.get("marketCap"),
+                "vol": r.get(_vol_col),
+            }
+            for _, r in df.iterrows()
+        }
+
         SEL_KEY = "bitget_sel_symbol"
         selected_symbol: Optional[str] = st.session_state.get(SEL_KEY)
         if selected_symbol and not (df["symbol"] == selected_symbol).any():
             st.session_state.pop(SEL_KEY, None)
             selected_symbol = None
 
-        df_grid, grid_options = build_grid_options(df, selected_symbol)
+        df_grid, grid_options = build_grid_options(df, selected_symbol, star_codes=stars)
         # Re-key the grid on every visible-state change. v4 = TF×MA 8-col layout
         # (MA Interval / HL Lookback 토글 제거). 8개 갭 컬럼은 df 의 고정 field 라
         # valueGetter 토글이 없어 grid_key 에 window 상태가 빠진다.
         grid_key = (
-            f"bitget_grid::v4::{top_n}::{search}::{sort_col_key}"
+            f"bitget_grid::v4::{top_n}::{search}::{sort_col_key}::{star_only}::{len(stars)}"
         )
         grid_resp = AgGrid(
             df_grid,
@@ -422,12 +477,18 @@ def render(st: Any) -> None:
                 first = sel_rows[0]
                 if isinstance(first, dict):
                     new_sel = str(first.get("symbol", "")) or None
-        if new_sel != selected_symbol:
+        # Grid is authoritative only when *it* reports a changed selection —
+        # comparing against the session symbol would fight the ←/→ navigator
+        # (the grid isn't re-mounted on arrow nav, so it keeps reporting the
+        # originally clicked row). See kospi.py for the full rationale.
+        prev_grid_sel = st.session_state.get("_bitget_grid_prev_sel")
+        st.session_state["_bitget_grid_prev_sel"] = new_sel
+        if new_sel != prev_grid_sel:
             if new_sel:
                 st.session_state[SEL_KEY] = new_sel
             else:
                 st.session_state.pop(SEL_KEY, None)
-            st.rerun(scope="fragment")
+            safe_fragment_rerun(st)
 
         # Chart popup: open dialog once per *new* selection. ``_shown_for``
         # tracks the symbol the dialog was last opened for, so dismissing

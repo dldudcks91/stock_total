@@ -8,9 +8,15 @@ from typing import Optional
 import FinanceDataReader as fdr
 import pandas as pd
 
-DATA_DIR = Path(__file__).resolve().parent.parent / "data" / "cache" / "kr"
+CACHE_ROOT = Path(__file__).resolve().parent.parent / "data" / "cache"
+DATA_DIR = CACHE_ROOT / "kr"  # 하위호환: 기존 KR 단일 경로
 
 OHLCV_AGG = {"Open": "first", "High": "max", "Low": "min", "Close": "last", "Volume": "sum"}
+
+
+def _cache_dir(market: str = "KR") -> Path:
+    """시장별 캐시 디렉터리 (KR=data/cache/kr, US=data/cache/us)."""
+    return CACHE_ROOT / str(market).lower()
 
 
 def fetch_daily(ticker: str, start: str, end: Optional[str] = None) -> pd.DataFrame:
@@ -19,15 +25,16 @@ def fetch_daily(ticker: str, start: str, end: Optional[str] = None) -> pd.DataFr
     return df
 
 
-def save_daily(ticker: str, df: pd.DataFrame) -> Path:
-    DATA_DIR.mkdir(parents=True, exist_ok=True)
-    path = DATA_DIR / f"{ticker}.parquet"
+def save_daily(ticker: str, df: pd.DataFrame, market: str = "KR") -> Path:
+    d = _cache_dir(market)
+    d.mkdir(parents=True, exist_ok=True)
+    path = d / f"{ticker}.parquet"
     df.to_parquet(path)
     return path
 
 
-def load_daily(ticker: str) -> pd.DataFrame:
-    return pd.read_parquet(DATA_DIR / f"{ticker}.parquet")
+def load_daily(ticker: str, market: str = "KR") -> pd.DataFrame:
+    return pd.read_parquet(_cache_dir(market) / f"{ticker}.parquet")
 
 
 def to_weekly(daily: pd.DataFrame) -> pd.DataFrame:

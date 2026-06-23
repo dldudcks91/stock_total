@@ -51,9 +51,20 @@ def _fmt_int(v):
 
 
 def build_report(ticker: str, name: str, start: str = "2022-01-01") -> Path:
+    # Currency for the 정량 section: KR tickers are 6-digit numeric (원, 정수),
+    # everything else is treated as USD ($, 2-decimals). Keeps KR output intact
+    # while US (NASDAQ) prices no longer mislabel as "원".
+    _is_kr = str(ticker).isdigit()
+    market = "KR" if _is_kr else "US"
+
     df = fetch_daily(ticker, start=start)
-    save_daily(ticker, df)
-    m = report_metrics(df)
+    save_daily(ticker, df, market=market)
+    m = report_metrics(df, market=market)
+
+    def _p(v) -> str:
+        if v is None:
+            return "—"
+        return f"{v:,.0f}원" if _is_kr else f"${v:,.2f}"
 
     try:
         broker_rows = fetch_reports(ticker, months=3)
@@ -169,11 +180,11 @@ def build_report(ticker: str, name: str, start: str = "2022-01-01") -> Path:
     md.append("")
     md.append("| 항목 | 값 |")
     md.append("|---|---|")
-    md.append(f"| 종가 | **{m['close']:,}원** |")
-    md.append(f"| 52주 최고 / 최저 | {m['high_52w']:,} / {m['low_52w']:,}원 |")
-    md.append(f"| MA20 | {_fmt_int(m['ma20'])} (현재가 **{m['ma20_pos']}**) |")
-    md.append(f"| MA60 | {_fmt_int(m['ma60'])} (현재가 **{m['ma60_pos']}**) |")
-    md.append(f"| MA120 | {_fmt_int(m['ma120'])} (현재가 **{m['ma120_pos']}**) |")
+    md.append(f"| 종가 | **{_p(m['close'])}** |")
+    md.append(f"| 52주 최고 / 최저 | {_p(m['high_52w'])} / {_p(m['low_52w'])} |")
+    md.append(f"| MA20 | {_p(m['ma20'])} (현재가 **{m['ma20_pos']}**) |")
+    md.append(f"| MA60 | {_p(m['ma60'])} (현재가 **{m['ma60_pos']}**) |")
+    md.append(f"| MA120 | {_p(m['ma120'])} (현재가 **{m['ma120_pos']}**) |")
     md.append(f"| 1M 수익률 | **{_fmt_pct(m['ret_1m'])}** |")
     md.append(f"| 3M 수익률 | **{_fmt_pct(m['ret_3m'])}** |")
     md.append(f"| 1Y 수익률 | **{_fmt_pct(m['ret_1y'])}** |")

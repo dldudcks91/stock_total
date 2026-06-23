@@ -48,8 +48,8 @@ PERIODS_D: list[int] = [3, 7, 14, 28]    # daily fixed period columns
 MA_PERIODS: tuple[int, int] = (10, 20)   # short / long MA
 
 # MA Interval — bar size for MA10/MA20 columns. ("1h" / "4h" stride-sample the
-# 1H cache; "1d" / "1w" use the 1D cache.)
-MA_INTERVAL_OPTIONS_CRYPTO: list[str] = ["1h", "4h", "1d", "1w"]
+# 1H cache; "1d" / "1w" / "1M" use the 1D cache, 1M via 30-day stride.)
+MA_INTERVAL_OPTIONS_CRYPTO: list[str] = ["1h", "4h", "1d", "1w", "1M"]
 DEFAULT_MA_INTERVAL_CRYPTO: str = "1d"
 
 # HL Lookback — calendar window for max(High) / min(Low) Δ%. "24h" reads from
@@ -58,11 +58,13 @@ HL_LOOKBACK_OPTIONS_CRYPTO: list[str] = ["24h", "7d", "28d", "90d", "1y"]
 DEFAULT_HL_LOOKBACK_CRYPTO: str = "28d"
 
 # (granularity, stride): "1w" stride=7 on the 1D cache, etc.
+# "1M" 은 1d 캐시에서 30 일 stride 근사 (slope_pct 의 1M 과 동일한 잣대).
 MA_INTERVAL_SPECS: dict[str, tuple[str, int]] = {
     "1h": ("1h", 1),
     "4h": ("1h", 4),
     "1d": ("1d", 1),
     "1w": ("1d", 7),
+    "1M": ("1d", 30),
 }
 
 # (granularity, num_bars): "24h" = 24 bars of 1H cache; "1y" = 365 bars of 1D.

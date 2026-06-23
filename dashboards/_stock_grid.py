@@ -72,6 +72,18 @@ SLOPE_THRESHOLDS: dict[str, float] = {"1d": 0.10, "1w": 0.30, "1M": 0.80}
 # comfortably under this.
 CACHE_TAIL_N: int = 1500
 
+# Chart bar spacing (px per candle) for the initial view. The vendored
+# streamlit-lightweight-charts frontend is patched (scripts/_common/patch_lwc.py)
+# so it scrolls to the latest bar instead of fitContent() — we now send the FULL
+# history and the chart opens zoomed on recent bars at this spacing, with the
+# user able to pan left through everything (exchange style). Bigger = fewer,
+# wider candles initially.
+DEFAULT_BAR_SPACING: float = 8.0
+
+# Kept for backward-compat: previously the series was sliced to this many bars
+# before handing to the chart (the old fitContent behavior). No longer sliced.
+DEFAULT_VISIBLE_BARS: int = 200
+
 
 # ---------------------------------------------------------------------------
 # Cache loader (capitalized OHLC — KR/US schema)
@@ -423,9 +435,9 @@ function(params) {
 }
 """)
 
-# MA20 추세 게이트 셀 — 통과 시 초록 ●, 미통과 공백.
-# 게이트: 일봉 close>MA20 AND 주봉 close>MA20 AND 주봉 slope_4w(MA20)>=0
-# (dashboards._recommendation._gate_pass → _recs.parquet.gate_pass)
+# ma_touch 게이트 셀 — 통과 시 초록 ●, 미통과 공백.
+# gate_pass = 오늘 ma_touch 가 ≥1 TF 통과 (/recs 스킬과 동일 신호).
+# 산출: scripts._common.recommend_runner → dashboards._precompute → _recs.parquet.gate_pass
 JS_FMT_REC = JsCode("""
 function(params) {
   const d = params.data || {};
@@ -507,6 +519,7 @@ def build_stock_grid_options(
     market_cap_col: Optional[str] = "marketValue",
     market_cap_header: str = "시총",
     market_cap_format: str = "int",  # "int" or "millions"
+    star_codes: Optional[set] = None,  # codes/symbols to mark with ⭐
 ) -> tuple[pd.DataFrame, dict]:
     """Build (reordered df, gridOptions) matching the Bitget layout for stocks.
 
@@ -523,11 +536,12 @@ def build_stock_grid_options(
     ``pct_ma{p}__{iv}`` df 컬럼을 그대로 field 로 읽음). 주식은 1h/4h 봉이
     없어 1D/1W/1M 만 — crypto(_bitget_grid) 의 1h/4h/1d/1w 와 같은 방식.
     """
-    REC_KEY = "_rec"   # display-only column; reads gate_pass via JS (MA20 게이트)
+    REC_KEY = "_rec"   # display-only column; reads gate_pass via JS (ma_touch 게이트)
+    STAR_KEY = "_star"  # display-only ⭐ column (membership in star_codes)
     MA_COLS = [f"pct_ma{p}__{iv}" for iv, p in _STOCK_TF_MA_SPECS]
     SLOPE_COLS = [f"slope_pct_ma{p}__{iv}" for iv, p in _STOCK_TF_MA_SPECS]
 
-    visible_order: list[str] = [symbol_col]
+    visible_order: list[str] = [symbol_col, STAR_KEY]
     if name_col:
         visible_order.append(name_col)
     visible_order.append(price_col)
@@ -540,6 +554,10 @@ def build_stock_grid_options(
     visible_order.extend(SLOPE_COLS)
 
     df_grid = df.copy()
+    star_set = {str(s) for s in (star_codes or set())}
+    df_grid[STAR_KEY] = df_grid[symbol_col].astype(str).map(
+        lambda s: "⭐" if s in star_set else ""
+    )
     for placeholder in (*MA_COLS, REC_KEY, *SLOPE_COLS):
         if placeholder not in df_grid.columns:
             df_grid[placeholder] = None
@@ -568,6 +586,15 @@ def build_stock_grid_options(
         symbol_col, headerName=symbol_header, pinned="left",
         width=110, minWidth=70,
         checkboxSelection=True, headerCheckboxSelection=False,
+    )
+
+    # ── ⭐ 별표 (display-only) — 차트 헤더 토글로 켜고/끄고, 여기선 표시만 ──
+    gob.configure_column(
+        STAR_KEY, headerName="⭐", pinned="left",
+        width=40, minWidth=34, maxWidth=48, sortable=True,
+        cellStyle={"textAlign": "center", "display": "flex",
+                   "alignItems": "center", "justifyContent": "center"},
+        headerTooltip="별표(즐겨찾기) — 차트 헤더의 ⭐ 버튼으로 토글",
     )
 
     if name_col:
@@ -614,10 +641,10 @@ def build_stock_grid_options(
             type=["numericColumn"], comparator=JS_ABS_COMPARATOR,
         )
 
-    # ── MA20 게이트 (display-only) ──
+    # ── ma_touch 게이트 (display-only) ──
     # gate_pass 컬럼이 row data 에 있어야 ● 표시됨. 없으면 공백.
     gob.configure_column(
-        REC_KEY, headerName="MA20", width=64, minWidth=48,
+        REC_KEY, headerName="터치", width=64, minWidth=48,
         valueFormatter=JS_FMT_REC, cellStyle=JS_STYLE_REC,
     )
 
@@ -672,6 +699,27 @@ def build_stock_grid_options(
 # TradingView-style chart renderer for stocks (capitalized OHLC columns)
 # ---------------------------------------------------------------------------
 
+def chart_legend_html(entries: list) -> str:
+    """Top-left overlay legend for the chart — list of ``(label, color)``.
+
+    lightweight-charts has no built-in top-left legend; its per-series
+    ``title`` renders at the line's right end (next to the price axis). We drop
+    those titles and overlay this HTML legend instead, absolutely positioned in
+    the top-left of the chart (the wrapping container is ``position:relative``
+    via the page CSS). ``pointer-events:none`` so it never blocks the chart.
+    """
+    spans = "".join(
+        f"<span style='color:{color};margin-right:11px;'>{label}</span>"
+        for label, color in entries
+    )
+    return (
+        "<div style='position:absolute;top:6px;left:10px;z-index:6;"
+        "font-size:11px;font-weight:700;line-height:1.4;white-space:nowrap;"
+        "background:rgba(255,255,255,0.62);padding:1px 7px;border-radius:4px;"
+        "pointer-events:none;'>" + spans + "</div>"
+    )
+
+
 def render_tv_chart_stock(
     symbol: str,
     title: str,
@@ -685,14 +733,11 @@ def render_tv_chart_stock(
     ``cdf`` has DatetimeIndex (naive) + columns Open/High/Low/Close/Volume.
     Caller must have ``streamlit_lightweight_charts`` installed.
     """
+    import streamlit as _st
     from streamlit_lightweight_charts import renderLightweightCharts  # type: ignore
 
     d = cdf.copy().sort_index()
 
-    # 데이터는 자르지 않고 전체 기간을 그대로 차트에 넘긴다 — 과거 데이터가 있으면
-    # 모두 표시·스크롤된다. (streamlit-lightweight-charts 는 받은 데이터 전체에
-    # timeScale().fitContent() 로 화면을 맞추므로 초기 화면 = 전체 기간. 최근 구간만
-    # 확대해 보려면 차트에서 마우스 휠 줌 / 드래그 스크롤.)
     ma_specs = [
         (10, "#F0B90B", "MA10", "sma"),
         (20, "#F6465D", "MA20", "sma"),
@@ -718,6 +763,9 @@ def render_tv_chart_stock(
     rs = avg_gain / avg_loss.where(avg_loss != 0)
     rsi_full = 100 - (100 / (1 + rs))
 
+    # 전체 히스토리를 그대로 전송 — 패치된 프론트엔드(patch_lwc.py)가 fitContent
+    # 대신 scrollToRealTime 을 호출하므로 초기엔 최근 봉에 줌되고, 왼쪽으로 끌면
+    # 과거 캔들이 거래소처럼 계속 이어진다 (barSpacing = DEFAULT_BAR_SPACING).
     idx = pd.DatetimeIndex(d.index)
     t = (idx.tz_localize("UTC").astype("int64") // 10**9).astype("int64")
 
@@ -750,7 +798,7 @@ def render_tv_chart_stock(
             "options": {
                 "color": color, "lineWidth": 1,
                 "priceLineVisible": False, "lastValueVisible": False,
-                "crosshairMarkerVisible": False, "title": label,
+                "crosshairMarkerVisible": False,
             },
         })
 
@@ -789,6 +837,8 @@ def render_tv_chart_stock(
             "borderColor": "rgba(0,0,0,0.15)",
             "timeVisible": False, "secondsVisible": False,
             "rightOffset": 6,
+            "barSpacing": DEFAULT_BAR_SPACING,
+            "minBarSpacing": 0.5,  # allow zooming far out across full history
         },
         "crosshair": {"mode": 1},
         "watermark": {
@@ -829,7 +879,7 @@ def render_tv_chart_stock(
                 "color": "#7E57C2", "lineWidth": 1,
                 "priceScaleId": "rsi",
                 "priceLineVisible": False, "lastValueVisible": False,
-                "crosshairMarkerVisible": False, "title": "RSI14",
+                "crosshairMarkerVisible": False,
             },
             "priceScale": {
                 "scaleMargins": {"top": 0.82, "bottom": 0},
@@ -860,10 +910,13 @@ def render_tv_chart_stock(
         },
     ]
 
-    renderLightweightCharts(
-        [{"chart": chart_options, "series": series}],
-        key=f"{key_prefix}_{symbol}_{interval}",
-    )
+    legend = chart_legend_html([(lbl, clr) for _p, clr, lbl, _k in ma_specs])
+    with _st.container(key="chart_legend_wrap"):
+        _st.markdown(legend, unsafe_allow_html=True)
+        renderLightweightCharts(
+            [{"chart": chart_options, "series": series}],
+            key=f"{key_prefix}_{symbol}_{interval}",
+        )
 
 
 # ---------------------------------------------------------------------------
@@ -887,6 +940,138 @@ def save_notes(path: Path, notes: dict) -> None:
     )
 
 
+# ---------------------------------------------------------------------------
+# Stars (favorites) persistence — per-page JSON file, ``{code: true}``
+# ---------------------------------------------------------------------------
+
+def load_stars(path: Path) -> set:
+    """Load the starred-codes set from ``path`` (``{code: true}`` JSON)."""
+    import json
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (FileNotFoundError, ValueError):
+        return set()
+    if isinstance(data, dict):
+        return {str(k) for k, v in data.items() if v}
+    if isinstance(data, list):
+        return {str(x) for x in data}
+    return set()
+
+
+def save_stars(path: Path, stars: set) -> None:
+    import json
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        json.dumps({c: True for c in sorted(stars)}, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
+
+def render_chart_star(
+    st: Any, code: str, stars_path: Path, session_key: str,
+) -> bool:
+    """⭐/☆ toggle button for the chart header (right end).
+
+    Shares the ``session_key`` set with the grid's ⭐ column and the "별표만"
+    filter, persisting to ``stars_path`` so favorites survive reloads. Returns
+    the current starred state. No explicit ``st.rerun`` — the button click
+    already reruns, and calling ``st.rerun`` inside a dialog would close it.
+    """
+    stars = st.session_state.setdefault(session_key, load_stars(stars_path))
+    is_on = code in stars
+    if st.button(
+        "⭐" if is_on else "☆",
+        key=f"chart_star_btn::{session_key}::{code}",
+        help="별표 토글 (즐겨찾기)",
+        use_container_width=True,
+    ):
+        if is_on:
+            stars.discard(code)
+        else:
+            stars.add(code)
+        save_stars(stars_path, stars)
+        is_on = not is_on
+    return is_on
+
+
+# ---------------------------------------------------------------------------
+# Compact number formatting for the chart meta line (시총 / 거래량)
+# ---------------------------------------------------------------------------
+
+def fmt_compact_krw(v: Any) -> str:
+    """KRW amount → 조/억 compact string (원 단위 입력)."""
+    try:
+        x = float(v)
+    except (TypeError, ValueError):
+        return ""
+    if x != x or x <= 0:
+        return ""
+    if x >= 1e12:
+        return f"{x / 1e12:.1f}조"
+    if x >= 1e8:
+        return f"{x / 1e8:,.0f}억"
+    return f"{x:,.0f}"
+
+
+def fmt_compact_usd(v: Any) -> str:
+    """USD amount → $B/$M/$K compact string."""
+    try:
+        x = float(v)
+    except (TypeError, ValueError):
+        return ""
+    if x != x or x <= 0:
+        return ""
+    if x >= 1e9:
+        return f"${x / 1e9:.2f}B"
+    if x >= 1e6:
+        return f"${x / 1e6:.1f}M"
+    if x >= 1e3:
+        return f"${x / 1e3:.1f}K"
+    return f"${x:,.0f}"
+
+
+def fmt_compact_count(v: Any) -> str:
+    """Plain share/contract count → thousands-separated (거래량 주식수)."""
+    try:
+        x = float(v)
+    except (TypeError, ValueError):
+        return ""
+    if x != x or x <= 0:
+        return ""
+    return f"{x:,.0f}"
+
+
+def render_chart_meta_line(st: Any, parts: list) -> None:
+    """Small grey caption under the chart title — list of ``(label, value)``.
+
+    Skips empty values. Renders as ``label value · label value`` on one line.
+    """
+    segs = [f"{label} {val}" for label, val in parts if val]
+    if not segs:
+        return
+    st.markdown(
+        "<div style='text-align:left; font-size:12px; color:#9aa0a6; "
+        "margin-top:-4px; line-height:16px; white-space:nowrap; overflow:hidden; "
+        "text-overflow:ellipsis;'>" + "&nbsp;·&nbsp;".join(segs) + "</div>",
+        unsafe_allow_html=True,
+    )
+
+
+def safe_fragment_rerun(st: Any) -> None:
+    """``st.rerun(scope="fragment")`` that falls back to a full rerun.
+
+    ``scope="fragment"`` is only valid while a fragment is running as a
+    *fragment rerun*. During the initial full-app run (e.g. a page reload while a
+    grid row is already selected) it raises ``StreamlitAPIException`` — catch
+    that and do a normal full rerun instead so the page never crashes.
+    """
+    from streamlit.errors import StreamlitAPIException
+    try:
+        st.rerun(scope="fragment")
+    except StreamlitAPIException:
+        st.rerun()
+
+
 def render_chart_title(st: Any, title: str) -> None:
     """Left-aligned title for the chart dialog header row."""
     st.markdown(
@@ -895,6 +1080,237 @@ def render_chart_title(st: Any, title: str) -> None:
         f"overflow:hidden; text-overflow:ellipsis;'>{title}</div>",
         unsafe_allow_html=True,
     )
+
+
+# ---------------------------------------------------------------------------
+# Chart dialog navigation — ←/→ (and on-screen ‹/›) to step through stocks
+# ---------------------------------------------------------------------------
+
+def _inject_arrow_key_js(st: Any, prev_btn_key: str, next_btn_key: str) -> None:
+    """Bridge keyboard ←/→ to the on-screen prev/next ``st.button`` clicks.
+
+    Streamlit has no native key handling, so we drop a 0-height component
+    iframe whose script (same-origin → reaches ``window.parent.document``)
+    listens for arrow keys and ``.click()`` s the matching button.
+
+    The tricky part is **focus**: after clicking a grid row, focus stays inside
+    the AgGrid iframe, and the chart is its own iframe too — keydown there never
+    reaches the main document, so a document-level listener would see nothing.
+    On open we therefore pull focus onto the dialog container (once, and never
+    when a text field is focused) so arrow keys land on the main document.
+
+    Guards: only acts while a dialog is open; ignores keys while typing in an
+    INPUT/TEXTAREA; skips disabled buttons (list boundaries). The handler is
+    stored on the parent document and de-duplicated each rerun so re-injection
+    never stacks listeners; a stale handler after close no-ops (no dialog).
+
+    Button lookup tries the ``st-key-…`` class first, then falls back to the
+    ‹ / › glyph inside the dialog in case the keyed class is absent.
+    """
+    from streamlit.components.v1 import html as _html
+
+    _html(
+        f"""
+        <script>
+        (function() {{
+          let doc;
+          try {{ doc = window.parent.document; }} catch (err) {{ return; }}
+          if (!doc) return;
+
+          var PREV_KEY = {prev_btn_key!r};
+          var NEXT_KEY = {next_btn_key!r};
+
+          function findDialog() {{
+            return doc.querySelector('[data-testid="stDialog"]')
+                || doc.querySelector('[role="dialog"]');
+          }}
+
+          function findBtn(dlg, key) {{
+            var b = dlg.querySelector('.st-key-' + key + ' button');
+            if (b) return b;
+            var glyph = (key === PREV_KEY) ? '‹' : '›';  // ‹ / ›
+            var all = dlg.querySelectorAll('button');
+            for (var i = 0; i < all.length; i++) {{
+              if ((all[i].innerText || '').trim() === glyph) return all[i];
+            }}
+            return null;
+          }}
+
+          if (doc.__stockChartNavHandler) {{
+            doc.removeEventListener('keydown', doc.__stockChartNavHandler, true);
+          }}
+          function handler(e) {{
+            if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+            var dlg = findDialog();
+            if (!dlg) return;
+            var ae = doc.activeElement;
+            if (ae && (ae.tagName === 'INPUT' || ae.tagName === 'TEXTAREA'
+                       || ae.isContentEditable)) return;
+            var btn = findBtn(dlg, e.key === 'ArrowLeft' ? PREV_KEY : NEXT_KEY);
+            if (btn && !btn.disabled) {{ e.preventDefault(); btn.click(); }}
+          }}
+          doc.__stockChartNavHandler = handler;
+          doc.addEventListener('keydown', handler, true);
+
+          // Pull focus onto the dialog so arrow keys reach the main document
+          // and not the AgGrid / chart iframes. Once per open; never steal
+          // focus from a text field the user may be typing in.
+          var dlg = findDialog();
+          if (dlg && !dlg.__navFocused) {{
+            var ae = doc.activeElement;
+            var inField = ae && (ae.tagName === 'INPUT' || ae.tagName === 'TEXTAREA'
+                                 || ae.isContentEditable);
+            if (!inField) {{
+              dlg.setAttribute('tabindex', '-1');
+              try {{ dlg.focus({{preventScroll: true}}); }} catch (e2) {{}}
+              dlg.__navFocused = true;
+            }}
+          }}
+        }})();
+        </script>
+        """,
+        height=0,
+    )
+
+
+class ChartNavigator:
+    """←/→ + ‹/› navigation between stocks inside the chart dialog.
+
+    Steps the dialog's selected symbol to the previous/next entry in the
+    grid's *current display order* — the page stores that ordered list (and a
+    ``{code: name}`` map) in ``session_state`` under ``codes_key`` /
+    ``names_key`` each rerun, so navigation follows whatever filter/sort the
+    user has applied.
+
+    ``shown_key`` (the page's ``_*_chart_dialog_shown_for`` guard) is updated
+    in lockstep so the page does **not** call the dialog function again while
+    it is already open — Streamlit forbids opening two dialogs and would
+    raise. The already-open dialog re-renders itself on the rerun the button
+    click triggers, picking up the new ``sel_key`` value.
+    """
+
+    def __init__(
+        self,
+        st: Any,
+        *,
+        codes_key: str,
+        names_key: str,
+        sel_key: str,
+        name_key: str,
+        shown_key: str,
+        btn_prefix: str,
+    ) -> None:
+        self.st = st
+        self.codes_key = codes_key
+        self.names_key = names_key
+        self.sel_key = sel_key
+        self.name_key = name_key
+        self.shown_key = shown_key
+        self.prev_btn = f"{btn_prefix}_prev"
+        self.next_btn = f"{btn_prefix}_next"
+
+    def _codes(self) -> list:
+        return self.st.session_state.get(self.codes_key) or []
+
+    def _pos(self) -> tuple:
+        """Return ``(index_of_current, total)``; index is -1 if not found."""
+        codes = self._codes()
+        cur = self.st.session_state.get(self.sel_key)
+        return (codes.index(cur) if cur in codes else -1), len(codes)
+
+    def _go(self, delta: int) -> None:
+        codes = self._codes()
+        cur = self.st.session_state.get(self.sel_key)
+        if not codes or cur not in codes:
+            return
+        j = codes.index(cur) + delta
+        if j < 0 or j >= len(codes):
+            return
+        new = codes[j]
+        self.st.session_state[self.sel_key] = new
+        names = self.st.session_state.get(self.names_key) or {}
+        self.st.session_state[self.name_key] = names.get(new, new)
+        self.st.session_state[self.shown_key] = new  # keep dialog-open guard in sync
+
+    def button_prev(self) -> None:
+        i, _n = self._pos()
+        self.st.button(
+            "‹", key=self.prev_btn, use_container_width=True,
+            disabled=(i <= 0), on_click=self._go, args=(-1,),
+            help="이전 종목 (←)",
+        )
+
+    def button_next(self) -> None:
+        i, n = self._pos()
+        self.st.button(
+            "›", key=self.next_btn, use_container_width=True,
+            disabled=(i < 0 or i >= n - 1), on_click=self._go, args=(1,),
+            help="다음 종목 (→)",
+        )
+
+    def position_text(self) -> None:
+        i, n = self._pos()
+        label = f"{i + 1} / {n}" if i >= 0 else f"– / {n}"
+        self.st.markdown(
+            f"<div style='text-align:center;color:#888;font-size:12px;"
+            f"line-height:32px;'>{label}</div>",
+            unsafe_allow_html=True,
+        )
+
+    def _go_to(self, idx0: int) -> None:
+        """Jump to the 0-based index ``idx0`` (clamped to range)."""
+        codes = self._codes()
+        if not codes:
+            return
+        idx0 = max(0, min(idx0, len(codes) - 1))
+        new = codes[idx0]
+        self.st.session_state[self.sel_key] = new
+        names = self.st.session_state.get(self.names_key) or {}
+        self.st.session_state[self.name_key] = names.get(new, new)
+        self.st.session_state[self.shown_key] = new  # keep dialog-open guard in sync
+
+    def _jump_from_widget(self, key: str) -> None:
+        raw = self.st.session_state.get(key)
+        if raw is None or str(raw).strip() == "":
+            return
+        try:
+            idx1 = int(str(raw).strip())
+        except (TypeError, ValueError):
+            return
+        self._go_to(idx1 - 1)  # _go_to clamps out-of-range input
+
+    def position_input(self) -> None:
+        """Editable ``n / m`` position — type a number (1..N) to jump to that chart.
+
+        A plain text box (no +/- steppers) shows the current position with the
+        total ``/ N`` beside it. The box is re-seeded to the current position
+        every run (before instantiation) so ‹/›/arrow navigation keeps it in
+        sync; typing a number triggers ``_jump_from_widget`` to navigate.
+        Invalid / out-of-range text self-corrects on the next run.
+        """
+        i, n = self._pos()
+        if n <= 0:
+            self.position_text()
+            return
+        key = f"{self.next_btn}__pos"
+        self.st.session_state[key] = str(i + 1) if i >= 0 else ""
+        c_in, c_tot = self.st.columns([1, 0.7])
+        with c_in:
+            self.st.text_input(
+                f"종목 위치 (1–{n})",
+                key=key, on_change=self._jump_from_widget, args=(key,),
+                label_visibility="collapsed",
+                placeholder=str(i + 1) if i >= 0 else "#",
+            )
+        with c_tot:
+            self.st.markdown(
+                f"<div style='text-align:left;color:#888;font-size:13px;"
+                f"line-height:32px;white-space:nowrap;'>/ {n}</div>",
+                unsafe_allow_html=True,
+            )
+
+    def inject_keys(self) -> None:
+        _inject_arrow_key_js(self.st, self.prev_btn, self.next_btn)
 
 
 def render_chart_memo(
@@ -943,6 +1359,28 @@ STOCK_PAGE_CSS = """
   min-height: 0 !important;
   line-height: 1.4 !important;
 }
+/* Chart dialog prev/next (‹ ›) nav buttons — compact, square-ish */
+[class*="chart_nav_prev"] button,
+[class*="chart_nav_next"] button {
+  padding: 0 !important;
+  min-height: 30px !important;
+  height: 30px !important;
+  font-size: 18px !important;
+  line-height: 1 !important;
+  font-weight: 700 !important;
+}
+/* Chart dialog position jump box — compact text_input matching the ‹ › height */
+[class*="_next__pos"] input {
+  padding: 2px 6px !important;
+  height: 30px !important;
+  min-height: 30px !important;
+  text-align: center !important;
+  font-size: 13px !important;
+}
+/* Chart line legend overlay — anchor the absolute legend to the chart's
+   top-left and collapse the gap so the chart sits flush under it. */
+.st-key-chart_legend_wrap { position: relative !important; }
+.st-key-chart_legend_wrap [data-testid="stVerticalBlock"] { gap: 0 !important; }
 /* Nudge dialog X button — small offset from default */
 div[role="dialog"] button[aria-label="Close"],
 [data-testid="stDialog"] button[aria-label="Close"] {

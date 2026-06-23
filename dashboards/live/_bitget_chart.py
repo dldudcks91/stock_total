@@ -12,6 +12,8 @@ from __future__ import annotations
 
 import pandas as pd
 
+from dashboards._stock_grid import DEFAULT_BAR_SPACING
+
 
 def render_tv_chart(symbol: str, interval: str, cdf: pd.DataFrame) -> None:
     """Render a Bitget/TradingView-style chart from a crypto OHLCV DataFrame.
@@ -21,17 +23,15 @@ def render_tv_chart(symbol: str, interval: str, cdf: pd.DataFrame) -> None:
     — this module raises ImportError at call time if missing so a fallback
     path (e.g. plotly) can be chosen by the caller.
     """
+    import streamlit as _st
     from streamlit_lightweight_charts import renderLightweightCharts  # type: ignore
+    from dashboards._stock_grid import chart_legend_html
 
     d = cdf.copy()
     # crypto cache: timestamp(UTC ms). lightweight-charts expects unix seconds.
     d["t"] = (pd.to_numeric(d["timestamp"]) // 1000).astype("int64")
     d = d.sort_values("t").drop_duplicates(subset="t", keep="last").reset_index(drop=True)
 
-    # 데이터는 자르지 않고 전체 기간을 그대로 차트에 넘긴다 — 과거 데이터가 있으면
-    # 모두 표시·스크롤된다. (streamlit-lightweight-charts 는 받은 데이터 전체에
-    # timeScale().fitContent() 로 화면을 맞추므로 초기 화면 = 전체 기간. 최근 구간만
-    # 확대해 보려면 차트에서 마우스 휠 줌 / 드래그 스크롤.)
     # (period, color, label, kind)  kind: "sma" | "vwma"
     ma_specs = [
         (10, "#F0B90B", "MA10", "sma"),    # 노란색
@@ -58,7 +58,9 @@ def render_tv_chart(symbol: str, interval: str, cdf: pd.DataFrame) -> None:
     rs = avg_gain / avg_loss.where(avg_loss != 0)
     rsi_full = 100 - (100 / (1 + rs))
 
-
+    # 전체 히스토리를 그대로 전송 — 패치된 프론트엔드(patch_lwc.py)가 fitContent
+    # 대신 scrollToRealTime 을 호출하므로 초기엔 최근 봉에 줌되고, 왼쪽으로 끌면
+    # 과거 캔들이 거래소처럼 계속 이어진다 (barSpacing = DEFAULT_BAR_SPACING).
     candles = [
         {"time": int(t), "open": float(o), "high": float(h),
          "low": float(l), "close": float(c)}
@@ -91,7 +93,6 @@ def render_tv_chart(symbol: str, interval: str, cdf: pd.DataFrame) -> None:
                 "priceLineVisible": False,
                 "lastValueVisible": False,
                 "crosshairMarkerVisible": False,
-                "title": label,
             },
         })
 
@@ -130,6 +131,8 @@ def render_tv_chart(symbol: str, interval: str, cdf: pd.DataFrame) -> None:
             "timeVisible": interval in ("1h", "4h"),
             "secondsVisible": False,
             "rightOffset": 6,
+            "barSpacing": DEFAULT_BAR_SPACING,
+            "minBarSpacing": 0.5,  # allow zooming far out across full history
         },
         "crosshair": {"mode": 1},
         "watermark": {
@@ -173,7 +176,7 @@ def render_tv_chart(symbol: str, interval: str, cdf: pd.DataFrame) -> None:
                 "color": "#7E57C2", "lineWidth": 1,
                 "priceScaleId": "rsi",
                 "priceLineVisible": False, "lastValueVisible": False,
-                "crosshairMarkerVisible": False, "title": "RSI14",
+                "crosshairMarkerVisible": False,
             },
             "priceScale": {
                 "scaleMargins": {"top": 0.82, "bottom": 0},
@@ -204,7 +207,10 @@ def render_tv_chart(symbol: str, interval: str, cdf: pd.DataFrame) -> None:
         },
     ]
 
-    renderLightweightCharts(
-        [{"chart": chart_options, "series": series}],
-        key=f"lwc_{symbol}_{interval}",
-    )
+    legend = chart_legend_html([(lbl, clr) for _p, clr, lbl, _k in ma_specs])
+    with _st.container(key="chart_legend_wrap"):
+        _st.markdown(legend, unsafe_allow_html=True)
+        renderLightweightCharts(
+            [{"chart": chart_options, "series": series}],
+            key=f"lwc_{symbol}_{interval}",
+        )

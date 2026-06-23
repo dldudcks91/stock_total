@@ -26,12 +26,18 @@ from dashboards._precompute import load_recs, load_refs, precompute_status
 from dashboards._stock_grid import (
     PERIODS_D,
     STOCK_PAGE_CSS,
+    ChartNavigator,
     apply_current_prices,
     build_stock_grid_options,
+    fmt_compact_krw,
     load_notes,
+    load_stars,
     render_chart_memo,
+    render_chart_meta_line,
+    render_chart_star,
     render_chart_title,
     render_tv_chart_stock,
+    safe_fragment_rerun,
     save_notes,
 )
 from dashboards.live._common import (
@@ -56,6 +62,7 @@ _FETCH_LOG = _CACHE_DIR / "_fetch.log"
 _LIVE_LOG = _CACHE_DIR / "_live_fetch.log"
 _PRE_LOG = _CACHE_DIR / "_precompute.log"
 _NOTES_PATH = _CACHE_DIR / "_notes.json"
+_STARS_PATH = _CACHE_DIR / "_stars.json"
 _LISTING_CSV = _CACHE_DIR / "_listing.csv"
 _REPORTS_DIR = _ROOT / "research" / "reports"
 
@@ -201,12 +208,35 @@ def render(st: Any) -> None:
             ).dropna()
         return load_ohlcv("kr", symbol, iv)
 
+    _nav = ChartNavigator(
+        st,
+        codes_key="kospi_nav_codes", names_key="kospi_nav_names",
+        sel_key="kospi_sel_code", name_key="kospi_sel_name",
+        shown_key="_kospi_chart_dialog_shown_for", btn_prefix="kospi_chart_nav",
+    )
+
     def _render_inline_chart(code: str, name: str) -> None:
-        col_left, col_memo = st.columns([2, 3], vertical_alignment="center")
-        with col_left:
+        c_title, c_prev, c_pos, c_next, c_memo, c_star = st.columns(
+            [4, 0.8, 2.0, 0.8, 3.1, 0.7], vertical_alignment="center",
+        )
+        with c_title:
             render_chart_title(st, f"{name} · {code}")
-        with col_memo:
+            meta = st.session_state.get("kospi_nav_meta", {}).get(code, {})
+            render_chart_meta_line(st, [
+                ("시총", fmt_compact_krw(meta.get("mcap"))),
+                ("거래대금", fmt_compact_krw(meta.get("vol"))),
+            ])
+        with c_prev:
+            _nav.button_prev()
+        with c_pos:
+            _nav.position_input()
+        with c_next:
+            _nav.button_next()
+        with c_memo:
             render_chart_memo(st, code, _NOTES_PATH, "kospi_notes")
+        with c_star:
+            render_chart_star(st, code, _STARS_PATH, "kospi_stars")
+        _nav.inject_keys()
 
         tab_chart, tab_report = st.tabs(["Chart", "Report"])
 
@@ -242,10 +272,41 @@ def render(st: Any) -> None:
 
         with tab_report:
             report_path = _latest_report_path(code)
+
+            b1, _b2 = st.columns([1, 2])
+            with b1:
+                gen = st.button(
+                    "🤖 리포트 생성" if report_path is None else "🔄 리포트 재생성",
+                    key=f"kospi_report_gen_{code}",
+                    use_container_width=True,
+                    help="research.report 파이프라인 — 정량 분석 + 한경 컨센서스·DART 크롤 → "
+                         "종합 마크다운. 수십 초 소요, 완료까지 이 창이 잠시 멈춥니다.",
+                )
+            if gen:
+                import subprocess
+                _report_log = _REPORTS_DIR / f"_gen_{code}.log"
+                _REPORTS_DIR.mkdir(parents=True, exist_ok=True)
+                with st.spinner(f"{name}({code}) 리포트 생성 중… (한경·DART 크롤, 수십 초)"):
+                    with open(_report_log, "w", encoding="utf-8") as _lh:
+                        rc = subprocess.run(
+                            python_module_args("research.report", code, name),
+                            cwd=str(_ROOT), stdout=_lh, stderr=subprocess.STDOUT,
+                        ).returncode
+                if rc == 0:
+                    st.success("✅ 리포트 생성 완료")
+                    report_path = _latest_report_path(code)
+                else:
+                    st.error(f"❌ 리포트 생성 실패 (exit {rc})")
+                    try:
+                        tail = _report_log.read_text(encoding="utf-8", errors="replace")[-1500:]
+                        st.code(tail or "(로그 없음)")
+                    except Exception:  # noqa: BLE001
+                        pass
+
             if report_path is None:
-                st.info(
-                    f"`{code}` 리서치 리포트 없음. 아래 명령으로 생성하세요:\n\n"
-                    f"```bash\n.venv/Scripts/python.exe -m research.report {code} \"{name}\"\n```"
+                st.caption(
+                    "리포트가 아직 없습니다. 위 **🤖 리포트 생성** 을 눌러주세요. "
+                    f"(CLI: `.venv/Scripts/python.exe -m research.report {code} \"{name}\"`)"
                 )
             else:
                 mt = pd.Timestamp.fromtimestamp(report_path.stat().st_mtime, tz="Asia/Seoul")
@@ -283,7 +344,9 @@ def render(st: Any) -> None:
 
         st.caption(fetched_at_caption(df))
 
-        f1, f2, f3 = st.columns([3, 1, 2])
+        stars = st.session_state.setdefault("kospi_stars", load_stars(_STARS_PATH))
+
+        f1, f2, f3, f4 = st.columns([3, 1, 2, 1.2])
         with f1:
             search = st.text_input("Name / code contains", value="", key="kospi_search").strip()
         with f2:
@@ -300,6 +363,20 @@ def render(st: Any) -> None:
                 format_func=lambda k: _COLUMN_LABELS.get(k, k),
                 key="kospi_sort",
             )
+        with f4:
+            star_only = st.checkbox(
+                f"⭐ 별표만 ({len(stars)})", value=False, key="kospi_star_only",
+            )
+
+        # AgGrid(iframe custom component)는 @st.fragment 의 부분 rerun 에서 key 가
+        # 바뀌어도 새 데이터로 re-mount 되지 않는다(표가 그대로 남음). 필터/정렬/TopN
+        # 위젯이 바뀌면 시그니처 비교로 감지해 전체 rerun 으로 승격, 표를 갱신한다.
+        _filter_sig = (search, int(top_n), sort_col_key)
+        if "_kospi_filter_sig" not in st.session_state:
+            st.session_state["_kospi_filter_sig"] = _filter_sig
+        elif st.session_state["_kospi_filter_sig"] != _filter_sig:
+            st.session_state["_kospi_filter_sig"] = _filter_sig
+            st.rerun()
 
         codes_all = df["itemCode"].dropna().astype(str).tolist()
         if codes_all:
@@ -336,6 +413,8 @@ def render(st: Any) -> None:
                 except Exception as e:
                     st.warning(f"추천 머지 실패: {e}")
 
+        if star_only:
+            df = df[df["itemCode"].astype(str).isin(stars)]
         if search:
             mask = (
                 df["stockName"].astype(str).str.contains(search, case=False, na=False)
@@ -349,10 +428,26 @@ def render(st: Any) -> None:
         df = df.reset_index(drop=True)
 
         if df.empty:
-            st.info("필터 조건에 맞는 종목이 없습니다.")
+            st.info("⭐ 별표한 종목이 없습니다." if star_only
+                    else "필터 조건에 맞는 종목이 없습니다.")
             return
 
         notes = st.session_state.setdefault("kospi_notes", load_notes(_NOTES_PATH))
+
+        # Display order drives ←/→ chart navigation (follows filter/sort).
+        nav_codes = df["itemCode"].astype(str).tolist()
+        st.session_state["kospi_nav_codes"] = nav_codes
+        st.session_state["kospi_nav_names"] = dict(
+            zip(nav_codes, df["stockName"].astype(str))
+        )
+        # 시총/거래대금 — 차트 헤더 메타 라인용 (code → {mcap, vol}).
+        st.session_state["kospi_nav_meta"] = {
+            str(r["itemCode"]): {
+                "mcap": r.get("marketValue"),
+                "vol": r.get("accumulatedTradingValue"),
+            }
+            for _, r in df.iterrows()
+        }
 
         SEL_KEY = "kospi_sel_code"
         selected_symbol: Optional[str] = st.session_state.get(SEL_KEY)
@@ -369,8 +464,9 @@ def render(st: Any) -> None:
             volume_format="millions",
             market_cap_col="marketValue", market_cap_header="시총",
             market_cap_format="millions",
+            star_codes=stars,
         )
-        grid_key = f"kospi_grid::v4::{top_n}::{search}::{sort_col_key}"
+        grid_key = f"kospi_grid::v4::{top_n}::{search}::{sort_col_key}::{star_only}::{len(stars)}"
         grid_resp = AgGrid(
             df_grid,
             gridOptions=grid_options,
@@ -394,14 +490,22 @@ def render(st: Any) -> None:
                 if isinstance(first, dict):
                     new_sel = str(first.get("itemCode", "")) or None
                     new_name = str(first.get("stockName", "")) or None
-        if new_sel != selected_symbol:
+        # Treat the grid as authoritative only when *it* reports a different
+        # selection than last time. Comparing against ``selected_symbol``
+        # (session) instead would fight the ←/→ navigator: arrow nav changes
+        # the session symbol but not the grid (it isn't re-mounted), so the
+        # grid keeps reporting the originally clicked row — which would then
+        # be mistaken for a fresh click and revert the navigation.
+        prev_grid_sel = st.session_state.get("_kospi_grid_prev_sel")
+        st.session_state["_kospi_grid_prev_sel"] = new_sel
+        if new_sel != prev_grid_sel:
             if new_sel:
                 st.session_state[SEL_KEY] = new_sel
                 st.session_state["kospi_sel_name"] = new_name or new_sel
             else:
                 st.session_state.pop(SEL_KEY, None)
                 st.session_state.pop("kospi_sel_name", None)
-            st.rerun(scope="fragment")
+            safe_fragment_rerun(st)
 
         cur_sel = st.session_state.get(SEL_KEY)
         last_shown = st.session_state.get("_kospi_chart_dialog_shown_for")

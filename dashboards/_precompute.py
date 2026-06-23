@@ -1,15 +1,16 @@
 """Precompute & persist dashboard views (refs + recs) to disk.
 
-The KOSPI / NASDAQ / Bitget live tabs recompute reference levels
-(``compute_reference_levels``) and ma_touch recommendations on every cold
-load — each cycle iterates 600~4000 symbols × full parquet reads × per-TF
-resamples, which Streamlit's ``@st.cache_data`` only papered over while the
-process was alive.
+The KOSPI / NASDAQ / Bitget live tabs used to recompute reference levels
+(``compute_reference_levels``) and the recommendation gate on every cold load —
+each cycle iterates 600–4000 symbols × full parquet reads, which Streamlit's
+``@st.cache_data`` only papered over while the process was alive.
 
 This module replaces the in-memory cache with a **disk cache** per asset:
 
   data/cache/{asset}/_refs.parquet   ← compute_reference_levels output
-  data/cache/{asset}/_recs.parquet   ← ma_touch evaluator output
+  data/cache/{asset}/_recs.parquet   ← ma_touch gate (symbol, gate_pass) — the
+                                       same signal /recs reports, sourced from
+                                       scripts._common.recommend_runner
 
 Each file carries two staleness markers:
 
@@ -17,7 +18,7 @@ Each file carries two staleness markers:
     this row was computed. Per-symbol incremental: only rows whose source
     parquet has changed get recomputed.
   - ``anchor_ms``   (uniform per file) — the wall-clock anchor the file was
-    computed for (stock: today midnight KST in ms; crypto: hour bucket UTC).
+    computed for (stock: today midnight in ms; crypto: hour bucket in ms).
     When this changes (next day for stock, next hour for crypto) **all** rows
     are recomputed since prev_Nd / MA / HL are anchored to wall-clock now.
 
@@ -29,7 +30,6 @@ CLI::
     .venv/Scripts/python.exe -m dashboards._precompute --asset kr [--force]
     .venv/Scripts/python.exe -m dashboards._precompute --asset us [--force]
     .venv/Scripts/python.exe -m dashboards._precompute --asset crypto [--force]
-    .venv/Scripts/python.exe -m dashboards._precompute --asset all
 
 Dashboard usage::
 
@@ -59,19 +59,24 @@ from dashboards._stock_grid import (
     load_cache_tails,
 )
 
+# All three assets ship _refs + _recs. Refs are MA/HL/prev levels for the grid
+# columns; recs is the single ma_touch gate (symbol, gate_pass), computed by
+# the shared engine in scripts._common.recommend_runner (same signal /recs uses).
 SUPPORTED_ASSETS: tuple[str, ...] = ("kr", "us", "crypto")
 
 
 def _cache_dir(asset: str) -> Path:
-    """Asset cache root (where ``_refs.parquet`` / ``_recs.parquet`` live)."""
+    """Cache root for ``asset``. Crypto symbol parquets live under ``1d/``
+    (the per-symbol files for 1d candles); the asset root holds the
+    precompute outputs (_refs.parquet, _live_snapshot.parquet)."""
     return _ROOT / "data" / "cache" / asset
 
 
 def _symbol_cache_dir(asset: str) -> Path:
-    """Directory holding per-symbol parquets.
+    """Directory holding per-symbol parquets (where ``{SYMBOL}.parquet`` lives).
 
-    For crypto this is ``cache/crypto/1d/`` — the 1d cache is the canonical
-    source for ma_touch and resampled higher TFs.
+    For crypto this is ``cache/crypto/1d/`` — symbol discovery uses the 1D
+    cache (1h is fetched alongside 1d, so 1d's mtime is the canonical signal).
     """
     if asset == "crypto":
         return _cache_dir(asset) / "1d"
@@ -91,7 +96,7 @@ def recs_path(asset: str) -> Path:
 # ---------------------------------------------------------------------------
 
 def list_symbols(asset: str) -> list[str]:
-    """All cached symbols for ``asset`` (``_``-prefixed files excluded)."""
+    """All cached symbols for ``asset`` (parquet stems, ``_``-prefixed excluded)."""
     cache = _symbol_cache_dir(asset)
     if not cache.exists():
         return []
@@ -119,21 +124,19 @@ def _symbol_mtimes(asset: str, symbols: list[str]) -> dict[str, float]:
 # ---------------------------------------------------------------------------
 
 def _stock_anchor_ms(now_ts: Optional[pd.Timestamp] = None) -> int:
-    """Today midnight KST (naive) in ms since epoch.
+    """Today midnight (local time, naive) in ms since epoch.
 
-    KOSPI / NASDAQ refs are day-bucketed: valid until the date rolls over.
-    KST is used as the dashboard wall clock (matches user-facing labels).
+    Stock anchors are day-bucketed: refs are valid until the date rolls over.
     """
     if now_ts is None:
-        now_ts = pd.Timestamp.now(tz="Asia/Seoul").tz_localize(None).normalize()
+        now_ts = pd.Timestamp.now().normalize()
     return int(pd.Timestamp(now_ts).value // 1_000_000)
 
 
 def _crypto_anchor_ms(now_ms: Optional[int] = None) -> int:
     """Current hour bucket in ms since epoch (UTC).
 
-    Crypto anchors are hour-bucketed since the 1H cache ticks every hour and
-    refs that reference recent High/Low can roll within a single day.
+    Crypto anchors are hour-bucketed since the 1H cache ticks every hour.
     """
     if now_ms is None:
         now_ms = int(time.time() * 1000)
@@ -146,7 +149,7 @@ def _crypto_anchor_ms(now_ms: Optional[int] = None) -> int:
 # ---------------------------------------------------------------------------
 
 def load_refs(asset: str) -> Optional[pd.DataFrame]:
-    """Read precomputed reference levels. Returns ``None`` if missing."""
+    """Read precomputed reference levels. Returns ``None`` if file is missing."""
     p = refs_path(asset)
     if not p.exists():
         return None
@@ -157,7 +160,7 @@ def load_refs(asset: str) -> Optional[pd.DataFrame]:
 
 
 def load_recs(asset: str) -> Optional[pd.DataFrame]:
-    """Read precomputed ma_touch recommendations. Returns ``None`` if missing."""
+    """Read precomputed recommendations. Returns ``None`` if file is missing."""
     p = recs_path(asset)
     if not p.exists():
         return None
@@ -168,7 +171,11 @@ def load_recs(asset: str) -> Optional[pd.DataFrame]:
 
 
 def precompute_status(asset: str) -> dict:
-    """File mtime + row counts for the dashboard caption."""
+    """File mtime + row counts for the dashboard caption.
+
+    Returns: ``{refs_mtime: float|None, recs_mtime: float|None, n_symbols: int}``.
+    All values are best-effort and missing files yield ``None`` mtimes / 0 counts.
+    """
     out: dict = {"refs_mtime": None, "recs_mtime": None, "n_symbols": 0}
     rp, cp = refs_path(asset), recs_path(asset)
     if rp.exists():
@@ -187,7 +194,8 @@ def precompute_status(asset: str) -> dict:
 # ---------------------------------------------------------------------------
 
 def _write_atomic(df: pd.DataFrame, path: Path) -> None:
-    """``df`` → ``path`` via .tmp + ``os.replace`` for crash-safe reads."""
+    """``df`` → ``path`` via .tmp + ``os.replace`` so concurrent readers always
+    see a consistent file (never a half-written parquet)."""
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(path.suffix + ".tmp")
     df.to_parquet(tmp, index=False)
@@ -195,7 +203,7 @@ def _write_atomic(df: pd.DataFrame, path: Path) -> None:
 
 
 # ---------------------------------------------------------------------------
-# Staleness + merge
+# Compute drivers
 # ---------------------------------------------------------------------------
 
 def _stale_symbols(
@@ -206,16 +214,18 @@ def _stale_symbols(
 ) -> list[str]:
     """Symbols that need recomputation under the current ``(mtime, anchor)`` state.
 
-    Stale if ANY of:
+    Triggers (any one → stale):
       - no existing file / no ``data_mtime`` column (cold start)
-      - ``anchor_ms`` arg passed but file lacks ``anchor_ms`` column
-      - file-wide ``anchor_ms`` mismatches current (date/hour roll → all stale)
-      - per-symbol parquet mtime advanced past stored ``data_mtime``
-      - symbol new (not in existing at all)
+      - ``anchor_ms`` was passed but the file lacks ``anchor_ms`` (schema upgrade)
+      - file-wide ``anchor_ms`` mismatches current — *all* symbols stale, since
+        prev_Nd / MA / HL are anchored to wall-clock now
+      - symbol's source parquet mtime > stored ``data_mtime`` for that row
+      - symbol not present in ``existing`` at all (new cache)
     """
     if existing is None or existing.empty or "data_mtime" not in existing.columns:
         return list(current_mtimes.keys())
 
+    # File-wide anchor check (any mismatch → recompute everything).
     if anchor_ms is not None:
         if "anchor_ms" not in existing.columns:
             return list(current_mtimes.keys())
@@ -229,6 +239,7 @@ def _stale_symbols(
         if stored_anchor != anchor_ms:
             return list(current_mtimes.keys())
 
+    # Per-symbol mtime check.
     have = dict(zip(existing["symbol"].astype(str), existing["data_mtime"].astype(float)))
     stale: list[str] = []
     for sym, mt in current_mtimes.items():
@@ -245,14 +256,15 @@ def _merge_rows(
     *,
     anchor_ms: Optional[int] = None,
 ) -> pd.DataFrame:
-    """Overlay ``fresh`` on ``existing`` (drop removed symbols, add new).
+    """Overlay ``fresh`` rows on ``existing`` (drop dropped symbols, add new).
 
-    Keyed on ``symbol``. ``data_mtime`` of fresh rows is stamped from the
-    current_mtimes snapshot; ``anchor_ms`` if given is stamped uniformly.
+    The merge is keyed on ``symbol``; the resulting frame contains exactly the
+    symbols present in ``current_mtimes`` (so removed parquets drop out).
+    If ``anchor_ms`` is given, the column is stamped uniformly on every row
+    of the merged result.
     """
     fresh = fresh.copy()
-    if not fresh.empty:
-        fresh["data_mtime"] = fresh["symbol"].astype(str).map(current_mtimes).astype(float)
+    fresh["data_mtime"] = fresh["symbol"].astype(str).map(current_mtimes).astype(float)
 
     if existing is None or existing.empty:
         merged = fresh.reset_index(drop=True)
@@ -260,6 +272,7 @@ def _merge_rows(
         keep_mask = existing["symbol"].astype(str).isin(current_mtimes.keys())
         keep_mask &= ~existing["symbol"].astype(str).isin(fresh["symbol"].astype(str))
         kept = existing.loc[keep_mask]
+        # Align columns (union); pandas concat handles missing columns with NaN.
         merged = pd.concat([kept, fresh], ignore_index=True, sort=False).reset_index(drop=True)
 
     if anchor_ms is not None and not merged.empty:
@@ -267,11 +280,32 @@ def _merge_rows(
     return merged
 
 
-# ---------------------------------------------------------------------------
-# REFS loaders (per asset)
-# ---------------------------------------------------------------------------
+def _compute_ma_touch_recs(asset: str, symbols: list[str]) -> pd.DataFrame:
+    """Per-symbol ma_touch gate for the grid's ● column.
 
-def _refs_loader_stock(asset: str):
+    Reuses the shared ma_touch engine
+    (:func:`scripts._common.recommend_runner.evaluate_universe`) so the
+    dashboard's ● means exactly what the ``/recs`` skill reports: today the
+    symbol sits at a ma_touch entry on **at least one** evaluated timeframe.
+
+    Returns ``DataFrame[symbol, gate_pass]`` covering every requested symbol —
+    those the engine skips (too few daily bars, unreadable parquet) get
+    ``gate_pass=False`` so the incremental merge always has a row per symbol.
+    """
+    from scripts._common.recommend_runner import evaluate_universe
+
+    result = evaluate_universe(asset, symbols, verbose=False)
+    gate: dict[str, bool] = {}
+    if not result.empty and "count_signal_ma_touch_total" in result.columns:
+        counts = result["count_signal_ma_touch_total"].fillna(0)
+        gate = dict(zip(result["symbol"].astype(str), counts > 0))
+    return pd.DataFrame({
+        "symbol": [str(s) for s in symbols],
+        "gate_pass": [bool(gate.get(str(s), False)) for s in symbols],
+    })
+
+
+def _refs_loader(asset: str):
     """Return ``cache_loader(sym, n)`` for stock ``compute_reference_levels``."""
     cache = _symbol_cache_dir(asset)
 
@@ -281,10 +315,11 @@ def _refs_loader_stock(asset: str):
     return _loader
 
 
-def _refs_loader_crypto():
-    """Return ``cache_loader(sym, gran, n)`` for crypto refs.
+def _crypto_refs_loader():
+    """Return ``cache_loader(sym, gran, n)`` for crypto ``compute_reference_levels``.
 
-    Lazy import so the stock-only path doesn't pull in crypto deps.
+    Imported lazily so this module doesn't pull in the crypto compute layer
+    when only stock paths are exercised.
     """
     from dashboards.live._crypto_compute import (
         DAILY_CANDLE_LIMIT, HOURLY_CANDLE_LIMIT,
@@ -298,42 +333,6 @@ def _refs_loader_crypto():
     return _loader
 
 
-# ---------------------------------------------------------------------------
-# RECS — ma_touch evaluator wrapper (replaces old gate_pass-only recs)
-# ---------------------------------------------------------------------------
-
-def _compute_recs(asset: str, symbols: list[str]) -> pd.DataFrame:
-    """Per-symbol ma_touch eval → DataFrame.
-
-    Wraps ``scripts._common.recommend_runner._row_for_symbol`` (the same engine
-    that ``scripts/{asset}/ma_touch/recommend.py`` and ``/recs`` skill use).
-    Each row gets per-TF signal flags, MA prices/distances/angles, and the
-    aggregated ``count_signal_ma_touch_total`` / ``signal_ma_touch_timeframes_passed``
-    columns. The dashboard tables merge this in by ``symbol``.
-
-    Failures on individual symbols are silently dropped (returns None upstream).
-    """
-    from scripts._common.recommend_runner import _row_for_symbol
-
-    rows: list[dict] = []
-    for sym in symbols:
-        try:
-            row = _row_for_symbol(asset, sym)
-        except Exception:
-            row = None
-        if row is not None:
-            rows.append(row)
-    if not rows:
-        # Even with no passing rows we return an empty frame with the symbol
-        # column so the merge schema is stable.
-        return pd.DataFrame({"symbol": pd.Series([], dtype=str)})
-    return pd.DataFrame(rows)
-
-
-# ---------------------------------------------------------------------------
-# Main driver
-# ---------------------------------------------------------------------------
-
 def precompute(
     asset: str,
     *,
@@ -343,14 +342,19 @@ def precompute(
 ) -> dict:
     """Refresh ``_refs.parquet`` and ``_recs.parquet`` for ``asset``.
 
-    Incremental by default: a symbol's row is recomputed only when its source
-    parquet mtime advanced past the stored ``data_mtime`` OR the file-wide
-    ``anchor_ms`` rolled (date for stock, hour for crypto). ``force=True``
-    bypasses both checks and recomputes every symbol.
+    Incremental by default — a symbol's row is recomputed only when its
+    source parquet has been modified since the stored ``data_mtime`` OR the
+    file-wide ``anchor_ms`` has changed (date roll for stock, hour roll for
+    crypto). ``force=True`` recomputes every symbol regardless.
 
-    Returns stats::
-      {asset, n_total, refs_refreshed, recs_refreshed, refs_kept, recs_kept,
-       took_s, refs_path, recs_path, anchor_ms}
+    Refs (MA / HL / prev levels) are wall-clock anchored; recs (the ma_touch
+    gate) are not — recs read the cache as-is, so only ``data_mtime`` drives
+    their staleness. All three assets (kr / us / crypto) ship both files.
+
+    Returns a stats dict for CLI / log consumption::
+
+        {asset, n_total, refs_refreshed, recs_refreshed, refs_kept, recs_kept,
+         took_s, refs_path, recs_path, anchor_ms}
     """
     if asset not in SUPPORTED_ASSETS:
         raise ValueError(f"unsupported asset {asset!r} — must be one of {SUPPORTED_ASSETS}")
@@ -361,6 +365,7 @@ def precompute(
     symbols = list_symbols(asset)
     n_total = len(symbols)
 
+    # Wall-clock anchor (day bucket for stock, hour bucket for crypto).
     if is_crypto:
         anchor_ms = _crypto_anchor_ms(
             now_ms=int(pd.Timestamp(now_ts).value // 1_000_000) if now_ts is not None else None
@@ -383,7 +388,7 @@ def precompute(
 
     mtimes = _symbol_mtimes(asset, symbols)
 
-    # ── REFS ────────────────────────────────────────────────────────────
+    # ── REFS ──
     existing_refs = None if force else load_refs(asset)
     stale_refs = (
         symbols if force
@@ -395,63 +400,56 @@ def precompute(
     if stale_refs:
         if is_crypto:
             from dashboards.live._crypto_compute import (
-                compute_reference_levels as _crypto_compute_refs,
+                compute_reference_levels as _crypto_compute,
             )
-            crypto_loader = _refs_loader_crypto()
-            fresh_refs = _crypto_compute_refs(
+            crypto_loader = _crypto_refs_loader()
+            fresh_refs = _crypto_compute(
                 stale_refs, cache_loader=crypto_loader, now_ms=anchor_ms,
             )
         else:
             stock_now_ts = (
-                pd.Timestamp(anchor_ms, unit="ms")
+                pd.Timestamp(anchor_ms, unit="ms")  # back-convert anchor → naive ts
                 if anchor_ms is not None else None
             )
-            loader = _refs_loader_stock(asset)
+            loader = _refs_loader(asset)
             fresh_refs = compute_reference_levels(
                 stale_refs, cache_loader=loader, now_ts=stock_now_ts,
             )
         merged_refs = _merge_rows(existing_refs, fresh_refs, mtimes, anchor_ms=anchor_ms)
     else:
-        fresh_refs = pd.DataFrame()
         merged_refs = existing_refs if existing_refs is not None else pd.DataFrame()
+        # Stamp anchor on the file even when nothing was recomputed (covers the
+        # cold-skip path where existing already has the right anchor — keeps it
+        # explicit on disk after every successful run).
         if anchor_ms is not None and not merged_refs.empty:
             merged_refs = merged_refs.copy()
             merged_refs["anchor_ms"] = int(anchor_ms)
 
+    # Keep order canonical (symbol asc) so the parquet is stable diff-wise.
     if not merged_refs.empty:
         merged_refs = merged_refs.sort_values("symbol").reset_index(drop=True)
         _write_atomic(merged_refs, refs_path(asset))
 
-    # kept = 기존 파일에서 그대로 살아남은 행 수 = merged - fresh.
-    # (fresh 가 stale 보다 적을 수 있음 — 평가 실패 종목은 drop 됨.)
-    refs_kept = max(0, len(merged_refs) - len(fresh_refs))
+    refs_kept = (len(merged_refs) - len(stale_refs)) if (stale_refs and not merged_refs.empty) else len(merged_refs)
 
-    # ── RECS (ma_touch) ─────────────────────────────────────────────────
-    # ma_touch evaluates "today's bar" against MA10/MA20 — same wall-clock
-    # anchor logic applies (yesterday's signal is stale on a new day). Use
-    # the same anchor_ms trigger as refs.
+    # ── RECS (kr/us/crypto) ──
+    # Recs are NOT wall-clock anchored — they read the cache as-is. Only mtime
+    # drives staleness here (no anchor arg passed to _stale_symbols).
     existing_recs = None if force else load_recs(asset)
-    stale_recs = (
-        symbols if force
-        else _stale_symbols(existing_recs, mtimes, anchor_ms=anchor_ms)
-    )
+    stale_recs = symbols if force else _stale_symbols(existing_recs, mtimes)
     if verbose:
         print(f"[precompute][{asset}] recs: {len(stale_recs)}/{n_total} symbols to compute")
     if stale_recs:
-        fresh_recs = _compute_recs(asset, stale_recs)
-        merged_recs = _merge_rows(existing_recs, fresh_recs, mtimes, anchor_ms=anchor_ms)
+        fresh_recs = _compute_ma_touch_recs(asset, stale_recs)
+        merged_recs = _merge_rows(existing_recs, fresh_recs, mtimes)
     else:
-        fresh_recs = pd.DataFrame()
         merged_recs = existing_recs if existing_recs is not None else pd.DataFrame()
-        if anchor_ms is not None and not merged_recs.empty:
-            merged_recs = merged_recs.copy()
-            merged_recs["anchor_ms"] = int(anchor_ms)
 
     if not merged_recs.empty:
         merged_recs = merged_recs.sort_values("symbol").reset_index(drop=True)
         _write_atomic(merged_recs, recs_path(asset))
 
-    recs_kept = max(0, len(merged_recs) - len(fresh_recs))
+    recs_kept = (len(merged_recs) - len(stale_recs)) if (stale_recs and not merged_recs.empty) else len(merged_recs)
     took = time.perf_counter() - t0
 
     stats = {
@@ -478,11 +476,7 @@ def precompute(
 # ---------------------------------------------------------------------------
 
 def main() -> int:
-    if hasattr(sys.stdout, "reconfigure"):
-        sys.stdout.reconfigure(encoding="utf-8")
-
-    from data._venv_guard import require_project_venv
-    require_project_venv()
+    sys.stdout.reconfigure(encoding="utf-8")
 
     ap = argparse.ArgumentParser(
         description="Precompute dashboard views (refs + recs) — kr / us / crypto"
@@ -490,7 +484,7 @@ def main() -> int:
     ap.add_argument("--asset", choices=list(SUPPORTED_ASSETS) + ["all"], default="all",
                     help="kr / us / crypto / all (default: all)")
     ap.add_argument("--force", action="store_true",
-                    help="Recompute every symbol, ignoring data_mtime + anchor_ms")
+                    help="Recompute every symbol, ignoring data_mtime + anchor_ms tracking")
     args = ap.parse_args()
 
     assets = list(SUPPORTED_ASSETS) if args.asset == "all" else [args.asset]

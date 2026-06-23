@@ -21,11 +21,24 @@ def add_indicators(df: pd.DataFrame) -> pd.DataFrame:
     return out
 
 
-def report_metrics(df: pd.DataFrame) -> dict:
-    """리포트의 정량 섹션에 그대로 들어갈 핵심 지표."""
+def report_metrics(df: pd.DataFrame, market: str = "KR") -> dict:
+    """리포트의 정량 섹션에 그대로 들어갈 핵심 지표.
+
+    market: "KR" 은 원(정수) 가격, 그 외("US" 등)는 달러(소수점 2자리).
+    KR 만 int 로 반올림하고 US 는 소수점을 보존한다 (예: $150.34 가 150 으로
+    잘리던 버그 방지).
+    """
     df = add_indicators(df)
     last = df.iloc[-1]
     close = last["Close"]
+
+    is_kr = str(market).upper() == "KR"
+
+    def _price(v):
+        """가격류 값을 시장에 맞게 정규화 (KR=정수, US=소수점 2자리)."""
+        if v is None or pd.isna(v):
+            return None
+        return int(round(v)) if is_kr else round(float(v), 2)
 
     def ret_over(window: int):
         if len(df) <= window:
@@ -53,12 +66,13 @@ def report_metrics(df: pd.DataFrame) -> dict:
 
     return {
         "as_of": last.name.strftime("%Y-%m-%d"),
-        "close": int(close),
-        "high_52w": int(high_52w),
-        "low_52w": int(low_52w),
-        "ma20": None if pd.isna(last["MA20"]) else int(last["MA20"]),
-        "ma60": None if pd.isna(last["MA60"]) else int(last["MA60"]),
-        "ma120": None if pd.isna(last["MA120"]) else int(last["MA120"]),
+        "market": "KR" if is_kr else "US",
+        "close": _price(close),
+        "high_52w": _price(high_52w),
+        "low_52w": _price(low_52w),
+        "ma20": _price(last["MA20"]),
+        "ma60": _price(last["MA60"]),
+        "ma120": _price(last["MA120"]),
         "ma20_pos": ma_pos(last["MA20"]),
         "ma60_pos": ma_pos(last["MA60"]),
         "ma120_pos": ma_pos(last["MA120"]),

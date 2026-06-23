@@ -103,7 +103,7 @@ US 티커: 영문 대문자.
 2. **지표 (refs/recs)** — `data/cache/{asset}/_refs.parquet`, `_recs.parquet`
    - **`dashboards/_precompute.py`** 가 일봉 캐시 parquet 들을 읽어 한 번 계산해 저장
    - refs = 이동평균(MA10/20 × 1d/1w/1M) + 윈도우 High/Low(7d/28d/90d/1y/5y) + prev_Nd
-   - recs = 5 전략(trend_chase d/w, trend_pullback d/w, quiet_bottom w) 점수 최강 1개
+   - recs = ma_touch 게이트(`symbol, gate_pass`) — `gate_pass` = 오늘 ma_touch 가 ≥1 TF 통과. `/recs` 스킬과 동일 신호(`scripts._common.recommend_runner` 재사용). 그리드의 `터치` ● 컬럼
    - 각 행마다 `data_mtime` 컬럼이 있어 **변경된 종목만 증분 재계산**
    - "지표 계산" 버튼 또는 자동 트리거 (FDR fetch 성공 시 자동 chaining)
    - CLI: `.venv/Scripts/python.exe -m dashboards._precompute --asset {kr|us} [--force]`
