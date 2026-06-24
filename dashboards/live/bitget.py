@@ -38,8 +38,10 @@ from data.sources.bitget_live import SNAPSHOT_PATH, load_snapshot
 from dashboards._precompute import load_recs, load_refs, precompute_status
 from dashboards._stock_grid import (
     ChartNavigator,
+    breadth_counts,
     fmt_compact_usd,
     load_stars,
+    render_breadth,
     render_chart_meta_line,
     render_chart_star,
     safe_fragment_rerun,
@@ -340,6 +342,8 @@ def render(st: Any) -> None:
 
         st.caption(fetched_at_caption(df))
 
+        full_breadth = breadth_counts(df.get("change24h"))
+
         # Filter bar — 3 cols. Signed numeric columns always sort by |value|
         # (no toggle); see _bitget_grid.JS_ABS_COMPARATOR. MA Interval / HL
         # Lookback 토글은 제거됨 — 8개 TF×MA 갭 컬럼이 항상 표시된다.
@@ -379,9 +383,13 @@ def render(st: Any) -> None:
         df = df.reset_index(drop=True)
 
         if df.empty:
+            render_breadth(st, full=full_breadth)
             st.info("⭐ 별표한 심볼이 없습니다." if star_only
                     else "필터 조건에 맞는 심볼이 없습니다.")
             return
+
+        render_breadth(st, full=full_breadth,
+                       shown=breadth_counts(df.get("change24h")))
 
         # Disk-precomputed refs (anchored to current hour bucket via
         # dashboards._precompute --asset crypto) + cheap per-rerun apply that

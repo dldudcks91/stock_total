@@ -28,6 +28,7 @@ from dashboards._stock_grid import (
     STOCK_PAGE_CSS,
     ChartNavigator,
     apply_current_prices,
+    breadth_counts,
     build_stock_grid_options,
     fmt_compact_krw,
     load_notes,
@@ -36,6 +37,7 @@ from dashboards._stock_grid import (
     render_chart_meta_line,
     render_chart_star,
     render_chart_title,
+    render_breadth,
     render_tv_chart_stock,
     safe_fragment_rerun,
     save_notes,
@@ -344,6 +346,8 @@ def render(st: Any) -> None:
 
         st.caption(fetched_at_caption(df))
 
+        full_breadth = breadth_counts(df.get("fluctuationsRatio"))
+
         stars = st.session_state.setdefault("kospi_stars", load_stars(_STARS_PATH))
 
         f1, f2, f3, f4 = st.columns([3, 1, 2, 1.2])
@@ -428,9 +432,13 @@ def render(st: Any) -> None:
         df = df.reset_index(drop=True)
 
         if df.empty:
+            render_breadth(st, full=full_breadth)
             st.info("⭐ 별표한 종목이 없습니다." if star_only
                     else "필터 조건에 맞는 종목이 없습니다.")
             return
+
+        render_breadth(st, full=full_breadth,
+                       shown=breadth_counts(df.get("fluctuationsRatio")))
 
         notes = st.session_state.setdefault("kospi_notes", load_notes(_NOTES_PATH))
 

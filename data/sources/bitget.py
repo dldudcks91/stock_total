@@ -33,7 +33,8 @@ from data import fetch_log
 CACHE_DIR = Path(__file__).resolve().parents[2] / "data" / "cache" / "crypto"
 BASE = "https://api.bitget.com/api/v2/mix/market"
 TICKERS_URL = f"{BASE}/tickers"
-CANDLES_URL = f"{BASE}/history-candles"
+CANDLES_URL = f"{BASE}/history-candles"   # 닫힌(완성) 봉만 — 백필용
+RECENT_CANDLES_URL = f"{BASE}/candles"    # 진행 중(미완성) 봉 포함 — 최신 보충용
 
 PRODUCT_TYPE = "usdt-futures"
 LIMIT = 200  # Bitget v2 history-candles 최대치
@@ -105,6 +106,32 @@ async def _fetch_window(
     raise RuntimeError(f"{symbol}: 429 after {RETRY_429_MAX} retries")
 
 
+async def _fetch_recent(
+    session: aiohttp.ClientSession,
+    symbol: str,
+    bitget_gran: str,
+    limit: int = 10,
+) -> list[list]:
+    """`candles` 엔드포인트 — 진행 중(미완성) 봉을 포함한 최근 캔들."""
+    params = {
+        "symbol": symbol,
+        "productType": PRODUCT_TYPE,
+        "granularity": bitget_gran,
+        "limit": limit,
+    }
+    for attempt in range(RETRY_429_MAX):
+        async with session.get(RECENT_CANDLES_URL, params=params, timeout=15) as resp:
+            if resp.status == 429:
+                await asyncio.sleep(2 ** attempt)
+                continue
+            resp.raise_for_status()
+            body = await resp.json()
+        if body.get("code") != "00000":
+            raise RuntimeError(f"{symbol} {body.get('code')}: {body.get('msg')}")
+        return body.get("data") or []
+    raise RuntimeError(f"{symbol}: 429 after {RETRY_429_MAX} retries")
+
+
 async def fetch_full_history(
     session: aiohttp.ClientSession,
     symbol: str,
@@ -134,11 +161,14 @@ async def fetch_full_history(
         cursor_end = first_ts  # endTime exclusive 가정
         await asyncio.sleep(0.05)
 
-    if not all_rows:
-        return pd.DataFrame(columns=OHLCV_COLS)
+    return _rows_to_df(all_rows)
 
-    # 캔들 포맷: [ts_ms, open, high, low, close, volume, amount]
-    df = pd.DataFrame(all_rows, columns=OHLCV_COLS)
+
+def _rows_to_df(rows: list[list]) -> pd.DataFrame:
+    """Bitget 캔들 행 리스트 → 표준 DataFrame. 포맷: [ts_ms, o, h, l, c, vol, amount]."""
+    if not rows:
+        return pd.DataFrame(columns=OHLCV_COLS)
+    df = pd.DataFrame(rows, columns=OHLCV_COLS)
     df["timestamp"] = df["timestamp"].astype("int64")
     for c in OHLCV_COLS[1:]:
         df[c] = df[c].astype("float64")
@@ -156,15 +186,19 @@ def cache_path(symbol: str, gran: str = "1h") -> Path:
 
 
 def _resolve_since(symbol: str, gran: str, force_since_ms: Optional[int]) -> int:
-    """force_since_ms 없으면 캐시 마지막 + 1 candle, 그것도 없으면 DEFAULT_SINCE."""
+    """force_since_ms 없으면 캐시 마지막 candle, 그것도 없으면 DEFAULT_SINCE.
+
+    마지막 candle 을 (+1 이 아니라) 그대로 재요청하는 이유: 진행 중(미완성)
+    봉을 저장한 뒤 그 봉이 닫히면 최신 값으로 덮어써야 하기 때문. _merge_with_cache
+    가 keep="last" 라서 재요청된 봉이 옛 partial 봉을 갱신한다.
+    """
     if force_since_ms is not None:
         return force_since_ms
     path = cache_path(symbol, gran)
     if path.exists():
         existing = pd.read_parquet(path)
         if not existing.empty:
-            _, candle_ms, _ = GRAN_SPEC[gran]
-            return int(existing["timestamp"].iloc[-1]) + candle_ms
+            return int(existing["timestamp"].iloc[-1])
     return _iso_to_ms(DEFAULT_SINCE_BY_GRAN[gran])
 
 
@@ -174,7 +208,7 @@ def _merge_with_cache(symbol: str, gran: str, new_df: pd.DataFrame) -> pd.DataFr
         old = pd.read_parquet(path)
         new_df = pd.concat([old, new_df], ignore_index=True)
     return (
-        new_df.drop_duplicates("timestamp")
+        new_df.drop_duplicates("timestamp", keep="last")  # 재요청된 봉이 옛 partial 갱신
         .sort_values("timestamp")
         .reset_index(drop=True)
     )
@@ -186,20 +220,28 @@ async def fetch_one(
     symbol: str,
     gran: str,
     force_since_ms: Optional[int],
+    closed_only: bool = False,
 ) -> pd.DataFrame:
     (CACHE_DIR / gran).mkdir(parents=True, exist_ok=True)
     start_ms = _resolve_since(symbol, gran, force_since_ms)
-    end_ms = _now_aligned_ms(gran)
+    # closed_only=False(기본): 진행 중인 현재 봉까지 포함하려고 now 를 그대로 endTime 으로.
+    # closed_only=True: 닫힌 봉만 — 캔들 경계로 floor (백테스트 룩어헤드 방지용).
+    end_ms = _now_aligned_ms(gran) if closed_only else _now_ms()
     if start_ms >= end_ms:
         return pd.read_parquet(cache_path(symbol, gran))
 
     new_df = await fetch_full_history(session, symbol, start_ms, end_ms, gran)
+    if not closed_only:
+        # history-candles 는 닫힌 봉만 주므로, 진행 중인 현재 봉을 candles 엔드포인트로 보충.
+        bitget_gran = GRAN_SPEC[gran][0]
+        recent = await _fetch_recent(session, symbol, bitget_gran)
+        new_df = pd.concat([new_df, _rows_to_df(recent)], ignore_index=True)
     merged = _merge_with_cache(symbol, gran, new_df)
     merged.to_parquet(cache_path(symbol, gran), index=False)
     return merged
 
 
-async def fetch_all(gran: str, force_since_ms: Optional[int]) -> None:
+async def fetch_all(gran: str, force_since_ms: Optional[int], closed_only: bool = False) -> None:
     symbols = list_usdt_perp_symbols()
     print(f"{len(symbols)} USDT-M perpetual symbols on Bitget (granularity={gran})")
     sem = asyncio.Semaphore(CONCURRENCY)
@@ -210,7 +252,7 @@ async def fetch_all(gran: str, force_since_ms: Optional[int]) -> None:
             async with sem:
                 t0 = time.time()
                 try:
-                    df = await fetch_one(session, sym, gran, force_since_ms)
+                    df = await fetch_one(session, sym, gran, force_since_ms, closed_only)
                     print(
                         f"[{i:>4}/{len(symbols)}] {sym:<20} "
                         f"rows={len(df):>6}  ({time.time() - t0:4.1f}s)"
@@ -235,11 +277,15 @@ def _iso_to_ms(s: str) -> int:
     return int(dt.timestamp() * 1000)
 
 
+def _now_ms() -> int:
+    """현재 시각 ms (UTC). 진행 중인 봉까지 포함하려고 endTime 으로 사용."""
+    return int(datetime.now(timezone.utc).timestamp() * 1000)
+
+
 def _now_aligned_ms(gran: str) -> int:
     """현재 시각을 해당 granularity 캔들 경계로 floor (UTC)."""
     _, candle_ms, _ = GRAN_SPEC[gran]
-    now_ms = int(datetime.now(timezone.utc).timestamp() * 1000)
-    return (now_ms // candle_ms) * candle_ms
+    return (_now_ms() // candle_ms) * candle_ms
 
 
 def main() -> None:
@@ -257,16 +303,22 @@ def main() -> None:
         help="캔들 주기 (1h/4h/1d/1w). 기본 1h",
     )
     p.add_argument("--since", help="시작 일자 ISO (예: 2020-01-01). 생략 시 증분")
+    p.add_argument(
+        "--closed-only",
+        action="store_true",
+        help="닫힌 봉만 저장 (기본은 진행 중 봉도 포함). 백테스트 룩어헤드 방지용.",
+    )
     args = p.parse_args()
 
     gran = args.granularity.lower()
     force_since_ms = _iso_to_ms(args.since) if args.since else None
+    closed_only = args.closed_only
 
     if args.symbol:
 
         async def _run_one() -> None:
             async with aiohttp.ClientSession() as session:
-                df = await fetch_one(session, args.symbol, gran, force_since_ms)
+                df = await fetch_one(session, args.symbol, gran, force_since_ms, closed_only)
                 print(
                     f"{args.symbol} [{gran}]: {len(df)} rows -> "
                     f"{cache_path(args.symbol, gran)}"
@@ -274,7 +326,7 @@ def main() -> None:
 
         asyncio.run(_run_one())
     else:
-        asyncio.run(fetch_all(gran, force_since_ms))
+        asyncio.run(fetch_all(gran, force_since_ms, closed_only))
 
 
 if __name__ == "__main__":

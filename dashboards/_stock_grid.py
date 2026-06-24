@@ -370,8 +370,7 @@ function(params) {
   const v = params.value;
   if (v == null || Number.isNaN(v)) return '—';
   const pct = v * 100;
-  const sign = pct > 0 ? '+' : (pct < 0 ? '' : '');
-  return sign + pct.toFixed(1) + '%';
+  return pct.toFixed(1) + '%';
 }
 """)
 
@@ -1053,6 +1052,48 @@ def render_chart_meta_line(st: Any, parts: list) -> None:
         "<div style='text-align:left; font-size:12px; color:#9aa0a6; "
         "margin-top:-4px; line-height:16px; white-space:nowrap; overflow:hidden; "
         "text-overflow:ellipsis;'>" + "&nbsp;·&nbsp;".join(segs) + "</div>",
+        unsafe_allow_html=True,
+    )
+
+
+def breadth_counts(change: Any) -> tuple:
+    """(up, down, flat) counts from a change/등락 series — sign-based.
+
+    Unit-agnostic (percent or fraction): only the sign matters. NaN ignored.
+    """
+    c = pd.to_numeric(change, errors="coerce")
+    return int((c > 0).sum()), int((c < 0).sum()), int((c == 0).sum())
+
+
+def render_breadth(
+    st: Any, *, full: Optional[tuple] = None, shown: Optional[tuple] = None,
+) -> None:
+    """One-line 상승/하락/보합 breadth caption (전체 / 표시) above a grid.
+
+    Colors match the grid's signed convention — 상승 teal, 하락 red, 보합 grey.
+    """
+    UP, DN, FL = "#2A9D8F", "#E63946", "#888"
+
+    def _seg(label: str, t: tuple) -> str:
+        u, d, f = t
+        return (
+            f"{label} "
+            f"<span style='color:{UP};font-weight:700'>▲{u:,}</span> "
+            f"<span style='color:{DN};font-weight:700'>▼{d:,}</span> "
+            f"<span style='color:{FL}'>─{f:,}</span>"
+        )
+
+    parts = []
+    if full is not None:
+        parts.append(_seg("전체", full))
+    if shown is not None:
+        parts.append(_seg("표시", shown))
+    if not parts:
+        return
+    st.markdown(
+        "<div style='font-size:13px; margin:1px 0 5px;'>📊 "
+        + " &nbsp;&nbsp;·&nbsp;&nbsp; ".join(parts)
+        + "</div>",
         unsafe_allow_html=True,
     )
 

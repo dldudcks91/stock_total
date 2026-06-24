@@ -72,8 +72,7 @@ function(params) {
   const v = params.value;
   if (v == null || Number.isNaN(v)) return '—';
   const pct = v * 100;
-  const sign = pct > 0 ? '+' : (pct < 0 ? '' : '');
-  return sign + pct.toFixed(1) + '%';
+  return pct.toFixed(1) + '%';
 }
 """)
 
