@@ -1,0 +1,5 @@
+C:\Users\user\Desktop\python_text\git\stock_total\data\sources\_snapshot.py:70: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  merged = pd.concat([merged, new_only])
+[info] fetching 3880 symbols from Naver (concurrency=10, started 17:14:42)
+[info] received 3880/3880 symbols in 18.2s
+[ok] wrote snapshot (4309 rows) -> C:\Users\user\Desktop\python_text\git\stock_total\data\cache\us\_live_snapshot.parquet

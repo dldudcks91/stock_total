@@ -1,0 +1,48 @@
+2026-06-25 17:28:42.227 Thread 'MainThread': missing ScriptRunContext! This warning can be ignored when running in bare mode.
+[precompute][kr] refs: 946/946 symbols to compute (incremental, anchor_ms=1782345600000)
+[precompute][kr] recs: 946/946 symbols to compute
+[precompute][kr] done in 37.14s — refs refreshed 946, kept 0; recs refreshed 946, kept 0
+[precompute][us] refs: 3910/3910 symbols to compute (incremental, anchor_ms=1782345600000)
+[precompute][us] recs: 3865/3910 symbols to compute
+[precompute][us] done in 127.91s — refs refreshed 3910, kept 0; recs refreshed 3865, kept 45
+[precompute][crypto] refs: 665/665 symbols to compute (incremental, anchor_ms=1782374400000)
+[precompute][crypto] recs: 665/665 symbols to compute
+[precompute][crypto] done in 18.65s — refs refreshed 665, kept 0; recs refreshed 665, kept 0
+[
+  {
+    "asset": "kr",
+    "n_total": 946,
+    "refs_refreshed": 946,
+    "recs_refreshed": 946,
+    "refs_kept": 0,
+    "recs_kept": 0,
+    "took_s": 37.14,
+    "refs_path": "C:\\Users\\user\\Desktop\\python_text\\git\\stock_total\\data\\cache\\kr\\_refs.parquet",
+    "recs_path": "C:\\Users\\user\\Desktop\\python_text\\git\\stock_total\\data\\cache\\kr\\_recs.parquet",
+    "anchor_ms": 1782345600000
+  },
+  {
+    "asset": "us",
+    "n_total": 3910,
+    "refs_refreshed": 3910,
+    "recs_refreshed": 3865,
+    "refs_kept": 0,
+    "recs_kept": 45,
+    "took_s": 127.91,
+    "refs_path": "C:\\Users\\user\\Desktop\\python_text\\git\\stock_total\\data\\cache\\us\\_refs.parquet",
+    "recs_path": "C:\\Users\\user\\Desktop\\python_text\\git\\stock_total\\data\\cache\\us\\_recs.parquet",
+    "anchor_ms": 1782345600000
+  },
+  {
+    "asset": "crypto",
+    "n_total": 665,
+    "refs_refreshed": 665,
+    "recs_refreshed": 665,
+    "refs_kept": 0,
+    "recs_kept": 0,
+    "took_s": 18.65,
+    "refs_path": "C:\\Users\\user\\Desktop\\python_text\\git\\stock_total\\data\\cache\\crypto\\_refs.parquet",
+    "recs_path": "C:\\Users\\user\\Desktop\\python_text\\git\\stock_total\\data\\cache\\crypto\\_recs.parquet",
+    "anchor_ms": 1782374400000
+  }
+]

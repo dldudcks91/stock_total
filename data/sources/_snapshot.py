@@ -46,10 +46,14 @@ def merge_snapshot(
     now_iso = pd.Timestamp.now(tz="Asia/Seoul").isoformat(timespec="seconds")
     new_df = new_df.copy()
     new_df["fetched_at"] = now_iso
+    # Some upstream APIs (e.g. Naver paginated KOSPI feed) return overlapping
+    # pages — dedupe on symbol so set_index/update don't crash on duplicates.
+    new_df = new_df.drop_duplicates(subset=[symbol_col], keep="last")
 
     old = load_snapshot(path)
     if old is None or old.empty:
         return new_df.reset_index(drop=True)
+    old = old.drop_duplicates(subset=[symbol_col], keep="last")
 
     old_idx = old.set_index(symbol_col)
     new_idx = new_df.set_index(symbol_col)

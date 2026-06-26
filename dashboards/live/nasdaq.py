@@ -72,10 +72,10 @@ _REPORTS_DIR = _ROOT / "research" / "reports"
 
 
 def _latest_report_path(code: str) -> Optional[Path]:
-    """Return most recent ``research/reports/{code}_YYYYMMDD.md`` or None."""
+    """Return most recent ``research/reports/{code}/{code}_YYYYMMDD.md`` or None."""
     if not _REPORTS_DIR.exists():
         return None
-    matches = sorted(_REPORTS_DIR.glob(f"{code}_*.md"))
+    matches = sorted((_REPORTS_DIR / code).glob(f"{code}_*.md")) if (_REPORTS_DIR / code).exists() else []
     return matches[-1] if matches else None
 
 
@@ -263,41 +263,11 @@ def render(st: Any) -> None:
 
         with tab_report:
             report_path = _latest_report_path(symbol)
-
-            b1, _b2 = st.columns([1, 2])
-            with b1:
-                gen = st.button(
-                    "🤖 리포트 생성" if report_path is None else "🔄 리포트 재생성",
-                    key=f"nas_report_gen_{symbol}",
-                    use_container_width=True,
-                    help="research.report 파이프라인 — 정량 분석(가격·수익률·RSI). "
-                         "한경 컨센서스는 대형주만 일부, DART·업종은 KR 전용이라 비어있습니다. 수십 초.",
-                )
-            st.caption("ℹ️ US는 정량 분석 위주입니다 (정성 섹션은 KR 전용 소스라 제한적).")
-            if gen:
-                import subprocess
-                _report_log = _REPORTS_DIR / f"_gen_{symbol}.log"
-                _REPORTS_DIR.mkdir(parents=True, exist_ok=True)
-                with st.spinner(f"{name}({symbol}) 리포트 생성 중… (수십 초)"):
-                    with open(_report_log, "w", encoding="utf-8") as _lh:
-                        rc = subprocess.run(
-                            python_module_args("research.report", symbol, name),
-                            cwd=str(_ROOT), stdout=_lh, stderr=subprocess.STDOUT,
-                        ).returncode
-                if rc == 0:
-                    st.success("✅ 리포트 생성 완료")
-                    report_path = _latest_report_path(symbol)
-                else:
-                    st.error(f"❌ 리포트 생성 실패 (exit {rc})")
-                    try:
-                        st.code(_report_log.read_text(encoding="utf-8", errors="replace")[-1500:] or "(로그 없음)")
-                    except Exception:  # noqa: BLE001
-                        pass
-
             if report_path is None:
-                st.caption(
-                    "리포트가 아직 없습니다. 위 **🤖 리포트 생성** 을 눌러주세요. "
-                    f"(CLI: `.venv/Scripts/python.exe -m research.report {symbol} \"{name}\"`)"
+                st.info(
+                    f"📄 `{symbol}` 리포트가 아직 없습니다. "
+                    f'Claude 에게 "**{symbol} 리포트**" 라고 요청하면 한-페이지 정성 리포트를 생성합니다. '
+                    f"(저장 경로: `research/reports/{symbol}/{symbol}_YYYYMMDD.md`)"
                 )
             else:
                 mt = pd.Timestamp.fromtimestamp(report_path.stat().st_mtime, tz="Asia/Seoul")

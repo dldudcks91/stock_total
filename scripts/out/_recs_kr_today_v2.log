@@ -1,0 +1,18 @@
+[KR ma_touch] universe=946 symbols
+  [100/946] elapsed=2.4s  rows=100
+  [200/946] elapsed=4.8s  rows=200
+  [300/946] elapsed=7.2s  rows=300
+  [400/946] elapsed=9.6s  rows=400
+  [500/946] elapsed=12.1s  rows=500
+  [600/946] elapsed=14.5s  rows=600
+  [700/946] elapsed=17.0s  rows=700
+  [800/946] elapsed=19.4s  rows=800
+  [900/946] elapsed=21.6s  rows=900
+Done: 946/946 rows, failed=0, wall=22.3s
+C:\Users\user\Desktop\python_text\git\stock_total\scripts\kr\ma_touch\recommend.py:28: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  n_full = (df.filter(regex=r"signal_ma_touch_.*_full").fillna(False).sum(axis=1) > 0).sum()
+C:\Users\user\Desktop\python_text\git\stock_total\scripts\kr\ma_touch\recommend.py:29: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  n_partial = (df.filter(regex=r"signal_ma_touch_.*_partial").fillna(False).sum(axis=1) > 0).sum()
+Saved 946 rows ¡æ C:\Users\user\Desktop\python_text\git\stock_total\data\cache\kr\_ma_touch.parquet
+  passed_full (any TF):    70
+  passed_partial (any TF): 0

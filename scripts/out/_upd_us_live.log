@@ -1,0 +1,27 @@
+c:\Users\user\Desktop\python_text\git\stock_total\data\sources\_snapshot.py:74: FutureWarning: The behavior of DataFrame concatenation with empty or all-NA entries is deprecated. In a future version, this will no longer exclude empty or all-NA columns when determining the result dtypes. To retain the old behavior, exclude the relevant entries before the concat operation.
+  merged = pd.concat([merged, new_only])
+[info] fetching 3907 symbols from Naver (concurrency=10, started 17:25:00)
+[info] received 3896/3907 symbols in 16.9s
+[ok] wrote snapshot (4325 rows) -> C:\Users\user\Desktop\python_text\git\stock_total\data\cache\us\_live_snapshot.parquet
+Exception ignored in: <function _ProactorBasePipeTransport.__del__ at 0x00000200283D7700>
+Traceback (most recent call last):
+  File "C:\Users\user\anaconda3\lib\asyncio\proactor_events.py", line 116, in __del__
+    self.close()
+  File "C:\Users\user\anaconda3\lib\asyncio\proactor_events.py", line 108, in close
+    self._loop.call_soon(self._call_connection_lost, None)
+  File "C:\Users\user\anaconda3\lib\asyncio\base_events.py", line 751, in call_soon
+    self._check_closed()
+  File "C:\Users\user\anaconda3\lib\asyncio\base_events.py", line 515, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
+Exception ignored in: <function _ProactorBasePipeTransport.__del__ at 0x00000200283D7700>
+Traceback (most recent call last):
+  File "C:\Users\user\anaconda3\lib\asyncio\proactor_events.py", line 116, in __del__
+    self.close()
+  File "C:\Users\user\anaconda3\lib\asyncio\proactor_events.py", line 108, in close
+    self._loop.call_soon(self._call_connection_lost, None)
+  File "C:\Users\user\anaconda3\lib\asyncio\base_events.py", line 751, in call_soon
+    self._check_closed()
+  File "C:\Users\user\anaconda3\lib\asyncio\base_events.py", line 515, in _check_closed
+    raise RuntimeError('Event loop is closed')
+RuntimeError: Event loop is closed
