@@ -84,6 +84,13 @@ DEFAULT_BAR_SPACING: float = 8.0
 # before handing to the chart (the old fitContent behavior). No longer sliced.
 DEFAULT_VISIBLE_BARS: int = 200
 
+# Initial visible candle count — how many bars fill the chart on open, like an
+# exchange (width-independent). The patched frontend (scripts/_common/patch_lwc.py)
+# reads ``chart.initialVisibleBars`` and sets ``barSpacing = width / N`` so the
+# same N candles show regardless of monitor width. We still send the FULL
+# history; this only sets the opening zoom (pan left for older bars).
+INITIAL_VISIBLE_BARS: int = 120
+
 
 # ---------------------------------------------------------------------------
 # Cache loader (capitalized OHLC — KR/US schema)
@@ -434,6 +441,29 @@ function(params) {
 }
 """)
 
+# 4-decimal price — crypto mark price (many coins trade well under $1).
+JS_FMT_PRICE_DEC4 = JsCode("""
+function(params) {
+  const v = params.value;
+  if (v == null || Number.isNaN(v)) return '—';
+  return Number(v).toLocaleString('en-US', {minimumFractionDigits: 4, maximumFractionDigits: 4});
+}
+""")
+
+# $-compact (T/B/M/K) — crypto 거래대금 / 시총 (USD).
+JS_FMT_USD_COMPACT = JsCode("""
+function(params) {
+  const v = params.value;
+  if (v == null || Number.isNaN(v)) return '—';
+  const abs = Math.abs(v);
+  if (abs >= 1e12) return '$' + (v / 1e12).toFixed(2) + 'T';
+  if (abs >= 1e9)  return '$' + (v / 1e9 ).toFixed(2) + 'B';
+  if (abs >= 1e6)  return '$' + (v / 1e6 ).toFixed(1) + 'M';
+  if (abs >= 1e3)  return '$' + (v / 1e3 ).toFixed(1) + 'K';
+  return '$' + Number(v).toFixed(0);
+}
+""")
+
 # ma_touch 게이트 셀 — 통과 시 초록 ●, 미통과 공백.
 # gate_pass = 오늘 ma_touch 가 ≥1 TF 통과 (/recs 스킬과 동일 신호).
 # 산출: scripts._common.recommend_runner → dashboards._precompute → _recs.parquet.gate_pass
@@ -482,6 +512,47 @@ def js_style_slope(threshold: float) -> JsCode:
     )
 
 
+# 병합 셀 — 갭%(params.value) + 기울기 화살표(params.data[slope_field]) 를 한 칸에.
+# 숫자는 ``pct_ma{p}__{iv}`` (현재가 vs MA 갭 %), 화살표는 같은 (TF,MA) 의
+# ``slope_pct_ma{p}__{iv}`` 기울기 → ▲(양)/■(평탄)/▼(음). 색상은 갭% 부호로
+# JS_SIGNED_COLOR 가 따로 입힌다. 정렬은 갭% 기준(JS_ABS_COMPARATOR).
+def js_fmt_gap_with_arrow(slope_field: str, threshold: float) -> JsCode:
+    return JsCode(
+        "function(params){"
+        "  const v=params.value;"
+        "  const d=params.data||{};"
+        f"  const s=d['{slope_field}'];"
+        "  let pct='—';"
+        "  if(v!=null && !Number.isNaN(v)) pct=(v*100).toFixed(1)+'%';"
+        "  let arr='';"
+        "  if(s!=null && !Number.isNaN(s)){"
+        f"    if(s > {threshold})  arr=' ▲';"
+        f"    else if(s < -{threshold}) arr=' ▼';"
+        "    else arr=' ■';"
+        "  }"
+        "  return pct+arr;"
+        "}"
+    )
+
+
+# 그랜빌 매수법칙 게이트 셀 — 통과 시 초록 ●, 미통과 공백. ``field`` (g1~g4) 가
+# row data 에 있어야 ● 표시됨. 판정 로직은 추후 precompute 에서 채움(현재 빈칸).
+def js_fmt_bool_dot(field: str) -> JsCode:
+    return JsCode(
+        "function(params){"
+        "  const d=params.data||{};"
+        f"  return d['{field}'] ? '●' : '';"
+        "}"
+    )
+
+
+JS_STYLE_DOT = JsCode("""
+function(params) {
+  return {color: '#16A34A', fontWeight: '700', textAlign: 'center'};
+}
+""")
+
+
 # ---------------------------------------------------------------------------
 # AgGrid options builder (stock variant)
 # ---------------------------------------------------------------------------
@@ -496,9 +567,26 @@ _STOCK_TF_MA_SPECS: list[tuple[str, int]] = [
 ]
 _STOCK_IV_HEADER = {"1d": "1D", "1w": "1W", "1M": "1M"}
 
+# 병합 컬럼 헤더용 1글자 약어 — 1d→D / 1w→W / 1M→M. 헤더는 ``{letter}{period}``
+# (D10/D20/W10/W20/M10/M20). 한 칸에 갭% + 기울기 화살표를 함께 렌더.
+_STOCK_IV_LETTER = {"1d": "D", "1w": "W", "1M": "M"}
+
 # 슬로프 6개 — TF×MA 갭% 와 같은 6쌍을 그대로 재사용. 헤더는 한국어 약어
 # (일/주/월) + MA10/20 으로 좁은 컬럼에 맞춤. ▲/■/▼ 표시는 셀 렌더러 담당.
+# (병합 컬럼으로 통합됐지만 slope 값은 화살표 데이터로 계속 row 에 실린다.)
 _SLOPE_IV_HEADER = {"1d": "일", "1w": "주", "1M": "월"}
+
+# 그랜빌 매수 4법칙 컬럼 — (row data field, 헤더, 툴팁).
+# G3 = 지지·눌림목 = 기존 ma_touch (정배열+상승+MA터치). gate_pass 를 그대로 읽어
+# G3 으로 편입(옛 '터치 ●' 컬럼을 흡수). G1/G2/G4 는 골격(미산출 → 빈칸), 판정
+# 로직은 추후 precompute(g1/g2/g4)에서 채운다.
+_GRANVILLE_SPECS: list[tuple[str, str, str]] = [
+    ("g1", "G1", "그랜빌 1법칙 — 바닥반등 돌파 (판정 로직 추후)"),
+    ("g2", "G2", "그랜빌 2법칙 — 눌림목: MA 깼다 회복 (판정 로직 추후)"),
+    ("gate_pass", "G3", "그랜빌 3법칙 — 지지·눌림목 = ma_touch "
+                        "(정배열+상승+MA터치, 1D/1W/1M/1Q/1Y 중 ≥1 통과)"),
+    ("g4", "G4", "그랜빌 4법칙 — 이격과대 반등 (판정 로직 추후)"),
+]
 
 
 def build_stock_grid_options(
@@ -524,22 +612,27 @@ def build_stock_grid_options(
 
     Visible column order (left → right):
         ▸ Symbol (pinned + checkbox), Name, Last, 거래대금, 시총,
-          1D-MA10, 1D-MA20, 1W-MA10, 1W-MA20, 1M-MA10, 1M-MA20
-            (각 TF×MA 의 price vs MA 갭 %),
-          MA20(게이트),
-          일MA10, 일MA20, 주MA10, 주MA20, 월MA10, 월MA20
-            (각 MA 의 기울기 — ▲/■/▼ + 색)
+          D10, D20, W10, W20, M10, M20
+            (각 TF×MA 한 칸에 price vs MA 갭% + 기울기 ▲/■/▼ 병합),
+          G1, G2, G3, G4
+            (그랜빌 매수 4법칙. G3 = ma_touch(gate_pass) 편입 — 옛 '터치 ●'
+             컬럼 흡수. G1/G2/G4 는 골격, 판정 로직 추후 precompute 에서 채움)
 
     이전의 MA Interval / HL Lookback 토글, 기간 수익률(1d~140d %), High/Low%
-    컬럼은 모두 제거됨. 6개 TF×MA 갭 컬럼은 토글 없이 항상 표시된다 (값은
-    ``pct_ma{p}__{iv}`` df 컬럼을 그대로 field 로 읽음). 주식은 1h/4h 봉이
-    없어 1D/1W/1M 만 — crypto(_bitget_grid) 의 1h/4h/1d/1w 와 같은 방식.
+    컬럼은 모두 제거됨. 갭%와 기울기는 별도 12컬럼이었으나 6개 병합 컬럼으로
+    통합 — 값은 ``pct_ma{p}__{iv}`` 를 field 로, ``slope_pct_ma{p}__{iv}`` 를
+    row data 에서 읽어 화살표로 덧붙인다. 주식은 1h/4h 봉이 없어 1D/1W/1M 만 —
+    crypto(_bitget_grid) 의 1h/4h/1d/1w 와 같은 방식.
     """
-    REC_KEY = "_rec"   # display-only column; reads gate_pass via JS (ma_touch 게이트)
     STAR_KEY = "_star"  # display-only ⭐ column (membership in star_codes)
     MA_COLS = [f"pct_ma{p}__{iv}" for iv, p in _STOCK_TF_MA_SPECS]
     SLOPE_COLS = [f"slope_pct_ma{p}__{iv}" for iv, p in _STOCK_TF_MA_SPECS]
+    # G3 = gate_pass (ma_touch) 를 row data 에서 그대로 읽음. g1/g2/g4 는 골격.
+    GRANVILLE_COLS = [field for field, _h, _t in _GRANVILLE_SPECS]
 
+    # MA 6컬럼은 갭% + 기울기 화살표를 한 칸에 병합(병합 컬럼 = MA_COLS).
+    # SLOPE_COLS 는 더 이상 독립 컬럼이 아니지만 화살표 데이터로 row 에 실어
+    # 병합 셀 렌더러(js_fmt_gap_with_arrow)가 params.data 로 읽는다.
     visible_order: list[str] = [symbol_col, STAR_KEY]
     if name_col:
         visible_order.append(name_col)
@@ -549,15 +642,16 @@ def build_stock_grid_options(
     if market_cap_col:
         visible_order.append(market_cap_col)
     visible_order.extend(MA_COLS)
-    visible_order.append(REC_KEY)
-    visible_order.extend(SLOPE_COLS)
+    visible_order.extend(GRANVILLE_COLS)
 
     df_grid = df.copy()
     star_set = {str(s) for s in (star_codes or set())}
     df_grid[STAR_KEY] = df_grid[symbol_col].astype(str).map(
         lambda s: "⭐" if s in star_set else ""
     )
-    for placeholder in (*MA_COLS, REC_KEY, *SLOPE_COLS):
+    # gate_pass(=G3) 는 recs 머지로 이미 df 에 있을 수 있어 placeholder 가
+    # 덮어쓰지 않도록 'not in columns' 가드에 의존. g1/g2/g4 는 None 골격.
+    for placeholder in (*MA_COLS, *SLOPE_COLS, *GRANVILLE_COLS):
         if placeholder not in df_grid.columns:
             df_grid[placeholder] = None
 
@@ -608,16 +702,20 @@ def build_stock_grid_options(
             ),
         )
 
-    price_fmt = JS_FMT_PRICE_INT if price_format == "int" else JS_FMT_PRICE_DEC
+    _PRICE_FMTS = {"int": JS_FMT_PRICE_INT, "dec": JS_FMT_PRICE_DEC,
+                   "dec4": JS_FMT_PRICE_DEC4}
+    _VAL_FMTS = {"millions": JS_FMT_MILLIONS, "int": JS_FMT_INT,
+                 "usd": JS_FMT_USD_COMPACT}
+    price_fmt = _PRICE_FMTS.get(price_format, JS_FMT_PRICE_DEC)
     gob.configure_column(
         price_col, headerName=price_header, width=95, minWidth=60,
         valueFormatter=price_fmt, type=["numericColumn"],
     )
 
-    vol_fmt = JS_FMT_MILLIONS if volume_format == "millions" else JS_FMT_INT
-    mcap_fmt = JS_FMT_MILLIONS if market_cap_format == "millions" else JS_FMT_INT
-    vol_width = 130 if volume_format == "millions" else 120
-    mcap_width = 130 if market_cap_format == "millions" else 120
+    vol_fmt = _VAL_FMTS.get(volume_format, JS_FMT_INT)
+    mcap_fmt = _VAL_FMTS.get(market_cap_format, JS_FMT_INT)
+    vol_width = 130 if volume_format in ("millions", "usd") else 120
+    mcap_width = 130 if market_cap_format in ("millions", "usd") else 120
     if volume_col:
         gob.configure_column(
             volume_col, headerName=volume_header, width=vol_width, minWidth=70,
@@ -629,38 +727,32 @@ def build_stock_grid_options(
             valueFormatter=mcap_fmt, type=["numericColumn"],
         )
 
-    # ── TF × MA 갭 % (6 고정 컬럼) ──
-    # 각 컬럼은 df 의 ``pct_ma{p}__{iv}`` 를 그대로 읽는다 (토글 없음).
-    # 헤더 클릭 정렬은 |value| 기준 (부호 무시, 가장 큰 갭이 위로) — Bitget 과 동일.
+    # ── TF × MA 병합 6컬럼 (갭% + 기울기 화살표) ──
+    # 헤더 = D10/D20/W10/W20/M10/M20. field 는 갭% (``pct_ma{p}__{iv}``) 이고,
+    # 셀 렌더러가 같은 (TF,MA) 의 slope (``slope_pct_ma{p}__{iv}``) 를 row data 에서
+    # 읽어 ▲/■/▼ 화살표를 덧붙인다. 색은 갭% 부호, 정렬은 |갭%| 기준.
     for iv, p in _STOCK_TF_MA_SPECS:
         col = f"pct_ma{p}__{iv}"
-        gob.configure_column(
-            col, headerName=f"{_STOCK_IV_HEADER[iv]}-MA{p}", width=72, minWidth=52,
-            valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
-            type=["numericColumn"], comparator=JS_ABS_COMPARATOR,
-        )
-
-    # ── ma_touch 게이트 (display-only) ──
-    # gate_pass 컬럼이 row data 에 있어야 ● 표시됨. 없으면 공백.
-    gob.configure_column(
-        REC_KEY, headerName="터치", width=64, minWidth=48,
-        valueFormatter=JS_FMT_REC, cellStyle=JS_STYLE_REC,
-    )
-
-    # ── MA10/MA20 슬로프 6개 (일/주/월 × MA10/MA20) ──
-    # 각 셀은 ▲(양) / ■(평탄) / ▼(음) + 색상. 임계값 (% per bar):
-    # 일봉 ±0.10 / 주봉 ±0.30 / 월봉 ±0.80. 셀 내부는 슬로프 값(% per bar)을
-    # numeric 으로 들고 있으므로 헤더 클릭 정렬은 signed 값 기준 (양수 큰 게 위).
-    for iv, p in _STOCK_TF_MA_SPECS:
-        col = f"slope_pct_ma{p}__{iv}"
+        slope_col = f"slope_pct_ma{p}__{iv}"
         th = SLOPE_THRESHOLDS[iv]
         gob.configure_column(
-            col, headerName=f"{_SLOPE_IV_HEADER[iv]}MA{p}", width=44, minWidth=34,
-            valueFormatter=js_fmt_slope_arrow(th),
-            cellStyle=js_style_slope(th),
-            type=["numericColumn"],
-            headerTooltip=f"{_SLOPE_IV_HEADER[iv]}봉 MA{p} 기울기 (% per bar, "
-                          f"|±{th:g}| 이내 평탄)",
+            col, headerName=f"{_STOCK_IV_LETTER[iv]}{p}", width=86, minWidth=60,
+            valueFormatter=js_fmt_gap_with_arrow(slope_col, th),
+            cellStyle=JS_SIGNED_COLOR,
+            type=["numericColumn"], comparator=JS_ABS_COMPARATOR,
+            headerTooltip=f"{_STOCK_IV_HEADER[iv]} MA{p} — 현재가 갭% + 기울기 "
+                          f"▲/■/▼ (|±{th:g}| 이내 평탄)",
+        )
+
+    # ── 그랜빌 매수 4법칙 (display-only) ──
+    # 각 컬럼은 row data 의 field(g1/g2/gate_pass/g4)가 truthy 면 ● 표시.
+    # G3 = gate_pass(ma_touch) 편입 → 옛 '터치 ●' 와 동일 신호. G1/G2/G4 는
+    # 아직 미산출이라 빈칸 — 판정 로직은 추후 precompute(_recs.parquet)에서 채운다.
+    for field, header, tip in _GRANVILLE_SPECS:
+        gob.configure_column(
+            field, headerName=header, width=50, minWidth=38,
+            valueFormatter=js_fmt_bool_dot(field), cellStyle=JS_STYLE_DOT,
+            headerTooltip=tip,
         )
 
     # ── Hide everything else ──
@@ -719,6 +811,111 @@ def chart_legend_html(entries: list) -> str:
     )
 
 
+# ---------------------------------------------------------------------------
+# Fibonacci + manual trendline overlays
+# ---------------------------------------------------------------------------
+
+# Standard retracement ratios → line color. 0% sits at the swing high, 100% at
+# the swing low, so a pullback in an uptrend lands on the 0.382/0.5/0.618 band.
+FIB_LEVELS: list[float] = [0.0, 0.236, 0.382, 0.5, 0.618, 0.786, 1.0]
+FIB_COLORS: dict[float, str] = {
+    0.0: "#787B86", 0.236: "#F23645", 0.382: "#FF9800", 0.5: "#4CAF50",
+    0.618: "#089981", 0.786: "#00BCD4", 1.0: "#787B86",
+}
+TRENDLINE_COLOR: str = "#2962FF"
+
+
+def compute_fib_levels(high: pd.Series, low: pd.Series, n: int) -> Optional[dict]:
+    """Swing high/low over the last ``n`` bars → fib retracement prices.
+
+    ``high`` / ``low`` are positionally-aligned price Series (any column case,
+    any index). Returns ``{"high", "low", "levels": [(pct, price), ...]}`` or
+    None if the window is degenerate (flat range / too few bars).
+    """
+    if high is None or len(high) == 0:
+        return None
+    k = max(int(n), 2)
+    hi = float(high.tail(k).max())
+    lo = float(low.tail(k).min())
+    if not (hi > lo):
+        return None
+    span = hi - lo
+    levels = [(pct, hi - span * pct) for pct in FIB_LEVELS]
+    return {"high": hi, "low": lo, "levels": levels}
+
+
+def _overlay_series(
+    t,  # numpy int64 array of candle unix seconds, aligned to the bars
+    high: pd.Series,
+    low: pd.Series,
+    snap_dates,  # DatetimeIndex-like, positionally aligned to ``t`` (trendline snap)
+    fib_n: Optional[int],
+    trendlines: Optional[list],
+) -> list:
+    """Build extra lightweight-charts Line series for fib levels + trendlines.
+
+    ``trendlines`` is a list of ``{"p1": [iso_date, price], "p2": [...]}``.
+    Each point's date is snapped to the nearest candle time so the segment
+    always lands on the chart's time scale (line points off-scale won't draw).
+
+    Schema-neutral: stocks pass ``d["High"]/d["Low"]/d.index``; crypto passes
+    ``d["high"]/d["low"]`` + a DatetimeIndex built from the ``timestamp`` column.
+    """
+    out: list = []
+    if len(t) == 0:
+        return out
+
+    if fib_n:
+        fib = compute_fib_levels(high, low, fib_n)
+        if fib is not None:
+            # Span from the start of the swing window to the latest bar.
+            start_i = max(len(t) - max(int(fib_n), 2), 0)
+            t0, t1 = int(t[start_i]), int(t[-1])
+            for pct, price in fib["levels"]:
+                out.append({
+                    "type": "Line",
+                    "data": [{"time": t0, "value": price},
+                             {"time": t1, "value": price}],
+                    "options": {
+                        "color": FIB_COLORS.get(pct, "#787B86"),
+                        "lineWidth": 1, "lineStyle": 2,  # dashed
+                        "title": f"{pct:.3g}",
+                        "lastValueVisible": True, "priceLineVisible": False,
+                        "crosshairMarkerVisible": False,
+                    },
+                })
+
+    if trendlines:
+        idx = pd.DatetimeIndex(snap_dates)
+        for tl in trendlines:
+            try:
+                (d1, p1), (d2, p2) = tl["p1"], tl["p2"]
+                ts1 = pd.Timestamp(d1)
+                ts2 = pd.Timestamp(d2)
+                # snap each endpoint date to the nearest candle time
+                i1 = int(idx.get_indexer([ts1], method="nearest")[0])
+                i2 = int(idx.get_indexer([ts2], method="nearest")[0])
+                if i1 == i2:
+                    continue
+                pts = sorted(
+                    [(int(t[i1]), float(p1)), (int(t[i2]), float(p2))],
+                    key=lambda x: x[0],
+                )
+            except Exception:  # noqa: BLE001 — skip malformed entries
+                continue
+            out.append({
+                "type": "Line",
+                "data": [{"time": tm, "value": v} for tm, v in pts],
+                "options": {
+                    "color": tl.get("color", TRENDLINE_COLOR),
+                    "lineWidth": 2,
+                    "lastValueVisible": False, "priceLineVisible": False,
+                    "crosshairMarkerVisible": False,
+                },
+            })
+    return out
+
+
 def render_tv_chart_stock(
     symbol: str,
     title: str,
@@ -726,11 +923,17 @@ def render_tv_chart_stock(
     cdf: pd.DataFrame,
     *,
     key_prefix: str,
+    fib_n: Optional[int] = None,
+    trendlines: Optional[list] = None,
 ) -> None:
     """Render a Bitget/TradingView-style chart from a stock OHLCV DataFrame.
 
     ``cdf`` has DatetimeIndex (naive) + columns Open/High/Low/Close/Volume.
     Caller must have ``streamlit_lightweight_charts`` installed.
+
+    ``fib_n`` (if set) overlays fib retracement levels from the last ``fib_n``
+    bars' swing high/low. ``trendlines`` overlays manual segments — each
+    ``{"p1": [iso_date, price], "p2": [iso_date, price]}``.
     """
     import streamlit as _st
     from streamlit_lightweight_charts import renderLightweightCharts  # type: ignore
@@ -761,6 +964,13 @@ def render_tv_chart_stock(
     avg_loss = loss.ewm(alpha=1 / 14, adjust=False).mean()
     rs = avg_gain / avg_loss.where(avg_loss != 0)
     rsi_full = 100 - (100 / (1 + rs))
+
+    # MACD(12,26,9) — EMA12-EMA26 line, EMA9 signal, histogram = line-signal.
+    ema12 = d["Close"].ewm(span=12, adjust=False).mean()
+    ema26 = d["Close"].ewm(span=26, adjust=False).mean()
+    macd_full = ema12 - ema26
+    signal_full = macd_full.ewm(span=9, adjust=False).mean()
+    hist_full = macd_full - signal_full
 
     # 전체 히스토리를 그대로 전송 — 패치된 프론트엔드(patch_lwc.py)가 fitContent
     # 대신 scrollToRealTime 을 호출하므로 초기엔 최근 봉에 줌되고, 왼쪽으로 끌면
@@ -794,6 +1004,7 @@ def render_tv_chart_stock(
         ma_series.append({
             "type": "Line",
             "data": line_data,
+            "legendLabel": label,  # crosshair tooltip (read by patched frontend)
             "options": {
                 "color": color, "lineWidth": 1,
                 "priceLineVisible": False, "lastValueVisible": False,
@@ -817,8 +1028,26 @@ def render_tv_chart_stock(
         if len(t) else []
     )
 
+    MACD_UP, MACD_DOWN = "rgba(31,204,129,0.6)", "rgba(246,70,93,0.6)"
+    macd_hist = [
+        {"time": int(ti), "value": float(v),
+         "color": MACD_UP if v >= 0 else MACD_DOWN}
+        for ti, v in zip(t, hist_full) if pd.notna(v)
+    ]
+    macd_line = [
+        {"time": int(ti), "value": float(v)}
+        for ti, v in zip(t, macd_full) if pd.notna(v)
+    ]
+    signal_line = [
+        {"time": int(ti), "value": float(v)}
+        for ti, v in zip(t, signal_full) if pd.notna(v)
+    ]
+
     chart_options = {
-        "height": 620,
+        "height": 800,
+        # Read by the patched frontend → barSpacing = width / N (exchange-style
+        # fixed initial candle count, independent of monitor width).
+        "initialVisibleBars": INITIAL_VISIBLE_BARS,
         "layout": {
             "background": {"type": "solid", "color": "#ffffff"},
             "textColor": "#1a1a1a",
@@ -830,7 +1059,8 @@ def render_tv_chart_stock(
         },
         "rightPriceScale": {
             "borderColor": "rgba(0,0,0,0.15)",
-            "scaleMargins": {"top": 0.05, "bottom": 0.40},
+            # 4 stacked panes: candles / volume / RSI / MACD.
+            "scaleMargins": {"top": 0.03, "bottom": 0.53},
         },
         "timeScale": {
             "borderColor": "rgba(0,0,0,0.15)",
@@ -853,6 +1083,7 @@ def render_tv_chart_stock(
         {
             "type": "Candlestick",
             "data": candles,
+            "legendLabel": "OHLC",  # crosshair tooltip (read by patched frontend)
             "options": {
                 "upColor": UP, "downColor": DOWN,
                 "wickUpColor": UP, "wickDownColor": DOWN,
@@ -863,17 +1094,19 @@ def render_tv_chart_stock(
         {
             "type": "Histogram",
             "data": volumes,
+            "legendLabel": "Vol",
             "options": {
                 "priceFormat": {"type": "volume"},
                 "priceScaleId": "vol",
                 "lastValueVisible": False,
                 "priceLineVisible": False,
             },
-            "priceScale": {"scaleMargins": {"top": 0.62, "bottom": 0.22}},
+            "priceScale": {"scaleMargins": {"top": 0.49, "bottom": 0.39}},
         },
         {
             "type": "Line",
             "data": rsi_line,
+            "legendLabel": "RSI",
             "options": {
                 "color": "#7E57C2", "lineWidth": 1,
                 "priceScaleId": "rsi",
@@ -881,7 +1114,7 @@ def render_tv_chart_stock(
                 "crosshairMarkerVisible": False,
             },
             "priceScale": {
-                "scaleMargins": {"top": 0.82, "bottom": 0},
+                "scaleMargins": {"top": 0.63, "bottom": 0.21},
                 "autoScale": False,
             },
         },
@@ -907,7 +1140,43 @@ def render_tv_chart_stock(
                 "crosshairMarkerVisible": False,
             },
         },
+        # ── MACD pane (bottom) — histogram + MACD line + signal line ──
+        {
+            "type": "Histogram",
+            "data": macd_hist,
+            "legendLabel": "Hist",
+            "options": {
+                "priceScaleId": "macd",
+                "lastValueVisible": False, "priceLineVisible": False,
+            },
+            "priceScale": {"scaleMargins": {"top": 0.81, "bottom": 0}},
+        },
+        {
+            "type": "Line",
+            "data": macd_line,
+            "legendLabel": "MACD",
+            "options": {
+                "color": "#2962FF", "lineWidth": 1,
+                "priceScaleId": "macd",
+                "priceLineVisible": False, "lastValueVisible": False,
+                "crosshairMarkerVisible": False,
+            },
+        },
+        {
+            "type": "Line",
+            "data": signal_line,
+            "legendLabel": "Signal",
+            "options": {
+                "color": "#FF6D00", "lineWidth": 1,
+                "priceScaleId": "macd",
+                "priceLineVisible": False, "lastValueVisible": False,
+                "crosshairMarkerVisible": False,
+            },
+        },
     ]
+
+    # Fibonacci levels + manual trendlines (drawn above candles/MAs).
+    series.extend(_overlay_series(t, d["High"], d["Low"], d.index, fib_n, trendlines))
 
     legend = chart_legend_html([(lbl, clr) for _p, clr, lbl, _k in ma_specs])
     with _st.container(key="chart_legend_wrap"):
@@ -937,6 +1206,110 @@ def save_notes(path: Path, notes: dict) -> None:
         json.dumps(notes, ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
+
+
+# ---------------------------------------------------------------------------
+# Drawings persistence — per-page JSON, ``{code: [{p1:[iso,price], p2:...}]}``
+# ---------------------------------------------------------------------------
+
+def load_drawings(path: Path) -> dict:
+    """Load the per-symbol trendline dict (``{code: [segment, ...]}``)."""
+    import json
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except (FileNotFoundError, ValueError):
+        return {}
+    return data if isinstance(data, dict) else {}
+
+
+def save_drawings(path: Path, drawings: dict) -> None:
+    import json
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(
+        json.dumps(drawings, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+
+
+def render_drawing_controls(
+    st: Any,
+    *,
+    code: str,
+    dates,  # DatetimeIndex-like of the chart's bars (for date-input bounds)
+    last_close: float,
+    drawings_path: Path,
+    session_key: str,
+) -> tuple:
+    """Chart-overlay controls: fib toggle + manual trendline editor.
+
+    Returns ``(fib_n_or_None, trendlines_for_this_code)`` ready to hand to the
+    chart renderer. Trendlines persist to ``drawings_path`` (JSON) keyed by
+    ``code``; ``session_key`` caches the dict in session state. Schema-neutral:
+    pass ``cdf.index`` (stocks) or a DatetimeIndex from ``timestamp`` (crypto).
+    """
+    import datetime as _dt
+
+    drawings = st.session_state.setdefault(session_key, load_drawings(drawings_path))
+    code_lines = list(drawings.get(code, []))
+
+    idx = pd.DatetimeIndex(dates) if dates is not None and len(dates) else None
+    d_min = idx.min().date() if idx is not None else _dt.date(2000, 1, 1)
+    d_max = idx.max().date() if idx is not None else _dt.date.today()
+    last_close = float(last_close) if last_close is not None else 0.0
+
+    with st.expander("✏️ 그리기 (피보나치 · 추세선)", expanded=False):
+        fc1, fc2 = st.columns([1, 2])
+        with fc1:
+            fib_on = st.checkbox("피보나치", value=False, key=f"fib_on_{code}")
+        with fc2:
+            fib_n = st.number_input(
+                "스윙 구간 (최근 N봉)", min_value=10, max_value=2000,
+                value=120, step=10, key=f"fib_n_{code}",
+                help="최근 N봉의 고점(0%)·저점(100%)으로 되돌림 레벨을 그립니다.",
+            )
+
+        st.markdown("**추세선** — 두 점(날짜·가격)을 입력해 추가")
+        a1, a2, a3, a4, a5 = st.columns([2, 1.4, 2, 1.4, 1])
+        with a1:
+            x1 = st.date_input("시작 날짜", value=d_min, min_value=d_min,
+                               max_value=d_max, key=f"tl_x1_{code}")
+        with a2:
+            y1 = st.number_input("시작 가격", value=last_close, key=f"tl_y1_{code}")
+        with a3:
+            x2 = st.date_input("끝 날짜", value=d_max, min_value=d_min,
+                               max_value=d_max, key=f"tl_x2_{code}")
+        with a4:
+            y2 = st.number_input("끝 가격", value=last_close, key=f"tl_y2_{code}")
+        with a5:
+            st.markdown("<div style='height:28px'></div>", unsafe_allow_html=True)
+            if st.button("추가", key=f"tl_add_{code}", use_container_width=True):
+                code_lines.append({
+                    "p1": [x1.isoformat(), float(y1)],
+                    "p2": [x2.isoformat(), float(y2)],
+                })
+                drawings[code] = code_lines
+                save_drawings(drawings_path, drawings)
+                st.session_state[session_key] = drawings
+                st.rerun()
+
+        if code_lines:
+            for i, tl in enumerate(code_lines):
+                (xa, ya), (xb, yb) = tl["p1"], tl["p2"]
+                lc, dc = st.columns([5, 1])
+                with lc:
+                    st.caption(f"{i + 1}. ({xa}, {ya:g}) → ({xb}, {yb:g})")
+                with dc:
+                    if st.button("🗑", key=f"tl_del_{code}_{i}"):
+                        del code_lines[i]
+                        if code_lines:
+                            drawings[code] = code_lines
+                        else:
+                            drawings.pop(code, None)
+                        save_drawings(drawings_path, drawings)
+                        st.session_state[session_key] = drawings
+                        st.rerun()
+
+    return (int(fib_n) if fib_on else None, code_lines)
 
 
 # ---------------------------------------------------------------------------

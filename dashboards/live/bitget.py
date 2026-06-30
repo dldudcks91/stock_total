@@ -39,17 +39,18 @@ from dashboards._precompute import load_recs, load_refs, precompute_status
 from dashboards._stock_grid import (
     ChartNavigator,
     breadth_counts,
+    build_stock_grid_options,
     fmt_compact_usd,
     load_stars,
     render_breadth,
     render_chart_meta_line,
     render_chart_star,
+    render_drawing_controls,
     safe_fragment_rerun,
 )
 from dashboards.live._bitget_grid import (
     BITGET_PAGE_CSS,
     COLUMN_LABELS,
-    build_grid_options,
 )
 from dashboards.live._common import (
     fetched_at_caption,
@@ -78,6 +79,7 @@ _LIVE_LOG = _CACHE_DIR / "_live_fetch.log"
 _PRE_LOG = _CACHE_DIR / "_precompute.log"
 _NOTES_PATH = _CACHE_DIR / "_notes.json"
 _STARS_PATH = _CACHE_DIR / "_stars.json"
+_DRAWINGS_PATH = _CACHE_DIR / "_drawings.json"
 
 _ALL_SORT_KEYS = list(COLUMN_LABELS.keys())
 _DEFAULT_SORT = "quoteVolume"
@@ -307,7 +309,13 @@ def render(st: Any) -> None:
             return
 
         if _HAS_LWC:
-            render_tv_chart(symbol, chart_iv, cdf)
+            fib_n, trendlines = render_drawing_controls(
+                st, code=symbol,
+                dates=pd.to_datetime(cdf["timestamp"], unit="ms"),
+                last_close=float(cdf["close"].iloc[-1]),
+                drawings_path=_DRAWINGS_PATH, session_key="bitget_drawings",
+            )
+            render_tv_chart(symbol, chart_iv, cdf, fib_n=fib_n, trendlines=trendlines)
         else:
             from dashboards.charts import plot_ohlcv, plotly_config
             fig = plot_ohlcv(
@@ -457,12 +465,21 @@ def render(st: Any) -> None:
             st.session_state.pop(SEL_KEY, None)
             selected_symbol = None
 
-        df_grid, grid_options = build_grid_options(df, selected_symbol, star_codes=stars)
-        # Re-key the grid on every visible-state change. v4 = TF×MA 8-col layout
-        # (MA Interval / HL Lookback 토글 제거). 8개 갭 컬럼은 df 의 고정 field 라
-        # valueGetter 토글이 없어 grid_key 에 window 상태가 빠진다.
+        # KOSPI/NASDAQ 와 동일한 공유 빌더 — 병합 TF×MA(D10/D20/…), 터치, G1~G4
+        # 컬럼이 그대로 적용된다. 크립토 스냅샷 컬럼만 매핑(가격 4자리·$-compact).
+        df_grid, grid_options = build_stock_grid_options(
+            df, selected_symbol,
+            symbol_col="symbol", symbol_header="Symbol",
+            name_col=None,
+            price_col="markPrice", price_header="Price", price_format="dec4",
+            volume_col="quoteVolume", volume_header="거래대금", volume_format="usd",
+            market_cap_col="marketCap", market_cap_header="시총", market_cap_format="usd",
+            star_codes=stars,
+        )
+        # v5 = 공유 stock 빌더로 전환 (병합 갭+기울기 6컬럼 + G1~G4). grid_key 를
+        # 올려 옛 v4 레이아웃 캐시를 버리고 강제 re-mount 한다.
         grid_key = (
-            f"bitget_grid::v4::{top_n}::{search}::{sort_col_key}::{star_only}::{len(stars)}"
+            f"bitget_grid::v5::{top_n}::{search}::{sort_col_key}::{star_only}::{len(stars)}"
         )
         grid_resp = AgGrid(
             df_grid,

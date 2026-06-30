@@ -41,6 +41,7 @@ from dashboards._stock_grid import (
     render_chart_meta_line,
     render_chart_star,
     render_chart_title,
+    render_drawing_controls,
     render_tv_chart_stock,
     safe_fragment_rerun,
     save_notes,
@@ -68,6 +69,7 @@ _LIVE_LOG = _CACHE_DIR / "_live_fetch.log"
 _PRE_LOG = _CACHE_DIR / "_precompute.log"
 _NOTES_PATH = _CACHE_DIR / "_notes.json"
 _STARS_PATH = _CACHE_DIR / "_stars.json"
+_DRAWINGS_PATH = _CACHE_DIR / "_drawings.json"
 _REPORTS_DIR = _ROOT / "research" / "reports"
 
 
@@ -257,8 +259,14 @@ def render(st: Any) -> None:
                         "`.venv/Scripts/python.exe -m pip install streamlit-lightweight-charts`"
                     )
                 else:
+                    fib_n, trendlines = render_drawing_controls(
+                        st, code=symbol, dates=cdf.index,
+                        last_close=float(cdf["Close"].iloc[-1]),
+                        drawings_path=_DRAWINGS_PATH, session_key="nas_drawings",
+                    )
                     render_tv_chart_stock(
                         symbol, f"{name} · {symbol}", chart_iv, cdf, key_prefix="lwc_nasdaq",
+                        fib_n=fib_n, trendlines=trendlines,
                     )
 
         with tab_report:
@@ -416,7 +424,7 @@ def render(st: Any) -> None:
             market_cap_col="marketValueRaw", market_cap_header="시총 (USD)",
             star_codes=stars,
         )
-        grid_key = f"nas_grid::v4::{top_n}::{search}::{sort_col_key}::{star_only}::{len(stars)}"
+        grid_key = f"nas_grid::v6::{top_n}::{search}::{sort_col_key}::{star_only}::{len(stars)}"
         grid_resp = AgGrid(
             df_grid,
             gridOptions=grid_options,

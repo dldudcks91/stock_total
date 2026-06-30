@@ -136,7 +136,12 @@ def build_grid_options(
     selected_symbol: Optional[str],
     star_codes: Optional[set] = None,
 ) -> tuple[pd.DataFrame, dict]:
-    """Construct (df_reordered, gridOptions) for the Bitget AgGrid.
+    """**DEPRECATED — no longer wired.** The Bitget tab now uses the shared
+    :func:`dashboards._stock_grid.build_stock_grid_options` so its grid is
+    identical to KOSPI/NASDAQ (merged gap+slope 6 cols + 터치 + G1~G4). Kept
+    only for reference; safe to delete once the new layout is confirmed.
+
+    Construct (df_reordered, gridOptions) for the Bitget AgGrid.
 
     Column order (left → right, displayed):
         ▸ checkbox + Symbol (pinned), Mark, 거래대금, 시총,

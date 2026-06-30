@@ -34,6 +34,7 @@ from dashboards._stock_grid import (
     load_notes,
     load_stars,
     render_chart_memo,
+    render_drawing_controls,
     render_chart_meta_line,
     render_chart_star,
     render_chart_title,
@@ -65,6 +66,7 @@ _LIVE_LOG = _CACHE_DIR / "_live_fetch.log"
 _PRE_LOG = _CACHE_DIR / "_precompute.log"
 _NOTES_PATH = _CACHE_DIR / "_notes.json"
 _STARS_PATH = _CACHE_DIR / "_stars.json"
+_DRAWINGS_PATH = _CACHE_DIR / "_drawings.json"
 _LISTING_CSV = _CACHE_DIR / "_listing.csv"
 _REPORTS_DIR = _ROOT / "research" / "reports"
 
@@ -268,8 +270,14 @@ def render(st: Any) -> None:
                         "`.venv/Scripts/python.exe -m pip install streamlit-lightweight-charts`"
                     )
                 else:
+                    fib_n, trendlines = render_drawing_controls(
+                        st, code=code, dates=cdf.index,
+                        last_close=float(cdf["Close"].iloc[-1]),
+                        drawings_path=_DRAWINGS_PATH, session_key="kospi_drawings",
+                    )
                     render_tv_chart_stock(
                         code, f"{name} · {code}", chart_iv, cdf, key_prefix="lwc_kospi",
+                        fib_n=fib_n, trendlines=trendlines,
                     )
 
         with tab_report:
@@ -444,7 +452,7 @@ def render(st: Any) -> None:
             market_cap_format="millions",
             star_codes=stars,
         )
-        grid_key = f"kospi_grid::v4::{top_n}::{search}::{sort_col_key}::{star_only}::{len(stars)}"
+        grid_key = f"kospi_grid::v6::{top_n}::{search}::{sort_col_key}::{star_only}::{len(stars)}"
         grid_resp = AgGrid(
             df_grid,
             gridOptions=grid_options,
