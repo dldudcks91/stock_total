@@ -103,7 +103,7 @@ US 티커: 영문 대문자.
    - "지표 계산" 버튼 또는 자동 트리거 (FDR fetch 성공 시 자동 chaining)
    - CLI: `.venv/Scripts/python.exe -m dashboards._precompute --asset {kr|us} [--force]`
 3. **일봉 OHLCV** — `data/cache/{asset}/{symbol}.parquet`
-   - FDR 로 받은 원본 일봉. 차트(`render_tv_chart_stock`)와 precompute 의 입력
+   - FDR 로 받은 원본 일봉. 차트(`render_tv_chart`)와 precompute 의 입력
    - "KOSPI/NASDAQ 데이터 받기" 가 백그라운드 subprocess 로 증분 갱신
 
 대시보드는 (1)+(2)를 cheap merge 하고 라이브 가격을 `apply_current_prices` 로 덧입혀 표시. 무거운 계산은 절대 탭 진입 시점에 일어나지 않는다 — 항상 `_precompute.py` 가 미리 디스크에 써둔다.

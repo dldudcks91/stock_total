@@ -44,7 +44,7 @@ import pandas as pd
 # ---------------------------------------------------------------------------
 
 PERIODS_H: list[int] = [1, 4]            # hourly fixed period columns
-PERIODS_D: list[int] = [3, 7, 14, 28]    # daily fixed period columns
+PERIODS_D: list[int] = [1, 3, 7, 14, 28, 30]  # daily fixed period columns (그리드가 1/7/30 표시)
 MA_PERIODS: tuple[int, int] = (10, 20)   # short / long MA
 
 # MA Interval — bar size for MA10/MA20 columns. ("1h" / "4h" stride-sample the

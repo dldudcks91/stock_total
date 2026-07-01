@@ -26,46 +26,41 @@ inside the fragment is safe.
 from __future__ import annotations
 
 import json
-import re
-import sys
 from pathlib import Path
 from typing import Any, Optional
 
 import pandas as pd
 
 from data.loader import load_ohlcv
-from data.sources.bitget_live import SNAPSHOT_PATH, load_snapshot
-from dashboards._precompute import load_recs, load_refs, precompute_status
+from data.sources.bitget_live import load_snapshot
+from data.sources.bitget_rwa import load_rwa_cache
+from dashboards._precompute import load_recs, load_refs
 from dashboards._stock_grid import (
     ChartNavigator,
     breadth_counts,
     build_stock_grid_options,
     fmt_compact_usd,
     load_stars,
+    normalize_crypto_ohlcv,
     render_breadth,
     render_chart_meta_line,
     render_chart_star,
     render_drawing_controls,
+    render_tv_chart,
     safe_fragment_rerun,
 )
 from dashboards.live._bitget_grid import (
     BITGET_PAGE_CSS,
     COLUMN_LABELS,
 )
-from dashboards.live._common import (
-    fetched_at_caption,
-    python_module_args,
-    render_subprocess_launcher,
-    render_subprocess_status,
-    snapshot_age_caption,
-)
+from dashboards.live._common import fetched_at_caption
 from dashboards.live._crypto_compute import (
     CANDLE_FETCH_CAP,
     apply_current_prices,
 )
 
 try:
-    from dashboards.live._bitget_chart import render_tv_chart
+    from streamlit_lightweight_charts import renderLightweightCharts  # type: ignore # noqa: F401
     _HAS_LWC = True
 except ImportError:  # pragma: no cover
     _HAS_LWC = False
@@ -74,9 +69,6 @@ from st_aggrid import AgGrid, GridUpdateMode
 
 _ROOT = Path(__file__).resolve().parents[2]
 _CACHE_DIR = _ROOT / "data" / "cache" / "crypto"
-_FETCH_LOG = _CACHE_DIR / "_fetch.log"
-_LIVE_LOG = _CACHE_DIR / "_live_fetch.log"
-_PRE_LOG = _CACHE_DIR / "_precompute.log"
 _NOTES_PATH = _CACHE_DIR / "_notes.json"
 _STARS_PATH = _CACHE_DIR / "_stars.json"
 _DRAWINGS_PATH = _CACHE_DIR / "_drawings.json"
@@ -104,60 +96,6 @@ def _save_notes(notes: dict) -> None:
 
 
 # ---------------------------------------------------------------------------
-# Precompute caption (mirrors kospi/nasdaq toolbar caption)
-# ---------------------------------------------------------------------------
-
-def _precompute_caption() -> str:
-    """'📊 지표 12:34 · 5m ago · 600종목' for the toolbar caption."""
-    info = precompute_status("crypto")
-    mt = info.get("refs_mtime")
-    if mt is None:
-        return "📊 지표 미계산 — `Bitget 데이터 받기` 시 자동 계산"
-    ts = pd.Timestamp.fromtimestamp(mt, tz="Asia/Seoul")
-    ago = pd.Timestamp.now(tz="Asia/Seoul") - ts
-    secs = int(ago.total_seconds())
-    if secs < 60:
-        ago_s = f"{secs}s"
-    elif secs < 3600:
-        ago_s = f"{secs // 60}m"
-    elif secs < 86400:
-        ago_s = f"{secs // 3600}h"
-    else:
-        ago_s = f"{secs // 86400}d"
-    return f"📊 지표 {ts.strftime('%H:%M:%S')} · {ago_s} ago · {info['n_symbols']}종목"
-
-
-# ---------------------------------------------------------------------------
-# Fetch-log progress parser (for the data-fetch subprocess progress bar)
-# ---------------------------------------------------------------------------
-
-def _parse_fetch_progress(log_text: str) -> dict:
-    """Extract latest granularity / counter / symbol from ``bitget.py`` stdout."""
-    gran = None
-    last_idx = 0
-    total = 0
-    last_sym = ""
-    last_rows = ""
-    for line in log_text.splitlines():
-        m = re.search(r"granularity=(\w+)", line)
-        if m:
-            gran = m.group(1)
-            last_idx = 0  # stage switch — reset counter
-        m = re.match(r"\[\s*(\d+)/(\d+)\]\s+(\S+)\s+rows=\s*(\d+)", line)
-        if m:
-            last_idx = int(m.group(1))
-            total = int(m.group(2))
-            last_sym = m.group(3)
-            last_rows = m.group(4)
-    return {
-        "stage": gran or "",
-        "idx": last_idx,
-        "total": total,
-        "detail": f"last: {last_sym} rows={last_rows}" if last_sym else "",
-    }
-
-
-# ---------------------------------------------------------------------------
 # Public entrypoint
 # ---------------------------------------------------------------------------
 
@@ -167,82 +105,10 @@ def render(st: Any) -> None:
     Called from inside ``with st.tabs(...)[0]:`` — does NOT call set_page_config
     (the parent page owns that). Wraps the data section in ``@st.fragment`` so
     widget interactions (filter / sort / window toggle / row select) don't
-    rerun the other markets' tabs.
+    rerun the other markets' tabs. Data-fetch / precompute is driven by the
+    master "모든 데이터 받기" button on the parent page.
     """
     st.markdown(BITGET_PAGE_CSS, unsafe_allow_html=True)
-
-    # ── Top toolbar: caption (2 lines) + 2 launch buttons ──
-    # 지표 계산은 `Bitget 데이터 받기` 완료 시 자동 체이닝(아래 on_success_followup).
-    # 강제 재계산이 필요하면 CLI: .venv/Scripts/python.exe -m dashboards._precompute --asset crypto
-    bar_caption, bar_live, bar_fetch = st.columns([3, 2, 2])
-    with bar_caption:
-        st.caption(snapshot_age_caption(SNAPSHOT_PATH))
-        st.caption(_precompute_caption())
-    with bar_live:
-        render_subprocess_launcher(
-            st,
-            label="라이브 가격 갱신",
-            session_prefix="bitget_live",
-            log_path=_LIVE_LOG,
-            args=python_module_args("data.sources.bitget_live"),
-            cwd=_ROOT,
-            button_key="bitget_live_btn",
-            button_help="Bitget 티커 + CoinGecko 시총을 받아 _live_snapshot.parquet 에 머지. 백그라운드.",
-        )
-    with bar_fetch:
-        # 1d → 1h 순차 실행을 한 파이썬 프로세스로 묶음 — Popen 한 번으로 stage 추적이 깔끔.
-        fetch_wrapper = (
-            "import subprocess, sys;"
-            "rc1 = subprocess.call([sys.executable,'-m','data.sources.bitget','--granularity','1d']);"
-            "rc2 = subprocess.call([sys.executable,'-m','data.sources.bitget','--granularity','1h']);"
-            "sys.exit(rc1 or rc2)"
-        )
-        render_subprocess_launcher(
-            st,
-            label="Bitget 데이터 받기",
-            session_prefix="bitget_fetch",
-            log_path=_FETCH_LOG,
-            args=[sys.executable, "-c", fetch_wrapper],
-            cwd=_ROOT,
-            button_key="bitget_fetch_btn",
-            button_help="Bitget USDT-M 전 종목 1D + 1H OHLCV 를 data/cache/crypto/ 로 증분 다운로드. "
-                        "완료 시 지표 계산(_refs.parquet) 자동 체이닝. 백그라운드.",
-        )
-
-    # ── Status panels (full-width, only visible when a proc is/was running) ──
-    render_subprocess_status(
-        st,
-        label="라이브 fetch",
-        session_prefix="bitget_live",
-        log_path=_LIVE_LOG,
-        success_msg="✅ 라이브 fetch 완료",
-        error_msg="❌ 라이브 fetch 실패",
-    )
-    # Bitget 데이터 받기가 끝나면 자동으로 지표 계산을 이어서 시동 (kospi/nasdaq 와 동일 패턴)
-    render_subprocess_status(
-        st,
-        label="Bitget fetch",
-        session_prefix="bitget_fetch",
-        log_path=_FETCH_LOG,
-        success_msg="✅ Bitget fetch 완료 — 지표 자동 계산 시작",
-        error_msg="❌ Bitget fetch 실패",
-        on_success_clear_cache=True,
-        parse_progress=_parse_fetch_progress,
-        on_success_followup=dict(
-            session_prefix="bitget_pre",
-            log_path=_PRE_LOG,
-            args=python_module_args("dashboards._precompute", "--asset", "crypto"),
-            cwd=_ROOT,
-        ),
-    )
-    render_subprocess_status(
-        st,
-        label="지표 계산",
-        session_prefix="bitget_pre",
-        log_path=_PRE_LOG,
-        success_msg="✅ 지표 계산 완료",
-        error_msg="❌ 지표 계산 실패",
-    )
 
     # ── Chart cache only — refs are disk-precomputed via dashboards._precompute ──
     @st.cache_data(ttl=300, show_spinner=False)
@@ -259,16 +125,15 @@ def render(st: Any) -> None:
 
     # ── Chart dialog (modal popup) ──
     def _render_inline_chart(symbol: str) -> None:
+        # Search box replaces the plain title text — narrower column so the
+        # header stays compact. Meta + interval picker still stack below it.
+        # ``vertical_alignment="center"`` puts ‹/›/★ at the vertical midpoint
+        # of the c_title stack (matches the meta line row visually).
         c_title, c_prev, c_pos, c_next, _spacer, c_star = st.columns(
-            [4, 0.8, 2.0, 0.8, 2.4, 0.7], vertical_alignment="center",
+            [3, 0.8, 2.0, 0.8, 3.4, 0.7], vertical_alignment="center",
         )
         with c_title:
-            st.markdown(
-                f"<div style='text-align:left; font-size:17px; font-weight:600; "
-                f"padding-top:0px; margin-top:-6px; line-height:28px; white-space:nowrap; "
-                f"overflow:hidden; text-overflow:ellipsis;'>{symbol}</div>",
-                unsafe_allow_html=True,
-            )
+            _nav.search_box(placeholder="심볼 검색")
             meta = st.session_state.get("bitget_nav_meta", {}).get(symbol, {})
             render_chart_meta_line(st, [
                 ("시총", fmt_compact_usd(meta.get("mcap"))),
@@ -309,13 +174,17 @@ def render(st: Any) -> None:
             return
 
         if _HAS_LWC:
+            ndf = normalize_crypto_ohlcv(cdf)
             fib_n, trendlines = render_drawing_controls(
                 st, code=symbol,
-                dates=pd.to_datetime(cdf["timestamp"], unit="ms"),
-                last_close=float(cdf["close"].iloc[-1]),
+                dates=ndf.index,
+                last_close=float(ndf["Close"].iloc[-1]),
                 drawings_path=_DRAWINGS_PATH, session_key="bitget_drawings",
             )
-            render_tv_chart(symbol, chart_iv, cdf, fib_n=fib_n, trendlines=trendlines)
+            render_tv_chart(
+                symbol, symbol, chart_iv, ndf, key_prefix="lwc_bitget",
+                fib_n=fib_n, trendlines=trendlines,
+            )
         else:
             from dashboards.charts import plot_ohlcv, plotly_config
             fig = plot_ohlcv(
@@ -356,8 +225,9 @@ def render(st: Any) -> None:
         # (no toggle); see _bitget_grid.JS_ABS_COMPARATOR. MA Interval / HL
         # Lookback 토글은 제거됨 — 8개 TF×MA 갭 컬럼이 항상 표시된다.
         stars = st.session_state.setdefault("bitget_stars", load_stars(_STARS_PATH))
+        rwa_set = load_rwa_cache()
 
-        f1, f2, f3, f4 = st.columns([3, 1, 2, 1.2])
+        f1, f2, f3, f4, f5 = st.columns([3, 1, 2, 1.2, 1.4])
         with f1:
             search = st.text_input("Symbol contains", value="", key="flt_search").strip()
         with f2:
@@ -378,8 +248,17 @@ def render(st: Any) -> None:
             star_only = st.checkbox(
                 f"⭐ 별표만 ({len(stars)})", value=False, key="flt_star_only",
             )
+        with f5:
+            hide_rwa = st.checkbox(
+                f"🚫 주식토큰 제외 ({len(rwa_set)})",
+                value=True, key="flt_hide_rwa",
+                help="Bitget contracts API isRwa=YES (토큰화 주식/ETF/원자재) 를 표에서 제거. "
+                     "캐시 갱신: `.venv/Scripts/python.exe -m data.sources.bitget_rwa`",
+            )
 
         # Apply filter / sort / top_n (always descending — Top N + sort-by-volume).
+        if hide_rwa and rwa_set:
+            df = df[~df["symbol"].astype(str).isin(rwa_set)]
         if star_only:
             df = df[df["symbol"].astype(str).isin(stars)]
         if search:
@@ -445,10 +324,18 @@ def render(st: Any) -> None:
         # Per-symbol notes (memo column).
         notes = st.session_state.setdefault("bitget_notes", _load_notes())
 
+        # Name column — Bitget USDT-M perp symbols end in "USDT"; the coin
+        # name (BTCUSDT → BTC) matches KOSPI/NASDAQ's Symbol+Name pairing.
+        df["name"] = df["symbol"].astype(str).map(
+            lambda s: s.removesuffix("USDT") or s
+        )
+
         # Display order drives ←/→ chart navigation (follows filter/sort).
         nav_syms = df["symbol"].astype(str).tolist()
         st.session_state["bitget_nav_codes"] = nav_syms
-        st.session_state["bitget_nav_names"] = {s: s for s in nav_syms}
+        st.session_state["bitget_nav_names"] = dict(
+            zip(nav_syms, df["name"].astype(str))
+        )
         # 시총/거래대금(USDT) — 차트 헤더 메타 라인용.
         _vol_col = "quoteVolume" if "quoteVolume" in df.columns else "usdtVolume"
         st.session_state["bitget_nav_meta"] = {
@@ -470,16 +357,16 @@ def render(st: Any) -> None:
         df_grid, grid_options = build_stock_grid_options(
             df, selected_symbol,
             symbol_col="symbol", symbol_header="Symbol",
-            name_col=None,
+            name_col="name", name_header="Name",
             price_col="markPrice", price_header="Price", price_format="dec4",
             volume_col="quoteVolume", volume_header="거래대금", volume_format="usd",
             market_cap_col="marketCap", market_cap_header="시총", market_cap_format="usd",
             star_codes=stars,
         )
-        # v5 = 공유 stock 빌더로 전환 (병합 갭+기울기 6컬럼 + G1~G4). grid_key 를
-        # 올려 옛 v4 레이아웃 캐시를 버리고 강제 re-mount 한다.
+        # v6 = Name 컬럼 추가 (Symbol 옆). grid_key 를 올려 옛 v5 레이아웃 캐시를
+        # 버리고 강제 re-mount 한다.
         grid_key = (
-            f"bitget_grid::v5::{top_n}::{search}::{sort_col_key}::{star_only}::{len(stars)}"
+            f"bitget_grid::v6::{top_n}::{search}::{sort_col_key}::{star_only}::{len(stars)}"
         )
         grid_resp = AgGrid(
             df_grid,

@@ -95,13 +95,18 @@ _TIP_TEMPLATE = (
     "(ts.year+'-'+('0'+ts.month).slice(-2)+'-'+('0'+ts.day).slice(-2)):"
     "new Date(ts*1000).toISOString().slice(0,10);"
     "h+='<div style=\"font-weight:700;margin-bottom:2px\">'+ds+'</div>';"
+    "var _LW='display:inline-block;min-width:60px;';"
     "for(var i=0;i<its.length;i++){var it=its[i],lab=it.cfg&&it.cfg.legendLabel;if(!lab)continue;"
+    "if(lab==='Hist'||lab==='MACD'||lab==='Signal')continue;"
     "var dp=p.seriesData.get(it.s);if(dp==null)continue;"
     "var col=(it.cfg.options&&it.cfg.options.color)||'#555';"
     "if(it.cfg.type==='Candlestick'){var up=dp.close>=dp.open,cc=up?'#1FCC81':'#F6465D';"
-    "h+='<div style=\"color:'+cc+'\">O'+_f(dp.open)+' H'+_f(dp.high)+' L'+_f(dp.low)+' C'+_f(dp.close)+'</div>';}"
+    "h+='<div style=\"color:'+cc+'\"><span style=\"'+_LW+'\">Open</span>'+_f(dp.open)+'</div>';"
+    "h+='<div style=\"color:'+cc+'\"><span style=\"'+_LW+'\">High</span>'+_f(dp.high)+'</div>';"
+    "h+='<div style=\"color:'+cc+'\"><span style=\"'+_LW+'\">Low</span>'+_f(dp.low)+'</div>';"
+    "h+='<div style=\"color:'+cc+'\"><span style=\"'+_LW+'\">Close</span>'+_f(dp.close)+'</div>';}"
     "else{var v=dp.value;if(v===undefined)continue;var tx=(lab==='Vol')?_fv(v):_f(v);"
-    "h+='<div style=\"color:'+col+'\">'+lab+' '+tx+'</div>';}}"
+    "h+='<div style=\"color:'+col+'\"><span style=\"'+_LW+'\">'+lab+'</span>'+tx+'</div>';}}"
     "_tip.innerHTML=h;_tip.style.display='block';"
     "var cw=_cn.clientWidth,ch=_cn.clientHeight,tw=_tip.offsetWidth,th=_tip.offsetHeight;"
     "var x=p.point.x+16;if(x+tw>cw)x=p.point.x-tw-16;if(x<0)x=0;"
@@ -120,8 +125,21 @@ def _build_dir() -> Path:
     return Path(_pkg.__file__).resolve().parent / "frontend" / "build"
 
 
-def _patch_text(text: str):
-    """Apply the three edits to one file's text. Returns (new_text, n_edits)."""
+# The tip snippet is uniquely identifiable by ``/*lwc-tip*/;try{(function(_c,_cn){``
+# opening and ``catch(_e3){}`` closing — ``_e3`` is exclusive to this block.
+# Used by ``--force`` to strip the old tip before re-applying a template change.
+_TIP_STRIP = re.compile(
+    r"/\*lwc-tip\*/;try\{\(function\(_c,_cn\)\{.*?catch\(_e3\)\{\}",
+    re.DOTALL,
+)
+
+
+def _patch_text(text: str, force_tip: bool = False):
+    """Apply the three edits to one file's text. Returns (new_text, n_edits).
+
+    ``force_tip=True`` strips any existing tip snippet before re-applying — use
+    after changing ``_TIP_TEMPLATE`` (marker guard would otherwise skip it).
+    """
     edits = 0
 
     # 1. ivb — only if not already done (marker absent)
@@ -135,6 +153,10 @@ def _patch_text(text: str):
         edits += 1
 
     # 3. crosshair tooltip — anchors on the ivb-patched scroll call
+    if force_tip and TIP_MARK in text:
+        text, n_removed = _TIP_STRIP.subn("", text)
+        if n_removed:
+            edits += n_removed
     if TIP_MARK not in text:
         def _repl(m: "re.Match") -> str:
             return m.group(0) + TIP_MARK + _tip_snippet(m.group(1))
@@ -144,7 +166,7 @@ def _patch_text(text: str):
     return text, edits
 
 
-def apply(check_only: bool = False) -> int:
+def apply(check_only: bool = False, force_tip: bool = False) -> int:
     build = _build_dir()
     js_dir = build / "static" / "js"
     if not js_dir.is_dir():
@@ -160,7 +182,7 @@ def apply(check_only: bool = False) -> int:
     changed = 0
     for f in targets:
         text = f.read_text(encoding="utf-8", errors="surrogatepass")
-        new_text, n = _patch_text(text)
+        new_text, n = _patch_text(text, force_tip=force_tip)
         if n == 0:
             print(f"[patch_lwc] up to date: {f.name}")
             continue
@@ -184,8 +206,11 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--check", action="store_true",
                     help="report what would change, don't write")
+    ap.add_argument("--force", action="store_true",
+                    help="strip any existing tooltip snippet before re-applying — "
+                         "use after changing the tooltip template")
     args = ap.parse_args()
-    raise SystemExit(apply(check_only=args.check))
+    raise SystemExit(apply(check_only=args.check, force_tip=args.force))
 
 
 if __name__ == "__main__":

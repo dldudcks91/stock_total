@@ -47,7 +47,10 @@ from st_aggrid import GridOptionsBuilder, JsCode
 # ---------------------------------------------------------------------------
 
 # Fixed period % columns (always shown). Daily-only since stock caches are 1D.
-PERIODS_D: list[int] = [1, 3, 7, 14, 28, 56, 140]
+PERIODS_D: list[int] = [1, 3, 7, 14, 28, 30, 56, 140]
+
+# 표에 노출할 기간 %. (period_days, header_label). 시총 오른쪽에 표시.
+GRID_PERIOD_COLS: list[tuple[int, str]] = [(1, "1일"), (7, "7일"), (30, "30일")]
 
 # MA Interval — drives MA10/MA20 columns. Matches the chart's interval picker
 # (1d/1w/1M) so the dashboard's MA value equals the exchange-standard MA line
@@ -633,7 +636,9 @@ def build_stock_grid_options(
     # MA 6컬럼은 갭% + 기울기 화살표를 한 칸에 병합(병합 컬럼 = MA_COLS).
     # SLOPE_COLS 는 더 이상 독립 컬럼이 아니지만 화살표 데이터로 row 에 실어
     # 병합 셀 렌더러(js_fmt_gap_with_arrow)가 params.data 로 읽는다.
-    visible_order: list[str] = [symbol_col, STAR_KEY]
+    PERIOD_COLS = [f"pct_{n}d" for n, _h in GRID_PERIOD_COLS]
+
+    visible_order: list[str] = [symbol_col]
     if name_col:
         visible_order.append(name_col)
     visible_order.append(price_col)
@@ -641,8 +646,10 @@ def build_stock_grid_options(
         visible_order.append(volume_col)
     if market_cap_col:
         visible_order.append(market_cap_col)
+    visible_order.extend(PERIOD_COLS)
     visible_order.extend(MA_COLS)
     visible_order.extend(GRANVILLE_COLS)
+    visible_order.append(STAR_KEY)
 
     df_grid = df.copy()
     star_set = {str(s) for s in (star_codes or set())}
@@ -651,7 +658,7 @@ def build_stock_grid_options(
     )
     # gate_pass(=G3) 는 recs 머지로 이미 df 에 있을 수 있어 placeholder 가
     # 덮어쓰지 않도록 'not in columns' 가드에 의존. g1/g2/g4 는 None 골격.
-    for placeholder in (*MA_COLS, *SLOPE_COLS, *GRANVILLE_COLS):
+    for placeholder in (*MA_COLS, *SLOPE_COLS, *GRANVILLE_COLS, *PERIOD_COLS):
         if placeholder not in df_grid.columns:
             df_grid[placeholder] = None
 
@@ -683,7 +690,7 @@ def build_stock_grid_options(
 
     # ── ⭐ 별표 (display-only) — 차트 헤더 토글로 켜고/끄고, 여기선 표시만 ──
     gob.configure_column(
-        STAR_KEY, headerName="⭐", pinned="left",
+        STAR_KEY, headerName="⭐", pinned="right",
         width=40, minWidth=34, maxWidth=48, sortable=True,
         cellStyle={"textAlign": "center", "display": "flex",
                    "alignItems": "center", "justifyContent": "center"},
@@ -725,6 +732,17 @@ def build_stock_grid_options(
         gob.configure_column(
             market_cap_col, headerName=market_cap_header, width=mcap_width, minWidth=70,
             valueFormatter=mcap_fmt, type=["numericColumn"],
+        )
+
+    # ── 기간 수익률 3컬럼 (1일 / 7일 / 30일) ── 시총 오른쪽에 배치.
+    # 값 = ``pct_{n}d`` = (현재가 − prev_{n}d) / prev_{n}d. 소스는
+    # apply_current_prices() (refs.prev_{n}d + live 가격). 부호 색·|값| 정렬.
+    for n, header in GRID_PERIOD_COLS:
+        gob.configure_column(
+            f"pct_{n}d", headerName=header, width=70, minWidth=54,
+            valueFormatter=JS_FMT_PCT, cellStyle=JS_SIGNED_COLOR,
+            type=["numericColumn"], comparator=JS_ABS_COMPARATOR,
+            headerTooltip=f"{n}일 전 종가 대비 현재가 변동률",
         )
 
     # ── TF × MA 병합 6컬럼 (갭% + 기울기 화살표) ──
@@ -790,24 +808,44 @@ def build_stock_grid_options(
 # TradingView-style chart renderer for stocks (capitalized OHLC columns)
 # ---------------------------------------------------------------------------
 
-def chart_legend_html(entries: list) -> str:
-    """Top-left overlay legend for the chart — list of ``(label, color)``.
+def _fmt_ma_value(v: float) -> str:
+    """Format an MA/VWMA value for the legend — precision follows magnitude
+    (crypto sub-dollar coins need 4 decimals, stocks/BTC use commas)."""
+    if v is None or not pd.notna(v):
+        return "—"
+    a = abs(float(v))
+    if a >= 1000:
+        return f"{v:,.1f}"
+    if a >= 1:
+        return f"{v:,.2f}"
+    return f"{v:,.4f}"
 
-    lightweight-charts has no built-in top-left legend; its per-series
-    ``title`` renders at the line's right end (next to the price axis). We drop
-    those titles and overlay this HTML legend instead, absolutely positioned in
-    the top-left of the chart (the wrapping container is ``position:relative``
-    via the page CSS). ``pointer-events:none`` so it never blocks the chart.
+
+def chart_legend_html(entries: list) -> str:
+    """Top-left overlay legend — vertical stack of ``(label, color, value_str)``.
+
+    lightweight-charts has no built-in top-left legend; its per-series ``title``
+    renders at the line's right end (next to the price axis). We drop those
+    titles and overlay this HTML legend instead, absolutely positioned in the
+    top-left of the chart (the wrapping container is ``position:relative`` via
+    the page CSS). ``pointer-events:none`` so it never blocks the chart.
+
+    Each entry becomes one row: ``<colored MA label>  <current value>`` — the
+    values are the last-bar readings (crosshair-driven live values still come
+    from the patched frontend tooltip in ``scripts/_common/patch_lwc.py``).
     """
-    spans = "".join(
-        f"<span style='color:{color};margin-right:11px;'>{label}</span>"
-        for label, color in entries
+    rows = "".join(
+        f"<div style='line-height:1.45;'>"
+        f"<span style='color:{color};display:inline-block;min-width:64px;'>{label}</span>"
+        f"<span style='color:#1a1a1a;font-weight:600;'>{value_str}</span>"
+        f"</div>"
+        for label, color, value_str in entries
     )
     return (
         "<div style='position:absolute;top:6px;left:10px;z-index:6;"
-        "font-size:11px;font-weight:700;line-height:1.4;white-space:nowrap;"
-        "background:rgba(255,255,255,0.62);padding:1px 7px;border-radius:4px;"
-        "pointer-events:none;'>" + spans + "</div>"
+        "font-size:11px;font-weight:700;white-space:nowrap;"
+        "background:rgba(255,255,255,0.72);padding:3px 8px;border-radius:4px;"
+        "pointer-events:none;'>" + rows + "</div>"
     )
 
 
@@ -916,7 +954,24 @@ def _overlay_series(
     return out
 
 
-def render_tv_chart_stock(
+def normalize_crypto_ohlcv(cdf: pd.DataFrame) -> pd.DataFrame:
+    """Convert crypto cache schema → stock schema so both feed the same renderer.
+
+    Crypto parquet has ``timestamp`` (UTC ms column) + lowercase OHLCV; stocks
+    have a naive DatetimeIndex + capitalized OHLCV. This helper unifies them
+    onto the stock shape so ``render_tv_chart`` sees a single input format.
+    """
+    d = cdf.copy()
+    idx = pd.to_datetime(d["timestamp"], unit="ms")
+    d = d.set_index(idx).sort_index()
+    d = d.rename(columns={
+        "open": "Open", "high": "High", "low": "Low",
+        "close": "Close", "volume": "Volume",
+    })
+    return d[["Open", "High", "Low", "Close", "Volume"]]
+
+
+def render_tv_chart(
     symbol: str,
     title: str,
     interval: str,
@@ -926,10 +981,12 @@ def render_tv_chart_stock(
     fib_n: Optional[int] = None,
     trendlines: Optional[list] = None,
 ) -> None:
-    """Render a Bitget/TradingView-style chart from a stock OHLCV DataFrame.
+    """Render a Bitget/TradingView-style chart from an OHLCV DataFrame.
 
-    ``cdf`` has DatetimeIndex (naive) + columns Open/High/Low/Close/Volume.
-    Caller must have ``streamlit_lightweight_charts`` installed.
+    ``cdf`` must have a DatetimeIndex (naive) + columns Open/High/Low/Close/Volume.
+    For crypto feeds (``timestamp`` column + lowercase OHLCV), pass the result of
+    :func:`normalize_crypto_ohlcv` — the renderer itself is schema-agnostic once
+    normalized so Bitget / KOSPI / NASDAQ share the same visual output.
 
     ``fib_n`` (if set) overlays fib retracement levels from the last ``fib_n``
     bars' swing high/low. ``trendlines`` overlays manual segments — each
@@ -941,10 +998,11 @@ def render_tv_chart_stock(
     d = cdf.copy().sort_index()
 
     ma_specs = [
-        (10, "#F0B90B", "MA10", "sma"),
-        (20, "#F6465D", "MA20", "sma"),
-        (50, "#1565C0", "MA50", "sma"),
-        (100, "#000000", "VWMA100", "vwma"),
+        (10, "#F0B90B", "MA10", "sma"),        # 노랑
+        (20, "#F6465D", "MA20", "sma"),        # 빨강
+        (50, "#1565C0", "MA50", "sma"),        # 진파랑
+        (100, "#000000", "VWMA100", "vwma"),   # 검정 (거래량 가중)
+        (200, "#9C27B0", "MA200", "sma"),      # 보라
     ]
     ma_full: dict[str, pd.Series] = {}
     for period, _color, label, kind in ma_specs:
@@ -1044,7 +1102,9 @@ def render_tv_chart_stock(
     ]
 
     chart_options = {
-        "height": 800,
+        # 4-pane (candles / vol / RSI / MACD) fits in ~640px inside the
+        # ``st.dialog(width="large")`` modal without vertical clipping.
+        "height": 640,
         # Read by the patched frontend → barSpacing = width / N (exchange-style
         # fixed initial candle count, independent of monitor width).
         "initialVisibleBars": INITIAL_VISIBLE_BARS,
@@ -1059,12 +1119,14 @@ def render_tv_chart_stock(
         },
         "rightPriceScale": {
             "borderColor": "rgba(0,0,0,0.15)",
-            # 4 stacked panes: candles / volume / RSI / MACD.
-            "scaleMargins": {"top": 0.03, "bottom": 0.53},
+            # 4 stacked panes: candles (~55%) / volume (~10%) / RSI (~12%) / MACD (~14%).
+            "scaleMargins": {"top": 0.03, "bottom": 0.42},
         },
         "timeScale": {
             "borderColor": "rgba(0,0,0,0.15)",
-            "timeVisible": False, "secondsVisible": False,
+            # crypto intraday intervals get HH:MM on the axis; daily+ hides it.
+            "timeVisible": interval in ("1h", "4h"),
+            "secondsVisible": False,
             "rightOffset": 6,
             "barSpacing": DEFAULT_BAR_SPACING,
             "minBarSpacing": 0.5,  # allow zooming far out across full history
@@ -1101,8 +1163,9 @@ def render_tv_chart_stock(
                 "lastValueVisible": False,
                 "priceLineVisible": False,
             },
-            "priceScale": {"scaleMargins": {"top": 0.49, "bottom": 0.39}},
+            "priceScale": {"scaleMargins": {"top": 0.60, "bottom": 0.30}},
         },
+        # ── RSI pane ──
         {
             "type": "Line",
             "data": rsi_line,
@@ -1114,7 +1177,7 @@ def render_tv_chart_stock(
                 "crosshairMarkerVisible": False,
             },
             "priceScale": {
-                "scaleMargins": {"top": 0.63, "bottom": 0.21},
+                "scaleMargins": {"top": 0.72, "bottom": 0.16},
                 "autoScale": False,
             },
         },
@@ -1149,7 +1212,7 @@ def render_tv_chart_stock(
                 "priceScaleId": "macd",
                 "lastValueVisible": False, "priceLineVisible": False,
             },
-            "priceScale": {"scaleMargins": {"top": 0.81, "bottom": 0}},
+            "priceScale": {"scaleMargins": {"top": 0.86, "bottom": 0.0}},
         },
         {
             "type": "Line",
@@ -1178,7 +1241,16 @@ def render_tv_chart_stock(
     # Fibonacci levels + manual trendlines (drawn above candles/MAs).
     series.extend(_overlay_series(t, d["High"], d["Low"], d.index, fib_n, trendlines))
 
-    legend = chart_legend_html([(lbl, clr) for _p, clr, lbl, _k in ma_specs])
+    # Legend rows carry the last-bar MA value so you can read the current
+    # price of each line without hovering — crosshair-driven values still come
+    # from the patched frontend tooltip.
+    legend_entries = [
+        (lbl, clr, _fmt_ma_value(
+            ma_full[lbl].iloc[-1] if len(ma_full[lbl]) else float("nan")
+        ))
+        for _p, clr, lbl, _k in ma_specs
+    ]
+    legend = chart_legend_html(legend_entries)
     with _st.container(key="chart_legend_wrap"):
         _st.markdown(legend, unsafe_allow_html=True)
         renderLightweightCharts(
@@ -1725,6 +1797,52 @@ class ChartNavigator:
 
     def inject_keys(self) -> None:
         _inject_arrow_key_js(self.st, self.prev_btn, self.next_btn)
+
+    def _jump_from_search(self, key: str) -> None:
+        code = self.st.session_state.get(key)
+        if not code:
+            return
+        codes = self._codes()
+        if code in codes:
+            self._go_to(codes.index(code))
+
+    def search_box(
+        self,
+        placeholder: str = "종목명으로 검색",
+        *,
+        name_only: bool = True,
+    ) -> None:
+        """Typeahead selectbox over the current grid codes. Jumps on select.
+
+        Reuses ``codes_key`` / ``names_key`` in session_state, so the list
+        follows whatever filter/sort/TopN the grid currently applies.
+
+        ``name_only=True`` shows only the display name (e.g. ``삼성전자``);
+        ``False`` shows ``{name} · {code}`` (e.g. ``삼성전자 · 005930``). For
+        Bitget where name == symbol, both formats collapse to the same string.
+        """
+        codes = self._codes()
+        if not codes:
+            return
+        names = self.st.session_state.get(self.names_key) or {}
+        cur = self.st.session_state.get(self.sel_key)
+        key = f"{self.next_btn}__search"
+        if cur in codes:
+            self.st.session_state[key] = cur
+        def _label(c: str) -> str:
+            n = names.get(c, c)
+            if name_only:
+                return n or c
+            return f"{n} · {c}" if n and n != c else c
+        self.st.selectbox(
+            placeholder,
+            options=codes,
+            format_func=_label,
+            key=key,
+            on_change=self._jump_from_search,
+            args=(key,),
+            label_visibility="collapsed",
+        )
 
 
 def render_chart_memo(

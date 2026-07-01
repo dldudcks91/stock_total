@@ -16,15 +16,14 @@ cache directory rather than the screener API.
 """
 from __future__ import annotations
 
-import sys
 from pathlib import Path
 from typing import Any, Optional
 
 import pandas as pd
 
 from data.loader import load_ohlcv
-from data.sources.nasdaq_screener import SNAPSHOT_PATH, discover_universe, load_snapshot
-from dashboards._precompute import load_recs, load_refs, precompute_status
+from data.sources.nasdaq_screener import discover_universe, load_snapshot
+from dashboards._precompute import load_recs, load_refs
 from dashboards._stock_grid import (
     PERIODS_D,
     STOCK_PAGE_CSS,
@@ -42,17 +41,11 @@ from dashboards._stock_grid import (
     render_chart_star,
     render_chart_title,
     render_drawing_controls,
-    render_tv_chart_stock,
+    render_tv_chart,
     safe_fragment_rerun,
     save_notes,
 )
-from dashboards.live._common import (
-    fetched_at_caption,
-    python_module_args,
-    render_subprocess_launcher,
-    render_subprocess_status,
-    snapshot_age_caption,
-)
+from dashboards.live._common import fetched_at_caption
 
 try:
     from streamlit_lightweight_charts import renderLightweightCharts  # type: ignore # noqa: F401
@@ -64,9 +57,6 @@ from st_aggrid import AgGrid, GridUpdateMode
 
 _ROOT = Path(__file__).resolve().parents[2]
 _CACHE_DIR = _ROOT / "data" / "cache" / "us"
-_FETCH_LOG = _CACHE_DIR / "_fetch.log"
-_LIVE_LOG = _CACHE_DIR / "_live_fetch.log"
-_PRE_LOG = _CACHE_DIR / "_precompute.log"
 _NOTES_PATH = _CACHE_DIR / "_notes.json"
 _STARS_PATH = _CACHE_DIR / "_stars.json"
 _DRAWINGS_PATH = _CACHE_DIR / "_drawings.json"
@@ -81,32 +71,14 @@ def _latest_report_path(code: str) -> Optional[Path]:
     return matches[-1] if matches else None
 
 
-def _precompute_caption(asset: str) -> str:
-    """'📊 지표 12:34 · 5m ago · 3849종목' for the toolbar caption."""
-    info = precompute_status(asset)
-    mt = info.get("refs_mtime")
-    if mt is None:
-        return "📊 지표 미계산 — `NASDAQ 데이터 받기` 시 자동 계산"
-    ts = pd.Timestamp.fromtimestamp(mt, tz="Asia/Seoul")
-    ago = pd.Timestamp.now(tz="Asia/Seoul") - ts
-    secs = int(ago.total_seconds())
-    if secs < 60:
-        ago_s = f"{secs}s"
-    elif secs < 3600:
-        ago_s = f"{secs // 60}m"
-    elif secs < 86400:
-        ago_s = f"{secs // 3600}h"
-    else:
-        ago_s = f"{secs // 86400}d"
-    return f"📊 지표 {ts.strftime('%H:%M:%S')} · {ago_s} ago · {info['n_symbols']}종목"
-
 _COLUMN_LABELS: dict[str, str] = {
     "symbolCode": "Symbol",
     "stockNameEng": "Name",
     "closePrice": "Last",
     "fluctuationsRatio": "Change %",
-    "accumulatedTradingVolume": "Volume",
+    "dollarVolume": "거래대금 (USD)",
     "marketValueRaw": "시총 (USD)",
+    "accumulatedTradingVolume": "Volume (shares)",
     **{f"pct_{n}d": f"{n}d %" for n in PERIODS_D},
 }
 _ALL_SORT_KEYS = list(_COLUMN_LABELS.keys())
@@ -114,81 +86,18 @@ _DEFAULT_SORT = "marketValueRaw"
 
 
 def render(st: Any) -> None:
-    """Render the NASDAQ tab into the current Streamlit container."""
+    """Render the NASDAQ tab into the current Streamlit container.
+
+    Data-fetch / precompute is driven by the master "모든 데이터 받기"
+    button on the parent page (``dashboards/pages/3_Live.py``).
+    """
     st.markdown(STOCK_PAGE_CSS, unsafe_allow_html=True)
 
     universe = discover_universe()
     if not universe:
         st.warning(
-            "`data/cache/us/` 가 비어 있습니다. 아래 `NASDAQ 데이터 받기` 로 NASDAQ 일봉을 먼저 받아주세요."
+            "`data/cache/us/` 가 비어 있습니다. 페이지 상단 `모든 데이터 받기` 로 NASDAQ 일봉을 먼저 받아주세요."
         )
-
-    # ── Top toolbar ──
-    # 지표 계산은 `NASDAQ 데이터 받기` 완료 시 자동 체이닝(아래 on_success_followup).
-    # 강제 재계산이 필요하면 CLI: .venv/Scripts/python.exe -m dashboards._precompute --asset us
-    bar_caption, bar_live, bar_fetch = st.columns([3, 2, 2])
-    with bar_caption:
-        st.caption(snapshot_age_caption(SNAPSHOT_PATH))
-        st.caption(_precompute_caption("us"))
-        st.caption(f"캐시된 NASDAQ 심볼: **{len(universe)}** 개")
-    with bar_live:
-        render_subprocess_launcher(
-            st,
-            label="라이브 가격 갱신",
-            session_prefix="nas_live",
-            log_path=_LIVE_LOG,
-            args=python_module_args("data.sources.nasdaq_screener"),
-            cwd=_ROOT,
-            button_key="nas_live_btn",
-            button_help="api.nasdaq.com screener 한 방 요청으로 전 종목 라이브 가격 갱신 (~2초). 백그라운드.",
-        )
-    with bar_fetch:
-        render_subprocess_launcher(
-            st,
-            label="NASDAQ 데이터 받기",
-            session_prefix="nas_fetch",
-            log_path=_FETCH_LOG,
-            args=python_module_args("data.sources.stocks", "--market", "NASDAQ"),
-            cwd=_ROOT,
-            button_key="nas_fetch_btn",
-            button_help="FDR 로 NASDAQ 전 종목 일봉을 data/cache/us/ 로 증분 다운로드. "
-                        "완료 시 지표 계산(_refs/_recs.parquet) 자동 체이닝. 백그라운드.",
-        )
-
-    render_subprocess_status(
-        st,
-        label="라이브 fetch",
-        session_prefix="nas_live",
-        log_path=_LIVE_LOG,
-        success_msg="✅ 라이브 fetch 완료",
-        error_msg="❌ 라이브 fetch 실패",
-    )
-    # NASDAQ 데이터 받기가 끝나면 자동으로 지표 계산을 이어서 시동
-    render_subprocess_status(
-        st,
-        label="NASDAQ fetch",
-        session_prefix="nas_fetch",
-        log_path=_FETCH_LOG,
-        success_msg="✅ NASDAQ fetch 완료 — 지표 자동 계산 시작",
-        error_msg="❌ NASDAQ fetch 실패",
-        on_success_clear_cache=True,
-        on_success_followup=dict(
-            session_prefix="nas_pre",
-            log_path=_PRE_LOG,
-            args=python_module_args("dashboards._precompute", "--asset", "us"),
-            cwd=_ROOT,
-        ),
-    )
-    render_subprocess_status(
-        st,
-        label="지표 계산",
-        session_prefix="nas_pre",
-        log_path=_PRE_LOG,
-        success_msg="✅ 지표 계산 완료",
-        error_msg="❌ 지표 계산 실패",
-    )
-
-    if not universe:
         return
 
     # ── Chart cache only — refs/recs are disk-precomputed via dashboards._precompute ──
@@ -209,11 +118,14 @@ def render(st: Any) -> None:
     )
 
     def _render_inline_chart(symbol: str, name: str) -> None:
+        # Search box replaces the plain title text (name only).
+        # ``vertical_alignment="center"`` puts ‹/›/memo/★ at the vertical
+        # midpoint of the c_title stack.
         c_title, c_prev, c_pos, c_next, c_memo, c_star = st.columns(
-            [4, 0.8, 2.0, 0.8, 3.1, 0.7], vertical_alignment="center",
+            [3, 0.8, 2.0, 0.8, 4.1, 0.7], vertical_alignment="center",
         )
         with c_title:
-            render_chart_title(st, f"{name} · {symbol}")
+            _nav.search_box(placeholder="종목명 검색")
             meta = st.session_state.get("nas_nav_meta", {}).get(symbol, {})
             render_chart_meta_line(st, [
                 ("시총", fmt_compact_usd(meta.get("mcap"))),
@@ -264,7 +176,7 @@ def render(st: Any) -> None:
                         last_close=float(cdf["Close"].iloc[-1]),
                         drawings_path=_DRAWINGS_PATH, session_key="nas_drawings",
                     )
-                    render_tv_chart_stock(
+                    render_tv_chart(
                         symbol, f"{name} · {symbol}", chart_iv, cdf, key_prefix="lwc_nasdaq",
                         fib_n=fib_n, trendlines=trendlines,
                     )
@@ -415,16 +327,24 @@ def render(st: Any) -> None:
             st.session_state.pop(SEL_KEY, None)
             selected_symbol = None
 
+        # 거래대금 (USD) 파생 — NASDAQ 스냅샷은 주식 수량(Volume) 만 주므로
+        # close × shares 로 근사. 자산 간 크기 비교용.
+        df = df.assign(
+            dollarVolume=df["accumulatedTradingVolume"] * df["closePrice"],
+        )
+
         df_grid, grid_options = build_stock_grid_options(
             df, selected_symbol,
             symbol_col="symbolCode", symbol_header="Symbol",
             name_col="stockNameEng", name_header="Name",
             price_col="closePrice", price_format="dec",
-            volume_col="accumulatedTradingVolume", volume_header="Volume",
-            market_cap_col="marketValueRaw", market_cap_header="시총 (USD)",
+            volume_col="dollarVolume", volume_header="거래대금",
+            volume_format="usd",
+            market_cap_col="marketValueRaw", market_cap_header="시총",
+            market_cap_format="usd",
             star_codes=stars,
         )
-        grid_key = f"nas_grid::v6::{top_n}::{search}::{sort_col_key}::{star_only}::{len(stars)}"
+        grid_key = f"nas_grid::v8::{top_n}::{search}::{sort_col_key}::{star_only}::{len(stars)}"
         grid_resp = AgGrid(
             df_grid,
             gridOptions=grid_options,

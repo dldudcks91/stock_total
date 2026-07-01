@@ -29,11 +29,6 @@ _COLORSCALE = [
     [1.0, "#2ecc71"],   # 강한 상승
 ]
 
-LEVEL_SECTOR = "업종 합산"
-LEVEL_STOCK = "업종 › 종목"
-LEVELS = [LEVEL_STOCK, LEVEL_SECTOR]
-
-
 def build_treemap_df() -> Optional[pd.DataFrame]:
     """스냅샷 + 업종맵 머지 → [code, name, industry, broad, mcap, change_pct].
 
@@ -107,7 +102,6 @@ def _fmt_won(v: float) -> str:
 
 def make_treemap_fig(
     df: pd.DataFrame,
-    level: str = LEVEL_STOCK,
     clamp: float = 3.0,
     min_mcap_eok: float = 0.0,
     top_n: int = 0,
@@ -116,9 +110,12 @@ def make_treemap_fig(
 ):
     """Plotly Treemap Figure 생성.
 
+    항상 `업종(부모) → 종목(잎)` 2단계 계층 트리맵. ``maxdepth=1`` 로 초기
+    화면엔 업종 합산만 보이고, 업종 박스를 클릭하면 자식(종목)이 확장된다.
+    상단 breadcrumb (또는 부모 라벨) 를 눌러 다시 축소.
+
     Args:
         df: build_treemap_df() 결과
-        level: LEVEL_SECTOR(업종만) / LEVEL_STOCK(업종>종목)
         clamp: 색 포화 한계 % (±clamp 로 색 스케일 고정)
         min_mcap_eok: 이 시총(억원) 미만 종목 제외
         top_n: 0이면 전체, >0이면 시총 상위 N 종목만
@@ -138,114 +135,78 @@ def make_treemap_fig(
     if work.empty:
         return go.Figure()
 
-    total_mcap = work["mcap"].sum()
-    n_stocks = len(work)
-    size_note = "크기 균일" if equal_size else "크기=시총"
-    title = (
-        f"KOSPI 업종별 시총 히트맵 · {n_stocks}종목 · "
-        f"시총합 {total_mcap / 1e12:,.0f}조 · {size_note} · 색=등락률(±{clamp:g}% 포화)"
+    # 업종(부모) + 종목(잎) 2단계. maxdepth=1 로 초기엔 부모만 보이고 클릭 확장.
+    sec = (
+        work.groupby(group_col)
+        .apply(lambda g: pd.Series({
+            "mcap": g["mcap"].sum(),
+            "change_pct": _weighted_change(g),
+            "n": len(g),
+            "n_up": int((g["change_pct"] > 0).sum()),
+            "n_down": int((g["change_pct"] < 0).sum()),
+        }))
+        .reset_index()
     )
+    for c in ("n", "n_up", "n_down"):
+        sec[c] = sec[c].astype(int)
+    # 크기 규칙 (branchvalues="total" 로 통일):
+    #   equal_size=False → 부모 = 시총합, 자식 = mcap  (Finviz 스타일)
+    #   equal_size=True  → 부모 = 1.0 (모든 업종 균일), 자식 = 1/n (그 업종 내 균등)
+    # 과거엔 remainder + 자식=1 조합이라 부모가 종목 수에 비례해 "균일" 이 거짓말이었음.
+    n_per_group = dict(zip(sec[group_col], sec["n"]))
+    # 부모(업종) 노드
+    p_ids = ["sec::" + s for s in sec[group_col]]
+    p_labels = sec[group_col].tolist()
+    p_parents = [""] * len(sec)
+    p_values = [1.0] * len(sec) if equal_size else sec["mcap"].tolist()
+    p_colors = sec["change_pct"].clip(-clamp, clamp).tolist()
+    # customdata 끝에 code 를 둬 클릭 식별에 사용 (부모=업종은 빈 문자열)
+    p_custom = [
+        [cp, mc, _fmt_won(mc), n, ""]
+        for cp, mc, n in zip(sec["change_pct"], sec["mcap"], sec["n"])
+    ]
+    # 부모(업종) 박스 텍스트: 업종 · 시총 · N종목 · ▲상승 ▼하락 · 등락률
+    p_text = [
+        f"{lbl}<br>{_fmt_won(mc)} · {n}종목<br>▲{nu} ▼{nd} · {cp:.1f}%"
+        for lbl, mc, n, nu, nd, cp in zip(
+            sec[group_col], sec["mcap"], sec["n"],
+            sec["n_up"], sec["n_down"], sec["change_pct"]
+        )
+    ]
 
-    node_text = None  # stock 레벨에서만 per-node 텍스트 사용
-    if level == LEVEL_SECTOR:
-        agg = (
-            work.groupby(group_col)
-            .apply(lambda g: pd.Series({
-                "mcap": g["mcap"].sum(),
-                "change_pct": _weighted_change(g),
-                "n": len(g),
-                "n_up": int((g["change_pct"] > 0).sum()),
-                "n_down": int((g["change_pct"] < 0).sum()),
-            }))
-            .reset_index()
-        )
-        for c in ("n", "n_up", "n_down"):
-            agg[c] = agg[c].astype(int)
-        labels = agg[group_col].tolist()
-        parents = [""] * len(agg)
-        values = [1.0] * len(agg) if equal_size else agg["mcap"].tolist()
-        colors = agg["change_pct"].clip(-clamp, clamp).tolist()
-        # customdata: [등락률, 시총합(원), 시총합 문자열, 종목수, 상승, 하락]
-        custom = [
-            [cp, mc, _fmt_won(mc), n, nu, nd]
-            for cp, mc, n, nu, nd in zip(
-                agg["change_pct"], agg["mcap"], agg["n"], agg["n_up"], agg["n_down"]
-            )
-        ]
-        texttemplate = (
-            "%{label}<br>%{customdata[2]} · %{customdata[3]}종목<br>"
-            "▲%{customdata[4]} ▼%{customdata[5]} · %{customdata[0]:.1f}%"
-        )
-        hovertemplate = (
-            "<b>%{label}</b><br>시총합 %{customdata[2]}<br>"
-            "종목수 %{customdata[3]} (상승 %{customdata[4]} · 하락 %{customdata[5]})<br>"
-            "가중 등락률 %{customdata[0]:.1f}%<extra></extra>"
-        )
-        ids = None
+    # 잎(종목) 노드 — id 충돌 방지로 code 사용
+    c_ids = ["stk::" + c for c in work["code"]]
+    c_labels = work["name"].tolist()
+    c_parents = ["sec::" + s for s in work[group_col]]
+    # equal 모드: 자식값 합이 부모값(1.0)과 같아야 하므로 1/n 로 정규화.
+    if equal_size:
+        c_values = [1.0 / n_per_group[g] for g in work[group_col]]
     else:
-        # 업종(부모) + 종목(잎) 2단계.
-        sec = (
-            work.groupby(group_col)
-            .apply(lambda g: pd.Series({
-                "mcap": g["mcap"].sum(),
-                "change_pct": _weighted_change(g),
-                "n": len(g),
-                "n_up": int((g["change_pct"] > 0).sum()),
-                "n_down": int((g["change_pct"] < 0).sum()),
-            }))
-            .reset_index()
-        )
-        for c in ("n", "n_up", "n_down"):
-            sec[c] = sec[c].astype(int)
-        # 부모(업종) 노드 — branchvalues=remainder: 부모값 0 → 자식합으로 채움
-        p_ids = ["sec::" + s for s in sec[group_col]]
-        p_labels = sec[group_col].tolist()
-        p_parents = [""] * len(sec)
-        p_values = [0.0] * len(sec)
-        p_colors = sec["change_pct"].clip(-clamp, clamp).tolist()
-        # customdata 끝에 code 를 둬 클릭 식별에 사용 (부모=업종은 빈 문자열)
-        p_custom = [
-            [cp, mc, _fmt_won(mc), n, ""]
-            for cp, mc, n in zip(sec["change_pct"], sec["mcap"], sec["n"])
-        ]
-        # 부모(업종) 박스 텍스트: 업종 · 시총 · N종목 · ▲상승 ▼하락 · 등락률
-        p_text = [
-            f"{lbl}<br>{_fmt_won(mc)} · {n}종목<br>▲{nu} ▼{nd} · {cp:.1f}%"
-            for lbl, mc, n, nu, nd, cp in zip(
-                sec[group_col], sec["mcap"], sec["n"],
-                sec["n_up"], sec["n_down"], sec["change_pct"]
-            )
-        ]
+        c_values = work["mcap"].tolist()
+    c_colors = work["change_pct"].clip(-clamp, clamp).tolist()
+    c_custom = [
+        [cp, mc, _fmt_won(mc), 1, code]
+        for cp, mc, code in zip(work["change_pct"], work["mcap"], work["code"])
+    ]
+    # 잎(종목) 박스 텍스트: 종목명 · 시총 · 등락률
+    c_text = [
+        f"{nm}<br>{_fmt_won(mc)}<br>{cp:.1f}%"
+        for nm, mc, cp in zip(work["name"], work["mcap"], work["change_pct"])
+    ]
 
-        # 잎(종목) 노드 — id 충돌 방지로 code 사용
-        c_ids = ["stk::" + c for c in work["code"]]
-        c_labels = work["name"].tolist()
-        c_parents = ["sec::" + s for s in work[group_col]]
-        c_values = [1.0] * len(work) if equal_size else work["mcap"].tolist()
-        c_colors = work["change_pct"].clip(-clamp, clamp).tolist()
-        c_custom = [
-            [cp, mc, _fmt_won(mc), 1, code]
-            for cp, mc, code in zip(work["change_pct"], work["mcap"], work["code"])
-        ]
-        # 잎(종목) 박스 텍스트: 종목명 · 시총 · 등락률
-        c_text = [
-            f"{nm}<br>{_fmt_won(mc)}<br>{cp:.1f}%"
-            for nm, mc, cp in zip(work["name"], work["mcap"], work["change_pct"])
-        ]
-
-        ids = p_ids + c_ids
-        labels = p_labels + c_labels
-        parents = p_parents + c_parents
-        values = p_values + c_values
-        colors = p_colors + c_colors
-        custom = p_custom + c_custom
-        node_text = p_text + c_text
-        # 부모/잎 라벨 내용이 달라 per-node text 로 직접 구성 (template 공유 불가).
-        texttemplate = "%{text}"
-        hovertemplate = (
-            "<b>%{label}</b><br>시총 %{customdata[2]}<br>"
-            "등락률 %{customdata[0]:.1f}%<extra></extra>"
-        )
+    ids = p_ids + c_ids
+    labels = p_labels + c_labels
+    parents = p_parents + c_parents
+    values = p_values + c_values
+    colors = p_colors + c_colors
+    custom = p_custom + c_custom
+    node_text = p_text + c_text
+    # 부모/잎 라벨 내용이 달라 per-node text 로 직접 구성 (template 공유 불가).
+    texttemplate = "%{text}"
+    hovertemplate = (
+        "<b>%{label}</b><br>시총 %{customdata[2]}<br>"
+        "등락률 %{customdata[0]:.1f}%<extra></extra>"
+    )
 
     fig = go.Figure(
         go.Treemap(
@@ -255,7 +216,8 @@ def make_treemap_fig(
             values=values,
             text=node_text,
             customdata=custom,
-            branchvalues="remainder",
+            branchvalues="total",
+            maxdepth=1,  # 초기엔 업종만 보임. 업종 클릭 시 종목으로 drill-down.
             texttemplate=texttemplate,
             hovertemplate=hovertemplate,
             marker=dict(
@@ -274,8 +236,7 @@ def make_treemap_fig(
         )
     )
     fig.update_layout(
-        title=dict(text=title, font=dict(size=15)),
-        margin=dict(t=46, l=4, r=4, b=4),
+        margin=dict(t=8, l=4, r=4, b=4),
         paper_bgcolor="#0e1117",
         font=dict(color="#e6e6e6"),
         height=760,

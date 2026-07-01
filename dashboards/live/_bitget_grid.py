@@ -157,11 +157,12 @@ def build_grid_options(
     SLOPE_COLS = [f"slope_pct_ma{p}__{iv}" for iv, p in _SLOPE_TF_MA_SPECS]
 
     VISIBLE_ORDER = [
-        "symbol", STAR_KEY,
+        "symbol",
         "markPrice", "quoteVolume", "marketCap",
         *MA_COLS,
         REC_KEY,
         *SLOPE_COLS,
+        STAR_KEY,
     ]
 
     df_grid = df.copy()
@@ -201,7 +202,7 @@ def build_grid_options(
 
     # ── ⭐ 별표 (display-only) — 차트 헤더 토글로 켜고/끄고, 여기선 표시만 ──
     gob.configure_column(
-        STAR_KEY, headerName="⭐", pinned="left",
+        STAR_KEY, headerName="⭐", pinned="right",
         width=40, minWidth=34, maxWidth=48, sortable=True,
         cellStyle={"textAlign": "center", "display": "flex",
                    "alignItems": "center", "justifyContent": "center"},
