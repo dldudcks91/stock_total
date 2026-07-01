@@ -184,13 +184,7 @@ fresh_Z = 오늘 Z AND 어제 Z 아님              # 진입 시그널
 
 ## 7. 산출물
 
-| 파일 | 내용 |
-|---|---|
-| `scripts/out/probe_042700_*.py` | 한미반도체 단일 종목 진단 |
-| `scripts/out/probe_ma_convergence_*.py` | 패턴 KR 전체 스캔 |
-| `scripts/out/backtest_golden_cross_kr*.py` | KR 전체 백테스트 v1/v2 |
-| `scripts/out/_backtest_golden_cross_kr_v2.csv` | 백테스트 결과 데이터 |
-| `scripts/out/_chart_042700.png` | 한미반도체 차트 + 시그널 마커 |
+옛 스크립트/CSV/PNG (`scripts/out/probe_042700_*`, `probe_ma_convergence_*`, `backtest_golden_cross_kr*`, `_chart_042700.png` 등) 는 **2026-07-01 정리 때 삭제**. 재현 필요 시 룰 §3 을 다시 코드화.
 
 ---
 
@@ -314,14 +308,9 @@ TODO:
 
 ### 산출물 (2026-06-16)
 
-| 파일 | 내용 |
-|---|---|
-| `scripts/out/backtest_golden_cross_kr_v3.py` | close ceiling/floor 밴드 백테스트 |
-| `scripts/out/fwd_ma_converge_kr.py` | 수렴자리 D+1~D+7 forward (유동성 필터) |
-| `scripts/out/feat_separate_ma_converge_kr.py` | 5피처 분리력 + 결합룰 D/F |
-| `scripts/out/weekly_pullback_kr.py` | 주봉 상승눌림 백테스트 + fan 분리력 |
-| `scripts/out/chart_042700_granville.py` / `_chart_042700_granville.png` | 일봉 그랜빌 분류 차트 |
-| `scripts/out/chart_042700_weekly.py` / `_chart_042700_weekly.png` | 주봉 관점 검증 차트 |
+옛 스크립트/CSV/PNG 는 2026-07-01 정리 때 삭제. 관련 실험 이름 (참고용):
+`backtest_golden_cross_kr_v3.py`, `fwd_ma_converge_kr.py`, `feat_separate_ma_converge_kr.py`,
+`weekly_pullback_kr.py`, `chart_042700_granville.py`, `chart_042700_weekly.py`.
 
 ## 참조
 

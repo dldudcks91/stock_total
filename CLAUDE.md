@@ -7,9 +7,9 @@
 ## 구성 요약
 
 - **데이터 수집** — Bitget(crypto 1H/1D), FinanceDataReader(KR/US 1D), 한경 컨센서스(KR 정성), DART(KR 펀더멘털)
-- **추천 시그널** — trend_pullback / trend_chase / quiet_bottom 3개 전략 (대시보드 추천 로직이 import)
+- **추천 시그널** — `ma_touch` 단일 룰 (KR / Crypto / NASDAQ 공통). 자세한 룰: `docs/strategies_v2_design.md`
 - **리서치 리포트** — KR 종목 종합 리서치 (정량+정성 통합 마크다운 리포트)
-- **대시보드** — Streamlit 멀티페이지
+- **대시보드** — Streamlit 멀티페이지 (Live / Map / Mobile)
 
 ## 디렉터리 규약
 
@@ -27,16 +27,13 @@ data/
 │   │   ├── 1h/{SYMBOL}.parquet
 │   │   ├── 1d/{SYMBOL}.parquet
 │   │   └── classification.parquet
-│   ├── kr/              # {6자리코드}.parquet + _refs.parquet + _recs.parquet
-│   └── us/              # {TICKER}.parquet + _refs.parquet + _recs.parquet
+│   ├── kr/              # {6자리코드}.parquet + _refs.parquet + _recs.parquet + _ma_touch.parquet + _live_snapshot.parquet
+│   └── us/              # {TICKER}.parquet + _refs.parquet + _recs.parquet + _ma_touch.parquet + _live_snapshot.parquet
 ├── loader.py            # 자산·인터벌 무관 load_ohlcv()
 ├── resample.py          # 1h/1d 캐시 우선, 4h/1w/1M는 메모리 리샘플
-├── classification.py    # 크립토 4그룹 분류
+├── classification.py    # 크립토 분류 (`tier_final` 6그룹 + benchmark/stable)
 ├── universe.py          # 분류 결과에서 그룹별 심볼 추출
 └── fetch_log.py         # 마지막 fetch 시점 기록
-
-backtest/
-└── strategies/          # 한 파일 = 한 전략 (대시보드 _recommendation.py 가 import)
 
 research/                # KR 종목 종합 리서치 (옛 stock_research 흡수)
 ├── collect.py           # FDR 일봉 단일 종목 헬퍼
@@ -56,26 +53,24 @@ dashboards/              # Streamlit 멀티페이지
 ├── charts.py            # 차트 빌더 (Plotly)
 ├── _cache.py / _lib.py / _stock_grid.py
 ├── _precompute.py       # KR/US 지표·추천 디스크 캐시 (refs/recs.parquet writer/reader)
+├── live/                # 자산별 라이브 렌더러 (bitget.py / kospi.py / nasdaq.py + 헬퍼)
 └── pages/
-    ├── 3_Bitget.py      # 크립토 표
-    ├── 4_KOSPI.py       # KR 표
-    ├── 5_NASDAQ.py      # US 표
+    ├── 3_Live.py        # 라이브: Bitget / KOSPI / NASDAQ 탭
+    ├── 4_Map.py         # 시장 지도 (히트맵)
     └── 6_Mobile.py      # 모바일 보기
 
-scripts/                 # 자산별 분석·추천·백테스트 (자세히: scripts/README.md)
-├── _common/             # 자산 무관 유틸 (indicators / backtest_runner / facts_loader / run_helper)
-├── kr/                  # KOSPI: recommend_all + backtest_all + {trend_pullback, trend_chase, ...}/scoring|backtest|recommend
-├── crypto/              # Bitget: {trend_pullback, ma20w_short, cascading_pullback, _common}/...
-├── nasdaq/              # NASDAQ: 빈 strategy 폴더만 (향후)
-├── out/                 # 일회성 결과물 (CSV·PNG·log)
+scripts/                 # 자산별 분석·추천 (자세히: scripts/README.md)
+├── _common/             # 자산 무관 유틸 (signals / mtf_* / recommend_runner / build_recs_table)
+├── kr/ma_touch/         # KOSPI: recommend.py
+├── crypto/ma_touch/     # Bitget: recommend.py + universe filter
+├── nasdaq/ma_touch/     # NASDAQ: recommend.py
 └── README.md
 
 docs/                    # 영구 문서
-├── classification.md    # 크립토 4그룹 분류 규칙
-├── results/             # 분석 결과 artifact (보존용)
-└── reference/           # 외부 자료 정리 (e.g. 단테 검색기)
-
-notebooks/               # 임시 탐색용 (.py 모듈로 옮긴 뒤 비움)
+├── strategies_v2_design.md   # ma_touch 룰 정의 (운영 표준)
+├── classification.md         # 크립토 분류 규칙 (tier_final)
+├── granville_quadratic_fit.md / ma_converge_exploration.md  # R&D 노트 (탐색 단계)
+└── reference/                # 외부 자료 정리
 ```
 
 ## 데이터 스키마
@@ -227,6 +222,7 @@ Get-CimInstance Win32_Process -Filter "Name='python.exe'" | Select-Object Proces
 | `industry-analysis` | 업황/업계 정성 분석 |
 | `broker-consensus` | 한경 컨센서스 수집·요약 (KR) |
 | `fundamentals-deep` | DART 분기 실적 (KR) |
+| `crypto-visual-reviewer` | 크립토 차트 PNG batch 를 schema v2.1 로 채점 (Sonnet 4.6 고정, SKILL 경유 호출) |
 
 ## 분석 run 폴더 표준 (scripts/<asset>/<strategy>/runs/)
 

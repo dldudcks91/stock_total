@@ -1,7 +1,9 @@
 # Granville #1 검출 — 이평선 2차함수 적합
 
 > 기존 골든크로스 대신 **이평선에 2차함수를 직접 적합**해 그랜빌 1법칙(MA 하락 종료 후 반등 시작)을 검출하는 방법을 탐색한 기록.
-> 작업 기간 2026-06-15 ~ 2026-06-16. 모든 산출물은 `scripts/out/_probe_granville1_*.csv`/`.png`.
+> 작업 기간 2026-06-15 ~ 2026-06-16. **탐색 노트 — 본체 미적용.**
+>
+> 옛 산출물(`scripts/out/_probe_granville1_*.csv`, `.png`)은 2026-07-01 정리 때 삭제. 재현하려면 아래 룰을 다시 스크립트화.
 
 ## 1. 왜 2차함수 적합인가
 
@@ -36,11 +38,7 @@ R²                                      적합 신뢰도
 - `|a_pct|`가 추세(~0.006) vs 반등(~0.056) **10배 차이** → 곡률만으로 추세/전환 분리 가능
 - vertex_pos가 결정적 — 반등군은 vertex가 윈도우 끝 ~60% 위치 (최근 5~6봉이 반등 구간)
 
-산출: [scripts/out/_probe_ma_curvature_cases.csv](../scripts/out/_probe_ma_curvature_cases.csv), [_probe_ma_curvature_cases.png](../scripts/out/_probe_ma_curvature_cases.png)
-
 ## 4. 검출 룰 (5단계 + 가격 갭)
-
-[scripts/out/probe_granville1_all_tf_today.py](../scripts/out/probe_granville1_all_tf_today.py)
 
 1. **데이터 길이** ≥ `MA_LEN + N_WIN`
 2. **R²** ≥ 0.85 (적합 신뢰)
@@ -137,7 +135,7 @@ if max(left_rise, right_rise) / max(min(left_rise, right_rise), 1e-9) > 5:
 
 ## 8. 신규 상장 별도 분석
 
-상장 < 250일(약 1년) 종목만 일봉 단독 평가 ([probe_granville1_newlisting.py](../scripts/out/probe_granville1_newlisting.py)):
+상장 < 250일(약 1년) 종목만 일봉 단독 평가:
 
 | 자산 | 평가 | pass | gap≤25% |
 |---|---|---|---|
@@ -153,7 +151,7 @@ if max(left_rise, right_rise) / max(min(left_rise, right_rise), 1e-9) > 5:
 ## 9. 현재 운영 상태
 
 - **본체 적용 X** — 탐색 단계. `scripts/_common/signals.py`의 ma_touch 룰이 운영용
-- **산출물 경로**: `scripts/out/_probe_granville1_*.csv` (자산별), `_probe_*_check.png` (개별 종목 검증)
+- **산출물**: 옛 스크립트/CSV/PNG 는 2026-07-01 정리 때 삭제. 재현 시 룰 §4 를 다시 코드화
 - **종목명 매핑**: `data/cache/kr/_names.csv` + `_names_kosdaq.csv` (FDR `StockListing` 캐시)
 
 ## 10. 다음 단계 후보

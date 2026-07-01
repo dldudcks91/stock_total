@@ -1,8 +1,7 @@
 # Strategies v2 — ma_touch 단일 룰 (운영 중)
 
-> **상태**: 코드 본체 적용 완료 + 3 자산 (KR/Crypto/NASDAQ) `_ma_touch.parquet` 재생성 완료. 다운스트림(대시보드/alerts) 정리 미완.
+> **상태**: 코드 본체 + 3 자산(KR/Crypto/NASDAQ) `_ma_touch.parquet` + 대시보드/`/recs` 스킬 다운스트림 재구성 완료 (2026-06 후반).
 > **사용자 신조**: **"시작 전 무조건 찍고 간다"** — MA 터치 자리만 잡음. 추격은 후순위.
-> **최신 commit**: `06096c5` (origin/main).
 
 ## 0. 배경
 
@@ -162,20 +161,18 @@ MIN_BARS_FULL      = 20        # MA20 가능 최소 봉수
 MIN_BARS_PARTIAL   = 10        # MA10 가능 최소 봉수 (= "월봉 MA10 가능" 임계와 동일)
 ```
 
-## 9. 다운스트림 (정리 미완 — 깨진 상태)
+## 9. 다운스트림 상태 (2026-06 재구성 완료)
 
 | 대상 | 상태 |
 |---|---|
-| `dashboards/_precompute.py` | **삭제됨** |
-| `dashboards/_recommendation.py` | **삭제됨** |
-| `dashboards/live/{bitget, kospi, nasdaq}.py` | import 깨짐 (옛 `_recs.parquet` 의존) |
-| `dashboards/_stock_grid.py` | 옛 컬럼 가정 |
-| `dashboards/pages/{3_Live, 6_Mobile}.py` | 옛 표 구조 |
-| `alerts/{scan, state, __init__}.py` | `_recs.parquet` 의존 — 깨짐 |
-| `data/cache/{kr,us,crypto}/_recs.parquet` | 삭제됨 |
-| `data/cache/{kr,us,crypto}/_refs.parquet` | 삭제됨 |
-| `data/cache/{kr,us,crypto}/_ma_touch.parquet` | **신규** (새 룰 결과) |
-| `CLAUDE.md` "현재 전략 목록" 표 | 옛 정보 (5 전략) — 갱신 필요 |
+| `dashboards/_precompute.py` | 재작성 완료. `_refs.parquet` + `_recs.parquet` 증분 생성 |
+| `dashboards/live/{bitget, kospi, nasdaq}.py` | 재구성. `_refs` + `_recs` + `_live_snapshot` 머지 |
+| `dashboards/_stock_grid.py` | 병합 TF×MA 컬럼 + 그랜빌 4법칙 자리 반영 |
+| `dashboards/pages/{3_Live, 6_Mobile}.py` | 새 구조 반영 |
+| `alerts/{scan, state}.py` | `_recs.parquet` 스키마로 다시 붙음. 실사용 여부는 사용자 확인 필요 |
+| `data/cache/{kr,us,crypto}/_ma_touch.parquet` | 운영 중 (`/recs` 스킬 소스) |
+| `data/cache/{kr,us,crypto}/_refs.parquet`, `_recs.parquet` | 대시보드 그리드용, `_precompute.py` 산출 |
+| `CLAUDE.md` "현재 전략 목록" | `ma_touch` 단일 룰로 갱신 완료 |
 
 ## 10. Open Questions (다음 세션 결정)
 

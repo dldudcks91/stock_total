@@ -66,33 +66,14 @@ ONDOUSDT → ["Real World Assets (RWA)", "DeFi"]
 | **junk_new** | **백테스트 유니버스에서 제외**, 단 모니터링은 OK | 1년 미만 — 통계 추정치 불안정 |
 | **junk** | 검토 후 결정 | 어느 룰에도 안 잡힘 — 케이스별 검토 |
 
-## 대시보드 통합 계획
+## 대시보드 통합 (미구현 아이디어)
 
-### Phase 1: 백테스트 대시보드에 분류 정보 표시 (`dashboards/backtest_app.py`)
+분류 정보를 UI 에 노출할 만한 자리:
+- 백테스트/추천 사이드바에 심볼 옆 그룹 배지 (🟢 trend / 🔵 follower / 🟡 whale / 🟠 junk_pump / ⚪ junk_new / 🔴 junk)
+- 산점도 (R²_btc × kurt_trimmed, 색=tier_final) + 그룹별 메트릭 분포
+- 라이브 뷰에서 그룹별 섹션 그룹핑 (junk 계열 기본 접힘)
 
-런 디렉터리의 `config.yaml` 에서 symbol 추출 → classification.parquet 조회 → 사이드바에 표시:
-- 심볼명 옆에 그룹 배지 (🟢 trend, 🔵 follower, 🟡 whale, 🔴 junk)
-- config 요약 박스에 분류 메트릭 6개 (R², β, Hurst, kurt_t, pump_rec, vol)
-- 그룹별 추천 전략과 비교 ("이 코인은 trend인데 평균회귀 전략을 썼다 — 권장 X")
-
-### Phase 2: 분류 자체 대시보드 추가 (신규 페이지 또는 토글)
-
-새 Streamlit 페이지 `dashboards/classification_app.py`:
-- **상단 KPI**: 그룹별 코인 수, 평균 변동성, 평균 거래대금
-- **그룹별 산점도**:
-  - X축: R²_btc (BTC 동조성)
-  - Y축: kurt_trimmed (꼬리 두께)
-  - 색상: tier_final
-  - 호버: 심볼·메트릭
-- **그룹별 메트릭 분포** (violin/box plot): kurt_t, hurst, vol 등
-- **유니버스 필터**: 그룹 체크박스로 "내가 백테스트할 코인 목록" 필터링 후 export
-
-### Phase 3: 실시간 대시보드 통합 (`dashboards/realtime_app.py`)
-
-실시간 시세 화면에서 그룹별 그룹핑:
-- 트렌드 코인 섹션 / 추종 코인 섹션 / 세력 코인 섹션 / 잡코인 섹션
-- 그룹별 평균 일일 수익률 (시장 무드 파악)
-- 잡코인은 기본적으로 접혀 있음 (필요 시 펼침)
+*현재 UI 통합은 없음. 필요할 때 별도 스킬/페이지로 붙일 계획.*
 
 ## 데이터 접근 패턴
 
