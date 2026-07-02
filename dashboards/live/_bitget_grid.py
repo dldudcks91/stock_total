@@ -196,7 +196,7 @@ def build_grid_options(
     # ── Symbol (pinned left, doubles as checkbox column) ──
     gob.configure_column(
         "symbol", headerName="Symbol", pinned="left",
-        width=95, minWidth=75,
+        width=84, minWidth=64,
         checkboxSelection=True, headerCheckboxSelection=False,
     )
 
@@ -215,11 +215,11 @@ def build_grid_options(
         valueFormatter=JS_FMT_PRICE, type=["numericColumn"],
     )
     gob.configure_column(
-        "quoteVolume", headerName="거래대금", width=80,
+        "quoteVolume", headerName="거래대금", width=62,
         valueFormatter=JS_FMT_MCAP, type=["numericColumn"],
     )
     gob.configure_column(
-        "marketCap", headerName="시가총액", width=80,
+        "marketCap", headerName="시가총액", width=62,
         valueFormatter=JS_FMT_MCAP, type=["numericColumn"],
     )
 

@@ -5,9 +5,14 @@ one request, ~1s) plus CoinGecko market caps, joins them on the coin base
 symbol, and writes ``data/cache/crypto/_live_snapshot.parquet`` via the
 shared snapshot helpers.
 
+As a bonus (same Bitget API family, ~1s) it also refreshes the RWA(주식/ETF
+토큰) blacklist cache via ``bitget_rwa.save_rwa_cache`` so newly-listed stock
+tokens flow into the dashboard's "주식토큰 제외" filter automatically. Opt out
+with ``--no-rwa``.
+
 CLI usage::
 
-    python -m data.sources.bitget_live [--no-mcap]
+    python -m data.sources.bitget_live [--no-mcap] [--no-rwa]
 """
 from __future__ import annotations
 
@@ -143,6 +148,8 @@ def main() -> int:
 
     ap = argparse.ArgumentParser(description="Fetch Bitget live snapshot + CoinGecko mcap")
     ap.add_argument("--no-mcap", action="store_true", help="skip CoinGecko market cap fetch")
+    ap.add_argument("--no-rwa", action="store_true",
+                    help="skip RWA(주식/ETF 토큰) 블랙리스트 캐시 갱신")
     args = ap.parse_args()
 
     started = pd.Timestamp.now(tz="Asia/Seoul")
@@ -171,6 +178,19 @@ def main() -> int:
     write_atomic(merged, SNAPSHOT_PATH)
     elapsed = (pd.Timestamp.now(tz="Asia/Seoul") - started).total_seconds()
     print(f"[ok] wrote snapshot ({len(merged)} rows) in {elapsed:.1f}s -> {SNAPSHOT_PATH}")
+
+    # RWA(토큰화 주식/ETF/원자재) 블랙리스트 갱신 — 라이브 스냅샷과 같은 Bitget API
+    # 라 함께 받아둔다. 신규 상장 주식토큰(SKHYNIX/SAMSUNG 등)이 자동 반영돼
+    # 대시보드 "주식토큰 제외" 필터가 최신 상태를 유지. 실패해도 스냅샷은 성공이므로
+    # 비치명적으로 처리(경고만).
+    if not args.no_rwa:
+        try:
+            from data.sources.bitget_rwa import save_rwa_cache
+            payload = save_rwa_cache()
+            print(f"[ok] RWA 캐시 갱신: {payload['count']}개 주식/ETF 토큰")
+        except Exception as e:  # noqa: BLE001
+            print(f"[warn] RWA 캐시 갱신 실패 (스냅샷은 정상): {e}")
+
     return 0
 
 

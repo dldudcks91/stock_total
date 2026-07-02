@@ -50,7 +50,7 @@ try:
 except ImportError:  # pragma: no cover
     _HAS_LWC = False
 
-from st_aggrid import AgGrid, GridUpdateMode
+from st_aggrid import AgGrid, DataReturnMode, GridUpdateMode
 
 _ROOT = Path(__file__).resolve().parents[2]
 _CACHE_DIR = _ROOT / "data" / "cache" / "kr"
@@ -136,11 +136,10 @@ def render(st: Any) -> None:
     )
 
     def _render_inline_chart(code: str, name: str) -> None:
-        # Search box replaces the plain title text (name only).
-        # ``vertical_alignment="center"`` puts ‹/›/memo/★ at the vertical
-        # midpoint of the c_title stack.
+        # Single compact header row: search + ‹ 번호 › + memo + ★ aligned to the
+        # TOP line (meta stacks below inside c_title only).
         c_title, c_prev, c_pos, c_next, c_memo, c_star = st.columns(
-            [3, 0.8, 2.0, 0.8, 4.1, 0.7], vertical_alignment="center",
+            [3, 0.7, 1.5, 0.7, 3.4, 0.6], vertical_alignment="top",
         )
         with c_title:
             _nav.search_box(placeholder="종목명 검색")
@@ -171,6 +170,7 @@ def render(st: Any) -> None:
                     default="1w",
                     key="kospi_chart_iv",
                     label_visibility="collapsed",
+                    help="Ctrl + ←/→ 로도 전환 (←/→ 는 종목 이동)",
                 )
             if not chart_iv:
                 chart_iv = "1w"
@@ -247,7 +247,7 @@ def render(st: Any) -> None:
 
         stars = st.session_state.setdefault("kospi_stars", load_stars(_STARS_PATH))
 
-        f1, f2, f3, f4 = st.columns([3, 1, 2, 1.2])
+        f1, f2, f3 = st.columns([3, 1, 2])
         with f1:
             search = st.text_input("Name / code contains", value="", key="kospi_search").strip()
         with f2:
@@ -263,10 +263,6 @@ def render(st: Any) -> None:
                 index=_ALL_SORT_KEYS.index(_DEFAULT_SORT),
                 format_func=lambda k: _COLUMN_LABELS.get(k, k),
                 key="kospi_sort",
-            )
-        with f4:
-            star_only = st.checkbox(
-                f"⭐ 별표만 ({len(stars)})", value=False, key="kospi_star_only",
             )
 
         # AgGrid(iframe custom component)는 @st.fragment 의 부분 rerun 에서 key 가
@@ -314,8 +310,6 @@ def render(st: Any) -> None:
                 except Exception as e:
                     st.warning(f"추천 머지 실패: {e}")
 
-        if star_only:
-            df = df[df["itemCode"].astype(str).isin(stars)]
         if search:
             mask = (
                 df["stockName"].astype(str).str.contains(search, case=False, na=False)
@@ -330,8 +324,7 @@ def render(st: Any) -> None:
 
         if df.empty:
             render_breadth(st, full=full_breadth)
-            st.info("⭐ 별표한 종목이 없습니다." if star_only
-                    else "필터 조건에 맞는 종목이 없습니다.")
+            st.info("필터 조건에 맞는 종목이 없습니다.")
             return
 
         render_breadth(st, full=full_breadth,
@@ -379,17 +372,30 @@ def render(st: Any) -> None:
             market_cap_format="usd",
             star_codes=stars,
         )
-        grid_key = f"kospi_grid::v8::{top_n}::{search}::{sort_col_key}::{star_only}::{len(stars)}"
+        grid_key = f"kospi_grid::v8::{top_n}::{search}::{sort_col_key}::{len(stars)}"
         grid_resp = AgGrid(
             df_grid,
             gridOptions=grid_options,
-            update_mode=GridUpdateMode.SELECTION_CHANGED | GridUpdateMode.VALUE_CHANGED,
+            update_mode=(GridUpdateMode.SELECTION_CHANGED | GridUpdateMode.VALUE_CHANGED
+                         | GridUpdateMode.SORTING_CHANGED | GridUpdateMode.FILTERING_CHANGED),
+            data_return_mode=DataReturnMode.FILTERED_AND_SORTED,
             allow_unsafe_jscode=True,
             fit_columns_on_grid_load=False,  # flex 레이아웃이 폭을 자동 분배
             height=580,
             theme="streamlit",
             key=grid_key,
         )
+
+        # Column-header sort/filter is client-side (inside the grid iframe) and
+        # never touches the server-side ``df`` above, so re-read the grid's live
+        # filtered+sorted order and refresh the ←/→ navigator list — otherwise
+        # the chart's "n / N" position stays frozen to the pre-header order.
+        # names/meta are code-keyed dicts, so only the ordered list needs it.
+        grid_data = grid_resp.get("data")
+        if isinstance(grid_data, pd.DataFrame) and "itemCode" in grid_data.columns:
+            ordered = grid_data["itemCode"].astype(str).tolist()
+            if ordered:
+                st.session_state["kospi_nav_codes"] = ordered
 
         sel_rows = grid_resp.get("selected_rows")
         new_sel: Optional[str] = None

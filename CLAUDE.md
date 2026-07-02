@@ -123,7 +123,7 @@ US 티커: 영문 대문자.
 | 1 | Crypto 1h | `.venv/Scripts/python.exe -m data.sources.bitget --granularity 1h` | 증분 모드에선 1d 와 병렬 OK (cold 모드에선 순차) |
 | 2 | KR 라이브 | `.venv/Scripts/python.exe -m data.sources.naver_kr` | `_live_snapshot.parquet` 갱신, ~수초 |
 | 2 | US 라이브 | `.venv/Scripts/python.exe -m data.sources.naver_us` | 위와 동일 |
-| 2 | Crypto 라이브 | `.venv/Scripts/python.exe -m data.sources.bitget_live` | Bitget tickers + CoinGecko mcap, ~수초 |
+| 2 | Crypto 라이브 | `.venv/Scripts/python.exe -m data.sources.bitget_live` | Bitget tickers + CoinGecko mcap **+ RWA(주식/ETF 토큰) 블랙리스트 자동 갱신**, ~수초 |
 | 3 | 지표 precompute | `.venv/Scripts/python.exe -m dashboards._precompute --asset all` | refs + recs (ma_touch). **반드시 1단계 완료 후**. 인크리멘털 자동. |
 
 **주의**:
@@ -133,6 +133,9 @@ US 티커: 영문 대문자.
   컬럼이 며칠 전 값으로 굳어진다.
 - 자동매매가 아니라 추천만 띄우는 프로젝트 특성상 라이브 스냅샷이 빠지면 의사결정이
   옛 가격 기준으로 일어나므로 위험. 빼놓고 진행 금지.
+- Crypto 라이브(`bitget_live`)는 실행 끝에 RWA 블랙리스트(`_rwa_symbols.json`)도 같이
+  갱신한다 (Bitget contracts API `isRwa=YES`). 신규 상장 토큰화 주식(SKHYNIX/SAMSUNG 등)이
+  자동으로 "주식토큰 제외" 필터에 반영됨. 별도 실행 불필요 — 실패해도 스냅샷은 정상.
 
 ## Python 환경 (venv 필수)
 

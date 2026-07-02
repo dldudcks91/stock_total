@@ -684,7 +684,7 @@ def build_stock_grid_options(
     # container width (no horizontal scroll, no trailing gap).
     gob.configure_column(
         symbol_col, headerName=symbol_header, pinned="left",
-        width=110, minWidth=70,
+        width=92, minWidth=64,
         checkboxSelection=True, headerCheckboxSelection=False,
     )
 
@@ -702,7 +702,7 @@ def build_stock_grid_options(
         # 기본 cellStyle 의 display:flex 를 빼고 lineHeight 로 수직 가운데 정렬해
         # ag-grid 의 text-overflow:ellipsis 가 정상 동작하게 한다.
         gob.configure_column(
-            name_col, headerName=name_header, width=160, minWidth=80,
+            name_col, headerName=name_header, width=112, minWidth=64,
             cellStyle=JsCode(
                 "function(params){ return {lineHeight:'34px', whiteSpace:'nowrap',"
                 " overflow:'hidden', textOverflow:'ellipsis'}; }"
@@ -721,8 +721,8 @@ def build_stock_grid_options(
 
     vol_fmt = _VAL_FMTS.get(volume_format, JS_FMT_INT)
     mcap_fmt = _VAL_FMTS.get(market_cap_format, JS_FMT_INT)
-    vol_width = 130 if volume_format in ("millions", "usd") else 120
-    mcap_width = 130 if market_cap_format in ("millions", "usd") else 120
+    vol_width = 92 if volume_format in ("millions", "usd") else 86
+    mcap_width = 92 if market_cap_format in ("millions", "usd") else 86
     if volume_col:
         gob.configure_column(
             volume_col, headerName=volume_header, width=vol_width, minWidth=70,
@@ -1014,22 +1014,6 @@ def render_tv_chart(
         else:
             ma_full[label] = d["Close"].rolling(period).mean()
 
-    # RSI(14) — Wilder's smoothing via EWM(alpha=1/14).
-    delta = d["Close"].diff()
-    gain = delta.clip(lower=0)
-    loss = -delta.clip(upper=0)
-    avg_gain = gain.ewm(alpha=1 / 14, adjust=False).mean()
-    avg_loss = loss.ewm(alpha=1 / 14, adjust=False).mean()
-    rs = avg_gain / avg_loss.where(avg_loss != 0)
-    rsi_full = 100 - (100 / (1 + rs))
-
-    # MACD(12,26,9) — EMA12-EMA26 line, EMA9 signal, histogram = line-signal.
-    ema12 = d["Close"].ewm(span=12, adjust=False).mean()
-    ema26 = d["Close"].ewm(span=26, adjust=False).mean()
-    macd_full = ema12 - ema26
-    signal_full = macd_full.ewm(span=9, adjust=False).mean()
-    hist_full = macd_full - signal_full
-
     # 전체 히스토리를 그대로 전송 — 패치된 프론트엔드(patch_lwc.py)가 fitContent
     # 대신 scrollToRealTime 을 호출하므로 초기엔 최근 봉에 줌되고, 왼쪽으로 끌면
     # 과거 캔들이 거래소처럼 계속 이어진다 (barSpacing = DEFAULT_BAR_SPACING).
@@ -1070,41 +1054,10 @@ def render_tv_chart(
             },
         })
 
-    rsi_line = [
-        {"time": int(ti), "value": float(v)}
-        for ti, v in zip(t, rsi_full) if pd.notna(v)
-    ]
-    # 30 / 70 reference lines — flat 2-point lines spanning the visible range.
-    rsi_30 = (
-        [{"time": int(t[0]), "value": 30.0},
-         {"time": int(t[-1]), "value": 30.0}]
-        if len(t) else []
-    )
-    rsi_70 = (
-        [{"time": int(t[0]), "value": 70.0},
-         {"time": int(t[-1]), "value": 70.0}]
-        if len(t) else []
-    )
-
-    MACD_UP, MACD_DOWN = "rgba(31,204,129,0.6)", "rgba(246,70,93,0.6)"
-    macd_hist = [
-        {"time": int(ti), "value": float(v),
-         "color": MACD_UP if v >= 0 else MACD_DOWN}
-        for ti, v in zip(t, hist_full) if pd.notna(v)
-    ]
-    macd_line = [
-        {"time": int(ti), "value": float(v)}
-        for ti, v in zip(t, macd_full) if pd.notna(v)
-    ]
-    signal_line = [
-        {"time": int(ti), "value": float(v)}
-        for ti, v in zip(t, signal_full) if pd.notna(v)
-    ]
-
     chart_options = {
-        # 4-pane (candles / vol / RSI / MACD) fits in ~640px inside the
-        # ``st.dialog(width="large")`` modal without vertical clipping.
-        "height": 640,
+        # 2-pane (candles / vol) — compact so the whole chart + header fits in
+        # one screen inside the ``st.dialog(width="large")`` modal.
+        "height": 480,
         # Read by the patched frontend → barSpacing = width / N (exchange-style
         # fixed initial candle count, independent of monitor width).
         "initialVisibleBars": INITIAL_VISIBLE_BARS,
@@ -1119,8 +1072,8 @@ def render_tv_chart(
         },
         "rightPriceScale": {
             "borderColor": "rgba(0,0,0,0.15)",
-            # 4 stacked panes: candles (~55%) / volume (~10%) / RSI (~12%) / MACD (~14%).
-            "scaleMargins": {"top": 0.03, "bottom": 0.42},
+            # 2 stacked panes: candles (~75%) / volume (~20%).
+            "scaleMargins": {"top": 0.05, "bottom": 0.22},
         },
         "timeScale": {
             "borderColor": "rgba(0,0,0,0.15)",
@@ -1163,78 +1116,7 @@ def render_tv_chart(
                 "lastValueVisible": False,
                 "priceLineVisible": False,
             },
-            "priceScale": {"scaleMargins": {"top": 0.60, "bottom": 0.30}},
-        },
-        # ── RSI pane ──
-        {
-            "type": "Line",
-            "data": rsi_line,
-            "legendLabel": "RSI",
-            "options": {
-                "color": "#7E57C2", "lineWidth": 1,
-                "priceScaleId": "rsi",
-                "priceLineVisible": False, "lastValueVisible": False,
-                "crosshairMarkerVisible": False,
-            },
-            "priceScale": {
-                "scaleMargins": {"top": 0.72, "bottom": 0.16},
-                "autoScale": False,
-            },
-        },
-        {
-            "type": "Line",
-            "data": rsi_30,
-            "options": {
-                "color": "rgba(38, 166, 154, 0.45)", "lineWidth": 1,
-                "lineStyle": 2,  # dashed
-                "priceScaleId": "rsi",
-                "priceLineVisible": False, "lastValueVisible": False,
-                "crosshairMarkerVisible": False,
-            },
-        },
-        {
-            "type": "Line",
-            "data": rsi_70,
-            "options": {
-                "color": "rgba(239, 83, 80, 0.45)", "lineWidth": 1,
-                "lineStyle": 2,  # dashed
-                "priceScaleId": "rsi",
-                "priceLineVisible": False, "lastValueVisible": False,
-                "crosshairMarkerVisible": False,
-            },
-        },
-        # ── MACD pane (bottom) — histogram + MACD line + signal line ──
-        {
-            "type": "Histogram",
-            "data": macd_hist,
-            "legendLabel": "Hist",
-            "options": {
-                "priceScaleId": "macd",
-                "lastValueVisible": False, "priceLineVisible": False,
-            },
-            "priceScale": {"scaleMargins": {"top": 0.86, "bottom": 0.0}},
-        },
-        {
-            "type": "Line",
-            "data": macd_line,
-            "legendLabel": "MACD",
-            "options": {
-                "color": "#2962FF", "lineWidth": 1,
-                "priceScaleId": "macd",
-                "priceLineVisible": False, "lastValueVisible": False,
-                "crosshairMarkerVisible": False,
-            },
-        },
-        {
-            "type": "Line",
-            "data": signal_line,
-            "legendLabel": "Signal",
-            "options": {
-                "color": "#FF6D00", "lineWidth": 1,
-                "priceScaleId": "macd",
-                "priceLineVisible": False, "lastValueVisible": False,
-                "crosshairMarkerVisible": False,
-            },
+            "priceScale": {"scaleMargins": {"top": 0.80, "bottom": 0.0}},
         },
     ]
 
@@ -1575,6 +1457,10 @@ def render_chart_title(st: Any, title: str) -> None:
 def _inject_arrow_key_js(st: Any, prev_btn_key: str, next_btn_key: str) -> None:
     """Bridge keyboard ←/→ to the on-screen prev/next ``st.button`` clicks.
 
+    Plain ←/→ steps the selected symbol (prev/next). **Ctrl/⌘ + ←/→** instead
+    steps the chart interval segmented-control (1d ↔ 1w ↔ 1M) — same handler,
+    branched on the modifier so the two navigations never collide.
+
     Streamlit has no native key handling, so we drop a 0-height component
     iframe whose script (same-origin → reaches ``window.parent.document``)
     listens for arrow keys and ``.click()`` s the matching button.
@@ -1622,6 +1508,30 @@ def _inject_arrow_key_js(st: Any, prev_btn_key: str, next_btn_key: str) -> None:
             return null;
           }}
 
+          // Ctrl/⌘ + ←/→ steps the interval segmented-control (1d ↔ 1w ↔ 1M).
+          // The picker is a single ``st.segmented_control`` → one stButtonGroup;
+          // its selected option carries a ``…Active`` data-testid (aria-checked
+          // as a fallback). Clamp at the ends (no wrap).
+          function stepInterval(dlg, delta) {{
+            var grp = dlg.querySelector('.st-key-stock_chart_iv_picker [data-testid="stButtonGroup"]')
+                   || dlg.querySelector('.st-key-chart_iv_picker [data-testid="stButtonGroup"]')
+                   || dlg.querySelector('[data-testid="stButtonGroup"]');
+            if (!grp) return false;
+            var btns = Array.prototype.slice.call(grp.querySelectorAll('button'));
+            if (!btns.length) return false;
+            var active = -1;
+            for (var i = 0; i < btns.length; i++) {{
+              var tid = btns[i].getAttribute('data-testid') || '';
+              var on = btns[i].getAttribute('aria-checked') === 'true'
+                    || btns[i].getAttribute('aria-pressed') === 'true';
+              if (/Active$/.test(tid) || on) {{ active = i; break; }}
+            }}
+            if (active < 0) active = 0;
+            var j = active + delta;
+            if (j >= 0 && j < btns.length && !btns[j].disabled) btns[j].click();
+            return true;  // consume the key even at the boundary
+          }}
+
           if (doc.__stockChartNavHandler) {{
             doc.removeEventListener('keydown', doc.__stockChartNavHandler, true);
           }}
@@ -1632,6 +1542,11 @@ def _inject_arrow_key_js(st: Any, prev_btn_key: str, next_btn_key: str) -> None:
             var ae = doc.activeElement;
             if (ae && (ae.tagName === 'INPUT' || ae.tagName === 'TEXTAREA'
                        || ae.isContentEditable)) return;
+            var delta = (e.key === 'ArrowLeft') ? -1 : 1;
+            if (e.ctrlKey || e.metaKey) {{
+              if (stepInterval(dlg, delta)) e.preventDefault();
+              return;
+            }}
             var btn = findBtn(dlg, e.key === 'ArrowLeft' ? PREV_KEY : NEXT_KEY);
             if (btn && !btn.disabled) {{ e.preventDefault(); btn.click(); }}
           }}
