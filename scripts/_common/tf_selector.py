@@ -5,7 +5,7 @@
   - 봉 ≥ 10 → 'partial'  (MA10 만 가능 → 신생주 강한 시작 룰)
   - 봉 <  10 → 'skip'    (그 TF 자체 평가 불가)
 
-사용처: signals.signal_ma_touch 직전 단계.
+사용처: signals.g3.evaluate_tf / signal_ma_touch_* 직전 단계.
 """
 from __future__ import annotations
 

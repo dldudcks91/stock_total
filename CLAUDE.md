@@ -69,7 +69,8 @@ scripts/                 # 자산별 분석·추천 (자세히: scripts/README.m
 docs/                    # 영구 문서
 ├── strategies_v2_design.md   # ma_touch 룰 정의 (운영 표준)
 ├── classification.md         # 크립토 분류 규칙 (tier_final)
-├── granville_quadratic_fit.md / ma_converge_exploration.md  # R&D 노트 (탐색 단계)
+├── granville_quadratic_fit.md  # G1(그랜빌 1법칙) 룰 정의 — signals/g1.py::signal_g1 채택, precompute 배선 대기
+├── ma_converge_exploration.md  # R&D 노트 (탐색 단계)
 └── reference/                # 외부 자료 정리
 ```
 
@@ -213,9 +214,9 @@ Get-CimInstance Win32_Process -Filter "Name='python.exe'" | Select-Object Proces
 |---|---|---|---|
 | `ma_touch` | **MA 터치 (단일 룰)** | KR / Crypto / NASDAQ | 정배열(MA10>MA20 + close>MA20) + slope+ + 롱 부등식 터치 (today_low − MA ≤ 0.2 × range_7) |
 
-자세한 룰: [docs/strategies_v2_design.md](docs/strategies_v2_design.md). 본체 코드: `scripts/_common/signals.py`.
+자세한 룰: [docs/strategies_v2_design.md](docs/strategies_v2_design.md). 본체 코드: `scripts/_common/signals/` 패키지 (자리별 파일 분리 — `g1.py` · `g2.py` · `g3.py` · `g4.py`).
 
-> **trader 신조**: "시작 전 무조건 찍고 간다" — MA10/MA20 터치 자리만 진입. 추격 자리 (`trend_strong`) 와 전환 자리 (`golden_cross`) 는 후순위 (미구현).
+> **trader 신조 (G3 자리 한정)**: "시작 전 무조건 찍고 간다" — **ma_touch(G3) 자리의 진입 정확도 원칙**. MA10/MA20 터치 자리만 G3 로 인정 (이미 가속한 종목을 G3 안에 끌어들이지 않음). G1(바닥)·G2(추격)·G4(과대) 는 각각 다른 매매 컨셉이므로 이 신조 무관 — 자리별 본질로 독립 판정.
 
 ### 현재 Agent 목록 (`.claude/agents/`)
 

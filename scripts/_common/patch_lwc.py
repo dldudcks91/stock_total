@@ -30,6 +30,7 @@ Usage
 -----
     .venv/Scripts/python.exe -m scripts._common.patch_lwc          # apply
     .venv/Scripts/python.exe -m scripts._common.patch_lwc --check  # report only
+    .venv/Scripts/python.exe -m scripts._common.patch_lwc --force  # re-apply tip
 """
 from __future__ import annotations
 
@@ -154,9 +155,8 @@ def _patch_text(text: str, force_tip: bool = False):
 
     # 3. crosshair tooltip — anchors on the ivb-patched scroll call
     if force_tip and TIP_MARK in text:
-        text, n_removed = _TIP_STRIP.subn("", text)
-        if n_removed:
-            edits += n_removed
+        text, n = _TIP_STRIP.subn("", text)
+        edits += n
     if TIP_MARK not in text:
         def _repl(m: "re.Match") -> str:
             return m.group(0) + TIP_MARK + _tip_snippet(m.group(1))

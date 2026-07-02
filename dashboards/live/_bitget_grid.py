@@ -324,11 +324,37 @@ BITGET_PAGE_CSS = """
    top-left and collapse the gap so the chart sits flush under it. */
 .st-key-chart_legend_wrap { position: relative !important; }
 .st-key-chart_legend_wrap [data-testid="stVerticalBlock"] { gap: 0 !important; }
-/* Nudge dialog X button — small offset from default */
+/* Dialog X button — 우상단 코너에서 위·오른쪽 여백이 같아야 대칭. */
 div[role="dialog"] button[aria-label="Close"],
 [data-testid="stDialog"] button[aria-label="Close"] {
-  top: 0.4rem !important;
-  margin-top: -2px !important;
+  top: 0.5rem !important;
+  right: 0.5rem !important;
+  margin: 0 !important;
+}
+/* 차트 헤더 ⭐ 토글 — 카드/보더 다 벗기고 통통한 ⭐ 만 남긴다. OFF 는 grayscale. */
+[class*="chart_star_wrap_"] {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+[class*="chart_star_wrap_"] button {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  min-height: 30px !important;
+  height: 30px !important;
+  line-height: 1 !important;
+  font-size: 24px !important;
+}
+[class*="chart_star_wrap_"] button:hover {
+  background: rgba(255, 215, 0, 0.10) !important;
+  border-radius: 50% !important;
+}
+[class*="chart_star_wrap_off"] button {
+  filter: grayscale(1) opacity(0.35);
+}
+[class*="chart_star_wrap_off"] button:hover {
+  filter: opacity(0.75);
 }
 /* Cap the entire page to viewport width and clip any overflow.
    Streamlit's wide layout sometimes lets nested blocks push the page

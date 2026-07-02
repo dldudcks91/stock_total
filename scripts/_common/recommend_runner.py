@@ -26,7 +26,7 @@ import pandas as pd
 
 from scripts._common.mtf_loader import TF_FREQ, load_multi_tf
 from scripts._common.mtf_indicators import compute_mtf_indicators
-from scripts._common.signals import evaluate_tf
+from scripts._common.signals.g3 import evaluate_tf
 from scripts._common.tf_selector import determine_eval_kind, select_eval_tfs
 
 _ROOT = Path(__file__).resolve().parents[2]

@@ -1,9 +1,10 @@
 # Granville #1 검출 — 이평선 2차함수 적합
 
-> 기존 골든크로스 대신 **이평선에 2차함수를 직접 적합**해 그랜빌 1법칙(MA 하락 종료 후 반등 시작)을 검출하는 방법을 탐색한 기록.
-> 작업 기간 2026-06-15 ~ 2026-06-16. **탐색 노트 — 본체 미적용.**
+> 기존 골든크로스 대신 **이평선에 2차함수를 직접 적합**해 그랜빌 1법칙(MA 하락 종료 후 반등 시작)을 검출하는 방법의 설계·실증 기록.
+> 작업 기간 2026-06-15 ~ 2026-06-16. **G1 판정 함수는 `scripts/_common/signals/g1.py::signal_g1` 로 정식 채택됨** (2026-07-02).
+> 아래 룰 §4 가 그대로 코드화돼있음. 다만 `dashboards/_precompute.py` 배선은 아직 안 됨 — `_recs.parquet` 에 `g1` 컬럼이 없어 그리드는 빈칸.
 >
-> 옛 산출물(`scripts/out/_probe_granville1_*.csv`, `.png`)은 2026-07-01 정리 때 삭제. 재현하려면 아래 룰을 다시 스크립트화.
+> 옛 프로토타입 산출물(`scripts/out/_probe_granville1_*.csv`, `.png`)은 2026-07-01 정리 때 삭제.
 
 ## 1. 왜 2차함수 적합인가
 
@@ -150,14 +151,17 @@ if max(left_rise, right_rise) / max(min(left_rise, right_rise), 1e-9) > 5:
 
 ## 9. 현재 운영 상태
 
-- **본체 적용 X** — 탐색 단계. `scripts/_common/signals.py`의 ma_touch 룰이 운영용
-- **산출물**: 옛 스크립트/CSV/PNG 는 2026-07-01 정리 때 삭제. 재현 시 룰 §4 를 다시 코드화
+- **G1 판정 함수 = `scripts/_common/signals/g1.py::signal_g1`** — 룰 §4 를 그대로 코드화 (파라미터: `G1_R2_MIN=0.85`, `G1_A_PCT_MIN=0.10`, `G1_VERTEX_POS_MIN=0.30`, `G1_VERTEX_POS_MAX=0.85`, `G1_PX_VS_MA_MAX=0.10`, `G1_N_WIN=10`)
+- **파이프라인 배선 대기** — `dashboards/_precompute.py` 에서 자산별 5개 TF/MA 조합 (1d MA20, 1w MA10/20, 1M MA10/20) 으로 `signal_g1` 호출 → `_recs.parquet` 의 `g1` 컬럼에 기록해야 그리드가 채워짐
+- **False Positive 필터 미적용** — §6 (ticker swap · 비대칭 U자) 는 아직 코드에 없음. 배선 전에 최소한 ticker swap 필터(`close.pct_change().abs().max() > 0.5` 컷) 는 넣기로 결정
+- **`ma_touch` (G2·G3 통합) 는 여전히 운영 중** — G1 은 별도 신호로 병행 예정
 - **종목명 매핑**: `data/cache/kr/_names.csv` + `_names_kosdaq.csv` (FDR `StockListing` 캐시)
 
 ## 10. 다음 단계 후보
 
-1. 비대칭 U자 / ticker swap 필터 추가 (§6.2, §6.3)
-2. 멀티 TF 통과 종목 fwd-return 백테스트 (20/60일)
-3. 골든크로스 시점 vs 2차 적합 시점 alpha/lead-time 비교
-4. 신규 상장 전용 룰 (사이클 짧은 자리)
-5. 본체(`scripts/_common/signals.py`)에 정식 룰로 편입 여부 결정
+1. **`_precompute.py` 배선** — 5개 TF/MA 조합으로 `signal_g1` 호출, `_recs.parquet` 에 `g1` bool (또는 통과 조합 수 int) 컬럼 추가 → `_stock_grid.py` 의 G1 셀이 자동으로 채워짐
+2. **ticker swap 필터 (§6.2)** — 배선 시 함께 얹기 (`close.pct_change().abs().max() > 0.5` 컷). 코드 3~5줄
+3. 비대칭 U자 필터 (§6.3) — 배선 후 오탐 관찰하면서 결정 (시각 판독으로 대체 가능하면 미도입)
+4. 멀티 TF 통과 종목 fwd-return 백테스트 (20/60일)
+5. 골든크로스 시점 vs 2차 적합 시점 alpha/lead-time 비교
+6. 신규 상장 전용 룰 (사이클 짧은 자리)

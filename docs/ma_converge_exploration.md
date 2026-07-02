@@ -315,7 +315,7 @@ TODO:
 ## 참조
 
 - ma_touch (직교 자리): `docs/strategies_v2_design.md`
-- 코드 시그널 본체: `scripts/_common/signals.py` (현재는 ma_touch 전용)
+- 코드 시그널 본체: `scripts/_common/signals/` 패키지 (자리별 파일 분리: `g1.py` · `g2.py` · `g3.py`=ma_touch · `g4.py` placeholder)
 - 트레이더 신조: "시작 전 무조건 찍고 간다"
 - 그랜빌 매핑: `golden_cross`=1번(돌파, 미구현) · `ma_touch`=2번(닿고/뚫고 회복) · `ma_converge`(이 문서)=3번(안 깨고 ATR 좁은 띠 응축 후 출발) · 4번(이격)=미구현
 - 산출물 파일명의 `golden_cross_kr*` 는 개명 전 이름 그대로 (실제 파일 보존). 룰 내용은 `ma_converge` 와 동일.

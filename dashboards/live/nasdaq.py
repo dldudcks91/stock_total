@@ -29,6 +29,7 @@ from dashboards._stock_grid import (
     STOCK_PAGE_CSS,
     ChartNavigator,
     apply_current_prices,
+    apply_top_by_rank,
     breadth_counts,
     build_stock_grid_options,
     fmt_compact_count,
@@ -40,7 +41,8 @@ from dashboards._stock_grid import (
     render_chart_meta_line,
     render_chart_star,
     render_chart_title,
-    render_drawing_controls,
+    render_top_by_select,
+    render_top_n_input,
     render_tv_chart,
     safe_fragment_rerun,
     save_notes,
@@ -59,7 +61,6 @@ _ROOT = Path(__file__).resolve().parents[2]
 _CACHE_DIR = _ROOT / "data" / "cache" / "us"
 _NOTES_PATH = _CACHE_DIR / "_notes.json"
 _STARS_PATH = _CACHE_DIR / "_stars.json"
-_DRAWINGS_PATH = _CACHE_DIR / "_drawings.json"
 _REPORTS_DIR = _ROOT / "research" / "reports"
 
 
@@ -81,7 +82,28 @@ _COLUMN_LABELS: dict[str, str] = {
     "accumulatedTradingVolume": "Volume (shares)",
     **{f"pct_{n}d": f"{n}d %" for n in PERIODS_D},
 }
-_ALL_SORT_KEYS = list(_COLUMN_LABELS.keys())
+
+# Top by 드롭다운 옵션 — 스냅샷 원본 컬럼 + enrichment(refs·recs merge) 후에 붙는
+# 파생 컬럼. dollarVolume 은 원래 sort 뒤에서 계산됐지만, 이 옵션에 포함되니
+# render 흐름에서 sort 앞으로 이동시켰다.
+_TOP_BY_LABELS: dict[str, str] = {
+    "dollarVolume": "거래대금",
+    "marketValueRaw": "시총",
+    "pct_1d": "1일전",
+    "pct_7d": "7일전",
+    "pct_30d": "30일전",
+    "pct_ma10__1d": "D10",
+    "pct_ma20__1d": "D20",
+    "pct_ma10__1w": "W10",
+    "pct_ma20__1w": "W20",
+    "pct_ma10__1M": "M10",
+    "pct_ma20__1M": "M20",
+    "g1": "G1",
+    "g2": "G2",
+    "gate_pass": "G3",
+    "g4": "G4",
+}
+_ALL_SORT_KEYS = list(_TOP_BY_LABELS.keys())
 _DEFAULT_SORT = "marketValueRaw"
 
 
@@ -131,14 +153,22 @@ def render(st: Any) -> None:
                 ("거래량", fmt_compact_count(meta.get("vol"))),
             ])
             with st.container(key="stock_chart_iv_picker"):
-                chart_iv = st.segmented_control(
-                    "Interval",
-                    options=["1d", "1w", "1M"],
-                    default="1w",
-                    key="nas_chart_iv",
-                    label_visibility="collapsed",
-                    help="Ctrl + ←/→ 로도 전환 (←/→ 는 종목 이동)",
-                )
+                _iv_col, _vp_col = st.columns([3, 1], gap="small",
+                                              vertical_alignment="center")
+                with _iv_col:
+                    chart_iv = st.segmented_control(
+                        "Interval",
+                        options=["1d", "1w", "1M"],
+                        default="1w",
+                        key="nas_chart_iv",
+                        label_visibility="collapsed",
+                        help="Ctrl + ←/→ 로도 전환 (←/→ 는 종목 이동)",
+                    )
+                with _vp_col:
+                    vp_on = st.checkbox(
+                        "매물대", value=False, key="nas_vp_on",
+                        help="Volume Profile — 가격대별 누적 거래량을 우측 수평 바로 표시",
+                    )
         with c_prev:
             _nav.button_prev()
         with c_pos:
@@ -171,14 +201,9 @@ def render(st: Any) -> None:
                         "`.venv/Scripts/python.exe -m pip install streamlit-lightweight-charts`"
                     )
                 else:
-                    fib_n, trendlines = render_drawing_controls(
-                        st, code=symbol, dates=cdf.index,
-                        last_close=float(cdf["Close"].iloc[-1]),
-                        drawings_path=_DRAWINGS_PATH, session_key="nas_drawings",
-                    )
                     render_tv_chart(
                         symbol, f"{name} · {symbol}", chart_iv, cdf, key_prefix="lwc_nasdaq",
-                        fib_n=fib_n, trendlines=trendlines,
+                        vp_on=bool(vp_on),
                     )
 
         with tab_report:
@@ -227,19 +252,26 @@ def render(st: Any) -> None:
         with f1:
             search = st.text_input("Symbol / name contains", value="", key="nas_search").strip()
         with f2:
-            top_n = st.number_input(
-                "Top N (0 = all)",
-                min_value=0, max_value=5000, value=0, step=50,
-                key="nas_topn",
+            render_top_n_input(
+                st,
+                canonical_key="_nas_top_n_val",
+                widget_key="nas_topn_toolbar",
+                max_value=5000, step=50,
             )
         with f3:
-            sort_col_key = st.selectbox(
-                "Sort by",
-                options=_ALL_SORT_KEYS,
-                index=_ALL_SORT_KEYS.index(_DEFAULT_SORT),
-                format_func=lambda k: _COLUMN_LABELS.get(k, k),
-                key="nas_sort",
+            render_top_by_select(
+                st,
+                canonical_key="_nas_top_by_val",
+                widget_key="nas_sort_toolbar",
+                options=_ALL_SORT_KEYS, labels=_TOP_BY_LABELS,
+                default=_DEFAULT_SORT,
+                help_text="Top N 을 뽑을 기준 컬럼. 차트 ← → 순번도 이 기준을 따름 "
+                          "(그리드 헤더 클릭으로 재정렬해도 차트 번호는 유지).",
             )
+
+        # canonical 세션 값을 읽어 필터 로직에 사용 (bitget/kospi 동일 패턴).
+        top_n = int(st.session_state.get("_nas_top_n_val", 0))
+        sort_col_key = str(st.session_state.get("_nas_top_by_val", _DEFAULT_SORT))
 
         symbols_all = df["symbolCode"].dropna().astype(str).tolist()
         if symbols_all:
@@ -283,11 +315,16 @@ def render(st: Any) -> None:
                 | df["stockName"].astype(str).str.contains(search, case=False, na=False)
             )
             df = df[mask]
-        if sort_col_key in df.columns:
-            df = df.sort_values(sort_col_key, ascending=False, na_position="last")
-        if top_n > 0:
-            df = df.head(int(top_n))
-        df = df.reset_index(drop=True)
+        # 거래대금 (USD) 파생 — 스냅샷은 주식 수량(Volume) 만 주므로 close × shares.
+        # Top by 로 "거래대금" 을 뽑을 수 있도록, 또 아래 그리드 표시 정렬에서도
+        # 쓰이므로 sort 이전에 계산.
+        if "accumulatedTradingVolume" in df.columns and "closePrice" in df.columns:
+            df = df.assign(
+                dollarVolume=df["accumulatedTradingVolume"] * df["closePrice"],
+            )
+        # Top by 로 순위 매기고 head(top_n) — 이 순서가 차트 ← → 번호 기준.
+        # MA-gap 컬럼은 |값| 오름차순(=MA 가까운 순), 나머지는 내림차순.
+        df = apply_top_by_rank(df, sort_col_key, top_n)
 
         if df.empty:
             render_breadth(st, full=full_breadth)
@@ -320,11 +357,11 @@ def render(st: Any) -> None:
             st.session_state.pop(SEL_KEY, None)
             selected_symbol = None
 
-        # 거래대금 (USD) 파생 — NASDAQ 스냅샷은 주식 수량(Volume) 만 주므로
-        # close × shares 로 근사. 자산 간 크기 비교용.
-        df = df.assign(
-            dollarVolume=df["accumulatedTradingVolume"] * df["closePrice"],
-        )
+        # 그리드 표시 순서는 항상 거래대금 내림차순 — Top by 는 Top N 컷 + 차트 번호
+        # 부여 용도로만. (nav_codes 는 위에서 Top by 순서로 이미 저장.)
+        if "dollarVolume" in df.columns:
+            df = df.sort_values("dollarVolume", ascending=False,
+                                na_position="last").reset_index(drop=True)
 
         df_grid, grid_options = build_stock_grid_options(
             df, selected_symbol,
@@ -351,16 +388,8 @@ def render(st: Any) -> None:
             key=grid_key,
         )
 
-        # Column-header sort/filter is client-side (inside the grid iframe) and
-        # never touches the server-side ``df`` above, so re-read the grid's live
-        # filtered+sorted order and refresh the ←/→ navigator list — otherwise
-        # the chart's "n / N" position stays frozen to the pre-header order.
-        # names/meta are code-keyed dicts, so only the ordered list needs it.
-        grid_data = grid_resp.get("data")
-        if isinstance(grid_data, pd.DataFrame) and "symbolCode" in grid_data.columns:
-            ordered = grid_data["symbolCode"].astype(str).tolist()
-            if ordered:
-                st.session_state["nas_nav_codes"] = ordered
+        # 차트 ← → 순번은 Top by 기준 고정 — 그리드 헤더 클릭 정렬은 표시 순서만
+        # 바꾸고 ``nas_nav_codes`` 는 서버-사이드 sort 순서 그대로 유지한다.
 
         sel_rows = grid_resp.get("selected_rows")
         new_sel: Optional[str] = None

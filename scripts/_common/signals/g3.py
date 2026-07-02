@@ -1,40 +1,36 @@
-"""그랜빌 매수 자리 시그널.
+"""G3 (그랜빌 3법칙) = ma_touch — 지지·눌림 catch.
 
-현재 구현:
-  - ``signal_ma_touch_full`` / ``signal_ma_touch_partial``
-      G2·G3 통합. 정배열(MA10>MA20, close>MA20) + slope+ + |low − MA| ≤ 임계.
-      임계 = K × range_7 (range_7 = 일봉 최근 7봉 (high−low) 평균).
-      pierce 여부는 아직 안 갈라놓음 — 파생 sign 으로 G2(low<MA) / G3(low≥MA) 분리 예정.
-  - ``signal_g1``
-      G1 = MA 시리즈 2차함수 적합. R² + a_pct + vertex_pos + MA 회복 + 가격 근접 조건.
-      "MA 하락 종료 + 반등 시작" 자리. 골든크로스보다 몇 봉 늦지만 false breakout 필터.
+정배열(MA10 > MA20 AND close > MA20) + slope 양수 + 오늘 일봉 low 가 MA10/MA20
+에 근접(터치 임계 이내) 한 자리. 사용자 신조 "찍고 간다" 가 적용되는 유일한
+자리 — 이미 가속한 종목을 이 안에 끌어들이지 않는다.
 
-미구현:
-  - G4 (하락 MA 이격 반등) — 대시보드 그리드에 자리만 노출됨
+파이프라인: ``dashboards/_precompute.py`` 에서 호출, ``_recs.parquet.gate_pass``
+= 그리드 G3 셀.
 
-사용자 신조: "시작 전 무조건 찍고 간다" — 추격 자리 (`trend_strong`) 는 후순위.
+이 파일 안의 심볼 (한 자리 룰인데 심볼이 여럿인 이유 = 신생주 대응):
+  판정 함수 (2개)
+    - ``signal_ma_touch_full``    : MA20 만들 수 있는 종목 (≥20봉)
+    - ``signal_ma_touch_partial`` : MA10 만 있는 신생주 fallback (<20봉)
+  디스패치 (1개)
+    - ``evaluate_tf``             : kind ∈ {"full", "partial"} 에 따라 위 둘 중 선택
+  파라미터 상수 (5개)
+    - ``K_DIST_THRESHOLD``, ``N_ATR_WINDOW``, ``PARTIAL_CONSEC_BARS``,
+      ``ANGLE_MEDIUM_DEG``, ``ANGLE_STRONG_DEG``
+  내부 헬퍼 (2개)
+    - ``_angle_label``, ``_compute_range_threshold``
 """
 from __future__ import annotations
 
 from typing import Tuple
 
-import numpy as np
 import pandas as pd
 
+# 룰 파라미터
 K_DIST_THRESHOLD = 0.2     # 임계 = K × range_7 (절대값)
 N_ATR_WINDOW = 7           # range_7 = 최근 7봉 (high − low) 평균
 ANGLE_MEDIUM_DEG = 15.0
 ANGLE_STRONG_DEG = 30.0
 PARTIAL_CONSEC_BARS = 3
-
-# G1 (그랜빌 1법칙) — MA 시리즈에 2차함수 적합해서 "하락 종료 + 반등 시작" 검출.
-# docs/granville_quadratic_fit.md 룰 §4.
-G1_N_WIN = 10              # 적합 윈도우 (봉 개수)
-G1_R2_MIN = 0.85           # 적합 신뢰
-G1_A_PCT_MIN = 0.10        # 곡률(a) 정규화 최소값 — U자 강도
-G1_VERTEX_POS_MIN = 0.30   # vertex 상대 위치 하한 (윈도우 안 중반부터)
-G1_VERTEX_POS_MAX = 0.85   # vertex 상대 위치 상한 (끝단은 "감속 중 하락" false positive)
-G1_PX_VS_MA_MAX = 0.10     # |close − MA[-1]| / MA[-1] — 가격이 MA 근처
 
 
 def _angle_label(angle_deg: float) -> str:
@@ -137,69 +133,6 @@ def signal_ma_touch_partial(df_tf: pd.DataFrame, df_daily: pd.DataFrame,
 
     passed = bool(gate_above and gate_slope and gate_touch and gate_consec)
     return passed, {"angle_strength_label": _angle_label(angle10), "dist_threshold_abs": th}
-
-
-def signal_g1(df_tf: pd.DataFrame, ma_col: str = "ma20",
-              n_win: int = G1_N_WIN) -> Tuple[bool, dict]:
-    """G1 (그랜빌 1법칙) — MA 시리즈에 2차함수 적합.
-
-    사이클 시작 = "MA 하락 종료 + 반등 시작". 골든크로스 시점보다 몇 봉 늦지만
-    false breakout 필터링 강함.
-
-    적합: 최근 n_win 봉의 ``ma_col`` 값에 ``y = a·x² + b·x + c`` 을 numpy.polyfit
-    으로 적합. 정규화:
-      - a_pct      = a / mean(MA) * 100  (곡률, % per bar²)
-      - vertex_pos = (-b/2a) / (n_win-1) (윈도우 내 vertex 상대 위치, 0..1)
-      - R²         = 1 − SS_res / SS_tot
-
-    통과 조건 (docs/granville_quadratic_fit.md §4):
-      1. R² ≥ G1_R2_MIN
-      2. a_pct ≥ G1_A_PCT_MIN            (U자 곡률 충분)
-      3. vertex_pos ∈ [G1_VERTEX_POS_MIN, G1_VERTEX_POS_MAX]
-      4. MA[-1] > MA[-3]                 (실측 MA 회복 방향)
-      5. |close − MA[-1]| / MA[-1] ≤ G1_PX_VS_MA_MAX
-
-    반환: (passed, extras).
-      extras = {a_pct, r2, vertex_pos, px_vs_ma, ma_last}
-    """
-    if len(df_tf) < n_win:
-        return False, {}
-    tail = df_tf.tail(n_win)
-    ma = tail[ma_col].to_numpy(dtype=float)
-    if np.isnan(ma).any() or float(np.mean(ma)) == 0.0:
-        return False, {}
-
-    x = np.arange(n_win, dtype=float)
-    a, b, c = np.polyfit(x, ma, 2)
-    y_hat = a * x * x + b * x + c
-    ss_res = float(np.sum((ma - y_hat) ** 2))
-    ss_tot = float(np.sum((ma - ma.mean()) ** 2))
-    r2 = 1.0 - ss_res / ss_tot if ss_tot > 0 else 0.0
-
-    ma_mean = float(ma.mean())
-    a_pct = a / ma_mean * 100.0
-    vertex_pos = (-b / (2.0 * a)) / (n_win - 1) if a != 0 else float("nan")
-
-    ma_last = float(tail[ma_col].iloc[-1])
-    ma_prev3 = float(tail[ma_col].iloc[-3])
-    close = float(tail["close"].iloc[-1])
-    px_vs_ma = abs(close - ma_last) / ma_last if ma_last > 0 else float("nan")
-
-    passed = bool(
-        r2 >= G1_R2_MIN
-        and a_pct >= G1_A_PCT_MIN
-        and G1_VERTEX_POS_MIN <= vertex_pos <= G1_VERTEX_POS_MAX
-        and ma_last > ma_prev3
-        and px_vs_ma <= G1_PX_VS_MA_MAX
-    )
-    extras = {
-        "a_pct": float(a_pct),
-        "r2": float(r2),
-        "vertex_pos": float(vertex_pos) if not np.isnan(vertex_pos) else float("nan"),
-        "px_vs_ma": float(px_vs_ma) if not np.isnan(px_vs_ma) else float("nan"),
-        "ma_last": ma_last,
-    }
-    return passed, extras
 
 
 def evaluate_tf(df_tf: pd.DataFrame, df_daily: pd.DataFrame, kind: str,

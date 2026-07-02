@@ -1,7 +1,7 @@
 # Strategies v2 — ma_touch 단일 룰 (운영 중)
 
 > **상태**: 코드 본체 + 3 자산(KR/Crypto/NASDAQ) `_ma_touch.parquet` + 대시보드/`/recs` 스킬 다운스트림 재구성 완료 (2026-06 후반).
-> **사용자 신조**: **"시작 전 무조건 찍고 간다"** — MA 터치 자리만 잡음. 추격은 후순위.
+> **사용자 신조 (ma_touch = G3 자리 한정)**: **"시작 전 무조건 찍고 간다"** — 이 신조는 본 문서(ma_touch = G3) 룰 설계에만 적용. ma_touch 안에 추격 catch 를 끌어들이지 않는다는 원칙. 추격은 G2 자리(별도 컬럼, 강한 거래량 상승 catch) 에서 명시적으로 잡을 예정 — 신조 위반 아님.
 
 ## 0. 배경
 
@@ -74,7 +74,13 @@ scripts/_common/
 ├── mtf_loader.py          ← load_normalized_daily + resample_multi_tf (5 TF dict)
 ├── tf_selector.py         ← determine_eval_kind (full/partial/skip) + select_eval_tfs
 ├── mtf_indicators.py      ← compute_mtf_indicators (MA10/20, slope, angle, dist)
-├── signals.py             ← signal_ma_touch_full / signal_ma_touch_partial / evaluate_tf
+├── signals/               ← 그랜빌 매수 자리 패키지 (자리별 파일 분리)
+│   ├── g1.py              ←   signal_g1 + G1_* 상수 (바닥 반등, 2차함수 적합)
+│   ├── g2.py              ←   signal_g2 + G2_* 상수 (추격, 거래량+수익률+신고가)
+│   ├── g3.py              ←   signal_ma_touch_full / signal_ma_touch_partial / evaluate_tf
+│   │                          + K_DIST_THRESHOLD / N_ATR_WINDOW / ANGLE_* / PARTIAL_CONSEC_BARS
+│   │                          (ma_touch = G3, 지지·눌림)
+│   └── g4.py              ←   placeholder (편입 여부 자체 미확정)
 ├── recommend_runner.py    ← _row_for_symbol + evaluate_universe + save_recommendations
 ├── crypto_filters.py      ← is_stock_token + filter_crypto_universe
 ├── build_recs_table.py    ← /recs 스킬 CLI
@@ -146,7 +152,7 @@ KR 시총 TOP 통과: 삼성전기는 today_low 룰로 cut 확인 (이전 옛 �
 - **STG 6/6 1W** ✅ (사용자 지정 자리)
 - **VELVET 6/10 1D** ✅ (wick MA10 닿음 — neg 부등식)
 
-## 8. 상수 (signals.py 본체)
+## 8. 상수 (signals/g3.py 본체 = ma_touch)
 
 ```python
 K_DIST_THRESHOLD   = 0.2       # 임계 = K × range_7
@@ -161,13 +167,15 @@ MIN_BARS_FULL      = 20        # MA20 가능 최소 봉수
 MIN_BARS_PARTIAL   = 10        # MA10 가능 최소 봉수 (= "월봉 MA10 가능" 임계와 동일)
 ```
 
+G1/G2 상수는 각각 `signals/g1.py`, `signals/g2.py` 안 (`G1_R2_MIN` / `G2_VOL_MULT_MIN` 등).
+
 ## 9. 다운스트림 상태 (2026-06 재구성 완료)
 
 | 대상 | 상태 |
 |---|---|
 | `dashboards/_precompute.py` | 재작성 완료. `_refs.parquet` + `_recs.parquet` 증분 생성 |
 | `dashboards/live/{bitget, kospi, nasdaq}.py` | 재구성. `_refs` + `_recs` + `_live_snapshot` 머지 |
-| `dashboards/_stock_grid.py` | 병합 TF×MA 컬럼 + 그랜빌 4법칙 자리 반영 |
+| `dashboards/_stock_grid.py` | 병합 TF×MA 컬럼 + 그랜빌 4법칙 컬럼 (G3 = ma_touch 로 채워짐 · G1 은 `signals.g1.signal_g1` · G2 는 `signals.g2.signal_g2` 모두 함수 있으나 `_precompute` 배선 대기 · G4 는 placeholder) |
 | `dashboards/pages/{3_Live, 6_Mobile}.py` | 새 구조 반영 |
 | `alerts/{scan, state}.py` | `_recs.parquet` 스키마로 다시 붙음. 실사용 여부는 사용자 확인 필요 |
 | `data/cache/{kr,us,crypto}/_ma_touch.parquet` | 운영 중 (`/recs` 스킬 소스) |
@@ -186,7 +194,7 @@ MIN_BARS_PARTIAL   = 10        # MA10 가능 최소 봉수 (= "월봉 MA10 가�
 
 ### 후순위
 5. **`golden_cross` 자리 본격 추가** — 첫 사용자 정의 자리 2 (하락추세→상승추세 전환). ALLO 5/27 같은 자리.
-6. **추격 자리 (`trend_strong`)** — 사용자 명시 후순위. 별도 자리.
+6. **추격 자리 (G2)** — 강한 거래량 통한 상승 catch. 별도 컬럼(그리드 G2 셀). ma_touch 밖에서 명시적으로 잡는 별도 자리.
 7. **대시보드 재구성** — 새 스키마 (`signal_ma_touch_{TF}_full/partial` + 40 컬럼) UI 노출
 8. **alerts 재구성** — `_ma_touch.parquet` 기반 신규 진입 알림
 9. **백테스트 인프라 재구축** — 옛 `backtest_runner` 폐기. 새 ma_touch 기반.

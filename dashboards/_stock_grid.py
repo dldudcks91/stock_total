@@ -539,7 +539,8 @@ def js_fmt_gap_with_arrow(slope_field: str, threshold: float) -> JsCode:
 
 
 # 그랜빌 매수법칙 게이트 셀 — 통과 시 초록 ●, 미통과 공백. ``field`` (g1~g4) 가
-# row data 에 있어야 ● 표시됨. 판정 로직은 추후 precompute 에서 채움(현재 빈칸).
+# row data 에 있어야 ● 표시됨. 현재 채워지는 것은 G3(gate_pass)뿐 — G1(signals.g1.signal_g1)
+# G2(signals.g2.signal_g2) 는 함수 있으나 _precompute.py 배선 대기, G4 는 편입 여부 미확정.
 def js_fmt_bool_dot(field: str) -> JsCode:
     return JsCode(
         "function(params){"
@@ -580,15 +581,21 @@ _STOCK_IV_LETTER = {"1d": "D", "1w": "W", "1M": "M"}
 _SLOPE_IV_HEADER = {"1d": "일", "1w": "주", "1M": "월"}
 
 # 그랜빌 매수 4법칙 컬럼 — (row data field, 헤더, 툴팁).
-# G3 = 지지·눌림목 = 기존 ma_touch (정배열+상승+MA터치). gate_pass 를 그대로 읽어
-# G3 으로 편입(옛 '터치 ●' 컬럼을 흡수). G1/G2/G4 는 골격(미산출 → 빈칸), 판정
-# 로직은 추후 precompute(g1/g2/g4)에서 채운다.
+# G1 = MA 2차함수 적합 (signals.g1.signal_g1). 판정 함수 구현 완료 — 다만
+#      _precompute.py 배선 대기라 _recs.parquet 에 아직 g1 컬럼이 없어 그리드는 빈칸.
+# G2 = 추격 자리 = 강한 거래량 통한 상승 catch (signals.g2.signal_g2). 판정 함수 완성,
+#      _precompute.py 배선 대기라 그리드는 빈칸.
+# G3 = 지지·눌림목 = 기존 ma_touch (signals.g3.signal_ma_touch_full/partial).
+#      gate_pass 를 그대로 읽어 G3 로 편입 (옛 '터치 ●' 컬럼 흡수).
+# G4 = 이격과대 반등. 편입 여부 자체 미확정 (signals.g4 는 placeholder).
 _GRANVILLE_SPECS: list[tuple[str, str, str]] = [
-    ("g1", "G1", "그랜빌 1법칙 — 바닥반등 돌파 (판정 로직 추후)"),
-    ("g2", "G2", "그랜빌 2법칙 — 눌림목: MA 깼다 회복 (판정 로직 추후)"),
+    ("g1", "G1", "그랜빌 1법칙 — 바닥반등 돌파 (signals.g1.signal_g1: MA 2차함수 적합, "
+                 "_precompute 배선 대기)"),
+    ("g2", "G2", "그랜빌 2법칙 (사용자 재정의) — 추격: 강한 거래량 통한 상승 "
+                 "(signals.g2.signal_g2, _precompute 배선 대기)"),
     ("gate_pass", "G3", "그랜빌 3법칙 — 지지·눌림목 = ma_touch "
-                        "(정배열+상승+MA터치, 1D/1W/1M/1Q/1Y 중 ≥1 통과)"),
-    ("g4", "G4", "그랜빌 4법칙 — 이격과대 반등 (판정 로직 추후)"),
+                        "(signals.g3, 정배열+상승+MA터치, 1D/1W/1M/1Q/1Y 중 ≥1 통과)"),
+    ("g4", "G4", "그랜빌 4법칙 — 이격과대 반등 (편입 여부 미확정, signals.g4 placeholder)"),
 ]
 
 
@@ -619,7 +626,9 @@ def build_stock_grid_options(
             (각 TF×MA 한 칸에 price vs MA 갭% + 기울기 ▲/■/▼ 병합),
           G1, G2, G3, G4
             (그랜빌 매수 4법칙. G3 = ma_touch(gate_pass) 편입 — 옛 '터치 ●'
-             컬럼 흡수. G1/G2/G4 는 골격, 판정 로직 추후 precompute 에서 채움)
+             컬럼 흡수. G1(signals.g1.signal_g1)·G2(signals.g2.signal_g2) 는
+             판정 함수는 완성, precompute 배선 대기라 아직 빈칸.
+             G4 는 편입 여부 미확정 · signals.g4 placeholder)
 
     이전의 MA Interval / HL Lookback 토글, 기간 수익률(1d~140d %), High/Low%
     컬럼은 모두 제거됨. 갭%와 기울기는 별도 12컬럼이었으나 6개 병합 컬럼으로
@@ -764,8 +773,10 @@ def build_stock_grid_options(
 
     # ── 그랜빌 매수 4법칙 (display-only) ──
     # 각 컬럼은 row data 의 field(g1/g2/gate_pass/g4)가 truthy 면 ● 표시.
-    # G3 = gate_pass(ma_touch) 편입 → 옛 '터치 ●' 와 동일 신호. G1/G2/G4 는
-    # 아직 미산출이라 빈칸 — 판정 로직은 추후 precompute(_recs.parquet)에서 채운다.
+    # G3 = gate_pass(ma_touch) 편입 → 옛 '터치 ●' 와 동일 신호.
+    # G1 = signals.g1.signal_g1 (2차함수 적합) — 판정 함수 완성, _precompute.py 배선 대기.
+    # G2 = signals.g2.signal_g2 (거래량+수익률+신고가) — 판정 함수 완성, _precompute.py 배선 대기.
+    # G4 는 편입 여부 자체 미확정 · signals.g4 placeholder.
     for field, header, tip in _GRANVILLE_SPECS:
         gob.configure_column(
             field, headerName=header, width=50, minWidth=38,
@@ -849,111 +860,6 @@ def chart_legend_html(entries: list) -> str:
     )
 
 
-# ---------------------------------------------------------------------------
-# Fibonacci + manual trendline overlays
-# ---------------------------------------------------------------------------
-
-# Standard retracement ratios → line color. 0% sits at the swing high, 100% at
-# the swing low, so a pullback in an uptrend lands on the 0.382/0.5/0.618 band.
-FIB_LEVELS: list[float] = [0.0, 0.236, 0.382, 0.5, 0.618, 0.786, 1.0]
-FIB_COLORS: dict[float, str] = {
-    0.0: "#787B86", 0.236: "#F23645", 0.382: "#FF9800", 0.5: "#4CAF50",
-    0.618: "#089981", 0.786: "#00BCD4", 1.0: "#787B86",
-}
-TRENDLINE_COLOR: str = "#2962FF"
-
-
-def compute_fib_levels(high: pd.Series, low: pd.Series, n: int) -> Optional[dict]:
-    """Swing high/low over the last ``n`` bars → fib retracement prices.
-
-    ``high`` / ``low`` are positionally-aligned price Series (any column case,
-    any index). Returns ``{"high", "low", "levels": [(pct, price), ...]}`` or
-    None if the window is degenerate (flat range / too few bars).
-    """
-    if high is None or len(high) == 0:
-        return None
-    k = max(int(n), 2)
-    hi = float(high.tail(k).max())
-    lo = float(low.tail(k).min())
-    if not (hi > lo):
-        return None
-    span = hi - lo
-    levels = [(pct, hi - span * pct) for pct in FIB_LEVELS]
-    return {"high": hi, "low": lo, "levels": levels}
-
-
-def _overlay_series(
-    t,  # numpy int64 array of candle unix seconds, aligned to the bars
-    high: pd.Series,
-    low: pd.Series,
-    snap_dates,  # DatetimeIndex-like, positionally aligned to ``t`` (trendline snap)
-    fib_n: Optional[int],
-    trendlines: Optional[list],
-) -> list:
-    """Build extra lightweight-charts Line series for fib levels + trendlines.
-
-    ``trendlines`` is a list of ``{"p1": [iso_date, price], "p2": [...]}``.
-    Each point's date is snapped to the nearest candle time so the segment
-    always lands on the chart's time scale (line points off-scale won't draw).
-
-    Schema-neutral: stocks pass ``d["High"]/d["Low"]/d.index``; crypto passes
-    ``d["high"]/d["low"]`` + a DatetimeIndex built from the ``timestamp`` column.
-    """
-    out: list = []
-    if len(t) == 0:
-        return out
-
-    if fib_n:
-        fib = compute_fib_levels(high, low, fib_n)
-        if fib is not None:
-            # Span from the start of the swing window to the latest bar.
-            start_i = max(len(t) - max(int(fib_n), 2), 0)
-            t0, t1 = int(t[start_i]), int(t[-1])
-            for pct, price in fib["levels"]:
-                out.append({
-                    "type": "Line",
-                    "data": [{"time": t0, "value": price},
-                             {"time": t1, "value": price}],
-                    "options": {
-                        "color": FIB_COLORS.get(pct, "#787B86"),
-                        "lineWidth": 1, "lineStyle": 2,  # dashed
-                        "title": f"{pct:.3g}",
-                        "lastValueVisible": True, "priceLineVisible": False,
-                        "crosshairMarkerVisible": False,
-                    },
-                })
-
-    if trendlines:
-        idx = pd.DatetimeIndex(snap_dates)
-        for tl in trendlines:
-            try:
-                (d1, p1), (d2, p2) = tl["p1"], tl["p2"]
-                ts1 = pd.Timestamp(d1)
-                ts2 = pd.Timestamp(d2)
-                # snap each endpoint date to the nearest candle time
-                i1 = int(idx.get_indexer([ts1], method="nearest")[0])
-                i2 = int(idx.get_indexer([ts2], method="nearest")[0])
-                if i1 == i2:
-                    continue
-                pts = sorted(
-                    [(int(t[i1]), float(p1)), (int(t[i2]), float(p2))],
-                    key=lambda x: x[0],
-                )
-            except Exception:  # noqa: BLE001 — skip malformed entries
-                continue
-            out.append({
-                "type": "Line",
-                "data": [{"time": tm, "value": v} for tm, v in pts],
-                "options": {
-                    "color": tl.get("color", TRENDLINE_COLOR),
-                    "lineWidth": 2,
-                    "lastValueVisible": False, "priceLineVisible": False,
-                    "crosshairMarkerVisible": False,
-                },
-            })
-    return out
-
-
 def normalize_crypto_ohlcv(cdf: pd.DataFrame) -> pd.DataFrame:
     """Convert crypto cache schema → stock schema so both feed the same renderer.
 
@@ -971,6 +877,83 @@ def normalize_crypto_ohlcv(cdf: pd.DataFrame) -> pd.DataFrame:
     return d[["Open", "High", "Low", "Close", "Volume"]]
 
 
+def compute_volume_profile(cdf: pd.DataFrame, bins: int = 40) -> "tuple[list, list]":
+    """(price_bin_centers, volume_at_each_bin) — 매물대(VP) 계산.
+
+    각 봉이 자신의 ``[Low, High]`` 구간에 Volume 을 균등 분배한다고 가정.
+    수학적으로: bin ``[b_lo, b_hi]`` 의 volume = Σ_i vol_i × overlap(bar_i, bin) /
+    range_i. 봉이 flat(Low==High) 이면 그 가격 bin 에 vol 전체를 넣는다.
+
+    이 근사는 tick 데이터가 없을 때 흔히 쓰이는 "linear volume distribution"
+    방식으로, 실제 tick-level VP 와 다를 수 있지만 가격대별 관심도를 보여주는
+    데는 충분.
+    """
+    import numpy as _np
+    if cdf is None or len(cdf) == 0:
+        return [], []
+    lows = cdf["Low"].to_numpy(dtype="float64")
+    highs = cdf["High"].to_numpy(dtype="float64")
+    vols = cdf["Volume"].to_numpy(dtype="float64")
+    p_min = float(_np.nanmin(lows))
+    p_max = float(_np.nanmax(highs))
+    if not (p_max > p_min):
+        return [], []
+    edges = _np.linspace(p_min, p_max, int(bins) + 1)
+    centers = (edges[:-1] + edges[1:]) / 2.0
+    out = _np.zeros(int(bins), dtype="float64")
+    for lo, hi, v in zip(lows, highs, vols):
+        if not (v > 0):
+            continue
+        if hi <= lo:
+            # flat bar — 해당 가격 bin 에 통째 배분
+            idx = int(_np.clip(_np.searchsorted(edges, lo) - 1, 0, bins - 1))
+            out[idx] += v
+            continue
+        # 겹치는 bin 들: bin 별 겹치는 길이 / bar 길이 비율만큼 배분
+        i_lo = int(_np.clip(_np.searchsorted(edges, lo) - 1, 0, bins - 1))
+        i_hi = int(_np.clip(_np.searchsorted(edges, hi) - 1, 0, bins - 1))
+        bar_len = hi - lo
+        for i in range(i_lo, i_hi + 1):
+            b_lo, b_hi = edges[i], edges[i + 1]
+            overlap = max(0.0, min(hi, b_hi) - max(lo, b_lo))
+            out[i] += v * (overlap / bar_len)
+    return centers.tolist(), out.tolist()
+
+
+def _render_volume_profile(st, d: pd.DataFrame, bins: int, *, height: int) -> None:
+    """VP 바 차트 (수평) 를 Plotly 로 그린다. 캔들 차트 y 축(가격) 범위와
+    맞추기 위해 ``d["Low"].min()`` ~ ``d["High"].max()`` 을 명시.
+
+    ``d`` — ``render_tv_chart`` 내부에서 이미 sort_index() 완료된 사본.
+    """
+    from dashboards.charts import plotly_config
+    import plotly.graph_objects as _go
+    centers, vols = compute_volume_profile(d, bins=bins)
+    if not centers:
+        st.caption("매물대 데이터 없음")
+        return
+    fig = _go.Figure(
+        data=[_go.Bar(
+            x=vols, y=centers, orientation="h",
+            marker=dict(color="rgba(31,119,180,0.55)"),
+            hovertemplate="%{y:.4g} · %{x:.3g}<extra></extra>",
+        )],
+    )
+    fig.update_layout(
+        height=int(height), margin=dict(l=0, r=0, t=0, b=0),
+        showlegend=False,
+        xaxis=dict(showgrid=False, showticklabels=False, zeroline=False),
+        yaxis=dict(
+            showgrid=False, side="right",
+            range=[float(d["Low"].min()), float(d["High"].max())],
+            tickfont=dict(size=9),
+        ),
+        plot_bgcolor="rgba(0,0,0,0)", paper_bgcolor="rgba(0,0,0,0)",
+        bargap=0.02,
+    )
+    st.plotly_chart(fig, use_container_width=True, config=plotly_config())
+
+
 def render_tv_chart(
     symbol: str,
     title: str,
@@ -978,8 +961,8 @@ def render_tv_chart(
     cdf: pd.DataFrame,
     *,
     key_prefix: str,
-    fib_n: Optional[int] = None,
-    trendlines: Optional[list] = None,
+    vp_on: bool = False,
+    vp_bins: int = 40,
 ) -> None:
     """Render a Bitget/TradingView-style chart from an OHLCV DataFrame.
 
@@ -988,9 +971,9 @@ def render_tv_chart(
     :func:`normalize_crypto_ohlcv` — the renderer itself is schema-agnostic once
     normalized so Bitget / KOSPI / NASDAQ share the same visual output.
 
-    ``fib_n`` (if set) overlays fib retracement levels from the last ``fib_n``
-    bars' swing high/low. ``trendlines`` overlays manual segments — each
-    ``{"p1": [iso_date, price], "p2": [iso_date, price]}``.
+    ``vp_on`` (Volume Profile 매물대) — 우측에 가격대별 누적 거래량을 수평 막대로
+    표시하는 Plotly 서브패널을 붙인다. 각 봉이 자기 (Low, High) 구간에 균등하게
+    Volume 을 분배한다는 가정. ``vp_bins`` 로 세밀도 조절.
     """
     import streamlit as _st
     from streamlit_lightweight_charts import renderLightweightCharts  # type: ignore
@@ -1120,9 +1103,6 @@ def render_tv_chart(
         },
     ]
 
-    # Fibonacci levels + manual trendlines (drawn above candles/MAs).
-    series.extend(_overlay_series(t, d["High"], d["Low"], d.index, fib_n, trendlines))
-
     # Legend rows carry the last-bar MA value so you can read the current
     # price of each line without hovering — crosshair-driven values still come
     # from the patched frontend tooltip.
@@ -1135,10 +1115,24 @@ def render_tv_chart(
     legend = chart_legend_html(legend_entries)
     with _st.container(key="chart_legend_wrap"):
         _st.markdown(legend, unsafe_allow_html=True)
-        renderLightweightCharts(
-            [{"chart": chart_options, "series": series}],
-            key=f"{key_prefix}_{symbol}_{interval}",
-        )
+        if vp_on:
+            # 캔들 차트 + 우측 매물대(Volume Profile) 서브패널. Streamlit column
+            # 비율(∼88%/12%)로 나눠 붙인다. 두 차트의 y 축(가격) 은 독립이지만
+            # Plotly 쪽에 데이터 가격 범위를 명시적으로 세팅해 시각적으로 정렬.
+            _cc, _cvp = _st.columns([88, 12], gap="small")
+            with _cc:
+                renderLightweightCharts(
+                    [{"chart": chart_options, "series": series}],
+                    key=f"{key_prefix}_{symbol}_{interval}",
+                )
+            with _cvp:
+                _render_volume_profile(_st, d, vp_bins,
+                                       height=chart_options["height"])
+        else:
+            renderLightweightCharts(
+                [{"chart": chart_options, "series": series}],
+                key=f"{key_prefix}_{symbol}_{interval}",
+            )
 
 
 # ---------------------------------------------------------------------------
@@ -1160,110 +1154,6 @@ def save_notes(path: Path, notes: dict) -> None:
         json.dumps(notes, ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
-
-
-# ---------------------------------------------------------------------------
-# Drawings persistence — per-page JSON, ``{code: [{p1:[iso,price], p2:...}]}``
-# ---------------------------------------------------------------------------
-
-def load_drawings(path: Path) -> dict:
-    """Load the per-symbol trendline dict (``{code: [segment, ...]}``)."""
-    import json
-    try:
-        data = json.loads(path.read_text(encoding="utf-8"))
-    except (FileNotFoundError, ValueError):
-        return {}
-    return data if isinstance(data, dict) else {}
-
-
-def save_drawings(path: Path, drawings: dict) -> None:
-    import json
-    path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(
-        json.dumps(drawings, ensure_ascii=False, indent=2),
-        encoding="utf-8",
-    )
-
-
-def render_drawing_controls(
-    st: Any,
-    *,
-    code: str,
-    dates,  # DatetimeIndex-like of the chart's bars (for date-input bounds)
-    last_close: float,
-    drawings_path: Path,
-    session_key: str,
-) -> tuple:
-    """Chart-overlay controls: fib toggle + manual trendline editor.
-
-    Returns ``(fib_n_or_None, trendlines_for_this_code)`` ready to hand to the
-    chart renderer. Trendlines persist to ``drawings_path`` (JSON) keyed by
-    ``code``; ``session_key`` caches the dict in session state. Schema-neutral:
-    pass ``cdf.index`` (stocks) or a DatetimeIndex from ``timestamp`` (crypto).
-    """
-    import datetime as _dt
-
-    drawings = st.session_state.setdefault(session_key, load_drawings(drawings_path))
-    code_lines = list(drawings.get(code, []))
-
-    idx = pd.DatetimeIndex(dates) if dates is not None and len(dates) else None
-    d_min = idx.min().date() if idx is not None else _dt.date(2000, 1, 1)
-    d_max = idx.max().date() if idx is not None else _dt.date.today()
-    last_close = float(last_close) if last_close is not None else 0.0
-
-    with st.expander("✏️ 그리기 (피보나치 · 추세선)", expanded=False):
-        fc1, fc2 = st.columns([1, 2])
-        with fc1:
-            fib_on = st.checkbox("피보나치", value=False, key=f"fib_on_{code}")
-        with fc2:
-            fib_n = st.number_input(
-                "스윙 구간 (최근 N봉)", min_value=10, max_value=2000,
-                value=120, step=10, key=f"fib_n_{code}",
-                help="최근 N봉의 고점(0%)·저점(100%)으로 되돌림 레벨을 그립니다.",
-            )
-
-        st.markdown("**추세선** — 두 점(날짜·가격)을 입력해 추가")
-        a1, a2, a3, a4, a5 = st.columns([2, 1.4, 2, 1.4, 1])
-        with a1:
-            x1 = st.date_input("시작 날짜", value=d_min, min_value=d_min,
-                               max_value=d_max, key=f"tl_x1_{code}")
-        with a2:
-            y1 = st.number_input("시작 가격", value=last_close, key=f"tl_y1_{code}")
-        with a3:
-            x2 = st.date_input("끝 날짜", value=d_max, min_value=d_min,
-                               max_value=d_max, key=f"tl_x2_{code}")
-        with a4:
-            y2 = st.number_input("끝 가격", value=last_close, key=f"tl_y2_{code}")
-        with a5:
-            st.markdown("<div style='height:28px'></div>", unsafe_allow_html=True)
-            if st.button("추가", key=f"tl_add_{code}", use_container_width=True):
-                code_lines.append({
-                    "p1": [x1.isoformat(), float(y1)],
-                    "p2": [x2.isoformat(), float(y2)],
-                })
-                drawings[code] = code_lines
-                save_drawings(drawings_path, drawings)
-                st.session_state[session_key] = drawings
-                st.rerun()
-
-        if code_lines:
-            for i, tl in enumerate(code_lines):
-                (xa, ya), (xb, yb) = tl["p1"], tl["p2"]
-                lc, dc = st.columns([5, 1])
-                with lc:
-                    st.caption(f"{i + 1}. ({xa}, {ya:g}) → ({xb}, {yb:g})")
-                with dc:
-                    if st.button("🗑", key=f"tl_del_{code}_{i}"):
-                        del code_lines[i]
-                        if code_lines:
-                            drawings[code] = code_lines
-                        else:
-                            drawings.pop(code, None)
-                        save_drawings(drawings_path, drawings)
-                        st.session_state[session_key] = drawings
-                        st.rerun()
-
-    return (int(fib_n) if fib_on else None, code_lines)
 
 
 # ---------------------------------------------------------------------------
@@ -1296,28 +1186,124 @@ def save_stars(path: Path, stars: set) -> None:
 def render_chart_star(
     st: Any, code: str, stars_path: Path, session_key: str,
 ) -> bool:
-    """⭐/☆ toggle button for the chart header (right end).
+    """⭐ toggle button for the chart header (right end).
 
     Shares the ``session_key`` set with the grid's ⭐ column and the "별표만"
     filter, persisting to ``stars_path`` so favorites survive reloads. Returns
-    the current starred state. No explicit ``st.rerun`` — the button click
-    already reruns, and calling ``st.rerun`` inside a dialog would close it.
+    the current starred state.
+
+    구현: 항상 같은 ⭐ 문자를 렌더하고, wrap 컨테이너 key 에 on/off 상태를 실어
+    STOCK_PAGE_CSS 가 OFF 상태에서 grayscale 필터로 흐리게 그리도록 한다. 문자를
+    ⭐↔☆ 로 갈아 끼우지 않는 이유는 ☆(U+2606) 이 얇은 아웃라인이라 "귀엽고 뚱뚱한"
+    느낌이 안 나서. ⭐ 는 어느 플랫폼에서도 통통한 이모지로 렌더됨.
     """
     stars = st.session_state.setdefault(session_key, load_stars(stars_path))
     is_on = code in stars
-    if st.button(
-        "⭐" if is_on else "☆",
-        key=f"chart_star_btn::{session_key}::{code}",
-        help="별표 토글 (즐겨찾기)",
-        use_container_width=True,
-    ):
-        if is_on:
-            stars.discard(code)
-        else:
-            stars.add(code)
-        save_stars(stars_path, stars)
-        is_on = not is_on
+    wrap_key = f"chart_star_wrap_{'on' if is_on else 'off'}_{code}"
+    with st.container(key=wrap_key):
+        if st.button(
+            "⭐",
+            key=f"chart_star_btn::{session_key}::{code}",
+            help="별표 토글 (즐겨찾기)",
+            use_container_width=True,
+        ):
+            if is_on:
+                stars.discard(code)
+            else:
+                stars.add(code)
+            save_stars(stars_path, stars)
+            is_on = not is_on
     return is_on
+
+
+def apply_top_by_rank(
+    df: "pd.DataFrame", sort_col: str, top_n: int,
+) -> "pd.DataFrame":
+    """Top by 기준으로 df 를 재정렬하고 top_n 만큼 잘라 반환.
+
+    MA-gap 컬럼(``pct_ma…``)은 **|값| 오름차순** — 값이 0에 가까울수록 가격이 그
+    MA 에 붙어있다는 뜻이라 "MA 터치" 자리 선별에 자연스럽다. 그 외 컬럼(거래대금·
+    시총·기간 수익률·G-스코어)은 **내림차순** — 큰 값이 위. sort_col 이 df 에
+    없으면 순위 변경 없이 head 만 적용.
+
+    반환 df 의 index 는 reset_index 로 [0..N-1] 로 정리 — 이 순서가 그대로 차트
+    ‹ 번호 › 순번의 기준이 된다.
+    """
+    if sort_col in df.columns:
+        col = df[sort_col]
+        if sort_col.startswith("pct_ma"):
+            order = col.abs().sort_values(ascending=True, na_position="last").index
+        else:
+            order = col.sort_values(ascending=False, na_position="last").index
+        df = df.loc[order]
+    if top_n and top_n > 0:
+        df = df.head(int(top_n))
+    return df.reset_index(drop=True)
+
+
+def render_top_n_input(
+    st: Any,
+    *,
+    canonical_key: str,
+    widget_key: str,
+    max_value: int = 2000,
+    step: int = 10,
+    label: str = "Top N",
+) -> None:
+    """Number input bound to a canonical session-state key.
+
+    Toolbar 와 차트 다이얼로그 두 곳에 같은 위젯을 띄우고 값을 동기화하기 위한
+    헬퍼. 위젯 자체 key 는 서로 달라야 (Streamlit key 는 유일해야 함) 하지만,
+    실제 값은 ``canonical_key`` 하나에만 저장한다. 사용자가 어느 쪽을 바꿔도
+    ``on_change`` 콜백이 canonical 을 갱신 → 다음 rerun 에서 반대편 위젯의
+    key 를 canonical 로 강제 세팅. 콜백이 script 보다 먼저 실행되므로 이
+    강제 세팅이 사용자 입력을 덮어쓰지 않는다.
+    """
+    st.session_state.setdefault(canonical_key, 0)
+    # Pre-render force-sync (safe: 콜백이 먼저 실행돼 canonical 이 이미 최신).
+    st.session_state[widget_key] = int(st.session_state[canonical_key])
+
+    def _cb():
+        st.session_state[canonical_key] = st.session_state[widget_key]
+
+    st.number_input(
+        label,
+        min_value=0, max_value=int(max_value), step=int(step),
+        key=widget_key, on_change=_cb,
+        help="0 = 전체",
+    )
+
+
+def render_top_by_select(
+    st: Any,
+    *,
+    canonical_key: str,
+    widget_key: str,
+    options: list,
+    labels: dict,
+    default: str,
+    label: str = "Top by",
+    help_text: Optional[str] = None,
+) -> None:
+    """Selectbox bound to a canonical session-state key (see render_top_n_input).
+
+    ``options`` 가 자산별로 달라질 수 있어 canonical 이 현재 옵션 리스트에
+    없으면 ``default`` 로 리셋한다 (그리드 변경 후에도 유효한 값 유지).
+    """
+    if st.session_state.get(canonical_key) not in options:
+        st.session_state[canonical_key] = default
+    st.session_state[widget_key] = st.session_state[canonical_key]
+
+    def _cb():
+        st.session_state[canonical_key] = st.session_state[widget_key]
+
+    st.selectbox(
+        label,
+        options=options,
+        format_func=lambda k: labels.get(k, k),
+        key=widget_key, on_change=_cb,
+        help=help_text,
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -1828,11 +1814,40 @@ STOCK_PAGE_CSS = """
    top-left and collapse the gap so the chart sits flush under it. */
 .st-key-chart_legend_wrap { position: relative !important; }
 .st-key-chart_legend_wrap [data-testid="stVerticalBlock"] { gap: 0 !important; }
-/* Nudge dialog X button — small offset from default */
+/* Dialog X button — 우상단 코너에서 위·오른쪽 여백이 같아야 대칭.
+   Streamlit 기본은 right 여백이 크고 top 이 작아 X 가 왼쪽으로 치우쳐 보인다. */
 div[role="dialog"] button[aria-label="Close"],
 [data-testid="stDialog"] button[aria-label="Close"] {
-  top: 0.4rem !important;
-  margin-top: -2px !important;
+  top: 0.5rem !important;
+  right: 0.5rem !important;
+  margin: 0 !important;
+}
+/* 차트 헤더 ⭐ 토글 — 카드/보더 다 벗기고 통통한 ⭐ 만 남긴다. OFF 상태는
+   grayscale 로 흐리게. 위젯 자체 key 에 상태(on/off)를 실은 wrap 컨테이너의
+   class ("st-key-chart_star_wrap_off_XYZ") 를 attribute selector 로 매칭. */
+[class*="chart_star_wrap_"] {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+[class*="chart_star_wrap_"] button {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  min-height: 30px !important;
+  height: 30px !important;
+  line-height: 1 !important;
+  font-size: 24px !important;
+}
+[class*="chart_star_wrap_"] button:hover {
+  background: rgba(255, 215, 0, 0.10) !important;
+  border-radius: 50% !important;
+}
+[class*="chart_star_wrap_off"] button {
+  filter: grayscale(1) opacity(0.35);
+}
+[class*="chart_star_wrap_off"] button:hover {
+  filter: opacity(0.75);
 }
 /* Cap the entire page to viewport width and clip any overflow.
    Streamlit's wide layout sometimes lets nested blocks push the page
